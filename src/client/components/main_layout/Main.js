@@ -14,6 +14,7 @@ import thumbImage from '../../img/thumb.png';
 const styles = theme => ({
   root: {
     width: '100%',
+    minHeight: 900,
     marginBottom: theme.spacing.unit,
     [ theme.breakpoints.up('md')]: {
       height: 'calc(100% - 150px)',
@@ -57,33 +58,18 @@ let Main = props => {
   const perspectives = [
     {
       id: 'manuscripts',
-      label: 'Manuscripts',
-      desc: 'Physical manuscript objects.'
+      label: 'Sotasurmat',
+      desc: 'Tietoja vuosina 1914-1922 surmatuista'
     },
     {
-      id: 'works',
-      label: 'Works',
-      desc: 'Intellectual content carried out by manuscripts.'
+      id: 'manuscripts2',
+      label: 'Näkymä2',
+      desc: 'Tuleva näkymä'
     },
     {
-      id: 'events',
-      label: 'Events',
-      desc: 'Events related to manuscripts.'
-    },
-    {
-      id: 'people',
-      label: 'People',
-      desc: 'People related to manuscripts and works.'
-    },
-    {
-      id: 'organizations',
-      label: 'Organizations',
-      desc: 'Organizations related to manuscripts.'
-    },
-    {
-      id: 'places',
-      label: 'Places',
-      desc: 'Places related to manuscripts and works.'
+      id: 'manuscripts3',
+      label: 'Näkymä3',
+      desc: 'Tuleva näkymä'
     },
   ];
 
@@ -92,12 +78,10 @@ let Main = props => {
       <div className={classes.layout}>
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              Mapping Manuscript Migrations
+              Suomen sotasurmat 1914-1922
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" paragraph>
-            MMM is a semantic portal for finding and studying pre-modern manuscripts and their movements,
-            based on linked collections of  Schoenberg Institute, Bodleian Library, and IRHT.
-            Select an application view below.
+            Tämä sivusto tarjoaa tietoa Suomen sotasurmista vuosina 1914-1922.
           </Typography>
         </div>
       </div>

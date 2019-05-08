@@ -20,7 +20,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   title: {
-    // 
+    //
   },
   sectionDesktop: {
     display: 'none',
@@ -103,9 +103,10 @@ class TopBar extends React.Component {
               to='/'
             >
               <Typography className={classes.title} variant="h6" color="inherit">
-                MMM
+                Sotasurmat
               </Typography>
             </Button>
+            {/*
             <TopBarSearchField
               fetchResultsClientSide={this.props.fetchResultsClientSide}
               clearResults={this.props.clearResults}
@@ -130,6 +131,7 @@ class TopBar extends React.Component {
                 <MoreIcon />
               </IconButton>
             </div>
+            */}
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
