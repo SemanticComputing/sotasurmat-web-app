@@ -1,10 +1,6 @@
-# Mapping Manuscript Migrations Web App
+# Sotasurmat Web App
 
-Project homepage: http://mappingmanuscriptmigrations.org/
-
-master branch visible at http://dev.ui.mappingmanuscriptmigrations.org/
-
-test branch visible at http://test.ui.mappingmanuscriptmigrations.org/
+Based on https://github.com/SemanticComputing/mmm-web-app
 
 ## Requirements
 
