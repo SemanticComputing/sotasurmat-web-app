@@ -1,77 +1,28 @@
 export const manuscriptProperties = `
-  ?id skos:prefLabel ?prefLabel__id .
-  BIND (?prefLabel__id as ?prefLabel__prefLabel)
-  BIND (?id as ?prefLabel__dataProviderUrl)
-  {
-    ?id mmm-schema:data_provider_url ?source__id .
-    BIND (?source__id AS ?source__prefLabel)
-    BIND (?source__id AS ?source__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id mmm-schema:manuscript_author ?author__id .
-    ?author__id skos:prefLabel ?author__prefLabel .
-    OPTIONAL { ?author__id mmm-schema:data_provider_url ?author__dataProviderUrl }
-  }
-  UNION
-  {
-    ?production crm:P108_has_produced ?id .
-    ?production crm:P4_has_time-span ?productionTimespan .
-    ?productionTimespan skos:prefLabel ?productionTimespan__id .
-    OPTIONAL { ?productionTimespan crm:P79_beginning_is_qualified_by ?productionTimespan__start }
-    OPTIONAL { ?productionTimespan crm:P80_end_is_qualified_by ?productionTimespan__end }
-    BIND (?productionTimespan__id AS ?productionTimespan__prefLabel)
-  }
-  UNION
-  {
-    ?production crm:P108_has_produced ?id .
-    ?production crm:P7_took_place_at ?productionPlace__id .
-    ?productionPlace__id skos:prefLabel ?productionPlace__prefLabel .
-    OPTIONAL { ?productionPlace__id owl:sameAs ?productionPlace__dataProviderUrl }
-    # FILTER NOT EXISTS {
-    #   ?production crm:P7_took_place_at ?productionPlace__id2 .
-    #   ?productionPlace__id2 crm:P89_falls_within+ ?productionPlace__id .
-    # }
-  }
-  UNION
-  {
-    ?id crm:P51_has_former_or_current_owner ?owner__id .
-    ?owner__id skos:prefLabel ?owner__prefLabel .
-    BIND (?owner__id AS ?owner__dataProviderUrl)
-    #OPTIONAL { ?owner__id mmm-schema:data_provider_url ?owner__dataProviderUrl }
-    #OPTIONAL {
-    #  [] rdf:subject ?id ;
-    #    rdf:predicate crm:P51_has_former_or_current_owner ;
-    #    rdf:object ?owner__id ;
-    #    mmm-schema:order ?order .
-    #  BIND(xsd:integer(?order) + 1 AS ?owner__order)
-    #}
-  }
-  UNION
-  {
-    ?id crm:P128_carries ?expression .
-    ?expression crm:P72_has_language ?language .
-  }
-  UNION
-  {
-    ?event__id crm:P30_transferred_custody_of ?id .
-    ?event__id a ?event__type .
-    OPTIONAL { ?event__id skos:prefLabel ?event__prefLabel . }
-    OPTIONAL { ?event__id crm:P4_has_time-span ?event__date. }
-    OPTIONAL { ?event__id crm:P7_took_place_at ?event__place. }
-    OPTIONAL { ?event__id  mmm-schema:data_provider_url ?event__dataProviderUrl }
-  }
-  UNION
-  {
-    ?event__id mmm-schema:observed_manuscript ?id .
-    ?event__id a ?event__type .
-    OPTIONAL { ?event__id skos:prefLabel ?event__prefLabel . }
-    OPTIONAL { ?event__id mmm-schema:observed_time-span ?event__date. }
-    OPTIONAL { ?event__id mmm-schema:observed_location ?event__place. }
-    OPTIONAL { ?event__id mmm-schema:data_provider_url ?event__dataProviderUrl }
-  }
-`;
-
+    ?id skos:prefLabel ?prefLabel__id .
+    BIND (?prefLabel__id as ?prefLabel__prefLabel)
+    BIND (?id as ?prefLabel__dataProviderUrl)
+    OPTIONAL {
+      ?id siso-schema:party ?party__id .
+      ?party__id skos:prefLabel ?party__prefLabel .
+    }
+    OPTIONAL {
+      ?id siso-schema:living_municipality ?livingMunicipality__id .
+      ?livingMunicipality__id skos:prefLabel ?livingMunicipality__prefLabel .
+    }
+    OPTIONAL {
+      ?id siso-schema:occupation ?occupation__id .
+      ?occupation__id skos:prefLabel ?occupation__prefLabel .
+    }
+    OPTIONAL {
+      ?id siso-schema:death_date ?deathDate__id .
+      BIND (?deathDate__id AS ?deathDate__prefLabel)
+    }
+    OPTIONAL {
+      ?id siso-schema:birth_date ?birthDate__id .
+      BIND (?birthDate__id AS ?birthDate__prefLabel)
+    }
+    `;
 export const productionPlacesQuery = `
   SELECT ?id ?lat ?long ?prefLabel ?source ?dataProviderUrl
   (COUNT(DISTINCT ?manuscripts) as ?instanceCount)

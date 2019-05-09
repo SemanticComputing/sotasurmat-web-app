@@ -45,8 +45,8 @@ export const INITIAL_STATE = {
       minWidth: 250
     },
     {
-      id: 'author',
-      label: 'Author',
+      id: 'party',
+      label: 'Party',
       desc: `
         The author(s) who have contributed to the intellectual content (works)
         contained in the manuscript.

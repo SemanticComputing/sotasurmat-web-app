@@ -16,9 +16,9 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
-    source: {
-      id: 'source',
-      label: 'Source',
+    party: {
+      id: 'party',
+      label: 'Party',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -33,86 +33,6 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    productionPlace: {
-      id: 'productionPlace',
-      label: 'Production place',
-      //predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'prefLabel',
-      sortDirection: 'asc',
-      sortButton: false,
-      spatialFilterButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      spatialFilter: null
-    },
-    // productionDate: {
-    //   id: 'productionDate',
-    //   label: 'Production date',
-    //   //predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'prefLabel',
-    //   sortDirection: 'asc',
-    //   sortButton: false,
-    //   spatialFilterButton: true,
-    //   isFetching: false,
-    //   searchField: true,
-    //   containerClass: 'ten',
-    //   filterType: 'timespan',
-    //   startValue: null,
-    //   endValue: null
-    // },
-    author: {
-      id: 'author',
-      label: 'Author',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
-    owner: {
-      id: 'owner',
-      label: 'Owner',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
-    // language: {
-    //   id: 'language',
-    //   label: 'Language',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'asc',
-    //   isFetching: false,
-    // },
   }
 };
 

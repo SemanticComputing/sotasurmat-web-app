@@ -79,6 +79,7 @@ export const getFacet = ({
       `;
     }
   }
+  console.log(facetConfig)
   if (facetConfig.type === 'hierarchical') {
     mapper = mapHierarchicalFacet;
     const parentFilterStr = generateFilter({
