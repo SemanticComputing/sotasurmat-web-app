@@ -43,12 +43,13 @@ const styles = theme => ({
 const combineSmallGroups = (dataArray) => {
   const totalLength = dataArray.length;
   const threshold = 0.1;
-  let other = { x: 'Other', y: 0 };
+  let other = { x: 'Other', y: 0, values: [] };
   let newArray = [];
   for (let item of dataArray) {
     const portion = item.y / totalLength;
     if (portion < threshold) {
       other.y += item.y;
+      other.values.push(item.values);
     } else {
       newArray.push(item);
     }
@@ -61,95 +62,83 @@ const combineSmallGroups = (dataArray) => {
   }
 };
 
-class Pie extends React.Component {
-
-  componentDidMount = () => {
-    this.props.fetchPlaces('productionPlaces');
-  }
-
-  render() {
-    const { classes, data } = this.props;
-    const resultCount = data.length;
-    if (resultCount < 1) {
-      return '';
-    }
-    // const grouped = _.groupBy(data, groupBy);
-    // let dataArray = [];
-    // for (let key in grouped) {
-    //   const length = grouped[key].length;
-    //   dataArray.push({
-    //     x: key,
-    //     y: length,
-    //     values: grouped[key]
-    //   });
-    // }
-    let placeLinks = 0;
-    let dataArray = data.map(item => {
-      const msCount = parseInt(item.manuscriptCount);
-      placeLinks += msCount;
-      return {
-        x: item.prefLabel,
-        y: msCount,
-      };
+let Pie = (props) => {
+  const { classes, data } = props;
+  //  console.log(data)
+  const resultCount = data.party.values.length;
+  //if (resultCount < 10) {
+  //  return <ResultInfo message="Need over 10 results to create a distribution." />;
+  //}
+  const grouped = _.groupBy(data.party.values, 'prefLabel');
+  //console.log(grouped)
+  let dataArray = [];
+  for (let key in grouped) {
+    console.log(grouped[key][0])
+    const length = grouped[key][0].instanceCount;
+    dataArray.push({
+      x: key,
+      y: length,
+      values: grouped[key]
     });
-    dataArray = _.orderBy(dataArray, 'y', 'desc');
-    dataArray = combineSmallGroups(dataArray, placeLinks);
-
-    const legendArray = dataArray.map(group => ({ name: group.x + ' (' + group.y + ')' }));
-    const legendHeigth = legendArray.length * 33;
-
-    const pieTitle = placeLinks + ' production place links in total';
-
-    return (
-      <div className={classes.root}>
-        <Grid container className={classes.container}>
-          <Grid className={classes.pie} item xs={12} sm={6}>
-            <VictoryLabel
-              style={{
-                fontSize: '14px',
-                fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-              }}
-              text={pieTitle}
-            />
-            <VictoryPie
-              padding={{
-                left: 0, bottom: 0, top: 32
-              }}
-              colorScale={'qualitative'}
-              data={dataArray}
-              labelComponent={<PieTooltip resultCount={placeLinks} />}
-            />
-          </Grid>
-          <Grid className={classes.legend} item xs={12} sm={6}>
-            <Paper className={classes.legendPaper}>
-              <VictoryLegend
-                height={legendHeigth}
-                title={'Production place (manuscript count)'}
-                colorScale={'qualitative'}
-                data={legendArray}
-                style={{
-                  labels: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' },
-                  title: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' },
-                }}
-                containerComponent={
-                  <VictoryContainer
-                    responsive={false}
-                    width={250}
-                  />
-                }
-              />
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
-    );
   }
-}
+  dataArray = _.orderBy(dataArray, 'y', 'desc');
+  dataArray = combineSmallGroups(dataArray);
+  const legendArray = dataArray.map(group => ({ name: group.x.toLowerCase() + ' (' + group.y + ')' }));
+  const legendHeigth = legendArray.length * 35;
+  // const pieTitle = resultCount + ' results for the query "' + query + '"';
+  // <VictoryLabel
+  //   style={{
+  //     fontSize: '14px',
+  //     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+  //   }}
+  //   text={pieTitle}
+  // />
+
+  return (
+    <div className={classes.root}>
+      <Grid container className={classes.container}>
+        <Grid className={classes.pie} item xs={12} sm={6}>
+
+          <VictoryPie
+            padding={{
+              left: 0, bottom: 0, top: 32
+            }}
+            colorScale={'qualitative'}
+            data={dataArray}
+            labelComponent={<PieTooltip resultCount={resultCount} />}
+          />
+        </Grid>
+        <Grid className={classes.legend} item xs={12} sm={6}>
+          <Paper className={classes.legendPaper}>
+            <VictoryLegend
+              height={legendHeigth}
+              title={'osapuoli'}
+              colorScale={'qualitative'}
+              data={legendArray}
+              style={{
+                labels: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' },
+                title: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' },
+              }}
+              containerComponent={
+                <VictoryContainer
+                  responsive={false}
+                  width={275}
+                />
+              }
+            />
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
+};
 
 Pie.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.array.isRequired,
-  fetchPlaces: PropTypes.func.isRequired
+  data: PropTypes.object.isRequired,
+  //fetchPlaces: PropTypes.func.isRequired
+  fetchFacet: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Pie);

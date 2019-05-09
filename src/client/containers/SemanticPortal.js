@@ -132,6 +132,7 @@ let SemanticPortal = (props) => {
                         updateFacetOption={props.updateFacetOption}
                         sortResults={props.sortResults}
                         routeProps={routeProps}
+                        fetchFacet={props.fetchFacet}
                       />
                     </Paper>
                   </Grid>

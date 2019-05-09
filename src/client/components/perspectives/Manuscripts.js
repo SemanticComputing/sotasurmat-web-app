@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
+import Pie from '../facet_results/Pie';
 import LeafletMap from '../facet_results/LeafletMap';
 import Deck from '../facet_results/Deck';
+
 
 let Manuscripts = props => {
   return (
@@ -17,10 +19,11 @@ let Manuscripts = props => {
             value: 0,
             icon: 'CalendarViewDay',
           },
-          //'/manuscripts/production_places': {
-          //  label: 'production places',
-          //  value: 1,
-          //  icon: 'AddLocation',
+          '/surmatut/pie': {
+            label: 'kaavio',
+            value: 1,
+            icon: 'PieChart',
+          }
           //},
           //'/manuscripts/migrations': {
           //  label: 'migrations',
@@ -45,6 +48,22 @@ let Manuscripts = props => {
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
+          />
+        }
+      />
+      <Route
+        path={'/surmatut/pie'}
+        render={routeProps =>
+          <Pie
+            data={props.facetData.facets}
+            facetUpdateID={props.facetData.facetUpdateID}
+            resultClass='manuscripts'
+            facetClass='manuscripts'
+            fetchPaginatedResults={props.fetchPaginatedResults}
+            updatePage={props.updatePage}
+            sortResults={props.sortResults}
+            routeProps={routeProps}
+            fetchFacet={props.fetchFacet}
           />
         }
       />
@@ -101,7 +120,8 @@ Manuscripts.propTypes = {
   updatePage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  updateFacetOption: PropTypes.func.isRequired
+  updateFacetOption: PropTypes.func.isRequired,
+  fetchFacet: PropTypes.func.isRequired, // lisäys
 };
 
 export default Manuscripts;

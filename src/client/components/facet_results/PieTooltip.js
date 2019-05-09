@@ -6,7 +6,7 @@ import {
 
 const styles = {
   toolTip: {
-    fontSize: 24
+    fontSize: 18,
   },
   flyOut: {
     strokeWidth: 3,
@@ -22,6 +22,7 @@ class PieTooltip extends React.Component {
       <VictoryTooltip
         {...this.props}
         flyoutStyle={styles.flyOut}
+        orientation='top'
         style={styles.toolTip}
         text={`${datum.x} (${datum.y})\n${Math.round((datum.y / resultCount) * 100)}%`}
       />
