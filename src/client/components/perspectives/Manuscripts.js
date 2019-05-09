@@ -64,6 +64,7 @@ let Manuscripts = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             fetchFacet={props.fetchFacet}
+            resultCount={props.manuscripts.resultCount}
           />
         }
       />
@@ -122,6 +123,7 @@ Manuscripts.propTypes = {
   routeProps: PropTypes.object.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   fetchFacet: PropTypes.func.isRequired, // lisäys
+  resultCount: PropTypes.number.isRequired, //
 };
 
 export default Manuscripts;

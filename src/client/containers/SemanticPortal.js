@@ -133,6 +133,7 @@ let SemanticPortal = (props) => {
                         sortResults={props.sortResults}
                         routeProps={routeProps}
                         fetchFacet={props.fetchFacet}
+                        resultCount={props.manuscripts.resultCount}
                       />
                     </Paper>
                   </Grid>

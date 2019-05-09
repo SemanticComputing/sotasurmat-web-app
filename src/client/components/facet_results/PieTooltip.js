@@ -22,8 +22,8 @@ class PieTooltip extends React.Component {
       <VictoryTooltip
         {...this.props}
         flyoutStyle={styles.flyOut}
-        orientation='top'
         style={styles.toolTip}
+        orientation='top'
         text={`${datum.x} (${datum.y})\n${Math.round((datum.y / resultCount) * 100)}%`}
       />
     );

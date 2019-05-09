@@ -4,7 +4,7 @@ import {
   VictoryPie,
   VictoryLegend,
   VictoryContainer,
-  VictoryLabel,
+  //VictoryLabel,
 } from 'victory';
 import PieTooltip from './PieTooltip';
 import _ from 'lodash';
@@ -24,7 +24,7 @@ const styles = theme => ({
     width: 'calc(100% - 50px)',
     maxWidth: 900,
     height: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   pie: {
     paddingLeft: theme.spacing.unit * 4,
@@ -64,26 +64,34 @@ const combineSmallGroups = (dataArray) => {
 
 let Pie = (props) => {
   const { classes, data } = props;
-  //  console.log(data)
-  const resultCount = data.party.values.length;
+  //console.log(data)
+  let resultCount = 0;
+  for (let key in data.party.values) {
+  //console.log(data.party.values[key].instanceCount)
+    resultCount = resultCount + parseInt(data.party.values[key].instanceCount, 10)
+  //console.log(resultCount)
+  }
+  //const resultCount = data.party.values;
+  //console.log(data.party.values)
   //if (resultCount < 10) {
   //  return <ResultInfo message="Need over 10 results to create a distribution." />;
   //}
   const grouped = _.groupBy(data.party.values, 'prefLabel');
-  //console.log(grouped)
   let dataArray = [];
   for (let key in grouped) {
-    console.log(grouped[key][0])
+    //console.log(grouped[key][0])
     const length = grouped[key][0].instanceCount;
     dataArray.push({
       x: key,
-      y: length,
-      values: grouped[key]
+      y: parseInt(length, 10),
+      //values: grouped[key]
     });
   }
-  dataArray = _.orderBy(dataArray, 'y', 'desc');
-  dataArray = combineSmallGroups(dataArray);
+  //dataArray = _.orderBy(dataArray, 'y', 'desc');
+  //  console.log(dataArray)
+  //dataArray = combineSmallGroups(dataArray);
   const legendArray = dataArray.map(group => ({ name: group.x.toLowerCase() + ' (' + group.y + ')' }));
+  //console.log(dataArray)
   const legendHeigth = legendArray.length * 35;
   // const pieTitle = resultCount + ' results for the query "' + query + '"';
   // <VictoryLabel
@@ -98,13 +106,13 @@ let Pie = (props) => {
     <div className={classes.root}>
       <Grid container className={classes.container}>
         <Grid className={classes.pie} item xs={12} sm={6}>
-
           <VictoryPie
             padding={{
               left: 0, bottom: 0, top: 32
             }}
             colorScale={'qualitative'}
             data={dataArray}
+            orientation='bottom'
             labelComponent={<PieTooltip resultCount={resultCount} />}
           />
         </Grid>
@@ -138,7 +146,7 @@ Pie.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   //fetchPlaces: PropTypes.func.isRequired
-  fetchFacet: PropTypes.func.isRequired
+  fetchFacet: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Pie);

@@ -13,6 +13,7 @@ import history from '../../History';
 
 const styles = theme => ({
   tableContainer: {
+    zIndex:110000000,
     overflow: 'auto',
     width: '100%',
     height: 'auto',
