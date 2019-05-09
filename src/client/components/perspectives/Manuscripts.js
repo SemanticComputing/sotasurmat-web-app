@@ -12,29 +12,29 @@ let Manuscripts = props => {
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={{
-          '/manuscripts/table': {
+          '/surmatut/table': {
             label: 'table',
             value: 0,
             icon: 'CalendarViewDay',
           },
-          '/manuscripts/production_places': {
-            label: 'production places',
-            value: 1,
-            icon: 'AddLocation',
-          },
-          '/manuscripts/migrations': {
-            label: 'migrations',
-            value: 2,
-            icon: 'Redo',
-          }
+          //'/manuscripts/production_places': {
+          //  label: 'production places',
+          //  value: 1,
+          //  icon: 'AddLocation',
+          //},
+          //'/manuscripts/migrations': {
+          //  label: 'migrations',
+          //  value: 2,
+          //  icon: 'Redo',
+          //S}
         }}
       />
       <Route
-        exact path='/manuscripts'
-        render={() => <Redirect to='manuscripts/table' />}
+        exact path='/surmatut'
+        render={() => <Redirect to='surmatut/table' />}
       />
       <Route
-        path={'/manuscripts/table'}
+        path={'/surmatut/table'}
         render={routeProps =>
           <ResultTable
             data={props.manuscripts}
@@ -48,6 +48,7 @@ let Manuscripts = props => {
           />
         }
       />
+      {/*
       <Route
         path={'/manuscripts/production_places'}
         render={() =>
@@ -85,6 +86,7 @@ let Manuscripts = props => {
             showInstanceCountInClusters={true}
           />}
       />
+      */}
     </React.Fragment>
   );
 };

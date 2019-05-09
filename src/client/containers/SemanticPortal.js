@@ -106,7 +106,7 @@ let SemanticPortal = (props) => {
               }
             />
             <Route
-              path="/manuscripts"
+              path="/surmatut"
               render={routeProps =>
                 <React.Fragment>
                   <Grid item xs={12} md={3} className={classes.facetBarContainer}>

@@ -28,6 +28,10 @@ const styles = theme => ({
   facetContainerLast: {
     marginBottom: 2,
   },
+  two: {
+    height: 40,
+    padding: theme.spacing.unit,
+  },
   three: {
     height: 108,
     padding: theme.spacing.unit,
@@ -82,11 +86,11 @@ class FacetBar extends React.Component {
 
         <Paper className={classes.facetContainer}>
           <div className={classes.textContainer}>
-            <Typography variant="h6">Results: {this.props.resultCount} {this.props.resultClass}</Typography>
+            <Typography variant="h6">Tuloksia: {this.props.resultCount} {/*this.props.resultClass*/}</Typography>
             <Divider className={classes.resultInfoDivider} />
             {(activeUriFilters || activeSpatialFilters) &&
               <React.Fragment>
-                <Typography variant="h6">Active filters:</Typography>
+                <Typography variant="h6">Aktiiviset suodattimet:</Typography>
                 <div className={classes.textContainer}>
                   <ActiveFilters
                     facets={facets}
@@ -99,7 +103,6 @@ class FacetBar extends React.Component {
                 <Divider className={classes.resultInfoDivider} />
               </React.Fragment>
             }
-            <Typography variant="h6">Narrow down by:</Typography>
           </div>
         </Paper>
         {Object.keys(facets).map(id => {

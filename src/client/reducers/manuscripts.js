@@ -34,121 +34,75 @@ export const INITIAL_STATE = {
   tableColumns: [
     {
       id: 'prefLabel',
-      label: 'Label',
+      label: 'Nimi',
       desc: `
-        A short label describing the manuscript
+        Nimi
       `,
       valueType: 'object',
       makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 250
+      minWidth: 100
     },
     {
       id: 'party',
-      label: 'Party',
+      label: 'Osapuoli',
       desc: `
-        The author(s) who have contributed to the intellectual content (works)
-        contained in the manuscript.
-      `,
-      valueType: 'object',
-      makeLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 250
-    },
-    {
-      id: 'productionPlace',
-      label: 'Production place',
-      desc: `
-        The location where the manuscript was written. Multiple places of
-        production may appear for a single manuscript, when there are
-        discrepancies between the contributing data sources or when the
-        precise location is uncertain, or when the production indeed took
-        place in several places (e.g. for composite manuscripts).
-      `,
-      valueType: 'object',
-      makeLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 200,
-    },
-    {
-      id: 'productionTimespan',
-      label: 'Production date',
-      desc: `
-        The date when the manuscript was written. Multiple production dates
-        may appear for a single manuscript, when there are discrepancies
-        between the contributing data sources or when the precise date is
-        uncertain.
+        Osapuoli
       `,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 200,
+      minWidth: 20
     },
     {
-      id: 'language',
-      label: 'Language',
+      id: 'occupation',
+      label: 'Ammatti',
       desc: `
-        The language(s) in which the manuscript was written.
+        Ammatti
       `,
-      valueType: 'string',
+      valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150,
-    },
-    // {
-    //   id: 'material',
-    //   label: 'Material'
-    //   desc: 'Material description'
-    //   valueType: 'string',
-    //   makeLink: true,
-    //   sortValues: true
-    //   numberedList: false
-    // },
-    {
-      id: 'event',
-      label: 'Event',
-      desc: `
-        Events related to the manuscript. Currently the are two main event
-        types: Transfer of custody (e.g. sale, gift, theft) and Observation.
-      `,
-      valueType: 'event',
-      makeLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 200,
+      minWidth: 20
     },
     {
-      id: 'owner',
-      label: 'Owner',
+      id: 'livingMunicipality',
+      label: 'Asuinkunta',
       desc: `
-        Former or current owners (individual or institutional).
-      `,
-      valueType: 'owner',
-      makeLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 250
-    },
-    {
-      id: 'source',
-      label: 'Source',
-      desc: `
-        The source dataset(s) (Bibale, Bodleian, or SDBM) contributing the
-        information on the manuscript. If two or more source datasets include
-        the same manuscript and this has been manually verified, the information
-        from the source datasets has been merged into one table row. Click on
-        the source name to view the original record on the source’s website.
+        Asuinkunta
       `,
       valueType: 'object',
-      makeLink: true,
+      makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 200
+      minWidth: 20
+    },
+    {
+      id: 'birthDate',
+      label: 'Syntymäpäivä',
+      desc: `
+        Syntymäpäivä
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 20
+    },
+    {
+      id: 'deathDate',
+      label: 'Kuolinpäivä',
+      desc: `
+        Kuolinpäivä
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 20
     },
   ],
 };

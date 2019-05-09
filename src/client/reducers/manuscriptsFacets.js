@@ -18,18 +18,52 @@ export const INITIAL_STATE = {
   facets: {
     party: {
       id: 'party',
-      label: 'Party',
+      label: 'Osapuoli',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: false,
+      sortButton: true,
       spatialFilterButton: false,
       isFetching: false,
       searchField: false,
       containerClass: 'four',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    occupation: {
+      id: 'occupation',
+      label: 'Ammatti',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'five',
+      filterType: 'uriFilter',
+      uriFilter: null
+    },
+    livingMunicipality: {
+      id: 'livingMunicipality',
+      label: 'Asuinkunta',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'five',
       filterType: 'uriFilter',
       uriFilter: null
     },

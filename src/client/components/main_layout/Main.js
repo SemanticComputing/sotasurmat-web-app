@@ -57,7 +57,7 @@ let Main = props => {
   const { classes } = props;
   const perspectives = [
     {
-      id: 'manuscripts',
+      id: 'surmatut',
       label: 'Sotasurmat',
       desc: 'Tietoja vuosina 1914-1922 surmatuista'
     },
