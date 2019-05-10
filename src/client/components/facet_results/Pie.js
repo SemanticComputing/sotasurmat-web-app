@@ -46,7 +46,10 @@ class Pie extends React.Component {
   constructor(props) {
     super(props);
     // Don't call this.setState() here!
-    this.state = { selectedOption: 'party'};
+    this.state = {
+      selectedOption: 'party',
+      label: 'Osapuoli'
+    };
     //this.handleClick = this.handleClick.bind(this);
   }
 
@@ -74,8 +77,23 @@ class Pie extends React.Component {
 
  handleOptionChange = (changeEvent) => {
    this.setState({
-     selectedOption: changeEvent.target.value
+     selectedOption: changeEvent.target.value,
    });
+   if (changeEvent.target.value === 'party') {
+     this.setState({
+       label: 'Osapuoli',
+     });
+   }
+   if (changeEvent.target.value === 'occupation') {
+     this.setState({
+       label: 'Ammatti',
+     });
+   }
+   if (changeEvent.target.value === 'livingMunicipality') {
+     this.setState({
+       label: 'Asuinkunta',
+     });
+   }
  }
 
  render() {
@@ -179,7 +197,7 @@ class Pie extends React.Component {
            <Paper className={classes.legendPaper}>
              <VictoryLegend
                height={legendHeigth}
-               title={'osapuoli'}
+               title={this.state.label}
                colorScale={'qualitative'}
                data={legendArray}
                style={{
