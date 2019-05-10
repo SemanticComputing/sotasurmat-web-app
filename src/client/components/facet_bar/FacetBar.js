@@ -143,7 +143,7 @@ class FacetBar extends React.Component {
   }
 
   render() {
-    const { classes, facetClass, resultClass, resultCount } = this.props;
+    const { classes, facetClass, resultCount } = this.props;
     const { facets } = this.props.facetData;
     let uriFilters = {};
     let spatialFilters = {};
@@ -169,7 +169,7 @@ class FacetBar extends React.Component {
       <div className={classes.root}>
         <Paper className={classes.facetContainer}>
           <div className={classes.textContainer}>
-            <Typography variant="h6">Tuloksia: {this.props.resultCount} {/*this.props.resultClass*/}</Typography>
+            <Typography variant="h6">Tuloksia: {resultCount} {/*this.props.resultClass*/}</Typography>
             <Divider className={classes.resultInfoDivider} />
             {(activeUriFilters || activeSpatialFilters || activeTextFilters) &&
               <React.Fragment>
