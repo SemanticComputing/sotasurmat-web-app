@@ -18,8 +18,15 @@ app.use(function(req, res, next) {
 });
 
 // The root directory from which to serve static assets (React app)
-const publicPath = path.join(__dirname, './../public/');
-app.use(express.static(publicPath));
+let publicPath = path.join(__dirname, './../public/');
+const isDevelopment = process.env.NODE_ENV === 'production' ? false : true;
+if (isDevelopment) {
+  app.use(express.static(__dirname + './../public/'));
+} else {
+  const rootDir = '/sotasurmat';
+  app.use(rootDir, express.static(__dirname + './../public/'));
+}
+
 
 // React app makes requests to these api urls
 const apiPath = '/api';
