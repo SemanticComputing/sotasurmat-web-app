@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 
 // The root directory from which to serve static assets (React app)
 let publicPath = path.join(__dirname, './../public/');
-const isDevelopment = process.env.NODE_ENV === 'production' ? false : true;
+const isDevelopment = process.env.NODE_ENV === 'development' ? true : false;
 if (isDevelopment) {
   app.use(express.static(__dirname + './../public/'));
 } else {
