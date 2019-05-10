@@ -16,6 +16,23 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
+    label: {
+      id: 'label',
+      label: 'Nimi',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      //sortBy: 'instanceCount',
+      //sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'one',
+      filterType: 'textFilter',
+      textFilter: null,
+    },
     party: {
       id: 'party',
       label: 'Osapuoli',

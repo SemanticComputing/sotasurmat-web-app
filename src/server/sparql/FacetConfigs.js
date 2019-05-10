@@ -5,6 +5,11 @@
 export const facetConfigs = {
   manuscripts: {
     rdfType: 'siso-schema:Death_record',
+    label: {
+      id: 'label',
+      type: 'text',
+      textQueryProperty: 'skos:prefLabel'
+    },
     prefLabel: {
       id: 'prefLabel',
       facetValueFilter: '',
