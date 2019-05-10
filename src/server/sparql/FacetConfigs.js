@@ -1,3 +1,7 @@
+/* TODO:
+  labelPath is only used when sorting results, so it should removed from
+  facet configs
+*/
 export const facetConfigs = {
   manuscripts: {
     rdfType: 'siso-schema:Death_record',

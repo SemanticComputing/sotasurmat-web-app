@@ -16,4 +16,6 @@ export const prefixes = `
   PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
   PREFIX spatial: <http://jena.apache.org/spatial#>
   PREFIX siso-schema: <http://ldf.fi/siso/schema/>
-`;
+  PREFIX text: <http://jena.apache.org/text#>
+  `;
+  

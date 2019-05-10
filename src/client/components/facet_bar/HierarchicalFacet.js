@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { has } from 'lodash';
 import SortableTree, { changeNodeAtPath } from 'react-sortable-tree';
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -84,21 +85,23 @@ class HierarchicalFacet extends Component {
   }
 
   componentDidUpdate = prevProps => {
-
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
+
       // update component state if the user modified this facet
-      if (this.props.updatedFacet === this.props.facetID ) {
-        const treeObj = this.props.updatedFilter;
-        const newTreeData = changeNodeAtPath({
-          treeData: this.state.treeData,
-          getNodeKey: ({ treeIndex }) =>  treeIndex,
-          path: treeObj.path,
-          newNode: {
-            ...treeObj.node,
-            selected: treeObj.added ? 'true' : 'false'
-          },
-        });
-        this.setState({ treeData: newTreeData });
+      if (this.props.updatedFacet === this.props.facetID) {
+        if (has(this.props.updatedFilter, 'path')) {
+          const treeObj = this.props.updatedFilter;
+          const newTreeData = changeNodeAtPath({
+            treeData: this.state.treeData,
+            getNodeKey: ({ treeIndex }) =>  treeIndex,
+            path: treeObj.path,
+            newNode: {
+              ...treeObj.node,
+              selected: treeObj.added ? 'true' : 'false'
+            },
+          });
+          this.setState({ treeData: newTreeData });
+        }
       }
       // else fetch new values, because some other facet was updated
       else {
@@ -146,9 +149,10 @@ class HierarchicalFacet extends Component {
   }
 
   generateNodeProps = treeObj => {
-    //if (treeObj.node.prefLabel === 'Unknown' && treeObj.node.instanceCount == 0) {
-    //  return null;
-    //}
+    // TODO: sometimes this produces an empty treenode
+    if (treeObj.node.prefLabel === 'Unknown' && treeObj.node.instanceCount == 0) {
+      return null;
+    }
     return {
       title: (
         <FormControlLabel
@@ -322,7 +326,7 @@ HierarchicalFacet.propTypes = {
   fetchFacet: PropTypes.func,
   updateFacetOption: PropTypes.func,
   facetUpdateID: PropTypes.number,
-  updatedFilter: PropTypes.object,
+  updatedFilter: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   updatedFacet: PropTypes.string,
 };
 

@@ -4,8 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
-import LeafletMap from '../facet_results/LeafletMap';
-import Deck from '../facet_results/Deck';
+//import LeafletMap from '../facet_results/LeafletMap';
+//import Deck from '../facet_results/Deck';
 
 
 let Manuscripts = props => {
@@ -87,6 +87,14 @@ let Manuscripts = props => {
             fetching={props.places.fetching}
             showInstanceCountInClusters={true}
             updateFacetOption={props.updateFacetOption}
+          />}
+      />
+      <Route
+        path={'/manuscripts/statistics'}
+        render={() =>
+          <Pie
+            data={props.places.results}
+            fetchResults={props.fetchResults}
           />}
       />
       <Route

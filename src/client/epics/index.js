@@ -218,15 +218,20 @@ export const stateToUrl = ({
   if (variant !== null) { params.variant = variant; }
   let uriFilters = {};
   let spatialFilters = {};
+  let textFilters = {};
   let activeUriFilters = false;
   let activeSpatialFilters = false;
+  let activeTextFilters = false;
   for (const [key, value] of Object.entries(facets)) {
-    if (value.uriFilter !== null) {
+    if (has(value, 'uriFilter') && value.uriFilter !== null) {
       activeUriFilters = true;
       uriFilters[key] = Object.keys(value.uriFilter);
     } else if (has(value, 'spatialFilter') && value.spatialFilter !== null) {
       activeSpatialFilters = true;
       spatialFilters[key] = boundsToValues(value.spatialFilter._bounds);
+    }  else if (has(value, 'textFilter') && value.textFilter !== null) {
+      activeTextFilters = true;
+      textFilters[key] = value.textFilter;
     }
   }
   if (activeUriFilters) {
@@ -234,6 +239,9 @@ export const stateToUrl = ({
   }
   if (activeSpatialFilters) {
     params.spatialFilters = JSON.stringify(spatialFilters);
+  }
+  if (activeTextFilters) {
+    params.textFilters = JSON.stringify(textFilters);
   }
 
   return querystring.stringify(params);

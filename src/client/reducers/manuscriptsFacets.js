@@ -80,7 +80,6 @@ const manuscriptsFacets = (state = INITIAL_STATE, action) => {
       case UPDATE_FACET_VALUES:
         return updateFacetValues(state, action);
       case UPDATE_FACET_OPTION:
-        // console.log(action)
         return updateFacetOption(state, action);
       default:
         return state;
