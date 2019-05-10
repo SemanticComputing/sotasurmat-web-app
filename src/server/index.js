@@ -17,16 +17,17 @@ app.use(function(req, res, next) {
   next();
 });
 
-let rootDir = '';
+let rootDir = '/sotasurmat';
 // The root directory from which to serve static assets (React app)
 let publicPath = path.join(__dirname, './../public/');
-const isDevelopment = process.env.NODE_ENV === 'development' ? true : false;
-if (isDevelopment) {
-  app.use(express.static(__dirname + './../public/'));
-} else {
-  rootDir = '/sotasurmat';
-  app.use(rootDir, express.static(__dirname + './../public/'));
-}
+app.use(rootDir, express.static(__dirname + './../public/'));
+//const isDevelopment = process.env.NODE_ENV === 'development' ? true : false;
+//if (isDevelopment) {
+//  app.use(express.static(__dirname + './../public/'));
+//} else {
+//  rootDir = '/sotasurmat';
+//  app.use(rootDir, express.static(__dirname + './../public/'));
+//}
 
 
 // React app makes requests to these api urls

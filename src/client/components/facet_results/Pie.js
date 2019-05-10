@@ -100,15 +100,15 @@ class Pie extends React.Component {
    const { classes, data } = this.props;
    //console.log(data)
    let resultCount = 0;
-   let facetValues = data.party.values
+   let facetValues = data.party.values;
    if (this.state.selectedOption === 'party') {
-     facetValues = data.party.values
+     facetValues = data.party.values;
    }
    if (this.state.selectedOption === 'occupation') {
-     facetValues = data.occupation.values
+     facetValues = data.occupation.values;
    }
    if (this.state.selectedOption === 'livingMunicipality') {
-     facetValues = data.livingMunicipality.values
+     facetValues = data.livingMunicipality.values;
    }
    for (let key in facetValues) {
      resultCount = resultCount + parseInt(facetValues[key].instanceCount, 10);

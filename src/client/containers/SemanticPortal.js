@@ -85,6 +85,7 @@ const styles = theme => ({
 
 let SemanticPortal = (props) => {
   const { classes, /* browser */ error } = props;
+  const rootUrl = '/sotasurmat';
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
@@ -94,19 +95,21 @@ let SemanticPortal = (props) => {
             search={props.clientSideFacetedSearch}
             fetchResultsClientSide={props.fetchResultsClientSide}
             clearResults={props.clearResults}
+            rootUrl={rootUrl}
           />
           <Grid container spacing={8} className={classes.mainContainer}>
             <Route
-              exact path="/"
+              exact path={rootUrl}
               render={() =>
                 <React.Fragment>
-                  <Main />
+                  <Main
+                    rootUrl={rootUrl}/>
                   <Footer />
                 </React.Fragment>
               }
             />
             <Route
-              path="/surmatut"
+              path={`${rootUrl}/surmatut`}
               render={routeProps =>
                 <React.Fragment>
                   <Grid item xs={12} md={3} className={classes.facetBarContainer}>
@@ -122,6 +125,7 @@ let SemanticPortal = (props) => {
                   <Grid item xs={12} md={9} className={classes.resultsContainer}>
                     <Paper className={classes.resultsContainerPaper}>
                       <Manuscripts
+                        rootUrl={rootUrl}
                         manuscripts={props.manuscripts}
                         places={props.places}
                         facetData={props.manuscriptsFacets}

@@ -90,7 +90,7 @@ let Main = props => {
           {perspectives.map(perspective =>
             <Grid key={perspective.id} item xs={12} sm={6} md={4}>
               <Card className={classes.card}>
-                <CardActionArea component={Link} to={`/${perspective.id}`}>
+                <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}`}>
                   <CardMedia
                     className={classes.media}
                     image={thumbImage}
@@ -115,6 +115,7 @@ let Main = props => {
 };
 
 Main.propTypes = {
+  rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
 };
 

@@ -100,7 +100,7 @@ class TopBar extends React.Component {
             <Button
               className={classes.appBarButton}
               component={Link}
-              to='/'
+              to={this.props.rootUrl}
             >
               <Typography className={classes.title} variant="h6" color="inherit">
                 Sotasurmat
@@ -141,6 +141,7 @@ class TopBar extends React.Component {
 }
 
 TopBar.propTypes = {
+  rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   fetchResultsClientSide: PropTypes.func.isRequired,
   clearResults: PropTypes.func.isRequired,

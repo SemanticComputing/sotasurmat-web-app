@@ -27,9 +27,11 @@ import {
   updateFacetValues,
 } from '../actions';
 
+const rootDir = '/sotasurmat';
+
 const apiUrl = (process.env.NODE_ENV === 'development')
-  ? 'http://localhost:3001/api/'
-  : `http://${location.hostname}/api/`;
+  ? 'http://localhost:3001/sotasurmat/api/'
+  : `http://${location.hostname}${rootDir}/api/`;
 
 const backendErrorText = `Cannot connect to the MMM Knowledge Base.
 A data conversion process might be running. Please try again later.`;

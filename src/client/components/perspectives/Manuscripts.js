@@ -14,12 +14,12 @@ let Manuscripts = props => {
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={{
-          '/surmatut/table': {
+          [`${props.rootUrl}/surmatut/table`]: {
             label: 'table',
             value: 0,
             icon: 'CalendarViewDay',
           },
-          '/surmatut/pie': {
+          [`${props.rootUrl}/surmatut/pie`]: {
             label: 'kaavio',
             value: 1,
             icon: 'PieChart',
@@ -33,13 +33,14 @@ let Manuscripts = props => {
         }}
       />
       <Route
-        exact path='/surmatut'
-        render={() => <Redirect to='surmatut/table' />}
+        exact path={`${props.rootUrl}/surmatut`}
+        render={() => <Redirect to={`${props.rootUrl}/surmatut/table`} />}
       />
       <Route
-        path={'/surmatut/table'}
+        path={`${props.rootUrl}/surmatut/table`}
         render={routeProps =>
           <ResultTable
+            rootUrl={props.rootUrl}
             data={props.manuscripts}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='manuscripts'
@@ -52,7 +53,7 @@ let Manuscripts = props => {
         }
       />
       <Route
-        path={'/surmatut/pie'}
+        path={`${props.rootUrl}/surmatut/pie`}
         render={routeProps =>
           <Pie
             data={props.facetData.facets}
@@ -120,6 +121,7 @@ let Manuscripts = props => {
 };
 
 Manuscripts.propTypes = {
+  rootUrl: PropTypes.string.isRequired,
   manuscripts: PropTypes.object.isRequired,
   places: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
