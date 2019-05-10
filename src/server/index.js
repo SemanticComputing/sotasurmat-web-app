@@ -17,21 +17,21 @@ app.use(function(req, res, next) {
   next();
 });
 
-let rootDir = '/sotasurmat';
+let rootUrl = '/sotasurmat';
 // The root directory from which to serve static assets (React app)
-let publicPath = path.join(__dirname, './../public/');
-app.use(rootDir, express.static(__dirname + './../public/'));
+let publicPath = path.join(__dirname, '..', 'public');
+app.use(rootUrl, express.static(publicPath));
 //const isDevelopment = process.env.NODE_ENV === 'development' ? true : false;
 //if (isDevelopment) {
 //  app.use(express.static(__dirname + './../public/'));
 //} else {
-//  rootDir = '/sotasurmat';
-//  app.use(rootDir, express.static(__dirname + './../public/'));
+//  rootUrl = '/sotasurmat';
+//  app.use(rootUrl, express.static(__dirname + './../public/'));
 //}
 
 
 // React app makes requests to these api urls
-const apiPath = rootDir + '/api';
+const apiPath = rootUrl + '/api';
 
 // https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016
 app.get(`${apiPath}/:resultClass/paginated`, async (req, res, next) => {
