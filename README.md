@@ -18,15 +18,15 @@ npm run dev
 ## Deploy with Docker
 
 ### Build
- `docker build -t mmm-web-app-c .`
+ `docker build -t sotasurmat-c .`
 
 ### Run
- `docker run -d -p 3006:3001 --name mmm-web-app mmm-web-app-c`
+ `docker run -d -p 8080:3001 --name sotasurmat sotasurmat-c`
 
 ### Upgrade
 ```
-docker build -t mmm-web-app-c .
-docker stop mmm-web-app
-docker rm mmm-web-app
-docker run -d -p 3006:3001 --name mmm-web-app mmm-web-app-c
+docker build -t sotasurmat-c .
+docker stop sotasurmat
+docker rm sotasurmat
+docker run -d -p 8080:3001 --name sotasurmat sotasurmat-c
 ```
