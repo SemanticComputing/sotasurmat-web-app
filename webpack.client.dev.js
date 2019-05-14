@@ -9,6 +9,6 @@ module.exports = merge(common, {
     port: 8080,
     open: true,
     historyApiFallback: { index: '/sotasurmat' },
-    publicPath: '/sotasurmat/',
+    publicPath: '/sotasurmat',
   }
 });
