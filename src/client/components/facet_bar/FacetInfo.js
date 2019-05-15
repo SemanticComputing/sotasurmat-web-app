@@ -65,12 +65,12 @@ class FacetInfo extends React.Component {
             size={26}
           />
           :
-          <Typography variant="h6">Results: {resultCount} {resultClass}</Typography>
+          <Typography variant="h6">Tuloksia: {resultCount}</Typography>
         }
         <Divider className={classes.facetInfoDivider} />
         {(activeUriFilters || activeSpatialFilters || activeTextFilters) &&
           <React.Fragment>
-            <Typography variant="h6">Active filters:</Typography>
+            <Typography variant="h6">Aktiiviset suodattimet:</Typography>
             <div className={classes.textContainer}>
               <ActiveFilters
                 facets={facets}
@@ -84,7 +84,6 @@ class FacetInfo extends React.Component {
             <Divider className={classes.facetInfoDivider} />
           </React.Fragment>
         }
-        <Typography variant="h6">Narrow down by:</Typography>
       </div>
     );
   }
