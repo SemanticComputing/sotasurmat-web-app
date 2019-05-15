@@ -29,6 +29,10 @@ const styles = theme => ({
   one: {
     paddingLeft: theme.spacing.unit
   },
+  two: {
+    height: 60,
+    paddingLeft: theme.spacing.unit
+  },
   three: {
     height: 108,
     padding: theme.spacing.unit,

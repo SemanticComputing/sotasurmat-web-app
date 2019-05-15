@@ -97,14 +97,14 @@ export const INITIAL_STATE = {
       spatialFilterButton: false,
       isFetching: false,
       searchField: false,
-      containerClass: 'three',
+      containerClass: 'two',
       filterType: 'uriFilter',
       uriFilter: null
     },
   }
 };
 
-const manuscriptsFacets = (state = INITIAL_STATE, action) => {
+const deathsFacets = (state = INITIAL_STATE, action) => {
   if (action.facetClass === 'manuscripts') {
     switch (action.type) {
       case FETCH_FACET:
@@ -121,4 +121,4 @@ const manuscriptsFacets = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default manuscriptsFacets;
+export default deathsFacets;

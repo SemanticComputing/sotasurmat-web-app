@@ -13,12 +13,14 @@ import Main from '../components/main_layout/Main';
 import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
-import Manuscripts from '../components/perspectives/Manuscripts';
+//import Manuscripts from '../components/perspectives/Manuscripts';
 import Works from '../components/perspectives/Works';
 import Places from '../components//perspectives/Places';
 import People from '../components//perspectives/People';
 import Organizations from '../components/perspectives/Organizations';
 import All from '../components/perspectives/All';
+import Deaths from '../components/perspectives/Manuscripts';
+
 import {
   fetchResultCount,
   fetchPaginatedResults,
@@ -115,11 +117,11 @@ let SemanticPortal = (props) => {
                 <React.Fragment>
                   <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                     <FacetBar
-                      facetData={props.manuscriptsFacets}
+                      facetData={props.deathsFacets}
                       facetClass='manuscripts'
                       resultClass='manuscripts'
-                      fetchingResultCount={props.manuscripts.fetchingResultCount}
-                      resultCount={props.manuscripts.resultCount}
+                      fetchingResultCount={props.deaths.fetchingResultCount}
+                      resultCount={props.deaths.resultCount}
                       fetchFacet={props.fetchFacet}
                       fetchResultCount={props.fetchResultCount}
                       updateFacetOption={props.updateFacetOption}
@@ -127,7 +129,7 @@ let SemanticPortal = (props) => {
                   </Grid>
                   <Grid item xs={12} md={9} className={classes.resultsContainer}>
                     <Paper className={classes.resultsContainerPaper}>
-                      <Manuscripts
+                      <Deaths
                         rootUrl={rootUrl}
                         manuscripts={props.manuscripts}
                         places={props.places}
@@ -315,6 +317,8 @@ let SemanticPortal = (props) => {
 
 const mapStateToProps = state => {
   return {
+    deaths: state.deaths,
+    deathsFacets: state.deathsFacets,
     manuscripts: state.manuscripts,
     manuscriptsFacets: state.manuscriptsFacets,
     works: state.works,
@@ -350,6 +354,8 @@ SemanticPortal.propTypes = {
   theme: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
   // browser: PropTypes.object.isRequired,
+  deaths: PropTypes.object.isRequired,
+  deathsFacets: PropTypes.object.isRequired,
   manuscripts: PropTypes.object.isRequired,
   manuscriptsFacets: PropTypes.object.isRequired,
   works: PropTypes.object.isRequired,

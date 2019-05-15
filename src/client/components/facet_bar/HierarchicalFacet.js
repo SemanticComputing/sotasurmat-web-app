@@ -156,6 +156,7 @@ class HierarchicalFacet extends Component {
     const { uriFilter} = this.props.facet;
     let selectedCount = uriFilter == null ? 0 : Object.keys(this.props.facet.uriFilter).length;
     let isSelected = treeObj.node.selected === 'true' ? true : false;
+    //console.log(this.props.facet)
     return {
       title: (
         <FormControlLabel
@@ -171,7 +172,7 @@ class HierarchicalFacet extends Component {
                 // prevent selecting when another facet is still updating:
                 || this.props.someFacetIsFetching
                 // prevent selecting all facet values:
-                || (selectedCount >= this.props.facet.distinctValueCount - 2 && !isSelected)
+                //|| (selectedCount >= this.props.facet.distinctValueCount - 2 && !isSelected)
               }
               onChange={this.handleCheckboxChange(treeObj)}
               value={treeObj.node.id}

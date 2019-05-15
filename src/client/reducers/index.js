@@ -13,8 +13,12 @@ import peopleFacets from './peopleFacets';
 import organizationsFacets from './organizationsFacets';
 import placesFacets from './placesFacets';
 import clientSideFacetedSearch from './clientSideFacetedSearch';
+import deaths from './deaths';
+import deathsFacets from './deathsFacets';
 
 const reducer = combineReducers({
+  deaths,
+  deathsFacets,
   manuscripts,
   manuscriptsFacets,
   works,
