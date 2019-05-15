@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { has } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import HierarchicalFacet from './HierarchicalFacet';
 import TextFacet from './TextFacet';
 import DateSlider from './slider/DateSlider';
 import Paper from '@material-ui/core/Paper';
 import FacetHeader from './FacetHeader';
-import Typography from '@material-ui/core/Typography';
-import ActiveFilters from './ActiveFilters';
-import Divider from '@material-ui/core/Divider';
+import FacetInfo from './FacetInfo';
 
 const styles = theme => ({
   root: {
@@ -29,12 +26,8 @@ const styles = theme => ({
   facetContainerLast: {
     marginBottom: 2,
   },
-  two: {
-    height: 40,
-    padding: theme.spacing.unit,
-  },
   one: {
-    paddingLeft: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit
   },
   three: {
     height: 108,
@@ -53,20 +46,17 @@ const styles = theme => ({
     padding: theme.spacing.unit,
   },
   facetHeaderButtons: {
-    marginLeft: 'auto',
+    marginLeft: 'auto'
   },
   textContainer: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing.unit
   },
-  resultInfoDivider: {
-    marginTop: theme.spacing.unit / 2,
-    marginBottom: theme.spacing.unit / 2,
-  }
+
 });
 
 class FacetBar extends React.Component {
 
-  renderFacet = facetID => {
+  renderFacet = (facetID, someFacetIsFetching) => {
     const { classes } = this.props;
     const { facetUpdateID, updatedFacet, updatedFilter, facets } = this.props.facetData;
     const facet = facets[facetID];
@@ -84,6 +74,7 @@ class FacetBar extends React.Component {
             updatedFacet={updatedFacet}
             updatedFilter={updatedFilter}
             fetchFacet={this.props.fetchFacet}
+            someFacetIsFetching={someFacetIsFetching}
             updateFacetOption={this.props.updateFacetOption}
           />
         );
@@ -99,6 +90,7 @@ class FacetBar extends React.Component {
             updatedFacet={updatedFacet}
             updatedFilter={updatedFilter}
             fetchFacet={this.props.fetchFacet}
+            someFacetIsFetching={someFacetIsFetching}
             updateFacetOption={this.props.updateFacetOption}
           />
         );
@@ -124,7 +116,6 @@ class FacetBar extends React.Component {
         );
         break;
     }
-
     return(
       <Paper key={facetID} className={classes.facetContainer}>
         <FacetHeader
@@ -143,53 +134,32 @@ class FacetBar extends React.Component {
   }
 
   render() {
-    const { classes, facetClass, resultCount } = this.props;
+    const { classes, facetClass, resultClass, resultCount } = this.props;
     const { facets } = this.props.facetData;
-    let uriFilters = {};
-    let spatialFilters = {};
-    let textFilters = {};
-    let activeUriFilters = false;
-    let activeSpatialFilters = false;
-    let activeTextFilters = false;
-    for (const [key, value] of Object.entries(facets)) {
-      if (has(value, 'uriFilter') && value.uriFilter !== null) {
-        activeUriFilters = true;
-        uriFilters[key] = value.uriFilter;
+    let someFacetIsFetching = false;
+    Object.values(facets).forEach(facet => {
+      if (facet.isFetching) {
+        someFacetIsFetching = true;
       }
-      if (has(value, 'spatialFilter') && value.spatialFilter !== null) {
-        activeSpatialFilters = true;
-        spatialFilters[key] = value.spatialFilter._bounds;
-      }
-      if (has(value, 'textFilter') && value.textFilter !== null) {
-        activeTextFilters = true;
-        textFilters[key] = value.textFilter;
-      }
-    }
+    });
+
     return (
       <div className={classes.root}>
         <Paper className={classes.facetContainer}>
           <div className={classes.textContainer}>
-            <Typography variant="h6">Tuloksia: {resultCount} {/*this.props.resultClass*/}</Typography>
-            <Divider className={classes.resultInfoDivider} />
-            {(activeUriFilters || activeSpatialFilters || activeTextFilters) &&
-              <React.Fragment>
-                <Typography variant="h6">Aktiiviset suodattimet:</Typography>
-                <div className={classes.textContainer}>
-                  <ActiveFilters
-                    facets={facets}
-                    facetClass={facetClass}
-                    uriFilters={uriFilters}
-                    spatialFilters={spatialFilters}
-                    textFilters={textFilters}
-                    updateFacetOption={this.props.updateFacetOption}
-                  />
-                </div>
-                <Divider className={classes.resultInfoDivider} />
-              </React.Fragment>
-            }
+            <FacetInfo
+              facetUpdateID={this.props.facetData.facetUpdateID}
+              facetData={this.props.facetData}
+              facetClass={facetClass}
+              resultClass={resultClass}
+              resultCount={resultCount}
+              fetchingResultCount={this.props.fetchingResultCount}
+              updateFacetOption={this.props.updateFacetOption}
+              fetchResultCount={this.props.fetchResultCount}
+            />
           </div>
         </Paper>
-        {Object.keys(facets).map(facetID => this.renderFacet(facetID))}
+        {Object.keys(facets).map(facetID => this.renderFacet(facetID, someFacetIsFetching))}
       </div>
     );
   }
@@ -201,7 +171,9 @@ FacetBar.propTypes = {
   facetClass: PropTypes.string.isRequired,
   resultClass: PropTypes.string.isRequired,
   resultCount: PropTypes.number.isRequired,
+  fetchingResultCount: PropTypes.bool.isRequired,
   fetchFacet: PropTypes.func.isRequired,
+  fetchResultCount: PropTypes.func.isRequired,
   updateFacetOption: PropTypes.func.isRequired
 };
 

@@ -1,7 +1,12 @@
 import { runSelectQuery } from './SparqlApi';
 import { prefixes } from './SparqlQueriesPrefixes';
 import { endpoint, countQuery, facetResultSetQuery } from './SparqlQueriesGeneral';
-import { manuscriptProperties, productionPlacesQuery, migrationsQuery } from './SparqlQueriesManuscripts';
+import {
+  manuscriptProperties,
+  productionPlacesQuery,
+  migrationsQuery,
+  networkQuery, 
+} from './SparqlQueriesManuscripts';
 import { workProperties } from './SparqlQueriesWorks';
 import { personProperties } from './SparqlQueriesPeople';
 import { organizationProperties } from './SparqlQueriesOrganizations';
@@ -21,43 +26,25 @@ export const getPaginatedResults = async ({
   sortBy,
   sortDirection
 }) => {
-  const [ resultCount, paginatedData ] = await Promise.all([
-    getResultCount(resultClass, uriFilters, spatialFilters, textFilters),
-    getPaginatedData({
-      resultClass,
-      page,
-      pagesize,
-      uriFilters,
-      spatialFilters,
-      textFilters,
-      sortBy,
-      sortDirection
-    }),
-  ]);
+  const data = await getPaginatedData({
+    resultClass,
+    page,
+    pagesize,
+    uriFilters,
+    spatialFilters,
+    textFilters,
+    sortBy,
+    sortDirection
+  });
   return {
-    resultCount: resultCount,
     pagesize: pagesize,
     page: page,
-    results: paginatedData
+    results: data
   };
 };
 
-  // return Promise.all([
-  //   getResultCount(resultClass, uriFilters, spatialFilters),
-  //   getPaginatedData({ resultClass, page, pagesize, uriFilters, spatialFilters, sortBy, sortDirection }),
-  // ])
-  //   .then(data => {
-  //     return {
-  //       resultCount: data[0].count,
-  //       pagesize: pagesize,
-  //       page: page,
-  //       results: data[1]
-  //     };
-  //   });
-
-
 export const getAllResults = ({
-  resultClass, // TODO: handle other classes than manuscripts
+  // resultClass, // TODO: handle other classes than manuscripts
   facetClass,
   uriFilters,
   spatialFilters,
@@ -77,6 +64,10 @@ export const getAllResults = ({
       break;
     case 'migrations':
       q = migrationsQuery;
+      filterTarget = 'manuscript__id';
+      break;
+    case 'network':
+      q = networkQuery;
       filterTarget = 'manuscript__id';
       break;
   }
@@ -101,7 +92,12 @@ export const getAllResults = ({
   return runSelectQuery(prefixes + q, endpoint, makeObjectList);
 };
 
-const getResultCount = (resultClass, uriFilters, spatialFilters, textFilters) => {
+export const getResultCount = ({
+  resultClass,
+  uriFilters,
+  spatialFilters,
+  textFilters
+}) => {
   let q = countQuery;
   q = q.replace('<RDF_TYPE>', facetConfigs[resultClass].rdfType);
   const hasFilters = uriFilters !== null
@@ -182,8 +178,10 @@ const getPaginatedData = ({
 export const getByURI = ({
   resultClass,
   facetClass,
-  variant,
   uriFilters,
+  spatialFilters,
+  textFilters,
+  //variant,
   uri
 }) => {
   let q;
@@ -192,16 +190,20 @@ export const getByURI = ({
       q = placeQuery;
       break;
   }
-  if (variant === 'productionPlaces') {
-    const manuscriptsProduced =
-      `OPTIONAL {
-          ${generateFilter(resultClass, facetClass, uriFilters, 'manuscript__id', null)}
-          ?manuscript__id ^crm:P108_has_produced/crm:P7_took_place_at ?id .
-          ?manuscript__id mmm-schema:data_provider_url ?manuscript__dataProviderUrl .
-        }`;
-    q = q.replace('<MANUSCRIPTS>', manuscriptsProduced);
+  const hasFilters = uriFilters !== null
+    || spatialFilters !== null
+    || textFilters !== null;
+  if (!hasFilters) {
+    q = q.replace('<FILTER>', '# no filters');
   } else {
-    q = q.replace('<MANUSCRIPTS>', '');
+    q = q.replace('<FILTER>', generateFilter({
+      resultClass: resultClass,
+      facetClass: facetClass,
+      uriFilters: uriFilters,
+      spatialFilters: spatialFilters,
+      textFilters: textFilters,
+      filterTarget: 'manuscript__id',
+      facetID: null}));
   }
   q = q.replace('<ID>', `<${uri}>`);
   // if (variant === 'productionPlaces') {

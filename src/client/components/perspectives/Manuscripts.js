@@ -4,9 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
-//import LeafletMap from '../facet_results/LeafletMap';
-//import Deck from '../facet_results/Deck';
-
+//import Network from '../facet_results/Network';
 
 let Manuscripts = props => {
   return (

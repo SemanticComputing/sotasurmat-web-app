@@ -7,6 +7,13 @@ export const fetchResults = state => {
   };
 };
 
+export const fetchResultCount = state => {
+  return {
+    ...state,
+    fetchingResultCount: true
+  };
+};
+
 export const fetchResultsFailed = state => {
   return {
     ...state,
@@ -109,11 +116,18 @@ const updateFacetFilter = (state, action) => {
   };
 };
 
+export const updateResultCount = (state, action) => {
+  return {
+    ...state,
+    resultCount: parseInt(action.count),
+    fetchingResultCount: false,
+  };
+};
+
 export const updateResults = (state, action) => {
   return {
     ...state,
     resultsUpdateID: ++state.resultsUpdateID,
-    resultCount: parseInt(action.data.resultCount),
     results: action.data.results,
     fetching: false,
   };
@@ -123,7 +137,6 @@ export const updatePaginatedResults = (state, action) => {
   return {
     ...state,
     resultsUpdateID: ++state.resultsUpdateID,
-    resultCount: parseInt(action.data.resultCount),
     paginatedResults: action.data.results,
     fetching: false
   };

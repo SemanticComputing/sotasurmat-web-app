@@ -68,3 +68,10 @@ export const migrationsQuery = `
     }
   }
 `;
+
+export const networkQuery = `
+  SELECT DISTINCT ?id
+  WHERE {
+
+  }
+`;

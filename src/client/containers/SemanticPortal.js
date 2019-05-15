@@ -20,6 +20,7 @@ import People from '../components//perspectives/People';
 import Organizations from '../components/perspectives/Organizations';
 import All from '../components/perspectives/All';
 import {
+  fetchResultCount,
   fetchPaginatedResults,
   fetchResults,
   fetchResultsClientSide,
@@ -117,8 +118,10 @@ let SemanticPortal = (props) => {
                       facetData={props.manuscriptsFacets}
                       facetClass='manuscripts'
                       resultClass='manuscripts'
+                      fetchingResultCount={props.manuscripts.fetchingResultCount}
                       resultCount={props.manuscripts.resultCount}
                       fetchFacet={props.fetchFacet}
+                      fetchResultCount={props.fetchResultCount}
                       updateFacetOption={props.updateFacetOption}
                     />
                   </Grid>
@@ -153,8 +156,10 @@ let SemanticPortal = (props) => {
                       facetData={props.worksFacets}
                       facetClass='works'
                       resultClass='works'
+                      fetchingResultCount={props.works.fetchingResultCount}
                       resultCount={props.works.resultCount}
                       fetchFacet={props.fetchFacet}
+                      fetchResultCount={props.fetchResultCount}
                       updateFacetOption={props.updateFacetOption}
                     />
                   </Grid>
@@ -185,8 +190,10 @@ let SemanticPortal = (props) => {
                       facetData={props.peopleFacets}
                       facetClass='people'
                       resultClass='people'
+                      fetchingResultCount={props.people.fetchingResultCount}
                       resultCount={props.people.resultCount}
                       fetchFacet={props.fetchFacet}
+                      fetchResultCount={props.fetchResultCount}
                       updateFacetOption={props.updateFacetOption}
                     />
                   </Grid>
@@ -218,8 +225,10 @@ let SemanticPortal = (props) => {
                       facetData={props.organizationsFacets}
                       facetClass='organizations'
                       resultClass='organizations'
+                      fetchingResultCount={props.organizations.fetchingResultCount}
                       resultCount={props.organizations.resultCount}
                       fetchFacet={props.fetchFacet}
+                      fetchResultCount={props.fetchResultCount}
                       updateFacetOption={props.updateFacetOption}
                     />
                   </Grid>
@@ -251,8 +260,10 @@ let SemanticPortal = (props) => {
                       facetData={props.placesFacets}
                       facetClass='places'
                       resultClass='places'
+                      fetchingResultCount={props.places.fetchingResultCount}
                       resultCount={props.places.resultCount}
                       fetchFacet={props.fetchFacet}
+                      fetchResultCount={props.fetchResultCount}
                       updateFacetOption={props.updateFacetOption}
                     />
                   </Grid>
@@ -321,6 +332,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = ({
+  fetchResultCount,
   fetchPaginatedResults,
   fetchResults,
   fetchResultsClientSide,
@@ -350,6 +362,7 @@ SemanticPortal.propTypes = {
   placesFacets: PropTypes.object.isRequired,
   clientSideFacetedSearch: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
+  fetchResultCount: PropTypes.func.isRequired,
   fetchResultsClientSide: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
   fetchByURI: PropTypes.func.isRequired,

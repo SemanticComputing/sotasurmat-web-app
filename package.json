@@ -10,7 +10,6 @@
     "server": "NODE_ENV=development nodemon src/server/index.js --exec babel-node",
     "build-client": "webpack --progress --config webpack.client.prod.js",
     "build-server": "babel src/server --out-dir ./dist/server",
-    "serve": "NODE_ENV=production node dist/server/index.js",
     "test": "jest --watch"
   },
   "jest": {
@@ -61,6 +60,7 @@
     "Leaflet.Control.Opacity": "git+https://github.com/SemanticComputing/Leaflet.Control.Opacity.git",
     "Leaflet.extra-markers": "git+https://github.com/SemanticComputing/Leaflet.ExtraMarkers.git",
     "axios": "^0.18.0",
+    "cytoscape": "^3.6.0",
     "date-fns": "^2.0.0-alpha.27",
     "deck.gl": "^6.2.4",
     "express": "^4.16.4",
