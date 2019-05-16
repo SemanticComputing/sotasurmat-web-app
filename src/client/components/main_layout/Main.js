@@ -10,6 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import thumbImage from '../../img/thumb.png';
+import kalevankangas from '../../img/kalevankangas.jpg';
+import punainenRintama from '../../img/punainenRintama.jpg';
+import tampereVangit from '../../img/tampereVangit.jpg';
+import logo from '../../img/logo_fi.gif';
 
 const styles = theme => ({
   root: {
@@ -22,7 +26,6 @@ const styles = theme => ({
     },
   },
   icon: {
-    marginRight: theme.spacing.unit * 2,
   },
   // heroUnit: {
   //   backgroundColor: 'rgb(238, 238, 238)'
@@ -30,7 +33,11 @@ const styles = theme => ({
   heroContent: {
     maxWidth: 1100,
     paddingTop: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit
+    paddingBottom: theme.spacing.unit,
+  },
+  logo: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   layout: {
     width: 'auto',
@@ -43,7 +50,7 @@ const styles = theme => ({
     },
   },
   media: {
-    height: 100,
+    height: 150,
     [ theme.breakpoints.down('md')]: {
       height: 60
     }
@@ -59,23 +66,29 @@ let Main = props => {
     {
       id: 'surmatut',
       label: 'Sotasurmat',
-      desc: 'Tietoja vuosina 1914-1922 surmatuista'
+      desc: 'Tietoja vuosina 1914-1922 surmatuista',
+      thumbnail: kalevankangas,
     },
     {
       id: 'manuscripts2',
       label: 'Näkymä2',
-      desc: 'Tuleva näkymä'
+      desc: 'Tuleva näkymä',
+      thumbnail: punainenRintama,
     },
     {
       id: 'manuscripts3',
       label: 'Näkymä3',
-      desc: 'Tuleva näkymä'
+      desc: 'Tuleva näkymä',
+      thumbnail: tampereVangit,
     },
   ];
 
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
+        <div className={classes.logo}>
+          <img src={logo} alt="Logo"></img>
+        </div>
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
               Suomen sotasurmat 1914-1922
@@ -93,7 +106,7 @@ let Main = props => {
                 <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}`}>
                   <CardMedia
                     className={classes.media}
-                    image={thumbImage}
+                    image={perspective.thumbnail}
                     title={perspective.label}
                   />
                   <CardContent className={classes.cardContent}>

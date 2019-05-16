@@ -21,6 +21,7 @@ import People from '../components//perspectives/People';
 import Organizations from '../components/perspectives/Organizations';
 import All from '../components/perspectives/All';
 import Deaths from '../components/perspectives/Manuscripts';
+import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
   fetchResultCount,
@@ -42,7 +43,7 @@ const styles = theme => ({
     height: 'auto',
     [theme.breakpoints.up('md')]: {
       height: '100%',
-    }
+    },
   },
   flex: {
     flexGrow: 1,
@@ -59,7 +60,7 @@ const styles = theme => ({
   },
   mainContainer: {
     height: 'auto',
-    backgroundColor: '#bdbdbd',
+    backgroundColor: '#ffffff',
     padding: theme.spacing.unit,
     [theme.breakpoints.down('sm')]: {
       marginTop: 56,
@@ -69,6 +70,10 @@ const styles = theme => ({
       marginTop: 64,
       height: 'calc(100% - 64px)',
     },
+    //backgroundImage: `url(${punainenRintama})`,
+    //backgroundPosition: 'center',
+    //backgroundRepeat: 'no-repeat',
+    //backgroundSize: 'cover'
   },
   facetBarContainer: {
     height: '100%',

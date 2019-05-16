@@ -11,6 +11,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
 import TopBarSearchField from './TopBarSearchField';
+import InfoDialog from './InfoDialog';
 
 const styles = theme => ({
   root: {
@@ -107,32 +108,16 @@ class TopBar extends React.Component {
                 Sotasurmat
               </Typography>
             </Button>
-            {/*
-            <TopBarSearchField
-              fetchResultsClientSide={this.props.fetchResultsClientSide}
-              clearResults={this.props.clearResults}
-            />
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              {perspectives.map(perspective =>
-                <Button
-                  key={perspective}
-                  className={classes.appBarButton}
-                  component={NavLink}
-                  to={`/${perspective}`}
-                  isActive={(match, location) => location.pathname.startsWith(`/${perspective}`)}
-                  activeClassName={classes.appBarButtonActive}
-                >
-                  {perspective}
-                </Button>
-              )}
+              <InfoDialog />
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
                 <MoreIcon />
               </IconButton>
             </div>
-            */}
+
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
