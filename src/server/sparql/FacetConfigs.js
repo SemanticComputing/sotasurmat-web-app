@@ -64,8 +64,9 @@ export const facetConfigs = {
       id: 'registeredPlace',
       facetValueFilter: '',
       labelPath: 'siso-schema:registered_place/skos:prefLabel',
-      type: 'list',
+      type: 'hierarchical',
       predicate: 'siso-schema:registered_place',
+      parentPredicate: 'siso-schema:registered_place/skos:broader+',
     },
   },
 };

@@ -17,5 +17,7 @@ export const prefixes = `
   PREFIX spatial: <http://jena.apache.org/spatial#>
   PREFIX siso-schema: <http://ldf.fi/siso/schema/>
   PREFIX text: <http://jena.apache.org/text#>
+
+
   
   `;

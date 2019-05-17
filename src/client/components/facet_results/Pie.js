@@ -98,7 +98,6 @@ class Pie extends React.Component {
 
  render() {
    const { classes, data } = this.props;
-   console.log(data)
    let resultCount = 0;
    let facetValues = null;
    if (this.state.selectedOption === 'party') {

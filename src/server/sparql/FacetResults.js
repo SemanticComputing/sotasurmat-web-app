@@ -36,54 +36,54 @@ export const getPaginatedResults = async ({
   };
 };
 
-export const getAllResults = ({
-  // resultClass, // TODO: handle other classes than manuscripts
-  facetClass,
-  uriFilters,
-  spatialFilters,
-  textFilters,
-  variant
-}) => {
-  let q = '';
-  let filterTarget = '';
-  switch (variant) {
-    case 'allPlaces':
-      q = allPlacesQuery;
-      filterTarget = 'id';
-      break;
-    case 'productionPlaces':
-      q = productionPlacesQuery;
-      filterTarget = 'manuscripts';
-      break;
-    case 'migrations':
-      q = migrationsQuery;
-      filterTarget = 'manuscript__id';
-      break;
-    case 'network':
-      q = networkQuery;
-      filterTarget = 'manuscript__id';
-      break;
-  }
-  const hasFilters = uriFilters !== null
-    || spatialFilters !== null
-    || textFilters !== null;
-  if (!hasFilters) {
-    q = q.replace('<FILTER>', '# no filters');
-  } else {
-    q = q.replace('<FILTER>', generateFilter({
-      facetClass: facetClass,
-      uriFilters: uriFilters,
-      spatialFilters: spatialFilters,
-      textFilters: textFilters,
-      filterTarget: filterTarget,
-      facetID: null
-    }));
-  }
-  // if (variant == 'productionPlaces') {
-  //   console.log(prefixes + q)
-  // }
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList);
-};
+// export const getAllResults = ({
+//   // resultClass, // TODO: handle other classes than manuscripts
+//   facetClass,
+//   uriFilters,
+//   spatialFilters,
+//   textFilters,
+//   variant
+// }) => {
+//   let q = '';
+//   let filterTarget = '';
+//   switch (variant) {
+//     case 'allPlaces':
+//       q = allPlacesQuery;
+//       filterTarget = 'id';
+//       break;
+//     case 'productionPlaces':
+//       q = productionPlacesQuery;
+//       filterTarget = 'manuscripts';
+//       break;
+//     case 'migrations':
+//       q = migrationsQuery;
+//       filterTarget = 'manuscript__id';
+//       break;
+//     case 'network':
+//       q = networkQuery;
+//       filterTarget = 'manuscript__id';
+//       break;
+//   }
+//   const hasFilters = uriFilters !== null
+//     || spatialFilters !== null
+//     || textFilters !== null;
+//   if (!hasFilters) {
+//     q = q.replace('<FILTER>', '# no filters');
+//   } else {
+//     q = q.replace('<FILTER>', generateFilter({
+//       facetClass: facetClass,
+//       uriFilters: uriFilters,
+//       spatialFilters: spatialFilters,
+//       textFilters: textFilters,
+//       filterTarget: filterTarget,
+//       facetID: null
+//     }));
+//   }
+//   // if (variant == 'productionPlaces') {
+//   //   console.log(prefixes + q)
+//   // }
+//   return runSelectQuery(prefixes + q, endpoint, makeObjectList);
+// };
 
 export const getResultCount = ({
   resultClass,
@@ -123,7 +123,7 @@ const getPaginatedData = ({
   sortDirection
 }) => {
   let q = facetResultSetQuery;
-  console.log(resultClass)
+  //console.log(resultClass)
   const facetConfig = facetConfigs[resultClass];
   const hasFilters = uriFilters !== null
     || spatialFilters !== null
@@ -157,39 +157,39 @@ const getPaginatedData = ({
   return runSelectQuery(prefixes + q, endpoint, makeObjectList);
 };
 
-export const getByURI = ({
-  resultClass,
-  facetClass,
-  uriFilters,
-  spatialFilters,
-  textFilters,
-  //variant,
-  uri
-}) => {
-  let q;
-  switch (resultClass) {
-    case 'places':
-      q = placeQuery;
-      break;
-  }
-  const hasFilters = uriFilters !== null
-    || spatialFilters !== null
-    || textFilters !== null;
-  if (!hasFilters) {
-    q = q.replace('<FILTER>', '# no filters');
-  } else {
-    q = q.replace('<FILTER>', generateFilter({
-      resultClass: resultClass,
-      facetClass: facetClass,
-      uriFilters: uriFilters,
-      spatialFilters: spatialFilters,
-      textFilters: textFilters,
-      filterTarget: 'manuscript__id',
-      facetID: null}));
-  }
-  q = q.replace('<ID>', `<${uri}>`);
-  // if (variant === 'productionPlaces') {
-  //   console.log(prefixes + q)
-  // }
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList);
-};
+// export const getByURI = ({
+//   resultClass,
+//   facetClass,
+//   uriFilters,
+//   spatialFilters,
+//   textFilters,
+//   //variant,
+//   uri
+// }) => {
+//   let q;
+//   switch (resultClass) {
+//     case 'places':
+//       q = placeQuery;
+//       break;
+//   }
+//   const hasFilters = uriFilters !== null
+//     || spatialFilters !== null
+//     || textFilters !== null;
+//   if (!hasFilters) {
+//     q = q.replace('<FILTER>', '# no filters');
+//   } else {
+//     q = q.replace('<FILTER>', generateFilter({
+//       resultClass: resultClass,
+//       facetClass: facetClass,
+//       uriFilters: uriFilters,
+//       spatialFilters: spatialFilters,
+//       textFilters: textFilters,
+//       filterTarget: 'manuscript__id',
+//       facetID: null}));
+//   }
+//   q = q.replace('<ID>', `<${uri}>`);
+//   // if (variant === 'productionPlaces') {
+//   //   console.log(prefixes + q)
+//   // }
+//   return runSelectQuery(prefixes + q, endpoint, makeObjectList);
+// };

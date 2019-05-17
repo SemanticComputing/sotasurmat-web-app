@@ -66,7 +66,7 @@ export const facetValuesQuery = `
       }
       FILTER(BOUND(?id))
       <FACET_VALUE_FILTER>
-      OPTIONAL { ?id gvp:broaderPreferred ?parent_ }
+      OPTIONAL { ?id skos:broader ?parent_ }
       OPTIONAL { ?id skos:prefLabel ?prefLabel_ }
       BIND(COALESCE(?parent_, '0') as ?parent)
       BIND(COALESCE(STR(?prefLabel_), STR(?id)) AS ?prefLabel)
