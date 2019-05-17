@@ -98,9 +98,9 @@ class Pie extends React.Component {
 
  render() {
    const { classes, data } = this.props;
-   //console.log(data)
+   console.log(data)
    let resultCount = 0;
-   let facetValues = data.party.values;
+   let facetValues = null;
    if (this.state.selectedOption === 'party') {
      facetValues = data.party.values;
    }
@@ -109,6 +109,11 @@ class Pie extends React.Component {
    }
    if (this.state.selectedOption === 'livingMunicipality') {
      facetValues = data.livingMunicipality.values;
+   }
+   if (facetValues.length == 0) {
+     return (
+       <div></div>
+     );
    }
    for (let key in facetValues) {
      resultCount = resultCount + parseInt(facetValues[key].instanceCount, 10);

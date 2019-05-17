@@ -6,7 +6,7 @@ import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
 //import Network from '../facet_results/Network';
 
-let Manuscripts = props => {
+let Deaths = props => {
   return (
     <React.Fragment>
       <PerspectiveTabs
@@ -39,10 +39,10 @@ let Manuscripts = props => {
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
-            data={props.manuscripts}
+            data={props.deaths}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='manuscripts'
-            facetClass='manuscripts'
+            resultClass='deaths'
+            facetClass='deaths'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
@@ -56,14 +56,14 @@ let Manuscripts = props => {
           <Pie
             data={props.facetData.facets}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='manuscripts'
-            facetClass='manuscripts'
+            resultClass='deaths'
+            facetClass='deaths'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
             fetchFacet={props.fetchFacet}
-            resultCount={props.manuscripts.resultCount}
+            resultCount={props.deaths.resultCount}
           />
         }
       />
@@ -118,10 +118,9 @@ let Manuscripts = props => {
   );
 };
 
-Manuscripts.propTypes = {
+Deaths.propTypes = {
   rootUrl: PropTypes.string.isRequired,
-  manuscripts: PropTypes.object.isRequired,
-  places: PropTypes.object.isRequired,
+  deaths: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
@@ -134,4 +133,4 @@ Manuscripts.propTypes = {
   resultCount: PropTypes.number.isRequired, //
 };
 
-export default Manuscripts;
+export default Deaths;

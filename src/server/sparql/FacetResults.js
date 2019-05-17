@@ -2,16 +2,8 @@ import { runSelectQuery } from './SparqlApi';
 import { prefixes } from './SparqlQueriesPrefixes';
 import { endpoint, countQuery, facetResultSetQuery } from './SparqlQueriesGeneral';
 import {
-  manuscriptProperties,
-  productionPlacesQuery,
-  migrationsQuery,
-  networkQuery,
-} from './SparqlQueriesManuscripts';
-import { workProperties } from './SparqlQueriesWorks';
-import { eventProperties } from './SparqlQueriesEvents';
-import { personProperties } from './SparqlQueriesPeople';
-import { organizationProperties } from './SparqlQueriesOrganizations';
-import { placeProperties, placeQuery, allPlacesQuery } from './SparqlQueriesPlaces';
+  deathsProperties,
+} from './SparqlQueriesDeaths';
 import { facetConfigs } from './FacetConfigs';
 import { mapCount } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
@@ -131,6 +123,7 @@ const getPaginatedData = ({
   sortDirection
 }) => {
   let q = facetResultSetQuery;
+  console.log(resultClass)
   const facetConfig = facetConfigs[resultClass];
   const hasFilters = uriFilters !== null
     || spatialFilters !== null
@@ -153,23 +146,8 @@ const getPaginatedData = ({
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`);
   let resultSetProperties;
   switch (resultClass) {
-    case 'manuscripts':
-      resultSetProperties = manuscriptProperties;
-      break;
-    case 'works':
-      resultSetProperties = workProperties;
-      break;
-    case 'events':
-      resultSetProperties = eventProperties;
-      break;
-    case 'places':
-      resultSetProperties = placeProperties;
-      break;
-    case 'people':
-      resultSetProperties = personProperties;
-      break;
-    case 'organizations':
-      resultSetProperties = organizationProperties;
+    case 'deaths':
+      resultSetProperties = deathsProperties;
       break;
     default:
       resultSetProperties = '';

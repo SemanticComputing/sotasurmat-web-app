@@ -14,13 +14,8 @@ import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
 //import Manuscripts from '../components/perspectives/Manuscripts';
-import Works from '../components/perspectives/Works';
-import Events from '../components/perspectives/Events';
-import Places from '../components//perspectives/Places';
-import People from '../components//perspectives/People';
-import Organizations from '../components/perspectives/Organizations';
 import All from '../components/perspectives/All';
-import Deaths from '../components/perspectives/Manuscripts';
+import Deaths from '../components/perspectives/Deaths';
 import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
@@ -124,8 +119,8 @@ let SemanticPortal = (props) => {
                   <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                     <FacetBar
                       facetData={props.deathsFacets}
-                      facetClass='manuscripts'
-                      resultClass='manuscripts'
+                      facetClass='deaths'
+                      resultClass='deaths'
                       fetchingResultCount={props.deaths.fetchingResultCount}
                       resultCount={props.deaths.resultCount}
                       fetchFacet={props.fetchFacet}
@@ -137,9 +132,8 @@ let SemanticPortal = (props) => {
                     <Paper className={classes.resultsContainerPaper}>
                       <Deaths
                         rootUrl={rootUrl}
-                        manuscripts={props.manuscripts}
-                        places={props.places}
-                        facetData={props.manuscriptsFacets}
+                        deaths={props.deaths}
+                        facetData={props.deathsFacets}
                         fetchPaginatedResults={props.fetchPaginatedResults}
                         fetchResults={props.fetchResults}
                         fetchByURI={props.fetchByURI}
@@ -148,178 +142,7 @@ let SemanticPortal = (props) => {
                         sortResults={props.sortResults}
                         routeProps={routeProps}
                         fetchFacet={props.fetchFacet}
-                        resultCount={props.manuscripts.resultCount}
-                      />
-                    </Paper>
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-            <Route
-              path="/works"
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                    <FacetBar
-                      facetData={props.worksFacets}
-                      facetClass='works'
-                      resultClass='works'
-                      fetchingResultCount={props.works.fetchingResultCount}
-                      resultCount={props.works.resultCount}
-                      fetchFacet={props.fetchFacet}
-                      fetchResultCount={props.fetchResultCount}
-                      updateFacetOption={props.updateFacetOption}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Paper className={classes.resultsContainerPaper}>
-                      <Works
-                        works={props.works}
-                        places={props.places}
-                        facetData={props.worksFacets}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchResults={props.fetchResults}
-                        fetchByURI={props.fetchByURI}
-                        updatePage={props.updatePage}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
-                      />
-                    </Paper>
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-            <Route
-              path="/events"
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                    <FacetBar
-                      facetData={props.eventsFacets}
-                      facetClass='events'
-                      resultClass='events'
-                      fetchingResultCount={props.events.fetchingResultCount}
-                      resultCount={props.events.resultCount}
-                      fetchFacet={props.fetchFacet}
-                      fetchResultCount={props.fetchResultCount}
-                      updateFacetOption={props.updateFacetOption}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Paper className={classes.resultsContainerPaper}>
-                      <Events
-                        events={props.events}
-                        facetData={props.eventsFacets}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchResults={props.fetchResults}
-                        fetchByURI={props.fetchByURI}
-                        updatePage={props.updatePage}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
-                      />
-                    </Paper>
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-            <Route
-              path="/people"
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                    <FacetBar
-                      facetData={props.peopleFacets}
-                      facetClass='people'
-                      resultClass='people'
-                      fetchingResultCount={props.people.fetchingResultCount}
-                      resultCount={props.people.resultCount}
-                      fetchFacet={props.fetchFacet}
-                      fetchResultCount={props.fetchResultCount}
-                      updateFacetOption={props.updateFacetOption}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Paper className={classes.resultsContainerPaper}>
-                      <People
-                        people={props.people}
-                        places={props.places}
-                        facetData={props.peopleFacets}
-                        fetchResults={props.fetchResults}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchByURI={props.fetchByURI}
-                        filters={props.manuscriptsFacets.filters}
-                        updatePage={props.updatePage}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
-                      />
-                    </Paper>
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-            <Route
-              path="/organizations"
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                    <FacetBar
-                      facetData={props.organizationsFacets}
-                      facetClass='organizations'
-                      resultClass='organizations'
-                      fetchingResultCount={props.organizations.fetchingResultCount}
-                      resultCount={props.organizations.resultCount}
-                      fetchFacet={props.fetchFacet}
-                      fetchResultCount={props.fetchResultCount}
-                      updateFacetOption={props.updateFacetOption}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Paper className={classes.resultsContainerPaper}>
-                      <Organizations
-                        organizations={props.organizations}
-                        places={props.places}
-                        facetData={props.organizationsFacets}
-                        fetchResults={props.fetchResults}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchByURI={props.fetchByURI}
-                        filters={props.manuscriptsFacets.filters}
-                        updatePage={props.updatePage}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
-                      />
-                    </Paper>
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-            <Route
-              path="/places"
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                    <FacetBar
-                      facetData={props.placesFacets}
-                      facetClass='places'
-                      resultClass='places'
-                      fetchingResultCount={props.places.fetchingResultCount}
-                      resultCount={props.places.resultCount}
-                      fetchFacet={props.fetchFacet}
-                      fetchResultCount={props.fetchResultCount}
-                      updateFacetOption={props.updateFacetOption}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Paper className={classes.resultsContainerPaper}>
-                      <Places
-                        places={props.places}
-                        facetData={props.placesFacets}
-                        fetchResults={props.fetchResults}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchByURI={props.fetchByURI}
-                        filters={props.manuscriptsFacets.filters}
-                        updatePage={props.updatePage}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
+                        resultCount={props.deaths.resultCount}
                       />
                     </Paper>
                   </Grid>
@@ -358,18 +181,6 @@ const mapStateToProps = state => {
   return {
     deaths: state.deaths,
     deathsFacets: state.deathsFacets,
-    manuscripts: state.manuscripts,
-    manuscriptsFacets: state.manuscriptsFacets,
-    works: state.works,
-    worksFacets: state.worksFacets,
-    events: state.events,
-    eventsFacets: state.eventsFacets,
-    people: state.people,
-    peopleFacets: state.peopleFacets,
-    organizations: state.organizations,
-    organizationsFacets: state.organizationsFacets,
-    places: state.places,
-    placesFacets: state.placesFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
     error: state.error
     //browser: state.browser,
@@ -397,18 +208,6 @@ SemanticPortal.propTypes = {
   // browser: PropTypes.object.isRequired,
   deaths: PropTypes.object.isRequired,
   deathsFacets: PropTypes.object.isRequired,
-  manuscripts: PropTypes.object.isRequired,
-  manuscriptsFacets: PropTypes.object.isRequired,
-  works: PropTypes.object.isRequired,
-  worksFacets: PropTypes.object.isRequired,
-  events: PropTypes.object.isRequired,
-  eventsFacets: PropTypes.object.isRequired,
-  people: PropTypes.object.isRequired,
-  peopleFacets: PropTypes.object.isRequired,
-  organizations: PropTypes.object.isRequired,
-  organizationsFacets: PropTypes.object.isRequired,
-  places: PropTypes.object.isRequired,
-  placesFacets: PropTypes.object.isRequired,
   clientSideFacetedSearch: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,

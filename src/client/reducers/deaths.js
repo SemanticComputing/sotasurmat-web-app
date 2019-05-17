@@ -62,6 +62,18 @@ export const INITIAL_STATE = {
       minWidth: 20
     },
     {
+      id: 'registeredPlace',
+      label: 'Kirjoillaolopaikka',
+      desc: `
+        Kirjoillaolopaikka
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 20
+    },
+    {
       id: 'occupation',
       label: 'Ammatti',
       desc: `
@@ -113,7 +125,7 @@ export const INITIAL_STATE = {
 };
 
 const deaths = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'manuscripts') {
+  if (action.resultClass === 'deaths') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
