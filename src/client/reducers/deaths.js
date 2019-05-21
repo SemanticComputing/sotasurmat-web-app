@@ -59,7 +59,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 20
+      minWidth: 25
     },
     {
       id: 'registeredPlace',
@@ -71,7 +71,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 20
+      minWidth: 25
     },
     {
       id: 'occupation',
@@ -83,7 +83,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 20
+      minWidth: 25
     },
     {
       id: 'livingMunicipality',
@@ -95,7 +95,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 20
+      minWidth: 25
     },
     {
       id: 'birthDate',
@@ -107,7 +107,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 20
+      minWidth: 25
     },
     {
       id: 'deathDate',
@@ -119,7 +119,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 20
+      minWidth: 25
     },
   ],
 };
