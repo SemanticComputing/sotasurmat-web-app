@@ -22,10 +22,6 @@ export const jenaQuery = `
       OPTIONAL { ?source__id skos:prefLabel ?source__prefLabel_ }
       BIND(COALESCE(?source__prefLabel_, ?source__id) as ?source__prefLabel)
     }
-    OPTIONAL {
-      ?id mmm-schema:data_provider_url ?dataProviderUrl
-    }
-    FILTER(?type__id != frbroo:F27_Work_Conception)
   }
 `;
 
@@ -85,7 +81,7 @@ export const facetValuesQuery = `
       }
       FILTER(?instanceCount > 0)
       BIND(IRI("http://ldf.fi/MISSING_VALUE") AS ?id)
-      BIND("Unknown" AS ?prefLabel)
+      BIND("Ei merkintää datassa" AS ?prefLabel)
       BIND('0' as ?parent)
       BIND(false as ?selected)
     }

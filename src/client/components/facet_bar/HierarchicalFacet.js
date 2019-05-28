@@ -164,7 +164,7 @@ class HierarchicalFacet extends Component {
                 // prevent selecting values with 0 hits (which may appear based on earlier selections):
                 (treeObj.node.instanceCount == 0 && treeObj.node.selected === 'false')
                 // prevent selecting unknown value:
-                || treeObj.node.prefLabel == 'Unknown'
+                || treeObj.node.prefLabel == 'Ei merkintää datassa'
                 // prevent selecting when another facet is still updating:
                 || this.props.someFacetIsFetching
                 // prevent selecting all facet values:
