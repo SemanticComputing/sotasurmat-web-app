@@ -35,8 +35,9 @@ const apiUrl = (process.env.NODE_ENV === 'development')
   ? 'http://localhost:3001/sotasurmat/api/'
   : `http://${location.hostname}${rootDir}/api/`;
 
-const backendErrorText = `Cannot connect to the MMM Knowledge Base.
-A data conversion process might be running. Please try again later.`;
+const backendErrorText = `Ei pystytty yhdistämään tietokantaan.
+Sivusto toimii oikein vain http yhteyden kautta ja https osoitteen alussa aiheuttaa tämän virheen.
+Datan päivitys saattaa myös olla käynnissä.`;
 
 const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_PAGINATED_RESULTS),
