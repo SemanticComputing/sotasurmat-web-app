@@ -16,7 +16,7 @@ import FacetBar from '../components/facet_bar/FacetBar';
 //import Manuscripts from '../components/perspectives/Manuscripts';
 import All from '../components/perspectives/All';
 import Deaths from '../components/perspectives/Deaths';
-import punainenRintama from '../img/punainenRintama.jpg';
+//import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
   fetchResultCount,

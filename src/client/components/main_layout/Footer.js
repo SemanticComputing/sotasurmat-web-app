@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 //import cnrsLogo from '../../img/logos/partners/logo_cnrs_irht2.jpg';
 import aaltoLogo from '../../img/logos/aalto-logo-white-no-background-small.png';
 import secoLogo from '../../img/logos/seco-logo.png';
+import arkistoLogo from '../../img/logos/ka-tunnus-fi.png';
 //import tapLogo from '../../img/logos/funders/cropped-logo_tap_0_.png';
 //import didLogo from '../../img/logos/funders/did_logo.png';
 //import imlsLogo from '../../img/logos/funders/imls_logo_2c_cropped.jpg';
@@ -65,6 +66,9 @@ const Footer = props => {
           </Grid>
           <Grid item xs className={classes.logoContainer}>
             <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
+          </Grid>
+          <Grid item xs className={classes.logoContainer}>
+            <img className={classes.aaltoLogo} src={arkistoLogo} alt='logo' />
           </Grid>
         </Grid>
       </Grid>

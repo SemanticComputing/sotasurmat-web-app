@@ -99,6 +99,9 @@ class InfoDialog extends React.Component {
             <p>Tämä on demo sivustosta joka on tarkoitus julkaista syksyllä 2019.</p>
             <p>Vanhan sivustoon voi tutustua <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main">täällä.</a></p>
             <p>Etusivun kuvat Museokeskus Vapriikin <a href="https://www.flickr.com/photos/vapriikki/sets/72157668009883972/">kokoelmasta</a> lisenssillä <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0.</a></p>
+            <p>Kuva 1: Punaisten ruumiita Kalevankankaan hautausmaalla Tampereen taistelun jälkeen, kuvaaja tuntematon</p>
+            <p>Kuva 2: Tampereen punakaartin komppania rintamalla, kuvaaja tuntematon</p>
+            <p>Kuva 3: Vangittuja punavankeja Tampereen Keskustorilla 6.4.1918, kuvaaja tuntematon</p>
 
 
           </DialogContent>
