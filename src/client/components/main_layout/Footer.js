@@ -31,7 +31,7 @@ const styles = theme => ({
   },
   layout: {
     width: 'auto',
-    height: 115,
+    height: 50,
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(2),
