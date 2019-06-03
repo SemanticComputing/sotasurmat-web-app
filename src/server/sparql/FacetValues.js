@@ -87,14 +87,17 @@ export const getFacet = ({
       ignoreSelectedValues = `FILTER(?id NOT IN ( <${uriFilters[facetID].join('>, <')}> ))`;
     }
     parentBlock = `
-    UNION
-    # parents for all facet values
-    {
-      ${parentFilterStr}
-      ?instance2 ${facetConfig.parentPredicate} ?id .
-      BIND(false AS ?selected_)
-      ${ignoreSelectedValues}
-    }
+          UNION
+          # parents for all facet values
+          {
+            ${parentFilterStr}
+            # these instances should not be counted, so use another variable name
+            ?instance2 ${facetConfig.parentPredicate} ?id .
+            VALUES ?facetClass { <FACET_CLASS> }
+            ?instance2 a ?facetClass .
+            BIND(false AS ?selected_)
+            ${ignoreSelectedValues}
+          }
       `;
   }
   q = q.replace('<SELECTED_VALUES>', selectedBlock);
@@ -102,12 +105,11 @@ export const getFacet = ({
   q = q.replace('<FACET_VALUE_FILTER>', facetConfig.facetValueFilter);
   q = q.replace('<PARENTS>', parentBlock);
   q = q.replace('<ORDER_BY>', `ORDER BY ${sortDirection}(?${sortBy})` );
-  q = q.replace(/<RDF_TYPE>/g, facetConfigs[facetClass].rdfType);
+  q = q.replace(/<FACET_CLASS>/g, facetConfigs[facetClass].facetClass);
   q = q.replace(/<FILTER>/g, filterBlock );
   q = q.replace(/<PREDICATE>/g, facetConfig.predicate);
-  //if (facetID == 'registeredPlace') {
-  //  console.log(uriFilters)
-  //  console.log(prefixes + q)
-  //}
+  // if (facetID == 'place') {
+  //   console.log(prefixes + q)
+  // }
   return runSelectQuery(prefixes + q, endpoint, mapper);
 };

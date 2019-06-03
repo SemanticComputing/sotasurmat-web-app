@@ -168,7 +168,7 @@ class HierarchicalFacet extends Component {
                 // prevent selecting when another facet is still updating:
                 || this.props.someFacetIsFetching
                 // prevent selecting all facet values:
-                //|| (selectedCount >= this.props.facet.distinctValueCount - 2 && !isSelected)
+                || (selectedCount >= this.props.facet.distinctValueCount - 1 && !isSelected)
               }
               onChange={this.handleCheckboxChange(treeObj)}
               value={treeObj.node.id}
@@ -188,14 +188,16 @@ class HierarchicalFacet extends Component {
     let count = node.totalInstanceCount == null || node.totalInstanceCount == 0 ? node.instanceCount : node.totalInstanceCount;
     return (
       <React.Fragment>
-        <a
-          className={this.props.classes.facetLink}
-          target='_blank' rel='noopener noreferrer'
-          href={node.id}
-        >
-          {node.prefLabel}
-        </a>
-        <span> ({count})</span>
+        <Typography variant='body2'>
+          <a
+            className={this.props.classes.facetLink}
+            target='_blank' rel='noopener noreferrer'
+            href={node.id}
+          >
+            {node.prefLabel}
+          </a>
+          <span> ({count})</span>
+        </Typography>
       </React.Fragment>
     );
   }

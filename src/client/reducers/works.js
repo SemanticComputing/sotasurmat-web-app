@@ -18,7 +18,7 @@ import {
   fetchResultCount,
   updateSortBy,
   updateResultCount,
-  //updateResults,
+  updateResults,
   updatePaginatedResults,
   updateInstance,
   updatePage,
@@ -39,93 +39,45 @@ export const INITIAL_STATE = {
   tableColumns: [
     {
       id: 'prefLabel',
-      label: 'Nimi',
-      desc: `
-        Nimi
-      `,
+      label: 'Label',
+      desc: 'Label description',
       valueType: 'object',
       makeLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 100
+      numberedList: false
     },
     {
-      id: 'party',
-      label: 'Osapuoli',
-      desc: `
-        Osapuoli
-      `,
+      id: 'author',
+      label: 'Possible author',
+      desc: 'Author description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 100
+      numberedList: false
     },
     {
-      id: 'registeredPlace',
-      label: 'Kirjoillaolopaikka',
-      desc: `
-        Kirjoillaolopaikka
-      `,
+      id: 'manuscript',
+      label: 'Manuscript',
+      desc: 'Manuscript description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 150
+      numberedList: false
     },
     {
-      id: 'occupation',
-      label: 'Ammatti',
-      desc: `
-        Ammatti
-      `,
+      id: 'source',
+      label: 'Source',
+      desc: 'Source description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'livingMunicipality',
-      label: 'Asuinkunta',
-      desc: `
-        Asuinkunta
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'birthDate',
-      label: 'Syntymäpäivä',
-      desc: `
-        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'deathDate',
-      label: 'Kuolinpäivä',
-      desc: `
-        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
+      numberedList: false
     },
   ],
 };
 
-const deaths = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'deaths') {
+const works = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'works') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -141,7 +93,7 @@ const deaths = (state = INITIAL_STATE, action) => {
       case UPDATE_RESULT_COUNT:
         return updateResultCount(state, action);
       case UPDATE_RESULTS:
-        return  (state, action);
+        return updateResults(state, action);
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:
@@ -154,4 +106,4 @@ const deaths = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default deaths;
+export default works;

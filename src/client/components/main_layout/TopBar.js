@@ -71,6 +71,9 @@ class TopBar extends React.Component {
     const { mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    // https://material-ui.com/components/buttons/#third-party-routing-library
+    const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
+    const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
 
     const perspectives = [ 'surmatut', 'näkymä2', 'näkymä3' ];
 
@@ -85,8 +88,8 @@ class TopBar extends React.Component {
         {perspectives.map(perspective =>
           <MenuItem
             key={perspective}
-            component={Link}
-            to={`/sotasurmat/${perspective}`}
+            component={AdapterLink}
+            to={`${this.props.rootUrl}${perspective}`}
           >
             {perspective.toUpperCase()}
           </MenuItem>
@@ -94,13 +97,15 @@ class TopBar extends React.Component {
       </Menu>
     );
 
+
+
     return (
       <div className={classes.root}>
         <AppBar position="absolute">
           <Toolbar>
             <Button
               className={classes.appBarButton}
-              component={Link}
+              component={AdapterLink}
               to={this.props.rootUrl}
             >
               <Typography className={classes.title} variant="h6" color="inherit">

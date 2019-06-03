@@ -4,7 +4,7 @@
 */
 export const facetConfigs = {
   deaths: {
-    rdfType: 'siso-schema:Death_record',
+    facetClass: 'siso-schema:Death_record',
     label: {
       id: 'label',
       type: 'text',

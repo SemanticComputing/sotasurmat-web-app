@@ -18,7 +18,7 @@ import {
   fetchResultCount,
   updateSortBy,
   updateResultCount,
-  //updateResults,
+  updateResults,
   updatePaginatedResults,
   updateInstance,
   updatePage,
@@ -39,93 +39,58 @@ export const INITIAL_STATE = {
   tableColumns: [
     {
       id: 'prefLabel',
-      label: 'Nimi',
-      desc: `
-        Nimi
-      `,
+      label: 'Label',
+      desc: 'Label description',
       valueType: 'object',
       makeLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 100
-    },
-    {
-      id: 'party',
-      label: 'Osapuoli',
-      desc: `
-        Osapuoli
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 100
-    },
-    {
-      id: 'registeredPlace',
-      label: 'Kirjoillaolopaikka',
-      desc: `
-        Kirjoillaolopaikka
-      `,
-      valueType: 'object',
-      makeLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
     },
     {
-      id: 'occupation',
-      label: 'Ammatti',
-      desc: `
-        Ammatti
-      `,
+      id: 'birthPlace',
+      label: 'Place of birth',
+      desc: 'Birth place description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 150
     },
     {
-      id: 'livingMunicipality',
-      label: 'Asuinkunta',
-      desc: `
-        Asuinkunta
-      `,
+      id: 'place',
+      label: 'Place / nationality',
+      desc: 'Place / nationality description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 150
     },
     {
-      id: 'birthDate',
-      label: 'Syntymäpäivä',
-      desc: `
-        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
+      id: 'work',
+      label: 'Work',
+      desc: 'Work description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 125
+      numberedList: false
     },
     {
-      id: 'deathDate',
-      label: 'Kuolinpäivä',
-      desc: `
-        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
+      id: 'source',
+      label: 'Source',
+      desc: 'Source description',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 125
+      numberedList: false
     },
+
   ],
 };
 
-const deaths = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'deaths') {
+const people = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'people') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -141,7 +106,7 @@ const deaths = (state = INITIAL_STATE, action) => {
       case UPDATE_RESULT_COUNT:
         return updateResultCount(state, action);
       case UPDATE_RESULTS:
-        return  (state, action);
+        return updateResults(state, action);
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:
@@ -154,4 +119,4 @@ const deaths = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default deaths;
+export default people;

@@ -5,7 +5,8 @@ export const countQuery = `
   SELECT (COUNT(DISTINCT ?id) as ?count)
   WHERE {
     <FILTER>
-    ?id a <RDF_TYPE> .
+    VALUES ?facetClass { <FACET_CLASS> }
+    ?id a ?facetClass .
   }
 `;
 
@@ -31,8 +32,9 @@ export const facetResultSetQuery = `
     {
       SELECT DISTINCT ?id {
         <FILTER>
-        ?id a <RDF_TYPE> .
-        ?id <ORDER_BY_PREDICATE> ?orderBy .
+        VALUES ?facetClass { <FACET_CLASS> }
+        ?id a ?facetClass .
+        OPTIONAL { ?id <ORDER_BY_PREDICATE> ?orderBy }
       }
       ORDER BY (!BOUND(?orderBy)) <SORT_DIRECTION>(?orderBy)
       <PAGE>
@@ -51,7 +53,8 @@ export const facetValuesQuery = `
           {
             <FILTER>
             ?instance <PREDICATE> ?id .
-            ?instance a <RDF_TYPE> .
+            VALUES ?facetClass { <FACET_CLASS> }
+            ?instance a ?facetClass .
             <SELECTED_VALUES>
           }
           <SELECTED_VALUES_NO_HITS>
@@ -73,7 +76,8 @@ export const facetValuesQuery = `
       {
         SELECT DISTINCT (count(DISTINCT ?instance) as ?instanceCount) {
           <FILTER>
-          ?instance a <RDF_TYPE> .
+          VALUES ?facetClass { <FACET_CLASS> }
+          ?instance a ?facetClass .
           FILTER NOT EXISTS {
             ?instance <PREDICATE> ?value .
           }

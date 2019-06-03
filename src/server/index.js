@@ -14,6 +14,9 @@ const app = express();
 app.set('port', process.env.PORT || DEFAULT_PORT);
 app.use(bodyParser.json());
 
+// NODE_ENV is defined in package.json when running in localhost
+const isDevelopment = process.env.NODE_ENV === 'development' ? true : false;
+
 // allow CORS
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -152,16 +155,25 @@ app.get(`${apiPath}/search`, async (req, res, next) => {
   }
 });
 
-/*  Routes are matched to a url in order of their definition
-    Redirect all the the rest for react-router to handle */
-app.get('*', function(request, response) {
-  response.sendFile(path.join(publicPath, 'index.html'));
-});
+// Express server is used to serve the React app only in production
+if (!isDevelopment) {
+  /*  Routes are matched to a url in order of their definition
+      Redirect all the the rest for react-router to handle */
+  app.get('*', function(request, response) {
+    response.sendFile(path.join(publicPath, 'index.html'));
+  });
+}
 
-app.listen(app.get('port'), () =>
+let servingInfo = isDevelopment ?
+  `NODE_ENV=development, so Webpack serves the React app`
+  : `Static files (e.g. the React app) will be served from ${publicPath}`;
+
+const port = app.get('port');
+
+app.listen(port, () =>
   console.log(`
-  Express server listening on port ${app.get('port')}
-  Static files (e.g. the React app) will be served from ${publicPath}
+  Express server listening on port ${port}
   API path is ${apiPath}
+  ${servingInfo}
   `)
 );

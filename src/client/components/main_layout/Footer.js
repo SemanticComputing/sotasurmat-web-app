@@ -31,12 +31,12 @@ const styles = theme => ({
   },
   layout: {
     width: 'auto',
-    height: 50,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    [theme.breakpoints.up(1500 + theme.spacing.unit * 3 * 2)]: {
+    height: 115,
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(1500 + theme.spacing(6))]: {
       width: 1500,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -60,7 +60,7 @@ const Footer = props => {
   return (
     <Paper className={classes.root}>
       <Grid container className={classes.layout}>
-        <Grid container spacing={24} item xs={12}>
+        <Grid container spacing={3} item xs={12}>
           <Grid item xs className={classes.logoContainer}>
             <img className={classes.logo} src={secoLogo} alt='logo' />
           </Grid>

@@ -56,7 +56,7 @@ const styles = theme => ({
   mainContainer: {
     height: 'auto',
     backgroundColor: '#ffffff',
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       marginTop: 56,
       height: 'calc(100% - 56px)',
@@ -70,6 +70,7 @@ const styles = theme => ({
     //backgroundRepeat: 'no-repeat',
     //backgroundSize: 'cover'
   },
+  // main container is divided into two columns:
   facetBarContainer: {
     height: '100%',
     overflow: 'auto',
@@ -82,9 +83,6 @@ const styles = theme => ({
     paddingTop: '0px !important',
     paddingBottom: '0px !important'
   },
-  resultsContainerPaper: {
-    height: '100%'
-  }
 });
 
 let SemanticPortal = (props) => {
@@ -101,7 +99,7 @@ let SemanticPortal = (props) => {
             clearResults={props.clearResults}
             rootUrl={rootUrl}
           />
-          <Grid container spacing={8} className={classes.mainContainer}>
+          <Grid container spacing={1} className={classes.mainContainer}>
             <Route
               exact path={rootUrl}
               render={() =>
@@ -129,25 +127,24 @@ let SemanticPortal = (props) => {
                     />
                   </Grid>
                   <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Paper className={classes.resultsContainerPaper}>
-                      <Deaths
-                        rootUrl={rootUrl}
-                        deaths={props.deaths}
-                        facetData={props.deathsFacets}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchResults={props.fetchResults}
-                        fetchByURI={props.fetchByURI}
-                        updatePage={props.updatePage}
-                        updateFacetOption={props.updateFacetOption}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
-                        fetchFacet={props.fetchFacet}
-                        resultCount={props.deaths.resultCount}
-                      />
-                    </Paper>
+                    <Deaths
+                      rootUrl={rootUrl}
+                      deaths={props.deaths}
+                      facetData={props.deathsFacets}
+                      fetchPaginatedResults={props.fetchPaginatedResults}
+                      fetchResults={props.fetchResults}
+                      fetchByURI={props.fetchByURI}
+                      updatePage={props.updatePage}
+                      updateFacetOption={props.updateFacetOption}
+                      sortResults={props.sortResults}
+                      routeProps={routeProps}
+                      fetchFacet={props.fetchFacet}
+                      resultCount={props.deaths.resultCount}
+                    />
                   </Grid>
                 </React.Fragment>
               }
+
             />
             <Route
               path="/all"

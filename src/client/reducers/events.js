@@ -6,8 +6,8 @@ import {
   FETCH_PAGINATED_RESULTS_FAILED,
   FETCH_BY_URI,
   UPDATE_RESULT_COUNT,
-  UPDATE_RESULTS,
   UPDATE_PAGINATED_RESULTS,
+  UPDATE_RESULTS,
   UPDATE_INSTANCE,
   UPDATE_PAGE,
   SORT_RESULTS,
@@ -18,7 +18,7 @@ import {
   fetchResultCount,
   updateSortBy,
   updateResultCount,
-  //updateResults,
+  updateResults,
   updatePaginatedResults,
   updateInstance,
   updatePage,
@@ -32,100 +32,48 @@ export const INITIAL_STATE = {
   instance: {},
   page: -1,
   pagesize: 15,
-  sortBy: 'prefLabel',
+  sortBy: 'place',
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
   tableColumns: [
     {
-      id: 'prefLabel',
-      label: 'Nimi',
+      id: 'type',
+      label: 'Type',
+      desc: 'Type description',
+      valueType: 'object',
+      makeLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 200,
+    },
+    {
+      id: 'timespan',
+      label: 'Date',
       desc: `
-        Nimi
+        Date description.
       `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 200,
+    },
+    {
+      id: 'place',
+      label: 'Place',
+      desc: 'Place description',
       valueType: 'object',
       makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 100
-    },
-    {
-      id: 'party',
-      label: 'Osapuoli',
-      desc: `
-        Osapuoli
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 100
-    },
-    {
-      id: 'registeredPlace',
-      label: 'Kirjoillaolopaikka',
-      desc: `
-        Kirjoillaolopaikka
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 150
-    },
-    {
-      id: 'occupation',
-      label: 'Ammatti',
-      desc: `
-        Ammatti
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'livingMunicipality',
-      label: 'Asuinkunta',
-      desc: `
-        Asuinkunta
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'birthDate',
-      label: 'Syntymäpäivä',
-      desc: `
-        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'deathDate',
-      label: 'Kuolinpäivä',
-      desc: `
-        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
+      minWidth: 250
     },
   ],
 };
 
-const deaths = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'deaths') {
+const events = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'events') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -141,7 +89,7 @@ const deaths = (state = INITIAL_STATE, action) => {
       case UPDATE_RESULT_COUNT:
         return updateResultCount(state, action);
       case UPDATE_RESULTS:
-        return  (state, action);
+        return updateResults(state, action);
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:
@@ -154,4 +102,4 @@ const deaths = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default deaths;
+export default events;
