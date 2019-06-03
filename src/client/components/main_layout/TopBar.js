@@ -72,8 +72,7 @@ class TopBar extends React.Component {
     const { classes } = this.props;
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const perspectives = [ 'manuscripts', 'works', 'events', 'people',
-      'organizations', 'places' ];
+    const perspectives = [ 'surmatut', 'näkymä2', 'näkymä3' ];
 
     const renderMobileMenu = (
       <Menu
@@ -87,7 +86,7 @@ class TopBar extends React.Component {
           <MenuItem
             key={perspective}
             component={Link}
-            to={`/${perspective}`}
+            to={`/sotasurmat/${perspective}`}
           >
             {perspective.toUpperCase()}
           </MenuItem>
