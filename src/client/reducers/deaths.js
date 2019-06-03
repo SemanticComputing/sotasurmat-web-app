@@ -59,7 +59,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 25
+      minWidth: 100
     },
     {
       id: 'registeredPlace',
@@ -71,7 +71,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 25
+      minWidth: 150
     },
     {
       id: 'occupation',
@@ -83,7 +83,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 25
+      minWidth: 125
     },
     {
       id: 'livingMunicipality',
@@ -95,31 +95,31 @@ export const INITIAL_STATE = {
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 25
+      minWidth: 125
     },
     {
       id: 'birthDate',
       label: 'Syntymäpäivä',
       desc: `
-        Syntymäpäivä
+        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
       `,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 25
+      minWidth: 125
     },
     {
       id: 'deathDate',
       label: 'Kuolinpäivä',
       desc: `
-        Kuolinpäivä
+        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
       `,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 25
+      minWidth: 125
     },
   ],
 };
