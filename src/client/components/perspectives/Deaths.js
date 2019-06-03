@@ -13,7 +13,7 @@ let Deaths = props => {
         routeProps={props.routeProps}
         tabs={{
           [`${props.rootUrl}/surmatut/table`]: {
-            label: 'table',
+            label: 'lista',
             value: 0,
             icon: 'CalendarViewDay',
           },
