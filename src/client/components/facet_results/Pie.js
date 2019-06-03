@@ -94,6 +94,11 @@ class Pie extends React.Component {
        label: 'Asuinkunta',
      });
    }
+   if (changeEvent.target.value === 'gender') {
+     this.setState({
+       label: 'Sukupuoli',
+     });
+   }
  }
 
  render() {
@@ -108,6 +113,9 @@ class Pie extends React.Component {
    }
    if (this.state.selectedOption === 'livingMunicipality') {
      facetValues = data.livingMunicipality.values;
+   }
+   if (this.state.selectedOption === 'gender') {
+     facetValues = data.gender.values;
    }
    if (facetValues.length == 0) {
      return (
@@ -178,6 +186,14 @@ class Pie extends React.Component {
                      checked={this.state.selectedOption === 'livingMunicipality'}
                      onChange={this.handleOptionChange} />
                      Asuinkunta
+                 </label>
+               </div>
+               <div className="radio">
+                 <label>
+                   <input type="radio" value="gender"
+                     checked={this.state.selectedOption === 'gender'}
+                     onChange={this.handleOptionChange} />
+                     Sukupuoli
                  </label>
                </div>
              </form>
