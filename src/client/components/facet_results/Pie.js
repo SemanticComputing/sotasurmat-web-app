@@ -56,7 +56,7 @@ class Pie extends React.Component {
  combineSmallGroups = (dataArray) => {
    const totalLength = dataArray.length;
    const threshold = 0.1;
-   let other = { x: 'Other', y: 0, values: [] };
+   let other = { x: 'Muu arvo', y: 0, values: [] };
    let newArray = [];
    for (let item of dataArray) {
      const portion = item.y / totalLength;
@@ -99,10 +99,16 @@ class Pie extends React.Component {
        label: 'Sukupuoli',
      });
    }
+   if (changeEvent.target.value === 'registeredPlace') {
+     this.setState({
+       label: 'Kirjoillaolopaikka',
+     });
+   }
  }
 
  render() {
    const { classes, data } = this.props;
+   //console.log(data)
    let resultCount = 0;
    let facetValues = null;
    if (this.state.selectedOption === 'party') {
@@ -116,6 +122,9 @@ class Pie extends React.Component {
    }
    if (this.state.selectedOption === 'gender') {
      facetValues = data.gender.values;
+   }
+   if (this.state.selectedOption === 'registeredPlace') {
+     facetValues = data.registeredPlace.flatValues;
    }
    if (facetValues.length == 0) {
      return (
@@ -146,7 +155,7 @@ class Pie extends React.Component {
    dataArray = this.combineSmallGroups(dataArray);
    const legendArray = dataArray.map(group => ({ name: group.x.toLowerCase() + ' (' + group.y + ')' }));
    //console.log(dataArray)
-   const legendHeigth = legendArray.length * 35;
+   const legendHeigth = legendArray.length * 35 + 10;
    // const pieTitle = resultCount + ' results for the query "' + query + '"';
    // <VictoryLabel
    //   style={{
@@ -194,6 +203,14 @@ class Pie extends React.Component {
                      checked={this.state.selectedOption === 'gender'}
                      onChange={this.handleOptionChange} />
                      Sukupuoli
+                 </label>
+               </div>
+               <div className="radio">
+                 <label>
+                   <input type="radio" value="registeredPlace"
+                     checked={this.state.selectedOption === 'registeredPlace'}
+                     onChange={this.handleOptionChange} />
+                     Kirjoillaolopaikka
                  </label>
                </div>
              </form>

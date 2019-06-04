@@ -49,7 +49,7 @@ export const mapFacet = sparqlBindings => {
 
 export const mapHierarchicalFacet = sparqlBindings => {
   const results = mapFacetValues(sparqlBindings);
-  //const flatResults = results;
+  const flatResults = results;
   let treeData = getTreeFromFlatData({
     flatData: results,
     getKey: node => node.id, // resolve a node's key
@@ -60,7 +60,7 @@ export const mapHierarchicalFacet = sparqlBindings => {
   treeData.forEach(node => sumUp(node));
   return {
     distinctValueCount: results.length,
-    //flatValues: flatResults,
+    flatValues: flatResults,
     values: treeData
   };
 };
