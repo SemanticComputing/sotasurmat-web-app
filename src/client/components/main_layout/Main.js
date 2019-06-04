@@ -53,7 +53,12 @@ const styles = theme => ({
   },
   cardContent: {
     height: 85,
-  }
+  },
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
 
 let Main = props => {
@@ -82,7 +87,7 @@ let Main = props => {
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
-        <div className={classes.logo}>
+        <div className={classes.logoContainer}>
           <img src={logo} alt="Logo"></img>
         </div>
         <div className={classes.heroContent}>
