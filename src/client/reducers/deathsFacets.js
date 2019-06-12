@@ -16,9 +16,9 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
-    label: {
-      id: 'label',
-      label: 'Nimi',
+    prefLabel: {
+      id: 'prefLabel',
+      label: 'Label',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -46,7 +46,7 @@ export const INITIAL_STATE = {
       spatialFilterButton: false,
       isFetching: false,
       searchField: false,
-      containerClass: 'four',
+      containerClass: 'three',
       filterType: 'uriFilter',
       uriFilter: null
     },

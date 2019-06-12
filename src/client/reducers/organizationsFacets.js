@@ -17,7 +17,7 @@ export const INITIAL_STATE = {
   updatedFilter: null,
   facets: {
     prefLabel: {
-      id: 'prefLabel',
+      id: 'preflabel',
       label: 'Label',
       // predicate: defined in backend
       distinctValueCount: 0,
@@ -50,28 +50,11 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null
     },
-    author: {
-      id: 'author',
-      label: 'Possible author',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'prefLabel',
-      sortDirection: 'asc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
-  },
+  }
 };
 
-const worksFacets = (state = INITIAL_STATE, action) => {
-  if (action.facetClass === 'works') {
+const organizationsFacets = (state = INITIAL_STATE, action) => {
+  if (action.facetClass === 'organizations') {
     switch (action.type) {
       case FETCH_FACET:
         return fetchFacet(state, action);
@@ -87,4 +70,4 @@ const worksFacets = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default worksFacets;
+export default organizationsFacets;

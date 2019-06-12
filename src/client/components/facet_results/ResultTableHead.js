@@ -15,6 +15,7 @@ const styles = theme => ({
     position: 'sticky',
     top: 0,
     backgroundColor: theme.palette.background.paper,
+    zIndex: 1
   }
 });
 
@@ -23,8 +24,7 @@ const ResultTableHead = props => {
   return (
     <TableHead>
       <TableRow>
-        {/* <TableCell className={classes.headerCol} key={'empty'}>
-        </TableCell>*/}
+        <TableCell className={classes.headerCol} key={'empty'} />
         {columns.map(column => {
           return (
             <TableCell

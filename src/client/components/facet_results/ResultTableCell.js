@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { sortBy, orderBy, has } from 'lodash';
+import { orderBy, has } from 'lodash';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
+import Collapse from '@material-ui/core/Collapse';
+//import Typography from '@material-ui/core/Typography';
 
 const styles = () => ({
   valueList: {
@@ -18,6 +20,22 @@ const styles = () => ({
 });
 
 const ResultTableCell = props => {
+
+  const ISOStringToDate = str => {
+    let year;
+    let month;
+    let day;
+    if (str.charAt(0) == '-') {
+      year = parseInt(str.substring(0,5));
+      month = parseInt(str.substring(7,8));
+      day = parseInt(str.substring(10,11));
+    } else {
+      year = parseInt(str.substring(0,4));
+      month = parseInt(str.substring(6,7));
+      day = parseInt(str.substring(9,10));
+    }
+    return new Date(year, month, day);
+  };
 
   const stringListRenderer = cell => {
     if (cell == null || cell === '-'){
@@ -40,12 +58,19 @@ const ResultTableCell = props => {
       return '-';
     }
     else if (Array.isArray(cell)) {
-      if (props.columnId == 'timespan') {
-        cell = sortValues ? sortBy(cell, obj => Number(obj.start)) : cell;
+      if (props.columnId == 'productionTimespan') {
+        cell = sortValues
+          ? cell.sort((a,b) => {
+            a = has(a, 'start') ? ISOStringToDate(a.start) : ISOStringToDate(a.end);
+            b = has(b, 'start') ? ISOStringToDate(b.start) : ISOStringToDate(b.end);
+            // arrange from the most recent to the oldest
+            return a > b ? 1 : a < b ? -1 : 0;
+          })
+          : cell;
       } else {
         cell = sortValues ? orderBy(cell, 'prefLabel') : cell;
       }
-
+      const firstValue = cell[0];
       const listItems = cell.map((item, i) =>
         <li key={i}>
           {makeLink &&
@@ -67,9 +92,23 @@ const ResultTableCell = props => {
         );
       } else {
         return (
-          <ul className={props.classes.valueList}>
-            {listItems}
-          </ul>
+          <React.Fragment>
+            {!props.expanded && !makeLink &&
+              <span>{firstValue.prefLabel} ...</span>}
+            {!props.expanded && makeLink &&
+              <a
+                target='_blank' rel='noopener noreferrer'
+                href={firstValue.dataProviderUrl}
+              >
+                {firstValue.prefLabel} ...
+              </a>
+            }
+            <Collapse in={props.expanded} timeout="auto" unmountOnExit>
+              <ul className={props.classes.valueList}>
+                {listItems}
+              </ul>
+            </Collapse>
+          </React.Fragment>
         );
       }
     } else if (makeLink) {
@@ -178,7 +217,8 @@ const ResultTableCell = props => {
     }
   };
 
-  const { data, valueType, makeLink, sortValues, numberedList, minWidth, container } = props;
+  const { data, valueType, makeLink, sortValues, numberedList, minWidth,
+    container } = props;
   let renderer = null;
   let cellStyle = minWidth == null ? {} : { minWidth: minWidth };
   switch (valueType) {
@@ -219,7 +259,8 @@ ResultTableCell.propTypes = {
   makeLink: PropTypes.bool.isRequired,
   sortValues: PropTypes.bool.isRequired,
   numberedList: PropTypes.bool.isRequired,
-  minWidth: PropTypes.number
+  minWidth: PropTypes.number,
+  expanded: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(ResultTableCell);

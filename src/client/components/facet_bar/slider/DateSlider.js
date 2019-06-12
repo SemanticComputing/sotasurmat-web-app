@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
 import { withStyles } from '@material-ui/core/styles';
-import { SliderRail, Handle, Track, Tick } from './SliderComponents'; // example render components - source below
+import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
+import { Handle, Track, Tick, TooltipRail } from './SliderComponents';
 
-const style = () => ({
+const sliderRootStyle = {
+  position: 'relative',
+  width: '100%',
+};
+
+const styles = theme => ({
   root: {
-    height: 120,
-    width: '100%',
-  },
-  slider: {
-    position: 'relative',
-    width: '100%',
-  },
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(2)
+  }
 });
 
-const domain = [100, 500];
-const defaultValues = [150, 300, 400, 450];
+const defaultValues = [-1000, 1975];
 
-class Example extends Component {
+class DateSlider extends Component {
   state = {
+    domain: [-1000, 1975],
     values: defaultValues.slice(),
     update: defaultValues.slice(),
+    reversed: false,
   }
 
   onUpdate = update => {
@@ -32,11 +37,19 @@ class Example extends Component {
     this.setState({ values });
   }
 
+  setDomain = domain => {
+    this.setState({ domain });
+  }
+
+  toggleReverse = () => {
+    this.setState(prev => ({ reversed: !prev.reversed }));
+  }
+
   render() {
     const {
-      props: { classes },
-      state: { values, update },
+      state: { domain, values, reversed },
     } = this;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -44,23 +57,22 @@ class Example extends Component {
           mode={1}
           step={1}
           domain={domain}
-          className={classes.slider}
+          reversed={reversed}
+          rootStyle={sliderRootStyle}
           onUpdate={this.onUpdate}
           onChange={this.onChange}
           values={values}
         >
-          <Rail>
-            {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
-          </Rail>
+          <Rail>{railProps => <TooltipRail {...railProps} />}</Rail>
           <Handles>
-            {({ activeHandleID, handles, getHandleProps }) => (
-              <div>
+            {({ handles, activeHandleID, getHandleProps }) => (
+              <div className="slider-handles">
                 {handles.map(handle => (
                   <Handle
                     key={handle.id}
                     handle={handle}
                     domain={domain}
-                    activeHandleID={activeHandleID}
+                    isActive={handle.id === activeHandleID}
                     getHandleProps={getHandleProps}
                   />
                 ))}
@@ -69,7 +81,7 @@ class Example extends Component {
           </Handles>
           <Tracks left={false} right={false}>
             {({ tracks, getTrackProps }) => (
-              <div>
+              <div className="slider-tracks">
                 {tracks.map(({ id, source, target }) => (
                   <Track
                     key={id}
@@ -81,9 +93,9 @@ class Example extends Component {
               </div>
             )}
           </Tracks>
-          <Ticks count={5}>
+          <Ticks count={10}>
             {({ ticks }) => (
-              <div>
+              <div className="slider-ticks">
                 {ticks.map(tick => (
                   <Tick key={tick.id} tick={tick} count={ticks.length} />
                 ))}
@@ -96,8 +108,8 @@ class Example extends Component {
   }
 }
 
-Example.propTypes = {
+DateSlider.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(style)(Example);
+export default withStyles(styles)(DateSlider);
