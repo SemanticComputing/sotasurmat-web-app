@@ -11,7 +11,8 @@ export const facetConfigs = {
       label: 'Title',
       labelPath: 'skos:prefLabel',
       type: 'text',
-      predicate: 'text:query'
+      predicate: 'text:query',
+      textQueryProperty: 'skos:prefLabel',
     },
     party: {
       id: 'party',
