@@ -200,7 +200,7 @@ class HierarchicalFacet extends Component {
                 && node.instanceCount == 0
                 && node.selected === 'false')
                 // prevent selecting unknown value:
-                || node.prefLabel == 'Ei merkintää'
+                || node.prefLabel == 'Ei merkintää datassa'
                 // prevent selecting when another facet is still updating:
                 || this.props.someFacetIsFetching
                 // prevent selecting all facet values:
