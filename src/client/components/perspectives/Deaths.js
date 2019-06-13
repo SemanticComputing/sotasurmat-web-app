@@ -48,6 +48,7 @@ let Deaths = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
+            perspectiveUrl='surmatut'
           />
         }
       />

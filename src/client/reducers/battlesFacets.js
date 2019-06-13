@@ -33,46 +33,11 @@ export const INITIAL_STATE = {
       filterType: 'textFilter',
       textFilter: null,
     },
-    area: {
-      id: 'area',
-      label: 'Area',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'prefLabel',
-      sortDirection: 'asc',
-      sortButton: false,
-      //spatialFilterButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      spatialFilter: null
-    },
-    source: {
-      id: 'source',
-      label: 'Source',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'five',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
   }
 };
 
-const placesFacets = (state = INITIAL_STATE, action) => {
-  if (action.facetClass === 'places') {
+const battlesFacets = (state = INITIAL_STATE, action) => {
+  if (action.facetClass === 'battles') {
     switch (action.type) {
       case FETCH_FACET:
         return fetchFacet(state, action);
@@ -88,4 +53,4 @@ const placesFacets = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default placesFacets;
+export default battlesFacets;

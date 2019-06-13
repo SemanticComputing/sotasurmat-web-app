@@ -5,10 +5,14 @@ import error from './error';
 import clientSideFacetedSearch from './clientSideFacetedSearch';
 import deaths from './deaths';
 import deathsFacets from './deathsFacets';
+import battles from './battles';
+import battlesFacets from './battlesFacets';
 
 const reducer = combineReducers({
   deaths,
   deathsFacets,
+  battles,
+  battlesFacets,
   clientSideFacetedSearch,
   error,
   toastr: toastrReducer,

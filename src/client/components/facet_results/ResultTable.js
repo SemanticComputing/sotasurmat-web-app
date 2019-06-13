@@ -89,7 +89,7 @@ class ResultTable extends React.Component {
     this.props.updatePage(this.props.resultClass, page);
     history.push({
       //pathname: `/${this.props.resultClass}/table`,
-      pathname: `${this.props.rootUrl}/surmatut/table`,
+      pathname: `${this.props.rootUrl}/${this.props.perspectiveUrl}/table`,
       search: `?page=${page}`,
     });
     if (this.props.data.resultsUpdateID !== -1 && this.props.data.resultsUpdateID !== this.props.facetUpdateID) {
@@ -104,7 +104,7 @@ class ResultTable extends React.Component {
       this.fetchResults();
       history.push({
         //pathname: `/${this.props.resultClass}/table`,
-        pathname: `${this.props.rootUrl}/surmatut/table`,
+        pathname: `${this.props.rootUrl}/${this.props.perspectiveUrl}/table`,
         search: `?page=${this.props.data.page}`,
       });
     }
@@ -251,6 +251,7 @@ class ResultTable extends React.Component {
 }
 
 ResultTable.propTypes = {
+  perspectiveUrl: PropTypes.string.isRequired,
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,

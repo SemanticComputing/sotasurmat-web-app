@@ -16,6 +16,7 @@ import FacetBar from '../components/facet_bar/FacetBar';
 //import Manuscripts from '../components/perspectives/Manuscripts';
 import All from '../components/perspectives/All';
 import Deaths from '../components/perspectives/Deaths';
+import Battles from '../components/perspectives/Battles';
 //import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
@@ -149,8 +150,47 @@ let SemanticPortal = (props) => {
                   </Grid>
                 </React.Fragment>
               }
-
             />
+
+            <Route
+              path={`${rootUrl}/taistelut`}
+              render={routeProps => {
+                return(
+                  <React.Fragment>
+                    <Grid item xs={12} md={3} className={classes.facetBarContainer}>
+                      <FacetBar
+                        facetData={props.battlesFacets}
+                        facetClass='battles'
+                        resultClass='battles'
+                        fetchingResultCount={props.battles.fetchingResultCount}
+                        resultCount={props.battles.resultCount}
+                        fetchFacet={props.fetchFacet}
+                        fetchResultCount={props.fetchResultCount}
+                        updateFacetOption={props.updateFacetOption}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={9} className={classes.resultsContainer}>
+                      <Battles
+                        rootUrl={rootUrl}
+                        battles={props.battles}
+                        facetData={props.battlesFacets}
+                        fetchResults={props.fetchResults}
+                        fetchPaginatedResults={props.fetchPaginatedResults}
+                        fetchByURI={props.fetchByURI}
+                        filters={props.deathsFacets.filters}
+                        updatePage={props.updatePage}
+                        sortResults={props.sortResults}
+                        routeProps={routeProps}
+                        updateRowsPerPage={props.updateRowsPerPage}
+                      />
+                    </Grid>
+                  </React.Fragment>
+                );
+              }
+
+              }
+            />
+
             <Route
               path="/all"
               render={routeProps =>
@@ -183,6 +223,8 @@ const mapStateToProps = state => {
   return {
     deaths: state.deaths,
     deathsFacets: state.deathsFacets,
+    battles: state.battles,
+    battlesFacets: state.battlesFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
     error: state.error
     //browser: state.browser,
@@ -211,6 +253,8 @@ SemanticPortal.propTypes = {
   // browser: PropTypes.object.isRequired,
   deaths: PropTypes.object.isRequired,
   deathsFacets: PropTypes.object.isRequired,
+  battles: PropTypes.object.isRequired,
+  battlesFacets: PropTypes.object.isRequired,
   clientSideFacetedSearch: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,

@@ -7,19 +7,19 @@ import ResultTable from '../facet_results/ResultTable';
 import LeafletMap from '../facet_results/LeafletMap';
 // import Deck from './Deck';
 
-let Places = props => {
+let Battles = props => {
   //console.log(props.search.places)
   return (
     <React.Fragment>
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={{
-          '/places/table': {
+          [`${props.rootUrl}/taistelut/table`]: {
             label: 'table',
             value: 0,
             icon: 'CalendarViewDay',
           },
-          '/places/map': {
+          [`${props.rootUrl}/taistelut/map`]: {
             label: 'map',
             value: 1,
             icon: 'AddLocation',
@@ -27,22 +27,24 @@ let Places = props => {
         }}
       />
       <Route
-        exact path='/places'
-        render={() => <Redirect to='places/map' />}
+        exact path={`${props.rootUrl}/taistelut`}
+        render={() => <Redirect to={`${props.rootUrl}/taistelut/table`} />}
       />
       <Route
-        path={'/places/table'}
+        path={`${props.rootUrl}/taistelut/table`}
         render={routeProps =>
           <ResultTable
-            data={props.places}
+            rootUrl={props.rootUrl}
+            data={props.battles}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='places'
-            facetClass='places'
+            resultClass='battles'
+            facetClass='battles'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
+            perspectiveUrl='taistelut'
           />
         }
       />
@@ -58,19 +60,19 @@ let Places = props => {
         }
       />*/}
       <Route
-        path={'/places/map'}
+        path={`${props.rootUrl}/taistelut/map`}
         render={() =>
           <LeafletMap
-            results={props.places.results}
+            results={props.battles.results}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='places'
-            facetClass='places'
-            instance={props.places.instance}
+            resultClass='battles'
+            facetClass='battles'
+            instance={props.battles.instance}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
-            fetching={props.places.fetching}
+            fetching={props.battles.fetching}
             mapMode={'cluster'}
-            variant='allPlaces'
+            variant='battlePlaces'
             showInstanceCountInClusters={false}
           />}
       />
@@ -78,8 +80,9 @@ let Places = props => {
   );
 };
 
-Places.propTypes = {
-  places: PropTypes.object.isRequired,
+Battles.propTypes = {
+  rootUrl: PropTypes.string.isRequired,
+  battles: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
@@ -90,4 +93,4 @@ Places.propTypes = {
   routeProps: PropTypes.object.isRequired
 };
 
-export default Places;
+export default Battles;

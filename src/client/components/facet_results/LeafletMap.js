@@ -453,7 +453,7 @@ class LeafletMap extends React.Component {
 
 LeafletMap.propTypes = {
   classes: PropTypes.object.isRequired,
-  results: PropTypes.array.isRequired,
+  results: PropTypes.array,
   facetID: PropTypes.string,
   facet: PropTypes.object,
   instance: PropTypes.object.isRequired,

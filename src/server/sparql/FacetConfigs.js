@@ -65,4 +65,16 @@ export const facetConfigs = {
       parentPredicate: 'siso-schema:registered_place/skos:broader+',
     },
   },
+  battles: {
+    facetClass: 'siso-schema:Battle',
+    prefLabel: {
+      id: 'prefLabel',
+      facetValueFilter: '',
+      label: 'Title',
+      labelPath: 'skos:prefLabel',
+      type: 'text',
+      predicate: 'text:query',
+      textQueryProperty: 'skos:prefLabel',
+    },
+  }
 };

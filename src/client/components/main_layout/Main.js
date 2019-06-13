@@ -71,8 +71,8 @@ let Main = props => {
       thumbnail: kalevankangas,
     },
     {
-      id: 'manuscripts2',
-      label: 'Näkymä2',
+      id: 'taistelut',
+      label: 'Taistelut',
       desc: 'Tuleva näkymä',
       thumbnail: punainenRintama,
     },
