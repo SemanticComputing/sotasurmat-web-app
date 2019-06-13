@@ -33,23 +33,6 @@ export const INITIAL_STATE = {
       filterType: 'textFilter',
       textFilter: null,
     },
-    party: {
-      id: 'party',
-      label: 'Osapuoli',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'three',
-      filterType: 'uriFilter',
-      uriFilter: null
-    },
     occupation: {
       id: 'occupation',
       label: 'Ammatti',
@@ -99,7 +82,25 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null
+      uriFilter: null,
+      type: 'hierarchical',
+    },
+    party: {
+      id: 'party',
+      label: 'Osapuoli',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'three',
+      filterType: 'uriFilter',
+      uriFilter: null,
     },
     gender: {
       id: 'gender',

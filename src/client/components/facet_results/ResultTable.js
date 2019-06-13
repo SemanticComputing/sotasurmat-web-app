@@ -24,19 +24,25 @@ const styles = theme => ({
     width: '100%',
     height: 'auto',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 73px)'
+      height: 'calc(100% - 130px)'
     },
     backgroundColor: theme.palette.background.paper,
-    borderTop: '1px solid rgba(224, 224, 224, 1);'
+    borderTop: '1px solid rgba(224, 224, 224, 1);',
   },
-  // table: {
-  //   borderTop: '1px solid rgba(224, 224, 224, 1);',
-  // },
   paginationRoot: {
-    backgroundColor: '#fff',
     display: 'flex',
-    justifyContent: 'flex-start',
-    borderBottom: '1px solid rgba(224, 224, 224, 1);',
+    backgroundColor: '#fff',
+    borderTop: '1px solid rgba(224, 224, 224, 1);',
+  },
+  paginationCaption: {
+    minWidth: 94
+  },
+  paginationToolbar: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      height: 100
+    },
   },
   progressContainer: {
     width: '100%',
@@ -121,6 +127,7 @@ class ResultTable extends React.Component {
       prevProps.data.sortBy != this.props.data.sortBy
       || prevProps.data.sortDirection != this.props.data.sortDirection
       || prevProps.facetUpdateID != this.props.facetUpdateID
+      || prevProps.data.pagesize != this.props.data.pagesize
     );
   }
 
@@ -130,9 +137,10 @@ class ResultTable extends React.Component {
     }
   }
 
-  handleOnChangeRowsPerPage = (event, rowsPerPage) => {
-    if (event != null) {
-      return rowsPerPage;
+  handleOnChangeRowsPerPage = event => {
+    const rowsPerPage = event.target.value;
+    if (rowsPerPage != this.props.data.pagesize) {
+      this.props.updateRowsPerPage(this.props.resultClass, rowsPerPage);
     }
   }
 
@@ -201,44 +209,43 @@ class ResultTable extends React.Component {
     const { classes } = this.props;
     const { resultCount, paginatedResults, page, pagesize, sortBy, sortDirection, fetching } = this.props.data;
     return (
-      <div className={classes.tableContainer}>
+      <React.Fragment>
         <TablePagination
           component='div'
           classes={{
-            root: classes.paginationRoot
+            root: classes.paginationRoot,
+            caption: classes.paginationCaption,
+            toolbar: classes.paginationToolbar
           }}
           count={resultCount}
           rowsPerPage={pagesize}
-          rowsPerPageOptions={[5]}
+          rowsPerPageOptions={[5, 10, 15, 25, 30, 50, 100]}
           page={page == -1 || resultCount == 0 ? 0 : page}
           onChangePage={this.handleChangePage}
-          onChangeRowsPerPage={this.handleOnchangeRowsPerPage}
+          onChangeRowsPerPage={this.handleOnChangeRowsPerPage}
           ActionsComponent={ResultTablePaginationActions}
         />
-        {fetching ?
-          <div className={classes.progressContainer}>
-            <CircularProgress style={{ color: purple[500] }} thickness={5} />
-          </div>
-          :
-          <Table className={classes.table}>
-            <ResultTableHead
-              columns={this.props.data.tableColumns}
-              onChangePage={this.handleChangePage}
-              onSortBy={this.handleSortBy}
-              onChangeRowsPerPage={this.handleOnChangeRowsPerPage}
-              resultCount={resultCount}
-              page={page}
-              pagesize={pagesize}
-              sortBy={sortBy}
-              sortDirection={sortDirection}
-              routeProps={this.props.routeProps}
-            />
-            <TableBody>
-              {paginatedResults.map(row => this.rowRenderer(row))}
-            </TableBody>
-          </Table>
-        }
-      </div>
+        <div className={classes.tableContainer}>
+          {fetching ?
+            <div className={classes.progressContainer}>
+              <CircularProgress style={{ color: purple[500] }} thickness={5} />
+            </div>
+            :
+            <Table className={classes.table}>
+              <ResultTableHead
+                columns={this.props.data.tableColumns}
+                onSortBy={this.handleSortBy}
+                sortBy={sortBy}
+                sortDirection={sortDirection}
+                routeProps={this.props.routeProps}
+              />
+              <TableBody>
+                {paginatedResults.map(row => this.rowRenderer(row))}
+              </TableBody>
+            </Table>
+          }
+        </div>
+      </React.Fragment>
     );
   }
 }
@@ -254,6 +261,7 @@ ResultTable.propTypes = {
   fetchPaginatedResults: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   updatePage: PropTypes.func.isRequired,
+  updateRowsPerPage: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired
 };
 

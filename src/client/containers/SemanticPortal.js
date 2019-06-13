@@ -29,6 +29,7 @@ import {
   sortResults,
   updateFacetOption,
   updatePage,
+  updateRowsPerPage,
   showError
 } from '../actions';
 
@@ -81,7 +82,10 @@ const styles = theme => ({
     height: '100%',
     overflow: 'auto',
     paddingTop: '0px !important',
-    paddingBottom: '0px !important'
+    paddingBottom: '0px !important',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(1)
+    },
   },
 });
 
@@ -140,6 +144,7 @@ let SemanticPortal = (props) => {
                       routeProps={routeProps}
                       fetchFacet={props.fetchFacet}
                       resultCount={props.deaths.resultCount}
+                      updateRowsPerPage={props.updateRowsPerPage}
                     />
                   </Grid>
                 </React.Fragment>
@@ -195,6 +200,7 @@ const mapDispatchToProps = ({
   clearResults,
   updateFacetOption,
   updatePage,
+  updateRowsPerPage,
   showError
 });
 
@@ -214,6 +220,7 @@ SemanticPortal.propTypes = {
   sortResults: PropTypes.func.isRequired,
   clearResults: PropTypes.func.isRequired,
   updatePage: PropTypes.func.isRequired,
+  updateRowsPerPage: PropTypes.func.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   fetchFacet: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired

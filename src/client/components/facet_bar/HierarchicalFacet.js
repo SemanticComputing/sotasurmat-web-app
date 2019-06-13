@@ -93,15 +93,30 @@ class HierarchicalFacet extends Component {
       if (this.props.updatedFacet === this.props.facetID) {
         if (has(this.props.updatedFilter, 'path')) {
           const treeObj = this.props.updatedFilter;
-          const newTreeData = changeNodeAtPath({
+
+
+          let newTreeData = changeNodeAtPath({
             treeData: this.state.treeData,
             getNodeKey: ({ treeIndex }) =>  treeIndex,
             path: treeObj.path,
-            newNode: {
-              ...treeObj.node,
-              selected: treeObj.added ? 'true' : 'false'
-            },
+            newNode: () => {
+              const oldNode = treeObj.node;
+              if (has(oldNode, 'children')) {
+                return {
+                  ...oldNode,
+                  selected: treeObj.added ? 'true' : 'false',
+                  children: this.recursiveSelect(oldNode.children, treeObj.added)
+                };
+              } else {
+                return {
+                  ...oldNode,
+                  selected: treeObj.added ? 'true' : 'false',
+                };
+              }
+            }
           });
+
+
           this.setState({ treeData: newTreeData });
         }
       }
@@ -137,6 +152,17 @@ class HierarchicalFacet extends Component {
     }
   }
 
+  recursiveSelect = (nodes, selected) => {
+    nodes.forEach(node => {
+      node.selected = selected ? 'true' : 'false';
+      if (has(node, 'children')) {
+        this.recursiveSelect(node.children, selected);
+      }
+    });
+    return nodes;
+  };
+
+
   handleCheckboxChange = treeObj => () => {
     this.props.updateFacetOption({
       facetClass: this.props.facetClass,
@@ -163,8 +189,11 @@ class HierarchicalFacet extends Component {
               className={this.props.classes.checkbox}
               checked={isSelected}
               disabled={
-                // prevent selecting values with 0 hits (which may appear based on earlier selections):
-                (treeObj.node.instanceCount == 0 && treeObj.node.selected === 'false')
+                /* non-hierarchical facet:
+                prevent selecting values with 0 hits (which may appear based on earlier selections): */
+                (this.props.facet.type !== 'hierarchical'
+                && treeObj.node.instanceCount == 0
+                && treeObj.node.selected === 'false')
                 // prevent selecting unknown value:
                 || treeObj.node.prefLabel == 'Ei merkintää datassa'
                 // prevent selecting when another facet is still updating:
