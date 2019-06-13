@@ -48,17 +48,6 @@ let Battles = props => {
           />
         }
       />
-      {/*<Route
-        path={'/places/tree'}
-        render={() =>
-          <Tree
-            facetFunctionality={false}
-            searchField={true}
-            data={props.search.places}
-            fetchData={props.fetchPlaces()}
-          />
-        }
-      />*/}
       <Route
         path={`${props.rootUrl}/taistelut/map`}
         render={() =>

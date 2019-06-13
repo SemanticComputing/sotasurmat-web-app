@@ -52,7 +52,7 @@ export const getAllResults = ({
   switch (variant) {
     case 'battlePlaces':
       q = battlePlacesQuery;
-      filterTarget = 'battles';
+      filterTarget = 'id';
       break;
   }
   const hasFilters = uriFilters !== null

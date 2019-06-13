@@ -175,7 +175,6 @@ class FacetBar extends React.Component {
         someFacetIsFetching = true;
       }
     });
-
     return (
       <div className={classes.root}>
         <Paper className={classes.facetInfoContainer}>

@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import thumbImage from '../../img/thumb.png';
+//import thumbImage from '../../img/thumb.png';
 import kalevankangas from '../../img/kalevankangas.jpg';
 import punainenRintama from '../../img/punainenRintama.jpg';
 import tampereVangit from '../../img/tampereVangit.jpg';
