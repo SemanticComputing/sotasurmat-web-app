@@ -15,12 +15,12 @@ let Battles = props => {
         routeProps={props.routeProps}
         tabs={{
           [`${props.rootUrl}/taistelut/table`]: {
-            label: 'table',
+            label: 'lista',
             value: 0,
             icon: 'CalendarViewDay',
           },
           [`${props.rootUrl}/taistelut/map`]: {
-            label: 'map',
+            label: 'kartta',
             value: 1,
             icon: 'AddLocation',
           },

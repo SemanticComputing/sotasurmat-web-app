@@ -32,7 +32,7 @@ export const INITIAL_STATE = {
   instance: {},
   page: -1,
   pagesize: 15,
-  sortBy: 'prefLabel',
+  sortBy: 'startDate',
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
@@ -98,7 +98,7 @@ export const INITIAL_STATE = {
       id: 'units',
       label: 'Yksiköt',
       desc: `
-        Taisteluun osallistuneita yksiköitä
+        Taisteluun osallistuneita (lähinnä valkoisten) yksiköitä
       `,
       valueType: 'object',
       makeLink: false,

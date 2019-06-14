@@ -400,6 +400,10 @@ class LeafletMap extends React.Component {
       popUpTemplate += `<p>Manuscripts produced here:</p>`;
       popUpTemplate += this.createManuscriptListing(result.manuscript);
     }
+    if (this.props.variant === 'battlePlaces') {
+      popUpTemplate += `<p>Kunta: ${result.placeLabel}</p>`;
+      popUpTemplate += `<p>Alkupäivä: ${result.startDate}</p>`;
+    }
 
     return popUpTemplate;
   }

@@ -29,6 +29,7 @@ export const battleProperties = `
     }
 `;
 
+// dangerously close naming...
 export const battlePlacesQuery =  `
   SELECT *
   WHERE {
@@ -41,10 +42,21 @@ export const battlePlacesQuery =  `
   }
 `;
 
+// dangerously close naming...
 export const battlePlaceQuery =  `
-  SELECT ?id ?prefLabel
+  SELECT ?id ?prefLabel ?startDate ?endDate ?placeLabel
   WHERE {
     BIND (<ID> AS ?id)
-    ?id skos:prefLabel ?prefLabel
+    ?id skos:prefLabel ?prefLabel .
+    OPTIONAL {
+      ?id siso-schema:start_date ?startDate .
+    }
+    OPTIONAL {
+      ?id siso-schema:end_date ?endDate .
+    }
+    OPTIONAL {
+      ?id siso-schema:greater_place ?greaterPlace .
+      ?greaterPlace skos:prefLabel ?placeLabel .
+    }
   }
 `;
