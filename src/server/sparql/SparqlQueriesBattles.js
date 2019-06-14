@@ -1,9 +1,31 @@
 export const battleProperties = `
     {
-      ?id skos:prefLabel ?prefLabel .
-      #?id skos:prefLabel ?prefLabel__id .
-      #BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-      # BIND(?id AS ?prefLabel__dataProviderUrl)
+      {
+      #?id skos:prefLabel ?prefLabel .
+      ?id skos:prefLabel ?prefLabel__id .
+      BIND(?prefLabel__id AS ?prefLabel__prefLabel)
+      BIND(?id AS ?prefLabel__dataProviderUrl)
+      }
+      UNION {
+        ?id siso-schema:start_date ?startDate__id .
+        BIND (?startDate__id AS ?startDate__prefLabel)
+      }
+      UNION {
+        ?id siso-schema:end_date ?endDate__id .
+        BIND (?endDate__id AS ?endDate__prefLabel)
+      }
+      UNION {
+        ?id siso-schema:exact_place ?exactPlace__id .
+        ?exactPlace__id skos:prefLabel ?exactPlace__prefLabel .
+      }
+      UNION {
+        ?id siso-schema:units ?units__id .
+        BIND (?units__id AS ?units__prefLabel)
+      }
+      UNION {
+        ?id siso-schema:greater_place ?greaterPlace__id .
+        ?greaterPlace__id skos:prefLabel ?greaterPlace__prefLabel .
+      }
     }
 `;
 

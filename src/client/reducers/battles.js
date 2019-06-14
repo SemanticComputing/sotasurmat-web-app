@@ -39,12 +39,72 @@ export const INITIAL_STATE = {
   tableColumns: [
     {
       id: 'prefLabel',
-      label: 'Label',
-      desc: 'Label description',
-      valueType: 'string',
+      label: 'Taistelun nimi',
+      desc: 'Taistelun nimi',
+      valueType: 'object',
       makeLink: true,
       sortValues: true,
       numberedList: false
+    },
+    {
+      id: 'startDate',
+      label: 'alkupäivä',
+      desc: `
+        Taistelun alkupäivä
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 125
+    },
+    {
+      id: 'endDate',
+      label: 'loppupäivä',
+      desc: `
+        Taistelun loppupäivä
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 125
+    },
+    {
+      id: 'greaterPlace',
+      label: 'Kunta',
+      desc: `
+        Kunta tai muu suurempi paikka
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150
+    },
+    {
+      id: 'exactPlace',
+      label: 'Tarkka paikka',
+      desc: `
+        Taistelun tarkka paikka
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150
+    },
+    {
+      id: 'units',
+      label: 'Yksiköt',
+      desc: `
+        Taisteluun osallistuneita yksiköitä
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150
     },
   ],
 };

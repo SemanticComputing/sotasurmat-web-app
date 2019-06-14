@@ -76,5 +76,41 @@ export const facetConfigs = {
       predicate: 'text:query',
       textQueryProperty: 'skos:prefLabel',
     },
+    startDate: {
+      id: 'startDate',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:start_date',
+      type: 'list',
+      predicate: 'siso-schema:start_date',
+    },
+    endDate: {
+      id: 'birthDate',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:end_date',
+      type: 'list',
+      predicate: 'siso-schema:end_date',
+    },
+    exactPlace: {
+      id: 'exactPlace',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:exact_place',
+      type: 'list',
+      predicate: 'siso-schema:exact_place',
+    },
+    units: {
+      id: 'units',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:units',
+      type: 'list',
+      predicate: 'siso-schema:units',
+    },
+    greaterPlace: {
+      id: 'greaterPlace',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:greater_place/skos:prefLabel',
+      type: 'hierarchical',
+      predicate: 'siso-schema:greater_place',
+      parentPredicate: 'siso-schema:greater_place/skos:broader+',
+    },
   }
 };

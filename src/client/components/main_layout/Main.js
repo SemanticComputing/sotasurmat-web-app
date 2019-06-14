@@ -67,13 +67,13 @@ let Main = props => {
     {
       id: 'surmatut',
       label: 'Sotasurmat',
-      desc: 'Tietoja vuosina 1914-1922 surmatuista',
+      desc: 'Tietoa vuosina 1914-1922 surmatuista',
       thumbnail: kalevankangas,
     },
     {
       id: 'taistelut',
       label: 'Taistelut',
-      desc: 'Tuleva näkymä',
+      desc: 'Tietoa sisällissodan taisteluista',
       thumbnail: punainenRintama,
     },
     {

@@ -18,7 +18,7 @@ export const INITIAL_STATE = {
   facets: {
     prefLabel: {
       id: 'prefLabel',
-      label: 'Label',
+      label: 'Taistelun nimi',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -32,6 +32,24 @@ export const INITIAL_STATE = {
       containerClass: 'one',
       filterType: 'textFilter',
       textFilter: null,
+    },
+    greaterPlace: {
+      id: 'greaterPlace',
+      label: 'Kunta',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      type: 'hierarchical',
     },
   }
 };
