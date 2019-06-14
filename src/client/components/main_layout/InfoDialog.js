@@ -96,8 +96,9 @@ class InfoDialog extends React.Component {
         >
           <DialogContent className={classes.dialogContent} >
             <h1>Suomen sotasurmat 1914-1922 web-app demo.</h1>
-            <p>Tämä on demo sivustosta joka on tarkoitus julkaista syksyllä 2019.</p>
-            <p>Vanhan sivustoon voi tutustua <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main">täällä.</a></p>
+            <p>Tämä on demo Suomen sotasurmat -sivustosta joka on tarkoitus julkaista syksyllä 2019.</p>
+            <p>Lisätietoa projektista voi lukea projektin <a href="https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/">kotisivulta.</a></p>
+            <p>Vanhaan sivustoon voi tutustua <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main">täällä.</a></p>
             <p>Etusivun kuvat Museokeskus Vapriikin <a href="https://www.flickr.com/photos/vapriikki/sets/72157668009883972/">kokoelmasta</a> lisenssillä <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0.</a></p>
             <p>Kuva 1: Punaisten ruumiita Kalevankankaan hautausmaalla Tampereen taistelun jälkeen, kuvaaja tuntematon</p>
             <p>Kuva 2: Tampereen punakaartin komppania rintamalla, kuvaaja tuntematon</p>
