@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
-import TopBarSearchField from './TopBarSearchField';
+//import TopBarSearchField from './TopBarSearchField';
 import InfoDialog from './InfoDialog';
 
 const styles = theme => ({
@@ -75,7 +75,7 @@ class TopBar extends React.Component {
     const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
     const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
 
-    const perspectives = [ 'surmatut', 'näkymä2', 'näkymä3' ];
+    const perspectives = [ 'surmatut', 'taistelut',];
 
     const renderMobileMenu = (
       <Menu
@@ -114,6 +114,20 @@ class TopBar extends React.Component {
             </Button>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              <div className={classes.sectionDesktop}>
+                {perspectives.map(perspective =>
+                  <Button
+                    key={perspective}
+                    className={classes.appBarButton}
+                    component={AdapterNavLink}
+                    to={`${this.props.rootUrl}/${perspective}`}
+                    isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/${perspective}`)}
+                    activeClassName={classes.appBarButtonActive}
+                  >
+                    {perspective}
+                  </Button>
+                )}
+              </div>
               <InfoDialog />
             </div>
             <div className={classes.sectionMobile}>
