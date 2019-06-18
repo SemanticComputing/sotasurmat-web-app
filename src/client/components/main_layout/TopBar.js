@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
 //import TopBarSearchField from './TopBarSearchField';
 import InfoDialog from './InfoDialog';
+import logo from '../../img/logo_small_fi.gif';
 
 const styles = theme => ({
   root: {
@@ -41,7 +42,12 @@ const styles = theme => ({
   },
   appBarButtonActive: {
     border: '1px solid white'
-  }
+  },
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'left',
+    justifyContent: 'left'
+  },
 });
 
 class TopBar extends React.Component {
@@ -108,9 +114,9 @@ class TopBar extends React.Component {
               component={AdapterLink}
               to={this.props.rootUrl}
             >
-              <Typography className={classes.title} variant="h6" color="inherit">
-                Sotasurmat
-              </Typography>
+              <div className={classes.logoContainer}>
+                <img src={logo} alt="Logo"></img>
+              </div>
             </Button>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
