@@ -108,7 +108,7 @@ class TopBar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="absolute">
-          <Toolbar>
+          <Toolbar style={{ paddingLeft: 2 }}>
             <Button
               className={classes.appBarButton}
               component={AdapterLink}
