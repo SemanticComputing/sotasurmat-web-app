@@ -27,6 +27,13 @@ const ResultTableCell = props => {
     let year;
     let month;
     let day;
+
+    /* TODO: remove this when data has been fixed
+       problematic example http://ldf.fi/mmm/time/production_229499
+    */
+    if (Array.isArray(str)) {
+      str = str[0];
+    }
     if (str.charAt(0) == '-') {
       year = parseInt(str.substring(0,5));
       month = parseInt(str.substring(7,8));
@@ -60,7 +67,7 @@ const ResultTableCell = props => {
       return '-';
     }
     else if (Array.isArray(cell)) {
-      if (props.columnId == 'productionTimespan') {
+      if (props.columnId.endsWith('Timespan')) {
         cell = sortValues
           ? cell.sort((a,b) => {
             a = has(a, 'start') ? ISOStringToDate(a.start) : ISOStringToDate(a.end);
@@ -80,10 +87,12 @@ const ResultTableCell = props => {
               target='_blank' rel='noopener noreferrer'
               href={item.dataProviderUrl}
             >
-              {item.prefLabel}
+              {Array.isArray(item.prefLabel) ? item.prefLabel[0] : item.prefLabel}
             </a>
           }
-          {!makeLink && item.prefLabel}
+          {!makeLink &&
+            <span>{Array.isArray(item.prefLabel) ? item.prefLabel[0] : item.prefLabel}</span>
+          }
         </li>
       );
       if (numberedList) {
@@ -96,13 +105,13 @@ const ResultTableCell = props => {
         return (
           <React.Fragment>
             {!props.expanded && !makeLink &&
-              <span>{firstValue.prefLabel} ...</span>}
+              <span>{Array.isArray(firstValue.prefLabel) ? firstValue.prefLabel[0] : firstValue.prefLabel} ...</span>}
             {!props.expanded && makeLink &&
               <a
                 target='_blank' rel='noopener noreferrer'
                 href={firstValue.dataProviderUrl}
               >
-                {firstValue.prefLabel} ...
+                {Array.isArray(firstValue.prefLabel) ? firstValue.prefLabel[0] : firstValue.prefLabel} ...
               </a>
             }
             <Collapse in={props.expanded} timeout="auto" unmountOnExit>
@@ -119,12 +128,12 @@ const ResultTableCell = props => {
           target='_blank' rel='noopener noreferrer'
           href={cell.dataProviderUrl}
         >
-          {cell.prefLabel}
+          {Array.isArray(cell.prefLabel) ? cell.prefLabel[0] : cell.prefLabel}
         </a>
       );
     } else {
       return (
-        <span>{cell.prefLabel}</span>
+        <span>{Array.isArray(cell.prefLabel) ? cell.prefLabel[0] : cell.prefLabel}</span>
       );
     }
   };

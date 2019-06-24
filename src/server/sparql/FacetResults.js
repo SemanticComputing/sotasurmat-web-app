@@ -10,7 +10,10 @@ import {
 import { facetConfigs } from './FacetConfigs';
 import { mapCount } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
-import { generateFilter } from './Filters';
+import {
+  generateFilter,
+  hasFilters
+} from './Filters';
 
 export const getPaginatedResults = async ({
   resultClass,
@@ -19,6 +22,7 @@ export const getPaginatedResults = async ({
   uriFilters,
   spatialFilters,
   textFilters,
+  timespanFilters,
   sortBy,
   sortDirection
 }) => {
@@ -29,6 +33,7 @@ export const getPaginatedResults = async ({
     uriFilters,
     spatialFilters,
     textFilters,
+    timespanFilters,
     sortBy,
     sortDirection
   });
@@ -45,6 +50,7 @@ export const getAllResults = ({
   uriFilters,
   spatialFilters,
   textFilters,
+  timespanFilters,
   variant
 }) => {
   let q = '';
@@ -55,10 +61,13 @@ export const getAllResults = ({
       filterTarget = 'id';
       break;
   }
-  const hasFilters = uriFilters !== null
-    || spatialFilters !== null
-    || textFilters !== null;
-  if (!hasFilters) {
+  const hasActiveFilters = hasFilters({
+    uriFilters,
+    spatialFilters,
+    textFilters,
+    timespanFilters,
+  });
+  if (!hasActiveFilters) {
     q = q.replace('<FILTER>', '# no filters');
   } else {
     q = q.replace('<FILTER>', generateFilter({
@@ -66,6 +75,7 @@ export const getAllResults = ({
       uriFilters: uriFilters,
       spatialFilters: spatialFilters,
       textFilters: textFilters,
+      timespanFilters: timespanFilters,
       filterTarget: filterTarget,
       facetID: null
     }));
@@ -80,14 +90,18 @@ export const getResultCount = ({
   resultClass,
   uriFilters,
   spatialFilters,
-  textFilters
+  textFilters,
+  timespanFilters,
 }) => {
   let q = countQuery;
   q = q.replace('<FACET_CLASS>', facetConfigs[resultClass].facetClass);
-  const hasFilters = uriFilters !== null
-    || spatialFilters !== null
-    || textFilters !== null;
-  if (!hasFilters) {
+  const hasActiveFilters = hasFilters({
+    uriFilters,
+    spatialFilters,
+    textFilters,
+    timespanFilters,
+  });
+  if (!hasActiveFilters) {
     q = q.replace('<FILTER>', '# no filters');
   } else {
     q = q.replace('<FILTER>', generateFilter({
@@ -96,6 +110,7 @@ export const getResultCount = ({
       uriFilters: uriFilters,
       spatialFilters: spatialFilters,
       textFilters: textFilters,
+      timespanFilters: timespanFilters,
       filterTarget: 'id',
       facetID: null
     }));
@@ -110,16 +125,20 @@ const getPaginatedData = ({
   uriFilters,
   spatialFilters,
   textFilters,
+  timespanFilters,
   sortBy,
   sortDirection
 }) => {
   let q = facetResultSetQuery;
   //console.log(resultClass)
   const facetConfig = facetConfigs[resultClass];
-  const hasFilters = uriFilters !== null
-    || spatialFilters !== null
-    || textFilters !== null;
-  if (!hasFilters) {
+  const hasActiveFilters = hasFilters({
+    uriFilters,
+    spatialFilters,
+    textFilters,
+    timespanFilters,
+  });
+  if (!hasActiveFilters) {
     q = q.replace('<FILTER>', '# no filters');
   } else {
     q = q.replace('<FILTER>', generateFilter({
@@ -128,11 +147,19 @@ const getPaginatedData = ({
       uriFilters: uriFilters,
       spatialFilters: spatialFilters,
       textFilters: textFilters,
+      timespanFilters: timespanFilters,
       filterTarget: 'id',
       facetID: null}));
   }
   q = q.replace('<FACET_CLASS>', facetConfig.facetClass);
-  q = q.replace('<ORDER_BY_PREDICATE>', facetConfig[sortBy].labelPath);
+  if (sortBy.endsWith('Timespan')) {
+    q = q.replace('<ORDER_BY_PREDICATE>',
+      sortDirection === 'asc'
+        ? facetConfig[sortBy].sortByAscPredicate
+        : facetConfig[sortBy].sortByDescPredicate);
+  } else {
+    q = q.replace('<ORDER_BY_PREDICATE>', facetConfig[sortBy].labelPath);
+  }
   q = q.replace('<SORT_DIRECTION>', sortDirection);
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`);
   let resultSetProperties;
@@ -157,6 +184,7 @@ export const getByURI = ({
   uriFilters,
   spatialFilters,
   textFilters,
+  timespanFilters,
   //variant,
   uri
 }) => {
@@ -166,10 +194,13 @@ export const getByURI = ({
       q = battlePlaceQuery;
       break;
   }
-  const hasFilters = uriFilters !== null
-    || spatialFilters !== null
-    || textFilters !== null;
-  if (!hasFilters) {
+  const hasActiveFilters = hasFilters({
+    uriFilters,
+    spatialFilters,
+    textFilters,
+    timespanFilters,
+  });
+  if (!hasActiveFilters) {
     q = q.replace('<FILTER>', '# no filters');
   } else {
     q = q.replace('<FILTER>', generateFilter({
@@ -178,6 +209,7 @@ export const getByURI = ({
       uriFilters: uriFilters,
       spatialFilters: spatialFilters,
       textFilters: textFilters,
+      timespanFilters: timespanFilters,
       filterTarget: 'manuscript__id',
       facetID: null}));
   }

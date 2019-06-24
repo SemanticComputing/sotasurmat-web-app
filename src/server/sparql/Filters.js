@@ -1,10 +1,23 @@
 import { facetConfigs } from './FacetConfigs';
 
+export const hasFilters = ({
+  uriFilters,
+  spatialFilters,
+  textFilters,
+  timespanFilters,
+}) => {
+  return uriFilters !== null
+      || spatialFilters !== null
+      || textFilters !== null
+      || timespanFilters !== null;
+};
+
 export const generateFilter = ({
   facetClass,
   uriFilters,
   spatialFilters,
   textFilters,
+  timespanFilters,
   filterTarget,
   facetID,
   inverse,
@@ -28,6 +41,35 @@ export const generateFilter = ({
         filterStr += `
           ?${property}Filter spatial:withinBox (${latMin} ${longMin} ${latMax} ${longMax} 1000000) .
           ?${filterTarget} ${facetConfigs[facetClass][property].predicate} ?${property}Filter .
+        `;
+      }
+    }
+  }
+  if (timespanFilters !== null) {
+    for (let property in timespanFilters) {
+      if (property !== facetProperty) {
+        const facetConfig = facetConfigs[facetClass][property];
+        const { start, end } = timespanFilters[property];
+        const selectionStart = start;
+        const selectionEnd = end;
+        // filterStr += `
+        //   ?${filterTarget} ${facetConfig.predicate} ?timespan .
+        //   ?timespan ${facetConfig.startProperty} ?start .
+        //   ?timespan ${facetConfig.endProperty} ?end .
+        //   # both start and end is in selected range
+        //   FILTER(?start >= "${start}"^^xsd:date)
+        //   FILTER(?end <= "${end}"^^xsd:date)
+        // `;
+        filterStr += `
+          ?${filterTarget} ${facetConfig.predicate} ?timespan .
+          ?timespan ${facetConfig.startProperty} ?timespanStart .
+          ?timespan ${facetConfig.endProperty} ?timespanEnd .
+          # either start or end is in selected range
+          FILTER(
+            ?timespanStart >= "${selectionStart}"^^xsd:date && ?timespanStart <= "${selectionEnd}"^^xsd:date
+            ||
+            ?timespanEnd >= "${selectionStart}"^^xsd:date && ?timespanEnd <= "${selectionEnd}"^^xsd:date
+          )
         `;
       }
     }

@@ -22,25 +22,11 @@ export const mapCount = sparqlBindings => {
   return sparqlBindings[0].count.value;
 };
 
-export const mapFacetValues = sparqlBindings => {
-  const results = sparqlBindings.map(b => {
-    try {
-      return {
-        id: b.id.value,
-        prefLabel: b.prefLabel.value,
-        selected: b.selected.value,
-        parent: b.parent.value,
-        instanceCount: b.instanceCount.value
-      };
-    } catch(err) {
-      console.log(err);
-    }
-  });
-  return results;
-};
-
 export const mapFacet = sparqlBindings => {
-  const results = mapFacetValues(sparqlBindings);
+  let results = [];
+  if (sparqlBindings.length > 0) {
+    results = mapFacetValues(sparqlBindings);
+  } 
   return {
     distinctValueCount: results.length,
     values: results
@@ -63,6 +49,31 @@ export const mapHierarchicalFacet = sparqlBindings => {
     flatValues: flatResults,
     values: treeData
   };
+};
+
+export const mapTimespanFacet = sparqlBindings => {
+  const b =  sparqlBindings[0];
+  return {
+    min: b.min.value,
+    max: b.max.value
+  };
+};
+
+const mapFacetValues = sparqlBindings => {
+  const results = sparqlBindings.map(b => {
+    try {
+      return {
+        id: b.id.value,
+        prefLabel: b.prefLabel.value,
+        selected: b.selected.value,
+        parent: b.parent.value,
+        instanceCount: b.instanceCount.value
+      };
+    } catch(err) {
+      console.log(err);
+    }
+  });
+  return results;
 };
 
 const comparator = (a, b) => {

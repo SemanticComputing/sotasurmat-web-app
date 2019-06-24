@@ -50,29 +50,69 @@ export const INITIAL_STATE = {
       minWidth: 150
     },
     {
+      id: 'type',
+      label: 'Type',
+      desc: 'Type description',
+      valueType: 'object',
+      makeLink: true,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 150,
+    },
+    {
       id: 'birthPlace',
-      label: 'Place of birth',
+      label: 'Birth/formation place',
       desc: 'Birth place description',
       valueType: 'object',
       makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 150
+      minWidth: 200
+    },
+    {
+      id: 'birthDateTimespan',
+      label: 'Birth/formation year',
+      desc: 'Birth/formation year description',
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 220
+    },
+    {
+      id: 'deathDateTimespan',
+      label: 'Death/dissolution year',
+      desc: 'Date of death/dissolution description',
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 200
     },
     {
       id: 'place',
-      label: 'Place / nationality',
-      desc: 'Place / nationality description',
+      label: 'Activity location',
+      desc: 'Activity location',
       valueType: 'object',
       makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 150
+      minWidth: 200
     },
     {
       id: 'work',
       label: 'Work',
       desc: 'Work description',
+      valueType: 'object',
+      makeLink: true,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
+      id: 'manuscript',
+      label: 'Manuscript',
+      desc: 'Manuscript',
       valueType: 'object',
       makeLink: true,
       sortValues: true,
@@ -92,8 +132,8 @@ export const INITIAL_STATE = {
   ],
 };
 
-const people = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'people') {
+const actors = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'actors') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -124,4 +164,4 @@ const people = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default people;
+export default actors;

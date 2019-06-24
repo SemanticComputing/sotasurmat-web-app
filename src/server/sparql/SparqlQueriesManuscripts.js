@@ -11,16 +11,15 @@ export const manuscriptProperties = `
   {
     ?id mmm-schema:manuscript_author ?author__id .
     ?author__id skos:prefLabel ?author__prefLabel .
-    OPTIONAL { ?author__id mmm-schema:data_provider_url ?author__dataProviderUrl }
+    BIND(?author__id AS ?author__dataProviderUrl)
   }
   UNION
   {
     ?production crm:P108_has_produced ?id .
-    ?production crm:P4_has_time-span ?productionTimespan .
-    ?productionTimespan skos:prefLabel ?productionTimespan__id .
-    OPTIONAL { ?productionTimespan crm:P82a_begin_of_the_begin ?productionTimespan__start }
-    OPTIONAL { ?productionTimespan crm:P82b_end_of_the_end ?productionTimespan__end }
-    BIND (?productionTimespan__id AS ?productionTimespan__prefLabel)
+    ?production crm:P4_has_time-span ?productionTimespan__id .
+    ?productionTimespan__id skos:prefLabel ?productionTimespan__prefLabel .
+    OPTIONAL { ?productionTimespan__id crm:P82a_begin_of_the_begin ?productionTimespan__start }
+    OPTIONAL { ?productionTimespan__id crm:P82b_end_of_the_end ?productionTimespan__end }
   }
   UNION
   {

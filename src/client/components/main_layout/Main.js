@@ -70,6 +70,11 @@ let Main = props => {
       desc: 'Tietoa vuosina 1914-1922 surmatuista',
       thumbnail: kalevankangas,
     },
+    // {
+    //   id: 'collections',
+    //   label: 'Collections',
+    //   desc: ''
+    // },
     {
       id: 'taistelut',
       label: 'Taistelut',
