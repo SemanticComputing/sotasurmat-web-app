@@ -32,6 +32,7 @@ export const getFacet = ({
   // choose query template and result mapper:
   let q = '';
   let mapper = null;
+  //console.log(facetConfigs[facetClass][facetID])
   switch(facetConfig.type) {
     case 'list':
       q = facetValuesQuery;

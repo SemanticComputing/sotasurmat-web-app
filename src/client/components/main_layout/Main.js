@@ -77,8 +77,8 @@ let Main = props => {
     // },
     {
       id: 'taistelut',
-      label: 'Taistelut',
-      desc: 'Tietoa sisällissodan taisteluista',
+      label: 'Taistepaikkakortisto',
+      desc: 'Tietoa sisällissodan taisteluista lähinnä valkoisen osapuolen näkökulmasta',
       thumbnail: punainenRintama,
     },
     {
@@ -100,7 +100,7 @@ let Main = props => {
               Suomen sotasurmat 1914-1922
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" paragraph>
-            Tämä sivusto tarjoaa tietoa Suomen sotasurmista vuosina 1914-1922.
+            Tämä sivusto tarjoaa käyttöliittymän vuosien 1914-1922 sotasurmien tiedoston käyttöön.
           </Typography>
         </div>
       </div>

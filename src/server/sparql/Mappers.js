@@ -26,7 +26,7 @@ export const mapFacet = sparqlBindings => {
   let results = [];
   if (sparqlBindings.length > 0) {
     results = mapFacetValues(sparqlBindings);
-  } 
+  }
   return {
     distinctValueCount: results.length,
     values: results
@@ -52,7 +52,8 @@ export const mapHierarchicalFacet = sparqlBindings => {
 };
 
 export const mapTimespanFacet = sparqlBindings => {
-  const b =  sparqlBindings[0];
+  const b = sparqlBindings[0];
+  //console.log(sparqlBindings)
   return {
     min: b.min.value,
     max: b.max.value
