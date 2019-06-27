@@ -32,6 +32,7 @@ export const INITIAL_STATE = {
       containerClass: 'one',
       filterType: 'textFilter',
       textFilter: null,
+      priority: 1
     },
     // birthTimespan: {
     //   id: 'birthTimespan',
@@ -88,7 +89,8 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null
+      uriFilter: null,
+      priority: 2
     },
     livingMunicipality: {
       id: 'livingMunicipality',
@@ -105,7 +107,8 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null
+      uriFilter: null,
+      priority: 5
     },
     registeredPlace: {
       id: 'registeredPlace',
@@ -157,7 +160,8 @@ export const INITIAL_STATE = {
       searchField: false,
       containerClass: 'two',
       filterType: 'uriFilter',
-      uriFilter: null
+      uriFilter: null,
+      priority: 8
     },
   }
 };

@@ -47,12 +47,9 @@ app.get(`${apiPath}/:resultClass/paginated`, async (req, res, next) => {
       resultClass: req.params.resultClass,
       page: parseInt(req.query.page) || null,
       pagesize: parseInt(req.query.pagesize) || null,
-      uriFilters: req.query.uriFilters == null ? null : JSON.parse(req.query.uriFilters),
-      spatialFilters: req.query.spatialFilters == null ? null : JSON.parse(req.query.spatialFilters),
-      textFilters: req.query.textFilters == null ? null : JSON.parse(req.query.textFilters),
-      timespanFilters: req.query.timespanFilters == null ? null : JSON.parse(req.query.timespanFilters),
       sortBy: req.query.sortBy || null,
-      sortDirection: req.query.sortDirection || null
+      sortDirection: req.query.sortDirection || null,
+      constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
     });
     res.json(data);
   } catch(error) {
@@ -65,10 +62,7 @@ app.get(`${apiPath}/:resultClass/all`, async (req, res, next) => {
     const data = await getAllResults({
       resultClass: req.params.resultClass,
       facetClass: req.query.facetClass || null,
-      uriFilters: req.query.uriFilters == null ? null : JSON.parse(req.query.uriFilters),
-      spatialFilters: req.query.spatialFilters == null ? null : JSON.parse(req.query.spatialFilters),
-      textFilters: req.query.textFilters == null ? null : JSON.parse(req.query.textFilters),
-      timespanFilters: req.query.timespanFilters == null ? null : JSON.parse(req.query.timespanFilters),
+      constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
       variant: req.query.variant || null,
     });
     res.json({
@@ -83,10 +77,7 @@ app.get(`${apiPath}/:resultClass/count`, async (req, res, next) => {
   try {
     const count = await getResultCount({
       resultClass: req.params.resultClass,
-      uriFilters: req.query.uriFilters == null ? null : JSON.parse(req.query.uriFilters),
-      spatialFilters: req.query.spatialFilters == null ? null : JSON.parse(req.query.spatialFilters),
-      textFilters: req.query.textFilters == null ? null : JSON.parse(req.query.textFilters),
-      timespanFilters: req.query.timespanFilters == null ? null : JSON.parse(req.query.timespanFilters),
+      constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
     });
     res.json({ count });
   } catch(error) {
@@ -99,10 +90,7 @@ app.get(`${apiPath}/:resultClass/instance/:uri`, async (req, res, next) => {
     const data = await getByURI({
       resultClass: req.params.resultClass,
       facetClass: req.query.facetClass || null,
-      uriFilters: req.query.uriFilters == null ? null : JSON.parse(req.query.uriFilters),
-      spatialFilters: req.query.spatialFilters == null ? null : JSON.parse(req.query.spatialFilters),
-      textFilters: req.query.textFilters == null ? null : JSON.parse(req.query.textFilters),
-      timespanFilters: req.query.timespanFilters == null ? null : JSON.parse(req.query.timespanFilters),
+      constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
       variant: req.query.variant || null,
       uri: req.params.uri
     });
@@ -120,10 +108,7 @@ app.get(`${apiPath}/:facetClass/facet/:id`, async (req, res, next) => {
       facetID: req.params.id,
       sortBy: req.query.sortBy || null,
       sortDirection: req.query.sortDirection || null,
-      uriFilters: req.query.uriFilters == null ? null : JSON.parse(req.query.uriFilters),
-      spatialFilters: req.query.spatialFilters == null ? null : JSON.parse(req.query.spatialFilters),
-      textFilters: req.query.textFilters == null ? null : JSON.parse(req.query.textFilters),
-      timespanFilters: req.query.timespanFilters == null ? null : JSON.parse(req.query.timespanFilters),
+      constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
     });
     res.json(data);
   } catch(error) {

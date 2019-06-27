@@ -32,6 +32,7 @@ export const INITIAL_STATE = {
       containerClass: 'one',
       filterType: 'textFilter',
       textFilter: null,
+      priority: 1,
     },
     greaterPlace: {
       id: 'greaterPlace',
