@@ -43,20 +43,21 @@ class Person extends React.Component {
   }
 
   render() {
-    //console.log(this.props);
     //const { data } = this.props;
     const instance = this.props.data.instance;
-    //console.log(instance);
-    if (instance.prefLabel != null) {
+    console.log(instance);
+    if (instance.prefLabel == null || this.props.data.fetching) {
       return (
         <div>
-          <h3>Nimi: {instance.prefLabel.prefLabel}</h3>
-
         </div>
       );
     } else {
       return(
-        <div></div>
+        <div>
+          <h3>Nimi: <a target='_blank' rel='noopener noreferrer' href={instance.id}>{instance.prefLabel.prefLabel}</a></h3>
+          <h3>Syntymäaika: {instance.birthDate.prefLabel}</h3>
+          <h3>Kuolinaika: {instance.deathDate.prefLabel}</h3>
+        </div>
       );
     }
   }

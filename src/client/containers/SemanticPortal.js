@@ -96,7 +96,6 @@ const styles = theme => ({
 });
 
 let SemanticPortal = (props) => {
-  //console.log(props)
   const { classes, /* browser */ error } = props;
   const rootUrl = '/sotasurmat';
   return (
