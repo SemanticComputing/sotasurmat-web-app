@@ -10,6 +10,7 @@ import RedoIcon from '@material-ui/icons/Redo';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import PieChartIcon from '@material-ui/icons/PieChart';
+import LineChartIcon from '@material-ui/icons/ShowChart';
 
 
 const styles = () => ({
@@ -53,6 +54,9 @@ class PerspectiveTabs extends React.Component {
         break;
       case 'PieChart':
         icon = <PieChartIcon />;
+        break;
+      case 'LineChart':
+        icon = <LineChartIcon />;
         break;
     }
     return icon;

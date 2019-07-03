@@ -4,6 +4,7 @@ import { orderBy, has } from 'lodash';
 import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
+import { Link } from 'react-router-dom';
 //import Typography from '@material-ui/core/Typography';
 
 const styles = () => ({
@@ -123,13 +124,15 @@ const ResultTableCell = props => {
         );
       }
     } else if (makeLink) {
+      //console.log(cell)
       return (
-        <a
+        <Link to={`/sotasurmat/surmatut/henkilot/${cell.dataProviderUrl.replace('http://ldf.fi/siso/death_records/victim_', '')}`}>{Array.isArray(cell.prefLabel) ? cell.prefLabel[0] : cell.prefLabel}</Link>
+        /*<a
           target='_blank' rel='noopener noreferrer'
           href={cell.dataProviderUrl}
         >
           {Array.isArray(cell.prefLabel) ? cell.prefLabel[0] : cell.prefLabel}
-        </a>
+        </a>*/
       );
     } else {
       return (

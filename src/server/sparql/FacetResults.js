@@ -2,7 +2,7 @@ import { runSelectQuery } from './SparqlApi';
 import { prefixes } from './SparqlQueriesPrefixes';
 import { endpoint, countQuery, facetResultSetQuery } from './SparqlQueriesGeneral';
 import {
-  deathsProperties,
+  deathsProperties, personQuery
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery
@@ -155,17 +155,21 @@ export const getByURI = ({
     case 'battles':
       q = battlePlaceQuery;
       break;
+    case 'deaths':
+      q = personQuery;
+      break;
   }
-  if (constraints == null) {
-    q = q.replace('<FILTER>', '# no filters');
-  } else {
-    q = q.replace('<FILTER>', generateConstraintsBlock({
-      resultClass: resultClass,
-      facetClass: facetClass,
-      constraints: constraints,
-      filterTarget: 'manuscript__id',
-      facetID: null}));
-  }
+  q = q.replace('<FILTER>', '# no filters');
+  //if (constraints == null) {
+  //  q = q.replace('<FILTER>', '# no filters');
+  //} else {
+  //  q = q.replace('<FILTER>', generateConstraintsBlock({
+  //    resultClass: resultClass,
+  //    facetClass: facetClass,
+  //    constraints: constraints,
+  //    filterTarget: 'manuscript__id',
+  //    facetID: null}));
+  //}
   q = q.replace('<ID>', `<${uri}>`);
   // if (variant === 'productionPlaces') {
   //   console.log(prefixes + q)

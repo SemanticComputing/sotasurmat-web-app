@@ -26,4 +26,17 @@ export const deathsProperties = `
       ?id siso-schema:registered_place ?registeredPlace__id .
       ?registeredPlace__id skos:prefLabel ?registeredPlace__prefLabel .
     }
+    UNION {
+      ?id siso-schema:identifier ?identifier .
+    }
     `;
+
+export const personQuery = `
+      SELECT *
+      WHERE {
+        BIND (<ID> AS ?id)
+        ?id skos:prefLabel ?prefLabel__id .
+        BIND (?prefLabel__id as ?prefLabel__prefLabel)
+        BIND (?id as ?prefLabel__dataProviderUrl)
+      }
+        `;

@@ -4,6 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
+import Person from '../facet_results/Person';
+//import LineChart from '../facet_results/LineChart';
 //import Network from '../facet_results/Network';
 
 let Deaths = props => {
@@ -18,9 +20,14 @@ let Deaths = props => {
             icon: 'CalendarViewDay',
           },
           [`${props.rootUrl}/surmatut/pie`]: {
-            label: 'kaavio',
+            label: 'piirakkakaavio',
             value: 1,
             icon: 'PieChart',
+          },
+          [`${props.rootUrl}/surmatut/line`]: {
+            label: 'viivakaavio',
+            value: 2,
+            icon: 'LineChart',
           }
           //},
           //'/manuscripts/migrations': {
@@ -69,6 +76,27 @@ let Deaths = props => {
           />
         }
       />
+
+      <Route
+        path={`${props.rootUrl}/surmatut/henkilot/:id`}
+        render={routeProps =>
+          <Person
+            data={props.deaths}
+            facetUpdateID={props.facetData.facetUpdateID}
+            resultClass='deaths'
+            facetClass='deaths'
+            fetchPaginatedResults={props.fetchPaginatedResults}
+            updatePage={props.updatePage}
+            sortResults={props.sortResults}
+            routeProps={routeProps}
+            fetchFacet={props.fetchFacet}
+            resultCount={props.deaths.resultCount}
+            fetchByURI={props.fetchByURI}
+          />
+        }
+      />
+
+
       {/*
       <Route
         path={'/manuscripts/production_places'}

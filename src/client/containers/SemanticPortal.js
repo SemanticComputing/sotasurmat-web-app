@@ -21,6 +21,7 @@ import FacetBar from '../components/facet_bar/FacetBar';
 import All from '../components/perspectives/All';
 import Deaths from '../components/perspectives/Deaths';
 import Battles from '../components/perspectives/Battles';
+import Person from '../components/perspectives/Person';
 //import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
@@ -95,6 +96,7 @@ const styles = theme => ({
 });
 
 let SemanticPortal = (props) => {
+  //console.log(props)
   const { classes, /* browser */ error } = props;
   const rootUrl = '/sotasurmat';
   return (
@@ -196,6 +198,19 @@ let SemanticPortal = (props) => {
             />
 
             <Route
+              path={`${rootUrl}/henkilot/:id`}
+              render={routeProps => {
+                return(
+                  <Person
+                    routeProps={routeProps}
+                  />
+                );
+              }
+
+              }
+            />
+
+            <Route
               path="/all"
               render={routeProps =>
                 <React.Fragment>
@@ -219,9 +234,12 @@ let SemanticPortal = (props) => {
     </div>
   );
 };
+
 // <img className={classes.secoLogo} src='img/logos/seco-logo-white-no-background-small.png' alt='SeCo logo'/>
 // <img className={classes.heldigLogo} src='img/logos/heldig-logo-small.png' alt='HELDIG logo'/>
 // <img className={classes.uhLogo} src='img/logos/university-of-helsinki-logo-white-no-background-small.png' alt='University of Helsinki logo'/>
+
+
 
 const mapStateToProps = state => {
   return {
