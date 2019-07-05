@@ -69,3 +69,20 @@ export const personQuery = `
         }
       }
         `;
+
+export const birthYearsQuery = `
+      SELECT ?year (count(?year) AS ?yearCount)
+      WHERE {
+        <FILTER>
+        ?id a siso-schema:Death_record .
+        ?id siso-schema:birth_time ?btimeSpan .
+        ?btimeSpan crm:P82a_begin_of_the_begin ?earliestBTime .
+        ?btimeSpan crm:P82b_end_of_the_end ?latestBTime .
+        BIND (year(?earliestBTime) AS ?year) .
+        BIND (year(?latestBTime) AS ?latestYear) .
+        FILTER (?year = ?latestYear) .
+
+      }
+      GROUP BY ?year
+      ORDER BY ?year
+      `;

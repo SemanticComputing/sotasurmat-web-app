@@ -139,6 +139,7 @@ let SemanticPortal = (props) => {
                   <Grid item xs={12} md={9} className={classes.resultsContainer}>
                     <Deaths
                       rootUrl={rootUrl}
+                      dates={props.dates}
                       deaths={props.deaths}
                       facetData={props.deathsFacets}
                       fetchPaginatedResults={props.fetchPaginatedResults}
@@ -242,6 +243,7 @@ let SemanticPortal = (props) => {
 
 const mapStateToProps = state => {
   return {
+    dates: state.dates,
     deaths: state.deaths,
     deathsFacets: state.deathsFacets,
     battles: state.battles,
@@ -288,7 +290,8 @@ SemanticPortal.propTypes = {
   updateRowsPerPage: PropTypes.func.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   fetchFacet: PropTypes.func.isRequired,
-  showError: PropTypes.func.isRequired
+  showError: PropTypes.func.isRequired,
+  dates: PropTypes.object.isRequired,
 };
 
 export default compose(

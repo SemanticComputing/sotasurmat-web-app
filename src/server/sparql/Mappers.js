@@ -18,6 +18,17 @@ export const mapPlaces = sparqlBindings => {
   return results;
 };
 
+export const mapBirthYearCount = sparqlBindings => {
+  //console.log(sparqlBindings);
+  const results = sparqlBindings.map(b => {
+    return {
+      year: b.year.value,
+      yearCount: b.yearCount.value,
+    };
+  });
+  return results;
+};
+
 export const mapCount = sparqlBindings => {
   return sparqlBindings[0].count.value;
 };

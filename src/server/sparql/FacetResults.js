@@ -2,13 +2,13 @@ import { runSelectQuery } from './SparqlApi';
 import { prefixes } from './SparqlQueriesPrefixes';
 import { endpoint, countQuery, facetResultSetQuery } from './SparqlQueriesGeneral';
 import {
-  deathsProperties, personQuery
+  deathsProperties, personQuery, birthYearsQuery
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery
 } from './SparqlQueriesBattles';
 import { facetConfigs } from './FacetConfigs';
-import { mapCount } from './Mappers';
+import { mapCount, mapBirthYearCount } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
 import {
   generateConstraintsBlock,
@@ -45,9 +45,15 @@ export const getAllResults = ({
 }) => {
   let q = '';
   let filterTarget = '';
+  let mapper = makeObjectList;
   switch (variant) {
     case 'battlePlaces':
       q = battlePlacesQuery;
+      filterTarget = 'id';
+      break;
+    case 'birthYearCount':
+      q = birthYearsQuery;
+      mapper = mapBirthYearCount;
       filterTarget = 'id';
       break;
   }
@@ -64,7 +70,7 @@ export const getAllResults = ({
   //if (variant == 'productionPlaces') {
   // console.log(prefixes + q);
   // }
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList);
+  return runSelectQuery(prefixes + q, endpoint, mapper);
 };
 
 export const getResultCount = ({

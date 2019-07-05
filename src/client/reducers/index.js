@@ -7,6 +7,7 @@ import deaths from './deaths';
 import deathsFacets from './deathsFacets';
 import battles from './battles';
 import battlesFacets from './battlesFacets';
+import dates from './dates';
 
 const reducer = combineReducers({
   deaths,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   battlesFacets,
   clientSideFacetedSearch,
   error,
+  dates,
   toastr: toastrReducer,
   browser: createResponsiveStateReducer({
     extraSmall: 500,

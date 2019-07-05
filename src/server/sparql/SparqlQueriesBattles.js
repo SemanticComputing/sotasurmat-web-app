@@ -42,7 +42,6 @@ export const battlePlacesQuery =  `
   }
 `;
 
-// dangerously close naming...
 export const battlePlaceQuery =  `
   SELECT ?id ?prefLabel ?startDate ?endDate ?placeLabel
   WHERE {

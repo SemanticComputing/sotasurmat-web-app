@@ -5,7 +5,7 @@ import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
 import Person from '../facet_results/Person';
-//import LineChart from '../facet_results/LineChart';
+import LineChart from '../facet_results/LineChart';
 //import Network from '../facet_results/Network';
 
 let Deaths = props => {
@@ -68,6 +68,24 @@ let Deaths = props => {
             resultClass='deaths'
             facetClass='deaths'
             fetchPaginatedResults={props.fetchPaginatedResults}
+            updatePage={props.updatePage}
+            sortResults={props.sortResults}
+            routeProps={routeProps}
+            fetchFacet={props.fetchFacet}
+            resultCount={props.deaths.resultCount}
+          />
+        }
+      />
+      <Route
+        path={`${props.rootUrl}/surmatut/line`}
+        render={routeProps =>
+          <LineChart
+            data={props.dates}
+            facetUpdateID={props.facetData.facetUpdateID}
+            resultClass='dates'
+            facetClass='deaths'
+            fetchPaginatedResults={props.fetchPaginatedResults}
+            fetchResults={props.fetchResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
@@ -151,6 +169,7 @@ let Deaths = props => {
 Deaths.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   deaths: PropTypes.object.isRequired,
+  dates: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
