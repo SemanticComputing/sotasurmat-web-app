@@ -64,14 +64,37 @@ class LineChart extends React.Component {
   makeArray = dataArray => {
     let newArray = [];
     let titleRow = [];
+    //console.log(dataArray)
+    //const years = dataArray.map(row => row.year);
+    let nextYear = -1;
     titleRow.push('vuosi');
     titleRow.push('syntyneitä');
     newArray.push(titleRow);
+
+
     for (let item of dataArray) {
-      let subArray = [];
-      subArray.push(item.year);
-      subArray.push(parseInt(item.yearCount));
-      newArray.push(subArray);
+      let thisYear = parseInt(item.year);
+      ///console.log(thisYear + '   '  + nextYear);
+      if (nextYear == -1) {
+        let subArray = [];
+        nextYear = thisYear + 1;
+        subArray.push(item.year);
+        subArray.push(parseInt(item.yearCount));
+        newArray.push(subArray);
+      } else {
+        while (thisYear > nextYear) {
+          let subArray = [];
+          subArray.push(nextYear.toString());
+          subArray.push(0);
+          newArray.push(subArray);
+          nextYear++;
+        }
+        let subArray = [];
+        subArray.push(item.year);
+        subArray.push(parseInt(item.yearCount));
+        newArray.push(subArray);
+        nextYear++;
+      }
     }
     return newArray;
   }
@@ -79,6 +102,7 @@ class LineChart extends React.Component {
   render() {
     let years = this.props.data.results;
     let yearsArray = this.makeArray(years);
+    //console.log(yearsArray)
 
     return (
       <Chart
