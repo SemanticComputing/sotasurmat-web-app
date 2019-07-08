@@ -68,9 +68,8 @@ class LineChart extends React.Component {
     //const years = dataArray.map(row => row.year);
     let nextYear = -1;
     titleRow.push('vuosi');
-    titleRow.push('syntyneitä');
+    titleRow.push('syntyneiden määrä');
     newArray.push(titleRow);
-
 
     for (let item of dataArray) {
       let thisYear = parseInt(item.year);
@@ -99,11 +98,42 @@ class LineChart extends React.Component {
     return newArray;
   }
 
+  lenght = dataArray => {
+    let items = 0;
+    for (let item of dataArray) {
+      items = items + 1;
+    }
+    return items;
+  }
+
+  average = dataArray => {
+    let weightedSum = 0;
+    let sum = 0;
+    for (let item of dataArray) {
+      if (!isNaN(item[1])) {
+        weightedSum = weightedSum + (parseInt(item[0]) * parseInt(item[1]));
+      }
+    }
+    for (let item of dataArray) {
+      if (!isNaN(item[1])) {
+        sum = sum + (parseInt(item[1]));
+      }
+    }
+    //console.log(this.lenght(dataArray))
+    //console.log(this.lenght(dataArray))
+    if (this.lenght(dataArray) > 0) {
+      return weightedSum / sum; // minus the first line with titles from lenght
+    }
+    else if (this.lenght(dataArray) === 1 ) {
+      return weightedSum;
+    } else {
+      return NaN;
+    }
+  }
+
   render() {
     let years = this.props.data.results;
     let yearsArray = this.makeArray(years);
-    //console.log(yearsArray)
-
     return (
       <Chart
         width={'1200px'}
@@ -113,10 +143,11 @@ class LineChart extends React.Component {
         data={yearsArray}
         options={{
           hAxis: {
-            title: 'Vuosi',
+            title: 'Vuosi;  ' + 'keskiarvo:  ' + Math.round(this.average(yearsArray)),
+            subtitle: 'test',
           },
           vAxis: {
-            title: 'Vuonna syntyneitä datssa',
+            title: 'Vuonna syntyneitä datassa',
           },
         }}
         rootProps={{ 'data-testid': '1' }}
