@@ -119,10 +119,8 @@ class LineChart extends React.Component {
         sum = sum + (parseInt(item[1]));
       }
     }
-    //console.log(this.lenght(dataArray))
-    //console.log(this.lenght(dataArray))
     if (this.lenght(dataArray) > 0) {
-      return weightedSum / sum; // minus the first line with titles from lenght
+      return weightedSum / sum;
     }
     else if (this.lenght(dataArray) === 1 ) {
       return weightedSum;
@@ -131,9 +129,51 @@ class LineChart extends React.Component {
     }
   }
 
+  sum = dataArray => {
+    let fullSum = 0;
+    for (let item of dataArray) {
+      if (!isNaN(item[1])) {
+        fullSum = fullSum + (parseInt(item[1]));
+      }
+    }
+    return fullSum;
+  }
+
+  // median may be wrong?
+
+  median = dataArray => {
+    let fullSum = this.sum(dataArray);
+    let helpSum = 0;
+    let help = -1;
+    let length = this.lenght(dataArray);
+    let remainder = length % 2;
+    if (fullSum > 0) {
+      for (let row of dataArray) {
+        if (!isNaN(row[1])) {
+          helpSum = helpSum + (parseInt(row[1]));
+          if (helpSum >= fullSum / 2) {
+            if (remainder != 0) {
+              return parseInt(row[0]);
+            } else {
+              if (help == -1) {
+                help = parseInt(row[0]);
+              } else {
+                return (help + parseInt(row[0])) / 2;
+              }
+            }
+          }
+        }
+      }
+    } else {
+      return NaN;
+    }
+  }
+
   render() {
     let years = this.props.data.results;
     let yearsArray = this.makeArray(years);
+    //console.log(this.median(yearsArray));
+    //medianArray = ['mediaani vuosi', 'med'], []
     return (
       <Chart
         width={'1200px'}
@@ -143,7 +183,7 @@ class LineChart extends React.Component {
         data={yearsArray}
         options={{
           hAxis: {
-            title: 'Vuosi;  ' + 'keskiarvo:  ' + Math.round(this.average(yearsArray)),
+            title: 'Vuosi  (' + 'keskiarvo noin  ' + Math.round(this.average(yearsArray)) + ', mediaani noin ' + Math.round(this.median(yearsArray)) + ')',
             subtitle: 'test',
           },
           vAxis: {
