@@ -234,8 +234,8 @@ class LineChart extends React.Component {
     if (this.state.variant == 'birthYearCount') {
       title = 'Vuosi';
       explanation = 'Henkilöiden määrä';
-      xTitle = 'Syntyneiden määrä datassa';
-      yTitle = 'Vuosi';
+      xTitle = 'Vuosi';
+      yTitle = 'Syntyneiden määrä datassa';
       fillEmpty = true;
     }
     if (this.state.variant == 'ageCount') {
