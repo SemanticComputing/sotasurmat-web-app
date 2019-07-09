@@ -19,4 +19,9 @@ export const prefixes = `
   PREFIX text: <http://jena.apache.org/text#>
 
 
+
+
+
+
+
   `;

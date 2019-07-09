@@ -40,6 +40,17 @@ export const mapAgeCount = sparqlBindings => {
   return results;
 };
 
+export const mapCountGroups = sparqlBindings => {
+  console.log(sparqlBindings);
+  const results = sparqlBindings.map(b => {
+    return {
+      counted: b.counted.value,
+      count: b.count.value,
+    };
+  });
+  return results;
+};
+
 export const mapCount = sparqlBindings => {
   return sparqlBindings[0].count.value;
 };

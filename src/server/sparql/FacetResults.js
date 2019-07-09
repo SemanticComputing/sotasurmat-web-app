@@ -2,13 +2,13 @@ import { runSelectQuery } from './SparqlApi';
 import { prefixes } from './SparqlQueriesPrefixes';
 import { endpoint, countQuery, facetResultSetQuery } from './SparqlQueriesGeneral';
 import {
-  deathsProperties, personQuery, birthYearsQuery, ageQuery
+  deathsProperties, personQuery, birthYearsQuery, ageQuery, deathDateQuery,
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery
 } from './SparqlQueriesBattles';
 import { facetConfigs } from './FacetConfigs';
-import { mapCount, mapBirthYearCount, mapAgeCount } from './Mappers';
+import { mapCount, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
 import {
   generateConstraintsBlock,
@@ -59,6 +59,11 @@ export const getAllResults = ({
     case 'ageCount':
       q = ageQuery;
       mapper = mapAgeCount;
+      filterTarget = 'id';
+      break;
+    case 'deathDateCount':
+      q = deathDateQuery;
+      mapper = mapCountGroups;
       filterTarget = 'id';
       break;
   }

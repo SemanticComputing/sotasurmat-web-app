@@ -49,7 +49,7 @@ class LineChart extends React.Component {
     this.setState({
       selectedOption: changeEvent.target.value,
     });
-    var variant = 'string';
+    var variant = 'birthYearCount';
     if (changeEvent.target.value === 'birthYear') {
       this.setState({
         label: 'Syntymävuosi',
@@ -60,9 +60,9 @@ class LineChart extends React.Component {
     if (changeEvent.target.value === 'deathDate') {
       this.setState({
         label: 'Kuolinpäivä',
-        variant: 'birthYearCount',
+        variant: 'deathDateCount',
       });
-      variant = 'birthYearCount';
+      variant = 'deathDateCount';
     }
     if (changeEvent.target.value === 'age') {
       this.setState({
@@ -104,41 +104,51 @@ class LineChart extends React.Component {
     }
   }
 
-  makeArray = (dataArray, firstTitle, secondTitle) => {
-    console.log(dataArray)
+  makeArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
+    //console.log(dataArray);
     let newArray = [];
     let titleRow = [];
     //const years = dataArray.map(row => row.year);
-    let nextYear = -1;
+    let nextItem = -1;
     titleRow.push(firstTitle);
     titleRow.push(secondTitle);
     newArray.push(titleRow);
 
-    for (let item of dataArray) {
-      let thisYear = parseInt(item.counted);
-      ///console.log(thisYear + '   '  + nextYear);
-      if (nextYear == -1) {
+    if (!fillEmptyValues) {
+      for (let item of dataArray) {
         let subArray = [];
-        nextYear = thisYear + 1;
         subArray.push(item.counted);
         subArray.push(parseInt(item.count));
         newArray.push(subArray);
-      } else {
-        while (thisYear > nextYear) {
+        nextItem++;
+      }
+    } else {
+      for (let item of dataArray) {
+        let thisItem = parseInt(item.counted);
+        ///console.log(thisItem + '   '  + nextItem);
+        if (nextItem == -1) {
           let subArray = [];
-          subArray.push(nextYear.toString());
-          subArray.push(0);
+          nextItem = thisItem + 1;
+          subArray.push(item.counted);
+          subArray.push(parseInt(item.count));
           newArray.push(subArray);
-          nextYear++;
+        } else {
+          while (thisItem > nextItem) {
+            let subArray = [];
+            subArray.push(nextItem.toString());
+            subArray.push(0);
+            newArray.push(subArray);
+            nextItem++;
+          }
+          let subArray = [];
+          subArray.push(item.counted);
+          subArray.push(parseInt(item.count));
+          newArray.push(subArray);
+          nextItem++;
         }
-        let subArray = [];
-        subArray.push(item.counted);
-        subArray.push(parseInt(item.count));
-        newArray.push(subArray);
-        nextYear++;
       }
     }
-    console.log(newArray)
+    //console.log(newArray);
     return newArray;
   }
 
@@ -218,21 +228,35 @@ class LineChart extends React.Component {
     var explanation = '';
     var xTitle = '';
     var yTitle = '';
+    let fillEmpty = false;
 
     let results = this.props.data.results;
     if (this.state.variant == 'birthYearCount') {
       title = 'Vuosi';
-      explanation = 'Syntyneitä';
+      explanation = 'Henkilöiden määrä';
       xTitle = 'Syntyneiden määrä datassa';
       yTitle = 'Vuosi';
+      fillEmpty = true;
     }
     if (this.state.variant == 'ageCount') {
       title = 'Ikä';
       explanation = 'Henkilöiden määrä';
       xTitle = 'Ikä';
       yTitle = 'Henkilöiden määrä';
+      fillEmpty = true;
     }
-    let resultsArray = this.makeArray(results, title, explanation);
+    if (this.state.variant == 'deathDateCount') {
+      title = 'Kuolinpäivä';
+      explanation = 'Henkilöiden määrä';
+      xTitle = 'Kuolinpäivä';
+      yTitle = 'Henkilöiden määrä';
+      fillEmpty = false;
+    }
+    let resultsArray = this.makeArray(results, title, explanation, fillEmpty);
+    let infoString = '';
+    if (this.state.variant != 'deathDateCount') {
+      infoString = '(' + 'keskiarvo noin  ' + Math.round(this.average(resultsArray)) + ', mediaani noin ' + Math.round(this.median(resultsArray)) + ')';
+    }
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
     return (
@@ -279,7 +303,7 @@ class LineChart extends React.Component {
           data={resultsArray}
           options={{
             hAxis: {
-              title: xTitle + '  (' + 'keskiarvo noin  ' + Math.round(this.average(resultsArray)) + ', mediaani noin ' + Math.round(this.median(resultsArray)) + ')',
+              title: xTitle + '  ' + infoString,
             },
             vAxis: {
               title: yTitle,

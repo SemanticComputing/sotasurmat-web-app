@@ -81,7 +81,6 @@ export const birthYearsQuery = `
         BIND (year(?earliestBTime) AS ?counted) .
         BIND (year(?latestBTime) AS ?latestYear) .
         FILTER (?counted = ?latestYear) .
-
       }
       GROUP BY ?counted
       ORDER BY ?counted
@@ -98,3 +97,18 @@ export const ageQuery = `
       GROUP BY ?counted
       ORDER BY ?counted
             `;
+
+export const deathDateQuery = `
+      SELECT ?counted (count(?counted) AS ?count)
+      WHERE {
+        <FILTER>
+        ?id a siso-schema:Death_record .
+        ?id siso-schema:death_time ?timeSpan .
+        ?timeSpan crm:P82a_begin_of_the_begin ?earliestTime .
+        ?timeSpan crm:P82b_end_of_the_end ?latestTime .
+        FILTER (?earliestTime = ?latestTime) .
+        BIND (?earliestTime AS ?counted) .
+      }
+      GROUP BY ?counted
+      ORDER BY ?counted
+      `;
