@@ -22,8 +22,19 @@ export const mapBirthYearCount = sparqlBindings => {
   //console.log(sparqlBindings);
   const results = sparqlBindings.map(b => {
     return {
-      year: b.year.value,
-      yearCount: b.yearCount.value,
+      counted: b.counted.value,
+      count: b.count.value,
+    };
+  });
+  return results;
+};
+
+export const mapAgeCount = sparqlBindings => {
+  //console.log(sparqlBindings);
+  const results = sparqlBindings.map(b => {
+    return {
+      counted: b.counted.value,
+      count: b.count.value,
     };
   });
   return results;

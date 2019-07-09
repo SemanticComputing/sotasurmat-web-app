@@ -71,18 +71,30 @@ export const personQuery = `
         `;
 
 export const birthYearsQuery = `
-      SELECT ?year (count(?year) AS ?yearCount)
+      SELECT ?counted (count(?counted) AS ?count)
       WHERE {
         <FILTER>
         ?id a siso-schema:Death_record .
         ?id siso-schema:birth_time ?btimeSpan .
         ?btimeSpan crm:P82a_begin_of_the_begin ?earliestBTime .
         ?btimeSpan crm:P82b_end_of_the_end ?latestBTime .
-        BIND (year(?earliestBTime) AS ?year) .
+        BIND (year(?earliestBTime) AS ?counted) .
         BIND (year(?latestBTime) AS ?latestYear) .
-        FILTER (?year = ?latestYear) .
+        FILTER (?counted = ?latestYear) .
 
       }
-      GROUP BY ?year
-      ORDER BY ?year
+      GROUP BY ?counted
+      ORDER BY ?counted
       `;
+
+export const ageQuery = `
+      SELECT ?counted (count(?counted) AS ?count)
+      WHERE {
+        <FILTER>
+        ?id a siso-schema:Death_record .
+        ?id siso-schema:age ?ageString .
+        BIND (xsd:integer(?ageString) AS ?counted) .
+      }
+      GROUP BY ?counted
+      ORDER BY ?counted
+            `;

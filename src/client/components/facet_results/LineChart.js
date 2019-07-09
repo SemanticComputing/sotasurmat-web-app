@@ -36,6 +36,49 @@ const styles = theme => ({
 
 class LineChart extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: 'birthYear',
+      label: 'Syntymävuosi',
+      variant: 'birthYearCount'
+    };
+  }
+
+  handleOptionChange = (changeEvent) => {
+    this.setState({
+      selectedOption: changeEvent.target.value,
+    });
+    var variant = 'string';
+    if (changeEvent.target.value === 'birthYear') {
+      this.setState({
+        label: 'Syntymävuosi',
+        variant: 'birthYearCount',
+      });
+      variant = 'birthYearCount';
+    }
+    if (changeEvent.target.value === 'deathDate') {
+      this.setState({
+        label: 'Kuolinpäivä',
+        variant: 'birthYearCount',
+      });
+      variant = 'birthYearCount';
+    }
+    if (changeEvent.target.value === 'age') {
+      this.setState({
+        label: 'Ikä',
+        variant: 'ageCount',
+      });
+      variant = 'ageCount';
+    }
+    this.props.fetchResults({
+      resultClass: 'dates',
+      facetClass: 'deaths',
+      sortBy: null,
+      variant: variant,
+    });
+  }
+
   componentDidMount = () => {
     // mihin tämä menee?
     //kadottaa tieddot faceteista
@@ -43,7 +86,7 @@ class LineChart extends React.Component {
       resultClass: 'dates',
       facetClass: 'deaths',
       sortBy: null,
-      variant: 'birthYearCount',
+      variant: this.state.variant,
     });
     //const { routeProps } = this.props;
     //this.props.fetchByURI('deaths', 'deaths', 'deaths', 'http://ldf.fi/siso/death_records/victim_' + routeProps.match.params.id,);
@@ -56,29 +99,29 @@ class LineChart extends React.Component {
         resultClass: 'dates',
         facetClass: 'deaths',
         sortBy: null,
-        variant: 'birthYearCount',
+        variant: this.state.variant,
       });
     }
   }
 
-  makeArray = dataArray => {
+  makeArray = (dataArray, firstTitle, secondTitle) => {
+    console.log(dataArray)
     let newArray = [];
     let titleRow = [];
-    //console.log(dataArray)
     //const years = dataArray.map(row => row.year);
     let nextYear = -1;
-    titleRow.push('vuosi');
-    titleRow.push('syntyneiden määrä');
+    titleRow.push(firstTitle);
+    titleRow.push(secondTitle);
     newArray.push(titleRow);
 
     for (let item of dataArray) {
-      let thisYear = parseInt(item.year);
+      let thisYear = parseInt(item.counted);
       ///console.log(thisYear + '   '  + nextYear);
       if (nextYear == -1) {
         let subArray = [];
         nextYear = thisYear + 1;
-        subArray.push(item.year);
-        subArray.push(parseInt(item.yearCount));
+        subArray.push(item.counted);
+        subArray.push(parseInt(item.count));
         newArray.push(subArray);
       } else {
         while (thisYear > nextYear) {
@@ -89,12 +132,13 @@ class LineChart extends React.Component {
           nextYear++;
         }
         let subArray = [];
-        subArray.push(item.year);
-        subArray.push(parseInt(item.yearCount));
+        subArray.push(item.counted);
+        subArray.push(parseInt(item.count));
         newArray.push(subArray);
         nextYear++;
       }
     }
+    console.log(newArray)
     return newArray;
   }
 
@@ -170,28 +214,80 @@ class LineChart extends React.Component {
   }
 
   render() {
-    let years = this.props.data.results;
-    let yearsArray = this.makeArray(years);
+    var title = '';
+    var explanation = '';
+    var xTitle = '';
+    var yTitle = '';
+
+    let results = this.props.data.results;
+    if (this.state.variant == 'birthYearCount') {
+      title = 'Vuosi';
+      explanation = 'Syntyneitä';
+      xTitle = 'Syntyneiden määrä datassa';
+      yTitle = 'Vuosi';
+    }
+    if (this.state.variant == 'ageCount') {
+      title = 'Ikä';
+      explanation = 'Henkilöiden määrä';
+      xTitle = 'Ikä';
+      yTitle = 'Henkilöiden määrä';
+    }
+    let resultsArray = this.makeArray(results, title, explanation);
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
     return (
-      <Chart
-        width={'1200px'}
-        height={'700px'}
-        chartType="LineChart"
-        loader={<div>Loading Chart</div>}
-        data={yearsArray}
-        options={{
-          hAxis: {
-            title: 'Vuosi  (' + 'keskiarvo noin  ' + Math.round(this.average(yearsArray)) + ', mediaani noin ' + Math.round(this.median(yearsArray)) + ')',
-            subtitle: 'test',
-          },
-          vAxis: {
-            title: 'Vuonna syntyneitä datassa',
-          },
-        }}
-        rootProps={{ 'data-testid': '1' }}
-      />
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+
+              <form>
+                <div className="radio">
+                  <label>
+                    <input type="radio" value="birthYear"
+                      checked={this.state.selectedOption === 'birthYear'}
+                      onChange={this.handleOptionChange} />
+                    Syntymävuosi
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input type="radio" value="deathDate"
+                      checked={this.state.selectedOption === 'deathDate'}
+                      onChange={this.handleOptionChange} />
+                    Kuolinpäivä
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input type="radio" value="age"
+                      checked={this.state.selectedOption === 'age'}
+                      onChange={this.handleOptionChange} />
+                    Ikä
+                  </label>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <Chart
+          width={'1200px'}
+          height={'700px'}
+          chartType="LineChart"
+          loader={<div>Loading Chart</div>}
+          data={resultsArray}
+          options={{
+            hAxis: {
+              title: xTitle + '  (' + 'keskiarvo noin  ' + Math.round(this.average(resultsArray)) + ', mediaani noin ' + Math.round(this.median(resultsArray)) + ')',
+            },
+            vAxis: {
+              title: yTitle,
+            },
+          }}
+          rootProps={{ 'data-testid': '1' }}
+        />
+      </div>
     );
   }
 }
