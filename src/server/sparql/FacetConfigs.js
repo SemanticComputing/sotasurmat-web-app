@@ -84,6 +84,13 @@ export const facetConfigs = {
       endProperty: 'crm:P82b_end_of_the_end',
       type: 'timespan',
     },
+    causeOfDeath: {
+      id: 'causeOfDeath',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:cause_of_death/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:cause_of_death',
+    },
   },
   battles: {
     facetClass: 'siso-schema:Battle',

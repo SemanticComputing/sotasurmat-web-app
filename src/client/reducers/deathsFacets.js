@@ -92,6 +92,24 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 2
     },
+    causeOfDeath: {
+      id: 'causeOfDeath',
+      label: 'Kuolinsyy',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 2
+    },
     livingMunicipality: {
       id: 'livingMunicipality',
       label: 'Asuinkunta',
