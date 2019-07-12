@@ -29,6 +29,10 @@ export const deathsProperties = `
     UNION {
       ?id siso-schema:identifier ?identifier .
     }
+    UNION {
+      ?id siso-schema:cause_of_death ?causeOfDeath__id .
+      ?causeOfDeath__id skos:prefLabel ?causeOfDeath__prefLabel .
+    }
     `;
 
 export const personQuery = `

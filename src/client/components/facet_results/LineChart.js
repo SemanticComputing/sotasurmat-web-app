@@ -39,9 +39,9 @@ class LineChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: 'birthYear',
-      label: 'Syntymävuosi',
-      variant: 'birthYearCount'
+      selectedOption: 'age',
+      label: 'Ikä',
+      variant: 'ageCount'
     };
   }
 
@@ -80,8 +80,6 @@ class LineChart extends React.Component {
   }
 
   componentDidMount = () => {
-    // mihin tämä menee?
-    //kadottaa tieddot faceteista
     this.props.fetchResults({
       resultClass: 'dates',
       facetClass: 'deaths',
@@ -102,6 +100,60 @@ class LineChart extends React.Component {
         variant: this.state.variant,
       });
     }
+  }
+
+  makeDateArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
+    //console.log(dataArray);
+    let newArray = [];
+    let titleRow = [];
+    //const years = dataArray.map(row => row.year);
+    var nextItem = new Date('1971-10-10T12:00:00Z');
+    //console.log(nextItem.getDate())
+    //console.log(nextItem.getDate())
+    titleRow.push(firstTitle);
+    titleRow.push(secondTitle);
+    newArray.push(titleRow);
+    let first = true;
+
+    if (!fillEmptyValues) {
+      for (let item of dataArray) {
+        let subArray = [];
+        subArray.push(new Date(item.counted + 'T12:00:00Z'));
+        subArray.push(parseInt(item.count));
+        newArray.push(subArray);
+        nextItem.setDate(nextItem.getDate() + 1);
+      }
+    } else {
+      for (let item of dataArray) {
+        let thisItem = new Date(item.counted + 'T12:00:00Z');
+        //console.log(thisItem);
+        if (first) {
+          let subArray = [];
+          nextItem.setDate(thisItem.getDate() + 1);
+
+          subArray.push();
+          subArray.push(parseInt(item.count));
+          newArray.push(subArray);
+          first = false;
+        } else {
+          while (this.date_diff(nextItem, thisItem) > 1) {
+            let subArray = [];
+            subArray.push(nextItem);
+            subArray.push(0);
+            newArray.push(subArray);
+            nextItem.setDate(nextItem.getDate() + 1);
+            //console.log(nextItem.getDate())
+          }
+          let subArray = [];
+          subArray.push(new Date(item.counted + 'T12:00:00Z'));
+          subArray.push(parseInt(item.count));
+          newArray.push(subArray);
+          nextItem.setDate(nextItem.getDate() + 1);
+        }
+      }
+    }
+    //console.log(newArray);
+    return newArray;
   }
 
   makeArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
@@ -223,12 +275,20 @@ class LineChart extends React.Component {
     }
   }
 
+  date_diff = (date1, date2) => {
+    return Math.floor((Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()) - Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()) ) / (1000 * 60 * 60 * 24));
+  }
+
+
   render() {
+    //var d = new Date('2015-03-25T12:00:00+04:00');
+    //console.log(d)
     var title = '';
     var explanation = '';
     var xTitle = '';
     var yTitle = '';
     let fillEmpty = false;
+    let infoString = '';
 
     let results = this.props.data.results;
     if (this.state.variant == 'birthYearCount') {
@@ -250,12 +310,16 @@ class LineChart extends React.Component {
       explanation = 'Henkilöiden määrä';
       xTitle = 'Kuolinpäivä';
       yTitle = 'Henkilöiden määrä';
-      fillEmpty = false;
+      fillEmpty = true;
     }
-    let resultsArray = this.makeArray(results, title, explanation, fillEmpty);
-    let infoString = '';
+    let resultsArray = [];
+    resultsArray = this.makeArray(results, title, explanation, fillEmpty);
+
     if (this.state.variant != 'deathDateCount') {
       infoString = '(' + 'keskiarvo noin  ' + Math.round(this.average(resultsArray)) + ', mediaani noin ' + Math.round(this.median(resultsArray)) + ')';
+    }
+    if (this.state.variant == 'deathDateCount') {
+      infoString = '(huom: päivämääriä ilman surmia ei merkitä kaavioon)';
     }
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
@@ -264,8 +328,15 @@ class LineChart extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-
               <form>
+                <div className="radio">
+                  <label>
+                    <input type="radio" value="age"
+                      checked={this.state.selectedOption === 'age'}
+                      onChange={this.handleOptionChange} />
+                    Ikä
+                  </label>
+                </div>
                 <div className="radio">
                   <label>
                     <input type="radio" value="birthYear"
@@ -280,14 +351,6 @@ class LineChart extends React.Component {
                       checked={this.state.selectedOption === 'deathDate'}
                       onChange={this.handleOptionChange} />
                     Kuolinpäivä
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input type="radio" value="age"
-                      checked={this.state.selectedOption === 'age'}
-                      onChange={this.handleOptionChange} />
-                    Ikä
                   </label>
                 </div>
               </form>
