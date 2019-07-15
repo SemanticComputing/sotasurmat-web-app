@@ -114,6 +114,11 @@ class Pie extends React.Component {
        label: 'Kuolinkunta',
      });
    }
+   if (changeEvent.target.value === 'causeOfDeath') {
+     this.setState({
+       label: 'Kuolinsyy',
+     });
+   }
  }
 
  render() {
@@ -141,6 +146,9 @@ class Pie extends React.Component {
    }
    if (this.state.selectedOption === 'deathMunicipality') {
      facetValues = data.deathMunicipality.values;
+   }
+   if (this.state.selectedOption === 'causeOfDeath') {
+     facetValues = data.causeOfDeath.values;
    }
    // if (this.state.selectedOption === 'registeredPlace') {
    //   facetValues = data.registeredPlace.flatValues;
@@ -247,6 +255,14 @@ class Pie extends React.Component {
                      checked={this.state.selectedOption === 'deathMunicipality'}
                      onChange={this.handleOptionChange} />
                      Kuolinkunta
+                 </label>
+               </div>
+               <div className="radio">
+                 <label>
+                   <input type="radio" value="causeOfDeath"
+                     checked={this.state.selectedOption === 'causeOfDeath'}
+                     onChange={this.handleOptionChange} />
+                     Kuolinsyy
                  </label>
                </div>
              </form>
