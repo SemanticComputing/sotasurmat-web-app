@@ -33,6 +33,30 @@ export const deathsProperties = `
       ?id siso-schema:cause_of_death ?causeOfDeath__id .
       ?causeOfDeath__id skos:prefLabel ?causeOfDeath__prefLabel .
     }
+    UNION {
+      ?id siso-schema:registered_municipality ?registeredMunicipality__id .
+      ?registeredMunicipality__id skos:prefLabel ?registeredMunicipality__prefLabel .
+    }
+    UNION {
+      ?id siso-schema:registered_province ?registeredProvince__id .
+      ?registeredProvince__id skos:prefLabel ?registeredProvince_prefLabel .
+    }
+    UNION {
+      ?id siso-schema:registered_country ?registeredCountry__id .
+      ?registeredCountry__id skos:prefLabel ?registeredCountry__prefLabel .
+    }
+    UNION {
+      ?id siso-schema:death_municipality ?deathMunicipality__id .
+      ?deathMunicipality__id skos:prefLabel ?deathMunicipality__prefLabel .
+    }
+    UNION {
+      ?id siso-schema:death_province ?deathProvince__id .
+      ?deathProvince__id skos:prefLabel ?deathProvince_prefLabel .
+    }
+    UNION {
+      ?id siso-schema:death_country ?deathCountry__id .
+      ?deathCountry__id skos:prefLabel ?deathCountry__prefLabel .
+    }
     `;
 
 export const personQuery = `

@@ -64,10 +64,22 @@ export const INITIAL_STATE = {
       minWidth: 100
     },
     {
-      id: 'registeredPlace',
-      label: 'Kirjoillaolopaikka',
+      id: 'registeredMunicipality',
+      label: 'Kirjoillaolokunta',
       desc: `
-        Kirjoillaolopaikka
+        Kirjoillaolokunta
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150
+    },
+    {
+      id: 'deathMunicipality',
+      label: 'Kuolinkunta',
+      desc: `
+        Kuolinkunta
       `,
       valueType: 'object',
       makeLink: false,
@@ -87,18 +99,18 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 125
     },
-    {
-      id: 'livingMunicipality',
-      label: 'Asuinkunta',
-      desc: `
-        Asuinkunta
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
+    // {
+    //   id: 'livingMunicipality',
+    //   label: 'Asuinkunta',
+    //   desc: `
+    //     Asuinkunta
+    //   `,
+    //   valueType: 'object',
+    //   makeLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 125
+    // },
     {
       id: 'birthDate',
       label: 'Syntymäpäivä',

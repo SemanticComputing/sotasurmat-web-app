@@ -89,19 +89,29 @@ class Pie extends React.Component {
        label: 'Ammatti',
      });
    }
-   if (changeEvent.target.value === 'livingMunicipality') {
-     this.setState({
-       label: 'Asuinkunta',
-     });
-   }
    if (changeEvent.target.value === 'gender') {
      this.setState({
        label: 'Sukupuoli',
      });
    }
-   if (changeEvent.target.value === 'registeredPlace') {
+   if (changeEvent.target.value === 'registeredProvince') {
      this.setState({
-       label: 'Kirjoillaolopaikka',
+       label: 'Kirjoillaololääni',
+     });
+   }
+   if (changeEvent.target.value === 'registeredMunicipality') {
+     this.setState({
+       label: 'Kirjoillaolokunta',
+     });
+   }
+   if (changeEvent.target.value === 'deathProvince') {
+     this.setState({
+       label: 'Kuolinlääni',
+     });
+   }
+   if (changeEvent.target.value === 'deathMunicipality') {
+     this.setState({
+       label: 'Kuolinkunta',
      });
    }
  }
@@ -117,15 +127,25 @@ class Pie extends React.Component {
    if (this.state.selectedOption === 'occupation') {
      facetValues = data.occupation.values;
    }
-   if (this.state.selectedOption === 'livingMunicipality') {
-     facetValues = data.livingMunicipality.values;
-   }
    if (this.state.selectedOption === 'gender') {
      facetValues = data.gender.values;
    }
-   if (this.state.selectedOption === 'registeredPlace') {
-     facetValues = data.registeredPlace.flatValues;
+   if (this.state.selectedOption === 'registeredProvince') {
+     facetValues = data.registeredProvince.values;
    }
+   if (this.state.selectedOption === 'registeredMunicipality') {
+     facetValues = data.registeredMunicipality.values;
+   }
+   if (this.state.selectedOption === 'deathProvince') {
+     facetValues = data.deathProvince.values;
+   }
+   if (this.state.selectedOption === 'deathMunicipality') {
+     facetValues = data.deathMunicipality.values;
+   }
+   // if (this.state.selectedOption === 'registeredPlace') {
+   //   facetValues = data.registeredPlace.flatValues;
+   // }
+   //console.log(facetValues)
    if (facetValues.length == 0) {
      return (
        <div></div>
@@ -191,14 +211,6 @@ class Pie extends React.Component {
                </div>
                <div className="radio">
                  <label>
-                   <input type="radio" value="livingMunicipality"
-                     checked={this.state.selectedOption === 'livingMunicipality'}
-                     onChange={this.handleOptionChange} />
-                     Asuinkunta
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
                    <input type="radio" value="gender"
                      checked={this.state.selectedOption === 'gender'}
                      onChange={this.handleOptionChange} />
@@ -207,10 +219,34 @@ class Pie extends React.Component {
                </div>
                <div className="radio">
                  <label>
-                   <input type="radio" value="registeredPlace"
-                     checked={this.state.selectedOption === 'registeredPlace'}
+                   <input type="radio" value="registeredProvince"
+                     checked={this.state.selectedOption === 'registeredProvince'}
                      onChange={this.handleOptionChange} />
-                     Kirjoillaolopaikka
+                     Kirjoillaololääni
+                 </label>
+               </div>
+               <div className="radio">
+                 <label>
+                   <input type="radio" value="registeredMunicipality"
+                     checked={this.state.selectedOption === 'registeredMunicipality'}
+                     onChange={this.handleOptionChange} />
+                     Kirjoillaolokunta
+                 </label>
+               </div>
+               <div className="radio">
+                 <label>
+                   <input type="radio" value="deathProvince"
+                     checked={this.state.selectedOption === 'deathProvince'}
+                     onChange={this.handleOptionChange} />
+                     Kuolinlääni
+                 </label>
+               </div>
+               <div className="radio">
+                 <label>
+                   <input type="radio" value="deathMunicipality"
+                     checked={this.state.selectedOption === 'deathMunicipality'}
+                     onChange={this.handleOptionChange} />
+                     Kuolinkunta
                  </label>
                </div>
              </form>

@@ -18,12 +18,4 @@ export const prefixes = `
   PREFIX siso-schema: <http://ldf.fi/siso/schema/>
   PREFIX text: <http://jena.apache.org/text#>
 
-
-
-
-
-
-
-
-
   `;
