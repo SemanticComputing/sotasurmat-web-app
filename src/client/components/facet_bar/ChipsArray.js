@@ -57,10 +57,15 @@ class ChipsArray extends React.Component {
             key = item.value;
             valueLabel = item.value;
           }
+          // if (item.filterType === 'timespanFilter') {
+          //   key = item.facetID;
+          //   valueLabel = `${this.ISOStringToYear(item.value.start)} to
+          //     ${this.ISOStringToYear(item.value.end)}`;
+          // }
           if (item.filterType === 'timespanFilter') {
             key = item.facetID;
-            valueLabel = `${this.ISOStringToYear(item.value.start)} to
-              ${this.ISOStringToYear(item.value.end)}`;
+            valueLabel = `${item.value.start} to
+              ${item.value.end}`;
           }
           return (
             <Chip

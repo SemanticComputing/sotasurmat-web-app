@@ -48,15 +48,15 @@ class DateRangeSelector extends React.Component {
 
   handleToChange(to) {
     this.setState({ to }, this.showFromMonth);
-    this.updateValues();
+    this.updateValues(to);
     //console.log(moment(this.state.from).format('YYYY[-]MM[-]DD'))
     //console.log(moment(to).format('YYYY[-]MM[-]DD'))
   }
 
-  updateValues() {
+  updateValues(to) {
     let values = [];
     values[0] = moment(this.state.from).format('YYYY[-]MM[-]DD');
-    values[1] = moment(this.state.to).format('YYYY[-]MM[-]DD');
+    values[1] = moment(to).format('YYYY[-]MM[-]DD');
     this.props.updateFacetOption({
       facetClass: this.props.facetClass,
       facetID: this.props.facetID,

@@ -149,6 +149,16 @@ export const facetConfigs = {
       endProperty: 'crm:P82b_end_of_the_end',
       type: 'timespan',
     },
+    deathDateSpan: {
+      id: 'deathDateSpan',
+      facetValueFilter: '',
+      sortByAscPredicate: 'siso-schema:death_time/crm:P82a_begin_of_the_begin',
+      sortByDescPredicate: 'siso-schema:death_time/crm:P82b_end_of_the_end',
+      predicate: 'siso-schema:death_time',
+      startProperty: 'crm:P82a_begin_of_the_begin',
+      endProperty: 'crm:P82b_end_of_the_end',
+      type: 'timespan',
+    },
   },
   battles: {
     facetClass: 'siso-schema:Battle',
