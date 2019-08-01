@@ -34,8 +34,8 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
-    birthDate: {
-      id: 'birthDate',
+    birthDateSpan: {
+      id: 'birthDateSpan',
       label: 'syntymäpäivä',
       //predicate: defined in backend
       distinctValueCount: 0,
@@ -50,7 +50,7 @@ export const INITIAL_STATE = {
       containerClass: 'three',
       filterType: 'dateFilter',
       min: '1800-01-01',
-      max: '1922-31-12',
+      max: '1922-12-31',
       timespanFilter: null,
       type: 'date'
     },

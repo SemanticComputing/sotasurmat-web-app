@@ -48,6 +48,7 @@ export const generateConstraintsBlock = ({
   }
   constraintsArr.sort((a, b) => a.priority - b.priority);
   constraintsArr.map(c => {
+    //console.log(c.filterType)
     switch (c.filterType) {
       case 'textFilter':
         filterStr += generateTextFilter({
@@ -75,6 +76,14 @@ export const generateConstraintsBlock = ({
         });
         break;
       case 'timespanFilter':
+        filterStr += generateTimespanFilter({
+          facetClass: facetClass,
+          facetID: c.id,
+          filterTarget: filterTarget,
+          values: c.values,
+        });
+        break;
+      case 'dateFilter':
         filterStr += generateTimespanFilter({
           facetClass: facetClass,
           facetID: c.id,

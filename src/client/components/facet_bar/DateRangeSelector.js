@@ -19,18 +19,18 @@ const styles = theme => ({
 });
 
 class DateRangeSelector extends React.Component {
+
   constructor(props) {
     super(props);
     this.handleFromChange = this.handleFromChange.bind(this);
     this.handleToChange = this.handleToChange.bind(this);
     this.state = {
-      startDate: moment('1914-01-01'),
-      endDate: moment('1922-12-31'),
-      from: undefined,
-      to: undefined,
+      from: new Date(this.props.facet.min),
+      to: new Date(this.props.facet.max),
       locale: 'fi',
     };
   }
+
   showFromMonth() {
     const { from, to } = this.state;
     if (!from) {
@@ -40,13 +40,32 @@ class DateRangeSelector extends React.Component {
       this.to.getDayPicker().showMonth(from);
     }
   }
+
   handleFromChange(from) {
     // Change the from date and focus the "to" input field
     this.setState({ from });
   }
+
   handleToChange(to) {
     this.setState({ to }, this.showFromMonth);
+    this.updateValues();
+    //console.log(moment(this.state.from).format('YYYY[-]MM[-]DD'))
+    //console.log(moment(to).format('YYYY[-]MM[-]DD'))
   }
+
+  updateValues() {
+    let values = [];
+    values[0] = moment(this.state.from).format('YYYY[-]MM[-]DD');
+    values[1] = moment(this.state.to).format('YYYY[-]MM[-]DD');
+    this.props.updateFacetOption({
+      facetClass: this.props.facetClass,
+      facetID: this.props.facetID,
+      option: this.props.facet.filterType,
+      value: values
+    });
+    //console.log(values)
+  }
+
   render() {
     const { from, to } = this.state;
     const modifiers = { start: from, end: to };

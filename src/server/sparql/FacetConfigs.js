@@ -139,6 +139,16 @@ export const facetConfigs = {
       predicate: 'siso-schema:death_country',
       parentPredicate: 'siso-schema:death_country/skos:broader+',
     },
+    birthDateSpan: {
+      id: 'birthDateSpan',
+      facetValueFilter: '',
+      sortByAscPredicate: 'siso-schema:birth_time/crm:P82a_begin_of_the_begin',
+      sortByDescPredicate: 'siso-schema:birth_time/crm:P82b_end_of_the_end',
+      predicate: 'siso-schema:birth_time',
+      startProperty: 'crm:P82a_begin_of_the_begin',
+      endProperty: 'crm:P82b_end_of_the_end',
+      type: 'timespan',
+    },
   },
   battles: {
     facetClass: 'siso-schema:Battle',
