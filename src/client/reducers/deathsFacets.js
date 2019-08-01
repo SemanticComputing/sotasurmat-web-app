@@ -34,6 +34,26 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
+    birthDate: {
+      id: 'birthDate',
+      label: 'syntymäpäivä',
+      //predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: null,
+      sortDirection: null,
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'three',
+      filterType: 'dateFilter',
+      min: '1800-01-01',
+      max: '1922-31-12',
+      timespanFilter: null,
+      type: 'date'
+    },
     birthTimespan: {
       id: 'birthTimespan',
       label: 'syntymävuosi',
