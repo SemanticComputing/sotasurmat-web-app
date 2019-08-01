@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-//import { formatDate, parseDate } from 'react-day-picker/moment';
+import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'moment/locale/fi';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -83,6 +83,8 @@ class DateRangeSelector extends React.Component {
         <DayPickerInput
           value={from}
           placeholder={min}
+          formatDate={formatDate}
+          parseDate={parseDate}
           dayPickerProps={{
             selectedDays: [from, { from, to }],
             disabledDays: { after: to },
@@ -99,6 +101,8 @@ class DateRangeSelector extends React.Component {
         —{' '}
         <span className="InputFromTo-to">
           <DayPickerInput
+            formatDate={formatDate}
+            parseDate={parseDate}
             ref={el => (this.to = el)}
             value={to}
             placeholder={max}
