@@ -19,6 +19,9 @@ const styles = theme => ({
     width: '100%',
     height: '100%'
   },
+  facetContainer: {
+    marginBottom: theme.spacing.unit,
+  },
   facetInfoContainer: {
     padding: theme.spacing(1),
     borderBottomLeftRadius: 0,
@@ -155,21 +158,9 @@ class FacetBar extends React.Component {
         break;
     }
     let isActive = this.state.activeFacets.has(facetID);
-    return(
-      <ExpansionPanel
-        key={facetID}
-        expanded={isActive}
-      >
-        <ExpansionPanelSummary
-          classes={{
-            root: classes.expansionPanelSummaryRoot,
-            content: classes.expansionPanelSummaryContent
-          }}
-          expandIcon={<ExpandMoreIcon />}
-          IconButtonProps={{ onClick: this.handleExpandButtonOnClick(facetID) }}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
+    if (facet.filterType == 'textFilter' || facet.filterType == 'dateFilter') {
+      return(
+        <Paper className={classes.facetContainer}>
           <FacetHeader
             facetID={facetID}
             facet={facet}
@@ -179,13 +170,43 @@ class FacetBar extends React.Component {
             fetchFacet={this.props.fetchFacet}
             updateFacetOption={this.props.updateFacetOption}
           />
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails
-          className={clsx(classes[facet.containerClass], classes.expansionPanelDetails)}>
           {facetComponent}
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    );
+        </Paper>
+      );
+    }
+    else {
+      return(
+        <ExpansionPanel
+          key={facetID}
+          expanded={isActive}
+        >
+          <ExpansionPanelSummary
+            classes={{
+              root: classes.expansionPanelSummaryRoot,
+              content: classes.expansionPanelSummaryContent
+            }}
+            expandIcon={<ExpandMoreIcon />}
+            IconButtonProps={{ onClick: this.handleExpandButtonOnClick(facetID) }}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <FacetHeader
+              facetID={facetID}
+              facet={facet}
+              isActive={isActive}
+              facetClass={this.props.facetClass}
+              resultClass={this.props.resultClass}
+              fetchFacet={this.props.fetchFacet}
+              updateFacetOption={this.props.updateFacetOption}
+            />
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails
+            className={clsx(classes[facet.containerClass], classes.expansionPanelDetails)}>
+            {facetComponent}
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      );
+    }
   }
 
   render() {

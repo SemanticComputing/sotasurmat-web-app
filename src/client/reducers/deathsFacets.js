@@ -36,7 +36,7 @@ export const INITIAL_STATE = {
     },
     birthDateSpan: {
       id: 'birthDateSpan',
-      label: 'syntymäpäivä',
+      label: 'Syntymäpäivä',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -56,7 +56,7 @@ export const INITIAL_STATE = {
     },
     deathDateSpan: {
       id: 'deathDateSpan',
-      label: 'kuolinpäivä',
+      label: 'Kuolinpäivä',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
