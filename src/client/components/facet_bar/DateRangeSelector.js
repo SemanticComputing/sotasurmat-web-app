@@ -1,3 +1,4 @@
+
 // Basewd on the example from https://react-day-picker.js.org/examples/input-from-to
 
 import React from 'react';
@@ -54,6 +55,9 @@ class DateRangeSelector extends React.Component {
   }
 
   updateValues(to) {
+    if (to == undefined || !moment(to).isValid()) {
+      return;
+    }
     let values = [];
     values[0] = moment(this.state.from).format('YYYY[-]MM[-]DD');
     values[1] = moment(to).format('YYYY[-]MM[-]DD');
@@ -115,7 +119,8 @@ class DateRangeSelector extends React.Component {
               numberOfMonths: 1,
               initialMonth: new Date(1922, 11),
               localeUtils: MomentLocaleUtils,
-              locale: 'fi'
+              locale: 'fi',
+              onDayClick: () => this.to.getInput().focus(),
             }}
             onDayChange={this.handleToChange}
           />
