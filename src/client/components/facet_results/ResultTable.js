@@ -181,6 +181,7 @@ class ResultTable extends React.Component {
           minWidth={column.minWidth}
           container='cell'
           expanded={expanded}
+          resultClass={this.props.resultClass}
         />
       );
     });

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import { ISOStringToDate } from './Dates';
 import { orderBy, has } from 'lodash';
+import { Link } from 'react-router-dom';
 
 const styles = () => ({
   valueList: {
@@ -32,6 +33,10 @@ const ObjectList = props => {
             : firstValue.prefLabel}
           {isArray && '...'}
         </span>
+      );
+    } else if (props.resultClass == 'deaths'){
+      return (
+        <Link to={`/sotasurmat/surmatut/henkilot/${firstValue.dataProviderUrl.replace('http://ldf.fi/siso/death_records/victim_', '')}`}>{Array.isArray(firstValue.prefLabel) ? firstValue.prefLabel[0] : firstValue.prefLabel}</Link>
       );
     } else {
       return (
@@ -124,6 +129,7 @@ const ObjectList = props => {
 };
 
 ObjectList.propTypes = {
+  resultClass: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   makeLink: PropTypes.bool.isRequired,

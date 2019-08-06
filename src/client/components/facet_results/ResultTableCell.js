@@ -99,6 +99,7 @@ const ResultTableCell = props => {
           sortValues={sortValues}
           numberedList={numberedList}
           expanded={expanded}
+          resultClass={this.props.resultClass}
         />;
       }
       cell.map(item => {
@@ -132,6 +133,7 @@ const ResultTableCell = props => {
           sortValues={sortValues}
           numberedList={numberedList}
           expanded={expanded}
+          resultClass={props.resultClass}
         />;
       }
       return (
@@ -141,7 +143,7 @@ const ResultTableCell = props => {
   };
 
   const { data, valueType, makeLink, sortValues, numberedList, minWidth,
-    container, columnId, expanded } = props;
+    container, columnId, expanded, resultClass } = props;
   let cellContent = null;
   let cellStyle = minWidth == null ? {} : { minWidth: minWidth };
   switch (valueType) {
@@ -155,13 +157,14 @@ const ResultTableCell = props => {
           numberedList={numberedList}
           columnId={columnId}
           expanded={expanded}
+          resultClass={props.resultClass}
         />;
       break;
     case 'string':
       cellContent = stringListRenderer(data);
       break;
     case 'owner':
-      cellContent = ownerRenderer(data, makeLink, sortValues, numberedList, expanded);
+      cellContent = ownerRenderer(data, makeLink, sortValues, numberedList, expanded, resultClass);
       break;
   }
   if (container === 'div') {
@@ -189,7 +192,8 @@ ResultTableCell.propTypes = {
   sortValues: PropTypes.bool.isRequired,
   numberedList: PropTypes.bool.isRequired,
   minWidth: PropTypes.number,
-  expanded: PropTypes.bool.isRequired
+  expanded: PropTypes.bool.isRequired,
+  resultClass: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(ResultTableCell);
