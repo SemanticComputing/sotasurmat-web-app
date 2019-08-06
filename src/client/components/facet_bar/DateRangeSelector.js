@@ -120,7 +120,6 @@ class DateRangeSelector extends React.Component {
               initialMonth: new Date(1922, 11),
               localeUtils: MomentLocaleUtils,
               locale: 'fi',
-              onDayClick: () => this.to.getInput().focus(),
             }}
             onDayChange={this.handleToChange}
           />

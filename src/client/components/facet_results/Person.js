@@ -45,7 +45,7 @@ class Person extends React.Component {
   render() {
     //const { data } = this.props;
     const instance = this.props.data.instance;
-    console.log(instance);
+    //console.log(instance);
     if (instance.prefLabel == null || this.props.data.fetching) {
       return (
         <div>

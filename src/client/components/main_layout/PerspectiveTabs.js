@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
 import RedoIcon from '@material-ui/icons/Redo';
+import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import PieChartIcon from '@material-ui/icons/PieChart';
@@ -57,6 +58,9 @@ class PerspectiveTabs extends React.Component {
         break;
       case 'LineChart':
         icon = <LineChartIcon />;
+        break;
+      case 'Person':
+        icon = <PersonIcon />;
         break;
     }
     return icon;
