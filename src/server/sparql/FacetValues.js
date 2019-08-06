@@ -19,12 +19,13 @@ import {
   mapTimespanFacet
 } from './Mappers';
 
-export const getFacet = ({
+export const getFacet = async ({
   facetClass,
   facetID,
   sortBy,
   sortDirection,
   constraints,
+  resultFormat
 }) => {
   const facetConfig = facetConfigs[facetClass][facetID];
   // choose query template and result mapper:
@@ -102,10 +103,16 @@ export const getFacet = ({
     q = q.replace('<START_PROPERTY>', facetConfig.startProperty);
     q = q.replace('<END_PROPERTY>', facetConfig.endProperty);
   }
-  // if (facetID == 'productionPlace') {
-  //   console.log(prefixes + q)
-  // }
-  return runSelectQuery(prefixes + q, endpoint, mapper);
+  const response = await runSelectQuery(prefixes + q, endpoint, mapper, resultFormat);
+  return({
+    facetClass: facetClass,
+    id: facetID,
+    data: response.data,
+    flatData: response.flatData || null,
+    min: response.min || null,
+    max: response.max || null,
+    sparqlQuery: response.sparqlQuery
+  });
 };
 
 const generateSelectedBlock = ({

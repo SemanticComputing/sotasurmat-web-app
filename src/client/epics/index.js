@@ -58,7 +58,13 @@ const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
     const requestUrl = `${apiUrl}${resultClass}/paginated?${params}`;
     // https://rxjs-dev.firebaseapp.com/api/ajax/ajax
     return ajax.getJSON(requestUrl).pipe(
-      map(response => updatePaginatedResults({ resultClass: resultClass, data: response })),
+      map(response => updatePaginatedResults({
+        resultClass: response.resultClass,
+        page: response.page,
+        pagesize: response.pagesize,
+        data: response.data,
+        sparqlQuery: response.sparqlQuery
+      })),
       // https://redux-observable.js.org/docs/recipes/ErrorHandling.html
       catchError(error => of({
         type: FETCH_PAGINATED_RESULTS_FAILED,
@@ -89,7 +95,11 @@ const fetchResultsEpic = (action$, state$) => action$.pipe(
     });
     const requestUrl = `${apiUrl}${resultClass}/all?${params}`;
     return ajax.getJSON(requestUrl).pipe(
-      map(response => updateResults({ resultClass: resultClass, data: response })),
+      map(response => updateResults({
+        resultClass: resultClass,
+        data: response.data,
+        sparqlQuery: response.sparqlQuery
+      })),
       catchError(error => of({
         type: FETCH_RESULTS_FAILED,
         resultClass: resultClass,
@@ -119,7 +129,11 @@ const fetchResultCountEpic = (action$, state$) => action$.pipe(
     });
     const requestUrl = `${apiUrl}${resultClass}/count?${params}`;
     return ajax.getJSON(requestUrl).pipe(
-      map(response => updateResultCount({ resultClass: resultClass, count: response.count })),
+      map(response => updateResultCount({
+        resultClass: response.resultClass,
+        data: response.data,
+        sparqlQuery: response.sparqlQuery
+      })),
       catchError(error => of({
         type: FETCH_RESULT_COUNT_FAILED,
         resultClass: resultClass,
@@ -182,7 +196,11 @@ const fetchByURIEpic = (action$, state$) => action$.pipe(
     });
     const requestUrl = `${apiUrl}${resultClass}/instance/${encodeURIComponent(uri)}?${params}`;
     return ajax.getJSON(requestUrl).pipe(
-      map(response => updateInstance({ resultClass: resultClass, instance: response })),
+      map(response => updateInstance({
+        resultClass: resultClass,
+        data: response.data,
+        sparqlQuery: response.sparqlQuery
+      })),
       catchError(error => of({
         type: FETCH_BY_URI_FAILED,
         resultClass: resultClass,
@@ -218,11 +236,9 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
       map(res => updateFacetValues({
         facetClass: facetClass,
         id: facetID,
-        distinctValueCount: res.distinctValueCount || 0,
-        values: res.values || [],
-        flatValues: res.flatValues || [],
-        min: res.min || null,
-        max: res.max || null
+        data: res.data || [],
+        flatData: res.flatData || [],
+        sparqlQuery: res.sparqlQuery
       })),
       catchError(error => of({
         type: FETCH_FACET_FAILED,

@@ -10,9 +10,7 @@ import {
 import { facetConfigs } from './FacetConfigs';
 import { mapCount, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
-import {
-  generateConstraintsBlock,
-} from './Filters';
+import { generateConstraintsBlock } from './Filters';
 
 export const getPaginatedResults = async ({
   resultClass,
@@ -20,28 +18,37 @@ export const getPaginatedResults = async ({
   pagesize,
   constraints,
   sortBy,
-  sortDirection
+  sortDirection,
+  resultFormat
 }) => {
-  const data = await getPaginatedData({
+  const response = await getPaginatedData({
     resultClass,
     page,
     pagesize,
     constraints,
     sortBy,
-    sortDirection
+    sortDirection,
+    resultFormat
   });
-  return {
-    pagesize: pagesize,
-    page: page,
-    results: data
-  };
+  if (resultFormat === 'json') {
+    return {
+      resultClass: resultClass,
+      page: page,
+      pagesize: pagesize,
+      data: response.data,
+      sparqlQuery: response.sparqlQuery
+    };
+  } else {
+    return response;
+  }
 };
 
 export const getAllResults = ({
   // resultClass, // TODO: handle other classes than manuscripts
   facetClass,
   constraints,
-  variant
+  variant,
+  resultFormat
 }) => {
   let q = '';
   let filterTarget = '';
@@ -66,6 +73,11 @@ export const getAllResults = ({
       mapper = mapCountGroups;
       filterTarget = 'id';
       break;
+    case 'actorPlaces':
+      q = actorPlacesQuery;
+      filterTarget = 'actor__id';
+      mapper = mapPlaces;
+      break;
   }
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters');
@@ -83,9 +95,10 @@ export const getAllResults = ({
   return runSelectQuery(prefixes + q, endpoint, mapper);
 };
 
-export const getResultCount = ({
+export const getResultCount = async ({
   resultClass,
-  constraints
+  constraints,
+  resultFormat
 }) => {
   let q = countQuery;
   q = q.replace('<FACET_CLASS>', facetConfigs[resultClass].facetClass);
@@ -100,7 +113,12 @@ export const getResultCount = ({
       facetID: null
     }));
   }
-  return runSelectQuery(prefixes + q, endpoint, mapCount);
+  const response = await runSelectQuery(prefixes + q, endpoint, mapCount, resultFormat);
+  return({
+    resultClass: resultClass,
+    data: response.data,
+    sparqlQuery: response.sparqlQuery
+  });
 };
 
 const getPaginatedData = ({
@@ -109,7 +127,8 @@ const getPaginatedData = ({
   pagesize,
   constraints,
   sortBy,
-  sortDirection
+  sortDirection,
+  resultFormat
 }) => {
   let q = facetResultSetQuery;
   //console.log(resultClass)
@@ -155,16 +174,17 @@ const getPaginatedData = ({
       resultSetProperties = '';
   }
   q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties);
-  // console.log(prefixes + q)
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList);
+  // console.log(prefixes + q);
+  return runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
 };
 
 export const getByURI = ({
   resultClass,
   facetClass,
   constraints,
-  //variant,
-  uri
+  variant,
+  uri,
+  resultFormat
 }) => {
   let q;
   switch (resultClass) {
@@ -187,8 +207,5 @@ export const getByURI = ({
   //    facetID: null}));
   //}
   q = q.replace('<ID>', `<${uri}>`);
-  // if (variant === 'productionPlaces') {
-  //   console.log(prefixes + q)
-  // }
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList);
+  return runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
 };

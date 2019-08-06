@@ -24,7 +24,8 @@ export const fetchResultsFailed = state => {
 export const updateInstance = (state, action) => {
   return {
     ...state,
-    instance: action.instance,
+    instance: action.data[0], // data array has always 1 item
+    sparqlQuery: action.sparqlQuery,
     fetching: false
   };
 };
@@ -147,7 +148,7 @@ const updateFacetFilter = (state, action) => {
 export const updateResultCount = (state, action) => {
   return {
     ...state,
-    resultCount: parseInt(action.count),
+    resultCount: parseInt(action.data),
     fetchingResultCount: false,
   };
 };
@@ -156,7 +157,7 @@ export const updateResults = (state, action) => {
   return {
     ...state,
     resultsUpdateID: ++state.resultsUpdateID,
-    results: action.data.results,
+    results: action.data,
     fetching: false,
   };
 };
@@ -165,7 +166,8 @@ export const updatePaginatedResults = (state, action) => {
   return {
     ...state,
     resultsUpdateID: ++state.resultsUpdateID,
-    paginatedResults: action.data.results || [],
+    paginatedResults: action.data || [],
+    sparqlQuery: action.sparqlQuery,
     fetching: false
   };
 };
@@ -205,8 +207,8 @@ export const updateFacetValues = (state, action) => {
         ...state.facets,
         [ action.id ]: {
           ...state.facets[action.id],
-          min: action.min || null,
-          max: action.max || null,
+          min: action.data.min || null,
+          max: action.data.max || null,
           isFetching: false
         }
       }
@@ -218,9 +220,9 @@ export const updateFacetValues = (state, action) => {
         ...state.facets,
         [ action.id ]: {
           ...state.facets[action.id],
-          distinctValueCount: action.distinctValueCount || 0,
-          values: action.values || [],
-          flatValues: action.flatValues || [],
+          distinctValueCount: action.data.length || 0,
+          values: action.data || [],
+          flatValues: action.flatData || [],
           isFetching: false
         }
       }

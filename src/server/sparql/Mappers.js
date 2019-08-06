@@ -7,12 +7,12 @@ export const mapPlaces = sparqlBindings => {
   const results = sparqlBindings.map(b => {
     return {
       id: b.id.value,
-      label: b.label.value,
+      prefLabel: b.prefLabel.value,
       lat: has(b, 'lat',) ? b.lat.value : 'Undefined',
       long: has(b, 'long',) ? b.long.value : 'Undefined',
       source: has(b, 'source',) ? b.source.value : 'Undefined',
-      manuscript: has(b, 'manuscript',) ? b.manuscript.value.split(',') : 'Undefined',
-      manuscriptCount: has(b, 'manuscriptCount',) ? b.manuscriptCount.value : 'Undefined',
+      dataProviderUrl: has(b, 'dataProviderUrl',) ? b.dataProviderUrl.value : 'Undefined',
+      instanceCount: has(b, 'instanceCount',) ? b.instanceCount.value : 'Undefined',
     };
   });
   return results;
@@ -60,10 +60,7 @@ export const mapFacet = sparqlBindings => {
   if (sparqlBindings.length > 0) {
     results = mapFacetValues(sparqlBindings);
   }
-  return {
-    distinctValueCount: results.length,
-    values: results
-  };
+  return results;
 };
 
 export const mapHierarchicalFacet = sparqlBindings => {
@@ -77,11 +74,7 @@ export const mapHierarchicalFacet = sparqlBindings => {
   });
   treeData = recursiveSort(treeData);
   treeData.forEach(node => sumUpAndSelectChildren(node));
-  return {
-    distinctValueCount: results.length,
-    flatValues: flatResults,
-    values: treeData
-  };
+  return treeData;
 };
 
 export const mapTimespanFacet = sparqlBindings => {

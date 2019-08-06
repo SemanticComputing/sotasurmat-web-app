@@ -1,24 +1,35 @@
 import axios from 'axios';
 import querystring from 'querystring';
-
-const defaultSelectHeaders = {
-  'Content-Type': 'application/x-www-form-urlencoded',
-  'Accept': 'application/sparql-results+json; charset=utf-8'
-};
 // const defaultConstructHeaders = {
 //   'Content-Type': 'application/x-www-form-urlencoded',
 //   'Accept': 'text/turtle'
 // };
 
-export const runSelectQuery = async (query, endpoint, resultMapper) => {
+export const runSelectQuery = async (query, endpoint, resultMapper, resultFormat) => {
+  let MIMEtype = resultFormat === 'json'
+    ? 'application/sparql-results+json; charset=utf-8'
+    : 'text/csv; charset=utf-8';
+  const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Accept': MIMEtype
+  };
+  const q = querystring.stringify({ query });
   try {
     const response = await axios({
       method: 'post',
-      headers: defaultSelectHeaders,
+      headers: headers,
       url: endpoint,
-      data: querystring.stringify({ query }),
+      data: q,
     });
-    return resultMapper(response.data.results.bindings);
+    if (resultFormat === 'json') {
+      const mappedResults = resultMapper(response.data.results.bindings);
+      return {
+        data: mappedResults,
+        sparqlQuery: query
+      };
+    } else {
+      return response.data;
+    }
   } catch(error) {
     if (error.response) {
     // The request was made and the server responded with a status code
