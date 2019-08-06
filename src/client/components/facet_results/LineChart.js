@@ -157,7 +157,6 @@ class LineChart extends React.Component {
   }
 
   makeArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
-    //console.log(dataArray);
     let newArray = [];
     let titleRow = [];
     //const years = dataArray.map(row => row.year);
@@ -291,6 +290,11 @@ class LineChart extends React.Component {
     let infoString = '';
 
     let results = this.props.data.results;
+    if (results == undefined) {
+      return (
+        <p>Virhe kaavion tulosten latautumisessa!</p>
+      );
+    }
     if (this.state.variant == 'birthYearCount') {
       title = 'Vuosi';
       explanation = 'Henkilöiden määrä';

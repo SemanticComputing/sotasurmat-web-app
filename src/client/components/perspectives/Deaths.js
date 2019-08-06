@@ -19,11 +19,11 @@ let Deaths = props => {
             value: 0,
             icon: 'CalendarViewDay',
           },
-          [`${props.rootUrl}/surmatut/henkilot`]: {
-            label: 'henkilö',
-            value: 0,
-            icon: 'Person',
-          },
+          // [`${props.rootUrl}/surmatut/henkilot`]: {
+          //   label: 'henkilö',
+          //   value: 1,
+          //   icon: 'Person',
+          // },
           [`${props.rootUrl}/surmatut/pie`]: {
             label: 'piirakkakaavio',
             value: 1,

@@ -50,6 +50,7 @@ export const getAllResults = ({
   variant,
   resultFormat
 }) => {
+  //console.log(variant);
   let q = '';
   let filterTarget = '';
   let mapper = makeObjectList;
@@ -73,11 +74,11 @@ export const getAllResults = ({
       mapper = mapCountGroups;
       filterTarget = 'id';
       break;
-    case 'actorPlaces':
-      q = actorPlacesQuery;
-      filterTarget = 'actor__id';
-      mapper = mapPlaces;
-      break;
+    // case 'actorPlaces':
+    //   q = actorPlacesQuery;
+    //   filterTarget = 'actor__id';
+    //   mapper = mapPlaces;
+    //   break;
   }
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters');
@@ -90,9 +91,9 @@ export const getAllResults = ({
     }));
   }
   //if (variant == 'productionPlaces') {
-  // console.log(prefixes + q);
+  //console.log(prefixes + q);
   // }
-  return runSelectQuery(prefixes + q, endpoint, mapper);
+  return runSelectQuery(prefixes + q, endpoint, mapper, 'json');
 };
 
 export const getResultCount = async ({
