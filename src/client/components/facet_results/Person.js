@@ -38,14 +38,15 @@ class Person extends React.Component {
   }
 
   componentDidMount = () => {
+    console.log('http://ldf.fi/siso/death_records/victim_' + this.props.id)
     const { routeProps } = this.props;
-    this.props.fetchByURI('deaths', 'deaths', 'deaths', 'http://ldf.fi/siso/death_records/victim_' + routeProps.match.params.id,);
+    this.props.fetchByURI('deaths', 'deaths', 'deaths', 'http://ldf.fi/siso/death_records/victim_' + this.props.id,);
   }
 
   render() {
     //const { data } = this.props;
     const instance = this.props.data.instance;
-    //console.log(instance);
+    console.log(instance);
     if (instance.prefLabel == null || this.props.data.fetching) {
       return (
         <div>
@@ -65,11 +66,10 @@ class Person extends React.Component {
 }
 
 Person.propTypes = {
-  classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   routeProps: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
-  results: PropTypes.array,
+  id: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Person);

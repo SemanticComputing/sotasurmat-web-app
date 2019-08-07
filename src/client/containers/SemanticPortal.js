@@ -21,7 +21,7 @@ import FacetBar from '../components/facet_bar/FacetBar';
 import All from '../components/perspectives/All';
 import Deaths from '../components/perspectives/Deaths';
 import Battles from '../components/perspectives/Battles';
-import Person from '../components/perspectives/Person';
+import Death_record from '../components/perspectives/Death_record';
 //import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
@@ -198,11 +198,15 @@ let SemanticPortal = (props) => {
             />
 
             <Route
-              path={`${rootUrl}/henkilot/:id`}
+              path={`${rootUrl}/person/:id`}
               render={routeProps => {
                 return(
-                  <Person
+                  <Death_record
                     routeProps={routeProps}
+                    data={props.deaths}
+                    fetchByURI={fetchByURI}
+                    rootUrl={rootUrl}
+                    updatePage={props.updatePage}
                   />
                 );
               }

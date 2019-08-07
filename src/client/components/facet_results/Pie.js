@@ -195,11 +195,9 @@ class Pie extends React.Component {
 
    return (
      <div className={classes.root}>
-
        <div className="container">
          <div className="row">
            <div className="col-sm-12">
-
              <form>
                <div className="radio">
                  <label>

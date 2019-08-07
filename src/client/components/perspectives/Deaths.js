@@ -19,19 +19,14 @@ let Deaths = props => {
             value: 0,
             icon: 'CalendarViewDay',
           },
-          [`${props.rootUrl}/surmatut/henkilot`]: {
-            label: 'henkilö',
-            value: 1,
-            icon: 'Person',
-          },
           [`${props.rootUrl}/surmatut/pie`]: {
             label: 'piirakkakaavio',
-            value: 2,
+            value: 1,
             icon: 'PieChart',
           },
           [`${props.rootUrl}/surmatut/line`]: {
             label: 'viivakaavio',
-            value: 3,
+            value: 2,
             icon: 'LineChart',
           }
           //},
@@ -115,6 +110,7 @@ let Deaths = props => {
             fetchFacet={props.fetchFacet}
             resultCount={props.deaths.resultCount}
             fetchByURI={props.fetchByURI}
+            id={routeProps.match.params.id}
           />
         }
       />
