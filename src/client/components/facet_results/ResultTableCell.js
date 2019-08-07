@@ -148,7 +148,6 @@ const ResultTableCell = props => {
   let cellStyle = minWidth == null ? {} : { minWidth: minWidth };
   switch (valueType) {
     case 'object':
-    case 'event':
       cellContent =
         <ObjectList
           data={data}
