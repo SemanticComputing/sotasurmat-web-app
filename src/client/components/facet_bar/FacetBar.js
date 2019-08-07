@@ -81,6 +81,7 @@ class FacetBar extends React.Component {
     const { facetUpdateID, updatedFacet, updatedFilter, facets } = this.props.facetData;
     const facet = facets[facetID];
     let facetComponent = null;
+    let isActive = this.state.activeFacets.has(facetID);
     switch (facet.filterType) {
       case 'uriFilter':
       case 'spatialFilter':
@@ -157,7 +158,6 @@ class FacetBar extends React.Component {
         );
         break;
     }
-    let isActive = this.state.activeFacets.has(facetID);
     if (facet.filterType == 'textFilter' || facet.filterType == 'dateFilter') {
       return(
         <Paper className={classes.facetContainer}>
@@ -202,7 +202,7 @@ class FacetBar extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails
             className={clsx(classes[facet.containerClass], classes.expansionPanelDetails)}>
-            {facetComponent}
+            {isActive && facetComponent}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       );
