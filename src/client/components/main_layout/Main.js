@@ -77,8 +77,8 @@ let Main = props => {
     // },
     {
       id: 'taistelut',
-      label: 'Taistepaikkakortisto',
-      desc: 'Tietoa sisällissodan taisteluista lähinnä valkoisen osapuolen näkökulmasta',
+      label: 'Taistelupaikat',
+      desc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
       thumbnail: punainenRintama,
     },
     {
