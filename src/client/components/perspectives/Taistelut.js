@@ -35,7 +35,7 @@ let Taistelut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/piirakkakaavio`}
+        path={`${props.rootUrl}/taistelut/faceted-search/kartta`}
         render={() =>
           <LeafletMap
             results={props.taistelut.results}

@@ -20,7 +20,7 @@ const styles = theme => ({
     height: '100%'
   },
   facetContainer: {
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing(1),
   },
   facetInfoContainer: {
     padding: theme.spacing(1),
@@ -160,7 +160,9 @@ class FacetBar extends React.Component {
     }
     if (facet.filterType == 'textFilter' || facet.filterType == 'dateFilter') {
       return(
-        <Paper className={classes.facetContainer}>
+        <Paper
+          className={classes.facetContainer}
+          key={facetID}>
           <FacetHeader
             facetID={facetID}
             facet={facet}
