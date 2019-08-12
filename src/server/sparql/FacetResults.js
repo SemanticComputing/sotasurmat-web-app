@@ -55,7 +55,7 @@ export const getAllResults = ({
   variant,
   resultFormat
 }) => {
-  //console.log(variant);
+  console.log(variant);
   let q = '';
   let filterTarget = '';
   let mapper = makeObjectList;

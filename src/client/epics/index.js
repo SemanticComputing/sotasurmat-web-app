@@ -119,7 +119,7 @@ const fetchResultCountEpic = (action$, state$) => action$.pipe(
   mergeMap(([action, state]) => {
     const { resultClass, facetClass } = action;
     const params = stateToUrl({
-      facets: state[`${facetClass}Facets`].facets,
+      facets: facetClass == null ? null : state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
       page: null,
       pagesize: null,
