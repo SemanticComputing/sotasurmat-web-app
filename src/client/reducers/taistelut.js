@@ -111,7 +111,7 @@ export const INITIAL_STATE = {
 };
 
 const taistelut = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'battles') {
+  if (action.resultClass === 'taistelut') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:

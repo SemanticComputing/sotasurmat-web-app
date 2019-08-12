@@ -56,7 +56,7 @@ export const INITIAL_STATE = {
 };
 
 const battlesFacets = (state = INITIAL_STATE, action) => {
-  if (action.facetClass === 'battles') {
+  if (action.facetClass === 'taistelut') {
     switch (action.type) {
       case FETCH_FACET:
         return fetchFacet(state, action);

@@ -77,7 +77,6 @@ class HierarchicalFacet extends Component {
   }
 
   componentDidMount = () => {
-    // console.log(`${this.props.facetID} mounted`);
     if (this.props.facet.filterType === 'uriFilter') {
       this.props.fetchFacet({
         facetClass: this.props.facetClass,

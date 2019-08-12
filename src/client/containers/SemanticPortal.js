@@ -128,8 +128,8 @@ let SemanticPortal = (props) => {
         <Taistelut
           rootUrl={rootUrl}
           dates={props.dates}
-          surmatut={props.surmatut}
-          facetData={props.surmatutFacets}
+          taistelut={props.taistelut}
+          facetData={props.taistelutFacets}
           fetchPaginatedResults={props.fetchPaginatedResults}
           fetchResults={props.fetchResults}
           fetchByURI={props.fetchByURI}
@@ -138,7 +138,7 @@ let SemanticPortal = (props) => {
           sortResults={props.sortResults}
           routeProps={routeProps}
           fetchFacet={props.fetchFacet}
-          resultCount={props.surmatut.resultCount}
+          resultCount={props.taistelut.resultCount}
           updateRowsPerPage={props.updateRowsPerPage}
           perspective={perspective}
         />;
@@ -218,7 +218,7 @@ let SemanticPortal = (props) => {
                   }}
                 />
                 <Route
-                  path={`/${perspective.id}/page/:id`}
+                  path={`${rootUrl}/${perspective.id}/page/:id`}
                   render={routeProps => {
                     return (
                       <InstanceHomePage

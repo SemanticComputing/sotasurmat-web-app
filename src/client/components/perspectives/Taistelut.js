@@ -13,11 +13,11 @@ let Taistelut = props => {
         tabs={props.perspective.tabs}
       />
       <Route
-        exact path='/taistelut/faceted-search'
-        render={() => <Redirect to='/taistelut/faceted-search/map' />}
+        exact path={`${props.rootUrl}/taistelut/faceted-search`}
+        render={() => <Redirect to={`${props.rootUrl}/taistelut/faceted-search/lista`} />}
       />
       <Route
-        path={'/taistelut/faceted-search/table'}
+        path={`${props.rootUrl}/taistelut/faceted-search/lista`}
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
@@ -30,12 +30,12 @@ let Taistelut = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
-            perspectiveUrl='taistelut'
+            perspective={props.perspective}
           />
         }
       />
       <Route
-        path={'/taistelut/faceted-search/map'}
+        path={`${props.rootUrl}/taistelut/faceted-search/piirakkakaavio`}
         render={() =>
           <LeafletMap
             results={props.taistelut.results}
@@ -47,7 +47,7 @@ let Taistelut = props => {
             fetchByURI={props.fetchByURI}
             fetching={props.taistelut.fetching}
             mapMode={'cluster'}
-            variant='battletaistelut'
+            variant='battlePlaces'
             showInstanceCountInClusters={false}
           />}
       />
