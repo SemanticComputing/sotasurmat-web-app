@@ -3,7 +3,7 @@
   facet configs
 */
 export const facetConfigs = {
-  deaths: {
+  surmatut: {
     facetClass: 'siso-schema:Death_record',
     prefLabel: {
       id: 'prefLabel',
@@ -160,7 +160,7 @@ export const facetConfigs = {
       type: 'timespan',
     },
   },
-  battles: {
+  taistelut: {
     facetClass: 'siso-schema:Battle',
     prefLabel: {
       id: 'prefLabel',

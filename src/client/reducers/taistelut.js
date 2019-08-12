@@ -10,7 +10,6 @@ import {
   UPDATE_PAGINATED_RESULTS,
   UPDATE_INSTANCE,
   UPDATE_PAGE,
-  UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
 } from '../actions';
 import {
@@ -19,11 +18,10 @@ import {
   fetchResultCount,
   updateSortBy,
   updateResultCount,
-  //updateResults,
+  updateResults,
   updatePaginatedResults,
   updateInstance,
   updatePage,
-  updateRowsPerPage,
 } from './helpers';
 
 export const INITIAL_STATE = {
@@ -34,40 +32,50 @@ export const INITIAL_STATE = {
   instance: {},
   page: -1,
   pagesize: 15,
-  sortBy: 'prefLabel',
+  sortBy: 'startDate',
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
   tableColumns: [
     {
       id: 'prefLabel',
-      label: 'Nimi',
-      desc: `
-        Nimi
-      `,
+      label: 'Taistelun nimi',
+      desc: 'Taistelun nimi',
       valueType: 'object',
       makeLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 100
+      minWidth: 170
     },
     {
-      id: 'party',
-      label: 'Osapuoli',
+      id: 'startDate',
+      label: 'alkupäivä',
       desc: `
-        Osapuoli
+        Taistelun alkupäivä
       `,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 100
+      minWidth: 125
     },
     {
-      id: 'registeredMunicipality',
-      label: 'Kirjoillaolokunta',
+      id: 'endDate',
+      label: 'loppupäivä',
       desc: `
-        Kirjoillaolokunta
+        Taistelun loppupäivä
+      `,
+      valueType: 'object',
+      makeLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 125
+    },
+    {
+      id: 'greaterPlace',
+      label: 'Kunta',
+      desc: `
+        Kunta tai muu suurempi paikka
       `,
       valueType: 'object',
       makeLink: false,
@@ -76,10 +84,10 @@ export const INITIAL_STATE = {
       minWidth: 150
     },
     {
-      id: 'deathMunicipality',
-      label: 'Kuolinkunta',
+      id: 'exactPlace',
+      label: 'Tarkka paikka',
       desc: `
-        Kuolinkunta
+        Taistelun tarkka paikka
       `,
       valueType: 'object',
       makeLink: false,
@@ -88,58 +96,22 @@ export const INITIAL_STATE = {
       minWidth: 150
     },
     {
-      id: 'occupation',
-      label: 'Ammatti',
+      id: 'units',
+      label: 'Yksiköt',
       desc: `
-        Ammatti
+        Taisteluun osallistuneita (lähinnä valkoisten) yksiköitä
       `,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
-    },
-    // {
-    //   id: 'livingMunicipality',
-    //   label: 'Asuinkunta',
-    //   desc: `
-    //     Asuinkunta
-    //   `,
-    //   valueType: 'object',
-    //   makeLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 125
-    // },
-    {
-      id: 'birthDate',
-      label: 'Syntymäpäivä',
-      desc: `
-        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
-    },
-    {
-      id: 'deathDate',
-      label: 'Kuolinpäivä',
-      desc: `
-        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
+      minWidth: 150
     },
   ],
 };
 
-const deaths = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'deaths') {
+const taistelut = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'battles') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -155,19 +127,17 @@ const deaths = (state = INITIAL_STATE, action) => {
       case UPDATE_RESULT_COUNT:
         return updateResultCount(state, action);
       case UPDATE_RESULTS:
-        return  (state, action);
+        return updateResults(state, action);
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:
         return updateInstance(state, action);
       case UPDATE_PAGE:
         return updatePage(state, action);
-      case UPDATE_ROWS_PER_PAGE:
-        return updateRowsPerPage(state, action);
       default:
         return state;
     }
   } else return state;
 };
 
-export default deaths;
+export default taistelut;

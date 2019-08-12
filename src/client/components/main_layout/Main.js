@@ -61,34 +61,10 @@ const styles = theme => ({
   },
 });
 
+const images = {'kalevankangas':kalevankangas, 'punainenRintama':punainenRintama, 'tampereVangit':tampereVangit};
+
 let Main = props => {
   const { classes } = props;
-  const perspectives = [
-    {
-      id: 'surmatut',
-      label: 'Sotasurmat',
-      desc: 'Tietoa vuosina 1914-1922 surmatuista',
-      thumbnail: kalevankangas,
-    },
-    // {
-    //   id: 'collections',
-    //   label: 'Collections',
-    //   desc: ''
-    // },
-    {
-      id: 'taistelut',
-      label: 'Taistelupaikat',
-      desc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
-      thumbnail: punainenRintama,
-    },
-    {
-      id: 'manuscripts3',
-      label: 'Näkymä3',
-      desc: 'Tuleva näkymä',
-      thumbnail: tampereVangit,
-    },
-  ];
-
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
@@ -106,13 +82,13 @@ let Main = props => {
       </div>
       <div className={classNames(classes.layout, classes.cardGrid)}>
         <Grid container spacing={5}>
-          {perspectives.map(perspective =>
+          {props.perspectives.map(perspective =>
             <Grid key={perspective.id} item xs={12} sm={6} md={4}>
               <Card className={classes.card}>
-                <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}`}>
+                <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
                   <CardMedia
                     className={classes.media}
-                    image={perspective.thumbnail}
+                    image={images[perspective.thumbnail]}
                     title={perspective.label}
                   />
                   <CardContent className={classes.cardContent}>
@@ -136,6 +112,7 @@ let Main = props => {
 Main.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
+  perspectives: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(Main);

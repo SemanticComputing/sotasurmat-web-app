@@ -1,6 +1,11 @@
 import { runSelectQuery } from './SparqlApi';
 import { prefixes } from './SparqlQueriesPrefixes';
-import { endpoint, countQuery, facetResultSetQuery } from './SparqlQueriesGeneral';
+import {
+  endpoint,
+  countQuery,
+  facetResultSetQuery,
+  instanceQuery
+} from './SparqlQueriesGeneral';
 import {
   deathsProperties, personQuery, birthYearsQuery, ageQuery, deathDateQuery,
 } from './SparqlQueriesDeaths';
@@ -165,10 +170,10 @@ const getPaginatedData = ({
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`);
   let resultSetProperties;
   switch (resultClass) {
-    case 'deaths':
+    case 'surmatut':
       resultSetProperties = deathsProperties;
       break;
-    case 'battles':
+    case 'taistelut':
       resultSetProperties = battleProperties;
       break;
     default:

@@ -3,42 +3,28 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
-// import Tree from './Tree';
 import LeafletMap from '../facet_results/LeafletMap';
-// import Deck from './Deck';
 
-let Battles = props => {
-  //console.log(props.search.places)
+let Taistelut = props => {
   return (
     <React.Fragment>
       <PerspectiveTabs
         routeProps={props.routeProps}
-        tabs={{
-          [`${props.rootUrl}/taistelut/table`]: {
-            label: 'lista',
-            value: 0,
-            icon: 'CalendarViewDay',
-          },
-          [`${props.rootUrl}/taistelut/map`]: {
-            label: 'kartta',
-            value: 1,
-            icon: 'AddLocation',
-          },
-        }}
+        tabs={props.perspective.tabs}
       />
       <Route
-        exact path={`${props.rootUrl}/taistelut`}
-        render={() => <Redirect to={`${props.rootUrl}/taistelut/table`} />}
+        exact path='/taistelut/faceted-search'
+        render={() => <Redirect to='/taistelut/faceted-search/map' />}
       />
       <Route
-        path={`${props.rootUrl}/taistelut/table`}
+        path={'/taistelut/faceted-search/table'}
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
-            data={props.battles}
+            data={props.taistelut}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='battles'
-            facetClass='battles'
+            resultClass='taistelut'
+            facetClass='taistelut'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
@@ -49,19 +35,19 @@ let Battles = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/taistelut/map`}
+        path={'/taistelut/faceted-search/map'}
         render={() =>
           <LeafletMap
-            results={props.battles.results}
+            results={props.taistelut.results}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='battles'
-            facetClass='battles'
-            instance={props.battles.instance}
+            resultClass='taistelut'
+            facetClass='taistelut'
+            instance={props.taistelut.instance}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
-            fetching={props.battles.fetching}
+            fetching={props.taistelut.fetching}
             mapMode={'cluster'}
-            variant='battlePlaces'
+            variant='battletaistelut'
             showInstanceCountInClusters={false}
           />}
       />
@@ -69,9 +55,9 @@ let Battles = props => {
   );
 };
 
-Battles.propTypes = {
+Taistelut.propTypes = {
   rootUrl: PropTypes.string.isRequired,
-  battles: PropTypes.object.isRequired,
+  taistelut: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
@@ -79,7 +65,8 @@ Battles.propTypes = {
   updatePage: PropTypes.func.isRequired,
   updateRowsPerPage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
-  routeProps: PropTypes.object.isRequired
+  routeProps: PropTypes.object.isRequired,
+  perspective: PropTypes.object.isRequired
 };
 
-export default Battles;
+export default Taistelut;

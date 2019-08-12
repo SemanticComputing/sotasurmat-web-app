@@ -187,7 +187,7 @@ const fetchByURIEpic = (action$, state$) => action$.pipe(
   mergeMap(([action, state]) => {
     const { resultClass, facetClass, variant, uri } = action;
     const params = stateToUrl({
-      facets: state[`${facetClass}Facets`].facets,
+      facets: facetClass == null ? null : state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
       page: null,
       pagesize: null,
@@ -271,36 +271,38 @@ export const stateToUrl = ({
   if (sortBy !== null) { params.sortBy = sortBy; }
   if (sortDirection !== null) { params.sortDirection = sortDirection; }
   if (variant !== null) { params.variant = variant; }
-  let constraints = {};
-  for (const [key, value] of Object.entries(facets)) {
-    if (has(value, 'uriFilter') && value.uriFilter !== null) {
-      constraints[key] = {
-        filterType: value.filterType,
-        priority: value.priority,
-        values: Object.keys(value.uriFilter)
-      };
-    } else if (has(value, 'spatialFilter') && value.spatialFilter !== null) {
-      constraints[key] = {
-        filterType: value.filterType,
-        priority: value.priority,
-        values: boundsToValues(value.spatialFilter._bounds)
-      };
-    }  else if (has(value, 'textFilter') && value.textFilter !== null) {
-      constraints[key] = {
-        filterType: value.filterType,
-        priority: value.priority,
-        values: value.textFilter
-      };
-    } else if (has(value, 'timespanFilter') && value.timespanFilter !== null) {
-      constraints[key] = {
-        filterType: value.filterType,
-        priority: value.priority,
-        values: value.timespanFilter
-      };
+  if (facets !== null) {
+    let constraints = {};
+    for (const [key, value] of Object.entries(facets)) {
+      if (has(value, 'uriFilter') && value.uriFilter !== null) {
+        constraints[key] = {
+          filterType: value.filterType,
+          priority: value.priority,
+          values: Object.keys(value.uriFilter)
+        };
+      } else if (has(value, 'spatialFilter') && value.spatialFilter !== null) {
+        constraints[key] = {
+          filterType: value.filterType,
+          priority: value.priority,
+          values: boundsToValues(value.spatialFilter._bounds)
+        };
+      }  else if (has(value, 'textFilter') && value.textFilter !== null) {
+        constraints[key] = {
+          filterType: value.filterType,
+          priority: value.priority,
+          values: value.textFilter
+        };
+      } else if (has(value, 'timespanFilter') && value.timespanFilter !== null) {
+        constraints[key] = {
+          filterType: value.filterType,
+          priority: value.priority,
+          values: value.timespanFilter
+        };
+      }
     }
-  }
-  if (Object.keys(constraints).length > 0) {
-    params.constraints = JSON.stringify(constraints);
+    if (Object.keys(constraints).length > 0) {
+      params.constraints = JSON.stringify(constraints);
+    }
   }
   return querystring.stringify(params);
 };

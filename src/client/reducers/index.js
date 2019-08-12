@@ -3,17 +3,17 @@ import {reducer as toastrReducer} from 'react-redux-toastr';
 import {createResponsiveStateReducer} from 'redux-responsive';
 import error from './error';
 import clientSideFacetedSearch from './clientSideFacetedSearch';
-import deaths from './deaths';
-import deathsFacets from './deathsFacets';
-import battles from './battles';
-import battlesFacets from './battlesFacets';
+import surmatut from './surmatut';
+import surmatutFacets from './surmatutFacets';
+import taistelut from './taistelut';
+import taistelutFacets from './taistelutFacets';
 import dates from './dates';
 
 const reducer = combineReducers({
-  deaths,
-  deathsFacets,
-  battles,
-  battlesFacets,
+  surmatut,
+  surmatutFacets,
+  taistelut,
+  taistelutFacets,
   clientSideFacetedSearch,
   error,
   dates,

@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 import compose from 'recompose/compose';
 import { Route } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import TopBar from '../components/main_layout/TopBar';
 import Main from '../components/main_layout/Main';
 import Footer from '../components/main_layout/Footer';
@@ -19,9 +18,10 @@ import FacetBar from '../components/facet_bar/FacetBar';
 //import Places from '../components//perspectives/Places';
 //import Actors from '../components//perspectives/Actors';
 import All from '../components/perspectives/All';
-import Deaths from '../components/perspectives/Deaths';
-import Battles from '../components/perspectives/Battles';
-import Death_record from '../components/perspectives/Death_record';
+import Surmatut from '../components/perspectives/Surmatut';
+import Taistelut from '../components/perspectives/Taistelut';
+import InstanceHomePage from '../components/main_layout/InstanceHomePage';
+import { perspectiveArr } from '../components/perspectives/PerspectiveArray';
 //import punainenRintama from '../img/punainenRintama.jpg';
 
 import {
@@ -97,7 +97,59 @@ const styles = theme => ({
 
 let SemanticPortal = (props) => {
   const { classes, /* browser */ error } = props;
+
   const rootUrl = '/sotasurmat';
+
+  const renderPerspective = (perspective, routeProps) => {
+    let perspectiveElement = null;
+    switch(perspective.id) {
+      case 'surmatut':
+        perspectiveElement =
+        <Surmatut
+          rootUrl={rootUrl}
+          dates={props.dates}
+          surmatut={props.surmatut}
+          facetData={props.surmatutFacets}
+          fetchPaginatedResults={props.fetchPaginatedResults}
+          fetchResults={props.fetchResults}
+          fetchByURI={props.fetchByURI}
+          updatePage={props.updatePage}
+          updateFacetOption={props.updateFacetOption}
+          sortResults={props.sortResults}
+          routeProps={routeProps}
+          fetchFacet={props.fetchFacet}
+          resultCount={props.surmatut.resultCount}
+          updateRowsPerPage={props.updateRowsPerPage}
+          perspective={perspective}
+        />;
+        break;
+      case 'taistelut':
+        perspectiveElement =
+        <Taistelut
+          rootUrl={rootUrl}
+          dates={props.dates}
+          surmatut={props.surmatut}
+          facetData={props.surmatutFacets}
+          fetchPaginatedResults={props.fetchPaginatedResults}
+          fetchResults={props.fetchResults}
+          fetchByURI={props.fetchByURI}
+          updatePage={props.updatePage}
+          updateFacetOption={props.updateFacetOption}
+          sortResults={props.sortResults}
+          routeProps={routeProps}
+          fetchFacet={props.fetchFacet}
+          resultCount={props.surmatut.resultCount}
+          updateRowsPerPage={props.updateRowsPerPage}
+          perspective={perspective}
+        />;
+        break;
+      default:
+        perspectiveElement = <div></div>;
+        break;
+    }
+    return perspectiveElement;
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
@@ -115,105 +167,13 @@ let SemanticPortal = (props) => {
               render={() =>
                 <React.Fragment>
                   <Main
-                    rootUrl={rootUrl}/>
+                    rootUrl={rootUrl}
+                    perspectives={perspectiveArr}
+                  />
                   <Footer />
                 </React.Fragment>
               }
             />
-            <Route
-              path={`${rootUrl}/surmatut`}
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                    <FacetBar
-                      facetData={props.deathsFacets}
-                      facetClass='deaths'
-                      resultClass='deaths'
-                      fetchingResultCount={props.deaths.fetchingResultCount}
-                      resultCount={props.deaths.resultCount}
-                      fetchFacet={props.fetchFacet}
-                      fetchResultCount={props.fetchResultCount}
-                      updateFacetOption={props.updateFacetOption}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <Deaths
-                      rootUrl={rootUrl}
-                      dates={props.dates}
-                      deaths={props.deaths}
-                      facetData={props.deathsFacets}
-                      fetchPaginatedResults={props.fetchPaginatedResults}
-                      fetchResults={props.fetchResults}
-                      fetchByURI={props.fetchByURI}
-                      updatePage={props.updatePage}
-                      updateFacetOption={props.updateFacetOption}
-                      sortResults={props.sortResults}
-                      routeProps={routeProps}
-                      fetchFacet={props.fetchFacet}
-                      resultCount={props.deaths.resultCount}
-                      updateRowsPerPage={props.updateRowsPerPage}
-                    />
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-
-            <Route
-              path={`${rootUrl}/taistelut`}
-              render={routeProps => {
-                return(
-                  <React.Fragment>
-                    <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                      <FacetBar
-                        facetData={props.battlesFacets}
-                        facetClass='battles'
-                        resultClass='battles'
-                        fetchingResultCount={props.battles.fetchingResultCount}
-                        resultCount={props.battles.resultCount}
-                        fetchFacet={props.fetchFacet}
-                        fetchResultCount={props.fetchResultCount}
-                        updateFacetOption={props.updateFacetOption}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                      <Battles
-                        rootUrl={rootUrl}
-                        battles={props.battles}
-                        facetData={props.battlesFacets}
-                        fetchResults={props.fetchResults}
-                        fetchPaginatedResults={props.fetchPaginatedResults}
-                        fetchByURI={props.fetchByURI}
-                        filters={props.deathsFacets.filters}
-                        updatePage={props.updatePage}
-                        sortResults={props.sortResults}
-                        routeProps={routeProps}
-                        updateRowsPerPage={props.updateRowsPerPage}
-                      />
-                    </Grid>
-                  </React.Fragment>
-                );
-              }
-
-              }
-            />
-
-            <Route
-              path={`${rootUrl}/person/:id`}
-              render={routeProps => {
-                return(
-                  <Death_record
-                    routeProps={routeProps}
-                    data={props.deaths}
-                    fetchByURI={fetchByURI}
-                    rootUrl={rootUrl}
-                    updatePage={props.updatePage}
-                  />
-                );
-              }
-
-              }
-            />
-
             <Route
               path="/all"
               render={routeProps =>
@@ -230,6 +190,48 @@ let SemanticPortal = (props) => {
                 </React.Fragment>
               }
             />
+            { /* create routes for perspectives defined in perspectiveArr */}
+            {perspectiveArr.map(perspective =>
+              <React.Fragment key={perspective.id}>
+                <Route
+                  path={`${rootUrl}/${perspective.id}/faceted-search`}
+                  render={routeProps => {
+                    return (
+                      <React.Fragment>
+                        <Grid item xs={12} md={3} className={classes.facetBarContainer}>
+                          <FacetBar
+                            facetData={props[`${perspective.id}Facets`]}
+                            facetClass={perspective.id}
+                            resultClass={perspective.id}
+                            fetchingResultCount={props[perspective.id].fetchingResultCount}
+                            resultCount={props[perspective.id].resultCount}
+                            fetchFacet={props.fetchFacet}
+                            fetchResultCount={props.fetchResultCount}
+                            updateFacetOption={props.updateFacetOption}
+                          />
+                        </Grid>
+                        <Grid item xs={12} md={9} className={classes.resultsContainer}>
+                          {renderPerspective(perspective, routeProps)}
+                        </Grid>
+                      </React.Fragment>
+                    );
+                  }}
+                />
+                <Route
+                  path={`/${perspective.id}/page/:id`}
+                  render={routeProps => {
+                    return (
+                      <InstanceHomePage
+                        fetchByURI={props.fetchByURI}
+                        resultClass={perspective.id}
+                        data={props[perspective.id].instance}
+                        routeProps={routeProps}
+                      />
+                    );
+                  }}
+                />
+              </React.Fragment>
+            )}
           </Grid>
         </React.Fragment>
       </div>
@@ -246,10 +248,10 @@ let SemanticPortal = (props) => {
 const mapStateToProps = state => {
   return {
     dates: state.dates,
-    deaths: state.deaths,
-    deathsFacets: state.deathsFacets,
-    battles: state.battles,
-    battlesFacets: state.battlesFacets,
+    surmatut: state.surmatut,
+    surmatutFacets: state.surmatutFacets,
+    taistelut: state.taistelut,
+    taistelutFacets: state.taistelutFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
     error: state.error
     //browser: state.browser,
@@ -276,10 +278,10 @@ SemanticPortal.propTypes = {
   theme: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
   // browser: PropTypes.object.isRequired,
-  deaths: PropTypes.object.isRequired,
-  deathsFacets: PropTypes.object.isRequired,
-  battles: PropTypes.object.isRequired,
-  battlesFacets: PropTypes.object.isRequired,
+  surmatut: PropTypes.object.isRequired,
+  taistelutFacets: PropTypes.object.isRequired,
+  taistelut: PropTypes.object.isRequired,
+  surmatutFacets: PropTypes.object.isRequired,
   clientSideFacetedSearch: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,

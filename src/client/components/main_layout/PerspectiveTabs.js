@@ -38,7 +38,14 @@ class PerspectiveTabs extends React.Component {
   }
 
   pathnameToValue = pathname => {
-    return has(this.props.tabs, pathname) ? this.props.tabs[pathname].value : 0;
+    const activeID = pathname.split('/').pop();
+    let value = 0;
+    this.props.tabs.map(tab => {
+      if (tab.id == activeID) {
+        value = tab.value;
+      }
+    });
+    return value;
   }
 
   renderIcon = iconString => {
@@ -81,8 +88,13 @@ class PerspectiveTabs extends React.Component {
           textColor="secondary"
           variant="fullWidth"
         >
-          {Object.keys(tabs).map(key =>
-            <Tab key={key} icon={this.renderIcon(tabs[key].icon)} label={tabs[key].label} component={Link} to={key} />
+          {tabs.map(tab =>
+            <Tab key={tab.id}
+              icon={this.renderIcon(tab.icon)}
+              label={tab.label}
+              component={Link}
+              to={tab.id}
+            />
           )}
         </Tabs>
       </Paper>
@@ -93,7 +105,7 @@ class PerspectiveTabs extends React.Component {
 PerspectiveTabs.propTypes = {
   classes: PropTypes.object.isRequired,
   routeProps: PropTypes.object.isRequired,
-  tabs: PropTypes.object.isRequired
+  tabs: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(PerspectiveTabs);
