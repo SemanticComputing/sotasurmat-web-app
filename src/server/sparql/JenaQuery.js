@@ -5,16 +5,12 @@ import { makeObjectList } from './SparqlObjectMapper';
 
 export const queryJenaIndex = async ({
   queryTerm,
-  latMin,
-  longMin,
-  latMax,
-  longMax,
+  resultFormat
 }) => {
   let q = jenaQuery;
   q = q.replace('<QUERY>', `
-  ?id text:query ('${queryTerm.toLowerCase()}' 10000) .
+  ?id text:query ('${queryTerm.toLowerCase()}' 2000) .
   `);
-  // console.log(prefixes + q)
-  const results = await runSelectQuery(prefixes + q, endpoint, makeObjectList);
+  const results = await runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
   return results;
 };
