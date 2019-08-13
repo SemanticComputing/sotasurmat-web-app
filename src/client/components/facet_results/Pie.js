@@ -119,44 +119,59 @@ class Pie extends React.Component {
        label: 'Kuolinsyy',
      });
    }
+   this.updatePie(changeEvent.target.value);
+ }
+
+ componentDidMount = () => {
+   this.props.fetchFacet({
+     facetClass: 'surmatut',
+     facetID: this.state.selectedOption
+   });
+ }
+
+ updatePie = value => {
+   this.props.fetchFacet({
+     facetClass: 'surmatut',
+     facetID: value
+   });
  }
 
  render() {
    const { classes, data } = this.props;
-   //console.log(this.props)
    let resultCount = 0;
    let facetValues = null;
-   if (this.state.selectedOption === 'party') {
-     facetValues = data.party.values;
-   }
-   if (this.state.selectedOption === 'occupation') {
-     facetValues = data.occupation.values;
-   }
-   if (this.state.selectedOption === 'gender') {
-     facetValues = data.gender.values;
-   }
-   if (this.state.selectedOption === 'registeredProvince') {
-     facetValues = data.registeredProvince.values;
-   }
-   if (this.state.selectedOption === 'registeredMunicipality') {
-     facetValues = data.registeredMunicipality.values;
-   }
-   if (this.state.selectedOption === 'deathProvince') {
-     facetValues = data.deathProvince.values;
-   }
-   if (this.state.selectedOption === 'deathMunicipality') {
-     facetValues = data.deathMunicipality.values;
-   }
-   if (this.state.selectedOption === 'causeOfDeath') {
-     facetValues = data.causeOfDeath.values;
-   }
+   facetValues = data[this.state.selectedOption].values;
+   // if (this.state.selectedOption === 'party') {
+   //   facetValues = data.party.values;
+   // }
+   // if (this.state.selectedOption === 'occupation') {
+   //   facetValues = data.occupation.values;
+   // }
+   // if (this.state.selectedOption === 'gender') {
+   //   facetValues = data.gender.values;
+   // }
+   // if (this.state.selectedOption === 'registeredProvince') {
+   //   facetValues = data.registeredProvince.values;
+   // }
+   // if (this.state.selectedOption === 'registeredMunicipality') {
+   //   facetValues = data.registeredMunicipality.values;
+   // }
+   // if (this.state.selectedOption === 'deathProvince') {
+   //   facetValues = data.deathProvince.values;
+   // }
+   // if (this.state.selectedOption === 'deathMunicipality') {
+   //   facetValues = data.deathMunicipality.values;
+   // }
+   // if (this.state.selectedOption === 'causeOfDeath') {
+   //   facetValues = data.causeOfDeath.values;
+   // }
    // if (this.state.selectedOption === 'registeredPlace') {
    //   facetValues = data.registeredPlace.flatValues;
    // }
    //console.log(facetValues)
    if (facetValues.length == 0) {
      return (
-       <div></div>
+       <div><p>Ei tuloksia</p></div>
      );
    }
    for (let key in facetValues) {
