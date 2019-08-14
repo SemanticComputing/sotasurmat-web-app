@@ -104,7 +104,6 @@ class LineChart extends React.Component {
   }
 
   makeDateArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
-    //console.log(dataArray);
     let newArray = [];
     let titleRow = [];
     titleRow.push(firstTitle);
@@ -115,6 +114,11 @@ class LineChart extends React.Component {
 
     for (let item of dataArray) {
       let subArray = [];
+      // check if values actually dates
+      if (item.counted < 6) {
+        let emptyArray = [];
+        return emptyArray;
+      }
       subArray.push(moment(item.counted));
       subArray.push(parseInt(item.count));
       momentArray.push(subArray);
