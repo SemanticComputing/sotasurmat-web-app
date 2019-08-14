@@ -31,7 +31,7 @@ export const INITIAL_STATE = {
   paginatedResults: [],
   resultCount: 0,
   resultsUpdateID: -1,
-  instance: {},
+  instance: null,
   page: -1,
   pagesize: 10,
   sortBy: null,
@@ -48,6 +48,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 250
@@ -61,9 +62,34 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 200
+    },
+    {
+      id: 'work',
+      label: 'Work',
+      desc: 'Work description',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      priority: 5
+    },
+    {
+      id: 'expression',
+      label: 'Expression',
+      desc: 'Expression description',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      priority: 5
     },
     {
       id: 'productionPlace',
@@ -77,6 +103,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 200,
@@ -92,6 +119,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 250,
@@ -104,6 +132,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 280,
@@ -116,20 +145,24 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 150,
     },
-    // // {
-    // //   id: 'material',
-    // //   label: 'Material'
-    // //   desc: 'Material description'
-    // //   valueType: 'string',
-    // //   makeLink: true,
-    // //   sortValues: true
-    // //   numberedList: false
-    // // },
-
+    {
+      id: 'material',
+      label: 'Material',
+      desc: `
+        Material info.
+      `,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150,
+    },
     {
       id: 'owner',
       label: 'Owner',
@@ -138,6 +171,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 250
@@ -154,6 +188,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 250

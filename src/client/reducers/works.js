@@ -31,7 +31,7 @@ export const INITIAL_STATE = {
   paginatedResults: [],
   resultCount: 0,
   resultsUpdateID: -1,
-  instance: {},
+  instance: null,
   page: -1,
   pagesize: 10,
   sortBy: null,
@@ -45,8 +45,10 @@ export const INITIAL_STATE = {
       desc: 'Label description',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
-      numberedList: false
+      numberedList: false,
+      minWidth: 250
     },
     {
       id: 'author',
@@ -54,6 +56,7 @@ export const INITIAL_STATE = {
       desc: 'Author description',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 250
@@ -64,6 +67,7 @@ export const INITIAL_STATE = {
       desc: 'Manuscript description',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150,
@@ -76,6 +80,20 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150,
+    },
+    {
+      id: 'material',
+      label: 'Material',
+      desc: `
+        Material info.
+      `,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 150,
@@ -86,6 +104,7 @@ export const INITIAL_STATE = {
       desc: 'Source description',
       valueType: 'object',
       makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 200

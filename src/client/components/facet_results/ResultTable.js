@@ -116,13 +116,15 @@ class ResultTable extends React.Component {
         this.props.updatePage(this.props.resultClass, 0);
       }
     }
+
     // handle browser's back button
-    const locationChanged = this.props.routeProps.location !== prevProps.routeProps.location;
-    if (locationChanged) {
+    window.onpopstate  = () => {
       const qs = this.props.routeProps.location.search.replace('?', '');
       const newPage = parseInt(querystring.parse(qs).page);
-      this.props.updatePage(this.props.resultClass, newPage);
-    }
+      if (newPage != this.props.data.page) {
+        this.props.updatePage(this.props.resultClass, newPage);
+      }
+    };
   }
 
   fetchResults = () => {
@@ -183,6 +185,7 @@ class ResultTable extends React.Component {
           data={row[column.id] == null ? '-' : row[column.id]}
           valueType={column.valueType}
           makeLink={column.makeLink}
+          externalLink={column.externalLink}
           sortValues={column.sortValues}
           numberedList={column.numberedList}
           minWidth={column.minWidth}

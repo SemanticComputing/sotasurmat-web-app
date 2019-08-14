@@ -31,7 +31,7 @@ export const INITIAL_STATE = {
   paginatedResults: [],
   resultCount: 0,
   resultsUpdateID: -1,
-  instance: {},
+  instance: null,
   page: -1,
   pagesize: 10,
   sortBy: null,
@@ -45,21 +45,21 @@ export const INITIAL_STATE = {
       desc: 'Label description',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150,
-      priority: 1
+      minWidth: 150
     },
     {
       id: 'type',
       label: 'Type',
       desc: 'Type description',
       valueType: 'object',
-      makeLink: true,
+      makeLink: false,
+      externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 150,
-      priority: 8,
+      minWidth: 150
     },
     {
       id: 'birthPlace',
@@ -67,10 +67,10 @@ export const INITIAL_STATE = {
       desc: 'Birth place description',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 200,
-      priority: 6
+      minWidth: 200
     },
     {
       id: 'birthDateTimespan',
@@ -78,10 +78,10 @@ export const INITIAL_STATE = {
       desc: 'Birth/formation year description',
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 220,
-      priority: 3
+      minWidth: 220
     },
     {
       id: 'deathDateTimespan',
@@ -89,10 +89,10 @@ export const INITIAL_STATE = {
       desc: 'Date of death/dissolution description',
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 200,
-      priority: 4
+      minWidth: 200
     },
     {
       id: 'place',
@@ -100,10 +100,10 @@ export const INITIAL_STATE = {
       desc: 'Activity location',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 200,
-      priority: 2
+      minWidth: 200
     },
     {
       id: 'work',
@@ -111,10 +111,10 @@ export const INITIAL_STATE = {
       desc: 'Work description',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 250,
-      priority: 5
+      minWidth: 250
     },
     {
       id: 'manuscript',
@@ -122,10 +122,10 @@ export const INITIAL_STATE = {
       desc: 'Manuscript',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 250,
-      priority: 7
+      minWidth: 250
     },
     {
       id: 'source',
@@ -133,11 +133,10 @@ export const INITIAL_STATE = {
       desc: 'Source description',
       valueType: 'object',
       makeLink: true,
+      externalLink: true,
       sortValues: true,
-      numberedList: false,
-      priority: 9
+      numberedList: false
     },
-
   ],
 };
 

@@ -29,7 +29,7 @@ export const INITIAL_STATE = {
   paginatedResults: [],
   resultCount: 0,
   resultsUpdateID: -1,
-  instance: {},
+  instance: null,
   page: -1,
   pagesize: 15,
   sortBy: 'startDate',
@@ -43,6 +43,7 @@ export const INITIAL_STATE = {
       desc: 'Taistelun nimi',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 170
@@ -55,6 +56,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 125

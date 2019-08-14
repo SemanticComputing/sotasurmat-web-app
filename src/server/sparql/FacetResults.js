@@ -201,6 +201,9 @@ export const getByURI = ({
       q = personQuery;
       break;
   }
+  // q = instanceQuery;
+  // q = q.replace('<PROPERTIES>', manuscriptProperties);
+
   q = q.replace('<FILTER>', '# no filters');
   //if (constraints == null) {
   //  q = q.replace('<FILTER>', '# no filters');

@@ -2,7 +2,7 @@ export const placeProperties = `
     {
       ?id skos:prefLabel ?prefLabel__id .
       BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-      BIND(?id AS ?prefLabel__dataProviderUrl)
+      BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
     }
     UNION
     {
@@ -18,22 +18,23 @@ export const placeProperties = `
     UNION {
       ?id gvp:broaderPreferred ?area__id .
       ?area__id skos:prefLabel ?area__prefLabel .
+      BIND(CONCAT("/places/page/", REPLACE(STR(?area__id), "^.*\\\\/(.+)", "$1")) AS ?area__dataProviderUrl)
     }
     UNION {
       ?id ^mmm-schema:person_place ?actor__id .
       ?actor__id skos:prefLabel ?actor__prefLabel .
-      ?actor__id mmm-schema:data_provider_url ?actor__dataProviderUrl .
+      BIND(CONCAT("/actors/page/", REPLACE(STR(?actor__id), "^.*\\\\/(.+)", "$1")) AS ?actor__dataProviderUrl)
     }
     UNION {
       ?id ^crm:P7_took_place_at/crm:P108_has_produced ?manuscript__id .
       ?manuscript__id skos:prefLabel ?manuscript__prefLabel .
-      BIND(?manuscript__id AS ?manuscript__dataProviderUrl)
+      BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?manuscript__id), "^.*\\\\/(.+)", "$1")) AS ?manuscript__dataProviderUrl)
     }
     UNION {
       ?id ^crm:P7_took_place_at/
         (crm:P30_transferred_custody_of|mmm-schema:observed_manuscript) ?manuscript__id .
       ?manuscript__id skos:prefLabel ?manuscript__prefLabel .
-      BIND(?manuscript__id AS ?manuscript__dataProviderUrl)
+      BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?manuscript__id), "^.*\\\\/(.+)", "$1")) AS ?manuscript__dataProviderUrl)
     }
 `;
 
@@ -60,28 +61,12 @@ export const allPlacesQuery =  `
   }
 `;
 
-export const placeQuery =  `
-  SELECT ?id ?prefLabel ?sameAs ?dataProviderUrl ?parent__id ?parent__prefLabel ?related__id ?related__prefLabel ?related__dataProviderUrl
-  WHERE {
-    BIND (<ID> AS ?id)
-    OPTIONAL { ?id skos:prefLabel ?prefLabel_ }
-    BIND(COALESCE(?prefLabel_, ?id) AS ?prefLabel)
-    OPTIONAL {
-      ?id gvp:broaderPreferred ?parent__id .
-      ?parent__id skos:prefLabel ?parent__prefLabel .
-    }
-    OPTIONAL { ?id mmm-schema:data_provider_url ?dataProviderUrl }
-    OPTIONAL { ?id owl:sameAs ?sameAs }
-    <RELATED_INSTANCES>
-  }
-`;
-
 export const manuscriptsProducedAt = `
     OPTIONAL {
       <FILTER>
       ?related__id ^crm:P108_has_produced/crm:P7_took_place_at ?id .
       ?related__id skos:prefLabel ?related__prefLabel .
-      BIND(?related__id AS ?related__dataProviderUrl)
+      BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
     }
 `;
 
@@ -94,6 +79,6 @@ export const actorsAt = `
       UNION
       { ?related__id mmm-schema:person_place ?id }
       ?related__id skos:prefLabel ?related__prefLabel .
-      BIND(?related__id AS ?related__dataProviderUrl)
+      BIND(CONCAT("/actors/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
     }
 `;

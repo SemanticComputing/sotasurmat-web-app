@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import { ISOStringToDate } from './Dates';
-import { orderBy, has } from 'lodash';
 import { Link } from 'react-router-dom';
+import { orderBy, has } from 'lodash';
 
 const styles = () => ({
   valueList: {
@@ -48,29 +48,38 @@ const ObjectList = props => {
             {showDate && firstValue.date == null ? <span className={props.classes.noDate}>No date</span> : firstValue.date}
             {showDate && ' '}
           </React.Fragment>
-          <a
-            target='_blank' rel='noopener noreferrer'
-            href={firstValue.dataProviderUrl}
-          >
-            {Array.isArray(firstValue.prefLabel) ? firstValue.prefLabel[0] : firstValue.prefLabel}
-            {isArray && '...'}
-          </a>
+          {createLink(firstValue.id, firstValue.dataProviderUrl, firstValue.prefLabel, isArray)}
         </React.Fragment>
       );
     }
   };
 
+  const createLink = (id, dataProviderUrl, prefLabel, isArray) => {
+    return (
+      <React.Fragment>
+        {props.externalLink &&
+          <a
+            target='_blank' rel='noopener noreferrer'
+            href={id}
+          >
+            {Array.isArray(prefLabel) ? prefLabel[0] : prefLabel}
+            {isArray && '...'}
+          </a>
+        }
+        {!props.externalLink &&
+          <Link to={dataProviderUrl}>
+            {Array.isArray(prefLabel) ? prefLabel[0] : prefLabel}
+            {isArray && '...'}
+          </Link>
+        }
+      </React.Fragment>
+    );
+  };
+
   const createBasicList = data => {
     return data.map((item, i) =>
       <li key={i}>
-        {props.makeLink &&
-          <a
-            target='_blank' rel='noopener noreferrer'
-            href={item.dataProviderUrl}
-          >
-            {Array.isArray(item.prefLabel) ? item.prefLabel[0] : item.prefLabel}
-          </a>
-        }
+        {props.makeLink && createLink(item.id, item.dataProviderUrl, item.prefLabel, false)}
         {!props.makeLink &&
           <span>{Array.isArray(item.prefLabel) ? item.prefLabel[0] : item.prefLabel}</span>
         }
@@ -83,12 +92,7 @@ const ObjectList = props => {
       <li key={i}>
         {item.date == null ? <span className={props.classes.noDate}>No date</span> : item.date}
         {' '}
-        <a
-          target='_blank' rel='noopener noreferrer'
-          href={item.dataProviderUrl}
-        >
-          {Array.isArray(item.prefLabel) ? item.prefLabel[0] : item.prefLabel}
-        </a>
+        {createLink(item.id, item.dataProviderUrl, item.prefLabel, false)}
       </li>
     );
   };
@@ -101,6 +105,7 @@ const ObjectList = props => {
 
   const { sortValues } = props;
   let { data } = props;
+  //console.log(data)
   if (data == null || data === '-') {
     return '-';
   }
@@ -148,6 +153,7 @@ ObjectList.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   makeLink: PropTypes.bool.isRequired,
+  externalLink: PropTypes.bool.isRequired,
   sortValues: PropTypes.bool.isRequired,
   numberedList: PropTypes.bool.isRequired,
   expanded: PropTypes.bool.isRequired,

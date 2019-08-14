@@ -1,7 +1,7 @@
 export const manuscriptProperties =
 `?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
-    BIND (?id as ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
     {
       ?id mmm-schema:data_provider_url ?source__id .
       BIND (?source__id AS ?source__prefLabel)
@@ -11,12 +11,22 @@ export const manuscriptProperties =
     {
       ?id mmm-schema:manuscript_author ?author__id .
       ?author__id skos:prefLabel ?author__prefLabel .
-      BIND(?author__id AS ?author__dataProviderUrl)
+      BIND(CONCAT("/actors/page/", REPLACE(STR(?author__id), "^.*\\\\/(.+)", "$1")) AS ?author__dataProviderUrl)
     }
     {
       ?id mmm-schema:manuscript_work ?work__id .
       ?work__id skos:prefLabel ?work__prefLabel .
-      BIND(?work__id AS ?work__dataProviderUrl)
+      BIND(CONCAT("/works/page/", REPLACE(STR(?work__id), "^.*\\\\/(.+)", "$1")) AS ?work__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id crm:P128_carries ?expression__id .
+      ?expression__id skos:prefLabel ?expression__prefLabel .
+      OPTIONAL {
+        ?expression__id crm:P72_has_language ?language__id .
+        ?language__id skos:prefLabel ?language__prefLabel .
+      }
+      BIND(CONCAT("/expressions/page/", REPLACE(STR(?expression__id), "^.*\\\\/(.+)", "$1")) AS ?expression__dataProviderUrl)
     }
     UNION
     {
@@ -31,7 +41,7 @@ export const manuscriptProperties =
       ?production crm:P108_has_produced ?id .
       ?production crm:P7_took_place_at ?productionPlace__id .
       ?productionPlace__id skos:prefLabel ?productionPlace__prefLabel .
-      OPTIONAL { ?productionPlace__id owl:sameAs ?productionPlace__dataProviderUrl }
+      BIND(CONCAT("/places/page/", REPLACE(STR(?productionPlace__id), "^.*\\\\/(.+)", "$1")) AS ?productionPlace__dataProviderUrl)
       # FILTER NOT EXISTS {
       #   ?production crm:P7_took_place_at ?productionPlace__id2 .
       #   ?productionPlace__id2 crm:P89_falls_within+ ?productionPlace__id .
@@ -39,9 +49,14 @@ export const manuscriptProperties =
     }
     UNION
     {
+      ?id crm:P45_consists_of ?material__id .
+      ?material__id skos:prefLabel ?material__prefLabel .
+    }
+    UNION
+    {
       ?id crm:P51_has_former_or_current_owner ?owner__id .
       ?owner__id skos:prefLabel ?owner__prefLabel .
-      BIND (?owner__id AS ?owner__dataProviderUrl)
+      BIND(CONCAT("/actors/page/", REPLACE(STR(?owner__id), "^.*\\\\/(.+)", "$1")) AS ?owner__dataProviderUrl)
       #OPTIONAL { ?owner__id mmm-schema:data_provider_url ?owner__dataProviderUrl }
       #OPTIONAL {
       #  [] rdf:subject ?id ;
@@ -53,19 +68,11 @@ export const manuscriptProperties =
     }
     UNION
     {
-      ?id crm:P128_carries ?expression .
-      ?expression crm:P72_has_language ?language__id .
-      ?language__id skos:prefLabel ?language__prefLabel .
-      BIND(?language__id as ?language__dataProviderUrl)
-
-    }
-    UNION
-    {
       ?event__id crm:P30_transferred_custody_of ?id .
       ?event__id a ?event__type .
       OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?event__date }
       BIND("Transfer of Custody" AS ?event__prefLabel)
-      BIND(?event__id AS ?event__dataProviderUrl)
+      BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
     }
     UNION
     {
@@ -74,7 +81,7 @@ export const manuscriptProperties =
       ?event__id a ?event__type .
       OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?event__date }
       BIND("On Sale" AS ?event__prefLabel)
-      BIND(?event__id AS ?event__dataProviderUrl)
+      BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
     }
     UNION
     {
@@ -84,7 +91,7 @@ export const manuscriptProperties =
       ?event__id mmm-schema:ownership_attributed_to/skos:prefLabel ?owner_prefLabel .
       OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?event__date }
       BIND("Owner: " + ?owner_prefLabel  AS ?event__prefLabel)
-      BIND(?event__id AS ?event__dataProviderUrl)
+      BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
     }`;
 
 export const productionPlacesQuery = `

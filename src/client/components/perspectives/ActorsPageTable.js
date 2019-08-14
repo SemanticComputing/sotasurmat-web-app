@@ -26,78 +26,18 @@ const styles = theme => ({
   }
 });
 
-class ManuscriptsPageTable extends React.Component {
+class ActorsPageTable extends React.Component {
 
   render = () => {
     const { classes, data } = this.props;
     return(
       <Table className={classes.table}>
         <TableBody>
-          <TableRow key='author'>
-            <TableCell>Author</TableCell>
+          <TableRow key='type'>
+            <TableCell>Type</TableCell>
             <ResultTableCell
-              columnId='author'
-              data={data.author}
-              valueType='object'
-              makeLink={true}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
-          <TableRow key='work'>
-            <TableCell>Work</TableCell>
-            <ResultTableCell
-              columnId='work'
-              data={data.work}
-              valueType='object'
-              makeLink={true}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
-          <TableRow key='expression'>
-            <TableCell>Expression</TableCell>
-            <ResultTableCell
-              columnId='expression'
-              data={data.expression}
-              valueType='object'
-              makeLink={true}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
-          <TableRow key='productionPlace'>
-            <TableCell>Production place</TableCell>
-            <ResultTableCell
-              columnId='productionPlace'
-              data={data.productionPlace}
-              valueType='object'
-              makeLink={true}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
-          <TableRow key='productionTimespan'>
-            <TableCell>Production date</TableCell>
-            <ResultTableCell
-              columnId='productionTimespan'
-              data={data.productionTimespan}
+              columnId='type'
+              data={data.type}
               valueType='object'
               makeLink={false}
               externalLink={false}
@@ -108,14 +48,14 @@ class ManuscriptsPageTable extends React.Component {
               expanded={true}
             />
           </TableRow>
-          <TableRow key='language'>
-            <TableCell>Language</TableCell>
+          <TableRow key='birthDateTimespan'>
+            <TableCell>Birth / formation date</TableCell>
             <ResultTableCell
-              columnId='language'
-              data={data.language}
+              columnId='type'
+              data={data.birthDateTimespan}
               valueType='object'
-              makeLink={true}
-              externalLink={true}
+              makeLink={false}
+              externalLink={false}
               sortValues={true}
               numberedList={false}
               minWidth={150}
@@ -123,26 +63,11 @@ class ManuscriptsPageTable extends React.Component {
               expanded={true}
             />
           </TableRow>
-          <TableRow key='material'>
-            <TableCell>Material</TableCell>
+          <TableRow key='birthPlace'>
+            <TableCell>Birth / formation place</TableCell>
             <ResultTableCell
-              columnId='material'
-              data={data.material}
-              valueType='object'
-              makeLink={true}
-              externalLink={true}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
-          <TableRow key='owner'>
-            <TableCell>Owner</TableCell>
-            <ResultTableCell
-              columnId='owner'
-              data={data.owner}
+              columnId='type'
+              data={data.birthPlace}
               valueType='object'
               makeLink={true}
               externalLink={false}
@@ -153,14 +78,29 @@ class ManuscriptsPageTable extends React.Component {
               expanded={true}
             />
           </TableRow>
-          <TableRow key='event'>
-            <TableCell>Event</TableCell>
+          <TableRow key='deathDateTimespan'>
+            <TableCell>Death / dissolution date</TableCell>
             <ResultTableCell
-              columnId='event'
-              data={data.event}
+              columnId='type'
+              data={data.deathDateTimespan}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='manuscript'>
+            <TableCell>Manuscript / collection</TableCell>
+            <ResultTableCell
+              columnId='manuscript'
+              data={data.manuscript}
               valueType='object'
               makeLink={true}
-              externalLink={true}
+              externalLink={false}
               sortValues={true}
               numberedList={false}
               minWidth={150}
@@ -189,9 +129,9 @@ class ManuscriptsPageTable extends React.Component {
   }
 }
 
-ManuscriptsPageTable.propTypes = {
+ActorsPageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ManuscriptsPageTable);
+export default withStyles(styles)(ActorsPageTable);
