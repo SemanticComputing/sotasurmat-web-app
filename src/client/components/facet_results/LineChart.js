@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'react-google-charts';
+import moment from 'moment';
 
 //import _ from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
@@ -95,7 +96,7 @@ class LineChart extends React.Component {
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({
         resultClass: 'dates',
-        facetClass: 'deaths',
+        facetClass: 'surmatut',
         sortBy: null,
         variant: this.state.variant,
       });
@@ -106,55 +107,61 @@ class LineChart extends React.Component {
     //console.log(dataArray);
     let newArray = [];
     let titleRow = [];
-    //const years = dataArray.map(row => row.year);
-    var nextItem = new Date('1971-10-10T12:00:00Z');
-    //console.log(nextItem.getDate())
-    //console.log(nextItem.getDate())
     titleRow.push(firstTitle);
     titleRow.push(secondTitle);
     newArray.push(titleRow);
-    let first = true;
+    let momentArray = [];
+    let nextMoment = undefined;
 
-    if (!fillEmptyValues) {
-      for (let item of dataArray) {
+    for (let item of dataArray) {
+      let subArray = [];
+      subArray.push(moment(item.counted));
+      subArray.push(parseInt(item.count));
+      momentArray.push(subArray);
+    }
+    //console.log(momentArray);
+    for (let item of momentArray) {
+      let thisMoment = item[0];
+
+      // console.log('this');
+      // console.log(thisMoment.format('YYYY-MM-DD'));
+      // console.log('next');
+      // console.log(nextMoment.format('YYYY-MM-DD'));
+      ///console.log(thisItem + '   '  + nextItem);
+      if (nextMoment == undefined) {
         let subArray = [];
-        subArray.push(new Date(item.counted + 'T12:00:00Z'));
-        subArray.push(parseInt(item.count));
+        nextMoment = moment(thisMoment.format('YYYY-MM-DD')).add(1, 'days');
+        subArray.push(thisMoment.format('YYYY-MM-DD'));
+        subArray.push(item[1]);
         newArray.push(subArray);
-        nextItem.setDate(nextItem.getDate() + 1);
-      }
-    } else {
-      for (let item of dataArray) {
-        let thisItem = new Date(item.counted + 'T12:00:00Z');
-        //console.log(thisItem);
-        if (first) {
+      } else {
+        //while (thisMoment.isAfter(nextMoment)) {
+        while (thisMoment.isAfter(nextMoment)) {
+          // console.log('this');
+          // console.log(thisMoment.format('YYYY-MM-DD'))
+          // console.log('next');
+          // console.log(nextMoment.format('YYYY-MM-DD'))
           let subArray = [];
-          nextItem.setDate(thisItem.getDate() + 1);
-
-          subArray.push();
-          subArray.push(parseInt(item.count));
+          subArray.push(nextMoment.format('YYYY-MM-DD'));
+          subArray.push(0);
           newArray.push(subArray);
-          first = false;
-        } else {
-          while (this.date_diff(nextItem, thisItem) > 1) {
-            let subArray = [];
-            subArray.push(nextItem);
-            subArray.push(0);
-            newArray.push(subArray);
-            nextItem.setDate(nextItem.getDate() + 1);
-            //console.log(nextItem.getDate())
-          }
-          let subArray = [];
-          subArray.push(new Date(item.counted + 'T12:00:00Z'));
-          subArray.push(parseInt(item.count));
-          newArray.push(subArray);
-          nextItem.setDate(nextItem.getDate() + 1);
+          nextMoment = moment(nextMoment.format('YYYY-MM-DD')).add(1, 'days');
+          // console.log('new next');
+          // console.log(nextMoment.format('YYYY-MM-DD'))
+          // console.log('new this');
+          // console.log(thisMoment.format('YYYY-MM-DD'))
         }
+        let subArray = [];
+        subArray.push(thisMoment.format('YYYY-MM-DD'));
+        subArray.push(item[1]);
+        newArray.push(subArray);
+        nextMoment = moment(nextMoment.format('YYYY-MM-DD')).add(1, 'days');
       }
     }
     //console.log(newArray);
     return newArray;
   }
+
 
   makeArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
     let newArray = [];
@@ -317,13 +324,17 @@ class LineChart extends React.Component {
       fillEmpty = true;
     }
     let resultsArray = [];
-    resultsArray = this.makeArray(results, title, explanation, fillEmpty);
+    if (this.state.variant != 'deathDateCount') {
+      resultsArray = this.makeArray(results, title, explanation, fillEmpty);
+    } else {
+      resultsArray = this.makeDateArray(results, title, explanation, fillEmpty);
+    }
 
     if (this.state.variant != 'deathDateCount') {
       infoString = '(' + 'keskiarvo noin  ' + Math.round(this.average(resultsArray)) + ', mediaani noin ' + Math.round(this.median(resultsArray)) + ')';
     }
     if (this.state.variant == 'deathDateCount') {
-      infoString = '(huom: päivämääriä ilman surmia ei merkitä kaavioon)';
+      infoString = '';
     }
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
