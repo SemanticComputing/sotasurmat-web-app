@@ -77,7 +77,7 @@ let Main = props => {
               Suomen sotasurmat 1914-1922
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" paragraph>
-            Tämä sivusto tarjoaa käyttöliittymän vuosien 1914-1922 sotasurmien tiedoston käyttöön.
+            Alustava testiversio vuosien 1914-1922 sotasurmien tiedoston käyttöliittymästä.
           </Typography>
         </div>
       </div>
