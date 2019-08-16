@@ -1,7 +1,9 @@
 export const deathsProperties = `
-    {?id skos:prefLabel ?prefLabel__id .
+    {
+      ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
-    BIND (?id as ?prefLabel__dataProviderUrl) }
+    BIND(CONCAT("/sotasurmat/surmatut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    }
     UNION {
       ?id siso-schema:party ?party__id .
       ?party__id skos:prefLabel ?party__prefLabel .

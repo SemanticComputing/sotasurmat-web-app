@@ -7,13 +7,9 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
-import ManuscriptsPageTable from '../perspectives/ManuscriptsPageTable';
-import ExpressionsPageTable from '../perspectives/ExpressionsPageTable';
-import CollectionsPageTable from '../perspectives/CollectionsPageTable';
-import WorksPageTable from '../perspectives/WorksPageTable';
-import EventsPageTable from '../perspectives/EventsPageTable';
-import ActorsPageTable from '../perspectives/ActorsPageTable';
-import PlacesPageTable from '../perspectives/PlacesPageTable';
+import SurmatutPageTable from '../perspectives/SurmatutPageTable';
+import TaistelutPageTable from '../perspectives/TaistelutPageTable';
+
 
 const styles = theme => ({
   root: {
@@ -55,51 +51,21 @@ class InstanceHomePage extends React.Component {
 
   componentDidMount = () => {
     let uri = '';
-    let base = 'http://ldf.fi/mmm';
+    let base = 'http://ldf.fi/siso';
     const localID = this.props.routeProps.location.pathname.split('/').pop();
     this.setState({ localID: localID });
     switch(this.props.resultClass) {
-      case 'manuscripts':
+      case 'surmatut':
         this.setState({
-          instanceHeading: 'Manuscript',
+          instanceHeading: 'Henkilö',
         });
-        uri = `${base}/manifestation_singleton/${localID}`;
+        uri = `${base}/death_records/${localID}`;
         break;
-      case 'expressions':
+      case 'taistelut':
         this.setState({
-          instanceHeading: 'Expression',
+          instanceHeading: 'Taistelu',
         });
-        uri = `${base}/expression/${localID}`;
-        break;
-      case 'collections':
-        this.setState({
-          instanceHeading: 'Collection',
-        });
-        uri = `${base}/collection/${localID}`;
-        break;
-      case 'works':
-        this.setState({
-          instanceHeading: 'Work',
-        });
-        uri = `${base}/work/${localID}`;
-        break;
-      case 'events':
-        this.setState({
-          instanceHeading: 'Event',
-        });
-        uri = `${base}/event/${localID}`;
-        break;
-      case 'actors':
-        this.setState({
-          instanceHeading: 'Actor',
-        });
-        uri = `${base}/actor/${localID}`;
-        break;
-      case 'places':
-        this.setState({
-          instanceHeading: 'Place',
-        });
-        uri = `${base}/place/${localID}`;
+        uri = `${base}/sita/${localID}`;
         break;
     }
     this.props.fetchByURI({
@@ -114,29 +80,17 @@ class InstanceHomePage extends React.Component {
     let tableEl = null;
     if (this.state.instanceClass !== '') {
       switch (this.state.instanceHeading) {
-        case 'Manuscript':
+        case 'Henkilö':
           tableEl =
-            <ManuscriptsPageTable
+            <SurmatutPageTable
               data={this.props.data}
             />;
           break;
-        case 'Expression':
-          tableEl = <ExpressionsPageTable data={this.props.data} />;
-          break;
-        case 'Collection':
-          tableEl = <CollectionsPageTable data={this.props.data} />;
-          break;
-        case 'Work':
-          tableEl = <WorksPageTable data={this.props.data} />;
-          break;
-        case 'Event':
-          tableEl = <EventsPageTable data={this.props.data} />;
-          break;
-        case 'Actor':
-          tableEl = <ActorsPageTable data={this.props.data} />;
-          break;
-        case 'Place':
-          tableEl = <PlacesPageTable data={this.props.data} />;
+        case 'Taistelu':
+          tableEl =
+              <TaistelutPageTable
+                data={this.props.data}
+              />;
           break;
         default:
           tableEl = <div></div>;

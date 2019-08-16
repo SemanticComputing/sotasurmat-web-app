@@ -199,6 +199,11 @@ export const getByURI = ({
       q = q.replace('<PROPERTIES>', deathsProperties);
       q = q.replace('<RELATED_INSTANCES>', '');
       break;
+    case 'taistelut':
+      q = instanceQuery;
+      q = q.replace('<PROPERTIES>', battleProperties);
+      q = q.replace('<RELATED_INSTANCES>', '');
+      break;
 
   }
 

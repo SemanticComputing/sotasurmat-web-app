@@ -234,35 +234,6 @@ let SemanticPortal = (props) => {
                 />
               </React.Fragment>
             )}
-            { /* create routes for classes that have only info pages and no perspective */}
-            <Route
-              path={`/collections/page/:id`}
-              render={routeProps => {
-                return (
-                  <InstanceHomePage
-                    fetchByURI={props.fetchByURI}
-                    resultClass='collections'
-                    data={props.collections.instance}
-                    isLoading={props.collections.fetching}
-                    routeProps={routeProps}
-                  />
-                );
-              }}
-            />
-            <Route
-              path={`/expressions/page/:id`}
-              render={routeProps => {
-                return (
-                  <InstanceHomePage
-                    fetchByURI={props.fetchByURI}
-                    resultClass='expressions'
-                    data={props.expressions.instance}
-                    isLoading={props.expressions.fetching}
-                    routeProps={routeProps}
-                  />
-                );
-              }}
-            />
           </Grid>
         </React.Fragment>
       </div>

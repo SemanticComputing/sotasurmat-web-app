@@ -148,6 +148,7 @@ class LeafletMap extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
+    //console.log(this.props)
     // check if filters have changed
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({

@@ -4,7 +4,7 @@ export const battleProperties = `
       #?id skos:prefLabel ?prefLabel .
       ?id skos:prefLabel ?prefLabel__id .
       BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-      BIND(?id AS ?prefLabel__dataProviderUrl)
+      BIND(CONCAT("/sotasurmat/taistelut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
       }
       UNION {
         ?id siso-schema:start_date ?startDate__id .
