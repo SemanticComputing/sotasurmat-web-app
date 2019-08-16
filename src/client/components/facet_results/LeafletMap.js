@@ -417,8 +417,8 @@ class LeafletMap extends React.Component {
       popUpTemplate += this.createInstanceListing(result.related);
     }
     if (this.props.variant === 'battlePlaces') {
-      popUpTemplate += `<p>Kunta: ${result.placeLabel}</p>`;
-      popUpTemplate += `<p>Alkupäivä: ${result.startDate}</p>`;
+      popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
+      popUpTemplate += `<p>Alkupäivä: ${result.startDate.prefLabel}</p>`;
     }
 
     return popUpTemplate;
