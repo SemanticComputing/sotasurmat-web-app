@@ -1,10 +1,13 @@
+import kalevankangas from '../../img/kalevankangas.jpg';
+import punainenRintama from '../../img/punainenRintama.jpg';
+import tampereVangit from '../../img/tampereVangit.jpg';
 
 export const perspectiveArr = [
   {
     id: 'surmatut',
     label: 'Sotasurmat',
     desc: 'Tietoa vuosina 1914-1922 surmatuista',
-    thumbnail: 'kalevankangas',
+    thumbImage: kalevankangas,
     tabs: [
       {
         id: 'lista',
@@ -30,7 +33,7 @@ export const perspectiveArr = [
     id: 'taistelut',
     label: 'Taistelupaikat',
     desc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
-    thumbnail: 'punainenRintama',
+    thumbImage: punainenRintama,
     tabs: [
       {
         id: 'lista',
@@ -50,7 +53,7 @@ export const perspectiveArr = [
     id: 'tuleva',
     label: 'Tuleva',
     desc: 'Tuleva näkymä',
-    thumbnail: 'tampereVangit',
+    thumbImage: tampereVangit,
     tabs: [
       {
         id: 'table',

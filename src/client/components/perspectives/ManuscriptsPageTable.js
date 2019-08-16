@@ -106,6 +106,7 @@ class ManuscriptsPageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              addSource={this.props.addSource}
             />
           </TableRow>
           <TableRow key='language'>
@@ -143,6 +144,21 @@ class ManuscriptsPageTable extends React.Component {
             <ResultTableCell
               columnId='owner'
               data={data.owner}
+              valueType='object'
+              makeLink={true}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='collection'>
+            <TableCell>Collection</TableCell>
+            <ResultTableCell
+              columnId='collection'
+              data={data.collection}
               valueType='object'
               makeLink={true}
               externalLink={false}
@@ -192,6 +208,7 @@ class ManuscriptsPageTable extends React.Component {
 ManuscriptsPageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
+  addSource: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(ManuscriptsPageTable);

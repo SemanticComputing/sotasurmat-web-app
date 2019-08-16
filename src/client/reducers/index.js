@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {reducer as toastrReducer} from 'react-redux-toastr';
-import {createResponsiveStateReducer} from 'redux-responsive';
+//import {createResponsiveStateReducer} from 'redux-responsive';
 import error from './error';
 import clientSideFacetedSearch from './clientSideFacetedSearch';
 import surmatut from './surmatut';
@@ -18,13 +18,13 @@ const reducer = combineReducers({
   error,
   dates,
   toastr: toastrReducer,
-  browser: createResponsiveStateReducer({
-    extraSmall: 500,
-    small: 700,
-    medium: 1000,
-    large: 1400,
-    extraLarge: 1600,
-  }),
+  // browser: createResponsiveStateReducer({
+  //   extraSmall: 500,
+  //   small: 700,
+  //   medium: 1000,
+  //   large: 1400,
+  //   extraLarge: 1600,
+  // }),
 });
 
 export default reducer;

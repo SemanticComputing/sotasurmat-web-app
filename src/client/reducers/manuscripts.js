@@ -110,7 +110,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'productionTimespan',
-      label: 'Production year',
+      label: 'Production date',
       desc: `
         The date when the manuscript was written. Multiple production dates
         may appear for a single manuscript, when there are discrepancies
@@ -175,6 +175,19 @@ export const INITIAL_STATE = {
       sortValues: true,
       numberedList: false,
       minWidth: 250
+    },
+    {
+      id: 'collection',
+      label: 'Collection',
+      desc: `
+        Collection
+      `,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 200
     },
     {
       id: 'source',

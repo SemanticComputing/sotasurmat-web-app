@@ -33,6 +33,8 @@ export const manuscriptProperties =
       ?production crm:P108_has_produced ?id .
       ?production crm:P4_has_time-span ?productionTimespan__id .
       ?productionTimespan__id skos:prefLabel ?productionTimespan__prefLabel .
+      ?productionTimespan__id dct:source ?productionTimespan__source__id .
+      ?productionTimespan__source__id skos:prefLabel ?productionTimespan__source__prefLabel .
       OPTIONAL { ?productionTimespan__id crm:P82a_begin_of_the_begin ?productionTimespan__start }
       OPTIONAL { ?productionTimespan__id crm:P82b_end_of_the_end ?productionTimespan__end }
     }
@@ -51,6 +53,12 @@ export const manuscriptProperties =
     {
       ?id crm:P45_consists_of ?material__id .
       ?material__id skos:prefLabel ?material__prefLabel .
+    }
+    UNION
+    {
+      ?id crm:P46i_forms_part_of ?collection__id .
+      ?collection__id skos:prefLabel ?collection__prefLabel .
+      BIND(CONCAT("/collections/page/", REPLACE(STR(?collection__id), "^.*\\\\/(.+)", "$1")) AS ?collection__dataProviderUrl)
     }
     UNION
     {
@@ -93,6 +101,47 @@ export const manuscriptProperties =
       BIND("Owner: " + ?owner_prefLabel  AS ?event__prefLabel)
       BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
     }`;
+
+export const expressionProperties =
+`?id skos:prefLabel ?prefLabel__id .
+    BIND (?prefLabel__id as ?prefLabel__prefLabel)
+    BIND(CONCAT("/expressions/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    {
+      ?id mmm-schema:data_provider_url ?source__id .
+      BIND (?source__id AS ?source__prefLabel)
+      BIND (?source__id AS ?source__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id ^crm:P128_carries ?manuscript__id .
+      ?manuscript__id skos:prefLabel ?manuscript__prefLabel .
+      BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?manuscript__id), "^.*\\\\/(.+)", "$1")) AS ?manuscript__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id crm:P72_has_language ?language__id .
+      ?language__id skos:prefLabel ?language__prefLabel .
+      BIND(?language__id as ?language__dataProviderUrl)
+    }
+ `;
+
+export const collectionProperties =
+ `?id skos:prefLabel ?prefLabel__id .
+     BIND (?prefLabel__id as ?prefLabel__prefLabel)
+     BIND(CONCAT("/collections/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+     {
+       ?id dct:source ?source__id .
+       ?source__id skos:prefLabel ?source__prefLabel .
+       BIND (?source__id AS ?source__dataProviderUrl)
+     }
+     UNION
+     {
+       ?id ^crm:P46i_forms_part_of ?manuscript__id .
+       ?manuscript__id skos:prefLabel ?manuscript__prefLabel .
+       BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?manuscript__id), "^.*\\\\/(.+)", "$1")) AS ?manuscript__dataProviderUrl)
+     }
+  `;
+
 
 export const productionPlacesQuery = `
   SELECT ?id ?lat ?long ?prefLabel ?source ?dataProviderUrl

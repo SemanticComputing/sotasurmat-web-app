@@ -160,6 +160,7 @@ let SemanticPortal = (props) => {
             fetchResultsClientSide={props.fetchResultsClientSide}
             clearResults={props.clearResults}
             rootUrl={rootUrl}
+            perspectives={perspectiveArr}
           />
           <Grid container spacing={1} className={classes.mainContainer}>
             <Route
@@ -225,6 +226,7 @@ let SemanticPortal = (props) => {
                         fetchByURI={props.fetchByURI}
                         resultClass={perspective.id}
                         data={props[perspective.id].instance}
+                        isLoading={props[perspective.id].fetching}
                         routeProps={routeProps}
                       />
                     );
@@ -232,6 +234,35 @@ let SemanticPortal = (props) => {
                 />
               </React.Fragment>
             )}
+            { /* create routes for classes that have only info pages and no perspective */}
+            <Route
+              path={`/collections/page/:id`}
+              render={routeProps => {
+                return (
+                  <InstanceHomePage
+                    fetchByURI={props.fetchByURI}
+                    resultClass='collections'
+                    data={props.collections.instance}
+                    isLoading={props.collections.fetching}
+                    routeProps={routeProps}
+                  />
+                );
+              }}
+            />
+            <Route
+              path={`/expressions/page/:id`}
+              render={routeProps => {
+                return (
+                  <InstanceHomePage
+                    fetchByURI={props.fetchByURI}
+                    resultClass='expressions'
+                    data={props.expressions.instance}
+                    isLoading={props.expressions.fetching}
+                    routeProps={routeProps}
+                  />
+                );
+              }}
+            />
           </Grid>
         </React.Fragment>
       </div>

@@ -9,10 +9,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-//import thumbImage from '../../img/thumb.png';
-import kalevankangas from '../../img/kalevankangas.jpg';
-import punainenRintama from '../../img/punainenRintama.jpg';
-import tampereVangit from '../../img/tampereVangit.jpg';
+import { has } from 'lodash';
+import defaultThumbImage from '../../img/thumb.png';
+// import kalevankangas from '../../img/kalevankangas.jpg';
+// import punainenRintama from '../../img/punainenRintama.jpg';
+// import tampereVangit from '../../img/tampereVangit.jpg';
 import logo from '../../img/logo_fi.gif';
 
 const styles = theme => ({
@@ -27,9 +28,9 @@ const styles = theme => ({
   icon: {
     marginRight: theme.spacing(2),
   },
-  // heroUnit: {
-  //   backgroundColor: 'rgb(238, 238, 238)'
-  // },
+  link: {
+    textDecoration: 'none'
+  },
   heroContent: {
     maxWidth: 1100,
     paddingTop: theme.spacing(3),
@@ -61,7 +62,7 @@ const styles = theme => ({
   },
 });
 
-const images = {'kalevankangas':kalevankangas, 'punainenRintama':punainenRintama, 'tampereVangit':tampereVangit};
+//const images = {'kalevankangas':kalevankangas, 'punainenRintama':punainenRintama, 'tampereVangit':tampereVangit};
 
 let Main = props => {
   const { classes } = props;
@@ -82,26 +83,59 @@ let Main = props => {
       </div>
       <div className={classNames(classes.layout, classes.cardGrid)}>
         <Grid container spacing={5}>
-          {props.perspectives.map(perspective =>
-            <Grid key={perspective.id} item xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
-                  <CardMedia
-                    className={classes.media}
-                    image={images[perspective.thumbnail]}
-                    title={perspective.label}
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {perspective.label}
-                    </Typography>
-                    <Typography component="p">
-                      {perspective.desc}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+          {props.perspectives.map(perspective => {
+            return (
+              <Grid key={perspective.id} item xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  {has(perspective, 'externalUrl') &&
+                    <a className={classes.link}
+                      href={perspective.externalUrl}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <CardActionArea>
+                        <CardMedia
+                          className={classes.media}
+                          image={has(perspective, 'thumbImage')
+                            ? perspective.thumbImage
+                            : defaultThumbImage}
+                          title={perspective.label}
+                        />
+                        <CardContent className={classes.cardContent}>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            {perspective.label}
+                          </Typography>
+                          <Typography component="p">
+                            {perspective.desc}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </a>
+                  }
+                  {!has(perspective, 'externalUrl') &&
+                    <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
+                      <CardMedia
+                        className={classes.media}
+                        image={has(perspective, 'thumbImage')
+                          ? perspective.thumbImage
+                          : defaultThumbImage}
+                        title={perspective.label}
+                      />
+                      <CardContent className={classes.cardContent}>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {perspective.label}
+                        </Typography>
+                        <Typography component="p">
+                          {perspective.desc}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  }
+                </Card>
+              </Grid>
+            );
+          }
+
           )}
         </Grid>
       </div>

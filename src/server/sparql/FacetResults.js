@@ -66,7 +66,7 @@ export const getAllResults = ({
       break;
     case 'birthYearCount':
       q = birthYearsQuery;
-      mapper = mapBirthYearCount;
+      mapper = mapBirthYearCount;      q = battlePlaceQuery;
       filterTarget = 'id';
       break;
     case 'ageCount':
@@ -186,35 +186,22 @@ const getPaginatedData = ({
 
 export const getByURI = ({
   resultClass,
-  facetClass,
-  constraints,
-  variant,
+  // facetClass,
+  // constraints,
+  // variant,
   uri,
   resultFormat
 }) => {
   let q;
   switch (resultClass) {
-    case 'battles':
-      q = battlePlaceQuery;
+    case 'surmatut':
+      q = instanceQuery;
+      q = q.replace('<PROPERTIES>', deathsProperties);
+      q = q.replace('<RELATED_INSTANCES>', '');
       break;
-    case 'deaths':
-      q = personQuery;
-      break;
-  }
-  // q = instanceQuery;
-  // q = q.replace('<PROPERTIES>', manuscriptProperties);
 
-  q = q.replace('<FILTER>', '# no filters');
-  //if (constraints == null) {
-  //  q = q.replace('<FILTER>', '# no filters');
-  //} else {
-  //  q = q.replace('<FILTER>', generateConstraintsBlock({
-  //    resultClass: resultClass,
-  //    facetClass: facetClass,
-  //    constraints: constraints,
-  //    filterTarget: 'manuscript__id',
-  //    facetID: null}));
-  //}
+  }
+
   q = q.replace('<ID>', `<${uri}>`);
   return runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
 };

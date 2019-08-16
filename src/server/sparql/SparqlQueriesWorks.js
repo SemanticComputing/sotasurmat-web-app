@@ -12,6 +12,12 @@ export const workProperties = `
     }
     UNION
     {
+      ?id  ^mmm-schema:manuscript_work/crm:P46i_forms_part_of ?collection__id .
+      ?collection__id skos:prefLabel ?collection__prefLabel .
+      BIND(CONCAT("/collections/page/", REPLACE(STR(?collection__id), "^.*\\\\/(.+)", "$1")) AS ?collection__dataProviderUrl)
+    }
+    UNION
+    {
       ?id ^mmm-schema:manuscript_work/crm:P45_consists_of ?material__id .
       ?material__id skos:prefLabel ?material__prefLabel .
     }
@@ -31,5 +37,14 @@ export const workProperties = `
       ?id ^frbroo:R19_created_a_realisation_of/frbroo:R17_created ?expression .
       ?expression crm:P72_has_language ?language__id .
       ?language__id skos:prefLabel ?language__prefLabel .
+    }
+    UNION
+    {
+      ?id ^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span ?productionTimespan__id .
+      ?productionTimespan__id skos:prefLabel ?productionTimespan__prefLabel .
+      ?productionTimespan__id dct:source ?productionTimespan__source__id .
+      ?productionTimespan__source__id skos:prefLabel ?productionTimespan__source__prefLabel .
+      OPTIONAL { ?productionTimespan__id crm:P82a_begin_of_the_begin ?productionTimespan__start }
+      OPTIONAL { ?productionTimespan__id crm:P82b_end_of_the_end ?productionTimespan__end }
     }
 `;
