@@ -66,7 +66,7 @@ export const getAllResults = ({
       break;
     case 'birthYearCount':
       q = birthYearsQuery;
-      mapper = mapBirthYearCount;      q = battlePlaceQuery;
+      mapper = mapBirthYearCount;
       filterTarget = 'id';
       break;
     case 'ageCount':
