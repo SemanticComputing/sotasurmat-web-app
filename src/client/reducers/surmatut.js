@@ -47,12 +47,14 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 100
     },
     {
       id: 'party',
+      externalLink: true,
       label: 'Osapuoli',
       desc: `
         Osapuoli
@@ -65,6 +67,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'registeredMunicipality',
+      externalLink: true,
       label: 'Kirjoillaolokunta',
       desc: `
         Kirjoillaolokunta
@@ -77,6 +80,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'deathMunicipality',
+      externalLink: true,
       label: 'Kuolinkunta',
       desc: `
         Kuolinkunta
@@ -89,6 +93,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'occupation',
+      externalLink: true,
       label: 'Ammatti',
       desc: `
         Ammatti
@@ -113,6 +118,7 @@ export const INITIAL_STATE = {
     // },
     {
       id: 'birthDate',
+      externalLink: true,
       label: 'Syntymäpäivä',
       desc: `
         Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
@@ -125,6 +131,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'deathDate',
+      externalLink: true,
       label: 'Kuolinpäivä',
       desc: `
         Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.

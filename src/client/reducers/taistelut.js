@@ -69,6 +69,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 125
@@ -81,6 +82,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
@@ -93,6 +95,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
@@ -105,6 +108,7 @@ export const INITIAL_STATE = {
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
