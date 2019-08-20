@@ -5,7 +5,7 @@ import L from 'leaflet';
 import { has, orderBy } from 'lodash';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { purple } from '@material-ui/core/colors';
-
+import moment from 'moment';
 import 'leaflet/dist/leaflet.css';
 
 // Leaflet plugins
@@ -395,28 +395,34 @@ class LeafletMap extends React.Component {
 
   createPopUpContent = result => {
     let popUpTemplate = '';
-    if (Array.isArray(result.prefLabel)) {
-      result.prefLabel = result.prefLabel[0];
+    try {
+      if (Array.isArray(result.prefLabel)) {
+        result.prefLabel = result.prefLabel[0];
+      }
+      if (has(result.prefLabel, 'dataProviderUrl')) {
+        popUpTemplate += `<a href=${result.prefLabel.dataProviderUrl}><h3>${result.prefLabel.prefLabel}</h3></a>`;
+      } else {
+        popUpTemplate += `<h3>${result.prefLabel.prefLabel}</h3>`;
+      }
+      if (has(result, 'sameAs')) {
+        popUpTemplate += `<p>Place authority: <a target="_blank" rel="noopener noreferrer" href=${result.sameAs}>${result.sameAs}</a></p>`;
+      }
+      if (this.props.resultClass === 'placesMsProduced') {
+        popUpTemplate += `<p>Manuscripts produced here:</p>`;
+        popUpTemplate += this.createInstanceListing(result.related);
+      }
+      if (this.props.resultClass === 'placesActors') {
+        popUpTemplate += `<p>Actors:</p>`;
+        popUpTemplate += this.createInstanceListing(result.related);
+      }
+      if (this.props.resultClass === 'battlePlaces') {
+        const startDate = moment(result.startDate.prefLabel);
+        popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
+        popUpTemplate += `<p>Alkupäivä: ${startDate.format('DD.MM.YYYY')}</p>`;
+      }
     }
-    if (has(result.prefLabel, 'dataProviderUrl')) {
-      popUpTemplate += `<a href=${result.prefLabel.dataProviderUrl}><h3>${result.prefLabel.prefLabel}</h3></a>`;
-    } else {
-      popUpTemplate += `<h3>${result.prefLabel.prefLabel}</h3>`;
-    }
-    if (has(result, 'sameAs')) {
-      popUpTemplate += `<p>Place authority: <a target="_blank" rel="noopener noreferrer" href=${result.sameAs}>${result.sameAs}</a></p>`;
-    }
-    if (this.props.resultClass === 'placesMsProduced') {
-      popUpTemplate += `<p>Manuscripts produced here:</p>`;
-      popUpTemplate += this.createInstanceListing(result.related);
-    }
-    if (this.props.resultClass === 'placesActors') {
-      popUpTemplate += `<p>Actors:</p>`;
-      popUpTemplate += this.createInstanceListing(result.related);
-    }
-    if (this.props.resultClass === 'battlePlaces') {
-      popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
-      popUpTemplate += `<p>Alkupäivä: ${result.startDate.prefLabel}</p>`;
+    catch(TypeError) {
+      popUpTemplate += `<p>Error downloading data</p>`;
     }
     return popUpTemplate;
   }
