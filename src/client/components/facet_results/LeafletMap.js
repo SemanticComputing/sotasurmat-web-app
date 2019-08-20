@@ -73,7 +73,6 @@ class LeafletMap extends React.Component {
       resultClass: this.props.resultClass,
       facetClass: this.props.facetClass,
       sortBy: null,
-      variant: this.props.variant,
     });
 
     // Base layers
@@ -90,8 +89,6 @@ class LeafletMap extends React.Component {
     // const parisTest = L.tileLayer('http://mapwarper.net/maps/tile/28345/{z}/{x}/{y}.png', {
     //   attribution: 'SeCo'
     // });
-
-
 
     // create marker layers
     this.resultMarkerLayer = L.layerGroup();
@@ -148,14 +145,13 @@ class LeafletMap extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    //console.log(this.props)
+    //console.log(this.props.resultClass)
     // check if filters have changed
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({
         resultClass: this.props.resultClass,
         facetClass: this.props.facetClass,
         sortBy: null,
-        variant: this.props.variant,
       });
     }
 
@@ -169,7 +165,7 @@ class LeafletMap extends React.Component {
     }
 
     // check if instance have changed
-    if (prevProps.instance !== this.props.instance) {
+    if ((this.props.instance !== null) && prevProps.instance !== this.props.instance) {
       this.markers[this.props.instance.id]
         .bindPopup(this.createPopUpContent(this.props.instance), {
           maxHeight: 300,
@@ -393,13 +389,15 @@ class LeafletMap extends React.Component {
     this.props.fetchByURI({
       resultClass: this.props.resultClass,
       facetClass: this.props.facetClass,
-      variant: this.props.variant,
       uri: event.target.options.id
     });
   };
 
   createPopUpContent = result => {
     let popUpTemplate = '';
+    if (Array.isArray(result.prefLabel)) {
+      result.prefLabel = result.prefLabel[0];
+    }
     if (has(result.prefLabel, 'dataProviderUrl')) {
       popUpTemplate += `<a href=${result.prefLabel.dataProviderUrl}><h3>${result.prefLabel.prefLabel}</h3></a>`;
     } else {
@@ -408,19 +406,18 @@ class LeafletMap extends React.Component {
     if (has(result, 'sameAs')) {
       popUpTemplate += `<p>Place authority: <a target="_blank" rel="noopener noreferrer" href=${result.sameAs}>${result.sameAs}</a></p>`;
     }
-    if (this.props.variant === 'productionPlaces') {
+    if (this.props.resultClass === 'placesMsProduced') {
       popUpTemplate += `<p>Manuscripts produced here:</p>`;
       popUpTemplate += this.createInstanceListing(result.related);
     }
-    if (this.props.variant === 'actorPlaces') {
+    if (this.props.resultClass === 'placesActors') {
       popUpTemplate += `<p>Actors:</p>`;
       popUpTemplate += this.createInstanceListing(result.related);
     }
-    if (this.props.variant === 'battlePlaces') {
+    if (this.props.resultClass === 'battlePlaces') {
       popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
       popUpTemplate += `<p>Alkupäivä: ${result.startDate.prefLabel}</p>`;
     }
-
     return popUpTemplate;
   }
 
@@ -485,7 +482,6 @@ LeafletMap.propTypes = {
   fetchByURI: PropTypes.func.isRequired,
   fetching: PropTypes.bool.isRequired,
   mapMode: PropTypes.string.isRequired,
-  variant: PropTypes.string.isRequired,
   showInstanceCountInClusters: PropTypes.bool,
   updateFacetOption: PropTypes.func,
 };

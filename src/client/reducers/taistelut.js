@@ -28,7 +28,6 @@ export const INITIAL_STATE = {
   results: [],
   paginatedResults: [],
   resultCount: 0,
-  resultsUpdateID: -1,
   instance: null,
   page: -1,
   pagesize: 15,
@@ -116,8 +115,14 @@ export const INITIAL_STATE = {
   ],
 };
 
+
+const resultClasses = new Set([
+  'taistelut',
+  'battlePlaces',
+]);
+
 const taistelut = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'taistelut') {
+  if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:

@@ -78,27 +78,27 @@ class ResultTable extends React.Component {
 
   componentDidMount = () => {
     let page;
+
+    // first check if page was given as url parameter
     if (this.props.routeProps.location.search === '') {
       page = this.props.data.page === -1 ? 0 : this.props.data.page;
-      // console.log(`result table mounted WITHOUT page parameter, set page to ${page}`);
     } else {
       const qs = this.props.routeProps.location.search.replace('?', '');
       page = parseInt(querystring.parse(qs).page);
-      // console.log(`result table mounted with page parameter, set page to ${page}`);
     }
+
+    // then update app state and url accordingly
     this.props.updatePage(this.props.resultClass, page);
     history.push({
       //pathname: `/${this.props.resultClass}/table`,
       pathname: `${this.props.rootUrl}/${this.props.perspective.id}/faceted-search/lista`,
       search: `?page=${page}`,
     });
-    if (this.props.data.resultsUpdateID !== -1 && this.props.data.resultsUpdateID !== this.props.facetUpdateID) {
-      this.props.updatePage(this.props.resultClass, 0);
-      this.fetchResults();
-    }
+
   }
 
   componentDidUpdate = prevProps => {
+
     // always fetch new results when page has updated
     if (prevProps.data.page != this.props.data.page) {
       this.fetchResults();
@@ -108,6 +108,7 @@ class ResultTable extends React.Component {
         search: `?page=${this.props.data.page}`,
       });
     }
+
     // when sort property or direction changes, return to first page
     if (this.needNewResults(prevProps)) {
       if (this.props.data.page == 0) {

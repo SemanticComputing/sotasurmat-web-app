@@ -30,7 +30,6 @@ export const INITIAL_STATE = {
   results: [],
   paginatedResults: [],
   resultCount: 0,
-  resultsUpdateID: -1,
   instance: null,
   page: -1,
   pagesize: 10,
@@ -118,6 +117,19 @@ export const INITIAL_STATE = {
         uncertain.
       `,
       valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+    },
+    {
+      id: 'note',
+      label: 'Note',
+      desc: `
+        Note
+      `,
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,

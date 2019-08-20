@@ -10,8 +10,19 @@ import {
   deathsProperties, personQuery, birthYearsQuery, ageQuery, deathDateQuery,
 } from './SparqlQueriesDeaths';
 import {
-  battleProperties, battlePlacesQuery, battlePlaceQuery
+  battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
 } from './SparqlQueriesBattles';
+import {
+  actorProperties,
+  placesActorsQuery,
+} from './SparqlQueriesActors';
+import {
+  placeProperties,
+  placePropertiesInfoWindow,
+  manuscriptsProducedAt,
+  actorsAt,
+  allPlacesQuery,
+} from './SparqlQueriesPlaces';
 import { facetConfigs } from './FacetConfigs';
 import { mapCount, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
@@ -49,24 +60,28 @@ export const getPaginatedResults = async ({
 };
 
 export const getAllResults = ({
-  // resultClass, // TODO: handle other classes than manuscripts
+  resultClass,
   facetClass,
   constraints,
-  variant,
   resultFormat
 }) => {
-  //console.log(variant);
   let q = '';
   let filterTarget = '';
   let mapper = makeObjectList;
-  switch (variant) {
+  //console.log(resultClass)
+  switch (resultClass) {
     case 'battlePlaces':
       q = battlePlacesQuery;
       filterTarget = 'id';
       break;
+
     case 'birthYearCount':
       q = birthYearsQuery;
       mapper = mapBirthYearCount;
+      filterTarget = 'id';
+      break;
+    case 'placesAll':
+      q = allPlacesQuery;
       filterTarget = 'id';
       break;
     case 'ageCount':
@@ -89,16 +104,15 @@ export const getAllResults = ({
     q = q.replace('<FILTER>', '# no filters');
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
+      resultClass: resultClass,
       facetClass: facetClass,
       constraints: constraints,
       filterTarget: filterTarget,
       facetID: null
     }));
   }
-  //if (variant == 'productionPlaces') {
-  //console.log(prefixes + q);
-  // }
-  return runSelectQuery(prefixes + q, endpoint, mapper, 'json');
+  //console.log(prefixes + q)
+  return runSelectQuery(prefixes + q, endpoint, mapper, resultFormat);
 };
 
 export const getResultCount = async ({
@@ -186,9 +200,8 @@ const getPaginatedData = ({
 
 export const getByURI = ({
   resultClass,
-  // facetClass,
-  // constraints,
-  // variant,
+  facetClass,
+  constraints,
   uri,
   resultFormat
 }) => {
@@ -204,9 +217,25 @@ export const getByURI = ({
       q = q.replace('<PROPERTIES>', battleProperties);
       q = q.replace('<RELATED_INSTANCES>', '');
       break;
+    case 'battlePlaces':
+      q = instanceQuery;
+      q = q.replace('<PROPERTIES>', battleProperties);
+      q = q.replace('<RELATED_INSTANCES>', '');
+      break;
+  }
 
+  if (constraints == null) {
+    q = q.replace('<FILTER>', '# no filters');
+  } else {
+    q = q.replace('<FILTER>', generateConstraintsBlock({
+      resultClass: resultClass,
+      facetClass: facetClass,
+      constraints: constraints,
+      filterTarget: 'related__id',
+      facetID: null}));
   }
 
   q = q.replace('<ID>', `<${uri}>`);
+  //console.log(prefixes + q)
   return runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
 };

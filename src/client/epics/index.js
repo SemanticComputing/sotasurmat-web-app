@@ -53,7 +53,6 @@ const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
       pagesize: pagesize,
       sortBy: sortBy,
       sortDirection: sortDirection,
-      variant: null
     });
     const requestUrl = `${apiUrl}${resultClass}/paginated?${params}`;
     // https://rxjs-dev.firebaseapp.com/api/ajax/ajax
@@ -83,7 +82,7 @@ const fetchResultsEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_RESULTS),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    const { resultClass, facetClass, variant } = action;
+    const { resultClass, facetClass } = action;
     const params = stateToUrl({
       facets: state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
@@ -91,7 +90,6 @@ const fetchResultsEpic = (action$, state$) => action$.pipe(
       pagesize: null,
       sortBy: null,
       sortDirection: null,
-      variant: variant
     });
     const requestUrl = `${apiUrl}${resultClass}/all?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -124,8 +122,7 @@ const fetchResultCountEpic = (action$, state$) => action$.pipe(
       page: null,
       pagesize: null,
       sortBy: null,
-      sortDirection: null,
-      variant: null
+      sortDirection: null
     });
     const requestUrl = `${apiUrl}${resultClass}/count?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -185,7 +182,7 @@ const fetchByURIEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_BY_URI),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    const { resultClass, facetClass, variant, uri } = action;
+    const { resultClass, facetClass, uri } = action;
     const params = stateToUrl({
       facets: facetClass == null ? null : state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
@@ -193,7 +190,6 @@ const fetchByURIEpic = (action$, state$) => action$.pipe(
       pagesize: null,
       sortBy: null,
       sortDirection: null,
-      variant: variant
     });
     const requestUrl = `${apiUrl}${resultClass}/instance/${encodeURIComponent(uri)}?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -230,7 +226,6 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
       pagesize: null,
       sortBy: sortBy,
       sortDirection: sortDirection,
-      variant: null
     });
     const requestUrl = `${apiUrl}${action.facetClass}/facet/${facetID}?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -262,7 +257,6 @@ export const stateToUrl = ({
   pagesize,
   sortBy,
   sortDirection,
-  variant
 }) => {
   let params = {};
   if (facetClass !== null) { params.facetClass = facetClass; }
@@ -270,7 +264,6 @@ export const stateToUrl = ({
   if (pagesize !== null) { params.pagesize = pagesize; }
   if (sortBy !== null) { params.sortBy = sortBy; }
   if (sortDirection !== null) { params.sortDirection = sortDirection; }
-  if (variant !== null) { params.variant = variant; }
   if (facets !== null) {
     let constraints = {};
     for (const [key, value] of Object.entries(facets)) {

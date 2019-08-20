@@ -40,14 +40,13 @@ let Taistelut = props => {
           <LeafletMap
             results={props.taistelut.results}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='taistelut'
+            resultClass='battlePlaces'
             facetClass='taistelut'
             instance={props.taistelut.instance}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
             fetching={props.taistelut.fetching}
             mapMode={'cluster'}
-            variant='battlePlaces'
             showInstanceCountInClusters={false}
           />}
       />

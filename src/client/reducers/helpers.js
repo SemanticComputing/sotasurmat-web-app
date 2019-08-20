@@ -3,6 +3,7 @@ import { has, isEmpty } from 'lodash';
 export const fetchResults = state => {
   return {
     ...state,
+    // results: [],
     fetching: true,
     instance: null
   };
@@ -161,7 +162,6 @@ export const updateResultCount = (state, action) => {
 export const updateResults = (state, action) => {
   return {
     ...state,
-    resultsUpdateID: ++state.resultsUpdateID,
     results: action.data,
     fetching: false,
   };
@@ -170,7 +170,6 @@ export const updateResults = (state, action) => {
 export const updatePaginatedResults = (state, action) => {
   return {
     ...state,
-    resultsUpdateID: ++state.resultsUpdateID,
     paginatedResults: action.data || [],
     sparqlQuery: action.sparqlQuery,
     fetching: false

@@ -22,8 +22,7 @@ import Surmatut from '../components/perspectives/Surmatut';
 import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import { perspectiveArr } from '../components/perspectives/PerspectiveArray';
-//import punainenRintama from '../img/punainenRintama.jpg';
-
+import { has } from 'lodash';
 import {
   fetchResultCount,
   fetchPaginatedResults,
@@ -150,16 +149,17 @@ let SemanticPortal = (props) => {
     return perspectiveElement;
   };
 
+  // ${rootUrl}
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
         <Message error={error} />
         <React.Fragment>
           <TopBar
+            rootUrl={rootUrl}
             search={props.clientSideFacetedSearch}
             fetchResultsClientSide={props.fetchResultsClientSide}
             clearResults={props.clearResults}
-            rootUrl={rootUrl}
             perspectives={perspectiveArr}
           />
           <Grid container spacing={1} className={classes.mainContainer}>
@@ -168,13 +168,14 @@ let SemanticPortal = (props) => {
               render={() =>
                 <React.Fragment>
                   <Main
-                    rootUrl={rootUrl}
                     perspectives={perspectiveArr}
+                    rootUrl={rootUrl}
                   />
                   <Footer />
                 </React.Fragment>
               }
             />
+            { /* route for full text search results */ }
             <Route
               path="/all"
               render={routeProps =>
@@ -191,49 +192,53 @@ let SemanticPortal = (props) => {
                 </React.Fragment>
               }
             />
-            { /* create routes for perspectives defined in perspectiveArr */}
-            {perspectiveArr.map(perspective =>
-              <React.Fragment key={perspective.id}>
-                <Route
-                  path={`${rootUrl}/${perspective.id}/faceted-search`}
-                  render={routeProps => {
-                    return (
-                      <React.Fragment>
-                        <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-                          <FacetBar
-                            facetData={props[`${perspective.id}Facets`]}
-                            facetClass={perspective.id}
+            { /* routes for perspectives that don't have an external url */ }
+            {perspectiveArr.map(perspective => {
+              if (!has(perspective, 'externalUrl')) {
+                return(
+                  <React.Fragment key={perspective.id}>
+                    <Route
+                      path={`${rootUrl}/${perspective.id}/faceted-search`}
+                      render={routeProps => {
+                        return (
+                          <React.Fragment>
+                            <Grid item xs={12} md={3} className={classes.facetBarContainer}>
+                              <FacetBar
+                                facetData={props[`${perspective.id}Facets`]}
+                                facetClass={perspective.id}
+                                resultClass={perspective.id}
+                                fetchingResultCount={props[perspective.id].fetchingResultCount}
+                                resultCount={props[perspective.id].resultCount}
+                                fetchFacet={props.fetchFacet}
+                                fetchResultCount={props.fetchResultCount}
+                                updateFacetOption={props.updateFacetOption}
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={9} className={classes.resultsContainer}>
+                              {renderPerspective(perspective, routeProps)}
+                            </Grid>
+                          </React.Fragment>
+                        );
+                      }}
+                    />
+                    <Route
+                      path={`${rootUrl}/${perspective.id}/page/:id`}
+                      render={routeProps => {
+                        return (
+                          <InstanceHomePage
+                            fetchByURI={props.fetchByURI}
                             resultClass={perspective.id}
-                            fetchingResultCount={props[perspective.id].fetchingResultCount}
-                            resultCount={props[perspective.id].resultCount}
-                            fetchFacet={props.fetchFacet}
-                            fetchResultCount={props.fetchResultCount}
-                            updateFacetOption={props.updateFacetOption}
+                            data={props[perspective.id].instance}
+                            isLoading={props[perspective.id].fetching}
+                            routeProps={routeProps}
                           />
-                        </Grid>
-                        <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                          {renderPerspective(perspective, routeProps)}
-                        </Grid>
-                      </React.Fragment>
-                    );
-                  }}
-                />
-                <Route
-                  path={`${rootUrl}/${perspective.id}/page/:id`}
-                  render={routeProps => {
-                    return (
-                      <InstanceHomePage
-                        fetchByURI={props.fetchByURI}
-                        resultClass={perspective.id}
-                        data={props[perspective.id].instance}
-                        isLoading={props[perspective.id].fetching}
-                        routeProps={routeProps}
-                      />
-                    );
-                  }}
-                />
-              </React.Fragment>
-            )}
+                        );
+                      }}
+                    />
+                  </React.Fragment>
+                );
+              }
+            })}
           </Grid>
         </React.Fragment>
       </div>
