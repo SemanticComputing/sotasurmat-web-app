@@ -1,4 +1,4 @@
-import { facetConfigs } from './FacetConfigs';
+import { facetConfigs } from './FacetConfigsMMM';
 
 export const hasPreviousSelections = (constraints, facetID) => {
   let hasPreviousSelections = false;
@@ -89,6 +89,15 @@ export const generateConstraintsBlock = ({
           inverse: inverse
         });
         break;
+      case 'integerFilter':
+        filterStr += generateIntegerFilter({
+          facetClass: facetClass,
+          facetID: c.id,
+          filterTarget: filterTarget,
+          values: c.values,
+          inverse: inverse
+        });
+        break;
     }
   });
   return filterStr;
@@ -101,7 +110,17 @@ const generateTextFilter = ({
   queryString,
   inverse
 }) => {
-  const filterStr = `?${filterTarget} text:query (${facetConfigs[facetClass][facetID].textQueryProperty} '${queryString}') . `;
+  const facetConfig = facetConfigs[facetClass][facetID];
+  let filterStr = '';
+  if (facetConfig.textQueryPredicate === '') {
+    filterStr = `?${filterTarget} text:query (${facetConfig.textQueryProperty} '${queryString}') .`;
+  } else {
+    filterStr = `
+      ?textQueryTarget text:query (${facetConfig.textQueryProperty} '${queryString}') .
+      ?${filterTarget} ${facetConfig.textQueryPredicate} ?textQueryTarget .
+
+    `;
+  }
   if (inverse) {
     return `
       FILTER NOT EXISTS {
@@ -164,6 +183,34 @@ const generateTimespanFilter = ({
       ?${facetID}Start >= "${selectionStart}"^^xsd:date && ?${facetID}Start <= "${selectionEnd}"^^xsd:date
       ||
       ?${facetID}End >= "${selectionStart}"^^xsd:date && ?${facetID}End <= "${selectionEnd}"^^xsd:date
+    )
+  `;
+  if (inverse) {
+    return `
+    FILTER NOT EXISTS {
+        ${filterStr}
+    }
+    `;
+  } else {
+    return filterStr;
+  }
+};
+
+const generateIntegerFilter = ({
+  facetClass,
+  facetID,
+  filterTarget,
+  values,
+  inverse
+}) => {
+  const facetConfig = facetConfigs[facetClass][facetID];
+  const { start, end } = values;
+  const selectionStart = start;
+  const selectionEnd = end;
+  const filterStr = `
+    ?${filterTarget} ${facetConfig.predicate} ?value .
+    FILTER(
+      xsd:integer(?value) >= ${selectionStart} && xsd:integer(?value) <= ${selectionEnd}
     )
   `;
   if (inverse) {

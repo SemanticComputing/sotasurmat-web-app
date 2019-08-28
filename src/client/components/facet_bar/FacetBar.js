@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import HierarchicalFacet from './HierarchicalFacet';
 import TextFacet from './TextFacet';
-import DateSliderFacet from './DateSliderFacet';
+import SliderFacet from './SliderFacet';
 import DateRangeSelector from './DateRangeSelector';
 import Paper from '@material-ui/core/Paper';
 import FacetHeader from './FacetHeader';
@@ -62,7 +62,7 @@ class FacetBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeFacets: new Set(),
+      activeFacets: this.props.defaultActiveFacets,
     };
   }
 
@@ -116,7 +116,7 @@ class FacetBar extends React.Component {
         break;
       case 'timespanFilter':
         facetComponent = (
-          <DateSliderFacet
+          <SliderFacet
             facetID={facetID}
             facet={facet}
             facetClass={this.props.facetClass}
@@ -125,6 +125,22 @@ class FacetBar extends React.Component {
             fetchFacet={this.props.fetchFacet}
             someFacetIsFetching={someFacetIsFetching}
             updateFacetOption={this.props.updateFacetOption}
+            dataType='ISOString'
+          />
+        );
+        break;
+      case 'integerFilter':
+        facetComponent = (
+          <SliderFacet
+            facetID={facetID}
+            facet={facet}
+            facetClass={this.props.facetClass}
+            resultClass={this.props.resultClass}
+            facetUpdateID={facetUpdateID}
+            fetchFacet={this.props.fetchFacet}
+            someFacetIsFetching={someFacetIsFetching}
+            updateFacetOption={this.props.updateFacetOption}
+            dataType='integer'
           />
         );
         break;
@@ -158,11 +174,21 @@ class FacetBar extends React.Component {
         );
         break;
     }
-    if (facet.filterType == 'textFilter' || facet.filterType == 'dateFilter') {
-      return(
-        <Paper
-          className={classes.facetContainer}
-          key={facetID}>
+    return(
+      <ExpansionPanel
+        key={facetID}
+        expanded={isActive}
+      >
+        <ExpansionPanelSummary
+          classes={{
+            root: classes.expansionPanelSummaryRoot,
+            content: classes.expansionPanelSummaryContent
+          }}
+          expandIcon={<ExpandMoreIcon />}
+          IconButtonProps={{ onClick: this.handleExpandButtonOnClick(facetID) }}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
           <FacetHeader
             facetID={facetID}
             facet={facet}
@@ -172,44 +198,15 @@ class FacetBar extends React.Component {
             fetchFacet={this.props.fetchFacet}
             updateFacetOption={this.props.updateFacetOption}
           />
-          {facetComponent}
-        </Paper>
-      );
-    }
-    else {
-      return(
-        <ExpansionPanel
-          key={facetID}
-          expanded={isActive}
-        >
-          <ExpansionPanelSummary
-            classes={{
-              root: classes.expansionPanelSummaryRoot,
-              content: classes.expansionPanelSummaryContent
-            }}
-            expandIcon={<ExpandMoreIcon />}
-            IconButtonProps={{ onClick: this.handleExpandButtonOnClick(facetID) }}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <FacetHeader
-              facetID={facetID}
-              facet={facet}
-              isActive={isActive}
-              facetClass={this.props.facetClass}
-              resultClass={this.props.resultClass}
-              fetchFacet={this.props.fetchFacet}
-              updateFacetOption={this.props.updateFacetOption}
-            />
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails
-            className={clsx(classes[facet.containerClass], classes.expansionPanelDetails)}>
-            {isActive && facetComponent}
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      );
-    }
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails
+          className={clsx(classes[facet.containerClass], classes.expansionPanelDetails)}>
+          {isActive && facetComponent}
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    );
   }
+
 
   render() {
     const { classes, facetClass, resultClass, resultCount } = this.props;
@@ -251,7 +248,8 @@ FacetBar.propTypes = {
   fetchingResultCount: PropTypes.bool.isRequired,
   fetchFacet: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,
-  updateFacetOption: PropTypes.func.isRequired
+  updateFacetOption: PropTypes.func.isRequired,
+  defaultActiveFacets: PropTypes.instanceOf(Set).isRequired,
 };
 
 export default withStyles(styles)(FacetBar);

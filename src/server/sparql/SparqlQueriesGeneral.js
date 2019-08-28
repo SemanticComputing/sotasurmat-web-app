@@ -19,20 +19,16 @@ export const countQuery = `
 `;
 
 export const jenaQuery = `
-  SELECT ?id ?prefLabel ?dataProviderUrl ?source__id ?source__prefLabel ?type__id ?type__prefLabel
+  SELECT *
   WHERE {
     <QUERY>
-    ?id skos:prefLabel ?prefLabel .
-    ?id a ?type__id .
-    ?type__id rdfs:label|skos:prefLabel ?type__prefLabel_ .
-    BIND(STR(?type__prefLabel_) AS ?type__prefLabel)  # ignore language tags
-    OPTIONAL {
-      ?id dct:source ?source__id .
-      BIND(?source__id AS ?source__prefLabel)
-
-      # this used to work but now its painfully slow:
-      #OPTIONAL { ?source__id skos:prefLabel ?source__prefLabel_ }
-      #BIND(COALESCE(?source__prefLabel_, ?source__id) as ?source__prefLabel)
+    {
+      ?id skos:prefLabel ?prefLabel__id .
+      BIND(?prefLabel__id as ?prefLabel__prefLabel)
+      BIND(?id as ?prefLabel__dataProviderUrl)
+      ?id a ?type__id .
+      ?type__id rdfs:label|skos:prefLabel ?type__prefLabel_ .
+      BIND(STR(?type__prefLabel_) AS ?type__prefLabel)  # ignore language tags
     }
   }
 `;
@@ -125,5 +121,15 @@ export const facetValuesQueryTimespan = `
         <FACET_VALUE_FILTER>
       }
     }
+  }
+`;
+
+export const facetValuesRange = `
+  # ignore selections from other facets
+  SELECT (MIN(?value) AS ?min) (MAX(?value) AS ?max) {
+    ?instance <PREDICATE> ?value .
+    VALUES ?facetClass { <FACET_CLASS> }
+    ?instance a ?facetClass .
+    <FACET_VALUE_FILTER>
   }
 `;

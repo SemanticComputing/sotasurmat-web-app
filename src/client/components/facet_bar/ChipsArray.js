@@ -36,7 +36,8 @@ class ChipsArray extends React.Component {
             value: null
           });
           break;
-        case 'timespanFilter': {    
+        case 'timespanFilter':
+        case 'integerFilter':
           this.props.updateFacetOption({
             facetClass: this.props.facetClass,
             facetID: item.facetID,
@@ -47,7 +48,6 @@ class ChipsArray extends React.Component {
             facetClass: this.props.facetClass,
             facetID: item.facetID,
           });
-        }
       }
     }
   };
@@ -93,6 +93,10 @@ class ChipsArray extends React.Component {
             key = item.facetID;
             valueLabel = `${item.value.start} to
               ${item.value.end}`;
+          }
+          if (item.filterType === 'integerFilter') {
+            key = item.facetID;
+            valueLabel = `${item.value.start} to ${item.value.end}`;
           }
           return (
             <Tooltip key={key} title={`${item.facetLabel}: ${valueLabel}`}>

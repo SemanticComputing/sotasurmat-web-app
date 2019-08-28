@@ -73,6 +73,7 @@ export const updateFacetOption = (state, action) => {
     'spatialFilter',
     'textFilter',
     'timespanFilter',
+    'integerFilter',
     'dateFilter'
   ];
   if (filterTypes.includes(action.option)) {
@@ -122,22 +123,36 @@ const updateFacetFilter = (state, action) => {
       ...state.facets[facetID],
       textFilter: value
     };
-  } else if (oldFacet.filterType === 'timespanFilter' ) {
-    newFacet = {
-      ...state.facets[facetID],
-      timespanFilter: {
-        start: value[0],
-        end: value[1]
-      }
-    };
-  } else if (oldFacet.filterType === 'dateFilter' ) {
-    newFacet = {
-      ...state.facets[facetID],
-      timespanFilter: {
-        start: value[0],
-        end: value[1]
-      }
-    };
+  } else if (oldFacet.filterType === 'timespanFilter' || 'dateFilter') {
+    if (value == null) {
+      newFacet = {
+        ...state.facets[facetID],
+        timespanFilter: null
+      };
+    } else {
+      newFacet = {
+        ...state.facets[facetID],
+        timespanFilter: {
+          start: value[0],
+          end: value[1]
+        }
+      };
+    }
+  } else if (oldFacet.filterType === 'integerFilter' ) {
+    if (value == null) {
+      newFacet = {
+        ...state.facets[facetID],
+        integerFilter: null
+      };
+    } else {
+      newFacet = {
+        ...state.facets[facetID],
+        integerFilter: {
+          start: value[0],
+          end: value[1]
+        }
+      };
+    }
   }
   return {
     ...state,
@@ -204,7 +219,8 @@ export const fetchFacetFailed = (state, action) => {
 };
 
 export const updateFacetValues = (state, action) => {
-  if (state.facets[action.id].type === 'timespan') {
+  if (state.facets[action.id].type === 'timespan'
+    || state.facets[action.id].type === 'integer' ) {
     return {
       ...state,
       facets: {

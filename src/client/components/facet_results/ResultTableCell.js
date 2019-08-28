@@ -3,43 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TableCell from '@material-ui/core/TableCell';
 import ObjectList from './ObjectList';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = () => ({
-  valueList: {
-    paddingLeft: 20,
-    maxHeight: 200,
-    overflow: 'auto'
-  },
-  valueListNoBullets: {
-    listStyle: 'none',
-    paddingLeft: 0
-  },
-  noDate: {
-    marginRight: 20
-  }
-});
+import StringList from './StringList';
 
 const ResultTableCell = props => {
-
-  const stringListRenderer = cell => {
-    if (cell == null || cell === '-'){
-      return '-';
-    }
-    if (Array.isArray(cell)) {
-      cell = cell.sort();
-      return (
-        <ul className={props.classes.valueList}>
-          {cell.map((item, i) => <li key={i}>{item}</li>)}
-        </ul>
-      );
-    } else {
-      return <span>{cell}</span>;
-    }
-  };
-
   const { data, valueType, makeLink, externalLink, sortValues, numberedList, minWidth,
-    container, columnId, expanded, addSource } = props;
+    container, columnId, expanded, linkAsButton, collapsedMaxWords } = props;
   let cellContent = null;
   let cellStyle = minWidth == null ? {} : { minWidth: minWidth };
   switch (valueType) {
@@ -53,11 +21,16 @@ const ResultTableCell = props => {
           numberedList={numberedList}
           columnId={columnId}
           expanded={expanded}
-          addSource={addSource}
+          linkAsButton={linkAsButton}
         />;
       break;
     case 'string':
-      cellContent = stringListRenderer(data);
+      cellContent =
+        <StringList
+          data={data}
+          expanded={expanded}
+          collapsedMaxWords={collapsedMaxWords}
+        />;
       break;
   }
   if (container === 'div') {
@@ -77,7 +50,6 @@ const ResultTableCell = props => {
 };
 
 ResultTableCell.propTypes = {
-  classes: PropTypes.object.isRequired,
   columnId: PropTypes.string.isRequired,
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   valueType: PropTypes.string.isRequired,
@@ -87,7 +59,7 @@ ResultTableCell.propTypes = {
   numberedList: PropTypes.bool.isRequired,
   minWidth: PropTypes.number,
   expanded: PropTypes.bool.isRequired,
-  addSource: PropTypes.func
+  collapsedMaxWords: PropTypes.number,
 };
 
-export default withStyles(styles)(ResultTableCell);
+export default ResultTableCell;

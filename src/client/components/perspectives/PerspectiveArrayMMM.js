@@ -1,3 +1,11 @@
+// export const perspectiveArr = [
+//   {
+//     id: 'manuscripts',
+//     label: 'Manuscripts',
+//     desc: 'Physical manuscript objects.',
+//     defaultActiveFacets: new Set(['prefLabel']),
+
+
 import kalevankangas from '../../img/kalevankangas.jpg';
 import punainenRintama from '../../img/punainenRintama.jpg';
 import tampereVangit from '../../img/tampereVangit.jpg';

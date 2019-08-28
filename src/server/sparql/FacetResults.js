@@ -17,14 +17,15 @@ import {
   placesActorsQuery,
 } from './SparqlQueriesActors';
 import {
-  placeProperties,
+  placePropertiesInstancePage,
+  placePropertiesFacetResults,
   placePropertiesInfoWindow,
   manuscriptsProducedAt,
   actorsAt,
   allPlacesQuery,
 } from './SparqlQueriesPlaces';
-import { facetConfigs } from './FacetConfigs';
-import { mapCount, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
+import { facetConfigs } from './FacetConfigsMMM';
+import { mapCount, mapPlacest, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
 import { generateConstraintsBlock } from './Filters';
 

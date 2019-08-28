@@ -2,6 +2,45 @@
   labelPath is only used when sorting results, so it should removed from
   facet configs
 */
+
+const invalidActorTimespans = `
+        <http://ldf.fi/mmm/time/bibale_element_876634-269>,
+        <http://ldf.fi/mmm/time/bibale_element_876940-269>,
+        <http://ldf.fi/mmm/time/bibale_element_877018-269>,
+        <http://ldf.fi/mmm/time/bibale_element_876634-269>,
+        <http://ldf.fi/mmm/time/bibale_element_877167-269>,
+        <http://ldf.fi/mmm/time/bibale_element_877167-269>,
+        <http://ldf.fi/mmm/time/bibale_element_882490-269>,
+        <http://ldf.fi/mmm/time/sdbm_39923_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_2814_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_4391_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_45865_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_44872_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_45182_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_40695_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_44762_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_726_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_754_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_41046_birth_timespan>,
+        <http://ldf.fi/mmm/time/sdbm_5963_birth_timespan>
+`;
+
+const invalidTransferOfCustodyTimespans = `
+        <http://ldf.fi/mmm/time/bibale_element_478356>,
+        <http://ldf.fi/mmm/time/bibale_element_503431>,
+        <http://ldf.fi/mmm/time/bibale_element_515064>,
+        <http://ldf.fi/mmm/time/bibale_element_515527>,
+        <http://ldf.fi/mmm/time/bibale_element_524327>,
+        <http://ldf.fi/mmm/time/bibale_element_524686>,
+        <http://ldf.fi/mmm/time/bibale_element_526456>,
+        <http://ldf.fi/mmm/time/bibale_element_527378>,
+        <http://ldf.fi/mmm/time/bibale_element_528274>,
+        <http://ldf.fi/mmm/time/bibale_element_530550>,
+        <http://ldf.fi/mmm/time/bibale_element_456150>,
+        <http://ldf.fi/mmm/time/bibale_element_466496>,
+        <http://ldf.fi/mmm/time/bibale_element_471075>
+`;
+
 export const facetConfigs = {
   surmatut: {
     facetClass: 'siso-schema:Death_record',
@@ -10,9 +49,9 @@ export const facetConfigs = {
       facetValueFilter: '',
       label: 'Title',
       labelPath: 'skos:prefLabel',
+      textQueryPredicate: '', // empty for querying the facetClass
+      textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
       type: 'text',
-      predicate: 'text:query',
-      textQueryProperty: 'skos:prefLabel',
     },
     party: {
       id: 'party',
@@ -167,9 +206,9 @@ export const facetConfigs = {
       facetValueFilter: '',
       label: 'Title',
       labelPath: 'skos:prefLabel',
+      textQueryPredicate: '', // empty for querying the facetClass
+      textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
       type: 'text',
-      predicate: 'text:query',
-      textQueryProperty: 'skos:prefLabel',
     },
     startDate: {
       id: 'startDate',

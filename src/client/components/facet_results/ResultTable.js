@@ -16,6 +16,7 @@ import ResultTableHead from './ResultTableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import ResultTablePaginationActions from './ResultTablePaginationActions';
 import history from '../../History';
+import has from 'lodash';
 
 const styles = theme => ({
   tableContainer: {
@@ -176,7 +177,14 @@ class ResultTable extends React.Component {
     let hasExpandableContent = false;
     const dataCells = this.props.data.tableColumns.map(column => {
       const columnData = row[column.id];
-      if (Array.isArray(columnData)) {
+      const isArray = Array.isArray(columnData);
+      if (isArray) {
+        hasExpandableContent = true;
+      }
+      if (!isArray
+        && column.valueType === 'string'
+        && column.collapsedMaxWords
+        && columnData.split(' ').length > column.collapsedMaxWords) {
         hasExpandableContent = true;
       }
       return (
@@ -193,6 +201,14 @@ class ResultTable extends React.Component {
           container='cell'
           expanded={expanded}
           resultClass={this.props.resultClass}
+          linkAsButton={has(column, 'linkAsButton')
+            ? column.linkAsButton
+            : null
+          }
+          collapsedMaxWords={has(column, 'collapsedMaxWords')
+            ? column.collapsedMaxWords
+            : null
+          }
         />
       );
     });

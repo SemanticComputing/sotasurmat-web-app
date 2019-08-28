@@ -21,7 +21,8 @@ import All from '../components/perspectives/All';
 import Surmatut from '../components/perspectives/Surmatut';
 import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
-import { perspectiveArr } from '../components/perspectives/PerspectiveArray';
+//import FeedbackPage from '../components/main_layout/FeedbackPage';
+import { perspectiveArr } from '../components/perspectives/PerspectiveArrayMMM';
 import { has } from 'lodash';
 import {
   fetchResultCount,
@@ -212,6 +213,7 @@ let SemanticPortal = (props) => {
                                 fetchFacet={props.fetchFacet}
                                 fetchResultCount={props.fetchResultCount}
                                 updateFacetOption={props.updateFacetOption}
+                                defaultActiveFacets={perspective.defaultActiveFacets}
                               />
                             </Grid>
                             <Grid item xs={12} md={9} className={classes.resultsContainer}>
@@ -239,6 +241,12 @@ let SemanticPortal = (props) => {
                 );
               }
             })}
+            { /* create routes for classes that have only info pages and no perspective */}
+            { /* create routes for info buttons */ }
+            <Route
+              path={`/feedback`}
+              render={() => null /* <FeedbackPage /> */ }
+            />
           </Grid>
         </React.Fragment>
       </div>

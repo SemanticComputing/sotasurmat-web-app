@@ -28,7 +28,7 @@ const styles = theme => ({
   },
 });
 
-class DateSliderFacet extends Component {
+class SliderFacet extends Component {
 
   componentDidMount = () => {
     this.props.fetchFacet({
@@ -38,14 +38,20 @@ class DateSliderFacet extends Component {
   }
 
   handleSliderOnChange = values => {
-    values[0] = this.YearToISOString({ year: values[0], start: true });
-    values[1] = this.YearToISOString({ year: values[1], start: false });
-    this.props.updateFacetOption({
-      facetClass: this.props.facetClass,
-      facetID: this.props.facetID,
-      option: this.props.facet.filterType,
-      value: values
-    });
+    const defaultValues = parseInt(values[0]) === parseInt(this.props.facet.min)
+      && parseInt(values[1]) == parseInt(this.props.facet.max);
+    if (!defaultValues) {
+      if (this.props.dataType === 'ISOString') {
+        values[0] = this.YearToISOString({ year: values[0], start: true });
+        values[1] = this.YearToISOString({ year: values[1], start: false });
+      }
+      this.props.updateFacetOption({
+        facetClass: this.props.facetClass,
+        facetID: this.props.facetID,
+        option: this.props.facet.filterType,
+        value: values
+      });
+    }
   }
 
   ISOStringToYear = str => {
@@ -83,6 +89,7 @@ class DateSliderFacet extends Component {
   render() {
     const { classes, someFacetIsFetching } = this.props;
     const { isFetching, min, max } = this.props.facet;
+    let domain = null;
     if (isFetching || min == null || max == null) {
       return(
         <div className={classes.spinnerContainer}>
@@ -90,11 +97,15 @@ class DateSliderFacet extends Component {
         </div>
       );
     } else {
-      const minYear = this.ISOStringToYear(min);
-      const maxYear = this.ISOStringToYear(max);
-      const domain = [ minYear, maxYear ]; // use as default values
+      if (this.props.dataType === 'ISOString') {
+        const minYear = this.ISOStringToYear(min);
+        const maxYear = this.ISOStringToYear(max);
+        domain = [ minYear, maxYear ]; // use as default values
+      } else if (this.props.dataType === 'integer') {
+        domain = [ parseInt(min), parseInt(max) ];
+      }
 
-      // https://github.com/sghall/react-compound-slider
+      // Slider documentation: https://github.com/sghall/react-compound-slider
       return (
         <div className={classes.root}>
           <Slider
@@ -150,12 +161,11 @@ class DateSliderFacet extends Component {
         </div>
       );
     }
-
-
   }
 }
 
-DateSliderFacet.propTypes = {
+
+SliderFacet.propTypes = {
   classes: PropTypes.object.isRequired,
   facetID: PropTypes.string.isRequired,
   facet: PropTypes.object.isRequired,
@@ -167,6 +177,7 @@ DateSliderFacet.propTypes = {
   facetUpdateID: PropTypes.number,
   updatedFilter: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   updatedFacet: PropTypes.string,
+  dataType: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(DateSliderFacet);
+export default withStyles(styles)(SliderFacet);
