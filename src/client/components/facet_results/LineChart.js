@@ -73,19 +73,17 @@ class LineChart extends React.Component {
       variant = 'ageCount';
     }
     this.props.fetchResults({
-      resultClass: 'dates',
+      resultClass: variant,
       facetClass: 'surmatut',
       sortBy: null,
-      variant: variant,
     });
   }
 
   componentDidMount = () => {
     this.props.fetchResults({
-      resultClass: 'dates',
+      resultClass: this.state.variant,
       facetClass: 'surmatut',
       sortBy: null,
-      variant: this.state.variant,
     });
     //const { routeProps } = this.props;
     //this.props.fetchByURI('deaths', 'deaths', 'deaths', 'http://ldf.fi/siso/death_records/victim_' + routeProps.match.params.id,);
@@ -95,10 +93,9 @@ class LineChart extends React.Component {
     // check if filters have changed
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({
-        resultClass: 'dates',
+        resultClass: this.state.variant,
         facetClass: 'surmatut',
         sortBy: null,
-        variant: this.state.variant,
       });
     }
   }
@@ -301,6 +298,7 @@ class LineChart extends React.Component {
     let infoString = '';
 
     let results = this.props.data.results;
+    console.log(this.props)
     if (results == undefined) {
       return (
         <p>Virhe kaavion tulosten latautumisessa!</p>
@@ -340,6 +338,7 @@ class LineChart extends React.Component {
     if (this.state.variant == 'deathDateCount') {
       infoString = '';
     }
+    //console.log(resultsArray)
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
     return (
