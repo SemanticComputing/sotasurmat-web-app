@@ -8,6 +8,7 @@ export const perspectiveArr = [
     label: 'Sotasurmat',
     desc: 'Tietoa vuosina 1914-1922 surmatuista',
     thumbImage: kalevankangas,
+    defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
         id: 'lista',
@@ -34,6 +35,7 @@ export const perspectiveArr = [
     label: 'Taistelupaikat',
     desc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
     thumbImage: punainenRintama,
+    defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
         id: 'lista',
@@ -54,6 +56,7 @@ export const perspectiveArr = [
     label: 'Tuleva',
     desc: 'Tuleva näkymä',
     thumbImage: tampereVangit,
+    defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
         id: 'table',

@@ -129,6 +129,15 @@ class Pie extends React.Component {
    });
  }
 
+ componentDidUpdate = prevProps => {
+   if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
+     this.props.fetchFacet({
+       facetClass: 'surmatut',
+       facetID: this.state.selectedOption
+     });
+   }
+ }
+
  updatePie = value => {
    this.props.fetchFacet({
      facetClass: 'surmatut',
@@ -326,6 +335,7 @@ Pie.propTypes = {
   data: PropTypes.object.isRequired,
   //fetchPlaces: PropTypes.func.isRequired
   fetchFacet: PropTypes.func.isRequired,
+  facetUpdateID: PropTypes.number
 };
 
 export default withStyles(styles)(Pie);

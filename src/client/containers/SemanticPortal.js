@@ -22,7 +22,7 @@ import Surmatut from '../components/perspectives/Surmatut';
 import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
-import { perspectiveArr } from '../components/perspectives/PerspectiveArrayMMM';
+import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotasurmat';
 import { has } from 'lodash';
 import {
   fetchResultCount,
