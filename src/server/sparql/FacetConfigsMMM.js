@@ -205,6 +205,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:ammo_occupation',
       facetValueFilter: `
         `,
+      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
     },
     hisclass7: {
       id: 'hisclass7',
@@ -213,6 +214,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:ammo_occupation/ammo-s:hisclass7',
       facetValueFilter: `
         `,
+      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
     },
     age: {
       id: 'age',
