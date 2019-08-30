@@ -198,6 +198,21 @@ export const facetConfigs = {
       endProperty: 'crm:P82b_end_of_the_end',
       type: 'timespan',
     },
+    ammoOccupation: {
+      id: 'ammoOccupation',
+      labelPath: 'siso-schema:ammo_occupation/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:ammo_occupation',
+      facetValueFilter: `
+        `,
+    },
+    age: {
+      id: 'age',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:age',
+      predicate: 'siso-schema:age',
+      type: 'integer',
+    },
   },
   taistelut: {
     facetClass: 'siso-schema:Battle',

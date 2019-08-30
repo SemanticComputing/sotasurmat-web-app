@@ -59,6 +59,11 @@ export const deathsProperties = `
       ?id siso-schema:death_country ?deathCountry__id .
       ?deathCountry__id skos:prefLabel ?deathCountry__prefLabel .
     }
+    UNION {
+      ?id siso-schema:ammo_occupation ?ammoOccupation__id .
+      ?ammoOccupation__id skos:prefLabel ?ammoOccupation__prefLabel .
+      FILTER(?ammoOccupation__prefLabel = 'fi') .
+    }
     `;
 
 export const personQuery = `
