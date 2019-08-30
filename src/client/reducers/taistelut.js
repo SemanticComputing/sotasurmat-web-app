@@ -40,7 +40,7 @@ export const INITIAL_STATE = {
   fetching: false,
   fetchingResultCount: false,
   sparqlQuery: null,
-  headerExpanded: true,
+  headerExpanded: false,
   tableColumns: [
     {
       id: 'prefLabel',

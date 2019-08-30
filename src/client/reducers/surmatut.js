@@ -12,6 +12,7 @@ import {
   UPDATE_PAGE,
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED
 } from '../actions';
 import {
   fetchResults,
@@ -24,6 +25,7 @@ import {
   updateInstance,
   updatePage,
   updateRowsPerPage,
+  updateHeaderExpanded
 } from './helpers';
 
 export const INITIAL_STATE = {
@@ -38,7 +40,7 @@ export const INITIAL_STATE = {
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
-  headerExpanded: true,
+  headerExpanded: false,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -172,6 +174,8 @@ const surmatut = (state = INITIAL_STATE, action) => {
         return updatePage(state, action);
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action);
+      case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
+        return updateHeaderExpanded(state);
       default:
         return state;
     }
