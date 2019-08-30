@@ -206,6 +206,14 @@ export const facetConfigs = {
       facetValueFilter: `
         `,
     },
+    hisclass7: {
+      id: 'hisclass7',
+      labelPath: 'siso-schema:ammo_occupation/ammo-s:hisclass7/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:ammo_occupation/ammo-s:hisclass7',
+      facetValueFilter: `
+        `,
+    },
     age: {
       id: 'age',
       facetValueFilter: '',

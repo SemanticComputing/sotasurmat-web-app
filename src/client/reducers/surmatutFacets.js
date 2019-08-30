@@ -166,6 +166,23 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
     },
+    hisclass7: {
+      id: 'hisclass7',
+      label: 'Hisclass7',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+    },
     causeOfDeath: {
       id: 'causeOfDeath',
       label: 'Kuolinsyy',
