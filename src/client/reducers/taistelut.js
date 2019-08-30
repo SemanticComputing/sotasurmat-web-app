@@ -11,6 +11,8 @@ import {
   UPDATE_INSTANCE,
   UPDATE_PAGE,
   SORT_RESULTS,
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED,
+  UPDATE_ROWS_PER_PAGE
 } from '../actions';
 import {
   fetchResults,
@@ -22,6 +24,8 @@ import {
   updatePaginatedResults,
   updateInstance,
   updatePage,
+  updateRowsPerPage,
+  updateHeaderExpanded
 } from './helpers';
 
 export const INITIAL_STATE = {
@@ -35,6 +39,8 @@ export const INITIAL_STATE = {
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
+  sparqlQuery: null,
+  headerExpanded: true,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -145,6 +151,10 @@ const taistelut = (state = INITIAL_STATE, action) => {
         return updateInstance(state, action);
       case UPDATE_PAGE:
         return updatePage(state, action);
+      case UPDATE_ROWS_PER_PAGE:
+        return updateRowsPerPage(state, action);
+      case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
+        return updateHeaderExpanded(state);
       default:
         return state;
     }

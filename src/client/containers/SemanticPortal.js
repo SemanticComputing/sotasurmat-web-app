@@ -23,6 +23,7 @@ import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotasurmat';
+import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 import { has } from 'lodash';
 import {
   fetchResultCount,
@@ -36,7 +37,8 @@ import {
   updateFacetOption,
   updatePage,
   updateRowsPerPage,
-  showError
+  showError,
+  updatePerspectiveHeaderExpanded,
 } from '../actions';
 
 const styles = theme => ({
@@ -58,7 +60,7 @@ const styles = theme => ({
     display: 'flex',
     width: '100%',
     minWidth: 300,
-    //minHeight: 700
+  //minHeight: 700
   },
   mainContainer: {
     height: 'auto',
@@ -76,6 +78,32 @@ const styles = theme => ({
     //backgroundPosition: 'center',
     //backgroundRepeat: 'no-repeat',
     //backgroundSize: 'cover'
+  },
+  perspectiveHeaderContainerExpanded: {
+    height: 'auto',
+    backgroundColor: '#bdbdbd',
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 268, // 56 + 212
+      height: 'calc(100% - 268px)',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 276, // 64 + 212
+      height: 'calc(100% - 276px)',
+    },
+  },
+  perspectiveHeaderContainer: {
+    height: 'auto',
+    backgroundColor: '#bdbdbd',
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 137, // 56 + 81
+      height: 'calc(100% - 137px)',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 145, // 64 + 81
+      height: 'calc(100% - 145px)',
+    },
   },
   // main container is divided into two columns:
   facetBarContainer: {
@@ -95,7 +123,7 @@ const styles = theme => ({
   },
 });
 
-let SemanticPortal = (props) => {
+let SemanticPortal = props => {
   const { classes, /* browser */ error } = props;
 
   const rootUrl = '/sotasurmat';
@@ -163,46 +191,55 @@ let SemanticPortal = (props) => {
             clearResults={props.clearResults}
             perspectives={perspectiveArr}
           />
-          <Grid container spacing={1} className={classes.mainContainer}>
-            <Route
-              exact path={rootUrl}
-              render={() =>
-                <React.Fragment>
-                  <Main
-                    perspectives={perspectiveArr}
-                    rootUrl={rootUrl}
+          <Route
+            exact path={`${rootUrl}/`}
+            render={() =>
+              <Grid container spacing={1} className={classes.mainContainer}>
+                <Main
+                  perspectives={perspectiveArr}
+                  rootUrl={rootUrl}
+                />
+                <Footer />
+              </Grid>
+            }
+          />
+          { /* route for full text search results */ }
+          <Route
+            path={`${rootUrl}/all`}
+            render={routeProps =>
+              <Grid container spacing={1} className={classes.mainContainer}>
+                <Grid item xs={12} className={classes.resultsContainer}>
+                  <All
+                    clientSideFacetedSearch={props.clientSideFacetedSearch}
+                    routeProps={routeProps}
                   />
-                  <Footer />
-                </React.Fragment>
-              }
-            />
-            { /* route for full text search results */ }
-            <Route
-              path="/all"
-              render={routeProps =>
-                <React.Fragment>
-                  <Grid item xs={12} md={3} className={classes.facetBarContainer}>
-
-                  </Grid>
-                  <Grid item xs={12} md={9} className={classes.resultsContainer}>
-                    <All
-                      clientSideFacetedSearch={props.clientSideFacetedSearch}
-                      routeProps={routeProps}
-                    />
-                  </Grid>
-                </React.Fragment>
-              }
-            />
-            { /* routes for perspectives that don't have an external url */ }
-            {perspectiveArr.map(perspective => {
-              if (!has(perspective, 'externalUrl')) {
-                return(
-                  <React.Fragment key={perspective.id}>
-                    <Route
-                      path={`${rootUrl}/${perspective.id}/faceted-search`}
-                      render={routeProps => {
-                        return (
-                          <React.Fragment>
+                </Grid>
+              </Grid>
+            }
+          />
+          { /* routes for perspectives that don't have an external url */ }
+          {perspectiveArr.map(perspective => {
+            if (!has(perspective, 'externalUrl')) {
+              return(
+                <React.Fragment key={perspective.id}>
+                  <Route
+                    path={`${rootUrl}/${perspective.id}/faceted-search`}
+                    render={routeProps => {
+                      return (
+                        <React.Fragment>
+                          <PerspectiveHeader
+                            resultClass={perspective.id}
+                            expanded={props[perspective.id].headerExpanded}
+                            updateExpanded={props.updatePerspectiveHeaderExpanded}
+                            title={perspective.label}
+                            description={perspective.perspectiveDesc}
+                            descriptionHeight={perspective.perspectiveDescHeight}
+                          />
+                          <Grid container spacing={1} className={props[perspective.id].headerExpanded
+                            ? classes.perspectiveHeaderContainerExpanded
+                            : classes.perspectiveHeaderContainer
+                          }
+                          >
                             <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                               <FacetBar
                                 facetData={props[`${perspective.id}Facets`]}
@@ -214,19 +251,23 @@ let SemanticPortal = (props) => {
                                 fetchResultCount={props.fetchResultCount}
                                 updateFacetOption={props.updateFacetOption}
                                 defaultActiveFacets={perspective.defaultActiveFacets}
+                                resultTableColumns={props[perspective.id].tableColumns}
                               />
                             </Grid>
                             <Grid item xs={12} md={9} className={classes.resultsContainer}>
                               {renderPerspective(perspective, routeProps)}
                             </Grid>
-                          </React.Fragment>
-                        );
-                      }}
-                    />
-                    <Route
-                      path={`${rootUrl}/${perspective.id}/page/:id`}
-                      render={routeProps => {
-                        return (
+                          </Grid>
+                        </React.Fragment>
+
+                      );
+                    }}
+                  />
+                  <Route
+                    path={`${rootUrl}/${perspective.id}/page/:id`}
+                    render={routeProps => {
+                      return (
+                        <Grid container spacing={1} className={classes.mainContainer}>
                           <InstanceHomePage
                             fetchByURI={props.fetchByURI}
                             resultClass={perspective.id}
@@ -234,20 +275,20 @@ let SemanticPortal = (props) => {
                             isLoading={props[perspective.id].fetching}
                             routeProps={routeProps}
                           />
-                        );
-                      }}
-                    />
-                  </React.Fragment>
-                );
-              }
-            })}
-            { /* create routes for classes that have only info pages and no perspective */}
-            { /* create routes for info buttons */ }
-            <Route
-              path={`/feedback`}
-              render={() => null /* <FeedbackPage /> */ }
-            />
-          </Grid>
+                        </Grid>
+                      );
+                    }}
+                  />
+                </React.Fragment>
+              );
+            }
+          })}
+          { /* create routes for classes that have only info pages and no perspective */}
+          { /* create routes for info buttons */ }
+          <Route
+            path={`${rootUrl}/feedback`}
+            render={() => null /* <FeedbackPage /> */ }
+          />
         </React.Fragment>
       </div>
     </div>
@@ -269,7 +310,7 @@ const mapStateToProps = state => {
     taistelutFacets: state.taistelutFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
     error: state.error
-    //browser: state.browser,
+  //browser: state.browser,
   };
 };
 
@@ -285,7 +326,8 @@ const mapDispatchToProps = ({
   updateFacetOption,
   updatePage,
   updateRowsPerPage,
-  showError
+  showError,
+  updatePerspectiveHeaderExpanded
 });
 
 SemanticPortal.propTypes = {
@@ -311,6 +353,7 @@ SemanticPortal.propTypes = {
   fetchFacet: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired,
   dates: PropTypes.object.isRequired,
+  updatePerspectiveHeaderExpanded: PropTypes.func.isRequired
 };
 
 export default compose(

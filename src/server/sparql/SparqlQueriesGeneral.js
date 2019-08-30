@@ -86,7 +86,7 @@ export const facetValuesQuery = `
           VALUES ?facetClass { <FACET_CLASS> }
           ?instance a ?facetClass .
           FILTER NOT EXISTS {
-            ?instance <PREDICATE> ?value .
+            ?instance <PREDICATE> [] .
           }
         }
       }

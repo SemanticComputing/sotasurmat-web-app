@@ -12,6 +12,7 @@ import {
   UPDATE_PAGE,
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED
 } from '../actions';
 import {
   fetchResults,
@@ -24,6 +25,7 @@ import {
   updateInstance,
   updatePage,
   updateRowsPerPage,
+  updateHeaderExpanded
 } from './helpers';
 
 export const INITIAL_STATE = {
@@ -37,6 +39,8 @@ export const INITIAL_STATE = {
   sortDirection: null,
   fetching: false,
   fetchingResultCount: false,
+  sparqlQuery: null,
+  headerExpanded: true,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -61,19 +65,8 @@ export const INITIAL_STATE = {
       minWidth: 150
     },
     {
-      id: 'birthPlace',
-      label: 'Birth/formation place',
-      desc: 'Birth place description',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 200
-    },
-    {
       id: 'birthDateTimespan',
-      label: 'Birth/formation year',
+      label: 'Birth / formation date',
       desc: 'Birth/formation year description',
       valueType: 'object',
       makeLink: false,
@@ -84,7 +77,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'deathDateTimespan',
-      label: 'Death/dissolution year',
+      label: 'Death / dissolution date',
       desc: 'Date of death/dissolution description',
       valueType: 'object',
       makeLink: false,
@@ -165,6 +158,8 @@ const actors = (state = INITIAL_STATE, action) => {
         return updatePage(state, action);
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action);
+      case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
+        return updateHeaderExpanded(state);
       default:
         return state;
     }

@@ -8,6 +8,10 @@ export const perspectiveArr = [
     label: 'Sotasurmat',
     desc: 'Tietoa vuosina 1914-1922 surmatuista',
     thumbImage: kalevankangas,
+    perspectiveDescHeight: 99,
+    perspectiveDesc: `
+      Kuvaus
+    `,
     tabs: [
       {
         id: 'lista',
@@ -34,6 +38,10 @@ export const perspectiveArr = [
     label: 'Taistelupaikat',
     desc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
     thumbImage: punainenRintama,
+    perspectiveDescHeight: 99,
+    perspectiveDesc: `
+      Kuvaus
+    `,
     tabs: [
       {
         id: 'lista',
@@ -47,26 +55,6 @@ export const perspectiveArr = [
         value: 1,
         icon: 'AddLocation',
       }
-    ]
-  },
-  {
-    id: 'tuleva',
-    label: 'Tuleva',
-    desc: 'Tuleva näkymä',
-    thumbImage: tampereVangit,
-    tabs: [
-      {
-        id: 'table',
-        label: 'table',
-        value: 0,
-        icon: 'CalendarViewDay',
-      },
-      {
-        id: 'map',
-        label: 'map',
-        value: 1,
-        icon: 'AddLocation',
-      },
     ]
   },
 ];

@@ -12,6 +12,7 @@ import {
   UPDATE_PAGE,
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED
 } from '../actions';
 import {
   fetchResults,
@@ -24,6 +25,7 @@ import {
   updateInstance,
   updatePage,
   updateRowsPerPage,
+  updateHeaderExpanded
 } from './helpers';
 
 export const INITIAL_STATE = {
@@ -38,6 +40,7 @@ export const INITIAL_STATE = {
   fetching: false,
   fetchingResultCount: false,
   sparqlQuery: null,
+  headerExpanded: true,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -129,7 +132,9 @@ export const INITIAL_STATE = {
       id: 'note',
       label: 'Note',
       desc: `
-        Note
+        Other info such as distinguishing characteristics, notes on the physical structure
+        of the manuscript, script types, note glosses, physical relationships among various
+        texts and/or parts of a miscellany, such as multiple types of page layout.
       `,
       valueType: 'string',
       makeLink: false,
@@ -137,6 +142,7 @@ export const INITIAL_STATE = {
       sortValues: true,
       numberedList: false,
       minWidth: 250,
+      collapsedMaxWords: 12,
     },
     {
       id: 'language',
@@ -210,7 +216,7 @@ export const INITIAL_STATE = {
         The dates of “Transfer of Custody” events related to the manuscript.
       `,
       valueType: 'object',
-      makeLink: true,
+      makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
@@ -240,7 +246,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150,
+      minWidth: 140,
     },
     {
       id: 'width',
@@ -315,7 +321,7 @@ export const INITIAL_STATE = {
       id: 'decoratedInitials',
       label: 'Decorated initials',
       desc: `
-        The number of miniatures.
+        The number of decorated initials.
       `,
       valueType: 'string',
       makeLink: false,
@@ -324,13 +330,19 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 150,
     },
-
-
-
-
-
-
-
+    {
+      id: 'historiatedInitials',
+      label: 'Historiated initials',
+      desc: `
+        The number of historiated initials.
+      `,
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150,
+    },
     {
       id: 'source',
       label: 'Source',
@@ -338,8 +350,8 @@ export const INITIAL_STATE = {
         The source dataset(s) (Bibale, Bodleian, or SDBM) contributing the
         information on the manuscript. If two or more source datasets include
         the same manuscript and this has been manually verified, the information
-        from the source datasets has been merged into one table row. Click on
-        the source name to view the original record on the source’s website.
+        from the source datasets have been merged into one manuscript (table row).
+         Click on the links to view the original record on the source’s website.
       `,
       valueType: 'object',
       makeLink: true,
@@ -377,6 +389,8 @@ const manuscripts = (state = INITIAL_STATE, action) => {
         return updatePage(state, action);
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action);
+      case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
+        return updateHeaderExpanded(state);
       default:
         return state;
     }

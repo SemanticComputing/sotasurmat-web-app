@@ -27,6 +27,14 @@ const styles = theme => ({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0
   },
+  expansionPanelRoot: {
+    margin: 0,
+    //marginBottom: theme.spacing(1)
+  },
+  expansionPanelRootExpanded: {
+    margin: theme.spacing(1),
+    //marginBottom: theme.spacing(1)
+  },
   expansionPanelSummaryRoot: {
     paddingLeft: theme.spacing(1),
     cursor: 'default !important'
@@ -77,8 +85,9 @@ class FacetBar extends React.Component {
   }
 
   renderFacet = (facetID, someFacetIsFetching) => {
-    const { classes } = this.props;
+    const { classes, resultTableColumns } = this.props;
     const { facetUpdateID, updatedFacet, updatedFilter, facets } = this.props.facetData;
+    let resultTableColumn = resultTableColumns.find(column => column.id === facetID);
     const facet = facets[facetID];
     let facetComponent = null;
     let isActive = this.state.activeFacets.has(facetID);
@@ -178,6 +187,10 @@ class FacetBar extends React.Component {
       <ExpansionPanel
         key={facetID}
         expanded={isActive}
+        classes={{
+          root: classes.expansionPanelRoot,
+          expanded: classes.expansionPanelRootExpanded
+        }}
       >
         <ExpansionPanelSummary
           classes={{
@@ -197,6 +210,7 @@ class FacetBar extends React.Component {
             resultClass={this.props.resultClass}
             fetchFacet={this.props.fetchFacet}
             updateFacetOption={this.props.updateFacetOption}
+            description={resultTableColumn.desc}
           />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
@@ -250,6 +264,7 @@ FacetBar.propTypes = {
   fetchResultCount: PropTypes.func.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   defaultActiveFacets: PropTypes.instanceOf(Set).isRequired,
+  resultTableColumns: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(FacetBar);

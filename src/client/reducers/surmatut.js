@@ -38,6 +38,7 @@ export const INITIAL_STATE = {
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
+  headerExpanded: true,
   tableColumns: [
     {
       id: 'prefLabel',
