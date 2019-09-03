@@ -157,18 +157,18 @@ class TopBar extends React.Component {
       {perspectives.map(perspective => this.renderMobileMenuItem(perspective))}
       <Divider />
       <MenuItem
-        key='feedback'
+        key='palaute'
         component={this.AdapterLink}
-        to={`${this.props.rootUrl}/feedback`}
+        to={`${this.props.rootUrl}/palaute`}
       >
-        FEEDBACK
+        PALAUTE
       </MenuItem>
       <MenuItem
         key='info'
         component={this.AdapterLink}
-        to={`${this.props.rootUrl}/instructions`}
+        to={`${this.props.rootUrl}/ohjeet`}
       >
-        INSTRUCTIONS
+        OHJEET
       </MenuItem>
     </Menu>
 
@@ -224,11 +224,11 @@ class TopBar extends React.Component {
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
-                to={`${this.props.rootUrl}/feedback`}
-                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/feedback`)}
+                to={`${this.props.rootUrl}/palaute`}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/palaute`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
-                Feedback
+                Palaute
               </Button>
               <Button className={classes.appBarButton} aria-haspopup="true" onClick={this.handleInfoMenuOpen}>
                 Info
@@ -236,11 +236,11 @@ class TopBar extends React.Component {
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
-                to={`${this.props.rootUrl}/instructions`}
-                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/instructions`)}
+                to={`${this.props.rootUrl}/ohjeet`}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/ohjeet`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
-                Instructions
+                Ohjeet
               </Button>
             </div>
             <div className={classes.sectionMobile}>
