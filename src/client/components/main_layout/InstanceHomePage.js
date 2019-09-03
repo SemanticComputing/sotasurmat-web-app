@@ -9,7 +9,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
 import SurmatutPageTable from '../perspectives/SurmatutPageTable';
 import TaistelutPageTable from '../perspectives/TaistelutPageTable';
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import ResultTableCell from '../facet_results/ResultTableCell';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+import has from 'lodash';
 
 const styles = theme => ({
   root: {
@@ -37,6 +45,9 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  labelCell: {
+    minWidth: 220
+  }
 });
 
 class InstanceHomePage extends React.Component {
@@ -76,28 +87,28 @@ class InstanceHomePage extends React.Component {
     });
   }
 
-  renderTable = () => {
-    let tableEl = null;
-    if (this.state.instanceClass !== '') {
-      switch (this.state.instanceHeading) {
-        case 'Henkilö':
-          tableEl =
-            <SurmatutPageTable
-              data={this.props.data}
-            />;
-          break;
-        case 'Taistelu':
-          tableEl =
-              <TaistelutPageTable
-                data={this.props.data}
-              />;
-          break;
-        default:
-          tableEl = <div></div>;
-      }
-    }
-    return tableEl;
-  }
+  // renderTable = () => {
+  //   let tableEl = null;
+  //   if (this.state.instanceClass !== '') {
+  //     switch (this.state.instanceHeading) {
+  //       case 'Henkilö':
+  //         tableEl =
+  //           <SurmatutPageTable
+  //             data={this.props.data}
+  //           />;
+  //         break;
+  //       case 'Taistelu':
+  //         tableEl =
+  //             <TaistelutPageTable
+  //               data={this.props.data}
+  //             />;
+  //         break;
+  //       default:
+  //         tableEl = <div></div>;
+  //     }
+  //   }
+  //   return tableEl;
+  // }
 
   render = () => {
     const { classes, data, isLoading } = this.props;
@@ -124,7 +135,50 @@ class InstanceHomePage extends React.Component {
               <Typography variant='h4'>{this.state.instanceHeading}</Typography>
               <Divider className={classes.divider} />
               <Typography variant='h6'>{data.prefLabel.prefLabel}</Typography>
-              {this.renderTable()}
+              <Table>
+                <TableBody>
+                  {this.props.tableRows.map(row => {
+                    if (row.id !== 'prefLabel') {
+                      return (
+                        <TableRow key={row.id}>
+                          <TableCell className={classes.labelCell}>
+                            {row.label}
+                            <Tooltip
+                              title={row.desc}
+                              enterDelay={300}
+                            >
+                              <IconButton>
+                                <InfoIcon />
+                              </IconButton>
+                            </Tooltip>
+                          </TableCell>
+                          <ResultTableCell
+                            columnId={row.id}
+                            data={data[row.id]}
+                            valueType={row.valueType}
+                            makeLink={row.makeLink}
+                            externalLink={row.externalLink}
+                            sortValues={row.sortValues}
+                            numberedList={row.numberedList}
+                            minWidth={row.minWidth}
+                            container='cell'
+                            expanded={true}
+                            linkAsButton={has(row, 'linkAsButton')
+                              ? row.linkAsButton
+                              : null
+                            }
+                            collapsedMaxWords={has(row, 'collapsedMaxWords')
+                              ? row.collapsedMaxWords
+                              : null
+                            }
+                          />
+                        </TableRow>
+                      );
+                    }
+                  }
+                  )}
+                </TableBody>
+              </Table>
               <Button
                 className={classes.sahaButton}
                 variant='contained'
@@ -147,6 +201,7 @@ InstanceHomePage.propTypes = {
   fetchByURI: PropTypes.func.isRequired,
   resultClass: PropTypes.string.isRequired,
   data: PropTypes.object,
+  tableRows: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   routeProps: PropTypes.object.isRequired
 };

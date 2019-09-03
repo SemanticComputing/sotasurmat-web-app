@@ -32,7 +32,7 @@ import {
 
 const rootDir = '/sotasurmat';
 
-const apiUrl = (process.env.NODE_ENV === 'development')
+export const apiUrl = (process.env.NODE_ENV === 'development')
   ? 'http://localhost:3001/sotasurmat/api/'
   : `http://${location.hostname}${rootDir}/api/`;
 
@@ -86,10 +86,6 @@ const fetchResultsEpic = (action$, state$) => action$.pipe(
     const params = stateToUrl({
       facets: state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
-      page: null,
-      pagesize: null,
-      sortBy: null,
-      sortDirection: null,
     });
     const requestUrl = `${apiUrl}${resultClass}/all?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -108,6 +104,7 @@ const fetchResultsEpic = (action$, state$) => action$.pipe(
         }
       }))
     );
+
   })
 );
 
@@ -119,10 +116,6 @@ const fetchResultCountEpic = (action$, state$) => action$.pipe(
     const params = stateToUrl({
       facets: facetClass == null ? null : state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
-      page: null,
-      pagesize: null,
-      sortBy: null,
-      sortDirection: null
     });
     const requestUrl = `${apiUrl}${resultClass}/count?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -186,10 +179,6 @@ const fetchByURIEpic = (action$, state$) => action$.pipe(
     const params = stateToUrl({
       facets: facetClass == null ? null : state[`${facetClass}Facets`].facets,
       facetClass: facetClass,
-      page: null,
-      pagesize: null,
-      sortBy: null,
-      sortDirection: null,
     });
     const requestUrl = `${apiUrl}${resultClass}/instance/${encodeURIComponent(uri)}?${params}`;
     return ajax.getJSON(requestUrl).pipe(
@@ -221,9 +210,6 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
     const { sortBy, sortDirection } = facet;
     const params = stateToUrl({
       facets: facets,
-      facetClass: null,
-      page: null,
-      pagesize: null,
       sortBy: sortBy,
       sortDirection: sortDirection,
     });
@@ -252,11 +238,12 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
 
 export const stateToUrl = ({
   facets,
-  facetClass,
-  page,
-  pagesize,
-  sortBy,
-  sortDirection,
+  facetClass = null,
+  page = null,
+  pagesize = null,
+  sortBy = null,
+  sortDirection = null,
+  resultFormat = null
 }) => {
   let params = {};
   if (facetClass !== null) { params.facetClass = facetClass; }
@@ -264,6 +251,7 @@ export const stateToUrl = ({
   if (pagesize !== null) { params.pagesize = pagesize; }
   if (sortBy !== null) { params.sortBy = sortBy; }
   if (sortDirection !== null) { params.sortDirection = sortDirection; }
+  if (resultFormat !== null) { params.resultFormat = resultFormat; }
   if (facets !== null) {
     let constraints = {};
     for (const [key, value] of Object.entries(facets)) {

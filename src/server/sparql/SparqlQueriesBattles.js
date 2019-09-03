@@ -59,6 +59,7 @@ export const battlePropertiesInfoWindow = `
 export const battlePlaceQuery =  `
   SELECT ?id ?prefLabel ?startDate ?endDate ?placeLabel
   WHERE {
+    <FILTER>
     BIND (<ID> AS ?id)
     ?id skos:prefLabel ?prefLabel .
     OPTIONAL {

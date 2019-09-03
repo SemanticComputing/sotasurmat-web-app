@@ -11,9 +11,22 @@ const theme = createMuiTheme({
       main: sisoRed,
     },
   },
-  typography: {
-    useNextVariants: true,
-  },
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: '1 rem'
+      }
+    },
+    MuiExpansionPanel: {
+      root: {
+        '&$expanded': {
+          marginTop: 8,
+          marginBottom: 8
+        }
+
+      }
+    }
+  }
 });
 
 const App = () => (

@@ -271,6 +271,7 @@ let SemanticPortal = props => {
                           <InstanceHomePage
                             fetchByURI={props.fetchByURI}
                             resultClass={perspective.id}
+                            tableRows={props[perspective.id].tableColumns}
                             data={props[perspective.id].instance}
                             isLoading={props[perspective.id].fetching}
                             routeProps={routeProps}

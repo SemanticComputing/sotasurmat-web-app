@@ -151,10 +151,11 @@ export const deathDateQuery = `
 export const csvDeathsQuery = `
   SELECT ?id ?prefLabel ?occupation_literal
   WHERE {
+    <FILTER>
     ?id a siso-schema:Death_record .
     ?id skos:prefLabel ?prefLabel .
     OPTIONAL {
-  	   ?id siso-schema:occupation_literal ?ccupation_literal .
+  	   ?id siso-schema:occupation_literal ?occupation_literal .
     }
    }
    `;
