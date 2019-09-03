@@ -20,7 +20,7 @@ import {
   fetchResultCount,
   updateSortBy,
   updateResultCount,
-  //updateResults,
+  updateResults,
   updatePaginatedResults,
   updateInstance,
   updatePage,
@@ -148,8 +148,13 @@ export const INITIAL_STATE = {
   ],
 };
 
+const resultClasses = new Set([
+  'surmatut',
+  'csvDeaths',
+]);
+
 const surmatut = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'surmatut') {
+  if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -165,7 +170,7 @@ const surmatut = (state = INITIAL_STATE, action) => {
       case UPDATE_RESULT_COUNT:
         return updateResultCount(state, action);
       case UPDATE_RESULTS:
-        return  (state, action);
+        return updateResults(state, action);
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:

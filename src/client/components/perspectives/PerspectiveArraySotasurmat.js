@@ -32,6 +32,12 @@ export const perspectiveArr = [
         value: 2,
         icon: 'LineChart',
       },
+      {
+        id: 'csv',
+        label: 'Lataa tulokset',
+        value: 3,
+        icon: 'Download',
+      }
     ]
   },
   {
@@ -56,6 +62,12 @@ export const perspectiveArr = [
         label: 'Kartta',
         value: 1,
         icon: 'AddLocation',
+      },
+      {
+        id: 'csv',
+        label: 'Lataa tulokset',
+        value: 2,
+        icon: 'Download',
       }
     ]
   },

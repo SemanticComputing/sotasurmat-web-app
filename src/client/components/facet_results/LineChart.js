@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'react-google-charts';
 import moment from 'moment';
+import Paper from '@material-ui/core/Paper';
 
 //import _ from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
@@ -298,7 +299,7 @@ class LineChart extends React.Component {
     let infoString = '';
 
     let results = this.props.data.results;
-    console.log(this.props)
+    //console.log(this.props)
     if (results == undefined) {
       return (
         <p>Virhe kaavion tulosten latautumisessa!</p>
@@ -342,7 +343,7 @@ class LineChart extends React.Component {
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
     return (
-      <div>
+      <Paper>
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
@@ -392,7 +393,7 @@ class LineChart extends React.Component {
           }}
           rootProps={{ 'data-testid': '1' }}
         />
-      </div>
+      </Paper>
     );
   }
 }

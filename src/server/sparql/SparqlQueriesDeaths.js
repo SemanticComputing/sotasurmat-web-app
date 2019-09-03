@@ -147,3 +147,14 @@ export const deathDateQuery = `
       GROUP BY ?counted
       ORDER BY ?counted
       `;
+
+export const csvDeathsQuery = `
+  SELECT ?id ?prefLabel ?occupation_literal
+  WHERE {
+    ?id a siso-schema:Death_record .
+    ?id skos:prefLabel ?prefLabel .
+    OPTIONAL {
+  	   ?id siso-schema:occupation_literal ?ccupation_literal .
+    }
+   }
+   `;

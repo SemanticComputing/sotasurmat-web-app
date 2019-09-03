@@ -218,7 +218,7 @@ class Pie extends React.Component {
    // />
 
    return (
-     <div className={classes.root}>
+     <Paper className={classes.root}>
        <div className="container">
          <div className="row">
            <div className="col-sm-12">
@@ -325,7 +325,7 @@ class Pie extends React.Component {
            </Paper>
          </Grid>
        </Grid>
-     </div>
+     </Paper>
    );
  }
 }

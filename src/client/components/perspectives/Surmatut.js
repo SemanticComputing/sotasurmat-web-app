@@ -5,6 +5,7 @@ import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
 import LineChart from '../facet_results/LineChart';
+import CSVbutton from '../facet_results/CSVbutton';
 
 let Surmatut = props => {
   return (
@@ -70,6 +71,17 @@ let Surmatut = props => {
           />
         }
       />
+      <Route
+        path={`${props.rootUrl}/surmatut/faceted-search/csv`}
+        render={() =>
+          <CSVbutton
+            results={props.surmatut.results}
+            resultClass='csvDeaths'
+            facetClass='surmatut'
+            fetchResults={props.fetchResults}
+            facetUpdateID={props.facetData.facetUpdateID}
+          />}
+      />
     </React.Fragment>
   );
 };
@@ -88,7 +100,7 @@ Surmatut.propTypes = {
   routeProps: PropTypes.object.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   fetchFacet: PropTypes.func.isRequired, // lisäys
-  resultCount: PropTypes.number.isRequired, //
+  resultCount: PropTypes.number, //
   perspective: PropTypes.object.isRequired
 };
 

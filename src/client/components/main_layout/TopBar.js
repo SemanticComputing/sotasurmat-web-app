@@ -159,14 +159,14 @@ class TopBar extends React.Component {
       <MenuItem
         key='feedback'
         component={this.AdapterLink}
-        to={`/feedback`}
+        to={`${this.props.rootUrl}/feedback`}
       >
         FEEDBACK
       </MenuItem>
       <MenuItem
         key='info'
         component={this.AdapterLink}
-        to={`/instructions`}
+        to={`${this.props.rootUrl}/instructions`}
       >
         INSTRUCTIONS
       </MenuItem>
@@ -180,21 +180,24 @@ class TopBar extends React.Component {
       open={Boolean(this.state.infoAnchorEl)}
       onClose={this.handleInfoMenuClose}
     >
-      <MenuItem
-        key={0}
-        component={this.AdapterLink}
-        to={`/feedback`}
-      >
-        About the project
-      </MenuItem>
       <a className={this.props.classes.link}
-        key={1}
-        href='http://mappingmanuscriptmigrations.org'
+        key={0}
+        href='http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main'
         target='_blank'
         rel='noopener noreferrer'
       >
         <MenuItem>
-          Blog
+        Vanha sivusto
+        </MenuItem>
+      </a>
+      <a className={this.props.classes.link}
+        key={1}
+        href='https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <MenuItem>
+          Tietoa projektista
         </MenuItem>
       </a>
     </Menu>
@@ -221,8 +224,8 @@ class TopBar extends React.Component {
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
-                to={`/feedback`}
-                isActive={(match, location) => location.pathname.startsWith(`/feedback`)}
+                to={`${this.props.rootUrl}/feedback`}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/feedback`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 Feedback
@@ -233,8 +236,8 @@ class TopBar extends React.Component {
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
-                to={`/instructions`}
-                isActive={(match, location) => location.pathname.startsWith(`/instructions`)}
+                to={`${this.props.rootUrl}/instructions`}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/instructions`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 Instructions

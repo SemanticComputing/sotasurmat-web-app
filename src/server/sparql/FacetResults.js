@@ -7,7 +7,7 @@ import {
   instanceQuery
 } from './SparqlQueriesGeneral';
 import {
-  deathsProperties, personQuery, birthYearsQuery, ageQuery, deathDateQuery,
+  deathsProperties, personQuery, birthYearsQuery, ageQuery, deathDateQuery, csvDeathsQuery
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
@@ -75,7 +75,6 @@ export const getAllResults = ({
       q = battlePlacesQuery;
       filterTarget = 'id';
       break;
-
     case 'birthYearCount':
       q = birthYearsQuery;
       mapper = mapBirthYearCount;
@@ -95,11 +94,10 @@ export const getAllResults = ({
       mapper = mapCountGroups;
       filterTarget = 'id';
       break;
-    // case 'actorPlaces':
-    //   q = actorPlacesQuery;
-    //   filterTarget = 'actor__id';
-    //   mapper = mapPlaces;
-    //   break;
+    case 'csvDeaths':
+      q = csvDeathsQuery;
+      filterTarget = 'id';
+      break;
   }
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters');

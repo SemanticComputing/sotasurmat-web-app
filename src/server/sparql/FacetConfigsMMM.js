@@ -216,6 +216,15 @@ export const facetConfigs = {
         `,
       facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
     },
+    coo1980: {
+      id: 'coo980',
+      labelPath: 'siso-schema:ammo_occupation/ammo-s:hisclass7/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:ammo_occupation/skos:broadMatch',
+      facetValueFilter: `        
+        `,
+      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
+    },
     age: {
       id: 'age',
       facetValueFilter: '',

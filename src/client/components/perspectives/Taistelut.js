@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
 import LeafletMap from '../facet_results/LeafletMap';
+import CSVbutton from '../facet_results/CSVbutton';
 
 let Taistelut = props => {
   return (
@@ -48,6 +49,17 @@ let Taistelut = props => {
             fetching={props.taistelut.fetching}
             mapMode={'cluster'}
             showInstanceCountInClusters={false}
+          />}
+      />
+      <Route
+        path={`${props.rootUrl}/taistelut/faceted-search/csv`}
+        render={() =>
+          <CSVbutton
+            results={props.taistelut.results}
+            resultClass='battlePlaces'
+            facetClass='taistelut'
+            fetchResults={props.fetchResults}
+            facetUpdateID={props.facetData.facetUpdateID}
           />}
       />
     </React.Fragment>

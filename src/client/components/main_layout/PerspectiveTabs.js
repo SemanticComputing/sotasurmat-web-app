@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import LineChartIcon from '@material-ui/icons/ShowChart';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 
 const styles = () => ({
@@ -68,6 +69,9 @@ class PerspectiveTabs extends React.Component {
         break;
       case 'Person':
         icon = <PersonIcon />;
+        break;
+      case 'Download':
+        icon = <CloudDownloadIcon />;
         break;
     }
     return icon;
