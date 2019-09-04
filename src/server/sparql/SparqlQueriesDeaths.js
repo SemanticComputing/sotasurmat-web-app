@@ -149,13 +149,35 @@ export const deathDateQuery = `
       `;
 
 export const csvDeathsQuery = `
-  SELECT ?id ?prefLabel ?occupation_literal
+  SELECT ?id ?prefLabel ?familyName ?givenName ?birthYear ?birthDay ?party ?gender ?occupation
   WHERE {
-    <FILTER>
-    ?id a siso-schema:Death_record .
-    ?id skos:prefLabel ?prefLabel .
-    OPTIONAL {
-  	   ?id siso-schema:occupation_literal ?occupation_literal .
-    }
+      <FILTER>
+      ?id a siso-schema:Death_record .
+      ?id skos:prefLabel ?prefLabel .
+      ?id siso-schema:identifier ?id_number .
+      OPTIONAL {
+        ?id siso-schema:familyName ?familyName .
+      }
+      OPTIONAL {
+        ?id siso-schema:birth_year ?birthYear .
+      }
+      OPTIONAL {
+        ?id siso-schema:birth_day ?birthDay .
+      }
+      OPTIONAL {
+        ?id siso-schema:givenName ?givenName .
+      }
+      OPTIONAL {
+        ?id siso-schema:party ?party_uri .
+        ?party_uri skos:prefLabel ?party .
+      }
+      OPTIONAL {
+        ?id siso-schema:gender ?gender_uri .
+        ?gender_uri skos:prefLabel ?gender .
+      }
+      OPTIONAL {
+        ?id siso-schema:occupation_literal ?occupation .
+      }
    }
+   ORDER BY ?prefLabel
    `;

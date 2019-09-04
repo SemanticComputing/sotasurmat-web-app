@@ -287,7 +287,7 @@ let SemanticPortal = props => {
           { /* create routes for classes that have only info pages and no perspective */}
           { /* create routes for info buttons */ }
           <Route
-            path={`${rootUrl}/feedback`}
+            path={`${rootUrl}/palaute`}
             render={() => null /* <FeedbackPage /> */ }
           />
         </React.Fragment>
