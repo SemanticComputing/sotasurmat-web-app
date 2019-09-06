@@ -11,6 +11,8 @@ import _ from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import purple from '@material-ui/core/colors/purple';
 
 const styles = theme => ({
   root: {
@@ -37,7 +39,14 @@ const styles = theme => ({
   legendPaper: {
     height: 275,
     overflowY: 'auto',
-  }
+  },
+  spinnerContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
 
 class Pie extends React.Component {
@@ -180,7 +189,9 @@ class Pie extends React.Component {
    //console.log(facetValues)
    if (facetValues.length == 0) {
      return (
-       <div><p>Ei tuloksia</p></div>
+       <div className={classes.spinnerContainer}>
+         <CircularProgress style={{ color: purple[500] }} thickness={5} />
+       </div>
      );
    }
    for (let key in facetValues) {

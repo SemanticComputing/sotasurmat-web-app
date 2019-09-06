@@ -149,7 +149,7 @@ export const deathDateQuery = `
       `;
 
 export const csvDeathsQuery = `
-  SELECT ?id ?prefLabel ?familyName ?givenName ?birthYear ?birthDay ?party ?gender ?occupation
+  SELECT ?id ?prefLabel ?familyName ?givenName ?birthYear ?birthDay ?age ?party ?gender ?occupation ?numberOfChildren
   WHERE {
       <FILTER>
       ?id a siso-schema:Death_record .
@@ -165,6 +165,9 @@ export const csvDeathsQuery = `
         ?id siso-schema:birth_day ?birthDay .
       }
       OPTIONAL {
+        ?id siso-schema:age ?age .
+      }
+      OPTIONAL {
         ?id siso-schema:givenName ?givenName .
       }
       OPTIONAL {
@@ -177,6 +180,9 @@ export const csvDeathsQuery = `
       }
       OPTIONAL {
         ?id siso-schema:occupation_literal ?occupation .
+      }
+      OPTIONAL {
+        ?id siso-schema:num_of_children ?numberOfChildren .
       }
    }
    ORDER BY ?prefLabel

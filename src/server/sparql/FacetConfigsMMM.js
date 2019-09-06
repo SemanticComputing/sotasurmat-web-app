@@ -216,14 +216,26 @@ export const facetConfigs = {
         `,
       facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
     },
+    // huom prefix ammo vaihtuu oletettavasti ammo-s kun ammo päivittyy
     coo1980: {
-      id: 'coo980',
-      labelPath: 'siso-schema:ammo_occupation/ammo-s:hisclass7/skos:prefLabel',
-      type: 'list',
-      predicate: 'siso-schema:ammo_occupation/skos:broadMatch',
-      facetValueFilter: `        
+      id: 'coo1980',
+      labelPath: 'siso-schema:ammo_occupation/ammo:coo1980_code/skos:prefLabel',
+      type: 'hierarchical',
+      predicate: 'siso-schema:ammo_occupation/ammo:coo1980_code',
+      facetValueFilter: `
         `,
       facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
+      parentPredicate: 'siso-schema:ammo_occupation/ammo:coo1980_code/skos:broader+',
+    },
+    hisco: {
+      id: 'hisco',
+      labelPath: 'siso-schema:ammo_occupation/ammo:hisco_code/skos:prefLabel',
+      type: 'hierarchical',
+      predicate: 'siso-schema:ammo_occupation/ammo:hisco_code',
+      facetValueFilter: `
+        `,
+      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'en')`,
+      parentPredicate: 'siso-schema:ammo_occupation/ammo:hisco_code/skos:broader+',
     },
     age: {
       id: 'age',
