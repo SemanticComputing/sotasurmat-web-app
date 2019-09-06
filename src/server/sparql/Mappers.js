@@ -90,7 +90,7 @@ const mapFacetValues = sparqlBindings => {
         id: b.id.value,
         prefLabel: b.prefLabel.value,
         selected: b.selected.value,
-        parent: b.parent.value,
+        parent: b.parent ? b.parent.value : null,
         instanceCount: b.instanceCount.value
       };
     } catch(err) {
