@@ -77,6 +77,7 @@ class HierarchicalFacet extends Component {
   }
 
   componentDidMount = () => {
+    // console.log(`${this.props.facetID} mounted`);
     if (this.props.facet.filterType === 'uriFilter') {
       this.props.fetchFacet({
         facetClass: this.props.facetClass,
@@ -200,7 +201,7 @@ class HierarchicalFacet extends Component {
                 && node.instanceCount == 0
                 && node.selected === 'false')
                 // prevent selecting unknown value:
-                || node.prefLabel == 'Ei merkintää datassa'
+                || node.id == 'http://ldf.fi/MISSING_VALUE'
                 // prevent selecting when another facet is still updating:
                 || this.props.someFacetIsFetching
                 // prevent selecting all facet values:
