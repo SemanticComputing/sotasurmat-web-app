@@ -216,7 +216,6 @@ export const facetConfigs = {
       facetValueFilter: `
         `,
       facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
-
     },
     coo1980: {
       id: 'coo1980',
@@ -229,6 +228,7 @@ export const facetConfigs = {
       parentPredicate: 'siso-schema:ammo_occupation/ammo-s:coo1980_code/skos:broader+',
       parentProperty: 'skos:broader'
     },
+
     // hisco: {
     //   id: 'hisco',
     //   labelPath: 'siso-schema:ammo_occupation/ammo-s:hisco_code/skos:prefLabel',
@@ -254,6 +254,13 @@ export const facetConfigs = {
       facetValueFilter: '',
       labelPath: 'siso-schema:age',
       predicate: 'siso-schema:age',
+      type: 'integer',
+    },
+    numberOfChildren: {
+      id: 'numberOfChildren',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:num_of_children',
+      predicate: 'siso-schema:num_of_children',
       type: 'integer',
     },
   },

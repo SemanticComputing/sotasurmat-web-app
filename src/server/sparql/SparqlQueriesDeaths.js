@@ -64,6 +64,10 @@ export const deathsProperties = `
       ?ammoOccupation__id skos:prefLabel ?ammoOccupation__prefLabel .
       FILTER(?ammoOccupation__prefLabel = 'fi') .
     }
+    UNION {
+      ?id siso-schema:num_of_children ?numberOfChildren__id .
+      ?numberOfChildren__id skos:prefLabel ?numberOfChildren__prefLabel .
+    }
     `;
 
 export const personQuery = `
@@ -149,7 +153,7 @@ export const deathDateQuery = `
       `;
 
 export const csvDeathsQuery = `
-  SELECT ?id ?prefLabel ?familyName ?givenName ?birthYear ?birthDay ?age ?party ?gender ?occupation ?numberOfChildren
+  SELECT ?id ?prefLabel ?familyName ?givenName ?birthYear ?birthDay ?deathYear ?deathDay ?age ?party ?gender ?occupation ?numberOfChildren ?familyWelfare
   WHERE {
       <FILTER>
       ?id a siso-schema:Death_record .
@@ -163,6 +167,12 @@ export const csvDeathsQuery = `
       }
       OPTIONAL {
         ?id siso-schema:birth_day ?birthDay .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_year ?deathYear .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_day ?deathDay .
       }
       OPTIONAL {
         ?id siso-schema:age ?age .
@@ -183,6 +193,10 @@ export const csvDeathsQuery = `
       }
       OPTIONAL {
         ?id siso-schema:num_of_children ?numberOfChildren .
+      }
+      OPTIONAL {
+        ?id siso-schema:family_welfare ?familyWelfare_uri .
+        ?familyWelfare_uri skos:prefLabel ?familyWelfare .
       }
    }
    ORDER BY ?prefLabel

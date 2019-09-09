@@ -20,5 +20,6 @@ export const prefixes = `
   PREFIX ammo-s: <http://ldf.fi/schema/ammo/>
   PREFIX  ammo: <http://ldf.fi/ammo/>
 
+
   
   `;
