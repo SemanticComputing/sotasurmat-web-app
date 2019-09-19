@@ -54,9 +54,31 @@ export const manuscriptProperties =
     }
     UNION
     {
+      ?event__id crm:P108_has_produced ?id .
+      ?event__id a ?event__type .
+      OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?event__date }
+      OPTIONAL { ?event__id crm:P7_took_place_at ?event__place }
+      #OPTIONAL {
+        #?event__id crm:P4_has_time-span ?prodTimespan .
+        #?productionTimespan skos:prefLabel ?event__date .
+        #OPTIONAL { ?productionTimespan crm:P82a_begin_of_the_begin ?prodTimespanBegin_ }
+        #OPTIONAL { ?productionTimespan crm:P82b_end_of_the_end ?prodTimespanEnd_ }
+        # choose the latest transfer of custody / provenance event
+        # FILTER NOT EXISTS {
+        #   ?event2 crm:P30_transferred_custody_of|mmm-schema:observed_manuscript ?manuscript__id .
+        #   ?event2 crm:P4_has_time-span/crm:P82b_end_of_the_end ?event2_timespan_end .
+        #   filter (?event2_timespan_end > ?event_timespan_end)
+        # }
+      #}  
+      BIND("Production" AS ?event__prefLabel)
+      BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
+    }
+    UNION
+    {
       ?event__id crm:P30_transferred_custody_of ?id .
       ?event__id a ?event__type .
       OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?event__date }
+      OPTIONAL { ?event__id crm:P7_took_place_at ?event__place }
       BIND("Transfer of Custody" AS ?event__prefLabel)
       BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
     }
@@ -74,9 +96,10 @@ export const manuscriptProperties =
       ?event__id mmm-schema:observed_manuscript ?id .
       ?event__id a crm:E7_Activity .
       ?event__id a ?event__type .
-      ?event__id mmm-schema:ownership_attributed_to/skos:prefLabel ?owner_prefLabel .
+      OPTIONAL { ?event__id mmm-schema:ownership_attributed_to/skos:prefLabel ?event__owner }
       OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?event__date }
-      BIND("Owner: " + ?owner_prefLabel  AS ?event__prefLabel)
+      OPTIONAL { ?event__id crm:P7_took_place_at ?event__place }
+      BIND("Provenance" AS ?event__prefLabel)
       BIND(CONCAT("/events/page/", REPLACE(STR(?event__id), "^.*\\\\/(.+)", "$1")) AS ?event__dataProviderUrl)
     }
     UNION
@@ -96,7 +119,7 @@ export const manuscriptProperties =
     {
       ?id crm:P46i_forms_part_of ?collection__id .
       ?collection__id skos:prefLabel ?collection__prefLabel .
-      BIND(CONCAT("/collections/page/", REPLACE(STR(?collection__id), "^.*\\\\/(.+)", "$1")) AS ?collection__dataProviderUrl)
+      BIND(CONCAT("/collections/page/", ENCODE_FOR_URI(REPLACE(STR(?collection__id), "^.*\\\\/(.+)", "$1"))) AS ?collection__dataProviderUrl)
     }
     UNION
     {
@@ -173,7 +196,7 @@ export const expressionProperties =
 export const collectionProperties =
  `?id skos:prefLabel ?prefLabel__id .
      BIND (?prefLabel__id as ?prefLabel__prefLabel)
-     BIND(CONCAT("/collections/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+     BIND(CONCAT("/collections/page/", ENCODE_FOR_URI(REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"))) AS ?prefLabel__dataProviderUrl)
      {
        ?id dct:source ?source__id .
        ?source__id skos:prefLabel ?source__prefLabel .
@@ -184,6 +207,18 @@ export const collectionProperties =
        ?id ^crm:P46i_forms_part_of ?manuscript__id .
        ?manuscript__id skos:prefLabel ?manuscript__prefLabel .
        BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?manuscript__id), "^.*\\\\/(.+)", "$1")) AS ?manuscript__dataProviderUrl)
+     }
+     UNION
+     {
+       ?id crm:P51_has_former_or_current_owner ?owner__id .
+       ?owner__id skos:prefLabel ?owner__prefLabel .
+       BIND(CONCAT("/actors/page/", REPLACE(STR(?owner__id), "^.*\\\\/(.+)", "$1")) AS ?owner__dataProviderUrl)
+     }
+     UNION
+     {
+       ?id mmm-schema:collection_location ?place__id .
+       ?place__id skos:prefLabel ?place__prefLabel .
+       BIND(CONCAT("/places/page/", REPLACE(STR(?place__id), "^.*\\\\/(.+)", "$1")) AS ?place__dataProviderUrl)
      }
   `;
 
@@ -220,18 +255,18 @@ export const migrationsQuery = `
     ?from__id skos:prefLabel ?from__name .
     ?from__id wgs84:lat ?from__lat ;
               wgs84:long ?from__long .
-    ?event__id crm:P30_transferred_custody_of|mmm-schema:observed_manuscript ?manuscript__id .
-    OPTIONAL { ?event__id skos:prefLabel ?event__prefLabel }
-    ?event__id crm:P4_has_time-span ?event__date .
-    ?event__id crm:P7_took_place_at ?to__id .
+    ?event crm:P30_transferred_custody_of|mmm-schema:observed_manuscript ?manuscript__id .
+    ?event crm:P4_has_time-span/crm:P82b_end_of_the_end ?event_timespan_end .
+    ?event crm:P7_took_place_at ?to__id .
     ?to__id skos:prefLabel ?to__name .
     ?to__id wgs84:lat ?to__lat ;
             wgs84:long ?to__long .
     BIND(IRI(CONCAT(STR(?from__id), "-", REPLACE(STR(?to__id), "http://ldf.fi/mmm/place/", ""))) as ?id)
+    # choose the latest transfer of custody / provenance event
     FILTER NOT EXISTS {
-      ?event__id2 crm:P30_transferred_custody_of ?manuscript__id .
-      ?event__id2 crm:P4_has_time-span ?event__date2 .
-      filter (?event__date2 > ?event__date)
+      ?event2 crm:P30_transferred_custody_of|mmm-schema:observed_manuscript ?manuscript__id .
+      ?event2 crm:P4_has_time-span/crm:P82b_end_of_the_end ?event2_timespan_end .
+      filter (?event2_timespan_end > ?event_timespan_end)
     }
   }
 `;

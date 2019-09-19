@@ -52,7 +52,8 @@ export const mapCount = sparqlBindings => {
   return sparqlBindings[0].count.value;
 };
 
-export const mapFacet = sparqlBindings => {
+export const mapFacet = (sparqlBindings, previousSelections) => {
+  //console.log(previousSelections)
   let results = [];
   if (sparqlBindings.length > 0) {
     results = mapFacetValues(sparqlBindings);
@@ -60,9 +61,9 @@ export const mapFacet = sparqlBindings => {
   return results;
 };
 
-export const mapHierarchicalFacet = sparqlBindings => {
+export const mapHierarchicalFacet = (sparqlBindings, previousSelections) => {
+  //console.log(previousSelections)
   const results = mapFacetValues(sparqlBindings);
-  const flatResults = results;
   let treeData = getTreeFromFlatData({
     flatData: results,
     getKey: node => node.id, // resolve a node's key
@@ -71,7 +72,10 @@ export const mapHierarchicalFacet = sparqlBindings => {
   });
   treeData = recursiveSort(treeData);
   treeData.forEach(node => sumUpAndSelectChildren(node));
-  return treeData;
+  return ({
+    treeData,
+    flatData: results
+  });
 };
 
 export const mapTimespanFacet = sparqlBindings => {

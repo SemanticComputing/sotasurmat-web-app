@@ -110,8 +110,13 @@ export const getAllResults = ({
       facetID: null
     }));
   }
-  //console.log(prefixes + q)
-  return runSelectQuery(prefixes + q, endpoint, mapper, resultFormat);
+  // console.log(prefixes + q)
+  return runSelectQuery({
+    query: prefixes + q,
+    endpoint,
+    resultMapper: mapper,
+    resultFormat
+  });
 };
 
 export const getResultCount = async ({
@@ -132,7 +137,12 @@ export const getResultCount = async ({
       facetID: null
     }));
   }
-  const response = await runSelectQuery(prefixes + q, endpoint, mapCount, resultFormat);
+  const response = await runSelectQuery({
+    query: prefixes + q,
+    endpoint,
+    resultMapper: mapCount,
+    resultFormat
+  });
   return({
     resultClass: resultClass,
     data: response.data,
@@ -194,7 +204,12 @@ const getPaginatedData = ({
   }
   q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties);
   // console.log(prefixes + q);
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
+  return runSelectQuery({
+    query: prefixes + q,
+    endpoint,
+    resultMapper: makeObjectList,
+    resultFormat
+  });
 };
 
 export const getByURI = ({
@@ -235,6 +250,11 @@ export const getByURI = ({
   }
 
   q = q.replace('<ID>', `<${uri}>`);
-  //console.log(prefixes + q)
-  return runSelectQuery(prefixes + q, endpoint, makeObjectList, resultFormat);
+  // console.log(prefixes + q)
+  return runSelectQuery({
+    query: prefixes + q,
+    endpoint,
+    resultMapper: makeObjectList,
+    resultFormat
+  });
 };

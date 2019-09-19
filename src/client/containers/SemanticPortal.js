@@ -25,6 +25,7 @@ import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotasurmat';
 import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 import { has } from 'lodash';
+import { urlToState } from '../helpers/helpers';
 import {
   fetchResultCount,
   fetchPaginatedResults,

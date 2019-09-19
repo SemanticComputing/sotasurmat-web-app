@@ -46,7 +46,7 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   labelCell: {
-    minWidth: 220
+    minWidth: 240
   }
 });
 
@@ -165,7 +165,6 @@ class InstanceHomePage extends React.Component {
                             externalLink={row.externalLink}
                             sortValues={row.sortValues}
                             numberedList={row.numberedList}
-                            minWidth={row.minWidth}
                             container='cell'
                             expanded={true}
                             linkAsButton={has(row, 'linkAsButton')

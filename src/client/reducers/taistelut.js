@@ -28,6 +28,8 @@ import {
   updateHeaderExpanded
 } from './helpers';
 
+// onlyOnInstancePage: true
+
 export const INITIAL_STATE = {
   results: [],
   paginatedResults: [],

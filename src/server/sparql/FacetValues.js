@@ -33,7 +33,7 @@ export const getFacet = async ({
   // choose query template and result mapper:
   let q = '';
   let mapper = null;
-  //console.log(facetConfigs[facetClass][facetID])
+  let previousSelections = null;
   switch(facetConfig.type) {
     case 'list':
       q = facetValuesQuery;
@@ -68,6 +68,7 @@ export const getFacet = async ({
       facetID: facetID,
       inverse: false,
     });
+    previousSelections = new Set(getUriFilters(constraints, facetID));
     // if this facet has previous selections, include them in the query
     if (hasPreviousSelections(constraints, facetID)) {
       selectedBlock = generateSelectedBlock({
@@ -121,14 +122,29 @@ export const getFacet = async ({
     q = q.replace('<END_PROPERTY>', facetConfig.endProperty);
   }
   // console.log(prefixes + q)
-  const response = await runSelectQuery(prefixes + q, endpoint, mapper, resultFormat);
-  return({
-    facetClass: facetClass,
-    id: facetID,
-    data: response.data,
-    flatData: response.flatData || null,
-    sparqlQuery: response.sparqlQuery
+  const response = await runSelectQuery({
+    query: prefixes + q,
+    endpoint,
+    resultMapper: mapper,
+    previousSelections,
+    resultFormat
   });
+  if (facetConfig.type === 'hierarchical') {
+    return({
+      facetClass: facetClass,
+      id: facetID,
+      data: response.data.treeData,
+      flatData: response.data.flatData,
+      sparqlQuery: response.sparqlQuery
+    });
+  } else {
+    return({
+      facetClass: facetClass,
+      id: facetID,
+      data: response.data,
+      sparqlQuery: response.sparqlQuery
+    });
+  }
 };
 
 const generateSelectedBlock = ({
