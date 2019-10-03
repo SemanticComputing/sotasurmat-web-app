@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
+import { ISOStringToYear } from './FacetHelpers';
 
 const styles = theme => ({
   root: {
@@ -53,19 +54,11 @@ class ChipsArray extends React.Component {
   };
 
   generateLabel = (facetLabel, valueLabel, filterType) => {
-    return  filterType !== 'timespanFilter' && valueLabel.length > 18
+    return filterType !== 'timespanFilter'
+        && filterType !== 'integerFilter'
+        && valueLabel.length > 18
       ? `${facetLabel}: ${valueLabel.substring(0, 18)}...`
       : `${facetLabel}: ${valueLabel}`;
-  }
-
-  ISOStringToYear = str => {
-    let year = null;
-    if (str.charAt(0) == '-') {
-      year = parseInt(str.substring(0,5));
-    } else {
-      year = parseInt(str.substring(0,4));
-    }
-    return year;
   }
 
   render() {
@@ -95,8 +88,12 @@ class ChipsArray extends React.Component {
               ${item.value.end}`;
           }
           if (item.filterType === 'integerFilter') {
+            let { start, end } = item.value;
             key = item.facetID;
-            valueLabel = `${item.value.start} to ${item.value.end}`;
+            //valueLabel = `${item.value.start} to ${item.value.end}`;
+            valueLabel = `
+               ${start !== '' ? start : '-'}
+               to ${end !== '' ? end : '-'}`;
           }
           return (
             <Tooltip key={key} title={`${item.facetLabel}: ${valueLabel}`}>

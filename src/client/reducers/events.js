@@ -30,9 +30,12 @@ import {
 
 export const INITIAL_STATE = {
   results: [],
+  resultsSparqlQuery: null,
   paginatedResults: [],
-  resultCount: 0,
+  paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceSparqlQuery: null,
+  resultCount: 0,
   page: -1,
   pagesize: 10,
   sortBy: null,
@@ -40,7 +43,8 @@ export const INITIAL_STATE = {
   fetching: false,
   fetchingResultCount: false,
   sparqlQuery: null,
-  headerExpanded: true,
+  facetedSearchHeaderExpanded: true,
+  instancePageHeaderExpanded: true,
   tableColumns: [
     {
       id: 'type',
@@ -94,6 +98,45 @@ export const INITIAL_STATE = {
       minWidth: 250
     },
     {
+      id: 'surrender',
+      label: 'Custody surrendered by',
+      desc: 'Custody surrendered by',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      onlyOnInstancePage: true,
+      onlyForClass: 'http://erlangen-crm.org/current/E10_Transfer_of_Custody'
+    },
+    {
+      id: 'receiver',
+      label: 'Custody received by',
+      desc: 'Custody received by',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      onlyOnInstancePage: true,
+      onlyForClass: 'http://erlangen-crm.org/current/E10_Transfer_of_Custody'
+    },
+    {
+      id: 'observedOwner',
+      label: 'Observed owner',
+      desc: 'Observed owner',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      onlyOnInstancePage: true,
+      onlyForClass: 'http://erlangen-crm.org/current/E7_Activity'
+    },
+    {
       id: 'source',
       label: 'Source',
       desc: `
@@ -137,7 +180,7 @@ const events = (state = INITIAL_STATE, action) => {
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action);
       case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
-        return updateHeaderExpanded(state);
+        return updateHeaderExpanded(state, action);
       default:
         return state;
     }

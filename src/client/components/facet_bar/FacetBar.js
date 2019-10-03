@@ -5,6 +5,7 @@ import HierarchicalFacet from './HierarchicalFacet';
 import TextFacet from './TextFacet';
 import SliderFacet from './SliderFacet';
 import DateRangeSelector from './DateRangeSelector';
+import RangeFacet from './RangeFacet';
 import Paper from '@material-ui/core/Paper';
 import FacetHeader from './FacetHeader';
 import FacetInfo from './FacetInfo';
@@ -51,6 +52,9 @@ const styles = theme => ({
   },
   five: {
     height: 150,
+  },
+  six: {
+    height: 180,
   },
   ten: {
     height: 357,

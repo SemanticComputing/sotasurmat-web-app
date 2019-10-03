@@ -7,22 +7,37 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-
+//import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   root: {
     position: 'absolute',
-    marginTop: 64,
+    //marginTop: 64,
     paddingTop: theme.spacing(1),
     paddingLeft: theme.spacing(1.5),
     paddingRight: theme.spacing(1.5),
     backgroundColor: '#bdbdbd',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 56,
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 64,
+    },
   },
   panel: {
     width: '100%'
   },
   summary: {
-    paddingLeft: theme.spacing(1)
+    paddingLeft: theme.spacing(1),
+  },
+  summaryContent: {
+    display: 'block',
+    marginBottom: `${theme.spacing(1)}px !important`
+  },
+  label: {
+    marginTop: theme.spacing(1),
+    height: 32,
+    overflow: 'auto'
   },
   content: {
     paddingTop: 0,
@@ -30,13 +45,25 @@ const styles = theme => ({
     paddingBottom: theme.spacing(1),
     marginBottom: theme.spacing(1),
     overflow: 'auto',
+    display: 'block'
   }
 });
 
-const PerspectiveHeader = props => {
+const InfoHeader = props => {
 
   const handleExpandButtonOnClick = () => {
-    props.updateExpanded(props.resultClass);
+    props.updateExpanded({
+      resultClass: props.resultClass,
+      pageType: props.pageType
+    });
+  };
+
+  const generateLabel = () => {
+    let label = '';
+    const data = props.instanceData;
+    const hasData = data !== null && Object.values(data).length >= 1;
+    if (hasData) { label = data.prefLabel.prefLabel; }
+    return label;
   };
 
   return(
@@ -46,32 +73,42 @@ const PerspectiveHeader = props => {
         expanded={props.expanded}>
         <ExpansionPanelSummary
           className={props.classes.summary}
+          classes={{
+            content: props.classes.summaryContent
+          }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
           IconButtonProps={{ onClick: handleExpandButtonOnClick }}
         >
           <Typography component="h1" variant="h3">{props.title}</Typography>
+          {props.pageType === 'instancePage' &&
+            <React.Fragment>
+              <Typography className={props.classes.label} component="h1" variant="h6">{generateLabel()}</Typography>
+            </React.Fragment>
+          }
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
           className={props.classes.content}
           style={{ height: props.descriptionHeight }}
         >
-          <Typography>{props.description}</Typography>
+          {props.description}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </Grid>
   );
 };
 
-PerspectiveHeader.propTypes = {
+InfoHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   resultClass: PropTypes.string.isRequired,
+  instanceData: PropTypes.object,
+  pageType: PropTypes.string.isRequired,
   expanded: PropTypes.bool.isRequired,
   updateExpanded: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.object.isRequired,
   descriptionHeight: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles)(PerspectiveHeader);
+export default withStyles(styles)(InfoHeader);

@@ -27,7 +27,7 @@ export const updateInstance = (state, action) => {
   return {
     ...state,
     instance: action.data.length == 1 ? action.data[0] : {},
-    sparqlQuery: action.sparqlQuery,
+    instanceSparqlQuery: action.sparqlQuery,
     fetching: false
   };
 };
@@ -74,7 +74,8 @@ export const updateFacetOption = (state, action) => {
     'textFilter',
     'timespanFilter',
     'integerFilter',
-    'dateFilter'
+    'dateFilter',
+    'integerFilterRange'
   ];
   if (filterTypes.includes(action.option)) {
     return updateFacetFilter(state, action);
@@ -138,7 +139,8 @@ const updateFacetFilter = (state, action) => {
         }
       };
     }
-  } else if (oldFacet.filterType === 'integerFilter' ) {
+  } else if (oldFacet.filterType === 'integerFilter'
+          || oldFacet.filterType === 'integerFilterRange') {
     if (value == null) {
       newFacet = {
         ...state.facets[facetID],
@@ -178,6 +180,7 @@ export const updateResults = (state, action) => {
   return {
     ...state,
     results: action.data,
+    resultsSparqlQuery: action.sparqlQuery,
     fetching: false,
   };
 };
@@ -186,7 +189,7 @@ export const updatePaginatedResults = (state, action) => {
   return {
     ...state,
     paginatedResults: action.data || [],
-    sparqlQuery: action.sparqlQuery,
+    paginatedResultsSparqlQuery: action.sparqlQuery,
     fetching: false
   };
 };
@@ -250,9 +253,16 @@ export const updateFacetValues = (state, action) => {
   }
 };
 
-export const updateHeaderExpanded = state => {
-  return {
-    ...state,
-    headerExpanded: !state.headerExpanded
-  };
+export const updateHeaderExpanded = (state, action) => {
+  if (action.pageType === 'instancePage') {
+    return {
+      ...state,
+      instancePageHeaderExpanded: !state.instancePageHeaderExpanded
+    };
+  } else {
+    return {
+      ...state,
+      facetedSearchHeaderExpanded: !state.facetedSearchHeaderExpanded
+    };
+  }
 };

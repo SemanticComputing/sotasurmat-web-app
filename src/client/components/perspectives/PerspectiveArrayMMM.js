@@ -1,17 +1,32 @@
 import kalevankangas from '../../img/kalevankangas.jpg';
 import punainenRintama from '../../img/punainenRintama.jpg';
-import tampereVangit from '../../img/tampereVangit.jpg';
+// import tampereVangit from '../../img/tampereVangit.jpg';
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 export const perspectiveArr = [
   {
     id: 'surmatut',
     label: 'Sotasurmat',
-    desc: 'Tietoa vuosina 1914-1922 surmatuista',
+    instancePageLabel: 'Henkilö',
+    mainPageDesc: 'Tietoa vuosina 1914-1922 surmatuista',
     thumbImage: kalevankangas,
     perspectiveDescHeight: 99,
-    perspectiveDesc: `
-      Kuvaus
-    `,
+    perspectiveDesc:
+      <React.Fragment>
+        <Typography paragraph={true}>
+          Use this perspective to
+        </Typography>
+      </React.Fragment>
+    ,
+    instancePageDesc:
+      <React.Fragment>
+        <Typography paragraph={true}>
+          Use this perspective to
+        </Typography>
+      </React.Fragment>
+    ,
+    defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
         id: 'lista',
@@ -31,17 +46,43 @@ export const perspectiveArr = [
         value: 2,
         icon: 'LineChart',
       },
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        label: 'table',
+        value: 0,
+        icon: 'CalendarViewDay',
+      },
+      {
+        id: 'export',
+        label: 'export',
+        value: 1,
+        icon: 'Download',
+      },
     ]
   },
   {
     id: 'taistelut',
     label: 'Taistelupaikat',
-    desc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
+    instancePageLabel: 'Taistelu',
+    mainPageDesc: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
     thumbImage: punainenRintama,
     perspectiveDescHeight: 99,
-    perspectiveDesc: `
-      Kuvaus
-    `,
+    perspectiveDesc:
+      <React.Fragment>
+        <Typography paragraph={true}>
+          Use this perspective to
+        </Typography>
+      </React.Fragment>
+    ,
+    instancePageDesc:
+      <React.Fragment>
+        <Typography paragraph={true}>
+          Use this perspective to
+        </Typography>
+      </React.Fragment>
+    ,
     tabs: [
       {
         id: 'lista',
@@ -55,6 +96,20 @@ export const perspectiveArr = [
         value: 1,
         icon: 'AddLocation',
       }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        label: 'table',
+        value: 0,
+        icon: 'CalendarViewDay',
+      },
+      {
+        id: 'export',
+        label: 'export',
+        value: 1,
+        icon: 'Download',
+      },
     ]
   },
 ];

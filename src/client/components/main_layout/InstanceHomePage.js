@@ -3,40 +3,24 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
-import SurmatutPageTable from '../perspectives/SurmatutPageTable';
-import TaistelutPageTable from '../perspectives/TaistelutPageTable';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import ResultTableCell from '../facet_results/ResultTableCell';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/InfoOutlined';
-import has from 'lodash';
+import PerspectiveTabs from './PerspectiveTabs';
+import InstanceHomePageTable from './InstanceHomePageTable';
+import LeafletMap from '../facet_results/LeafletMap';
+import Export from '../facet_results/Export';
+import { Route, Redirect } from 'react-router-dom';
+import { has } from 'lodash';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '100%',
     height: '100%',
-    display: 'flex',
-    justifyContent: 'center'
   },
   content: {
-    padding: theme.spacing(1),
-    width: 800,
-    overflowY: 'auto'
-  },
-  divider: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  },
-  sahaButton: {
-    marginTop: theme.spacing(2),
+    width: '100%',
+    height: 'calc(100% - 72px)',
+    overflow: 'auto'
   },
   spinnerContainer: {
     display: 'flex',
@@ -44,9 +28,6 @@ const styles = theme => ({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  labelCell: {
-    minWidth: 240
   }
 });
 
@@ -55,15 +36,20 @@ class InstanceHomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      instanceHeading: '',
-      localID: []
+      localID: null
     };
   }
 
   componentDidMount = () => {
     let uri = '';
     let base = 'http://ldf.fi/siso';
-    const localID = this.props.routeProps.location.pathname.split('/').pop();
+    const locationArr = this.props.routeProps.location.pathname.split('/');
+    let localID = locationArr.pop();
+    this.props.tabs.map(tab => {
+      if (localID === tab.id) {
+        localID = locationArr.pop(); // pop again if tab id
+      }
+    });
     this.setState({ localID: localID });
     switch(this.props.resultClass) {
       case 'surmatut':
@@ -87,35 +73,55 @@ class InstanceHomePage extends React.Component {
     });
   }
 
-  // renderTable = () => {
-  //   let tableEl = null;
-  //   if (this.state.instanceClass !== '') {
-  //     switch (this.state.instanceHeading) {
-  //       case 'Henkilö':
-  //         tableEl =
-  //           <SurmatutPageTable
-  //             data={this.props.data}
-  //           />;
-  //         break;
-  //       case 'Taistelu':
-  //         tableEl =
-  //             <TaistelutPageTable
-  //               data={this.props.data}
-  //             />;
-  //         break;
-  //       default:
-  //         tableEl = <div></div>;
-  //     }
-  //   }
-  //   return tableEl;
-  // }
+  createPlaceArray = events => {
+    let places = {};
+    events = Array.isArray(events) ? events : [ events ];
+    events.map(event => {
+      if (has(event, 'place')) {
+        const eventPlaces = Array.isArray(event.place) ? event.place : [ event.place ];
+        eventPlaces.map(place => {
+          if (!has(places, place.id)) {
+            places[place.id] = {
+              id: place.id,
+              prefLabel: place.prefLabel,
+              lat: place.lat,
+              long: place.long,
+              events: [ event ] // gather events here
+            };
+          } else {
+            places[place.id].events.push(event);
+          }
+        });
+      }
+    });
+    places = Object.values(places);
+    places.map(place => place.instanceCount = place.events.length);
+    return places;
+  }
+
+  getVisibleRows = rows => {
+    let visibleRows = [];
+    const instanceClass = this.props.data.type ? this.props.data.type.id : '';
+    rows.map(row => {
+      if ((has(row, 'onlyForClass') && row.onlyForClass == instanceClass)
+       || !has(row, 'onlyForClass')) {
+        visibleRows.push(row);
+      }
+    });
+    return visibleRows;
+  }
 
   render = () => {
-    const { classes, data, isLoading } = this.props;
+    const { classes, data, isLoading, resultClass } = this.props;
     const hasData = data !== null && Object.values(data).length >= 1;
+
     return(
       <div className={classes.root}>
-        <Paper className={classes.content}>
+        <PerspectiveTabs
+          routeProps={this.props.routeProps}
+          tabs={this.props.tabs}
+        />
+        <Paper square className={classes.content}>
           {isLoading &&
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
@@ -123,8 +129,6 @@ class InstanceHomePage extends React.Component {
           }
           {!hasData &&
             <React.Fragment>
-              <Typography variant='h4'>{this.state.instanceHeading}</Typography>
-              <Divider className={classes.divider} />
               <Typography variant='h6'>
                 No data found for id: <span style={{ fontStyle: 'italic'}}>{this.state.localID}</span>
               </Typography>
@@ -132,66 +136,41 @@ class InstanceHomePage extends React.Component {
           }
           {hasData &&
             <React.Fragment>
-              <Typography variant='h4'>{this.state.instanceHeading}</Typography>
-              <Divider className={classes.divider} />
-              <Typography variant='h6'>
-                {Array.isArray(data.prefLabel)
-                  ? data.prefLabel[0].prefLabel
-                  : data.prefLabel.prefLabel
-                }
-              </Typography>
-              <Table>
-                <TableBody>
-                  {this.props.tableRows.map(row => {
-                    if (row.id !== 'prefLabel') {
-                      return (
-                        <TableRow key={row.id}>
-                          <TableCell className={classes.labelCell}>
-                            {row.label}
-                            <Tooltip
-                              title={row.desc}
-                              enterDelay={300}
-                            >
-                              <IconButton>
-                                <InfoIcon />
-                              </IconButton>
-                            </Tooltip>
-                          </TableCell>
-                          <ResultTableCell
-                            columnId={row.id}
-                            data={data[row.id]}
-                            valueType={row.valueType}
-                            makeLink={row.makeLink}
-                            externalLink={row.externalLink}
-                            sortValues={row.sortValues}
-                            numberedList={row.numberedList}
-                            container='cell'
-                            expanded={true}
-                            linkAsButton={has(row, 'linkAsButton')
-                              ? row.linkAsButton
-                              : null
-                            }
-                            collapsedMaxWords={has(row, 'collapsedMaxWords')
-                              ? row.collapsedMaxWords
-                              : null
-                            }
-                          />
-                        </TableRow>
-                      );
-                    }
-                  }
-                  )}
-                </TableBody>
-              </Table>
-              <Button
-                className={classes.sahaButton}
-                variant='contained'
-                target='_blank'
-                rel='noopener noreferrer'
-                href={data.id}
-              >
-                Open in Linked Data Browser
-              </Button>
+              <Route
+                exact path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}`}
+                render={() => <Redirect to={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
+              />
+              <Route
+                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/table`}
+                render={() =>
+                  <InstanceHomePageTable
+                    data={data}
+                    tableRows={this.getVisibleRows(this.props.tableRows)}
+                  />}
+              />
+              <Route
+                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/map`}
+                render={() =>
+                  <LeafletMap
+                    results={this.createPlaceArray(data.event)}
+                    resultClass='instanceEvents'
+                    pageType='instancePage'
+                    mapMode='cluster'
+                    instance={null}
+                    fetchByURI={this.props.fetchByURI}
+                    fetching={this.props.isLoading}
+                    showInstanceCountInClusters={true}
+                  />}
+              />
+              <Route
+                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/export`}
+                render={() =>
+                  <Export
+                    sparqlQuery={this.props.sparqlQuery}
+                    pageType='instancePage'
+                    id={data.id}
+                  />}
+              />
             </React.Fragment>
           }
         </Paper>
@@ -201,11 +180,14 @@ class InstanceHomePage extends React.Component {
 }
 
 InstanceHomePage.propTypes = {
+  rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
   resultClass: PropTypes.string.isRequired,
   data: PropTypes.object,
+  sparqlQuery: PropTypes.string,
   tableRows: PropTypes.array.isRequired,
+  tabs: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   routeProps: PropTypes.object.isRequired
 };

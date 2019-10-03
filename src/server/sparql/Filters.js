@@ -90,6 +90,7 @@ export const generateConstraintsBlock = ({
         });
         break;
       case 'integerFilter':
+      case 'integerFilterRange':
         filterStr += generateIntegerFilter({
           facetClass: facetClass,
           facetID: c.id,
@@ -205,12 +206,18 @@ const generateIntegerFilter = ({
 }) => {
   const facetConfig = facetConfigs[facetClass][facetID];
   const { start, end } = values;
-  const selectionStart = start;
-  const selectionEnd = end;
+  let integerFilter = '';
+  if (start === '') {
+    integerFilter = `xsd:integer(?value) <= ${end}`;
+  } else if (end === '') {
+    integerFilter = `xsd:integer(?value) >= ${start}`;
+  } else {
+    integerFilter = `xsd:integer(?value) >= ${start} && xsd:integer(?value) <= ${end}`;
+  }
   const filterStr = `
     ?${filterTarget} ${facetConfig.predicate} ?value .
     FILTER(
-      xsd:integer(?value) >= ${selectionStart} && xsd:integer(?value) <= ${selectionEnd}
+      ${integerFilter}
     )
   `;
   if (inverse) {

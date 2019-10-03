@@ -10,9 +10,9 @@ import {
   UPDATE_PAGINATED_RESULTS,
   UPDATE_INSTANCE,
   UPDATE_PAGE,
+  UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
-  UPDATE_PERSPECTIVE_HEADER_EXPANDED,
-  UPDATE_ROWS_PER_PAGE
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED
 } from '../actions';
 import {
   fetchResults,
@@ -32,17 +32,23 @@ import {
 
 export const INITIAL_STATE = {
   results: [],
+  resultsSparqlQuery: null,
   paginatedResults: [],
   resultCount: 0,
+  resultsUpdateID: -1,
+  paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceSparqlQuery: null,
   page: -1,
   pagesize: 15,
   sortBy: 'startDate',
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
-  sparqlQuery: null,
   headerExpanded: false,
+  sparqlQuery: null,
+  facetedSearchHeaderExpanded: false,
+  instancePageHeaderExpanded: false,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -66,7 +72,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 150
     },
     {
       id: 'endDate',

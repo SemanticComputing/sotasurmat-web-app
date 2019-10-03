@@ -5,6 +5,7 @@ import purple from '@material-ui/core/colors/purple';
 import { withStyles } from '@material-ui/core/styles';
 import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
 import { Handle, Track, Tick, TooltipRail } from './SliderComponents';
+import { YearToISOString, ISOStringToYear } from './FacetHelpers';
 
 const sliderRootStyle = {
   position: 'relative',
@@ -31,65 +32,33 @@ const styles = theme => ({
 class SliderFacet extends Component {
 
   componentDidMount = () => {
-    this.props.fetchFacet({
-      facetClass: this.props.facetClass,
-      facetID: this.props.facetID,
-    });
-  }
-
-  handleSliderOnChange = values => {
-    const defaultValues = parseInt(values[0]) === parseInt(this.props.facet.min)
-      && parseInt(values[1]) == parseInt(this.props.facet.max);
-    if (!defaultValues) {
-      if (this.props.dataType === 'ISOString') {
-        values[0] = this.YearToISOString({ year: values[0], start: true });
-        values[1] = this.YearToISOString({ year: values[1], start: false });
-      }
-      this.props.updateFacetOption({
+    const { isFetching, min, max } = this.props.facet;
+    if (!isFetching && (min == null || max == null)) {
+      this.props.fetchFacet({
         facetClass: this.props.facetClass,
         facetID: this.props.facetID,
-        option: this.props.facet.filterType,
-        value: values
       });
     }
   }
 
-  ISOStringToYear = str => {
-    let year = null;
-    if (str.charAt(0) == '-') {
-      year = parseInt(str.substring(0,5));
-    } else {
-      year = parseInt(str.substring(0,4));
+  handleSliderOnChange = values => {
+    if (this.props.dataType === 'ISOString') {
+      values[0] = YearToISOString({ year: values[0], start: true });
+      values[1] = YearToISOString({ year: values[1], start: false });
     }
-    return year;
-  }
-
-  YearToISOString = ({ year, start }) => {
-    const abs = Math.abs(year);
-    let s = year.toString();
-    let negative = false;
-    if (s.charAt(0) == '-') {
-      s = s.substring(1);
-      negative = true;
-    }
-    if (abs < 10) {
-      s = '000' + s;
-    }
-    if (abs >= 10 && abs < 100) {
-      s = '00' + s;
-    }
-    if (abs >= 100 && abs < 1000) {
-      s = '0' + s;
-      s = negative ? s = '-' + s : s;
-    }
-    s = start ? s + '-01-01' :  s + '-12-31';
-    return s;
+    this.props.updateFacetOption({
+      facetClass: this.props.facetClass,
+      facetID: this.props.facetID,
+      option: this.props.facet.filterType,
+      value: values
+    });
   }
 
   render() {
     const { classes, someFacetIsFetching } = this.props;
     const { isFetching, min, max } = this.props.facet;
     let domain = null;
+    let values = null;
     if (isFetching || min == null || max == null) {
       return(
         <div className={classes.spinnerContainer}>
@@ -98,12 +67,25 @@ class SliderFacet extends Component {
       );
     } else {
       if (this.props.dataType === 'ISOString') {
-        const minYear = this.ISOStringToYear(min);
-        const maxYear = this.ISOStringToYear(max);
-        domain = [ minYear, maxYear ]; // use as default values
+        const minYear = ISOStringToYear(min);
+        const maxYear = ISOStringToYear(max);
+        domain = [ minYear, maxYear ];
+        if (this.props.facet.timespanFilter == null) {
+          values = domain;
+        } else {
+          const { start, end } = this.props.facet.timespanFilter;
+          values = [ ISOStringToYear(start), ISOStringToYear(end) ];
+        }
       } else if (this.props.dataType === 'integer') {
         domain = [ parseInt(min), parseInt(max) ];
+        if (this.props.facet.integerFilter == null) {
+          values = domain;
+        } else {
+          const { start, end } = this.props.facet.integerFilter;
+          values = [ start, end ];
+        }
       }
+
 
       // Slider documentation: https://github.com/sghall/react-compound-slider
       return (
@@ -116,7 +98,7 @@ class SliderFacet extends Component {
             reversed={false}
             rootStyle={sliderRootStyle}
             onChange={this.handleSliderOnChange}
-            values={domain}
+            values={values}
           >
             <Rail>{railProps => <TooltipRail {...railProps} />}</Rail>
             <Handles>

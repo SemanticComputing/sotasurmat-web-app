@@ -31,17 +31,20 @@ import {
 
 export const INITIAL_STATE = {
   results: [],
+  resultsSparqlQuery: null,
   paginatedResults: [],
-  resultCount: 0,
+  paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceSparqlQuery: null,
+  resultCount: 0,
   page: -1,
   pagesize: 10,
   sortBy: null,
   sortDirection: null,
   fetching: false,
   fetchingResultCount: false,
-  sparqlQuery: null,
-  headerExpanded: true,
+  facetedSearchHeaderExpanded: true,
+  instancePageHeaderExpanded: true,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -169,7 +172,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 330,
+      minWidth: 450,
     },
     {
       id: 'owner',
@@ -391,7 +394,7 @@ const manuscripts = (state = INITIAL_STATE, action) => {
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action);
       case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
-        return updateHeaderExpanded(state);
+        return updateHeaderExpanded(state, action);
       case UPDATE_URL:
         return(state);
       default:

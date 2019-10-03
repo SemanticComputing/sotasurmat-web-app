@@ -41,6 +41,7 @@ let Manuscripts = props => {
         render={() =>
           <LeafletMap
             results={props.places.results}
+            pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
             facet={props.facetData.facets.productionPlace}
             facetID='productionPlace'
@@ -84,7 +85,8 @@ let Manuscripts = props => {
         path={'/manuscripts/faceted-search/export'}
         render={() =>
           <Export
-            sparqlQuery={props.manuscripts.sparqlQuery}
+            sparqlQuery={props.manuscripts.paginatedResultsSparqlQuery}
+            pageType='facetResults'
           />}
       />
       <Route

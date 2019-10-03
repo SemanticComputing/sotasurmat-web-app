@@ -40,6 +40,7 @@ let Taistelut = props => {
         render={() =>
           <LeafletMap
             results={props.taistelut.results}
+            pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='battlePlaces'
             facetClass='taistelut'

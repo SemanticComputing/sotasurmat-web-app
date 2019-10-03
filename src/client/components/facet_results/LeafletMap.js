@@ -38,10 +38,16 @@ const style = {
 };
 
 const styles = theme => ({
-  leafletContainer: {
+  leafletContainerfacetResults: {
     height: 400,
     [theme.breakpoints.up('md')]: {
       height: 'calc(100% - 72px)'
+    }
+  },
+  leafletContainerinstancePage: {
+    height: 400,
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
     }
   },
   spinner: {
@@ -69,23 +75,26 @@ const ColorIcon = L.Icon.extend({
 class LeafletMap extends React.Component {
 
   componentDidMount = () => {
-    this.props.fetchResults({
-      resultClass: this.props.resultClass,
-      facetClass: this.props.facetClass,
-      sortBy: null,
-    });
+
+    if (this.props.pageType === 'facetResults') {
+      this.props.fetchResults({
+        resultClass: this.props.resultClass,
+        facetClass: this.props.facetClass,
+        sortBy: null,
+      });
+    }
+
 
     // Base layers
+
     // const OSMBaseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     //   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     // });
-
     const mapboxLight = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_ACCESS_TOKEN, {
       attribution: '&copy; <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       tileSize: 512,
       zoomOffset: -1
     });
-
     // const parisTest = L.tileLayer('http://mapwarper.net/maps/tile/28345/{z}/{x}/{y}.png', {
     //   attribution: 'SeCo'
     // });
@@ -117,37 +126,12 @@ class LeafletMap extends React.Component {
       this.addDrawButtons();
     }
 
-    // layer controls
-    // const baseMaps = {
-    //   'OpenStreetMap': OSMBaseLayer,
-    // };
-    // const overlayMaps = {
-    //   // 'Search results': this.resultMarkerLayer,
-    //   // 'Karelian maps (MapWarper)': karelianMaps,
-    //   // 'Senate atlas (MapWarper)': senateAtlas,
-    //   'Paris': parisTest
-    // };
-
-    // this.layerControl = L.control.layers(
-    //   //baseMaps,
-    //   overlayMaps,
-    // ).addTo(this.leafletMap);
-
-    // L.control.opacity(
-    //   overlayMaps, {
-    //     collapsed: true,
-    //     position: 'bottomleft'
-    //   }).addTo(this.leafletMap);
-
-    // L.Marker.setBouncingOptions({ exclusive: true });
-
-    //L.control.sidebar({ container: 'sidebar' }).addTo(this.leafletMap).open('home');
   }
 
   componentDidUpdate = prevProps => {
     //console.log(this.props.resultClass)
     // check if filters have changed
-    if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
+    if (has(prevProps, 'facetUpdateID') && prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({
         resultClass: this.props.resultClass,
         facetClass: this.props.facetClass,
@@ -351,13 +335,12 @@ class LeafletMap extends React.Component {
         marker = L.marker(latLng, {
           icon: icon,
           instanceCount: result.instanceCount ? result.instanceCount : null,
-          id: result.id
-        })
-          .on('click', this.markerOnClick);
+          id: result.id,
+          prefLabel: result.prefLabel ? result.prefLabel : null,
+          events: result.events ? result.events : null
+        });
       } else {
-
         const color = 'green';
-
         let markerIcon = '';
         switch(color) {
           case 'violet':
@@ -373,19 +356,24 @@ class LeafletMap extends React.Component {
             markerIcon = markerIconOrange;
             break;
         }
-
         marker = L.marker(latLng, {
           icon: new ColorIcon({iconUrl: markerIcon }),
-          id: result.id
-        })
-          .on('click', this.markerOnClick);
+          id: result.id,
+          prefLabel: result.prefLabel ? result.prefLabel : null,
+          events: result.events ? result.events : null
+        });
       }
-
+      if (this.props.pageType === 'facetResults') {
+        marker.on('click', this.markerOnClickFacetResults);
+      }
+      if (this.props.pageType === 'instancePage') {
+        marker.bindPopup(this.createPopUpContent(marker.options));
+      }
       return marker;
     }
   }
 
-  markerOnClick = event => {
+  markerOnClickFacetResults = event => {
     this.props.fetchByURI({
       resultClass: this.props.resultClass,
       facetClass: this.props.facetClass,
@@ -393,6 +381,8 @@ class LeafletMap extends React.Component {
     });
   };
 
+  // TODO: add click events instead of a tags:
+  // https://stackoverflow.com/questions/54744762/click-event-on-leaflet-popup-content
   createPopUpContent = result => {
     let popUpTemplate = '';
     try {
@@ -424,6 +414,11 @@ class LeafletMap extends React.Component {
     catch(TypeError) {
       popUpTemplate += `<p>Error downloading data</p>`;
     }
+    if (this.props.resultClass === 'instanceEvents') {
+      popUpTemplate += `<p>Events:</p>`;
+      popUpTemplate += this.createInstanceListing(result.events);
+    }
+    // console.log(popUpTemplate)
     return popUpTemplate;
   }
 
@@ -433,11 +428,11 @@ class LeafletMap extends React.Component {
       instances = orderBy(instances, 'prefLabel');
       html += '<ul>';
       instances.forEach(i => {
-        html += '<li><a target="_blank" rel="noopener noreferrer" href=' + i.dataProviderUrl + '>' + i.prefLabel + '</a></li>';
+        html += '<li><a href=' + i.dataProviderUrl + '>' + i.prefLabel + '</a></li>';
       });
       html += '</ul>';
     } else {
-      html += '<p><a target="_blank" rel="noopener noreferrer" href=' + instances.dataProviderUrl + '>' + instances.prefLabel + '</a></p>';
+      html += '<p><a href=' + instances.dataProviderUrl + '>' + instances.prefLabel + '</a></p>';
     }
     return html;
   }
@@ -465,7 +460,7 @@ class LeafletMap extends React.Component {
     //console.log(this.props)
     return (
       <React.Fragment>
-        <div className={this.props.classes.leafletContainer}>
+        <div className={this.props.classes[`leafletContainer${this.props.pageType}`]}>
           {/*<LeafletSidebar />*/}
           <div id="map" style={style} />
         </div>
@@ -477,7 +472,8 @@ class LeafletMap extends React.Component {
 
 LeafletMap.propTypes = {
   classes: PropTypes.object.isRequired,
-  results: PropTypes.array,
+  pageType: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired,
   facetID: PropTypes.string,
   facet: PropTypes.object,
   instance: PropTypes.object,

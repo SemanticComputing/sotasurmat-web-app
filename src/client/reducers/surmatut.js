@@ -30,10 +30,13 @@ import {
 
 export const INITIAL_STATE = {
   results: [],
+  resultsSparqlQuery: null,
   paginatedResults: [],
   resultCount: 0,
   resultsUpdateID: -1,
+  paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceSparqlQuery: null,
   page: -1,
   pagesize: 15,
   sortBy: 'prefLabel',
@@ -41,6 +44,9 @@ export const INITIAL_STATE = {
   fetching: false,
   fetchingResultCount: false,
   headerExpanded: false,
+  sparqlQuery: null,
+  facetedSearchHeaderExpanded: false,
+  instancePageHeaderExpanded: false,
   tableColumns: [
     {
       id: 'prefLabel',
@@ -180,7 +186,7 @@ const surmatut = (state = INITIAL_STATE, action) => {
       case UPDATE_ROWS_PER_PAGE:
         return updateRowsPerPage(state, action);
       case UPDATE_PERSPECTIVE_HEADER_EXPANDED:
-        return updateHeaderExpanded(state);
+        return updateHeaderExpanded(state, action);
       default:
         return state;
     }
