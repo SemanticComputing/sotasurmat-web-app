@@ -334,6 +334,7 @@ export const personProperties = `
           ?releaseDateInfo siso-s:value ?releaseDate__id .
           BIND(?releaseDate__id AS ?releaseDate__prefLabel)
         }
+        UNION
         {
           ?deathYearInfo a siso-s:Information_resource .
           ?deathYearInfo siso-s:referred_death_record ?id .
@@ -349,6 +350,7 @@ export const personProperties = `
           ?deathDayInfo siso-s:value ?deathDay__id .
           BIND(?deathDay__id AS ?deathDay__prefLabel)
         }
+        UNION
         {
           ?ageInfo a siso-s:Information_resource .
           ?ageInfo siso-s:referred_death_record ?id .
@@ -382,7 +384,7 @@ export const personProperties = `
         }
         UNION
         {
-          # bugi? korjattu mutta pitää ajaa muunnos uusiksi
+          # bugaa korjattu mapping.ttl tiedostoon mutta pitää ajaa muunnos uusiksi
           ?deathPlaceInfo a siso-s:Information_resource .
           ?deathPlaceInfo siso-s:referred_death_record ?id .
           ?deathPlaceInfo siso-s:information_type siso-s:0_41_death_place .
@@ -396,6 +398,39 @@ export const personProperties = `
           ?causeOfDeathInfo siso-s:information_type siso-s:0_42_cause_of_death .
           ?causeOfDeathInfo siso-s:value ?causeOfDeath__id .
           ?causeOfDeath__id skos:prefLabel ?causeOfDeath__prefLabel .
+        }
+        UNION
+        {
+          #bugaa mutta korjattu
+          ?deathMotiveInfo a siso-s:Information_resource .
+          ?deathMotiveInfo siso-s:referred_death_record ?id .
+          ?deathMotiveInfo siso-s:information_type siso-s:0_43_death_motive .
+          ?deathMotiveInfo siso-s:value ?deathMotive__id .
+          ?deathMotive__id skos:prefLabel ?deathMotive__prefLabel .
+        }
+        UNION
+        {
+          ?burialInfo a siso-s:Information_resource .
+          ?burialInfo siso-s:referred_death_record ?id .
+          ?burialInfo siso-s:information_type siso-s:0_44_method_of_burial .
+          ?burialInfo siso-s:value ?burial__id .
+          ?burial__id skos:prefLabel ?burial__prefLabel .
+        }
+        UNION
+        {
+          ?deathComment a siso-s:Information_resource .
+          ?deathComment siso-s:referred_death_record ?id .
+          ?deathComment siso-s:information_type siso-s:0_45_death_comment .
+          ?deathComment siso-s:value ?deathComment__id .
+          BIND(?deathComment__id AS ?deathComment__prefLabel)
+        }
+        UNION
+        {
+          ?religionInfo a siso-s:Information_resource .
+          ?religionInfo siso-s:referred_death_record ?id .
+          ?religionInfo siso-s:information_type siso-s:0_46_religion .
+          ?religionInfo siso-s:value ?religion__id .
+          ?religion__id skos:prefLabel ?religion__prefLabel .
         }
         `;
 

@@ -633,6 +633,66 @@ class SurmatutHomePageTable extends React.Component {
               expanded={true}
             />
           </TableRow>
+          <TableRow key='deathMotive'>
+            <TableCell className={classes.labelCell}>Surmamotiivi</TableCell>
+            <ResultTableCell
+              columnId='deathMotive'
+              data={data.deathMotive}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='burial'>
+            <TableCell className={classes.labelCell}>Hautaustapa</TableCell>
+            <ResultTableCell
+              columnId='burial'
+              data={data.burial}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathComment'>
+            <TableCell className={classes.labelCell}>Surmakommentti</TableCell>
+            <ResultTableCell
+              columnId='deathComment'
+              data={data.deathComment}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='religion'>
+            <TableCell className={classes.labelCell}>Uskonto</TableCell>
+            <ResultTableCell
+              columnId='religion'
+              data={data.religion}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
         </TableBody>
       </Table>
     );
