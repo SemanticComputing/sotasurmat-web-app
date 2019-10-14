@@ -1,5 +1,5 @@
-//export const endpoint = 'http://ldf.fi/siso/sparql';
-export const endpoint = 'http://localhost:3042/ds/sparql';
+export const endpoint = 'http://ldf.fi/siso/sparql';
+//export const endpoint = 'http://localhost:3042/ds/sparql';
 
 export const instanceQuery = `
   SELECT * {

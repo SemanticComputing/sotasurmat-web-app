@@ -243,6 +243,396 @@ class SurmatutHomePageTable extends React.Component {
               expanded={true}
             />
           </TableRow>
+          <TableRow key='numberOfChildren'>
+            <TableCell className={classes.labelCell}>Lasten määrä</TableCell>
+            <ResultTableCell
+              columnId='numberOfChildren'
+              data={data.numberOfChildren}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='gender'>
+            <TableCell className={classes.labelCell}>Sukupuoli</TableCell>
+            <ResultTableCell
+              columnId='gender'
+              data={data.gender}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='nationality'>
+            <TableCell className={classes.labelCell}>Kansallisuus</TableCell>
+            <ResultTableCell
+              columnId='nationality'
+              data={data.nationality}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='language'>
+            <TableCell className={classes.labelCell}>Kieli</TableCell>
+            <ResultTableCell
+              columnId='language'
+              data={data.language}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='personComment'>
+            <TableCell className={classes.labelCell}>Henkilöhuomautukset</TableCell>
+            <ResultTableCell
+              columnId='personComment'
+              data={data.personComment}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='militaryOrganization'>
+            <TableCell className={classes.labelCell}>Sotilasjärjestö</TableCell>
+            <ResultTableCell
+              columnId='militaryOrganization'
+              data={data.militaryOrganization}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='recruitment'>
+            <TableCell className={classes.labelCell}>Rekrytointitapa</TableCell>
+            <ResultTableCell
+              columnId='recruitment'
+              data={data.recruitment}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='rank'>
+            <TableCell className={classes.labelCell}>Sotilasarvo</TableCell>
+            <ResultTableCell
+              columnId='rank'
+              data={data.rank}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='position'>
+            <TableCell className={classes.labelCell}>Sotilasasema</TableCell>
+            <ResultTableCell
+              columnId='position'
+              data={data.position}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='combatantStatus'>
+            <TableCell className={classes.labelCell}>Asema (sotilas vai siviili)</TableCell>
+            <ResultTableCell
+              columnId='combatantStatus'
+              data={data.combatantStatus}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='armedStatus'>
+            <TableCell className={classes.labelCell}>Aseenkanto</TableCell>
+            <ResultTableCell
+              columnId='armedStatus'
+              data={data.armedStatus}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='welfare'>
+            <TableCell className={classes.labelCell}>Perheen toimeentulo</TableCell>
+            <ResultTableCell
+              columnId='welfare'
+              data={data.welfare}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='statusNote'>
+            <TableCell className={classes.labelCell}>Asemahuomatus</TableCell>
+            <ResultTableCell
+              columnId='statusNote'
+              data={data.statusNote}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='placeOfCapture'>
+            <TableCell className={classes.labelCell}>Vangitsemispaikka</TableCell>
+            <ResultTableCell
+              columnId='placeOfCapture'
+              data={data.placeOfCapture}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='camp'>
+            <TableCell className={classes.labelCell}>Vankileiri</TableCell>
+            <ResultTableCell
+              columnId='camp'
+              data={data.camp}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='imprisonmentMotive'>
+            <TableCell className={classes.labelCell}>Vangitsemismotiivi</TableCell>
+            <ResultTableCell
+              columnId='imprisonmentMotive'
+              data={data.imprisonmentMotive}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='imprisonmentDate'>
+            <TableCell className={classes.labelCell}>Vangitsemisaika</TableCell>
+            <ResultTableCell
+              columnId='imprisonmentDate'
+              data={data.imprisonmentDate}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='releaseDate'>
+            <TableCell className={classes.labelCell}>Vapautumisaika</TableCell>
+            <ResultTableCell
+              columnId='releaseDate'
+              data={data.releaseDate}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathYear'>
+            <TableCell className={classes.labelCell}>Kuolinvuosi</TableCell>
+            <ResultTableCell
+              columnId='deathYear'
+              data={data.deathYear}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathDay'>
+            <TableCell className={classes.labelCell}>Kuolinpäivä</TableCell>
+            <ResultTableCell
+              columnId='deathDay'
+              data={data.deathDay}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='age'>
+            <TableCell className={classes.labelCell}>Ikä</TableCell>
+            <ResultTableCell
+              columnId='age'
+              data={data.age}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathMunicipality'>
+            <TableCell className={classes.labelCell}>Kuolinkunta</TableCell>
+            <ResultTableCell
+              columnId='deathMunicipality'
+              data={data.deathMunicipality}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathProvince'>
+            <TableCell className={classes.labelCell}>Kuolinlääni</TableCell>
+            <ResultTableCell
+              columnId='deathProvince'
+              data={data.deathProvince}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathCountry'>
+            <TableCell className={classes.labelCell}>Kuolinmaa</TableCell>
+            <ResultTableCell
+              columnId='deathCountry'
+              data={data.deathCountry}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='deathPlace'>
+            <TableCell className={classes.labelCell}>Tarkempi kuolinpaikka</TableCell>
+            <ResultTableCell
+              columnId='deathPlace'
+              data={data.deathPlace}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='causeOfDeath'>
+            <TableCell className={classes.labelCell}>Kuolintapa</TableCell>
+            <ResultTableCell
+              columnId='causeOfDeath'
+              data={data.causeOfDeath}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
         </TableBody>
       </Table>
     );
