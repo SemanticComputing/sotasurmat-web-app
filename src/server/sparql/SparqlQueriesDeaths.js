@@ -70,43 +70,119 @@ export const deathsProperties = `
     }
     `;
 
-export const personQuery = `
-      SELECT *
-      WHERE {
+export const personProperties = `
         {
-        BIND (<ID> AS ?id)
         ?id skos:prefLabel ?prefLabel__id .
         BIND (?prefLabel__id as ?prefLabel__prefLabel)
         BIND (?id as ?prefLabel__dataProviderUrl)
         }
-        OPTIONAL {
-          ?id siso-schema:party ?party__id .
+        UNION
+        {
+          ?partyInfo siso-s:referred_death_record ?id .
+          ?partyInfo a siso-s:Information_resource .
+          ?partyInfo siso-s:information_type siso-s:0_26_party .
+          ?partyInfo siso-s:value ?party__id .
           ?party__id skos:prefLabel ?party__prefLabel .
+          OPTIONAL {
+            ?partyInfo siso-s:source ?party__source .
+          }
         }
-        OPTIONAL {
-          ?id siso-schema:living_municipality ?livingMunicipality__id .
+        UNION
+        {
+          ?familyNameInfo a siso-s:Information_resource .
+          ?familyNameInfo siso-s:referred_death_record ?id .
+          ?familyNameInfo siso-s:information_type siso-s:0_1_family_name .
+          ?familyNameInfo siso-s:value ?familyName__id .
+          BIND(?familyName__id AS ?familyName__prefLabel) .
+        }
+        UNION
+        {
+          ?firstNameInfo a siso-s:Information_resource .
+          ?firstNameInfo siso-s:referred_death_record ?id .
+          ?firstNameInfo siso-s:information_type siso-s:0_2_given_name .
+          ?firstNameInfo siso-s:value ?firstName__id .
+          BIND(?firstName__id AS ?firstName__prefLabel) .
+        }
+        UNION
+        {
+          ?birthPlaceInfo a siso-s:Information_resource .
+          ?birthPlaceInfo siso-s:referred_death_record ?id .
+          ?birthPlaceInfo siso-s:information_type siso-s:0_3_birth_place .
+          ?birthPlaceInfo siso-s:value ?birthPlace__id .
+          ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
+        }
+        UNION
+        {
+          ?birthCountryInfo a siso-s:Information_resource .
+          ?birthCountryInfo siso-s:referred_death_record ?id .
+          ?birthCountryInfo siso-s:information_type siso-s:0_4_birth_country .
+          ?birthCountryInfo siso-s:value ?birthCountry__id .
+          ?birthCountry__id skos:prefLabel ?birthCountry__prefLabel .
+        }
+        UNION
+        {
+          ?regMunicipalityInfo a siso-s:Information_resource .
+          ?regMunicipalityInfo siso-s:referred_death_record ?id .
+          ?regMunicipalityInfo siso-s:information_type siso-s:0_7_registered_municipality .
+          ?regMunicipalityInfo siso-s:value ?regMunicipality__id .
+          ?regMunicipality__id skos:prefLabel ?regMunicipality__prefLabel .
+        }
+        UNION
+        {
+          ?regProvinceInfo a siso-s:Information_resource .
+          ?regProvinceInfo siso-s:referred_death_record ?id .
+          ?regProvinceInfo siso-s:information_type siso-s:0_8_registered_province .
+          ?regProvinceInfo siso-s:value ?regProvince__id .
+          ?regProvince__id skos:prefLabel ?regProvince__prefLabel .
+        }
+        UNION
+        {
+          ?regCountryInfo a siso-s:Information_resource .
+          ?regCountryInfo siso-s:referred_death_record ?id .
+          ?regCountryInfo siso-s:information_type siso-s:0_9_registered_country .
+          ?regCountryInfo siso-s:value ?regCountry__id .
+          ?regCountry__id skos:prefLabel ?regCountry__prefLabel .
+        }
+        UNION
+        {
+          ?livingMunicipalityInfo a siso-s:Information_resource .
+          ?livingMunicipalityInfo siso-s:referred_death_record ?id .
+          ?livingMunicipalityInfo siso-s:information_type siso-s:0_10_living_municipality .
+          ?livingMunicipalityInfo siso-s:value ?livingMunicipality__id .
           ?livingMunicipality__id skos:prefLabel ?livingMunicipality__prefLabel .
         }
-        OPTIONAL {
-          ?id siso-schema:occupation ?occupation__id .
+        UNION
+        {
+          ?livingProvinceInfo a siso-s:Information_resource .
+          ?livingProvinceInfo siso-s:referred_death_record ?id .
+          ?livingProvinceInfo siso-s:information_type siso-s:0_11_living_province .
+          ?livingProvinceInfo siso-s:value ?livingProvince__id .
+          ?livingProvince__id skos:prefLabel ?livingProvince__prefLabel .
+        }
+        UNION
+        {
+          ?livingCountryInfo a siso-s:Information_resource .
+          ?livingCountryInfo siso-s:referred_death_record ?id .
+          ?livingCountryInfo siso-s:information_type siso-s:0_12_living_country .
+          ?livingCountryInfo siso-s:value ?livingCountry__id .
+          ?livingCountry__id skos:prefLabel ?livingCountry__prefLabel .
+        }
+        UNION
+        {
+          ?occupationInfo a siso-s:Information_resource .
+          ?occupationInfo siso-s:referred_death_record ?id .
+          ?occupationInfo siso-s:information_type siso-s:0_13_occupation .
+          ?occupationInfo siso-s:value ?occupation__id .
           ?occupation__id skos:prefLabel ?occupation__prefLabel .
         }
-        OPTIONAL {
-          ?id siso-schema:death_date ?deathDate__id .
-          BIND (?deathDate__id AS ?deathDate__prefLabel)
+        UNION
+        {
+          ?maritalStatusInfo a siso-s:Information_resource .
+          ?maritalStatusInfo siso-s:referred_death_record ?id .
+          ?maritalStatusInfo siso-s:information_type siso-s:0_14_marital_status .
+          ?maritalStatusInfo siso-s:value ?maritalStatus__id .
+          ?maritalStatus__id skos:prefLabel ?maritalStatus__prefLabel .
         }
-        OPTIONAL {
-          ?id siso-schema:birth_date ?birthDate__id .
-          BIND (?birthDate__id AS ?birthDate__prefLabel)
-        }
-        OPTIONAL {
-          ?id siso-schema:registered_place ?registeredPlace__id .
-          ?registeredPlace__id skos:prefLabel ?registeredPlace__prefLabel .
-        }
-        OPTIONAL {
-          ?id siso-schema:identifier ?identifier .
-        }
-      }
         `;
 
 export const birthYearsQuery = `

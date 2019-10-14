@@ -21,6 +21,7 @@ import All from '../components/perspectives/All';
 import Surmatut from '../components/perspectives/Surmatut';
 import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
+import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotasurmat';
 //import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
@@ -316,17 +317,32 @@ let SemanticPortal = props => {
                             : classes.instancePageContainer
                           }>
                             <Grid item xs={12} className={classes.instancePageContent}>
-                              <InstanceHomePage
-                                rootUrl={rootUrl}
-                                fetchByURI={props.fetchByURI}
-                                resultClass={perspective.id}
-                                tableRows={props[perspective.id].tableColumns}
-                                tabs={perspective.instancePageTabs}
-                                data={props[perspective.id].instance}
-                                sparqlQuery={props[perspective.id].instanceSparqlQuery}
-                                isLoading={props[perspective.id].fetching}
-                                routeProps={routeProps}
-                              />
+                              {perspective.id == 'surmatut' &&
+                                <SurmatutHomePage
+                                  rootUrl={rootUrl}
+                                  fetchByURI={props.fetchByURI}
+                                  resultClass={perspective.id}
+                                  tableRows={props[perspective.id].tableColumns}
+                                  tabs={perspective.instancePageTabs}
+                                  data={props[perspective.id].instance}
+                                  sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                                  isLoading={props[perspective.id].fetching}
+                                  routeProps={routeProps}
+                                />
+                              }
+                              {perspective.id != 'surmatut' &&
+                                <InstanceHomePage
+                                  rootUrl={rootUrl}
+                                  fetchByURI={props.fetchByURI}
+                                  resultClass={perspective.id}
+                                  tableRows={props[perspective.id].tableColumns}
+                                  tabs={perspective.instancePageTabs}
+                                  data={props[perspective.id].instance}
+                                  sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                                  isLoading={props[perspective.id].fetching}
+                                  routeProps={routeProps}
+                                />
+                              }
                             </Grid>
                           </Grid>
                         </React.Fragment>

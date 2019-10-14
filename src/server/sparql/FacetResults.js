@@ -7,7 +7,7 @@ import {
   instanceQuery
 } from './SparqlQueriesGeneral';
 import {
-  deathsProperties, personQuery, birthYearsQuery, ageQuery, deathDateQuery, csvDeathsQuery
+  deathsProperties, personProperties, birthYearsQuery, ageQuery, deathDateQuery, csvDeathsQuery
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
@@ -223,7 +223,7 @@ export const getByURI = ({
   switch (resultClass) {
     case 'surmatut':
       q = instanceQuery;
-      q = q.replace('<PROPERTIES>', deathsProperties);
+      q = q.replace('<PROPERTIES>', personProperties);
       q = q.replace('<RELATED_INSTANCES>', '');
       break;
     case 'taistelut':
