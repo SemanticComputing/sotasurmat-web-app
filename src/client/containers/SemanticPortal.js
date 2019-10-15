@@ -25,6 +25,8 @@ import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotasurmat';
 //import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
+//import FeedbackPage from '../components/main_layout/FeedbackPage';
+//import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 import InfoHeader from '../components/main_layout/InfoHeader';
 import { has } from 'lodash';
 //import { urlToState } from '../helpers/helpers';
@@ -47,10 +49,16 @@ import {
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    // Set app height for different screen sizes
     height: 'auto',
     [theme.breakpoints.up('md')]: {
       height: '100%',
     },
+    /* Background color of the app.
+       In order to use both 'auto' and '100%' heights, bg-color
+       needs to be defined also in index.html (for #app and #root elements)
+    */
+    backgroundColor: '#bdbdbd'
   },
   flex: {
     flexGrow: 1,
@@ -62,97 +70,99 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
     width: '100%',
-    minWidth: 300,
-  //minHeight: 700
   },
   mainContainer: {
     height: 'auto',
-    backgroundColor: '#ffffff',
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 80px)', // 100% - app bar - padding
+    },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       marginTop: 56, // app bar
-      height: 'calc(100% - 56px)',
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 64, // app bar
-      height: 'calc(100% - 64px)',
-    },
-    //backgroundImage: `url(${punainenRintama})`,
-    //backgroundPosition: 'center',
-    //backgroundRepeat: 'no-repeat',
-    //backgroundSize: 'cover'
-  },
-  perspectiveContainerHeaderExpanded: {
-    height: 'auto',
-    backgroundColor: '#bdbdbd',
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 256, // app bar + header
-      height: 'calc(100% - 256px)',
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 264, // app bar + header
-      height: 'calc(100% - 264px)',
-    },
+    }
   },
   perspectiveContainer: {
     height: 'auto',
-    backgroundColor: '#bdbdbd',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 141px)',
+    },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       marginTop: 133, // app bar + header
-      height: 'calc(100% - 1333px)',
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 141, // app bar + header
-      height: 'calc(100% - 141px)',
-    },
+    }
   },
-  instancePageContainerHeaderExpanded: {
+  perspectiveContainerHeaderExpanded: {
     height: 'auto',
-    backgroundColor: '#bdbdbd',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 264px)',
+    },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      marginTop: 296,
-      height: 'calc(100% - 296px)',
+      marginTop: 256, // app bar + header
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: 304,
-      height: 'calc(100% - 304px)',
-    },
-  },
-  instancePageContainer: {
-    height: 'auto',
-    backgroundColor: '#bdbdbd',
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 173,
-      height: 'calc(100% - 173px)',
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 181,
-      height: 'calc(100% - 185px)',
-    },
+      marginTop: 264, // app bar + header
+    }
   },
   // perspective container is divided into two columns:
   facetBarContainer: {
-    height: '100%',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: '100%',
+    },
     overflow: 'auto',
     paddingTop: '0px !important',
     paddingBottom: '0px !important'
   },
   resultsContainer: {
-    height: '100%',
-    overflow: 'auto',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: '100%',
+    },
     paddingTop: '0px !important',
     paddingBottom: '0px !important',
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(1)
+    }
+  },
+  instancePageContainer: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 181px)',
     },
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 173,
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 181,
+    }
+  },
+  instancePageContainerHeaderExpanded: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 304px)',
+    },
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 296,
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 304,
+    }
   },
   instancePageContent: {
-    height: '100%',
-    //overflow: 'auto',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: '100%',
+    },
     paddingTop: '0px !important',
     paddingBottom: '0px !important'
   }
@@ -355,10 +365,31 @@ let SemanticPortal = props => {
           })}
           { /* create routes for classes that have only info pages and no perspective */}
           { /* create routes for info buttons */ }
+          {/*
           <Route
-            path={`${rootUrl}/palaute`}
-            render={() => null /* <FeedbackPage /> */ }
+            path={`/feedback`}
+            render={() =>
+              <div className={classes.mainContainer}>
+
+              </div>
+            }
           />
+          <Route
+            path={`/about`}
+            render={() =>
+              <div className={classes.mainContainer}>
+                <TextPage>{aboutTheProject}</TextPage>
+              </div>
+            }
+          />
+          <Route
+            path={`/instructions`}
+            render={() =>
+              <div className={classes.mainContainer}>
+                <TextPage>{instructions}</TextPage>
+              </div>
+            }
+          /> */}
         </React.Fragment>
       </div>
     </div>

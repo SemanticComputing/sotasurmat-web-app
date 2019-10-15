@@ -14,15 +14,11 @@ const styles = theme => ({
   },
   content: {
     padding: theme.spacing(1),
-    width: 800,
-    overflowY: 'auto'
-  },
-  spinnerContainer: {
-    display: 'flex',
     width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center'
+    overflowY: 'auto',
+    [theme.breakpoints.up('md')]: {
+      width: 800,
+    },
   },
   // https://benmarshall.me/responsive-iframes/
   iframeContainer: {
@@ -38,6 +34,13 @@ const styles = theme => ({
     top: 0,
     width: '100%',
   },
+  spinnerContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   spinner: {
     height: 40,
     width: 40,
@@ -47,20 +50,15 @@ const styles = theme => ({
     transform: 'translate(-50%,-50%)',
     zIndex: 500
   },
-
 });
 
-class FeedbackDialog extends React.Component {
+class FeedbackPage extends React.Component {
   state = {
-    open: false,
-    zoomMessage: '',
     loading: true
   };
 
   hideSpinner = () => {
-    this.setState({
-      loading: false
-    });
+    this.setState({ loading: false });
   };
 
   render() {
@@ -87,8 +85,8 @@ class FeedbackDialog extends React.Component {
   }
 }
 
-FeedbackDialog.propTypes = {
+FeedbackPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(FeedbackDialog);
+export default withStyles(styles)(FeedbackPage);

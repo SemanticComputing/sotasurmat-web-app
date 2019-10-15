@@ -130,6 +130,8 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
+      showSource: true,
+      sourceExternalLink: true,
       minWidth: 250,
     },
     {
