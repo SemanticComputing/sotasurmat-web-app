@@ -33,21 +33,6 @@ class SurmatutHomePageTable extends React.Component {
     return(
       <Table className={classes.table}>
         <TableBody>
-          <TableRow key='prefLabel'>
-            <TableCell className={classes.labelCell}>Nimi</TableCell>
-            <ResultTableCell
-              columnId='prefLabel'
-              data={data.prefLabel}
-              valueType='object'
-              makeLink={false}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
           <TableRow key='familyName'>
             <TableCell className={classes.labelCell}>Sukunimi</TableCell>
             <ResultTableCell
@@ -61,6 +46,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='firtstName'>
@@ -76,6 +63,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='party'>
@@ -91,6 +80,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='birthPlace'>

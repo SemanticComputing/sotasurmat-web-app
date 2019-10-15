@@ -85,7 +85,8 @@ export const personProperties = `
           BIND(?familyName__id AS ?familyName__prefLabel) .
           OPTIONAL {
             ?familyNameInfo siso-s:source ?familyName__source__id .
-            ?familyName__source__id skos:altLabel ?familyName__source__altLabel .
+            ?familyName__source__id skos:altLabel ?familyName__source__prefLabel .
+            BIND (?familyName__source__id AS ?familyName__source__dataProviderUrl) .
           }
         }
         UNION
@@ -95,6 +96,11 @@ export const personProperties = `
           ?firstNameInfo siso-s:information_type siso-s:0_2_given_name .
           ?firstNameInfo siso-s:value ?firstName__id .
           BIND(?firstName__id AS ?firstName__prefLabel) .
+          OPTIONAL {
+            ?firstNameInfo siso-s:source ?firstName__source__id .
+            ?firstName__source__id skos:altLabel ?firstName__source__prefLabel .
+            BIND (?firstName__source__id AS ?firstName__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -263,6 +269,11 @@ export const personProperties = `
           ?partyInfo siso-s:information_type siso-s:0_26_party .
           ?partyInfo siso-s:value ?party__id .
           ?party__id skos:prefLabel ?party__prefLabel .
+          OPTIONAL {
+            ?partyInfo siso-s:source ?party__source__id .
+            ?party__source__id skos:altLabel ?party__source__prefLabel .
+            BIND (?party__source__id AS ?party__source__dataProviderUrl) .
+          }
         }
         UNION
         {
