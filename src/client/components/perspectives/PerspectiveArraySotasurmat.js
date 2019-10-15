@@ -46,6 +46,12 @@ export const perspectiveArr = [
         value: 2,
         icon: 'LineChart',
       },
+      {
+        id: 'csv',
+        label: 'csv',
+        value: 3,
+        icon: 'Download',
+      },
     ],
     instancePageTabs: [
       {
