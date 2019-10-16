@@ -85,6 +85,21 @@ const styles = theme => ({
       marginTop: 64, // app bar
     }
   },
+  mainContainerSotasurmat: {
+    height: 'auto',
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 80px)', // 100% - app bar - padding
+    },
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 56, // app bar
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 64, // app bar
+    },
+    backgroundColor: '#ffffff'
+  },
   perspectiveContainer: {
     height: 'auto',
     [theme.breakpoints.up('md')]: {
@@ -239,7 +254,7 @@ let SemanticPortal = props => {
           <Route
             exact path={`${rootUrl}/`}
             render={() =>
-              <Grid container spacing={1} className={classes.mainContainer}>
+              <Grid container spacing={1} className={classes.mainContainerSotasurmat}>
                 <Main
                   perspectives={perspectiveArr}
                   rootUrl={rootUrl}

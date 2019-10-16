@@ -137,7 +137,7 @@ class TopBar extends React.Component {
           className={this.props.classes.appBarButton}
           component={this.AdapterNavLink}
           to={`${this.props.rootUrl}/${perspective.id}/faceted-search`}
-          isActive={(match, location) => location.pathname.startsWith(`/${perspective.id}`)}
+          isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/${perspective.id}`)}
           activeClassName={this.props.classes.appBarButtonActive}
         >
           {perspective.label}
