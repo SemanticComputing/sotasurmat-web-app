@@ -200,6 +200,11 @@ export const personProperties = `
           ?livingCountryInfo siso-s:information_type siso-s:0_12_living_country .
           ?livingCountryInfo siso-s:value ?livingCountry__id .
           ?livingCountry__id skos:prefLabel ?livingCountry__prefLabel .
+          OPTIONAL {
+            ?livingCountryInfo siso-s:source ?livingCountry__source__id .
+            ?livingCountry__source__id skos:altLabel ?livingCountry__source__prefLabel .
+            BIND (?livingCountry__source__id AS ?livingCountry__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -208,6 +213,11 @@ export const personProperties = `
           ?occupationInfo siso-s:information_type siso-s:0_13_occupation .
           ?occupationInfo siso-s:value ?occupation__id .
           ?occupation__id skos:prefLabel ?occupation__prefLabel .
+          OPTIONAL {
+            ?occupationInfo siso-s:source ?occupation__source__id .
+            ?occupation__source__id skos:altLabel ?occupation__source__prefLabel .
+            BIND (?occupation__source__id AS ?occupation__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -216,6 +226,11 @@ export const personProperties = `
           ?maritalStatusInfo siso-s:information_type siso-s:0_14_marital_status .
           ?maritalStatusInfo siso-s:value ?maritalStatus__id .
           ?maritalStatus__id skos:prefLabel ?maritalStatus__prefLabel .
+          OPTIONAL {
+            ?maritalStatusInfo siso-s:source ?maritalStatus__source__id .
+            ?maritalStatus__source__id skos:altLabel ?maritalStatus__source__prefLabel .
+            BIND (?maritalStatus__source__id AS ?maritalStatus__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -224,6 +239,11 @@ export const personProperties = `
           ?numberOfChildrenInfo siso-s:information_type siso-s:0_15_num_of_children .
           ?numberOfChildrenInfo siso-s:value ?numberOfChildren__id .
           BIND(?numberOfChildren__id AS ?numberOfChildren__prefLabel) .
+          OPTIONAL {
+            ?numberOfChildrenInfo siso-s:source ?numberOfChildren__source__id .
+            ?numberOfChildren__source__id skos:altLabel ?numberOfChildren__source__prefLabel .
+            BIND (?numberOfChildren__source__id AS ?numberOfChildren__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -232,6 +252,11 @@ export const personProperties = `
           ?genderInfo siso-s:information_type siso-s:0_16_gender .
           ?genderInfo siso-s:value ?gender__id .
           ?gender__id skos:prefLabel ?gender__prefLabel .
+          OPTIONAL {
+            ?genderInfo siso-s:source ?gender__source__id .
+            ?gender__source__id skos:altLabel ?gender__source__prefLabel .
+            BIND (?gender__source__id AS ?gender__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -240,6 +265,11 @@ export const personProperties = `
           ?nationalityInfo siso-s:information_type siso-s:0_17_nationality .
           ?nationalityInfo siso-s:value ?nationality__id .
           ?nationality__id skos:prefLabel ?nationality__prefLabel .
+          OPTIONAL {
+            ?nationalityInfo siso-s:source ?nationality__source__id .
+            ?nationality__source__id skos:altLabel ?nationality__source__prefLabel .
+            BIND (?nationality__source__id AS ?nationality__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -248,6 +278,11 @@ export const personProperties = `
           ?languageInfo siso-s:information_type siso-s:0_18_language .
           ?languageInfo siso-s:value ?language__id .
           ?language__id skos:prefLabel ?language__prefLabel .
+          OPTIONAL {
+            ?languageInfo siso-s:source ?language_source__id .
+            ?language__source__id skos:altLabel ?language__source__prefLabel .
+            BIND (?language__source__id AS ?language__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -256,6 +291,11 @@ export const personProperties = `
           ?personCommentInfo siso-s:information_type siso-s:0_20_person_comment .
           ?personCommentInfo siso-s:value ?personComment__id .
           BIND(?personComment__id AS ?personComment__prefLabel) .
+          OPTIONAL {
+            ?personCommentInfo siso-s:source ?personComment__source__id .
+            ?personComment__source__id skos:altLabel ?personComment__source__prefLabel .
+            BIND (?personComment__source__id AS ?personComment__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -264,6 +304,11 @@ export const personProperties = `
           ?militaryOrganizationInfo siso-s:information_type siso-s:21_military_organization .
           ?militaryOrganizationInfo siso-s:value ?militaryOrganization__id .
           ?militaryOrganization__id skos:prefLabel ?militaryOrganization__prefLabel .
+          OPTIONAL {
+            ?militaryOrganizationInfo siso-s:source ?militaryOrganization__source__id .
+            ?militaryOrganization__source__id skos:altLabel ?militaryOrganization__source__prefLabel .
+            BIND (?militaryOrganization__source__id AS ?militaryOrganization__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -272,6 +317,11 @@ export const personProperties = `
           ?recruitmentInfo siso-s:information_type siso-s:0_22_method_of_recruitment .
           ?recruitmentInfo siso-s:value ?recruitment__id .
           ?recruitment__id skos:prefLabel ?recruitment__prefLabel .
+          OPTIONAL {
+            ?recruitmentInfo siso-s:source ?recruitment__source__id .
+            ?recruitment__source__id skos:altLabel ?recruitment__source__prefLabel .
+            BIND (?recruitment__source__id AS ?recruitment__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -280,6 +330,11 @@ export const personProperties = `
           ?rankInfo siso-s:information_type siso-s:0_23_rank .
           ?rankInfo siso-s:value ?rank__id .
           ?rank__id skos:prefLabel ?rank__prefLabel .
+          OPTIONAL {
+            ?rankInfo siso-s:source ?rank__source__id .
+            ?rank__source__id skos:altLabel ?rank__source__prefLabel .
+            BIND (?rank__source__id AS ?rank__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -288,6 +343,11 @@ export const personProperties = `
           ?positionInfo siso-s:information_type siso-s:0_24_position .
           ?positionInfo siso-s:value ?position__id .
           ?position__id skos:prefLabel ?position__prefLabel .
+          OPTIONAL {
+            ?positionInfo siso-s:source ?position__source__id .
+            ?position__source__id skos:altLabel ?position__source__prefLabel .
+            BIND (?position__source__id AS ?position__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -296,6 +356,11 @@ export const personProperties = `
           ?combatantStatusInfo siso-s:information_type siso-s:0_25_combatant_status .
           ?combatantStatusInfo siso-s:value ?combatantStatus__id .
           ?combatantStatus__id skos:prefLabel ?combatantStatus__prefLabel .
+          OPTIONAL {
+            ?combatantStatusInfo siso-s:source ?combatantStatus__source__id .
+            ?combatantStatus__source__id skos:altLabel ?combatantStatus__source__prefLabel .
+            BIND (?combatantStatus__source__id AS ?combatantStatus__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -436,6 +501,11 @@ export const personProperties = `
           ?deathDayInfo siso-s:information_type siso-s:0_36_death_day .
           ?deathDayInfo siso-s:value ?deathDay__id .
           BIND(?deathDay__id AS ?deathDay__prefLabel)
+          OPTIONAL {
+            ?deathDayInfo siso-s:source ?deathDay__source__id .
+            ?deathDay__source__id skos:altLabel ?deathDay__source__prefLabel .
+            BIND (?deathDay__source__id AS ?deathDay__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -443,6 +513,11 @@ export const personProperties = `
           ?ageInfo siso-s:referred_death_record ?id .
           ?ageInfo siso-s:value ?age__id .
           BIND(?age__id AS ?age__prefLabel)
+          OPTIONAL {
+            ?ageInfo siso-s:source ?age__source__id .
+            ?age__source__id skos:altLabel ?age__source__prefLabel .
+            BIND (?age__source__id AS ?age__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -451,6 +526,11 @@ export const personProperties = `
           ?deathMunicipalityInfo siso-s:information_type siso-s:0_38_death_municipality .
           ?deathMunicipalityInfo siso-s:value ?deathMunicipality__id .
           ?deathMunicipality__id skos:prefLabel ?deathMunicipality__prefLabel .
+          OPTIONAL {
+            ?deathMunicipalityInfo siso-s:source ?deathMunicipality__source__id .
+            ?deathMunicipality__source__id skos:altLabel ?deathMunicipality__source__prefLabel .
+            BIND (?deathMunicipality__source__id AS ?deathMunicipality__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -459,6 +539,11 @@ export const personProperties = `
           ?deathProvinceInfo siso-s:information_type siso-s:0_39_death_province .
           ?deathProvinceInfo siso-s:value ?deathProvince__id .
           ?deathProvince__id skos:prefLabel ?deathProvince__prefLabel .
+          OPTIONAL {
+            ?deathProvinceInfo siso-s:source ?deathProvince__source__id .
+            ?deathProvince__source__id skos:altLabel ?deathProvince__source__prefLabel .
+            BIND (?deathProvince__source__id AS ?deathProvince__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -467,6 +552,11 @@ export const personProperties = `
           ?deathCountryInfo siso-s:information_type siso-s:0_40_death_country .
           ?deathCountryInfo siso-s:value ?deathCountry__id .
           ?deathCountry__id skos:prefLabel ?deathCountry__prefLabel .
+          OPTIONAL {
+            ?deathCountryInfo siso-s:source ?deathCountry__source__id .
+            ?deathCountry__source__id skos:altLabel ?deathCountry__source__prefLabel .
+            BIND (?deathCountry__source__id AS ?deathCountry__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -475,6 +565,11 @@ export const personProperties = `
           ?deathPlaceInfo siso-s:information_type siso-s:0_41_death_place .
           ?deathPlaceInfo siso-s:value ?deathPlace__id .
           BIND(?deathPlace__id AS ?deathPlace__prefLabel)
+          OPTIONAL {
+            ?deathPlaceInfo siso-s:source ?deathPlace__source__id .
+            ?deathPlace__source__id skos:altLabel ?deathPlace__source__prefLabel .
+            BIND (?deathPlace__source__id AS ?deathPlace__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -483,6 +578,11 @@ export const personProperties = `
           ?causeOfDeathInfo siso-s:information_type siso-s:0_42_cause_of_death .
           ?causeOfDeathInfo siso-s:value ?causeOfDeath__id .
           ?causeOfDeath__id skos:prefLabel ?causeOfDeath__prefLabel .
+          OPTIONAL {
+            ?causeOfDeathInfo siso-s:source ?causeOfDeath__source__id .
+            ?causeOfDeath__source__id skos:altLabel ?causeOfDeath__source__prefLabel .
+            BIND (?causeOfDeath__source__id AS ?causeOfDeath__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -491,6 +591,11 @@ export const personProperties = `
           ?deathMotiveInfo siso-s:information_type siso-s:0_43_death_motive .
           ?deathMotiveInfo siso-s:value ?deathMotive__id .
           ?deathMotive__id skos:prefLabel ?deathMotive__prefLabel .
+          OPTIONAL {
+            ?deathMotiveInfo siso-s:source ?deathMotive__source__id .
+            ?deathMotive__source__id skos:altLabel ?deathMotive__source__prefLabel .
+            BIND (?deathMotive__source__id AS ?deathMotive__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -499,14 +604,24 @@ export const personProperties = `
           ?burialInfo siso-s:information_type siso-s:0_44_method_of_burial .
           ?burialInfo siso-s:value ?burial__id .
           ?burial__id skos:prefLabel ?burial__prefLabel .
+          OPTIONAL {
+            ?burialInfo siso-s:source ?burial__source__id .
+            ?burial__source__id skos:altLabel ?burial__source__prefLabel .
+            BIND (?burial__source__id AS ?burial__source__dataProviderUrl) .
+          }
         }
         UNION
         {
-          ?deathComment siso-s:referred_death_record ?id .
-          ?deathComment a siso-s:Information_resource .
-          ?deathComment siso-s:information_type siso-s:0_45_death_comment .
-          ?deathComment siso-s:value ?deathComment__id .
+          ?deathCommentInfo siso-s:referred_death_record ?id .
+          ?deathCommentInfo a siso-s:Information_resource .
+          ?deathCommentInfo siso-s:information_type siso-s:0_45_death_comment .
+          ?deathCommentInfo siso-s:value ?deathComment__id .
           BIND(?deathComment__id AS ?deathComment__prefLabel)
+          OPTIONAL {
+            ?deathCommentInfo siso-s:source ?deathComment__source__id .
+            ?deathComment__source__id skos:altLabel ?deathComment__source__prefLabel .
+            BIND (?deathComment__source__id AS ?deathComment__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -515,6 +630,11 @@ export const personProperties = `
           ?religionInfo siso-s:information_type siso-s:0_46_religion .
           ?religionInfo siso-s:value ?religion__id .
           ?religion__id skos:prefLabel ?religion__prefLabel .
+          OPTIONAL {
+            ?religionInfo siso-s:source ?religion__source__id .
+            ?religion__source__id skos:altLabel ?religion__source__prefLabel .
+            BIND (?religion__source__id AS ?religion__source__dataProviderUrl) .
+          }
         }
         `;
 
