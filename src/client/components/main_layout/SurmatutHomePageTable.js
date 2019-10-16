@@ -97,6 +97,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='birthCountry'>
@@ -112,6 +114,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='regMunicipality'>
@@ -127,6 +131,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='regProvince'>
@@ -142,6 +148,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='regCountry'>
@@ -157,6 +165,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='livingMunicipality'>
@@ -172,6 +182,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='livingProvince'>
@@ -187,6 +199,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='livingCountry'>
@@ -202,6 +216,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='occupation'>
@@ -217,6 +233,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='maritalStatus'>
@@ -232,6 +250,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='numberOfChildren'>
@@ -247,6 +267,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='gender'>
@@ -262,6 +284,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='nationality'>
@@ -277,6 +301,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='language'>
@@ -292,6 +318,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='personComment'>
@@ -307,6 +335,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='militaryOrganization'>
@@ -322,6 +352,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='recruitment'>
@@ -337,6 +369,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='rank'>
@@ -352,6 +386,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='position'>
@@ -367,6 +403,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='combatantStatus'>
@@ -382,6 +420,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='armedStatus'>
@@ -397,6 +437,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='welfare'>
@@ -412,6 +454,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='statusNote'>
@@ -427,6 +471,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='placeOfCapture'>
@@ -442,6 +488,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='camp'>
@@ -457,6 +505,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='imprisonmentMotive'>
@@ -472,6 +522,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='imprisonmentDate'>
@@ -487,6 +539,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='releaseDate'>
@@ -502,6 +556,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathYear'>
@@ -517,6 +573,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathDay'>
@@ -532,6 +590,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='age'>
@@ -547,6 +607,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathMunicipality'>
@@ -562,6 +624,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathProvince'>
@@ -577,6 +641,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathCountry'>
@@ -592,6 +658,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathPlace'>
@@ -607,6 +675,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='causeOfDeath'>
@@ -622,6 +692,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathMotive'>
@@ -637,6 +709,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='burial'>
@@ -652,6 +726,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='deathComment'>
@@ -667,6 +743,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
           <TableRow key='religion'>
@@ -682,6 +760,8 @@ class SurmatutHomePageTable extends React.Component {
               minWidth={150}
               container='cell'
               expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
             />
           </TableRow>
         </TableBody>

@@ -109,6 +109,11 @@ export const personProperties = `
           ?birthPlaceInfo siso-s:information_type siso-s:0_3_birth_place .
           ?birthPlaceInfo siso-s:value ?birthPlace__id .
           ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
+          OPTIONAL {
+            ?birthPlaceInfo siso-s:source ?birthPlace__source__id .
+            ?birthPlace__source__id skos:altLabel ?birthPlace__source__prefLabel .
+            BIND (?birthPlace__source__id AS ?birthPlace__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -117,6 +122,11 @@ export const personProperties = `
           ?birthCountryInfo siso-s:information_type siso-s:0_4_birth_country .
           ?birthCountryInfo siso-s:value ?birthCountry__id .
           ?birthCountry__id skos:prefLabel ?birthCountry__prefLabel .
+          OPTIONAL {
+            ?birthCountryInfo siso-s:source ?birthCountry__source__id .
+            ?birthCountry__source__id skos:altLabel ?birthCountry__source__prefLabel .
+            BIND (?birthCountry__source__id AS ?birthCountry__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -125,6 +135,11 @@ export const personProperties = `
           ?regMunicipalityInfo siso-s:information_type siso-s:0_7_registered_municipality .
           ?regMunicipalityInfo siso-s:value ?regMunicipality__id .
           ?regMunicipality__id skos:prefLabel ?regMunicipality__prefLabel .
+          OPTIONAL {
+            ?regMunicipalityInfo siso-s:source ?regMunicipality__source__id .
+            ?regMunicipality__source__id skos:altLabel ?regMunicipality__source__prefLabel .
+            BIND (?regMunicipality__source__id AS ?regMunicipality__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -133,6 +148,11 @@ export const personProperties = `
           ?regProvinceInfo siso-s:information_type siso-s:0_8_registered_province .
           ?regProvinceInfo siso-s:value ?regProvince__id .
           ?regProvince__id skos:prefLabel ?regProvince__prefLabel .
+          OPTIONAL {
+            ?regProvinceInfo siso-s:source ?regProvince__source__id .
+            ?regProvince__source__id skos:altLabel ?regProvince__source__prefLabel .
+            BIND (?regProvince__source__id AS ?regProvince__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -141,6 +161,11 @@ export const personProperties = `
           ?regCountryInfo siso-s:information_type siso-s:0_9_registered_country .
           ?regCountryInfo siso-s:value ?regCountry__id .
           ?regCountry__id skos:prefLabel ?regCountry__prefLabel .
+          OPTIONAL {
+            ?regCountryInfo siso-s:source ?regCountry__source__id .
+            ?regCountry__source__id skos:altLabel ?regCountry__source__prefLabel .
+            BIND (?regCountry__source__id AS ?regCountry__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -149,6 +174,11 @@ export const personProperties = `
           ?livingMunicipalityInfo siso-s:information_type siso-s:0_10_living_municipality .
           ?livingMunicipalityInfo siso-s:value ?livingMunicipality__id .
           ?livingMunicipality__id skos:prefLabel ?livingMunicipality__prefLabel .
+          OPTIONAL {
+            ?livingMunicipalityInfo siso-s:source ?livingMunicipality__source__id .
+            ?livingMunicipality__source__id skos:altLabel ?livingMunicipality__source__prefLabel .
+            BIND (?livingMunicipality__source__id AS ?livingMunicipality__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -157,6 +187,11 @@ export const personProperties = `
           ?livingProvinceInfo siso-s:information_type siso-s:0_11_living_province .
           ?livingProvinceInfo siso-s:value ?livingProvince__id .
           ?livingProvince__id skos:prefLabel ?livingProvince__prefLabel .
+          OPTIONAL {
+            ?livingProvinceInfo siso-s:source ?livingProvince__source__id .
+            ?livingProvince__source__id skos:altLabel ?livingProvince__source__prefLabel .
+            BIND (?livingProvince__source__id AS ?livingProvince__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -282,6 +317,11 @@ export const personProperties = `
           ?armedStatusInfo siso-s:information_type siso-s:0_27_armed_status .
           ?armedStatusInfo siso-s:value ?armedStatus__id .
           ?armedStatus__id skos:prefLabel ?armedStatus__prefLabel .
+          OPTIONAL {
+            ?armedStatusInfo siso-s:source ?armedStatus_id .
+            ?armedStatus__source__id skos:altLabel ?armedStatus__source__prefLabel .
+            BIND (?armedStatus__source__id AS ?armedStatus__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -290,6 +330,11 @@ export const personProperties = `
           ?welfareInfo siso-s:information_type siso-s:0_28_family_welfare .
           ?welfareInfo siso-s:value ?welfare__id .
           ?welfare__id skos:prefLabel ?welfare__prefLabel .
+          OPTIONAL {
+            ?welfareInfo siso-s:source ?welfare_id .
+            ?welfare__source__id skos:altLabel ?welfare__source__prefLabel .
+            BIND (?welfare__source__id AS ?welfare__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -298,6 +343,11 @@ export const personProperties = `
           ?statusNoteInfo siso-s:information_type siso-s:0_29_status_note .
           ?statusNoteInfo siso-s:value ?statusNote__id .
           BIND(?statusNote__id AS ?statusNote__prefLabel) .
+          OPTIONAL {
+            ?statusNoteInfo siso-s:source ?statusNote_id .
+            ?statusNote__source__id skos:altLabel ?statusNote__source__prefLabel .
+            BIND (?statusNote__source__id AS ?statusNote__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -306,6 +356,11 @@ export const personProperties = `
           ?placeOfCaptureInfo siso-s:information_type siso-s:0_30_place_of_capture .
           ?placeOfCaptureInfo siso-s:value ?placeOfCapture__id .
           BIND(?placeOfCapture__id AS ?placeOfCapture__prefLabel)
+          OPTIONAL {
+            ?placeOfCaptureInfo siso-s:source ?placeOfCapture__source__id .
+            ?placeOfCapture__source__id skos:altLabel ?placeOfCapture__source__prefLabel .
+            BIND (?placeOfCapture__source__id AS ?placeOfCapture__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -314,6 +369,11 @@ export const personProperties = `
           ?campInfo siso-s:information_type siso-s:0_31_prison_camp .
           ?campInfo siso-s:value ?camp__id .
           ?camp__id skos:prefLabel ?camp__prefLabel .
+          OPTIONAL {
+            ?campInfo siso-s:source ?camp__source__id .
+            ?camp__source__id skos:altLabel ?camp__source__prefLabel .
+            BIND (?camp__source__id AS ?camp__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -323,6 +383,11 @@ export const personProperties = `
           ?imprisonmentMotiveInfo siso-s:information_type siso-s:0_32_imprisonment_motive .
           ?imprisonmentMotiveInfo siso-s:value ?imprisonmentMotive__id .
           BIND(?imprisonmentMotive__id AS ?imprisonmentMotive__prefLabel)
+          OPTIONAL {
+            ?imprisonmentMotiveInfo siso-s:source ?imprisonmentMotive__source__id .
+            ?imprisonmentMotive__source__id skos:altLabel ?imprisonmentMotive_source__prefLabel .
+            BIND (?imprisonmentMotive__source__id AS ?imprisonmentMotive__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -332,6 +397,11 @@ export const personProperties = `
           ?imprisonmentDateInfo siso-s:information_type siso-s:0_33_imprisonment_date .
           ?imprisonmentDateInfo siso-s:value ?imprisonmentDate__id .
           BIND(?imprisonmentDate__id AS ?imprisonmentDate__prefLabel)
+          OPTIONAL {
+            ?imprisonmentDateInfo siso-s:source ?imprisonmentDate__source__id .
+            ?imprisonmentDate__source__id skos:altLabel ?imprisonmentDate__source__prefLabel .
+            BIND (?imprisonmentDate__source__id AS ?imprisonmentDate__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -340,6 +410,11 @@ export const personProperties = `
           ?releaseDateInfo siso-s:information_type siso-s:0_34_release_date .
           ?releaseDateInfo siso-s:value ?releaseDate__id .
           BIND(?releaseDate__id AS ?releaseDate__prefLabel)
+          OPTIONAL {
+            ?releaseDateInfo siso-s:source ?releaseDate__source__id .
+            ?releaseDate__source__id skos:altLabel ?releaseDate__source__prefLabel .
+            BIND (?releaseDate__source__id AS ?releaseDate__source__dataProviderUrl) .
+          }
         }
         UNION
         {
@@ -348,6 +423,11 @@ export const personProperties = `
           ?deathYearInfo siso-s:information_type siso-s:0_35_death_year .
           ?deathYearInfo siso-s:value ?deathYear__id .
           BIND(?deathYear__id AS ?deathYear__prefLabel)
+          OPTIONAL {
+            ?deathYearInfo siso-s:source ?deathYear__source__id .
+            ?deathYear__source__id skos:altLabel ?deathYear__source__prefLabel .
+            BIND (?deathYear__source__id AS ?deathYear__source__dataProviderUrl) .
+          }
         }
         UNION
         {
