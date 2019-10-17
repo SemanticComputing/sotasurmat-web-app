@@ -31,7 +31,7 @@ class SurmatutHomePageTable extends React.Component {
     const { classes, data } = this.props;
     //console.log(data)
     return(
-      <Table className={classes.table}>
+      <Table className={classes.table} size='small'>
         <TableBody>
           <TableRow key='familyName'>
             <TableCell className={classes.labelCell}>Sukunimi</TableCell>
