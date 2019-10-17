@@ -56,14 +56,20 @@ export const perspectiveArr = [
     instancePageTabs: [
       {
         id: 'table',
-        label: 'table',
+        label: 'Henkilön päätiedot',
         value: 0,
         icon: 'CalendarViewDay',
       },
       {
+        id: 'extra',
+        label: 'Henkilön lisätiedot',
+        value: 1,
+        icon: 'Add',
+      },
+      {
         id: 'export',
         label: 'export',
-        value: 1,
+        value: 2,
         icon: 'Download',
       },
     ]

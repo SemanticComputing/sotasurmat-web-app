@@ -7,7 +7,11 @@ import {
   instanceQuery
 } from './SparqlQueriesGeneral';
 import {
-  deathsProperties, personProperties, birthYearsQuery, ageQuery, deathDateQuery, csvDeathsQuery
+  deathsProperties,
+  personProperties,
+  birthYearsQuery,
+  ageQuery, deathDateQuery,
+  csvDeathsQuery,
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
@@ -25,7 +29,7 @@ import {
   allPlacesQuery,
 } from './SparqlQueriesPlaces';
 import { facetConfigs } from './FacetConfigsMMM';
-import { mapCount, mapPlacest, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
+import { mapCount, mapPlaces, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
 import { generateConstraintsBlock } from './Filters';
 

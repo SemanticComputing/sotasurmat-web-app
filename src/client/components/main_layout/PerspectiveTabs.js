@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import LineChartIcon from '@material-ui/icons/ShowChart';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import AddIcon from '@material-ui/icons/Add';
 
 
 const styles = () => ({
@@ -72,6 +73,9 @@ class PerspectiveTabs extends React.Component {
         break;
       case 'Download':
         icon = <CloudDownloadIcon />;
+        break;
+      case 'Add':
+        icon = <AddIcon />;
         break;
     }
     return icon;

@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
 import PerspectiveTabs from './PerspectiveTabs';
 import SurmatutHomePageTable from './SurmatutHomePageTable';
+import SurmatutExtraTable from './SurmatutExtraTable';
 import LeafletMap from '../facet_results/LeafletMap';
 import Export from '../facet_results/Export';
 import { Route, Redirect } from 'react-router-dom';
@@ -57,12 +58,6 @@ class InstanceHomePage extends React.Component {
           instanceHeading: 'Henkilö',
         });
         uri = `${base}/death_records/${localID}`;
-        break;
-      case 'taistelut':
-        this.setState({
-          instanceHeading: 'Taistelu',
-        });
-        uri = `${base}/sita/${localID}`;
         break;
     }
     this.props.fetchByURI({
@@ -144,6 +139,14 @@ class InstanceHomePage extends React.Component {
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/table`}
                 render={() =>
                   <SurmatutHomePageTable
+                    data={data}
+                    tableRows={this.getVisibleRows(this.props.tableRows)}
+                  />}
+              />
+              <Route
+                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
+                render={() =>
+                  <SurmatutExtraTable
                     data={data}
                     tableRows={this.getVisibleRows(this.props.tableRows)}
                   />}

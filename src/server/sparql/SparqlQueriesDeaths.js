@@ -636,6 +636,22 @@ export const personProperties = `
             BIND (?religion__source__id AS ?religion__source__dataProviderUrl) .
           }
         }
+
+        #### extras
+
+        UNION {
+          ?ownFamilyNameInfo siso-s:referred_death_record ?id .
+          ?ownFamilyNameInfo a siso-s:Additional_information_resource .
+          ?ownFamilyNameInfo siso-s:information_type siso-s:1_1_nee_own_family_name .
+          ?ownFamilyNameInfo siso-s:literal_value ?ownFamilyName__id .
+          BIND (?ownFamilyName__id AS ?ownFamilyName__prefLabel)
+          OPTIONAL {
+            ?ownFamilyNameInfo siso-s:source ?ownFamilyName__source__id .
+            ?ownFamilyName__source__id skos:altLabel ?ownFamilyName__source__prefLabel .
+            BIND (?ownFamilyName__source__id AS ?ownFamilyName__source__dataProviderUrl) .
+          }
+        }
+
         `;
 
 export const birthYearsQuery = `
