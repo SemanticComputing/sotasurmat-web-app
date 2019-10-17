@@ -383,7 +383,7 @@ export const personProperties = `
           ?armedStatusInfo siso-s:value ?armedStatus__id .
           ?armedStatus__id skos:prefLabel ?armedStatus__prefLabel .
           OPTIONAL {
-            ?armedStatusInfo siso-s:source ?armedStatus_id .
+            ?armedStatusInfo siso-s:source ?armedStatus__source__id .
             ?armedStatus__source__id skos:altLabel ?armedStatus__source__prefLabel .
             BIND (?armedStatus__source__id AS ?armedStatus__source__dataProviderUrl) .
           }
@@ -396,7 +396,7 @@ export const personProperties = `
           ?welfareInfo siso-s:value ?welfare__id .
           ?welfare__id skos:prefLabel ?welfare__prefLabel .
           OPTIONAL {
-            ?welfareInfo siso-s:source ?welfare_id .
+            ?welfareInfo siso-s:source ?welfare__source__id .
             ?welfare__source__id skos:altLabel ?welfare__source__prefLabel .
             BIND (?welfare__source__id AS ?welfare__source__dataProviderUrl) .
           }
@@ -409,7 +409,7 @@ export const personProperties = `
           ?statusNoteInfo siso-s:value ?statusNote__id .
           BIND(?statusNote__id AS ?statusNote__prefLabel) .
           OPTIONAL {
-            ?statusNoteInfo siso-s:source ?statusNote_id .
+            ?statusNoteInfo siso-s:source ?statusNote__source__id .
             ?statusNote__source__id skos:altLabel ?statusNote__source__prefLabel .
             BIND (?statusNote__source__id AS ?statusNote__source__dataProviderUrl) .
           }
