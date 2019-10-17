@@ -279,7 +279,7 @@ export const personProperties = `
           ?languageInfo siso-s:value ?language__id .
           ?language__id skos:prefLabel ?language__prefLabel .
           OPTIONAL {
-            ?languageInfo siso-s:source ?language_source__id .
+            ?languageInfo siso-s:source ?language__source__id .
             ?language__source__id skos:altLabel ?language__source__prefLabel .
             BIND (?language__source__id AS ?language__source__dataProviderUrl) .
           }
