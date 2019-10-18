@@ -9,6 +9,7 @@ const ResultTableCell = props => {
   const { data, valueType, makeLink, externalLink, sortValues, numberedList, minWidth,
     container, columnId, expanded, linkAsButton, collapsedMaxWords, showSource, sourceExternalLink } = props;
   let cellContent = null;
+  //console.log(data)
   let cellStyle = minWidth == null ? {} : { minWidth: minWidth };
   switch (valueType) {
     case 'object':

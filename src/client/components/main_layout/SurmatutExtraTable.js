@@ -30,14 +30,23 @@ class SurmatutExtraTable extends React.Component {
 
   render = () => {
     const { classes, data } = this.props;
-    const rowTypes = [{id:'ownFamilyName',label:'oma sukunimi'},
-      {id:'formerFamilyName',label:'entinen sukunimi'}];
+    const rowTypes = [
+      {id:'ownFamilyName',label:'Oma sukunimi'},
+      {id:'formerFamilyName',label:'Entinen sukunimi'},
+      {id:'alternativeName',label:'Vaihtoehtoinen nimi'},
+      {id:'nameQualifier',label:'Lisätietoa nimestä'},
+      {id:'birthVillage',label:'Synnyinkylä'},
+      {id:'broaderBirthPlace',label:'Laajenmpi syntymäpaikka'},
+      {id:'birthHouse',label:'Synnyintalo'},
+      {id:'otherBirthPlaceInformation',label:'Muuta tietoa synnyinpaikasta'},
+    ];
 
     //console.log(data)
     return (
       <Table className={classes.table}>
         <TableBody>
           {rowTypes.map(row => {
+            console.log(data)
             return (
               <TableRow key={row.id}>
                 <TableCell className={classes.labelCell}>

@@ -641,15 +641,23 @@ export const personProperties = `
         `;
 
 export const extrasTypeList =
-[['ownFamilyName', '1_1_nee_own_family_name'],
-  ['formerFamilyName', '1_2_former_family_name']];
+[
+  ['ownFamilyName', '1_1_nee_own_family_name'],
+  ['formerFamilyName', '1_2_former_family_name'],
+  ['alternativeName', '2_1_alternative_name'],
+  ['nameQualifier', '2_2_additional_name_qualifier'],
+  ['birthVillage', '3_1_birth_village'],
+  ['broaderBirthPlace', '3_2_broader_birth_place'],
+  ['birthHouse', '3_3_birth_house'],
+  ['otherBirthPlaceInformation', '3_6_other_birth_place_information'],
+];
 
 export const extrasTemplate = `
       UNION {
         ?<TYPENAME>Info siso-s:referred_death_record ?id .
         ?<TYPENAME>Info a siso-s:Additional_information_resource .
         ?<TYPENAME>Info siso-s:information_type siso-s:<TYPE> .
-        ?<TYPENAME>Info siso-s:literal_value ?ownFamilyName__id .
+        ?<TYPENAME>Info siso-s:literal_value ?<TYPENAME>__id .
         BIND (?<TYPENAME>__id AS ?<TYPENAME>__prefLabel)
         OPTIONAL {
           ?<TYPENAME>Info siso-s:source ?<TYPENAME>__source__id .
