@@ -57,6 +57,19 @@ class SurmatutExtraTable extends React.Component {
       {id:'workPlace',label:'Työpaikka'},
       {id:'numberOfUnderageChildren',label:'Alaikäisten lasten määrä'},
       {id:'familySize',label:'Perheen koko'},
+
+      {id:'army',label:'Armeija'},
+      {id:'brigade',label:'Prikaati, rykmentti'},
+      {id:'battalion',label:'Pataljoona'},
+      {id:'company',label:'Komppania'},
+      {id:'platoon',label:'Joukkue, plutoona'},
+      {id:'group',label:'Ryhmä'},
+      {id:'orgJoiningTime',label:'Rekrytointipäivämäärä'},
+      {id:'durationInOrg',label:'kuinka kauan kuulunut suojeluskuntaan/punakaartiin'},
+      {id:'timeLeftOrg',label:'Koska eronnut sotilasjärjestöstä'},
+      {id:'militaryRank',label:'Sotilasarvo'},
+      {id:'militaryBAckground',label:'Sotilastausta'},
+      {id:'armyOfCountry',label:'Maa, jonka armeijaan kuului '},
     ];
 
     //console.log(data)

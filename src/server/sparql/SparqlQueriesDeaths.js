@@ -668,6 +668,21 @@ export const extrasTypeList =
   ['workPlace', '13_6_work_place'],
   ['numberOfUnderageChildren', '15_1_number_of_underage_children'],
   ['familySize', '15_2_family_size'],
+
+  ['army', '21_1_army'],
+  ['brigade', '21_2_brigade_and_regiment'],
+  ['battalion', '21_3_battalion'],
+  ['company', '21_4_company'],
+  ['platoon', '21_5_platoon'],
+  ['group', '21_6_group'],
+
+  ['orgJoiningTime', '22_1_organization_joining_time'],
+  ['durationInOrg', '22_2_duration_in_organization'],
+  ['timeLeftOrganization', '22_3_time_left_organization'],
+
+  ['militaryRank', '23_1_military_rank'],
+  ['militaryBackground', '23_2_military_background'],
+  ['armyOfCountry', '23_4_army_of_country'],
 ];
 
 export const extrasTemplate = `

@@ -29,7 +29,6 @@ class SurmatutHomePageTable extends React.Component {
 
   render = () => {
     const { classes, data } = this.props;
-    console.log(data)
     return(
       <Table className={classes.table} size='small'>
         <TableBody>
