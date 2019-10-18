@@ -41,6 +41,7 @@ const styles = theme => ({
 
 const InstanceHomePageTable = props => {
   const { classes, data, tableRows } = props;
+  //console.log(tableRows)
   return (
     <Table className={classes.instanceTable}>
       <TableBody>

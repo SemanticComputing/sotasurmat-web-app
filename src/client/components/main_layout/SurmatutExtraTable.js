@@ -27,29 +27,40 @@ const styles = theme => ({
 
 class SurmatutExtraTable extends React.Component {
 
+
   render = () => {
     const { classes, data } = this.props;
+    const rowTypes = [{id:'ownFamilyName',label:'oma sukunimi'},
+      {id:'formerFamilyName',label:'entinen sukunimi'}];
+
     //console.log(data)
-    return(
-      <Table className={classes.table} size='small'>
+    return (
+      <Table className={classes.table}>
         <TableBody>
-          <TableRow key='ownFamilyName'>
-            <TableCell className={classes.labelCell}>Oma sukunimi</TableCell>
-            <ResultTableCell
-              columnId='ownFamilyName'
-              data={data.ownFamilyName}
-              valueType='object'
-              makeLink={false}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-              showSource={true}
-              sourceExternalLink={true}
-            />
-          </TableRow>
+          {rowTypes.map(row => {
+            return (
+              <TableRow key={row.id}>
+                <TableCell className={classes.labelCell}>
+                  {row.label}
+                </TableCell>
+                <ResultTableCell
+                  columnId={row.id}
+                  data={data[row.id]}
+                  valueType='object'
+                  makeLink={false}
+                  externalLink={false}
+                  sortValues={true}
+                  numberedList={false}
+                  minWidth={150}
+                  container='cell'
+                  expanded={true}
+                  showSource={true}
+                  sourceExternalLink={true}
+                />
+              </TableRow>
+            );
+          }
+          )}
         </TableBody>
       </Table>
     );
