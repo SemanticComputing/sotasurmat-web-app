@@ -637,22 +637,27 @@ export const personProperties = `
           }
         }
 
-        #### extras
-
-        UNION {
-          ?ownFamilyNameInfo siso-s:referred_death_record ?id .
-          ?ownFamilyNameInfo a siso-s:Additional_information_resource .
-          ?ownFamilyNameInfo siso-s:information_type siso-s:1_1_nee_own_family_name .
-          ?ownFamilyNameInfo siso-s:literal_value ?ownFamilyName__id .
-          BIND (?ownFamilyName__id AS ?ownFamilyName__prefLabel)
-          OPTIONAL {
-            ?ownFamilyNameInfo siso-s:source ?ownFamilyName__source__id .
-            ?ownFamilyName__source__id skos:altLabel ?ownFamilyName__source__prefLabel .
-            BIND (?ownFamilyName__source__id AS ?ownFamilyName__source__dataProviderUrl) .
-          }
-        }
 
         `;
+
+export const extrasTypeList =
+[['ownFamilyName', '1_1_nee_own_family_name'],
+  ['formerFamilyName', '1_2_former_family_name']];
+
+export const extrasTemplate = `
+      UNION {
+        ?<TYPENAME>Info siso-s:referred_death_record ?id .
+        ?<TYPENAME>Info a siso-s:Additional_information_resource .
+        ?<TYPENAME>Info siso-s:information_type siso-s:<TYPE> .
+        ?<TYPENAME>Info siso-s:literal_value ?ownFamilyName__id .
+        BIND (?<TYPENAME>__id AS ?<TYPENAME>__prefLabel)
+        OPTIONAL {
+          ?<TYPENAME>Info siso-s:source ?<TYPENAME>__source__id .
+          ?<TYPENAME>__source__id skos:altLabel ?<TYPENAME>__source__prefLabel .
+          BIND (?<TYPENAME>__source__id AS ?<TYPENAME>__source__dataProviderUrl) .
+        }
+      }
+      `;
 
 export const birthYearsQuery = `
       SELECT ?counted (count(?counted) AS ?count)

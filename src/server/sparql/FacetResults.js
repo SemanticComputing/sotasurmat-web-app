@@ -12,6 +12,8 @@ import {
   birthYearsQuery,
   ageQuery, deathDateQuery,
   csvDeathsQuery,
+  extrasTemplate,
+  extrasTypeList,
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
@@ -224,10 +226,12 @@ export const getByURI = ({
   resultFormat
 }) => {
   let q;
+  let properties;
   switch (resultClass) {
     case 'surmatut':
+      properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
       q = instanceQuery;
-      q = q.replace('<PROPERTIES>', personProperties);
+      q = q.replace('<PROPERTIES>', properties);
       q = q.replace('<RELATED_INSTANCES>', '');
       break;
     case 'taistelut':
@@ -262,3 +266,14 @@ export const getByURI = ({
     resultFormat
   });
 };
+
+function createExtrasQueryBlock(types) {
+  let block = '';
+  let unionBlock = '';
+  types.forEach(function(item) {
+    block = extrasTemplate.replace(/<TYPENAME>/g, item[0]);
+    block = block.replace(/<TYPE>/g, item[1]);
+    unionBlock = unionBlock.concat(block);
+  });
+  return unionBlock;
+}
