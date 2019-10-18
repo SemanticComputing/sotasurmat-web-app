@@ -683,6 +683,13 @@ export const extrasTypeList =
   ['militaryRank', '23_1_military_rank'],
   ['militaryBackground', '23_2_military_background'],
   ['armyOfCountry', '23_4_army_of_country'],
+
+  ['militaryTask', '24_1_military_task'],
+  ['civilianTask', '24_2_civilian_task'],
+  ['otherRole', '24_3_other_role_in_war'],
+  ['taskStartDate', '24_4_task_start_date'],
+  ['durationOfTask', '24_5_duration_of_task'],
+  ['placeOfTask', '24_6_place_of_task'],
 ];
 
 export const extrasTemplate = `
