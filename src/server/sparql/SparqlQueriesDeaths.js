@@ -650,6 +650,24 @@ export const extrasTypeList =
   ['broaderBirthPlace', '3_2_broader_birth_place'],
   ['birthHouse', '3_3_birth_house'],
   ['otherBirthPlaceInformation', '3_6_other_birth_place_information'],
+
+  ['registeredVillage', '7_1_registered_village'],
+  ['registeredHouse', '7_2_registered_house'],
+  ['foreignRegisteredProvince', '8_1_foreign_registered_province'],
+  ['broaderRegisteredCountry', '9_1_broader_registered_country'],
+  ['livingVillage', '10_1_living_village'],
+  ['livingHouse', '10_2_living_house'],
+  ['familyAddress', '10_3_family_address'],
+  ['foreignLivingProvince', '11_1_foreign_living_province'],
+
+  ['otherOccupation', '13_1_other_occupation'],
+  ['socialStatus', '13_2_social_status'],
+  ['formerOccupation', '13_3_former_occupation'],
+  ['formerSocialStatus', '13_4_former_social_status'],
+  ['title', '13_5_title'],
+  ['workPlace', '13_6_work_place'],
+  ['numberOfUnderageChildren', '15_1_number_of_underage_children'],
+  ['familySize', '15_2_family_size'],
 ];
 
 export const extrasTemplate = `

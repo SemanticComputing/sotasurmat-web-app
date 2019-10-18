@@ -39,14 +39,31 @@ class SurmatutExtraTable extends React.Component {
       {id:'broaderBirthPlace',label:'Laajenmpi syntymäpaikka'},
       {id:'birthHouse',label:'Synnyintalo'},
       {id:'otherBirthPlaceInformation',label:'Muuta tietoa synnyinpaikasta'},
+
+      {id:'registeredVillage',label:'Rekisteröity kylä'},
+      {id:'registeredHouse',label:'Rekisteröity talo'},
+      {id:'foreignRegisteredProvince',label:'Ulkomainen rekisteröity lääni'},
+      {id:'broaderRegisteredCountry',label:'Laajempi registeröity maakäsite'},
+      {id:'livingVillage',label:'Asuinkylä'},
+      {id:'livingHouse',label:'Asuintalo'},
+      {id:'familyAddress',label:'Perheen osoite'},
+      {id:'foreignLivingProvince',label:'Ulkomainen asuinlääni'},
+
+      {id:'otherOccupation',label:'Muu ammatti'},
+      {id:'socialStatus',label:'Sosiaalinen asema'},
+      {id:'formerOccupation',label:'Entinen ammatti'},
+      {id:'formerSocialStatus',label:'Entinen sosiaalinen asema'},
+      {id:'title',label:'Titteli'},
+      {id:'workPlace',label:'Työpaikka'},
+      {id:'numberOfUnderageChildren',label:'Alaikäisten lasten määrä'},
+      {id:'familySize',label:'Perheen koko'},
     ];
 
     //console.log(data)
     return (
-      <Table className={classes.table}>
+      <Table className={classes.table} size='small'>
         <TableBody>
           {rowTypes.map(row => {
-            console.log(data)
             return (
               <TableRow key={row.id}>
                 <TableCell className={classes.labelCell}>
