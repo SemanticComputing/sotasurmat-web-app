@@ -690,6 +690,33 @@ export const extrasTypeList =
   ['taskStartDate', '24_4_task_start_date'],
   ['durationOfTask', '24_5_duration_of_task'],
   ['placeOfTask', '24_6_place_of_task'],
+
+  // 25 luokan tiedoissa on jotain ihmeellistä eikä tunnu vastaavan dokumentaatiota
+  // katsotaan myöhemmin
+
+  ['otherFamilyWelfare', '28_1_other_family_welfare_status'],
+
+  ['exactPlaceOfCapture', '30_1_exact_place_of_capture'],
+  ['areaOfCapture', '30_2_area_of_capture'],
+  ['eventWhereCaptured', '30_3_event_where_captured'],
+  ['frontWhereCaptured', '30_4_front_where_captured'],
+  ['capturer', '30_5_capturer'],
+  ['presumedPlaceOfCapture', '30_6_presumed_place_or_event_of_capture'],
+
+  ['firstPlaceOfImprisonment', '31_1_first_place_of_imprisonment_or_third_former'],
+  ['secondPlaceOfImprisonment', '31_2_second_place_of_imprisonment_or_second_former'],
+  ['thirdPlaceOfImprisonment', '31_3_third_place_of_imprisonment_or_latest_former'],
+  ['arrivedToPrison', '31_4_when_arrived_to_prison'],
+  ['movedToPrison', '31_5_when_moved_from_prison'],
+
+  ['sentencingCourt', '32_1_sentencing_court'],
+  ['verdict', '32_2_verdict'],
+
+  ['presumedArrestDate', '33_1_presumed_date_of_arrest'],
+  ['arrestTime', '33_2_time_of_arrest'],
+  ['secondArrestTime', '33_3_second_time_of_arrest'],
+  ['thirdArrestTime', '33_4_third_time_of_arrest'],
+
 ];
 
 export const extrasTemplate = `

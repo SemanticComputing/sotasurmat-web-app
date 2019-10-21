@@ -79,6 +79,33 @@ class SurmatutExtraTable extends React.Component {
       {id:'taskStartDate',label:'Koska aloittanut tehtävässä'},
       {id:'durationOfTask',label:'Kuinka kauan toiminut tehtävässä'},
       {id:'placeOfTask',label:'Missä toiminut'},
+
+      // huom 25 koodin tiedot on mysteeri!!!
+
+      {id:'otherFamilyWelfare',label:'muu perheen toimeentulo'},
+
+      {id:'exactPlaceOfCapture',label:'Tarkka vangitsemispaikka'},
+      {id:'areaOfCapture',label:'Vangitsemisalue'},
+      {id:'eventWhereCaptured',label:'Tapahtuma jossa vangittiin'},
+      {id:'frontWhereCaptured',label:'Rintama jossa vangittiin'},
+      {id:'capturer',label:'Vangitsija'},
+      {id:'presumedPlaceOfCapture',label:'Vangitsemisen oletettu paikka tai tapahtuma'},
+
+      {id:'firstPlaceOfImprisonment',label:'Vangittunaolon I paikka'},
+      {id:'secondPlaceOfImprisonment',label:'vangittunaolon II paikka'},
+      {id:'thirdPlaceOfImprisonment',label:'Vangittunaolon III paikka'},
+      {id:'arrivedToPrison',label:'Milloin saapunut vankileirille'},
+      {id:'movedToPrison',label:'Milloin siirretty vankileiriltä'},
+
+      {id:'sentencingCourt',label:'Tuomion langettaja'},
+      {id:'verdict',label:'Tuomio'},
+
+      {id:'presumedArrestDate',label:'Arveltu vangitsemispäivä'},
+      {id:'arrestTime',label:'Vangitsemisajankohta'},
+      {id:'secondArrestTime',label:'II vangitsemisen ajankohta'},
+      {id:'thirdArrestTime',label:'III vangitsemisen ajankohta'},
+
+
     ];
 
     //console.log(data)
