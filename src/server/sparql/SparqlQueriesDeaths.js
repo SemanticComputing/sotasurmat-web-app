@@ -79,7 +79,6 @@ export const personProperties = `
         UNION
         {
           ?familyNameInfo siso-s:referred_death_record ?id .
-          ?familyNameInfo a siso-s:Information_resource .
           ?familyNameInfo siso-s:information_type siso-s:0_1_family_name .
           ?familyNameInfo siso-s:value ?familyName__id .
           BIND(?familyName__id AS ?familyName__prefLabel) .
@@ -92,7 +91,6 @@ export const personProperties = `
         UNION
         {
           ?firstNameInfo siso-s:referred_death_record ?id .
-          ?firstNameInfo a siso-s:Information_resource .
           ?firstNameInfo siso-s:information_type siso-s:0_2_given_name .
           ?firstNameInfo siso-s:value ?firstName__id .
           BIND(?firstName__id AS ?firstName__prefLabel) .
@@ -105,7 +103,6 @@ export const personProperties = `
         UNION
         {
           ?birthPlaceInfo siso-s:referred_death_record ?id .
-          ?birthPlaceInfo a siso-s:Information_resource .
           ?birthPlaceInfo siso-s:information_type siso-s:0_3_birth_place .
           ?birthPlaceInfo siso-s:value ?birthPlace__id .
           ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
@@ -118,7 +115,6 @@ export const personProperties = `
         UNION
         {
           ?birthCountryInfo siso-s:referred_death_record ?id .
-          ?birthCountryInfo a siso-s:Information_resource .
           ?birthCountryInfo siso-s:information_type siso-s:0_4_birth_country .
           ?birthCountryInfo siso-s:value ?birthCountry__id .
           ?birthCountry__id skos:prefLabel ?birthCountry__prefLabel .
@@ -131,7 +127,6 @@ export const personProperties = `
         UNION
         {
           ?regMunicipalityInfo siso-s:referred_death_record ?id .
-          ?regMunicipalityInfo a siso-s:Information_resource .
           ?regMunicipalityInfo siso-s:information_type siso-s:0_7_registered_municipality .
           ?regMunicipalityInfo siso-s:value ?regMunicipality__id .
           ?regMunicipality__id skos:prefLabel ?regMunicipality__prefLabel .
@@ -157,7 +152,6 @@ export const personProperties = `
         UNION
         {
           ?regCountryInfo siso-s:referred_death_record ?id .
-          ?regCountryInfo a siso-s:Information_resource .
           ?regCountryInfo siso-s:information_type siso-s:0_9_registered_country .
           ?regCountryInfo siso-s:value ?regCountry__id .
           ?regCountry__id skos:prefLabel ?regCountry__prefLabel .
@@ -170,7 +164,6 @@ export const personProperties = `
         UNION
         {
           ?livingMunicipalityInfo siso-s:referred_death_record ?id .
-          ?livingMunicipalityInfo a siso-s:Information_resource .
           ?livingMunicipalityInfo siso-s:information_type siso-s:0_10_living_municipality .
           ?livingMunicipalityInfo siso-s:value ?livingMunicipality__id .
           ?livingMunicipality__id skos:prefLabel ?livingMunicipality__prefLabel .
@@ -183,7 +176,6 @@ export const personProperties = `
         UNION
         {
           ?livingProvinceInfo siso-s:referred_death_record ?id .
-          ?livingProvinceInfo a siso-s:Information_resource .
           ?livingProvinceInfo siso-s:information_type siso-s:0_11_living_province .
           ?livingProvinceInfo siso-s:value ?livingProvince__id .
           ?livingProvince__id skos:prefLabel ?livingProvince__prefLabel .
@@ -196,7 +188,6 @@ export const personProperties = `
         UNION
         {
           ?livingCountryInfo siso-s:referred_death_record ?id .
-          ?livingCountryInfo a siso-s:Information_resource .
           ?livingCountryInfo siso-s:information_type siso-s:0_12_living_country .
           ?livingCountryInfo siso-s:value ?livingCountry__id .
           ?livingCountry__id skos:prefLabel ?livingCountry__prefLabel .
@@ -209,7 +200,6 @@ export const personProperties = `
         UNION
         {
           ?occupationInfo siso-s:referred_death_record ?id .
-          ?occupationInfo a siso-s:Information_resource .
           ?occupationInfo siso-s:information_type siso-s:0_13_occupation .
           ?occupationInfo siso-s:value ?occupation__id .
           ?occupation__id skos:prefLabel ?occupation__prefLabel .
@@ -222,7 +212,6 @@ export const personProperties = `
         UNION
         {
           ?maritalStatusInfo siso-s:referred_death_record ?id .
-          ?maritalStatusInfo a siso-s:Information_resource .
           ?maritalStatusInfo siso-s:information_type siso-s:0_14_marital_status .
           ?maritalStatusInfo siso-s:value ?maritalStatus__id .
           ?maritalStatus__id skos:prefLabel ?maritalStatus__prefLabel .
@@ -235,7 +224,6 @@ export const personProperties = `
         UNION
         {
           ?numberOfChildrenInfo siso-s:referred_death_record ?id .
-          ?numberOfChildrenInfo a siso-s:Information_resource .
           ?numberOfChildrenInfo siso-s:information_type siso-s:0_15_num_of_children .
           ?numberOfChildrenInfo siso-s:value ?numberOfChildren__id .
           BIND(?numberOfChildren__id AS ?numberOfChildren__prefLabel) .
@@ -248,7 +236,6 @@ export const personProperties = `
         UNION
         {
           ?genderInfo siso-s:referred_death_record ?id .
-          ?genderInfo a siso-s:Information_resource .
           ?genderInfo siso-s:information_type siso-s:0_16_gender .
           ?genderInfo siso-s:value ?gender__id .
           ?gender__id skos:prefLabel ?gender__prefLabel .
@@ -261,7 +248,6 @@ export const personProperties = `
         UNION
         {
           ?nationalityInfo siso-s:referred_death_record ?id .
-          ?nationalityInfo a siso-s:Information_resource .
           ?nationalityInfo siso-s:information_type siso-s:0_17_nationality .
           ?nationalityInfo siso-s:value ?nationality__id .
           ?nationality__id skos:prefLabel ?nationality__prefLabel .
@@ -274,7 +260,6 @@ export const personProperties = `
         UNION
         {
           ?languageInfo siso-s:referred_death_record ?id .
-          ?languageInfo a siso-s:Information_resource .
           ?languageInfo siso-s:information_type siso-s:0_18_language .
           ?languageInfo siso-s:value ?language__id .
           ?language__id skos:prefLabel ?language__prefLabel .
@@ -287,7 +272,6 @@ export const personProperties = `
         UNION
         {
           ?personCommentInfo siso-s:referred_death_record ?id .
-          ?personCommentInfo a siso-s:Information_resource .
           ?personCommentInfo siso-s:information_type siso-s:0_20_person_comment .
           ?personCommentInfo siso-s:value ?personComment__id .
           BIND(?personComment__id AS ?personComment__prefLabel) .
@@ -300,7 +284,6 @@ export const personProperties = `
         UNION
         {
           ?militaryOrganizationInfo siso-s:referred_death_record ?id .
-          ?militaryOrganizationInfo a siso-s:Information_resource .
           ?militaryOrganizationInfo siso-s:information_type siso-s:21_military_organization .
           ?militaryOrganizationInfo siso-s:value ?militaryOrganization__id .
           ?militaryOrganization__id skos:prefLabel ?militaryOrganization__prefLabel .
@@ -313,7 +296,6 @@ export const personProperties = `
         UNION
         {
           ?recruitmentInfo siso-s:referred_death_record ?id .
-          ?recruitmentInfo a siso-s:Information_resource .
           ?recruitmentInfo siso-s:information_type siso-s:0_22_method_of_recruitment .
           ?recruitmentInfo siso-s:value ?recruitment__id .
           ?recruitment__id skos:prefLabel ?recruitment__prefLabel .
@@ -326,7 +308,6 @@ export const personProperties = `
         UNION
         {
           ?rankInfo siso-s:referred_death_record ?id .
-          ?rankInfo a siso-s:Information_resource .
           ?rankInfo siso-s:information_type siso-s:0_23_rank .
           ?rankInfo siso-s:value ?rank__id .
           ?rank__id skos:prefLabel ?rank__prefLabel .
@@ -339,7 +320,6 @@ export const personProperties = `
         UNION
         {
           ?positionInfo siso-s:referred_death_record ?id .
-          ?positionInfo a siso-s:Information_resource .
           ?positionInfo siso-s:information_type siso-s:0_24_position .
           ?positionInfo siso-s:value ?position__id .
           ?position__id skos:prefLabel ?position__prefLabel .
@@ -352,7 +332,6 @@ export const personProperties = `
         UNION
         {
           ?combatantStatusInfo siso-s:referred_death_record ?id .
-          ?combatantStatusInfo a siso-s:Information_resource .
           ?combatantStatusInfo siso-s:information_type siso-s:0_25_combatant_status .
           ?combatantStatusInfo siso-s:value ?combatantStatus__id .
           ?combatantStatus__id skos:prefLabel ?combatantStatus__prefLabel .
@@ -364,7 +343,6 @@ export const personProperties = `
         }
         UNION
         {
-          ?partyInfo a siso-s:Information_resource .
           ?partyInfo siso-s:referred_death_record ?id .
           ?partyInfo siso-s:information_type siso-s:0_26_party .
           ?partyInfo siso-s:value ?party__id .
@@ -378,7 +356,6 @@ export const personProperties = `
         UNION
         {
           ?armedStatusInfo siso-s:referred_death_record ?id .
-          ?armedStatusInfo a siso-s:Information_resource .
           ?armedStatusInfo siso-s:information_type siso-s:0_27_armed_status .
           ?armedStatusInfo siso-s:value ?armedStatus__id .
           ?armedStatus__id skos:prefLabel ?armedStatus__prefLabel .
@@ -391,7 +368,6 @@ export const personProperties = `
         UNION
         {
           ?welfareInfo siso-s:referred_death_record ?id .
-          ?welfareInfo a siso-s:Information_resource .
           ?welfareInfo siso-s:information_type siso-s:0_28_family_welfare .
           ?welfareInfo siso-s:value ?welfare__id .
           ?welfare__id skos:prefLabel ?welfare__prefLabel .
@@ -404,7 +380,6 @@ export const personProperties = `
         UNION
         {
           ?statusNoteInfo siso-s:referred_death_record ?id .
-          ?statusNoteInfo a siso-s:Information_resource .
           ?statusNoteInfo siso-s:information_type siso-s:0_29_status_note .
           ?statusNoteInfo siso-s:value ?statusNote__id .
           BIND(?statusNote__id AS ?statusNote__prefLabel) .
@@ -417,7 +392,6 @@ export const personProperties = `
         UNION
         {
           ?placeOfCaptureInfo siso-s:referred_death_record ?id .
-          ?placeOfCaptureInfo a siso-s:Information_resource .
           ?placeOfCaptureInfo siso-s:information_type siso-s:0_30_place_of_capture .
           ?placeOfCaptureInfo siso-s:value ?placeOfCapture__id .
           BIND(?placeOfCapture__id AS ?placeOfCapture__prefLabel)
@@ -430,7 +404,6 @@ export const personProperties = `
         UNION
         {
           ?campInfo siso-s:referred_death_record ?id .
-          ?campInfo a siso-s:Information_resource .
           ?campInfo siso-s:information_type siso-s:0_31_prison_camp .
           ?campInfo siso-s:value ?camp__id .
           ?camp__id skos:prefLabel ?camp__prefLabel .
@@ -442,9 +415,7 @@ export const personProperties = `
         }
         UNION
         {
-          # literal, but could be ontologized
           ?imprisonmentMotiveInfo siso-s:referred_death_record ?id .
-          ?imprisonmentMotiveInfo a siso-s:Information_resource .
           ?imprisonmentMotiveInfo siso-s:information_type siso-s:0_32_imprisonment_motive .
           ?imprisonmentMotiveInfo siso-s:value ?imprisonmentMotive__id .
           BIND(?imprisonmentMotive__id AS ?imprisonmentMotive__prefLabel)
@@ -456,9 +427,7 @@ export const personProperties = `
         }
         UNION
         {
-          # literal
           ?imprisonmentDateInfo siso-s:referred_death_record ?id .
-          ?imprisonmentDateInfo a siso-s:Information_resource .
           ?imprisonmentDateInfo siso-s:information_type siso-s:0_33_imprisonment_date .
           ?imprisonmentDateInfo siso-s:value ?imprisonmentDate__id .
           BIND(?imprisonmentDate__id AS ?imprisonmentDate__prefLabel)
@@ -471,7 +440,6 @@ export const personProperties = `
         UNION
         {
           ?releaseDateInfo siso-s:referred_death_record ?id .
-          ?releaseDateInfo a siso-s:Information_resource .
           ?releaseDateInfo siso-s:information_type siso-s:0_34_release_date .
           ?releaseDateInfo siso-s:value ?releaseDate__id .
           BIND(?releaseDate__id AS ?releaseDate__prefLabel)
@@ -484,7 +452,6 @@ export const personProperties = `
         UNION
         {
           ?deathYearInfo siso-s:referred_death_record ?id .
-          ?deathYearInfo a siso-s:Information_resource .
           ?deathYearInfo siso-s:information_type siso-s:0_35_death_year .
           ?deathYearInfo siso-s:value ?deathYear__id .
           BIND(?deathYear__id AS ?deathYear__prefLabel)
@@ -497,7 +464,6 @@ export const personProperties = `
         UNION
         {
           ?deathDayInfo siso-s:referred_death_record ?id .
-          ?deathDayInfo a siso-s:Information_resource .
           ?deathDayInfo siso-s:information_type siso-s:0_36_death_day .
           ?deathDayInfo siso-s:value ?deathDay__id .
           BIND(?deathDay__id AS ?deathDay__prefLabel)
@@ -509,8 +475,8 @@ export const personProperties = `
         }
         UNION
         {
-          ?ageInfo siso-s:information_type siso-s:0_37_age .
           ?ageInfo siso-s:referred_death_record ?id .
+          ?ageInfo siso-s:information_type siso-s:0_37_age .
           ?ageInfo siso-s:value ?age__id .
           BIND(?age__id AS ?age__prefLabel)
           OPTIONAL {
@@ -522,7 +488,6 @@ export const personProperties = `
         UNION
         {
           ?deathMunicipalityInfo siso-s:referred_death_record ?id .
-          ?deathMunicipalityInfo a siso-s:Information_resource .
           ?deathMunicipalityInfo siso-s:information_type siso-s:0_38_death_municipality .
           ?deathMunicipalityInfo siso-s:value ?deathMunicipality__id .
           ?deathMunicipality__id skos:prefLabel ?deathMunicipality__prefLabel .
@@ -535,7 +500,6 @@ export const personProperties = `
         UNION
         {
           ?deathProvinceInfo siso-s:referred_death_record ?id .
-          ?deathProvinceInfo a siso-s:Information_resource .
           ?deathProvinceInfo siso-s:information_type siso-s:0_39_death_province .
           ?deathProvinceInfo siso-s:value ?deathProvince__id .
           ?deathProvince__id skos:prefLabel ?deathProvince__prefLabel .
@@ -548,7 +512,6 @@ export const personProperties = `
         UNION
         {
           ?deathCountryInfo siso-s:referred_death_record ?id .
-          ?deathCountryInfo a siso-s:Information_resource .
           ?deathCountryInfo siso-s:information_type siso-s:0_40_death_country .
           ?deathCountryInfo siso-s:value ?deathCountry__id .
           ?deathCountry__id skos:prefLabel ?deathCountry__prefLabel .
@@ -560,7 +523,6 @@ export const personProperties = `
         }
         UNION
         {
-          ?deathPlaceInfo a siso-s:Information_resource .
           ?deathPlaceInfo siso-s:referred_death_record ?id .
           ?deathPlaceInfo siso-s:information_type siso-s:0_41_death_place .
           ?deathPlaceInfo siso-s:value ?deathPlace__id .
@@ -574,7 +536,6 @@ export const personProperties = `
         UNION
         {
           ?causeOfDeathInfo siso-s:referred_death_record ?id .
-          ?causeOfDeathInfo a siso-s:Information_resource .
           ?causeOfDeathInfo siso-s:information_type siso-s:0_42_cause_of_death .
           ?causeOfDeathInfo siso-s:value ?causeOfDeath__id .
           ?causeOfDeath__id skos:prefLabel ?causeOfDeath__prefLabel .
@@ -587,7 +548,6 @@ export const personProperties = `
         UNION
         {
           ?deathMotiveInfo siso-s:referred_death_record ?id .
-          ?deathMotiveInfo a siso-s:Information_resource .
           ?deathMotiveInfo siso-s:information_type siso-s:0_43_death_motive .
           ?deathMotiveInfo siso-s:value ?deathMotive__id .
           ?deathMotive__id skos:prefLabel ?deathMotive__prefLabel .
@@ -600,7 +560,6 @@ export const personProperties = `
         UNION
         {
           ?burialInfo siso-s:referred_death_record ?id .
-          ?burialInfo a siso-s:Information_resource .
           ?burialInfo siso-s:information_type siso-s:0_44_method_of_burial .
           ?burialInfo siso-s:value ?burial__id .
           ?burial__id skos:prefLabel ?burial__prefLabel .
@@ -613,7 +572,6 @@ export const personProperties = `
         UNION
         {
           ?deathCommentInfo siso-s:referred_death_record ?id .
-          ?deathCommentInfo a siso-s:Information_resource .
           ?deathCommentInfo siso-s:information_type siso-s:0_45_death_comment .
           ?deathCommentInfo siso-s:value ?deathComment__id .
           BIND(?deathComment__id AS ?deathComment__prefLabel)
@@ -626,7 +584,6 @@ export const personProperties = `
         UNION
         {
           ?religionInfo siso-s:referred_death_record ?id .
-          ?religionInfo a siso-s:Information_resource .
           ?religionInfo siso-s:information_type siso-s:0_46_religion .
           ?religionInfo siso-s:value ?religion__id .
           ?religion__id skos:prefLabel ?religion__prefLabel .
@@ -717,12 +674,20 @@ export const extrasTypeList =
   ['secondArrestTime', '33_3_second_time_of_arrest'],
   ['thirdArrestTime', '33_4_third_time_of_arrest'],
 
+  ['dateOfEscape', '34_1_date_of_escape'],
+
+  //['yearDeclaredDead', '35_1_year_when_declared_dead'],
+  //['officialDeathDate', '35_2_official_date_of_death'],
+  //['whereDeclaredDead', '35_3_place_and_time_of_declaration_of_death'],
+
+  //['presumedDeathTime', '36_1_presumed_death_time'],
+  //['deathPeriod', '36_2_death_period'],
+
 ];
 
 export const extrasTemplate = `
       UNION {
         ?<TYPENAME>Info siso-s:referred_death_record ?id .
-        ?<TYPENAME>Info a siso-s:Additional_information_resource .
         ?<TYPENAME>Info siso-s:information_type siso-s:<TYPE> .
         ?<TYPENAME>Info siso-s:literal_value ?<TYPENAME>__id .
         BIND (?<TYPENAME>__id AS ?<TYPENAME>__prefLabel)

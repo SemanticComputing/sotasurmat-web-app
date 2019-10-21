@@ -105,6 +105,15 @@ class SurmatutExtraTable extends React.Component {
       {id:'secondArrestTime',label:'II vangitsemisen ajankohta'},
       {id:'thirdArrestTime',label:'III vangitsemisen ajankohta'},
 
+      {id:'dateOfEscape',label:'Pakenemispäivä'},
+
+      //{id:'yearDeclaredDead',label:'Kuolleeksijulistamisen vuosi'},
+      //{id:'officialDeathDate',label:'Virallinen kuolinaika'},
+      //{id:'whereDeclaredDead',label:'Missä ja milloin julistettu kuolleeksi'},
+
+      //{id:'presumedDeathTime',label:'Arveltu kuolinaika'},
+      //{id:'deathPeriod',label:'Kuolinajankohta'},
+
 
     ];
 
