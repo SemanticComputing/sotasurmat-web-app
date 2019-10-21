@@ -791,3 +791,25 @@ export const csvDeathsQuery = `
    }
    ORDER BY ?prefLabel
    `;
+
+export const deathPlacesQuery = `
+     SELECT ?id ?lat ?long
+     (COUNT(DISTINCT ?deathRecord) as ?instanceCount)
+     WHERE {
+       <FILTER>
+       ?deathRecord siso-s:death_municipality ?id .
+       ?id geo:lat ?lat ;
+           geo:long ?long .
+     }
+     GROUP BY ?id ?lat ?long
+   `;
+
+export const deathsAt = `
+       OPTIONAL {
+         <FILTER>
+         ?related__id siso-s:death_municipality ?id .
+         ?related__id skos:prefLabel ?related__prefLabel .
+         ?related__id siso-s:identifier ?identifier .
+         BIND(CONCAT("/sotasurmat/surmatut/page/", ?identifier) AS ?related__dataProviderUrl)
+       }
+   `;

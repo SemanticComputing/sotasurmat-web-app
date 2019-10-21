@@ -197,6 +197,7 @@ let SemanticPortal = props => {
           rootUrl={rootUrl}
           dates={props.dates}
           surmatut={props.surmatut}
+          places={props.places}
           facetData={props.surmatutFacets}
           fetchPaginatedResults={props.fetchPaginatedResults}
           fetchResults={props.fetchResults}
@@ -419,6 +420,7 @@ let SemanticPortal = props => {
 
 const mapStateToProps = state => {
   return {
+    places: state.places,
     dates: state.dates,
     surmatut: state.surmatut,
     surmatutFacets: state.surmatutFacets,
@@ -447,6 +449,7 @@ const mapDispatchToProps = ({
 });
 
 SemanticPortal.propTypes = {
+  places: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,

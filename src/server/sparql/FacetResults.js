@@ -14,6 +14,8 @@ import {
   csvDeathsQuery,
   extrasTemplate,
   extrasTypeList,
+  deathPlacesQuery,
+  deathsAt
 } from './SparqlQueriesDeaths';
 import {
   battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
@@ -104,6 +106,11 @@ export const getAllResults = ({
       q = csvDeathsQuery;
       filterTarget = 'id';
       break;
+    case 'deathPlaces':
+      q = deathPlacesQuery;
+      mapper = mapPlaces;
+      filterTarget = 'deathRecord';
+      break;
   }
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters');
@@ -116,7 +123,7 @@ export const getAllResults = ({
       facetID: null
     }));
   }
-  // console.log(prefixes + q)
+  //console.log(prefixes + q)
   return runSelectQuery({
     query: prefixes + q,
     endpoint,
@@ -244,6 +251,12 @@ export const getByURI = ({
       q = q.replace('<PROPERTIES>', battleProperties);
       q = q.replace('<RELATED_INSTANCES>', '');
       break;
+    case 'deathPlaces':
+      q = instanceQuery;
+      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow);
+      q = q.replace('<RELATED_INSTANCES>', deathsAt);
+      break;
+
   }
 
   if (constraints == null) {

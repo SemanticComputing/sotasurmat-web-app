@@ -47,9 +47,15 @@ export const perspectiveArr = [
         icon: 'LineChart',
       },
       {
+        id: 'kartta',
+        label: 'Kartta',
+        value: 3,
+        icon: 'AddLocation',
+      },
+      {
         id: 'csv',
         label: 'csv',
-        value: 3,
+        value: 4,
         icon: 'Download',
       },
     ],

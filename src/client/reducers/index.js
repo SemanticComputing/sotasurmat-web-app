@@ -8,6 +8,7 @@ import surmatutFacets from './surmatutFacets';
 import taistelut from './taistelut';
 import taistelutFacets from './taistelutFacets';
 import dates from './dates';
+import places from './places';
 
 const reducer = combineReducers({
   surmatut,
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   clientSideFacetedSearch,
   error,
   dates,
+  places,
   toastr: toastrReducer,
   // browser: createResponsiveStateReducer({
   //   extraSmall: 500,

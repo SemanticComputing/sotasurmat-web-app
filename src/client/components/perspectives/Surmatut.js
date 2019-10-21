@@ -6,8 +6,10 @@ import ResultTable from '../facet_results/ResultTable';
 import Pie from '../facet_results/Pie';
 import LineChart from '../facet_results/LineChart';
 import ExportCSV from '../facet_results/ExportCSV';
+import LeafletMap from '../facet_results/LeafletMap';
 
 let Surmatut = props => {
+  //console.log(props.places)
   return (
     <React.Fragment>
       <PerspectiveTabs
@@ -72,6 +74,23 @@ let Surmatut = props => {
         }
       />
       <Route
+        path={`${props.rootUrl}/surmatut/faceted-search/kartta`}
+        render={() =>
+          <LeafletMap
+            results={props.places.results}
+            pageType='facetResults'
+            facetUpdateID={props.facetData.facetUpdateID}
+            resultClass='deathPlaces'
+            facetClass='surmatut'
+            instance={props.places.instance}
+            fetchResults={props.fetchResults}
+            fetchByURI={props.fetchByURI}
+            fetching={props.places.fetching}
+            mapMode={'cluster'}
+            showInstanceCountInClusters={true}
+          />}
+      />
+      <Route
         path={`${props.rootUrl}/surmatut/faceted-search/csv`}
         render={() =>
           <ExportCSV
@@ -86,6 +105,7 @@ let Surmatut = props => {
 };
 
 Surmatut.propTypes = {
+  places: PropTypes.object.isRequired,
   rootUrl: PropTypes.string.isRequired,
   surmatut: PropTypes.object.isRequired,
   dates: PropTypes.object.isRequired,

@@ -410,6 +410,10 @@ class LeafletMap extends React.Component {
         popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
         popUpTemplate += `<p>Alkupäivä: ${startDate.format('DD.MM.YYYY')}</p>`;
       }
+      if (this.props.resultClass === 'deathPlaces') {
+        popUpTemplate += `<p>Tässä kunnassa kuolleita henkilöitä:</p>`;
+        popUpTemplate += this.createInstanceListing(result.related);
+      }
     }
     catch(TypeError) {
       popUpTemplate += `<p>Error downloading data</p>`;
