@@ -10,29 +10,17 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    height: '100%',
-    display: 'flex',
-    flexGrow: 1,
+    width: '100%',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 72px)'
+    },
+    overflow: 'auto'
   },
   container: {
     marginLeft: 'auto',
     marginRight: 'auto',
     width: 'calc(100% - 50px)',
-    maxWidth: 900,
-    height: '100%',
-    alignItems: 'center',
-  },
-  Chart: {
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-  },
-  legend: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(4),
-  },
-  legendPaper: {
-    height: 275,
-    overflowY: 'auto',
   }
 });
 
@@ -299,6 +287,7 @@ class LineChart extends React.Component {
     let infoString = '';
 
     let results = this.props.data.results;
+    const { classes } = this.props;
     //console.log(this.props)
     if (results == undefined) {
       return (
@@ -343,63 +332,61 @@ class LineChart extends React.Component {
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
     return (
-      <Paper>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              <form>
-                <div className="radio">
-                  <label>
-                    <input type="radio" value="age"
-                      checked={this.state.selectedOption === 'age'}
-                      onChange={this.handleOptionChange} />
+      <Paper className={classes.root}>
+        <div className={classes.container}>
+          <div>
+            <form>
+              <div>
+                <label>
+                  <input type="radio" value="age"
+                    checked={this.state.selectedOption === 'age'}
+                    onChange={this.handleOptionChange} />
                     Ikä
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input type="radio" value="birthYear"
-                      checked={this.state.selectedOption === 'birthYear'}
-                      onChange={this.handleOptionChange} />
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" value="birthYear"
+                    checked={this.state.selectedOption === 'birthYear'}
+                    onChange={this.handleOptionChange} />
                     Syntymävuosi
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input type="radio" value="deathDate"
-                      checked={this.state.selectedOption === 'deathDate'}
-                      onChange={this.handleOptionChange} />
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" value="deathDate"
+                    checked={this.state.selectedOption === 'deathDate'}
+                    onChange={this.handleOptionChange} />
                     Kuolinpäivä
-                  </label>
-                </div>
-              </form>
-
-            </div>
+                </label>
+              </div>
+            </form>
           </div>
         </div>
-        <Chart
-          width={'1200px'}
-          height={'700px'}
-          chartType="LineChart"
-          loader={<div>Loading Chart</div>}
-          data={resultsArray}
-          options={{
-            hAxis: {
-              title: xTitle + '  ' + infoString,
-            },
-            vAxis: {
-              title: yTitle,
-            },
-          }}
-          rootProps={{ 'data-testid': '1' }}
-        />
+        <div className='lineChart'>
+          <Chart
+            chartType="LineChart"
+            loader={<div>Loading Chart</div>}
+            data={resultsArray}
+            height={600}
+            options={{
+              hAxis: {
+                title: xTitle + '  ' + infoString,
+              },
+              vAxis: {
+                title: yTitle,
+              },
+            }}
+            rootProps={{ 'data-testid': '1' }}
+          />
+        </div>
       </Paper>
     );
   }
 }
 
 LineChart.propTypes = {
-  //classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   facetUpdateID: PropTypes.number,
