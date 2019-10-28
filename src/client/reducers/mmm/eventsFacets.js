@@ -3,13 +3,13 @@ import {
   FETCH_FACET_FAILED,
   UPDATE_FACET_VALUES,
   UPDATE_FACET_OPTION,
-} from '../actions';
+} from '../../actions';
 import {
   fetchFacet,
   fetchFacetFailed,
   updateFacetValues,
   updateFacetOption,
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   updatedFacet: null,
@@ -18,7 +18,6 @@ export const INITIAL_STATE = {
   facets: {
     type: {
       id: 'type',
-      label: 'Type',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -37,7 +36,6 @@ export const INITIAL_STATE = {
     },
     manuscript: {
       id: 'manuscript',
-      label: 'Manuscript / Collection label',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -55,7 +53,6 @@ export const INITIAL_STATE = {
     },
     eventTimespan: {
       id: 'eventTimespan',
-      label: 'Date',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -76,7 +73,6 @@ export const INITIAL_STATE = {
     },
     place: {
       id: 'place',
-      label: 'Place',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -94,24 +90,23 @@ export const INITIAL_STATE = {
       type: 'hierarchical',
       priority: 1
     },
-    // source: {
-    //   id: 'source',
-    //   label: 'Source',
-    //   // predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: 'instanceCount',
-    //   sortDirection: 'desc',
-    //   sortButton: false,
-    //   spatialFilterButton: false,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'three',
-    //   filterType: 'uriFilter',
-    //   uriFilter: null,
-    //   priority: 5
-    // },
+    source: {
+      id: 'source',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'three',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 5
+    },
   }
 };
 

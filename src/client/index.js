@@ -9,7 +9,9 @@ import history from './History';
 import reducer from './reducers';
 import rootEpic from './epics';
 import App from './components/App';
-import { updateURL } from './actions';
+import { loadLocales } from './actions';
+//import { updateURL } from './actions';
+
 
 import 'react-sortable-tree/style.css';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
@@ -31,13 +33,18 @@ epicMiddleware.run(rootEpic);
 
 bindActionCreators(toastrActions, store.dispatch);
 
-// update url on app load
-store.dispatch(updateURL({ newURL: window.location.pathname + window.location.search }));
+// init locale
+//const lang = localStorage.getItem('locale') || 'en';
+const lang = 'en';
+store.dispatch(loadLocales(lang));
 
-// update url on back/forward
-window.onpopstate = () => {
-  store.dispatch(updateURL({ newURL: window.location.pathname + window.location.search }));
-};
+// // update url on app load
+// store.dispatch(updateURL({ newURL: window.location.pathname + window.location.search }));
+//
+// // update url on back/forward
+// window.onpopstate = () => {
+//   store.dispatch(updateURL({ newURL: window.location.pathname + window.location.search }));
+// };
 
 render(
   <Provider store={store}>

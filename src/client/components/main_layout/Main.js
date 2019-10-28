@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import classNames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -74,10 +75,10 @@ let Main = props => {
         </div>
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
-              Suomen sotasurmat 1914-1922
+            {intl.get('appTitle.long')}
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" paragraph>
-            Alustava testiversio vuosien 1914-1922 sotasurmien tiedoston käyttöliittymästä.
+            {intl.get('appDescription')}
           </Typography>
         </div>
       </div>
@@ -103,10 +104,10 @@ let Main = props => {
                         />
                         <CardContent className={classes.cardContent}>
                           <Typography gutterBottom variant="h5" component="h2">
-                            {perspective.label}
+                            {intl.get(`perspectives.${perspective.id}.label`)}
                           </Typography>
                           <Typography component="p">
-                            {perspective.mainPageDesc}
+                            {intl.get(`perspectives.${perspective.id}.shortDescription`)}
                           </Typography>
                         </CardContent>
                       </CardActionArea>
@@ -123,10 +124,10 @@ let Main = props => {
                       />
                       <CardContent className={classes.cardContent}>
                         <Typography gutterBottom variant="h5" component="h2">
-                          {perspective.label}
+                          {intl.get(`perspectives.${perspective.id}.label`)}
                         </Typography>
                         <Typography component="p">
-                          {perspective.mainPageDesc}
+                          {intl.get(`perspectives.${perspective.id}.shortDescription`)}
                         </Typography>
                       </CardContent>
                     </CardActionArea>

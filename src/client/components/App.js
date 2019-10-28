@@ -24,6 +24,11 @@ const theme = createMuiTheme({
           marginBottom: 8
         }
       },
+    },
+    MuiButton: {
+      endIcon: {
+        marginLeft: 0
+      }
     }
   }
 });

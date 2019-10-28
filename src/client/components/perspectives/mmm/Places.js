@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../main_layout/PerspectiveTabs';
 import ResultTable from '../facet_results/ResultTable';
-import Export from '../facet_results/Export';
-import BarChart from '../facet_results/BarChart';
 import LeafletMap from '../facet_results/LeafletMap';
+import ExportCSV from '../facet_results/ExportCSV';
 
-let Events = props => {
+let Taistelut = props => {
   return (
     <React.Fragment>
       <PerspectiveTabs
@@ -15,70 +14,61 @@ let Events = props => {
         tabs={props.perspective.tabs}
       />
       <Route
-        exact path='/events/faceted-search'
-        render={() => <Redirect to='/events/faceted-search/table' />}
+        exact path={`${props.rootUrl}/taistelut/faceted-search`}
+        render={() => <Redirect to={`${props.rootUrl}/taistelut/faceted-search/lista`} />}
       />
       <Route
-        path={'/events/faceted-search/table'}
+        path={`${props.rootUrl}/taistelut/faceted-search/lista`}
         render={routeProps =>
           <ResultTable
-            data={props.events}
+            rootUrl={props.rootUrl}
+            data={props.taistelut}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='events'
-            facetClass='events'
+            resultClass='taistelut'
+            facetClass='taistelut'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
+            perspective={props.perspective}
           />
         }
       />
       <Route
-        path={'/events/faceted-search/map'}
+        path={`${props.rootUrl}/taistelut/faceted-search/kartta`}
         render={() =>
           <LeafletMap
-            results={props.places.results}
+            results={props.taistelut.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
-            facet={props.facetData.facets.place}
-            facetID='place'
-            resultClass='placesEvents'
-            facetClass='events'
-            mapMode='cluster'
-            instance={props.places.instance}
+            resultClass='battlePlaces'
+            facetClass='taistelut'
+            instance={props.taistelut.instance}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
-            fetching={props.places.fetching}
-            showInstanceCountInClusters={true}
-            updateFacetOption={props.updateFacetOption}
+            fetching={props.taistelut.fetching}
+            mapMode={'cluster'}
+            showInstanceCountInClusters={false}
           />}
       />
       <Route
-        path={'/events/faceted-search/by_period'}
+        path={`${props.rootUrl}/taistelut/faceted-search/csv`}
         render={() =>
-          <BarChart
-            fetchResults={props.fetchResults}
-            resultClass='eventsByTimePeriod'
-            facetClass='events'
-            data={props.events.results}
-          />}
-      />
-      <Route
-        path={'/events/faceted-search/export'}
-        render={() =>
-          <Export
-            sparqlQuery={props.events.paginatedResultsSparqlQuery}
-            pageType='facetResults'
+          <ExportCSV
+            resultClass='battlePlaces'
+            facetClass='taistelut'
+            facetUpdateID={props.facetData.facetUpdateID}
+            facets={props.facetData.facets}
           />}
       />
     </React.Fragment>
   );
 };
 
-Events.propTypes = {
-  events: PropTypes.object.isRequired,
-  places: PropTypes.object,
+Taistelut.propTypes = {
+  rootUrl: PropTypes.string.isRequired,
+  taistelut: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
@@ -87,8 +77,7 @@ Events.propTypes = {
   updateRowsPerPage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  updateFacetOption: PropTypes.func.isRequired,
   perspective: PropTypes.object.isRequired
 };
 
-export default Events;
+export default Taistelut;

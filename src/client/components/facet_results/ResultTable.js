@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Table from '@material-ui/core/Table';
@@ -25,7 +26,7 @@ const styles = theme => ({
     width: '100%',
     height: 'auto',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 130px)'
+      height: 'calc(100% - 126px)'
     },
     backgroundColor: theme.palette.background.paper,
     borderTop: '1px solid rgba(224, 224, 224, 1);',
@@ -36,7 +37,7 @@ const styles = theme => ({
     borderTop: '1px solid rgba(224, 224, 224, 1);',
   },
   paginationCaption: {
-    minWidth: 94
+    minWidth: 110
   },
   paginationToolbar: {
     [theme.breakpoints.down('xs')]: {
@@ -180,7 +181,7 @@ class ResultTable extends React.Component {
     const { classes } = this.props;
     const expanded = this.state.expandedRows.has(row.id);
     let hasExpandableContent = false;
-    const dataCells = this.props.data.tableColumns.map(column => {
+    const dataCells = this.props.data.properties.map(column => {
       if (column.onlyOnInstancePage) { return null; }
       const columnData = row[column.id] == null ? '-' : row[column.id];
       const isArray = Array.isArray(columnData);
@@ -255,6 +256,7 @@ class ResultTable extends React.Component {
           }}
           count={resultCount}
           rowsPerPage={pagesize}
+          labelRowsPerPage={intl.get('table.rowsPerPage')}
           rowsPerPageOptions={[5, 10, 15, 25, 30, 50, 100]}
           page={page == -1 || resultCount == 0 ? 0 : page}
           onChangePage={this.handleChangePage}
@@ -267,9 +269,10 @@ class ResultTable extends React.Component {
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>
             :
-            <Table className={classes.table}>
+            <Table size='small'>
               <ResultTableHead
-                columns={this.props.data.tableColumns}
+                resultClass={this.props.resultClass}
+                columns={this.props.data.properties}
                 onSortBy={this.handleSortBy}
                 sortBy={sortBy}
                 sortDirection={sortDirection}

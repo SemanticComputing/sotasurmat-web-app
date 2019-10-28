@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { withStyles } from '@material-ui/core/styles';
 import HierarchicalFacet from './HierarchicalFacet';
 import TextFacet from './TextFacet';
@@ -81,9 +82,10 @@ class FacetBar extends React.Component {
   }
 
   renderFacet = (facetID, someFacetIsFetching) => {
-    const { classes, resultTableColumns } = this.props;
+    const { classes, facetClass } = this.props;
     const { facetUpdateID, updatedFacet, updatedFilter, facets } = this.props.facetData;
-    let resultTableColumn = resultTableColumns.find(column => column.id === facetID);
+    const label = intl.get(`perspectives.${facetClass}.properties.${facetID}.label`);
+    const description = intl.get(`perspectives.${facetClass}.properties.${facetID}.description`);
     const facet = facets[facetID];
     let facetComponent = null;
     let isActive = this.state.activeFacets.has(facetID);
@@ -196,13 +198,14 @@ class FacetBar extends React.Component {
         >
           <FacetHeader
             facetID={facetID}
+            facetLabel={label}
             facet={facet}
             isActive={isActive}
             facetClass={this.props.facetClass}
             resultClass={this.props.resultClass}
             fetchFacet={this.props.fetchFacet}
             updateFacetOption={this.props.updateFacetOption}
-            description={resultTableColumn == null ? '' : resultTableColumn.desc}
+            facetDescription={description}
           />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
@@ -256,7 +259,6 @@ FacetBar.propTypes = {
   fetchResultCount: PropTypes.func.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   defaultActiveFacets: PropTypes.instanceOf(Set).isRequired,
-  resultTableColumns: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(FacetBar);

@@ -6,14 +6,14 @@ import {
   FETCH_PAGINATED_RESULTS_FAILED,
   FETCH_BY_URI,
   UPDATE_RESULT_COUNT,
-  UPDATE_RESULTS,
   UPDATE_PAGINATED_RESULTS,
+  UPDATE_RESULTS,
   UPDATE_INSTANCE,
   UPDATE_PAGE,
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
-  UPDATE_PERSPECTIVE_HEADER_EXPANDED,
-} from '../actions';
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED
+} from '../../actions';
 import {
   fetchResults,
   fetchResultsFailed,
@@ -26,14 +26,16 @@ import {
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   results: [],
+  resultsSparqlQuery: null,
   paginatedResults: [],
-  resultCount: 0,
-  resultsUpdateID: -1,
+  paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceSparqlQuery: null,
+  resultCount: 0,
   page: -1,
   pagesize: 10,
   sortBy: null,
@@ -43,11 +45,45 @@ export const INITIAL_STATE = {
   sparqlQuery: null,
   facetedSearchHeaderExpanded: true,
   instancePageHeaderExpanded: true,
-  tableColumns: [
+  properties: [
     {
-      id: 'prefLabel',
-      label: 'Title',
-      desc: 'The name or title of the Expression.',
+      id: 'uri',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
+    {
+      id: 'type',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 200,
+    },
+    {
+      id: 'manuscript',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 200,
+    },
+    {
+      id: 'eventTimespan',
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 200,
+    },
+    {
+      id: 'place',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
@@ -56,37 +92,57 @@ export const INITIAL_STATE = {
       minWidth: 250
     },
     {
-      id: 'language',
-      label: 'Language',
-      desc: `
-        The language of the Expression.
-      `,
+      id: 'surrender',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      onlyOnInstancePage: true,
+      onlyForClass: 'http://erlangen-crm.org/current/E10_Transfer_of_Custody'
+    },
+    {
+      id: 'receiver',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      onlyOnInstancePage: true,
+      onlyForClass: 'http://erlangen-crm.org/current/E10_Transfer_of_Custody'
+    },
+    {
+      id: 'observedOwner',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+      onlyOnInstancePage: true,
+      onlyForClass: 'http://erlangen-crm.org/current/E7_Activity'
+    },
+    {
+      id: 'source',
       valueType: 'object',
       makeLink: true,
       externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 150,
-    },
-    {
-      id: 'source',
-      label: 'Source',
-      desc: `
-        The source database (Schoenberg, Bibale, and Bodleian) that the Expression
-        occurs in. Currently one Expression has always only one dataset as a source.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
       minWidth: 200
     },
-  ]
+  ],
 };
 
-const expressions = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'expressions') {
+const resultClasses = new Set([
+  'events',
+  'eventsByTimePeriod',
+]);
+
+const events = (state = INITIAL_STATE, action) => {
+  if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -119,4 +175,4 @@ const expressions = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default expressions;
+export default events;

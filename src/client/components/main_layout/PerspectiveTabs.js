@@ -1,20 +1,12 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { has } from 'lodash';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
-import RedoIcon from '@material-ui/icons/Redo';
-import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
-import PieChartIcon from '@material-ui/icons/PieChart';
-import LineChartIcon from '@material-ui/icons/ShowChart';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import AddIcon from '@material-ui/icons/Add';
-
+import intl from 'react-intl-universal';
 
 const styles = () => ({
   root: {
@@ -50,37 +42,6 @@ class PerspectiveTabs extends React.Component {
     return value;
   }
 
-  renderIcon = iconString => {
-    let icon = '';
-    switch (iconString) {
-      case 'CalendarViewDay':
-        icon = <CalendarViewDayIcon />;
-        break;
-      case 'AddLocation':
-        icon = <AddLocationIcon />;
-        break;
-      case 'Redo':
-        icon = <RedoIcon />;
-        break;
-      case 'PieChart':
-        icon = <PieChartIcon />;
-        break;
-      case 'LineChart':
-        icon = <LineChartIcon />;
-        break;
-      case 'Person':
-        icon = <PersonIcon />;
-        break;
-      case 'Download':
-        icon = <CloudDownloadIcon />;
-        break;
-      case 'Add':
-        icon = <AddIcon />;
-        break;
-    }
-    return icon;
-  }
-
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -98,8 +59,8 @@ class PerspectiveTabs extends React.Component {
         >
           {tabs.map(tab =>
             <Tab key={tab.id}
-              icon={this.renderIcon(tab.icon)}
-              label={tab.label}
+              icon={tab.icon}
+              label={intl.get(`tabs.${tab.id}`)}
               component={Link}
               to={tab.id}
             />

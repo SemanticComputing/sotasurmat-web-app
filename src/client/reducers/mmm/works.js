@@ -6,14 +6,14 @@ import {
   FETCH_PAGINATED_RESULTS_FAILED,
   FETCH_BY_URI,
   UPDATE_RESULT_COUNT,
-  UPDATE_PAGINATED_RESULTS,
   UPDATE_RESULTS,
+  UPDATE_PAGINATED_RESULTS,
   UPDATE_INSTANCE,
   UPDATE_PAGE,
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED
-} from '../actions';
+} from '../../actions';
 import {
   fetchResults,
   fetchResultsFailed,
@@ -26,7 +26,7 @@ import {
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   results: [],
@@ -45,51 +45,18 @@ export const INITIAL_STATE = {
   sparqlQuery: null,
   facetedSearchHeaderExpanded: true,
   instancePageHeaderExpanded: true,
-  tableColumns: [
+  properties: [
     {
-      id: 'type',
-      label: 'Type',
-      desc: `
-        Distinguish between “Transfer of Custody”, “Production”, and other
-        types of “Activity” events.
-      `,
+      id: 'uri',
       valueType: 'object',
       makeLink: true,
-      externalLink: false,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 200,
-    },
-    {
-      id: 'manuscript',
-      label: 'Manuscript / Collection',
-      desc: `
-        The manuscript or manuscript collection associated with the event.
-      `,
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: false,
-      numberedList: false,
-      minWidth: 200,
-    },
-    {
-      id: 'eventTimespan',
-      label: 'Date',
-      desc: `
-        The date or time period associated with the event.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      externalLink: false,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 200,
+      onlyOnInstancePage: true
     },
     {
-      id: 'place',
-      label: 'Place',
-      desc: 'The specific place associated with the event.',
+      id: 'prefLabel',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
@@ -98,51 +65,62 @@ export const INITIAL_STATE = {
       minWidth: 250
     },
     {
-      id: 'surrender',
-      label: 'Custody surrendered by',
-      desc: 'Custody surrendered by',
+      id: 'author',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 250,
-      onlyOnInstancePage: true,
-      onlyForClass: 'http://erlangen-crm.org/current/E10_Transfer_of_Custody'
+      minWidth: 250
     },
     {
-      id: 'receiver',
-      label: 'Custody received by',
-      desc: 'Custody received by',
+      id: 'language',
       valueType: 'object',
       makeLink: true,
-      externalLink: false,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 250,
-      onlyOnInstancePage: true,
-      onlyForClass: 'http://erlangen-crm.org/current/E10_Transfer_of_Custody'
+      minWidth: 150,
     },
     {
-      id: 'observedOwner',
-      label: 'Observed owner',
-      desc: 'Observed owner',
+      id: 'expression',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150,
+      onlyOnInstancePage: true
+    },
+    {
+      id: 'manuscript',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 250,
-      onlyOnInstancePage: true,
-      onlyForClass: 'http://erlangen-crm.org/current/E7_Activity'
+    },
+    {
+      id: 'productionTimespan',
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250,
+    },
+    {
+      id: 'collection',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 200
     },
     {
       id: 'source',
-      label: 'Source',
-      desc: `
-        The source database (Schoenberg, Bibale, and Bodleian) that provided
-        the information about the event.
-      `,
       valueType: 'object',
       makeLink: true,
       externalLink: true,
@@ -153,13 +131,8 @@ export const INITIAL_STATE = {
   ],
 };
 
-const resultClasses = new Set([
-  'events',
-  'eventsByTimePeriod',
-]);
-
-const events = (state = INITIAL_STATE, action) => {
-  if (resultClasses.has(action.resultClass)) {
+const works = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'works') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -192,4 +165,4 @@ const events = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default events;
+export default works;

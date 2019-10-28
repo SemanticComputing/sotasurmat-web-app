@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,8 +12,11 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
 import TopBarSearchField from './TopBarSearchField';
+import TopBarInfoButton from './TopBarInfoButton';
+import TopBarLanguageButton from './TopBarLanguageButton';
 import Divider from '@material-ui/core/Divider';
 import { has } from 'lodash';
+import Typography from '@material-ui/core/Typography';
 
 // import InfoDialog from './InfoDialog';
 import logo from '../../img/logo_small_fi.gif';
@@ -97,7 +101,7 @@ class TopBar extends React.Component {
           rel='noopener noreferrer'
         >
           <MenuItem>
-            {perspective.label.toUpperCase()}
+            {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
           </MenuItem>
         </a>
       );
@@ -108,7 +112,7 @@ class TopBar extends React.Component {
           component={this.AdapterLink}
           to={`/${perspective.id}/faceted-search`}
         >
-          {perspective.label.toUpperCase()}
+          {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
       );
     }
@@ -126,7 +130,7 @@ class TopBar extends React.Component {
           <Button
             className={this.props.classes.appBarButton}
           >
-            {perspective.label}
+            {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
           </Button>
         </a>
       );
@@ -140,7 +144,7 @@ class TopBar extends React.Component {
           isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/${perspective.id}`)}
           activeClassName={this.props.classes.appBarButtonActive}
         >
-          {perspective.label}
+          {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </Button>
       );
     }
@@ -200,10 +204,17 @@ class TopBar extends React.Component {
           Tietoa projektista
         </MenuItem>
       </a>
+      <MenuItem
+        key='info'
+        component={this.AdapterLink}
+        to={`/instructions`}
+      >
+        {intl.get('topBar.instructions').toUpperCase()}
+      </MenuItem>
     </Menu>
 
   render() {
-    const { classes, perspectives } = this.props;
+    const { classes, perspectives, currentLocale, availableLocales } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="absolute">
@@ -213,9 +224,9 @@ class TopBar extends React.Component {
               component={this.AdapterLink}
               to={this.props.rootUrl}
             >
-              <div className={classes.logoContainer}>
-                <img src={logo} alt="Logo"></img>
-              </div>
+              <Typography className={classes.title} variant="h6" color="inherit">
+                {intl.get('appTitle.short')}
+              </Typography>
             </Button>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
@@ -233,6 +244,7 @@ class TopBar extends React.Component {
               <Button className={classes.appBarButton} aria-haspopup="true" onClick={this.handleInfoMenuOpen}>
                 Info
               </Button>
+              <TopBarInfoButton />
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
@@ -240,8 +252,13 @@ class TopBar extends React.Component {
                 isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/ohjeet`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
-                Ohjeet
+                {intl.get('topBar.instructions')}
               </Button>
+              { /* <TopBarLanguageButton
+                currentLocale={currentLocale}
+                availableLocales={availableLocales}
+                loadLocales={this.props.loadLocales}
+              /> */ }
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
@@ -252,7 +269,6 @@ class TopBar extends React.Component {
           </Toolbar>
         </AppBar>
         {this.renderMobileMenu(perspectives)}
-        {this.renderInfoMenu()}
       </div>
     );
   }
@@ -263,7 +279,10 @@ TopBar.propTypes = {
   classes: PropTypes.object.isRequired,
   fetchResultsClientSide: PropTypes.func.isRequired,
   clearResults: PropTypes.func.isRequired,
-  perspectives: PropTypes.array.isRequired
+  loadLocales: PropTypes.func.isRequired,
+  perspectives: PropTypes.array.isRequired,
+  currentLocale: PropTypes.string.isRequired,
+  availableLocales: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(TopBar);

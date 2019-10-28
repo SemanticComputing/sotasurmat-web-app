@@ -12,8 +12,8 @@ import {
   UPDATE_PAGE,
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
-  UPDATE_PERSPECTIVE_HEADER_EXPANDED
-} from '../actions';
+  UPDATE_PERSPECTIVE_HEADER_EXPANDED,
+} from '../../actions';
 import {
   fetchResults,
   fetchResultsFailed,
@@ -26,16 +26,14 @@ import {
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   results: [],
-  resultsSparqlQuery: null,
   paginatedResults: [],
-  paginatedResultsSparqlQuery: null,
-  instance: null,
-  instanceSparqlQuery: null,
   resultCount: 0,
+  resultsUpdateID: -1,
+  instance: null,
   page: -1,
   pagesize: 10,
   sortBy: null,
@@ -45,54 +43,27 @@ export const INITIAL_STATE = {
   sparqlQuery: null,
   facetedSearchHeaderExpanded: true,
   instancePageHeaderExpanded: true,
-  tableColumns: [
+  properties: [
     {
-      id: 'prefLabel',
-      label: 'Title',
-      desc: 'The name or title of the Work.',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 250
-    },
-    {
-      id: 'author',
-      label: 'Possible author',
-      desc: `
-        The author(s) associated with the Work. Because of the structure of
-        entries in the Schoenberg Database, the authors shown as being
-        associated with a Work may actually be associated with other
-        Works in the same manuscript instead.
-      `,
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 250
-    },
-    {
-      id: 'language',
-      label: 'Language',
-      desc: `
-        The language in which a Work is written in the manuscript
-        (i.e., an “Expression” of a Work). One manuscript may contain multiple languages.
-      `,
+      id: 'uri',
       valueType: 'object',
       makeLink: true,
       externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 150,
+      onlyOnInstancePage: true
+    },
+    {
+      id: 'prefLabel',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
     },
     {
       id: 'manuscript',
-      label: 'Manuscript',
-      desc: `
-        The specific manuscript(s) in which the Work can be found.
-      `,
       valueType: 'object',
       makeLink: true,
       externalLink: false,
@@ -101,68 +72,37 @@ export const INITIAL_STATE = {
       minWidth: 250,
     },
     {
-      id: 'productionTimespan',
-      label: 'Manuscript production date',
-      desc: `
-        The date when the manuscript(s) in which the Work can be found were written.
-        Multiple production dates may appear for a single manuscript,
-        when there are discrepancies between the contributing data source
-        or when the precise date is uncertain.
-      `,
+      id: 'owner',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
+      id: 'place',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 200,
+    },
+    {
+      id: 'source',
       valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 250,
-    },
-    {
-      id: 'collection',
-      label: 'Collection',
-      desc: `
-        The specific collection(s) of manuscripts in which a Work can be found.
-      `,
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
       minWidth: 200
     },
-    {
-      id: 'material',
-      label: 'Material',
-      desc: `
-        The support material of each manuscript in which the Work occurs.
-      `,
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 150,
-    },
-    {
-      id: 'source',
-      label: 'Source',
-      desc: `
-        The source database (Schoenberg, Bibale, and Bodleian) that the Work
-        occurs in. Currently one Work has always only one dataset as a source.
-        Click on the result table link to view the original record on the
-        source’s website.
-      `,
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 200
-    },
-  ],
+  ]
 };
 
-const works = (state = INITIAL_STATE, action) => {
-  if (action.resultClass === 'works') {
+const collections = (state = INITIAL_STATE, action) => {
+  if (action.resultClass === 'collections') {
     switch (action.type) {
       case FETCH_RESULTS:
       case FETCH_PAGINATED_RESULTS:
@@ -195,4 +135,4 @@ const works = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default works;
+export default collections;

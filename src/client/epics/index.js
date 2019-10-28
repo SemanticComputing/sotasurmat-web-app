@@ -9,6 +9,10 @@ import {
   catchError
 } from 'rxjs/operators';
 import { combineEpics, ofType } from 'redux-observable';
+import intl from 'react-intl-universal';
+import localeEN from '../translations/sotasurmat/localeEN';
+import localeFI from '../translations/sotasurmat/localeFI';
+import localeSV from '../translations/sotasurmat/localeSV';
 import { stateToUrl } from '../helpers/helpers';
 import {
   FETCH_RESULT_COUNT,
@@ -22,11 +26,13 @@ import {
   FETCH_BY_URI_FAILED,
   FETCH_FACET,
   FETCH_FACET_FAILED,
+  LOAD_LOCALES,
   updateResultCount,
   updatePaginatedResults,
   updateResults,
   updateInstance,
   updateFacetValues,
+  updateLocale
 } from '../actions';
 
 const rootDir = '/sotasurmat';
@@ -38,6 +44,12 @@ export const apiUrl = (process.env.NODE_ENV === 'development')
 const backendErrorText = `Ei pystytty yhdistämään tietokantaan.
 Sivusto toimii oikein vain http yhteyden kautta ja https osoitteen alussa aiheuttaa tämän virheen.
 Datan päivitys saattaa myös olla käynnissä.`;
+
+export const availableLocales = {
+  'en': localeEN,
+  'fi': localeFI,
+  'sv': localeSV
+};
 
 const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_PAGINATED_RESULTS),
@@ -235,6 +247,18 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
   })
 );
 
+const loadLocalesEpic = action$ => action$.pipe(
+  ofType(LOAD_LOCALES),
+  // https://thecodebarbarian.com/a-beginners-guide-to-redux-observable
+  mergeMap(async action => {
+    await intl.init({
+      currentLocale: action.currentLanguage,
+      locales: availableLocales
+    });
+    return updateLocale({ language: action.currentLanguage });
+  })
+);
+
 const rootEpic = combineEpics(
   fetchPaginatedResultsEpic,
   fetchResultsEpic,
@@ -242,6 +266,7 @@ const rootEpic = combineEpics(
   fetchResultsClientSideEpic,
   fetchByURIEpic,
   fetchFacetEpic,
+  loadLocalesEpic
 );
 
 export default rootEpic;

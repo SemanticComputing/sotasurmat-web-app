@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { has } from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import ActiveFilters from './ActiveFilters';
@@ -68,6 +69,8 @@ class FacetInfo extends React.Component {
         integerFilters[key] = value.integerFilter;
       }
     }
+
+    //<Typography variant="h6">{intl.get('facetBar.results')}: {resultCount} {intl.get(`perspectives.${resultClass}.facetResultsType`)}</Typography>
     return (
       <div className={classes.root}>
         { this.props.fetchingResultCount ?
@@ -90,7 +93,6 @@ class FacetInfo extends React.Component {
             <Typography variant="h6">Aktiiviset suodattimet:</Typography>
             <div className={classes.textContainer}>
               <ActiveFilters
-                facets={facets}
                 facetClass={facetClass}
                 uriFilters={uriFilters}
                 spatialFilters={spatialFilters}
@@ -105,6 +107,7 @@ class FacetInfo extends React.Component {
             <Divider className={classes.facetInfoDivider} />
           </React.Fragment>
         }
+        <Typography variant="h6">{intl.get('facetBar.narrowDownBy')}:</Typography>
       </div>
     );
   }

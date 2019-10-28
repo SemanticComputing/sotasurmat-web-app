@@ -2,13 +2,14 @@ import { combineReducers } from 'redux';
 import {reducer as toastrReducer} from 'react-redux-toastr';
 //import {createResponsiveStateReducer} from 'redux-responsive';
 import error from './error';
-import clientSideFacetedSearch from './clientSideFacetedSearch';
+import clientSideFacetedSearch from './mmm/clientSideFacetedSearch';
 import surmatut from './surmatut';
 import surmatutFacets from './surmatutFacets';
 import taistelut from './taistelut';
 import taistelutFacets from './taistelutFacets';
 import dates from './dates';
 import places from './places';
+import options from './options';
 
 const reducer = combineReducers({
   surmatut,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   taistelut,
   taistelutFacets,
   clientSideFacetedSearch,
+  options,
   error,
   dates,
   places,

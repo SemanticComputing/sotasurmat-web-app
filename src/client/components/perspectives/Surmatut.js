@@ -9,7 +9,7 @@ import ExportCSV from '../facet_results/ExportCSV';
 import LeafletMap from '../facet_results/LeafletMap';
 
 let Surmatut = props => {
-  //console.log(props.places)
+//console.log(props)
   return (
     <React.Fragment>
       <PerspectiveTabs

@@ -27,9 +27,15 @@ import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotas
 //import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 //import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
+import TextPage from '../components/main_layout/TextPage';
+import {
+  perspectiveConfig,
+  aboutTheProject,
+  instructions
+} from '../configs/sotasurmat/PerspectiveConfig';
+import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages';
 import InfoHeader from '../components/main_layout/InfoHeader';
 import { has } from 'lodash';
-//import { urlToState } from '../helpers/helpers';
 import {
   fetchResultCount,
   fetchPaginatedResults,
@@ -44,6 +50,7 @@ import {
   updateRowsPerPage,
   showError,
   updatePerspectiveHeaderExpanded,
+  loadLocales
 } from '../actions';
 
 const styles = theme => ({
@@ -103,27 +110,27 @@ const styles = theme => ({
   perspectiveContainer: {
     height: 'auto',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 141px)',
+      height: 'calc(100% - 130px)',
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       marginTop: 133, // app bar + header
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: 141, // app bar + header
+      marginTop: 130, // app bar + header
     }
   },
   perspectiveContainerHeaderExpanded: {
     height: 'auto',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 264px)',
+      height: 'calc(100% - 316px)',
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      marginTop: 256, // app bar + header
+      marginTop: 308, // app bar + header
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: 264, // app bar + header
+      marginTop: 316, // app bar + header
     }
   },
   // perspective container is divided into two columns:
@@ -150,27 +157,27 @@ const styles = theme => ({
   instancePageContainer: {
     height: 'auto',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 181px)',
+      height: 'calc(100% - 170px)',
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      marginTop: 173,
+      marginTop: 164,
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: 181,
+      marginTop: 170,
     }
   },
   instancePageContainerHeaderExpanded: {
     height: 'auto',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 304px)',
+      height: 'calc(100% - 354px)',
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      marginTop: 296,
+      marginTop: 348,
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: 304,
+      marginTop: 354,
     }
   },
   instancePageContent: {
@@ -238,8 +245,6 @@ let SemanticPortal = props => {
     }
     return perspectiveElement;
   };
-
-  // ${rootUrl}
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
@@ -250,14 +255,17 @@ let SemanticPortal = props => {
             search={props.clientSideFacetedSearch}
             fetchResultsClientSide={props.fetchResultsClientSide}
             clearResults={props.clearResults}
-            perspectives={perspectiveArr}
+            perspectives={perspectiveConfig}
+            currentLocale={props.options.currentLocale}
+            availableLocales={props.options.availableLocales}
+            loadLocales={props.loadLocales}
           />
           <Route
             exact path={`${rootUrl}/`}
             render={() =>
               <Grid container spacing={1} className={classes.mainContainerSotasurmat}>
                 <Main
-                  perspectives={perspectiveArr}
+                  perspectives={perspectiveConfig}
                   rootUrl={rootUrl}
                 />
                 <Footer />
@@ -279,7 +287,7 @@ let SemanticPortal = props => {
             }
           />
           { /* routes for perspectives that don't have an external url */ }
-          {perspectiveArr.map(perspective => {
+          {perspectiveConfig.map(perspective => {
             if (!has(perspective, 'externalUrl')) {
               return(
                 <React.Fragment key={perspective.id}>
@@ -290,11 +298,9 @@ let SemanticPortal = props => {
                         <React.Fragment>
                           <InfoHeader
                             resultClass={perspective.id}
-                            pageType='facetedSearch'
+                            pageType='facetResults'
                             expanded={props[perspective.id].facetedSearchHeaderExpanded}
                             updateExpanded={props.updatePerspectiveHeaderExpanded}
-                            title={perspective.label}
-                            description={perspective.perspectiveDesc}
                             descriptionHeight={perspective.perspectiveDescHeight}
                           />
                           <Grid container spacing={1} className={props[perspective.id].facetedSearchHeaderExpanded
@@ -312,7 +318,6 @@ let SemanticPortal = props => {
                                 fetchResultCount={props.fetchResultCount}
                                 updateFacetOption={props.updateFacetOption}
                                 defaultActiveFacets={perspective.defaultActiveFacets}
-                                resultTableColumns={props[perspective.id].tableColumns}
                               />
                             </Grid>
                             <Grid item xs={12} md={9} className={classes.resultsContainer}>
@@ -334,8 +339,6 @@ let SemanticPortal = props => {
                             instanceData={props[perspective.id].instance}
                             expanded={props[perspective.id].instancePageHeaderExpanded}
                             updateExpanded={props.updatePerspectiveHeaderExpanded}
-                            title={perspective.instancePageLabel}
-                            description={perspective.instancePageDesc}
                             descriptionHeight={perspective.perspectiveDescHeight}
                           />
                           <Grid container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
@@ -427,6 +430,7 @@ const mapStateToProps = state => {
     taistelut: state.taistelut,
     taistelutFacets: state.taistelutFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
+    options: state.options,
     error: state.error
   //browser: state.browser,
   };
@@ -445,13 +449,15 @@ const mapDispatchToProps = ({
   updatePage,
   updateRowsPerPage,
   showError,
-  updatePerspectiveHeaderExpanded
+  updatePerspectiveHeaderExpanded,
+  loadLocales
 });
 
 SemanticPortal.propTypes = {
   places: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  options: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
   // browser: PropTypes.object.isRequired,
   surmatut: PropTypes.object.isRequired,
@@ -472,7 +478,8 @@ SemanticPortal.propTypes = {
   fetchFacet: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired,
   dates: PropTypes.object.isRequired,
-  updatePerspectiveHeaderExpanded: PropTypes.func.isRequired
+  updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
+  loadLocales: PropTypes.func.isRequired,
 };
 
 export default compose(

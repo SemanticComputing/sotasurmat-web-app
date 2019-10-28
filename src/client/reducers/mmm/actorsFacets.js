@@ -3,13 +3,13 @@ import {
   FETCH_FACET_FAILED,
   UPDATE_FACET_VALUES,
   UPDATE_FACET_OPTION,
-} from '../actions';
+} from '../../actions';
 import {
   fetchFacet,
   fetchFacetFailed,
   updateFacetValues,
   updateFacetOption,
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   updatedFacet: null,
@@ -18,13 +18,10 @@ export const INITIAL_STATE = {
   facets: {
     prefLabel: {
       id: 'prefLabel',
-      label: 'Name',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
-      //sortBy: 'instanceCount',
-      //sortDirection: 'desc',
       sortButton: false,
       spatialFilterButton: false,
       isFetching: false,
@@ -36,7 +33,6 @@ export const INITIAL_STATE = {
     },
     type: {
       id: 'type',
-      label: 'Type',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -55,7 +51,6 @@ export const INITIAL_STATE = {
     },
     birthDateTimespan: {
       id: 'birthDateTimespan',
-      label: 'Birth / formation date',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -76,7 +71,6 @@ export const INITIAL_STATE = {
     },
     deathDateTimespan: {
       id: 'deathDateTimespan',
-      label: 'Death / dissolution date',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -97,7 +91,6 @@ export const INITIAL_STATE = {
     },
     place: {
       id: 'place',
-      label: 'Activity location',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -117,7 +110,6 @@ export const INITIAL_STATE = {
     },
     source: {
       id: 'source',
-      label: 'Source',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
