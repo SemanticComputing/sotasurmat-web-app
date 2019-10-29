@@ -34,76 +34,21 @@ export default {
     of: 'of'
   },
   perspectives: {
-    sotasurmat: {
+    surmatut: {
       label: 'War Victims',
       facetResultsType: 'people',
       shortDescription: 'people',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to access data related to physical manuscript objects.
-          If two or more source datasets include the same manuscript and
-          this has been verified, the information from the source datasets has been merged
-          into one manuscript. See <a href="/instructions">instructions</a> for using the
-          filters. The result view can be selected using the tabs:
+          War Victims
         </p>
-        <ul class="MuiTypography-root MuiTypography-body1">
-          <li>
-            <strong>TABLE</STRONG> view includes all manuscripts in
-            the MMM data. One table row is equivalent to one manuscript.
-          </li>
-          <li>
-            <strong>PRODUCTION PLACES</STRONG> view visualizes the connection
-            between manuscripts and the places where they were produced.
-          </li>
-          <li>
-            <strong>MIGRATIONS</strong> view visualizes the migration of a
-            manuscript from place of production to its most recently observed location.
-          </li>
-          <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table view into YASGUI query editor.
-          </li>
-        </ul>
       `,
       instancePage: {
-        label: 'Manuscript',
+        label: 'Person',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that link
-            to this Manuscript. The data included in this summary reflects only those data
-            points used in the MMM interface. Click the Open in Linked Data Browser button to
-            view the complete set of classes and properties linked to this record. To cite this
-            record, use its url.
+            Data related to a var wictim
           </p>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            MMM’s Manuscript entity corresponds to FRBRoo’s Manifestation Singleton, defined as
-            "physical objects that each carry an instance of [an Expression], and that were
-            produced as unique objects…" The various types of records that describe manuscripts
-            in each of the three contributing MMM datasets have been mapped to this entity.
-          </p>
-          <h6 class="MuiTypography-root MuiTypography-h6">
-            Manuscript labels
-          </h6>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            If the Bibale or Oxford databases reference a shelf mark for the manuscript,
-            that information will appear as its label. Otherwise, an SDBM ID number will serve
-            as its label. SDBM ID numbers contain prefixes that indicate different things about
-            the type of record they contain:
-          </p>
-          <ul class="MuiTypography-root MuiTypography-body1">
-            <li>
-              SDBM_MS: SDBM Manuscript Record, which aggregates the data of two or more SDBM
-              Entries. Each Entry represents a different observation of a manuscript at a different
-              point in time, derived from various sources.
-            </li>
-            <li>
-              SDBM_MS_orphan: a single Entry in the SDBM, meaning it has not been linked to any
-              other Entries and therefore has no SDBM Manuscript Record.
-            </li>
-            <li>
-              SDBM_MS_part: a record identified as a fragment of a larger manuscript.
-            </li>
-          </ul>
         `
       },
       properties: {
@@ -588,44 +533,21 @@ export default {
         }
       }
     },
-    places: {
-      label: 'Places',
-      facetResultsType: 'places',
-      shortDescription: 'Places related to manuscripts and works.',
+    taistelut: {
+      label: 'Battles',
+      facetResultsType: 'battles',
+      shortDescription: 'Battles.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to access data related to places named in the source datasets
-          (Schoenberg, Bibale, and Bodleian). The places have been linked to Getty Thesaurus
-          of Geographic Names when possible. If two or more source datasets include the same
-          Place and this has been verified, the information from the source datasets has been
-          merged into one Place. See <a href="/instructions">instructions</a> for using the filters.
-          The result view can be selected using the tabs:
+          Battles
         </p>
-        <ul class="MuiTypography-root MuiTypography-body1">
-          <li>
-            <strong>TABLE</STRONG> view includes all Places in the MMM data.
-          </li>
-          <li>
-            <strong>MAP</STRONG> view shows all Places that have coordinates.
-          </li>
-          <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table view into YASGUI query editor.
-          </li>
-        </ul>
+
       `,
       instancePage: {
-        label: 'Place',
+        label: 'Battle',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that link
-            to this Place. The data included in this summary reflects only those data points
-            used in the MMM interface. Click the Open in Linked Data Browser button to
-            view the complete set of classes and properties linked to this record. To cite this record, use its url.
-          </p>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            MMM utilizes the Getty Thesaurus of Geographic Names as its hierarchy for geographic data.
-            Coordinate data is approximate for locations such as counties, regions, and nations.
+            Battle page description
           </p>
         `
       },
@@ -637,7 +559,7 @@ export default {
         prefLabel: {
           label: 'Name',
           description: `
-            The name of the place.
+            The name of the battle.
           `
         },
         placeType: {
@@ -683,63 +605,6 @@ export default {
             The source dataset (Schoenberg, Bibale, and Bodleian) and the place
             authority (Getty Thesaurus of Geographic Names and GeoNames)
             contributing the information on the place.
-          `
-        }
-      }
-    },
-    collections: {
-      label: '',
-      facetResultsType: '',
-      shortDescription: '',
-      longDescription: `
-      `,
-      instancePage: {
-        label: 'Collection',
-        description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points
-            that link to this Collection. The data included in this summary reflects
-            only those data points used in the MMM interface. Click the Open in
-            Linked Data Browser button to view the complete set of classes and
-            properties linked to this record. To cite this record, use its url.
-          </p>
-        `
-      },
-      properties: {
-        uri: {
-          label: 'URI',
-          description: 'Uniform Resource Identifier'
-        },
-        prefLabel: {
-          label: 'Name',
-          description: `
-            The name or title of the Collection.
-          `
-        },
-        manuscript: {
-          label: 'Manuscript',
-          description:  `
-            The manuscript(s) that have been a part of the collection at some
-            point in time.
-          `
-        },
-        owner: {
-          label: 'Owner',
-          description: `
-            Former or current owners (individual or institutional).
-          `
-        },
-        place: {
-          label: 'Place',
-          description: `
-            Location of the collection at some point during its existence
-          `
-        },
-        source: {
-          label: 'Source',
-          description: `
-            The source database (Schoenberg, Bibale, and Bodleian) that the Collection
-            occurs in. Currently one Collection has always only one dataset as a source.
           `
         }
       }

@@ -224,9 +224,9 @@ class TopBar extends React.Component {
               component={this.AdapterLink}
               to={this.props.rootUrl}
             >
-              <Typography className={classes.title} variant="h6" color="inherit">
-                {intl.get('appTitle.short')}
-              </Typography>
+              <div className={classes.logoContainer}>
+                <img src={logo} alt="Logo"></img>
+              </div>
             </Button>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
@@ -254,11 +254,11 @@ class TopBar extends React.Component {
               >
                 {intl.get('topBar.instructions')}
               </Button>
-              { /* <TopBarLanguageButton
+              <TopBarLanguageButton
                 currentLocale={currentLocale}
                 availableLocales={availableLocales}
                 loadLocales={this.props.loadLocales}
-              /> */ }
+              />
             </div>
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">

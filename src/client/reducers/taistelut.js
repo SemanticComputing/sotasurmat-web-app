@@ -49,7 +49,7 @@ export const INITIAL_STATE = {
   sparqlQuery: null,
   facetedSearchHeaderExpanded: false,
   instancePageHeaderExpanded: false,
-  tableColumns: [
+  properties: [
     {
       id: 'prefLabel',
       label: 'Taistelun nimi',

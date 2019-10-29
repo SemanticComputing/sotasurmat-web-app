@@ -70,13 +70,13 @@ class TopBarInfoButton extends React.Component {
           </MenuItem>
           <a className={classes.link}
             key={1}
-            href='http://mappingmanuscriptmigrations.org'
+            href='https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/'
             target='_blank'
             rel='noopener noreferrer'
           >
-            <MenuItem onClick={this.handleInfoMenuClose}>
+            {/*<MenuItem onClick={this.handleInfoMenuClose}>
               {intl.get('topBar.info.blog')}
-            </MenuItem>
+            </MenuItem> */}
           </a>
         </Menu>
       </React.Fragment>

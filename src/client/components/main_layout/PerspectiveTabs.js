@@ -1,12 +1,20 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
+import RedoIcon from '@material-ui/icons/Redo';
+import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
+import PieChartIcon from '@material-ui/icons/PieChart';
+import LineChartIcon from '@material-ui/icons/ShowChart';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import AddIcon from '@material-ui/icons/Add';
 import intl from 'react-intl-universal';
+
 
 const styles = () => ({
   root: {
@@ -47,6 +55,7 @@ class PerspectiveTabs extends React.Component {
   };
 
   render() {
+    console.log(this.props)
     const { classes, tabs } = this.props;
     return (
       <Paper className={classes.root}>
