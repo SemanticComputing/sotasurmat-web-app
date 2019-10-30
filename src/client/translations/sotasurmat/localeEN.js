@@ -12,7 +12,8 @@ export default {
     info: {
       info: 'Info',
       blog: 'Blog',
-      aboutTheProject: 'About the project'
+      aboutTheProject: 'About the project',
+      oldPage: 'Old application',
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'instructions'

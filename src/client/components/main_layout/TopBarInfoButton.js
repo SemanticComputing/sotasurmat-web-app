@@ -60,23 +60,33 @@ class TopBarInfoButton extends React.Component {
           open={Boolean(this.state.anchorEl)}
           onClose={this.handleInfoMenuClose}
         >
-          <MenuItem
+          {/*<MenuItem
             key={0}
             component={this.AdapterLink}
             to={`/about`}
             onClick={this.handleInfoMenuClose}
           >
             {intl.get('topBar.info.aboutTheProject')}
-          </MenuItem>
+          </MenuItem>*/}
+          <a className={classes.link}
+            key={0}
+            href='http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <MenuItem onClick={this.handleInfoMenuClose}>
+              {intl.get('topBar.info.oldPage')}
+            </MenuItem>
+          </a>
           <a className={classes.link}
             key={1}
             href='https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/'
             target='_blank'
             rel='noopener noreferrer'
           >
-            {/*<MenuItem onClick={this.handleInfoMenuClose}>
-              {intl.get('topBar.info.blog')}
-            </MenuItem> */}
+            <MenuItem onClick={this.handleInfoMenuClose}>
+              {intl.get('topBar.info.aboutTheProject')}
+            </MenuItem>
           </a>
         </Menu>
       </React.Fragment>

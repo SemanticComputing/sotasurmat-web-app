@@ -55,7 +55,7 @@ class PerspectiveTabs extends React.Component {
   };
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     const { classes, tabs } = this.props;
     return (
       <Paper className={classes.root}>

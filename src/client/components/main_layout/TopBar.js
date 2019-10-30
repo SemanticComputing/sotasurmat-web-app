@@ -1,10 +1,11 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-//import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,9 +17,6 @@ import TopBarInfoButton from './TopBarInfoButton';
 import TopBarLanguageButton from './TopBarLanguageButton';
 import Divider from '@material-ui/core/Divider';
 import { has } from 'lodash';
-import Typography from '@material-ui/core/Typography';
-
-// import InfoDialog from './InfoDialog';
 import logo from '../../img/logo_small_fi.gif';
 
 const styles = theme => ({
@@ -53,16 +51,16 @@ const styles = theme => ({
   appBarButtonActive: {
     border: '1px solid white'
   },
+  appBarDivider: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    borderLeft: '2px solid white'
+  },
   logoContainer: {
     display: 'flex',
     alignItems: 'left',
     justifyContent: 'left'
   },
-  appBarDivider: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    borderLeft: '2px solid white'
-  }
 });
 
 class TopBar extends React.Component {
@@ -161,53 +159,33 @@ class TopBar extends React.Component {
       {perspectives.map(perspective => this.renderMobileMenuItem(perspective))}
       <Divider />
       <MenuItem
-        key='palaute'
+        key='feedback'
         component={this.AdapterLink}
-        to={`${this.props.rootUrl}/palaute`}
+        to={`${this.props.rootUrl}/feedback`}
       >
-        PALAUTE
+        {intl.get('topBar.feedback').toUpperCase()}
       </MenuItem>
       <MenuItem
-        key='info'
-        component={this.AdapterLink}
-        to={`${this.props.rootUrl}/ohjeet`}
-      >
-        OHJEET
-      </MenuItem>
-    </Menu>
-
-  renderInfoMenu = () =>
-    <Menu
-      anchorEl={this.state.infoAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={Boolean(this.state.infoAnchorEl)}
-      onClose={this.handleInfoMenuClose}
-    >
-      <a className={this.props.classes.link}
         key={0}
-        href='http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main'
-        target='_blank'
-        rel='noopener noreferrer'
+        component={this.AdapterLink}
+        to={`${this.props.rootUrl}/about`}
       >
-        <MenuItem>
-        Vanha sivusto
-        </MenuItem>
-      </a>
+        {intl.get('topBar.info.aboutTheProject').toUpperCase()}
+      </MenuItem>
       <a className={this.props.classes.link}
         key={1}
-        href='https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/'
+        href='http://mappingmanuscriptmigrations.org'
         target='_blank'
         rel='noopener noreferrer'
       >
         <MenuItem>
-          Tietoa projektista
+          {intl.get('topBar.info.blog').toUpperCase()}
         </MenuItem>
       </a>
       <MenuItem
         key='info'
         component={this.AdapterLink}
-        to={`/instructions`}
+        to={`${this.props.rootUrl}/instructions`}
       >
         {intl.get('topBar.instructions').toUpperCase()}
       </MenuItem>
@@ -218,7 +196,7 @@ class TopBar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="absolute">
-          <Toolbar style={{ paddingLeft: 2 }}>
+          <Toolbar>
             <Button
               className={classes.appBarButton}
               component={this.AdapterLink}
@@ -228,6 +206,10 @@ class TopBar extends React.Component {
                 <img src={logo} alt="Logo"></img>
               </div>
             </Button>
+            {/*<TopBarSearchField
+              fetchResultsClientSide={this.props.fetchResultsClientSide}
+              clearResults={this.props.clearResults}
+            />*/}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               {perspectives.map((perspective, index) => this.renderDesktopTopMenuItem(perspective, index))}
@@ -235,21 +217,18 @@ class TopBar extends React.Component {
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
-                to={`${this.props.rootUrl}/palaute`}
-                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/palaute`)}
+                to={`${this.props.rootUrl}/feedback`}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/feedback`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
-                Palaute
-              </Button>
-              <Button className={classes.appBarButton} aria-haspopup="true" onClick={this.handleInfoMenuOpen}>
-                Info
+                {intl.get('topBar.feedback')}
               </Button>
               <TopBarInfoButton />
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
-                to={`${this.props.rootUrl}/ohjeet`}
-                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/ohjeet`)}
+                to={`${this.props.rootUrl}/instructions`}
+                isActive={(match, location) => location.pathname.startsWith(`/instructions`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 {intl.get('topBar.instructions')}
@@ -265,7 +244,6 @@ class TopBar extends React.Component {
                 <MoreIcon />
               </IconButton>
             </div>
-
           </Toolbar>
         </AppBar>
         {this.renderMobileMenu(perspectives)}

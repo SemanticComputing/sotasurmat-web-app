@@ -8,11 +8,12 @@ export default {
     Alustava testiversio vuosien 1914-1922 sotasurmien tiedoston käyttöliittymästä.
   `,
   topBar: {
-    feedback: 'feedback',
+    feedback: 'palaute',
     info: {
       info: 'Info',
       blog: 'Blog',
-      aboutTheProject: 'About the project'
+      oldPage: 'Vanha sovellus',
+      aboutTheProject: 'Tietoa projektista'
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'ohjeet'
