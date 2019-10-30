@@ -29,7 +29,7 @@ export const perspectiveArr = [
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
-        id: 'lista',
+        id: 'table',
         label: 'Lista',
         value: 0,
         icon: 'CalendarViewDay',

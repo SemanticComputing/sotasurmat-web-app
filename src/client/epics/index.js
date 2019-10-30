@@ -46,8 +46,8 @@ Sivusto toimii oikein vain http yhteyden kautta ja https osoitteen alussa aiheut
 Datan päivitys saattaa myös olla käynnissä.`;
 
 export const availableLocales = {
-  'en': localeEN,
   'fi': localeFI,
+  'en': localeEN,
   'sv': localeSV
 };
 

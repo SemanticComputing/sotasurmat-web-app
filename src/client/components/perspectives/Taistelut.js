@@ -15,10 +15,10 @@ let Taistelut = props => {
       />
       <Route
         exact path={`${props.rootUrl}/taistelut/faceted-search`}
-        render={() => <Redirect to={`${props.rootUrl}/taistelut/faceted-search/lista`} />}
+        render={() => <Redirect to={`${props.rootUrl}/taistelut/faceted-search/table`} />}
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/lista`}
+        path={`${props.rootUrl}/taistelut/faceted-search/table`}
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
@@ -36,7 +36,7 @@ let Taistelut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/kartta`}
+        path={`${props.rootUrl}/taistelut/faceted-search/map`}
         render={() =>
           <LeafletMap
             results={props.taistelut.results}

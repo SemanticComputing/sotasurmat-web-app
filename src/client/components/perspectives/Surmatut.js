@@ -18,10 +18,10 @@ let Surmatut = props => {
       />
       <Route
         exact path={`${props.rootUrl}/surmatut/faceted-search`}
-        render={() => <Redirect to={`${props.rootUrl}/surmatut/faceted-search/lista`} />}
+        render={() => <Redirect to={`${props.rootUrl}/surmatut/faceted-search/table`} />}
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/lista`}
+        path={`${props.rootUrl}/surmatut/faceted-search/table`}
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
@@ -39,7 +39,7 @@ let Surmatut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/piirakkakaavio`}
+        path={`${props.rootUrl}/surmatut/faceted-search/pie`}
         render={routeProps =>
           <Pie
             data={props.facetData.facets}
@@ -56,7 +56,7 @@ let Surmatut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/viivakaavio`}
+        path={`${props.rootUrl}/surmatut/faceted-search/line`}
         render={routeProps =>
           <LineChart
             data={props.dates}
@@ -74,7 +74,7 @@ let Surmatut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/kartta`}
+        path={`${props.rootUrl}/surmatut/faceted-search/map`}
         render={() =>
           <LeafletMap
             results={props.places.results}

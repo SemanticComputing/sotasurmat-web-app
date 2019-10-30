@@ -35,7 +35,7 @@ bindActionCreators(toastrActions, store.dispatch);
 
 // init locale
 //const lang = localStorage.getItem('locale') || 'en';
-const lang = 'en';
+const lang = 'fi';
 store.dispatch(loadLocales(lang));
 
 // // update url on app load

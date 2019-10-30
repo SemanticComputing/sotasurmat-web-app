@@ -38,23 +38,23 @@ export const perspectiveConfig = [
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
-        id: 'lista',
+        id: 'table',
         value: 0,
         icon: <CalendarViewDayIcon />,
       },
       {
-        id: 'piirakkakaavio',
+        id: 'pie',
         label: 'Piirakkakaavio',
         value: 1,
         icon: <PieChartIcon />,
       },
       {
-        id: 'viivakaavio',
+        id: 'line',
         value: 2,
         icon: <LineChartIcon />,
       },
       {
-        id: 'kartta',
+        id: 'map',
         value: 3,
         icon: <AddLocationIcon />,
       },
@@ -106,12 +106,12 @@ export const perspectiveConfig = [
     ,
     tabs: [
       {
-        id: 'lista',
+        id: 'table',
         value: 0,
         icon: <CalendarViewDayIcon />,
       },
       {
-        id: 'kartta',
+        id: 'map',
         value: 1,
         icon: <AddLocationIcon />,
       }
