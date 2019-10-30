@@ -93,96 +93,96 @@ export default {
           `
         },
         birthDateSpan: {
-          label: 'Syntymäpäivä',
+          label: 'Birth date',
           description: `
-            Syntymäpäivän aikaväli
+            BIrth date timespan
           `
         },
         deathDateSpan: {
-          label: 'Kuolinpäivä',
+          label: 'Death date',
           description: `
-            Kuolinpäivän aikaväli
+            Death date timespan
           `
         },
         age: {
-          label: 'Ikä',
+          label: 'Age',
           description: `
-            Henkilön ikä
+            Age
           `
         },
         numberOfChildren: {
-          label: 'Lasten lukumäärä',
+          label: 'Number of children',
           description: `
-            Lasten lukumäärä
+            Number of children
           `
         },
         ammoOccupation: {
-          label: 'AMMO ammatti',
+          label: 'AMMO occupation',
           description: `
-            AMMO ontologian mukainen ammatti
+            Occupation on AMMO ontology
           `
         },
         hisclass7: {
           label: 'HISCLASS7',
           description: `
-            HISCLASS7 luokittelun mukainen ammatti
+            Occupation based on HISCLASS7
           `
         },
         coo1980: {
-          label: 'coo1980 ammatti',
+          label: 'coo1980 occupation',
           description: `
-            coo1980 luokittelun mukainen ammatti
+            Occupation based on coo1980
           `
         },
         hisco: {
           label: 'HISCO',
           description: `
-            HISCO luokittelun mukainen ammatti
+            Occupation based on HISCO
           `
         },
         causeOfDeath: {
-          label: 'Kuolinsyy',
+          label: 'Cause of death',
           description: `
-            Kuolinsyy aineistossa käytetyssä muodossa
+            Cause of death
           `
         },
         registeredCountry: {
-          label: 'Rekisteröity maa',
+          label: 'Registered country',
           description: `
             Rekisteröity maa
           `
         },
         registeredProvince: {
-          label: 'Rekisteröity lääni',
+          label: 'Registered province',
           description: `
-            Rekisteröity lääni
+            Registered province
           `
         },
         deathCountry: {
-          label: 'Kuolinmaa',
+          label: 'Death country',
           description: `
-            Kuolinmaa
+            Death country
           `
         },
         deathProvince: {
-          label: 'Kuolinlääni',
+          label: 'Death province',
           description: `
-            Kuolinlääni
+            Death province
           `
         },
         gender: {
-          label: 'Sukupuoli',
+          label: 'Gender',
           description: `
-            Sukupuoli
+            Gender
           `
         },
 
       },
     },
     taistelut: {
-      label: 'Taistelut',
-      facetResultsType: 'taistelu',
-      shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',
+      label: 'Battles',
+      facetResultsType: 'battle',
+      shortDescription: 'Perspective for battles of the civil war.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Battles
@@ -190,10 +190,10 @@ export default {
 
       `,
       instancePage: {
-        label: 'Taistelu',
+        label: 'Battle',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            Taistelut henkilösivun kuvaus
+            Information about the battle
           </p>
         `
       },
@@ -203,55 +203,41 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Taistelun nimi',
+          label: 'Name of the battle',
           description: `
             The name of the place.
           `
         },
         startDate: {
-          label: 'Alkupäivä',
+          label: 'Start date',
           description:  `
-            Alkupäivä
+            Start date
           `
         },
         endDate: {
-          label: 'Loppupäivä',
+          label: 'End date',
           description: `
-            Loppupäivä
+            End date
           `
         },
         greaterPlace: {
-          label: 'Paikka',
+          label: 'Place',
           description: `
-            Laajempi paikka
+            Greater place
           `
         },
         exactPlace: {
-          label: 'Tarkempi paikka',
+          label: 'Exact place',
           description: `
-            Tarkempi paikka
+            Exact place
           `
         },
         units: {
-          label: 'Yksiköitä',
+          label: 'Units',
           description: `
-            Taisteluun osallistuneita yksiköitä
+            Units that participated in the battle
           `
         },
-        actor: {
-          label: 'Actor',
-          description: `
-            The actor(s) associated with the place.
-          `
-        },
-        source: {
-          label: 'Source',
-          description: `
-            The source dataset (Schoenberg, Bibale, and Bodleian) and the place
-            authority (Getty Thesaurus of Geographic Names and GeoNames)
-            contributing the information on the place.
-          `
-        }
       }
     },
   },
