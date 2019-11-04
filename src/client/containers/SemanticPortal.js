@@ -50,6 +50,7 @@ import {
   updatePerspectiveHeaderExpanded,
   loadLocales
 } from '../actions';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
@@ -419,9 +420,8 @@ let SemanticPortal = props => {
             />
           )}
           { /* create routes for info buttons */ }
-          {/*
           <Route
-            path={`/feedback`}
+            path={`${rootUrl}/feedback`}
             render={() =>
               <div className={classes.mainContainer}>
                 <TextPage>
@@ -436,7 +436,7 @@ let SemanticPortal = props => {
             }
           />
           <Route
-            path={`/about`}
+            path={`${rootUrl}/about`}
             render={() =>
               <div className={classes.mainContainer}>
                 <TextPage>{intl.getHTML('aboutTheProject')}</TextPage>
@@ -444,13 +444,13 @@ let SemanticPortal = props => {
             }
           />
           <Route
-            path={`/instructions`}
+            path={`${rootUrl}/instructions`}
             render={() =>
               <div className={classes.mainContainer}>
                 <TextPage>{intl.getHTML('instructions')}</TextPage>
               </div>
             }
-          /> */}
+          />
         </React.Fragment>
       </div>
     </div>
