@@ -41,6 +41,10 @@ const invalidTransferOfCustodyTimespans = `
         <http://ldf.fi/mmm/time/bibale_element_471075>
 `;
 
+const invalidActors = `
+        <http://ldf.fi/mmm/actor/sdbm_names/>
+`;
+
 export const facetConfigs = {
   surmatut: {
     facetClass: 'siso-schema:Death_record',

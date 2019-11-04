@@ -5,10 +5,11 @@ export default {
     long: 'Mapping Manuscript Migrations'
   },
   appDescription: `
-    MMM is a semantic portal for finding and studying pre-modern manuscripts and
+    Mapping Manuscript Migrations (MMM) is a semantic portal for finding and studying pre-modern manuscripts and
     their movements, based on linked collections of Schoenberg Institute, Bodleian Library,
-    and IRHT. Select an application view below.
+    and IRHT.
   `,
+  selectPerspective: 'Select a perspective to search and browse the MMM data:',
   topBar: {
     feedback: 'feedback',
     info: {
@@ -34,6 +35,30 @@ export default {
   table: {
     rowsPerPage: 'Rows per page',
     of: 'of'
+  },
+  instancePageGeneral: {
+    introduction: `
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        This landing page provides a human-readable summary of the data points that link
+        to this {entity}. The data included in this summary reflect only those data points
+        used in the MMM Portal. Click the Open in Linked Data Browser on button on the
+        Export tab to view the complete set of classes and properties linked to this record.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        To cite this record, use its url. You can use also use the url to return directly
+        to the record at any time.
+      </p>
+    `,
+    repetition: `
+      <h6 class="MuiTypography-root MuiTypography-h6">
+        Repetition of data
+      </h6>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        The same or similar data may appear within a single data field multiple times.
+        This repetition occurs due to the merging of multiple records from different datasets
+        to create the MMM record.
+      </p>
+    `
   },
   perspectives: {
     manuscripts: {
@@ -71,17 +96,12 @@ export default {
         label: 'Manuscript',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that link
-            to this Manuscript. The data included in this summary reflects only those data
-            points used in the MMM interface. Click the Open in Linked Data Browser button to
-            view the complete set of classes and properties linked to this record. To cite this
-            record, use its url.
-          </p>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            MMM’s Manuscript entity corresponds to FRBRoo’s Manifestation Singleton, defined as
-            "physical objects that each carry an instance of [an Expression], and that were
-            produced as unique objects…" The various types of records that describe manuscripts
-            in each of the three contributing MMM datasets have been mapped to this entity.
+            MMM’s Manuscript entity corresponds to
+            <a href='https://www.ifla.org/publications/node/11240' target='_blank' rel='noopener noreferrer'>FRBRoo’s</a>
+            Manifestation Singleton, defined as "physical objects that each carry an instance of
+            [an Expression], and that were produced as unique objects..." The various types
+            of records that describe manuscripts in each of the three contributing MMM
+            datasets have been mapped to this entity.
           </p>
           <h6 class="MuiTypography-root MuiTypography-h6">
             Manuscript labels
@@ -106,6 +126,7 @@ export default {
               SDBM_MS_part: a record identified as a fragment of a larger manuscript.
             </li>
           </ul>
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>
         `
       },
       properties: {
@@ -129,7 +150,7 @@ export default {
           description: 'The intellectual content (works) contained in the manuscript.'
         },
         expression: {
-          label: 'Label',
+          label: 'Expression',
           description: 'The linguistic versions of the works contained in the manuscript.'
         },
         productionPlace: {
@@ -297,16 +318,9 @@ export default {
         label: 'Work',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that
-            link to this Work. The data included in this summary reflects only those data
-            points used in the MMM interface. Click the Open in Linked Data Browser button
-            to view the complete set of classes and properties linked to this record.
-            To cite this record, use its url.
-          </p>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            The MMM data model follows the &nbsp;
+            The MMM data model follows the
             <a href='https://www.ifla.org/publications/node/11240' target='_blank' rel='noopener noreferrer'>FRBRoo</a>
-            &nbsp; definition of a work, which refers to
+            definition of a work, which refers to
             “distinct concepts or combinations of concepts identified in artistic and
             intellectual expressions.” Works contain title and author information.
             This definition is not shared by the Bibale or Oxford Libraries’ conception
@@ -411,11 +425,12 @@ export default {
         label: 'Event',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that link
-            to this Event. The data included in this summary reflects only those data points
-            used in the MMM interface. Click the Open in Linked Data Browser button to
-            view the complete set of classes and properties linked to this record.
-            To cite this record, use its url.
+            Events refer to various activities related to Manuscripts and Actors. Event
+            types include Production, Transfer of Custody, and Activity events.
+            Production events refer to the production of the physical manuscript.
+            Transfer of Custody events indicate a change of ownership that involved
+            a transaction of some kind, usually through an auction house or bookseller.
+            The generic Activity event type covers all other types of events.
           </p>
         `
       },
@@ -516,10 +531,11 @@ export default {
         label: 'Actor',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that link to this Actor.
-            The data included in this summary reflects only those data points used in the MMM interface.
-            Click the Open in Linked Data Browser button to view the complete set of classes and
-            properties linked to this record. To cite this record, use its url.
+            Actors are individuals or groups who influenced the production or provenance
+            of a manuscript. Actor types include Person, Group, or Actor. Persons refer to
+            individuals, while Groups indicate corporate or institutional bodies.
+            The Actor type is used when a more specific type is unknown or not specified
+            in the source dataset.
           </p>
         `
       },
@@ -620,14 +636,10 @@ export default {
         label: 'Place',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points that link
-            to this Place. The data included in this summary reflects only those data points
-            used in the MMM interface. Click the Open in Linked Data Browser button to
-            view the complete set of classes and properties linked to this record. To cite this record, use its url.
-          </p>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            MMM utilizes the Getty Thesaurus of Geographic Names as its hierarchy for geographic data.
-            Coordinate data is approximate for locations such as counties, regions, and nations.
+            Places refer to geographic locations that relate to Manuscripts, Events, Actors, and
+            Collections. MMM uses the Getty Thesaurus of Geographic Names as its hierarchy for
+            geographic data. Coordinate data is approximate for locations such as counties,
+            regions, and nations.
           </p>
         `
       },
@@ -699,11 +711,13 @@ export default {
         label: 'Collection',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points
-            that link to this Collection. The data included in this summary reflects
-            only those data points used in the MMM interface. Click the Open in
-            Linked Data Browser button to view the complete set of classes and
-            properties linked to this record. To cite this record, use its url.
+            A collection refers to a group of manuscripts that were owned by the same actor,
+            including individuals, institutions, or other types of groups. A manuscript can
+            appear in multiple collections over time, and no explicit distinction
+            is made between a manuscript’s current or former collections. Similarly,
+            collections will include links to every manuscript that has ever been in
+            the collection, regardless of whether all of those manuscripts were within
+            the collection at the same time.
           </p>
         `
       },
@@ -756,18 +770,13 @@ export default {
         label: 'Expression',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            This landing page provides a human-readable summary of the data points
-            that link to this Expression. The data included in this summary reflects
-            only those data points used in the MMM interface. Click the Open in
-            Linked Data Browser button to view the complete set of classes and
-            properties linked to this record. To cite this record, use its url.
-          </p>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            The MMM data model follows the FRBRoo definition of an Expression,
-            which refers to “the intellectual or artistic realisations of works
-            in the form of identifiable immaterial objects…” Expressions contain
-            author, title, and language information, and represent the various
-            versions of texts that appear in manuscripts.
+            The MMM data model follows the
+            <a href='https://www.ifla.org/publications/node/11240' target='_blank' rel='noopener noreferrer'>FRBRoo</a>
+            definition of an Expression, which
+            refers to “the intellectual or artistic realisations of works in the form
+            of identifiable immaterial objects...” Expressions contain title,
+            and language information, and represent the various versions of texts that
+            appear in manuscripts.
           </p>
         `
       },
@@ -799,7 +808,191 @@ export default {
     },
   },
   aboutTheProject: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      About the project
+    </h1>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Mapping Manuscript Migrations (MMM) has been developed with funding from the Trans-Atlantic
+      Platform under its Digging into Data Challenge (2017-2019). The partners in this project are
+      the University of Oxford, the University of Pennsylvania, Aalto University,
+      and the Institut de recherche et d’histoire des textes.
+      Funding has been provided by the UK Economic and Social Research Council,
+      the Institute of Museum and Library Services, the Academy of Finland, and the
+      Agence nationale de la recherche.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      MMM is intended to enable large-scale exploration of data relating to the history and provenance
+      of (primarily) Western European medieval and early modern manuscripts.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Data
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      MMM combines data from three specialist databases:
+    </p>
+    <ul class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
+      <li>
+        <a href="https://sdbm.library.upenn.edu/"
+          target='_blank' rel='noopener noreferrer'
+        >
+          Schoenberg Database of Manuscripts
+        </a>
+      </li>
+      <li>
+        <a href="http://bibale.irht.cnrs.fr/"
+          target='_blank' rel='noopener noreferrer'
+        >
+          Bibale
+        </a>
+      </li>
+      <li>
+        <a href="https://medieval.bodleian.ox.ac.uk/"
+          target='_blank' rel='noopener noreferrer'
+        >
+          Medieval Manuscripts in Oxford Libraries
+        </a>
+      </li>
+    </ul>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The data have been combined using a unified Data Model based on the CIDOC-CRM
+      and FRBRoo ontologies. A diagram of the Data Model can be seen
+      <a href="https://drive.google.com/open?id=1uyTA8Prwtts5g13eor48tKHk_g63NaaG" target='_blank' rel='noopener noreferrer'>
+      here</a>. The data have not been corrected or amended in any way. If you notice an error in the data,
+      please report it to the custodians of the original database.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Features
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The MMM interface enables you to browse and search through most of the data assembled by the project
+      from the three source databases. If you want to inspect the full raw data for any individual
+      manuscript or other entity, please click on the “Open in Linked Data browser” button on
+      the “Export” tab of the landing-page for that entity.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The MMM interface also provides map-based visualizations for a selection of the data relating to
+      Manuscripts, Actors, and Places. The data resulting from a search or a filtered browse can be
+      exported in the form of a CSV file. Click on the “Export” tab and then on the button
+      “Open SPARQL query in yasgui.org”.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      If you want to search all the underlying data using the SPARQL query language, the endpoint is
+      available here: <a href="http://ldf.fi/mmm-cidoc/sparql" target='_blank' rel='noopener noreferrer'>
+      http://ldf.fi/mmm-cidoc/sparql</a>.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Data Reuse
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The MMM data are made available for reuse under a
+      <a href="https://creativecommons.org/licenses/by-nc/4.0/" target='_blank' rel='noopener noreferrer'>CC-BY-NC 4.0 licence</a>.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      You must give appropriate credit, provide a link to the license, and indicate if changes
+      were made. You may do so in any reasonable manner, but not in any way that suggests the
+      MMM project or its partner institutions endorses you or your use.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      You may not use the data for commercial purposes.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      More Information
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The MMM project has its own
+      <a href="https://github.com/mapping-manuscript-migrations" target='_blank' rel='noopener noreferrer'>GitHub site</a>.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Here you will find documentation, scripts and programs, and samples of the raw data.
+    </p>
+  `,
+  instructions: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      Instructions
+    </h1>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The search functionality of the MMM portal is based on the
+      <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'>
+      faceted search</a> paradigm. By default each perspective displays
+      all results from the corresponding class (Manuscripts, Works, Events, Actors, or Places).
+      This default result set can be narrowed down by using the filters on the left.
+    </p>
 
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Using a single filter
+    </h2>
 
+    <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Selecting values within a filter
+    </h3>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      All possible values for a filter are displayed either as a list or as a hierarchical
+      tree structure (if available). The number of results is shown in brackets for each value.
+      Once a value is selected, the results are automatically updated. To prevent further
+      selections that do not return any results, also the possible values for all
+      other filters are updated at the same time.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Multiple values can be selected within a single filter. Selecting multiple values
+      generates results that contain any of the selected values. For example, selecting
+      both <i>Saint Augustine</i> and <i>Saint Jerome</i> as an Author returns results that
+      include either <i>Saint Augustine</i> <strong>OR</strong> <i>Saint Jerome</i> as an Author.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Selected values of a filter appear in the Active filters section at the top of the list
+      of filters. To deselect a filter, click the X mark next to it within the Active filters
+      section. You can also deselect a filter value by unchecking the checkmark in the
+      filter’s value list. The Active filters section only appears if there are filter
+      values currently selected.
+    </p>
+
+    <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Searching within a filter
+    </h3>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Search within a filter by using the search field at the top of each filter.
+      All possible values of a filter remain visible at all times. The values of
+      the filter that match the search term are indicated by a purple underline.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Steps for searching within filters:
+    </p>
+    <ol class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
+      <li>
+        Type search term into search field. If there are matches, a number
+        will appear to the right of the search field, indicating the number
+        of filter values that match the search term.
+      </li>
+      <li>
+        Click the arrows to the right of the search field to cycle
+        through the results. As you click the arrow, a different filter value
+        will appear at the top of the list. Matched filters are underlined in
+        purple.
+      </li>
+      <li>
+        Click the checkmark next to a filter value to activate it. The results
+        (and also other filters) are automatically updated.
+      </li>
+    </ol>
+
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Using multiple filters simultaneously
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The effectiveness of faceted search is realized when multiple filters are
+      applied at the same time. As in many e-commerce sites, a logical AND is
+      always used between the filters. For example selecting <i>Saint Augustine </i>
+      and <i>Saint Jerome</i> as an Author and <i>Sir Thomas Phillipps</i> and
+      <i> Thomas Thorpe</i> as an Owner, the results are narrowed down as follows:
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1">
+      (Author: <i>Saint Augustine</i> <strong>OR</strong> Author: <i>Saint Jerome</i>)
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1">
+        <strong>AND</strong>
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1">
+      (Owner: <i>Sir Thomas Phillipps</i> <strong>OR</strong> Owner: <i>Thomas Thorpe</i>)
+    </p>
   `
 };

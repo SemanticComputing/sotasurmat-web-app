@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth from '@material-ui/core/withWidth';
@@ -23,15 +24,12 @@ import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
-import { perspectiveArr } from '../components/perspectives/PerspectiveArraySotasurmat';
 //import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 //import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 import TextPage from '../components/main_layout/TextPage';
 import {
   perspectiveConfig,
-  aboutTheProject,
-  instructions
 } from '../configs/sotasurmat/PerspectiveConfig';
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages';
 import InfoHeader from '../components/main_layout/InfoHeader';
@@ -52,6 +50,7 @@ import {
   updatePerspectiveHeaderExpanded,
   loadLocales
 } from '../actions';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
@@ -383,32 +382,75 @@ let SemanticPortal = props => {
             }
           })}
           { /* create routes for classes that have only info pages and no perspective */}
+          {perspectiveConfigOnlyInfoPages.map(perspective =>
+            <Route
+              key={perspective.id}
+              path={`/${perspective.id}/page/:id`}
+              render={routeProps => {
+                return (
+                  <React.Fragment>
+                    <InfoHeader
+                      resultClass={perspective.id}
+                      pageType='instancePage'
+                      instanceData={props[perspective.id].instance}
+                      expanded={props[perspective.id].instancePageHeaderExpanded}
+                      updateExpanded={props.updatePerspectiveHeaderExpanded}
+                      descriptionHeight={perspective.perspectiveDescHeight}
+                    />
+                    <Grid container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
+                      ? classes.instancePageContainerHeaderExpanded
+                      : classes.instancePageContainer
+                    }>
+                      <Grid item xs={12} className={classes.instancePageContent}>
+                        <InstanceHomePage
+                          fetchByURI={props.fetchByURI}
+                          resultClass={perspective.id}
+                          properties={props[perspective.id].properties}
+                          tabs={perspective.instancePageTabs}
+                          data={props[perspective.id].instance}
+                          sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                          isLoading={props[perspective.id].fetching}
+                          routeProps={routeProps}
+                        />
+                      </Grid>
+                    </Grid>
+                  </React.Fragment>
+                );
+              }}
+            />
+          )}
           { /* create routes for info buttons */ }
-          {/*
           <Route
-            path={`/feedback`}
+            path={`${rootUrl}/feedback`}
             render={() =>
               <div className={classes.mainContainer}>
-
+                <TextPage>
+                  <Typography component="h1" variant="h2" gutterBottom>
+                      Feedback
+                  </Typography>
+                  <Typography>
+                    Under construction...
+                  </Typography>
+                </TextPage>
               </div>
             }
           />
           <Route
-            path={`/about`}
+            path={`${rootUrl}/about`}
             render={() =>
               <div className={classes.mainContainer}>
-                <TextPage>{aboutTheProject}</TextPage>
+                <TextPage>{intl.getHTML('aboutTheProject')}</TextPage>
               </div>
             }
           />
           <Route
-            path={`/instructions`}
+            path={`${rootUrl}/instructions`}
             render={() =>
               <div className={classes.mainContainer}>
-                <TextPage>{instructions}</TextPage>
+                <TextPage>{intl.getHTML('instructions')}</TextPage>
               </div>
             }
-          /> */}
+          />
         </React.Fragment>
       </div>
     </div>
