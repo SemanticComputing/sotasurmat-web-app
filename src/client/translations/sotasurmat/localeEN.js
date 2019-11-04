@@ -2,7 +2,7 @@ export default {
   languageLabel: 'English',
   appTitle: {
     short: 'War Victims',
-    long: 'War Victims in FInland 1914-1922'
+    long: 'War Victims in Finland 1914-1922'
   },
   appDescription: `
     A prototype for a semantic portal for war victims in Finland 1914-1922.
