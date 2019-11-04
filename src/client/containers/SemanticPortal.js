@@ -193,7 +193,7 @@ const styles = theme => ({
 let SemanticPortal = props => {
   const { classes, /* browser */ error } = props;
 
-  const rootUrl = '/sotasurmat';
+  const rootUrl = '';
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null;

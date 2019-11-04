@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-let rootUrl = '/sotasurmat';
+let rootUrl = '';
 // The root directory from which to serve static assets (React app)
 let publicPath = path.join(__dirname, '..', 'public');
 app.use(rootUrl, express.static(publicPath));

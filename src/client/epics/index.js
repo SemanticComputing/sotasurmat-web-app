@@ -35,10 +35,10 @@ import {
   updateLocale
 } from '../actions';
 
-const rootDir = '/sotasurmat';
+const rootDir = '';
 
 export const apiUrl = (process.env.NODE_ENV === 'development')
-  ? 'http://localhost:3001/sotasurmat/api/'
+  ? 'http://localhost:3001/api/'
   : `http://${location.hostname}${rootDir}/api/`;
 
 const backendErrorText = `Ei pystytty yhdistämään tietokantaan.
