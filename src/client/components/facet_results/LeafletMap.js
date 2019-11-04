@@ -30,7 +30,7 @@ import markerIconGreen from '../../img/markers/marker-icon-green.png';
 import markerIconRed from '../../img/markers/marker-icon-red.png';
 import markerIconOrange from '../../img/markers/marker-icon-orange.png';
 
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZWtrb25lbiIsImEiOiJjam5vampzZ28xd2dyM3BzNXR0Zzg4azl4In0.eozyF-bBaZbA3ibhvJlJpQ';
+const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic290YXN1cm1hdCIsImEiOiJjazJraWJvd24wMHVqM2JrMHFtbmlrbDBoIn0.LL-ysIRBLRs2El8khAFjJw';
 
 const style = {
   width: '100%',
