@@ -16,17 +16,27 @@ import purple from '@material-ui/core/colors/purple';
 
 const styles = theme => ({
   root: {
-    height: '100%',
-    display: 'flex',
-    flexGrow: 1,
+    width: '100%',
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 72px)'
+    },
+    overflow: 'auto',
+  },
+  options: {
+    paddingLeft: theme.spacing(1),
+    paddingTop: theme.spacing(1)
   },
   container: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 168px)'
+    },
     marginLeft: 'auto',
     marginRight: 'auto',
     width: 'calc(100% - 50px)',
     maxWidth: 900,
-    height: '100%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   pie: {
     paddingLeft: theme.spacing(4),
@@ -189,9 +199,9 @@ class Pie extends React.Component {
    //console.log(facetValues)
    if (facetValues.length == 0) {
      return (
-       <div className={classes.spinnerContainer}>
+       <Paper square className={classes.spinnerContainer}>
          <CircularProgress style={{ color: purple[500] }} thickness={5} />
-       </div>
+       </Paper>
      );
    }
    for (let key in facetValues) {
@@ -229,79 +239,74 @@ class Pie extends React.Component {
    // />
 
    return (
-     <Paper className={classes.root}>
-       <div className="container">
-         <div className="row">
-           <div className="col-sm-12">
-             <form>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="party"
-                     checked={this.state.selectedOption === 'party'}
-                     onChange={this.handleOptionChange} />
-                     Osapuoli
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="occupation"
-                     checked={this.state.selectedOption === 'occupation'}
-                     onChange={this.handleOptionChange} />
-                     Ammatti
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="gender"
-                     checked={this.state.selectedOption === 'gender'}
-                     onChange={this.handleOptionChange} />
-                     Sukupuoli
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="registeredProvince"
-                     checked={this.state.selectedOption === 'registeredProvince'}
-                     onChange={this.handleOptionChange} />
-                     Kirjoillaololääni
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="registeredMunicipality"
-                     checked={this.state.selectedOption === 'registeredMunicipality'}
-                     onChange={this.handleOptionChange} />
-                     Kirjoillaolokunta
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="deathProvince"
-                     checked={this.state.selectedOption === 'deathProvince'}
-                     onChange={this.handleOptionChange} />
-                     Kuolinlääni
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="deathMunicipality"
-                     checked={this.state.selectedOption === 'deathMunicipality'}
-                     onChange={this.handleOptionChange} />
-                     Kuolinkunta
-                 </label>
-               </div>
-               <div className="radio">
-                 <label>
-                   <input type="radio" value="causeOfDeath"
-                     checked={this.state.selectedOption === 'causeOfDeath'}
-                     onChange={this.handleOptionChange} />
-                     Kuolinsyy
-                 </label>
-               </div>
-             </form>
-
+     <Paper square className={classes.root}>
+       <div className={classes.options}>
+         <form>
+           <div className="radio">
+             <label>
+               <input type="radio" value="party"
+                 checked={this.state.selectedOption === 'party'}
+                 onChange={this.handleOptionChange} />
+                   Osapuoli
+             </label>
            </div>
-         </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="occupation"
+                 checked={this.state.selectedOption === 'occupation'}
+                 onChange={this.handleOptionChange} />
+                   Ammatti
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="gender"
+                 checked={this.state.selectedOption === 'gender'}
+                 onChange={this.handleOptionChange} />
+                   Sukupuoli
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="registeredProvince"
+                 checked={this.state.selectedOption === 'registeredProvince'}
+                 onChange={this.handleOptionChange} />
+                   Kirjoillaololääni
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="registeredMunicipality"
+                 checked={this.state.selectedOption === 'registeredMunicipality'}
+                 onChange={this.handleOptionChange} />
+                   Kirjoillaolokunta
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="deathProvince"
+                 checked={this.state.selectedOption === 'deathProvince'}
+                 onChange={this.handleOptionChange} />
+                   Kuolinlääni
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="deathMunicipality"
+                 checked={this.state.selectedOption === 'deathMunicipality'}
+                 onChange={this.handleOptionChange} />
+                   Kuolinkunta
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="causeOfDeath"
+                 checked={this.state.selectedOption === 'causeOfDeath'}
+                 onChange={this.handleOptionChange} />
+                   Kuolinsyy
+             </label>
+           </div>
+         </form>
        </div>
        <Grid container className={classes.container}>
          <Grid className={classes.pie} item xs={12} sm={6}>
