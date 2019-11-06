@@ -414,22 +414,7 @@ let SemanticPortal = props => {
             path={`${rootUrl}/feedback`}
             render={() =>
               <div className={classes.mainContainer}>
-                <TextPage>
-                  <Typography component="h1" variant="h2" gutterBottom>
-                      Feedback
-                  </Typography>
-                  <Typography>
-                    Under construction...
-                  </Typography>
-                </TextPage>
-              </div>
-            }
-          />
-          <Route
-            path={`${rootUrl}/about`}
-            render={() =>
-              <div className={classes.mainContainer}>
-                <TextPage>{intl.getHTML('aboutTheProject')}</TextPage>
+                <TextPage>{intl.getHTML('feedback')}</TextPage>
               </div>
             }
           />
