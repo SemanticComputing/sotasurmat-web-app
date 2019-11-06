@@ -236,7 +236,14 @@ export const getByURI = ({
   let properties;
   switch (resultClass) {
     case 'surmatut':
-      properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
+      //properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
+      properties = personProperties;
+      q = instanceQuery;
+      q = q.replace('<PROPERTIES>', properties);
+      q = q.replace('<RELATED_INSTANCES>', '');
+      break;
+    case 'personExtras':
+      properties = templateStart.concat(createExtrasQueryBlock(extrasTypeList));
       q = instanceQuery;
       q = q.replace('<PROPERTIES>', properties);
       q = q.replace('<RELATED_INSTANCES>', '');
@@ -279,6 +286,12 @@ export const getByURI = ({
     resultFormat
   });
 };
+
+const templateStart =  `
+    {
+      ?id skos:prefLabel ?prefLabel__id .
+    }
+    `;
 
 function createExtrasQueryBlock(types) {
   let block = '';

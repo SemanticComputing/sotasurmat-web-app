@@ -353,6 +353,7 @@ let SemanticPortal = props => {
                                   tableRows={props[perspective.id].properties}
                                   tabs={perspective.instancePageTabs}
                                   data={props[perspective.id].instance}
+                                  extras={props.extras.instance}
                                   sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                   isLoading={props[perspective.id].fetching}
                                   routeProps={routeProps}
@@ -473,7 +474,8 @@ const mapStateToProps = state => {
     taistelutFacets: state.taistelutFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
     options: state.options,
-    error: state.error
+    error: state.error,
+    extras: state.extras,
   //browser: state.browser,
   };
 };

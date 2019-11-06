@@ -6,6 +6,7 @@ import clientSideFacetedSearch from './mmm/clientSideFacetedSearch';
 import surmatut from './surmatut';
 import surmatutFacets from './surmatutFacets';
 import taistelut from './taistelut';
+import extras from './extras';
 import taistelutFacets from './taistelutFacets';
 import dates from './dates';
 import places from './places';
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   error,
   dates,
   places,
+  extras,
   toastr: toastrReducer,
   // browser: createResponsiveStateReducer({
   //   extraSmall: 500,

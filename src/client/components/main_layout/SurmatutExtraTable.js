@@ -29,7 +29,8 @@ class SurmatutExtraTable extends React.Component {
 
 
   render = () => {
-    const { classes, data } = this.props;
+    const { classes, extras } = this.props;
+    //console.log(data)
     const rowTypes = [
       {id:'ownFamilyName',label:'Oma sukunimi'},
       {id:'formerFamilyName',label:'Entinen sukunimi'},
@@ -129,7 +130,7 @@ class SurmatutExtraTable extends React.Component {
                 </TableCell>
                 <ResultTableCell
                   columnId={row.id}
-                  data={data[row.id]}
+                  data={extras[row.id]}
                   valueType='object'
                   makeLink={false}
                   externalLink={false}
@@ -153,7 +154,7 @@ class SurmatutExtraTable extends React.Component {
 
 SurmatutExtraTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
+  extras: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(SurmatutExtraTable);

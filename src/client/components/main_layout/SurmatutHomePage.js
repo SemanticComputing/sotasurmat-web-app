@@ -66,6 +66,12 @@ class InstanceHomePage extends React.Component {
       variant: null,
       uri: uri
     });
+    this.props.fetchByURI({
+      resultClass: 'personExtras',
+      facetClass: null,
+      variant: null,
+      uri: uri
+    });
   }
 
   createPlaceArray = events => {
@@ -107,9 +113,9 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, data, isLoading, resultClass } = this.props;
+    const { classes, data, extras, isLoading, resultClass } = this.props;
     const hasData = data !== null && Object.values(data).length >= 1;
-
+console.log(this.props)
     return(
       <div className={classes.root}>
         <PerspectiveTabs
@@ -147,7 +153,7 @@ class InstanceHomePage extends React.Component {
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
                 render={() =>
                   <SurmatutExtraTable
-                    data={data}
+                    extras={extras}
                     tableRows={this.getVisibleRows(this.props.tableRows)}
                   />}
               />
@@ -188,6 +194,7 @@ InstanceHomePage.propTypes = {
   fetchByURI: PropTypes.func.isRequired,
   resultClass: PropTypes.string.isRequired,
   data: PropTypes.object,
+  extras: PropTypes.object,
   sparqlQuery: PropTypes.string,
   tableRows: PropTypes.array.isRequired,
   tabs: PropTypes.array.isRequired,

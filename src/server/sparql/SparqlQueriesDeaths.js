@@ -17,11 +17,11 @@ export const deathsProperties = `
       ?occupation__id skos:prefLabel ?occupation__prefLabel .
     }
     UNION {
-      ?id siso-schema:death_date ?deathDate__id .
+      ?id siso-schema:death_time/crm:P82b_end_of_the_end ?deathDate__id .
       BIND (?deathDate__id AS ?deathDate__prefLabel)
     }
     UNION {
-      ?id siso-schema:birth_date ?birthDate__id .
+      ?id siso-schema:birth_time/crm:P82a_begin_of_the_begin ?birthDate__id .
       BIND (?birthDate__id AS ?birthDate__prefLabel)
     }
     UNION {
