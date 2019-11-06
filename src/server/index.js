@@ -9,6 +9,7 @@ import {
   getByURI } from './sparql/FacetResults';
 import { getFacet } from './sparql/FacetValues';
 import { queryJenaIndex } from './sparql/JenaQuery';
+import { rootUrl } from './config';
 const DEFAULT_PORT = 3001;
 const app = express();
 app.set('port', process.env.PORT || DEFAULT_PORT);
@@ -24,18 +25,14 @@ app.use(function(req, res, next) {
   next();
 });
 
-let rootUrl = '';
-// The root directory from which to serve static assets (React app)
-let publicPath = path.join(__dirname, '..', 'public');
-app.use(rootUrl, express.static(publicPath));
-//const isDevelopment = process.env.NODE_ENV === 'development' ? true : false;
-//if (isDevelopment) {
-//  app.use(express.static(__dirname + './../public/'));
-//} else {
-//  rootUrl = '/sotasurmat';
-//  app.use(rootUrl, express.static(__dirname + './../public/'));
-//}
+let publicPath = null;
 
+// Express server is used to serve the React app only in production
+if (!isDevelopment) {
+  // The root directory from which to serve static assets
+  publicPath = path.join(__dirname, './../public/');
+  app.use(rootUrl, express.static(publicPath));
+}
 
 // React app makes requests to these api urls
 const apiPath = rootUrl + '/api';

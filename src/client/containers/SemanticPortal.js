@@ -41,6 +41,7 @@ import {
   updatePerspectiveHeaderExpanded,
   loadLocales
 } from '../actions';
+import { rootUrl } from '../configs/config';
 
 
 const styles = theme => ({
@@ -182,8 +183,6 @@ const styles = theme => ({
 
 let SemanticPortal = props => {
   const { classes, /* browser */ error } = props;
-
-  const rootUrl = '';
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null;
