@@ -23,7 +23,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, outputDirectory),
     //publicPath: '/',
-    publicPath: '/sotasurmat',
+    publicPath: '/sotasurmat/',
   },
   module: {
     rules: [
