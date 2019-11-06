@@ -1,8 +1,10 @@
+import { rootUrl } from '../config';
+
 export const deathsProperties = `
     {
       ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
-    BIND(CONCAT("/surmatut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("${rootUrl}/surmatut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
     }
     UNION {
       ?id siso-schema:party ?party__id .
@@ -810,6 +812,6 @@ export const deathsAt = `
          ?related__id siso-s:death_municipality ?id .
          ?related__id skos:prefLabel ?related__prefLabel .
          ?related__id siso-s:identifier ?identifier .
-         BIND(CONCAT("/surmatut/page/", ?identifier) AS ?related__dataProviderUrl)
+         BIND(CONCAT("${rootUrl}/surmatut/page/", ?identifier) AS ?related__dataProviderUrl)
        }
    `;
