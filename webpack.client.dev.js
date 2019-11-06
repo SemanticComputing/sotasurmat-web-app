@@ -10,5 +10,7 @@ module.exports = merge(common, {
     open: true,
     historyApiFallback: { index: '/sotasurmat' },
     publicPath: '/sotasurmat',
+    //historyApiFallback: true,
+    //publicPath: '/',
   }
 });

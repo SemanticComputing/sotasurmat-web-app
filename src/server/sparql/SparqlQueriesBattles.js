@@ -4,7 +4,7 @@ export const battleProperties = `
       #?id skos:prefLabel ?prefLabel .
       ?id skos:prefLabel ?prefLabel__id .
       BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-      BIND(CONCAT("/sotasurmat/taistelut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+      BIND(CONCAT("/taistelut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
       }
       UNION {
         ?id siso-schema:start_date ?startDate__id .
@@ -45,7 +45,7 @@ export const battlePlacesQuery =  `
 export const battlePropertiesInfoWindow = `
     ?id skos:prefLabel ?prefLabel__id .
     BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-    BIND(CONCAT("sotasurmat/taistelut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("taistelut/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
     ?id siso-schema:greater_place ?greaterPlace__id .
     ?greaterPlace__id skos:prefLabel ?greaterPlace__prefLabel .
     OPTIONAL {

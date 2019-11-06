@@ -13,24 +13,15 @@ import Main from '../components/main_layout/Main';
 import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
-//import Manuscripts from '../components/perspectives/Manuscripts';
-//import Works from '../components/perspectives/Works';
-//import Events from '../components/perspectives/Events';
-//import Places from '../components//perspectives/Places';
-//import Actors from '../components//perspectives/Actors';
 import All from '../components/perspectives/All';
 import Surmatut from '../components/perspectives/Surmatut';
 import Taistelut from '../components/perspectives/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
-//import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
-//import FeedbackPage from '../components/main_layout/FeedbackPage';
-//import PerspectiveHeader from '../components/perspectives/PerspectiveHeader';
 import TextPage from '../components/main_layout/TextPage';
-import {
-  perspectiveConfig,
-} from '../configs/sotasurmat/PerspectiveConfig';
+import Typography from '@material-ui/core/Typography';
+import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig';
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages';
 import InfoHeader from '../components/main_layout/InfoHeader';
 import { has } from 'lodash';
@@ -50,7 +41,8 @@ import {
   updatePerspectiveHeaderExpanded,
   loadLocales
 } from '../actions';
-import Typography from '@material-ui/core/Typography';
+import { rootUrl } from '../configs/config';
+
 
 const styles = theme => ({
   root: {
@@ -191,8 +183,6 @@ const styles = theme => ({
 
 let SemanticPortal = props => {
   const { classes, /* browser */ error } = props;
-
-  const rootUrl = '/sotasurmat';
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null;
@@ -425,22 +415,7 @@ let SemanticPortal = props => {
             path={`${rootUrl}/feedback`}
             render={() =>
               <div className={classes.mainContainer}>
-                <TextPage>
-                  <Typography component="h1" variant="h2" gutterBottom>
-                      Feedback
-                  </Typography>
-                  <Typography>
-                    Under construction...
-                  </Typography>
-                </TextPage>
-              </div>
-            }
-          />
-          <Route
-            path={`${rootUrl}/about`}
-            render={() =>
-              <div className={classes.mainContainer}>
-                <TextPage>{intl.getHTML('aboutTheProject')}</TextPage>
+                <TextPage>{intl.getHTML('feedback')}</TextPage>
               </div>
             }
           />

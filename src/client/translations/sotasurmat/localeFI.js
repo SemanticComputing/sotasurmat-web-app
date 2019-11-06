@@ -255,20 +255,20 @@ export default {
       }
     },
   },
-  aboutTheProject: `
-
-
-  `,
   instructions: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Instructions
+      Ohjeet
     </h1>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The search functionality of the MMM portal is based on the
-      <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'>
-      faceted search</a> paradigm. By default each perspective displays
-      all results from the corresponding class (Manuscripts, Works, Events, Actors, or Places).
-      This default result set can be narrowed down by using the filters on the left.
+
+    </p
+  `,
+  feedback: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      Palaute
+    </h1>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+
     </p>
-  `
+  `,
 };

@@ -114,6 +114,7 @@ class InstanceHomePage extends React.Component {
   render = () => {
     const { classes, data, isLoading, resultClass } = this.props;
     const hasData = data !== null && Object.values(data).length >= 1;
+    console.log(this.props.rootUrl)
 
     return(
       <div className={classes.root}>

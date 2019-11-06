@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import Chart from 'react-google-charts';
 import moment from 'moment';
 import Paper from '@material-ui/core/Paper';
-
-//import _ from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
-//import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
@@ -17,11 +14,15 @@ const styles = theme => ({
     },
     overflow: 'auto'
   },
-  container: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: 'calc(100% - 50px)',
-  }
+  optionsContainer: {
+    paddingLeft: theme.spacing(1),
+    paddingTop: theme.spacing(1)
+  },
+  // container: {
+  //   marginLeft: 'auto',
+  //   marginRight: 'auto',
+  //   width: 'calc(100% - 50px)',
+  // }
 });
 
 class LineChart extends React.Component {
@@ -332,54 +333,50 @@ class LineChart extends React.Component {
     //console.log(this.median(yearsArray));
     //medianArray = ['mediaani vuosi', 'med'], []
     return (
-      <Paper className={classes.root}>
-        <div className={classes.container}>
-          <div>
-            <form>
-              <div>
-                <label>
-                  <input type="radio" value="age"
-                    checked={this.state.selectedOption === 'age'}
-                    onChange={this.handleOptionChange} />
-                    Ikä
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input type="radio" value="birthYear"
-                    checked={this.state.selectedOption === 'birthYear'}
-                    onChange={this.handleOptionChange} />
-                    Syntymävuosi
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input type="radio" value="deathDate"
-                    checked={this.state.selectedOption === 'deathDate'}
-                    onChange={this.handleOptionChange} />
-                    Kuolinpäivä
-                </label>
-              </div>
-            </form>
-          </div>
+      <Paper square className={classes.root}>
+        <div className={classes.optionsContainer}>
+          <form>
+            <div>
+              <label>
+                <input type="radio" value="age"
+                  checked={this.state.selectedOption === 'age'}
+                  onChange={this.handleOptionChange} />
+                  Ikä
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" value="birthYear"
+                  checked={this.state.selectedOption === 'birthYear'}
+                  onChange={this.handleOptionChange} />
+                  Syntymävuosi
+              </label>
+            </div>
+            <div>
+              <label>
+                <input type="radio" value="deathDate"
+                  checked={this.state.selectedOption === 'deathDate'}
+                  onChange={this.handleOptionChange} />
+                  Kuolinpäivä
+              </label>
+            </div>
+          </form>
         </div>
-        <div className='lineChart'>
-          <Chart
-            chartType="LineChart"
-            loader={<div>Loading Chart</div>}
-            data={resultsArray}
-            height={600}
-            options={{
-              hAxis: {
-                title: xTitle + '  ' + infoString,
-              },
-              vAxis: {
-                title: yTitle,
-              },
-            }}
-            rootProps={{ 'data-testid': '1' }}
-          />
-        </div>
+        <Chart
+          chartType="LineChart"
+          loader={<div>Loading Chart</div>}
+          data={resultsArray}
+          height={600}
+          options={{
+            hAxis: {
+              title: xTitle + '  ' + infoString,
+            },
+            vAxis: {
+              title: yTitle,
+            },
+          }}
+          rootProps={{ 'data-testid': '1' }}
+        />
       </Paper>
     );
   }
