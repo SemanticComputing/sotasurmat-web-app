@@ -595,7 +595,11 @@ export const personProperties = `
             BIND (?religion__source__id AS ?religion__source__dataProviderUrl) .
           }
         }
-
+        UNION
+        {
+          ?id siso-s:death_source ?additionalDeathSource__id .
+          BIND (?additionalDeathSource__id AS ?additionalDeathSource__prefLabel)
+        }
 
         `;
 
