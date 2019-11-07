@@ -427,6 +427,60 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 8
     },
+    militaryOrganization: {
+      id: 'militaryOrganization',
+      label: 'Sotilasjärjestö',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8
+    },
+    maritalStatus: {
+      id: 'maritalStatus',
+      label: 'Siviilisääty',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8
+    },
+    // familyWelfare: {
+    //   id: 'familyWelfare',
+    //   label: 'Perheen toimeentulo',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'prefLabel',
+    //   sortDirection: 'asc',
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   isFetching: false,
+    //   searchField: false,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 8
+    // },
   }
 };
 

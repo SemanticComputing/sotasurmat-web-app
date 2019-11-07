@@ -267,6 +267,27 @@ export const facetConfigs = {
       predicate: 'siso-schema:num_of_children',
       type: 'integer',
     },
+    militaryOrganization: {
+      id: 'militaryOrganization',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:rank/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:military_organization',
+    },
+    maritalStatus: {
+      id: 'maritalStatus',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:marital_status/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:marital_status',
+    },
+    // familyWelfare: {
+    //   id: 'familyWelfare',
+    //   facetValueFilter: '',
+    //   labelPath: 'siso-schema:family_welfare/skos:prefLabel',
+    //   type: 'list',
+    //   predicate: 'siso-schema:family_welfare',
+    // },
   },
   taistelut: {
     facetClass: 'siso-schema:Battle',

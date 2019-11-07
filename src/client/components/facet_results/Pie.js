@@ -138,6 +138,11 @@ class Pie extends React.Component {
        label: 'Kuolinsyy',
      });
    }
+   if (changeEvent.target.value === 'maritalStatus') {
+     this.setState({
+       label: 'Siviilisääty',
+     });
+   }
    this.updatePie(changeEvent.target.value);
  }
 
@@ -304,6 +309,14 @@ class Pie extends React.Component {
                  checked={this.state.selectedOption === 'causeOfDeath'}
                  onChange={this.handleOptionChange} />
                    Kuolinsyy
+             </label>
+           </div>
+           <div className="radio">
+             <label>
+               <input type="radio" value="maritalStatus"
+                 checked={this.state.selectedOption === 'maritalStatus'}
+                 onChange={this.handleOptionChange} />
+                   Siviilisääty
              </label>
            </div>
          </form>

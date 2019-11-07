@@ -176,6 +176,18 @@ export default {
             Sukupuoli
           `
         },
+        maritalStatus: {
+          label: 'Siviilisääty',
+          description: `
+            Marital status
+          `
+        },
+        militaryOrganization: {
+          label: 'Sotilasjärjestö',
+          description: `
+            Sotilasjärjesö johon kuului
+          `
+        },
 
       },
     },
