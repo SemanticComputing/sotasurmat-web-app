@@ -13,16 +13,10 @@ import intl from 'react-intl-universal';
 const styles = theme => ({
   root: {
     position: 'absolute',
-    //marginTop: 64,
+    marginTop: 64,
     paddingTop: theme.spacing(1),
     paddingLeft: theme.spacing(1.5),
     paddingRight: theme.spacing(1.5),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 56,
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 64,
-    },
   },
   panel: {
     width: '100%'

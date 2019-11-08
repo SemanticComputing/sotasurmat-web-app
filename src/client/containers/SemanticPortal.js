@@ -239,7 +239,7 @@ let SemanticPortal = props => {
     return perspectiveElement;
   };
   return (
-    <div className={props.match.path === '/' ? classes.rootMainPage : classes.root}>
+    <div className={props.location.pathname === rootUrl ? classes.rootMainPage : classes.root}>
       <div className={classes.appFrame}>
         <Message error={error} />
         <React.Fragment>
@@ -503,7 +503,7 @@ SemanticPortal.propTypes = {
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired
 };
 
 export default compose(
