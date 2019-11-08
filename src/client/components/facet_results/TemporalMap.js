@@ -7,6 +7,7 @@ import DeckGL, { ScatterplotLayer } from 'deck.gl';
 import TemporalMapTimeSlider from './TemporalMapTimeSlider';
 import * as config from '../../configs/mmm/TemporalMapConfig';
 import './TemporalMapCommon.scss';
+import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
 
 const styles = theme => ({
   root: {
@@ -145,7 +146,7 @@ class TemporalMap extends Component {
               mapStyle={config.basemap}
               preventStyleDiffing={true}
               doubleClickZoom={false}
-              mapboxApiAccessToken={config.MAPBOX_TOKEN}
+              mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
             />
           }
         </DeckGL>
