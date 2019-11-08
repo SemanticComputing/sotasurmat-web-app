@@ -281,6 +281,13 @@ export const facetConfigs = {
       type: 'list',
       predicate: 'siso-schema:marital_status',
     },
+    deathLikelihood: {
+      id: 'deathLikelihood',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:surma_tod/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:surma_tod',
+    },
     // familyWelfare: {
     //   id: 'familyWelfare',
     //   facetValueFilter: '',

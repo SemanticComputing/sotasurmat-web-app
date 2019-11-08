@@ -67,7 +67,7 @@ const styles = theme => ({
     }
   },
   cardContent: {
-    height: 85,
+    height: 100,
   },
   logoContainer: {
     display: 'flex',
