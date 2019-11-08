@@ -14,13 +14,13 @@ import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
 import All from '../components/perspectives/All';
-import Surmatut from '../components/perspectives/Surmatut';
-import Taistelut from '../components/perspectives/Taistelut';
+import Surmatut from '../components/perspectives/sotasurmat/Surmatut';
+import Taistelut from '../components/perspectives/sotasurmat/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 import TextPage from '../components/main_layout/TextPage';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig';
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages';
 import InfoHeader from '../components/main_layout/InfoHeader';
@@ -452,12 +452,10 @@ const mapStateToProps = state => {
     surmatutFacets: state.surmatutFacets,
     taistelut: state.taistelut,
     taistelutFacets: state.taistelutFacets,
-    clientSideFacetedSearch: state.clientSideFacetedSearch,
     animationValue: state.animation.value,
     options: state.options,
     error: state.error,
     extras: state.extras,
-  //browser: state.browser,
   };
 };
 
@@ -490,7 +488,6 @@ SemanticPortal.propTypes = {
   taistelutFacets: PropTypes.object.isRequired,
   taistelut: PropTypes.object.isRequired,
   surmatutFacets: PropTypes.object.isRequired,
-  clientSideFacetedSearch: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,

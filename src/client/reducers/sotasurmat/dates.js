@@ -11,7 +11,7 @@ import {
   UPDATE_INSTANCE,
   UPDATE_PAGE,
   SORT_RESULTS,
-} from '../actions';
+} from '../../actions';
 import {
   fetchResults,
   fetchResultsFailed,
@@ -22,7 +22,7 @@ import {
   updatePaginatedResults,
   updateInstance,
   updatePage,
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   results: [],
