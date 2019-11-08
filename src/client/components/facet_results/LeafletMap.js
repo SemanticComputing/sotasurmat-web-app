@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { purple } from '@material-ui/core/colors';
 import moment from 'moment';
 import 'leaflet/dist/leaflet.css';
+import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
 
 // Leaflet plugins
 import 'leaflet-fullscreen/dist/fullscreen.png';
@@ -29,8 +30,6 @@ import markerIconViolet from '../../img/markers/marker-icon-violet.png';
 import markerIconGreen from '../../img/markers/marker-icon-green.png';
 import markerIconRed from '../../img/markers/marker-icon-red.png';
 import markerIconOrange from '../../img/markers/marker-icon-orange.png';
-
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic290YXN1cm1hdCIsImEiOiJjazJraWJvd24wMHVqM2JrMHFtbmlrbDBoIn0.LL-ysIRBLRs2El8khAFjJw';
 
 const style = {
   width: '100%',

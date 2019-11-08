@@ -11,6 +11,7 @@ import { purple } from '@material-ui/core/colors';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
 
 // https://deck.gl/#/documentation/getting-started/using-with-react?section=adding-a-base-map
 
@@ -19,9 +20,6 @@ import Typography from '@material-ui/core/Typography';
 // http://deck.gl/#/documentation/deckgl-api-reference/layers/arc-layer
 
 // https://blog.mapbox.com/mapbox-gl-js-react-764da6cc074a
-
-// Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic290YXN1cm1hdCIsImEiOiJjazJraWJvd24wMHVqM2JrMHFtbmlrbDBoIn0.LL-ysIRBLRs2El8khAFjJw';
 
 const styles = theme => ({
   root: {

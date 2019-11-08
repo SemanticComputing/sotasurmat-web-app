@@ -18,21 +18,14 @@ import {
   deathsAt
 } from './SparqlQueriesDeaths';
 import {
-  battleProperties, battlePlacesQuery, battlePlaceQuery, battlePropertiesInfoWindow
+  battleProperties,
+  battlePlacesQuery
 } from './SparqlQueriesBattles';
 import {
-  actorProperties,
-  placesActorsQuery,
-} from './SparqlQueriesActors';
-import {
-  placePropertiesInstancePage,
-  placePropertiesFacetResults,
   placePropertiesInfoWindow,
-  manuscriptsProducedAt,
-  actorsAt,
   allPlacesQuery,
 } from './SparqlQueriesPlaces';
-import { facetConfigs } from './FacetConfigsMMM';
+import { facetConfigs } from './FacetConfigsSotasurmat';
 import { mapCount, mapPlaces, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
 import { makeObjectList } from './SparqlObjectMapper';
 import { generateConstraintsBlock } from './Filters';

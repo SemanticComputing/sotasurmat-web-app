@@ -13,7 +13,7 @@ import {
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED
-} from '../actions';
+} from '../../actions';
 import {
   fetchResults,
   fetchResultsFailed,
@@ -26,7 +26,9 @@ import {
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
-} from './helpers';
+} from '../helpers';
+
+// onlyOnInstancePage: true
 
 export const INITIAL_STATE = {
   results: [],
@@ -39,7 +41,7 @@ export const INITIAL_STATE = {
   instanceSparqlQuery: null,
   page: -1,
   pagesize: 15,
-  sortBy: 'prefLabel',
+  sortBy: 'startDate',
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
@@ -50,116 +52,90 @@ export const INITIAL_STATE = {
   properties: [
     {
       id: 'prefLabel',
-      label: 'Nimi',
-      desc: `
-        Nimi
-      `,
+      label: 'Taistelun nimi',
+      desc: 'Taistelun nimi',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 100
+      minWidth: 170
     },
     {
-      id: 'party',
-      externalLink: true,
-      label: 'Osapuoli',
+      id: 'startDate',
+      label: 'alkupäivä',
       desc: `
-        Osapuoli
+        Taistelun alkupäivä
       `,
       valueType: 'object',
       makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 100
-    },
-    {
-      id: 'registeredMunicipality',
-      externalLink: true,
-      label: 'Kirjoillaolokunta',
-      desc: `
-        Kirjoillaolokunta
-      `,
-      valueType: 'object',
-      makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
     },
     {
-      id: 'deathMunicipality',
-      externalLink: true,
-      label: 'Kuolinkunta',
+      id: 'endDate',
+      label: 'loppupäivä',
       desc: `
-        Kuolinkunta
+        Taistelun loppupäivä
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 125
+    },
+    {
+      id: 'greaterPlace',
+      label: 'Kunta',
+      desc: `
+        Kunta tai muu suurempi paikka
+      `,
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
     },
     {
-      id: 'occupation',
-      externalLink: true,
-      label: 'Ammatti',
+      id: 'exactPlace',
+      label: 'Tarkka paikka',
       desc: `
-        Ammatti
+        Taistelun tarkka paikka
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
-    },
-    // {
-    //   id: 'livingMunicipality',
-    //   label: 'Asuinkunta',
-    //   desc: `
-    //     Asuinkunta
-    //   `,
-    //   valueType: 'object',
-    //   makeLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 125
-    // },
-    {
-      id: 'birthDate',
-      externalLink: true,
-      label: 'Syntymäpäivä',
-      desc: `
-        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 125
+      minWidth: 150
     },
     {
-      id: 'deathDate',
-      externalLink: true,
-      label: 'Kuolinpäivä',
+      id: 'units',
+      label: 'Yksiköt',
       desc: `
-        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
+        Taisteluun osallistuneita (lähinnä valkoisten) yksiköitä
       `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 150
     },
   ],
 };
 
+
 const resultClasses = new Set([
-  'surmatut',
-  'csvDeaths',
+  'taistelut',
+  'battlePlaces',
 ]);
 
-const surmatut = (state = INITIAL_STATE, action) => {
+const taistelut = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
@@ -193,4 +169,4 @@ const surmatut = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default surmatut;
+export default taistelut;

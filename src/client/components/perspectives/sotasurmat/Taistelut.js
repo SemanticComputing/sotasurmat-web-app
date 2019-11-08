@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import PerspectiveTabs from '../main_layout/PerspectiveTabs';
-import ResultTable from '../facet_results/ResultTable';
-import LeafletMap from '../facet_results/LeafletMap';
-import ExportCSV from '../facet_results/ExportCSV';
+import PerspectiveTabs from '../../main_layout/PerspectiveTabs';
+import ResultTable from '../../facet_results/ResultTable';
+import LeafletMap from '../../facet_results/LeafletMap';
+// import TemporalMap from '../../facet_results/TemporalMap';
+import ExportCSV from '../../facet_results/ExportCSV';
 
 let Taistelut = props => {
   return (
@@ -52,6 +53,14 @@ let Taistelut = props => {
             showInstanceCountInClusters={false}
           />}
       />
+      {/* <Route
+        path={`${props.rootUrl}/taistelut/faceted-search/animation`}
+        render={() =>
+          <TemporalMap
+            animationValue={props.animationValue}
+            animateMap={props.animateMap}
+          />}
+      /> */}
       <Route
         path={`${props.rootUrl}/taistelut/faceted-search/csv`}
         render={() =>
@@ -77,7 +86,9 @@ Taistelut.propTypes = {
   updateRowsPerPage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  perspective: PropTypes.object.isRequired
+  perspective: PropTypes.object.isRequired,
+  animationValue: PropTypes.array.isRequired,
+  animateMap: PropTypes.func.isRequired,
 };
 
 export default Taistelut;
