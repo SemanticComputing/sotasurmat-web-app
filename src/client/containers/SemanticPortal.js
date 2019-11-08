@@ -13,7 +13,7 @@ import Main from '../components/main_layout/Main';
 import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
-import All from '../components/perspectives/All';
+// import All from '../components/perspectives/All';
 import Surmatut from '../components/perspectives/sotasurmat/Surmatut';
 import Taistelut from '../components/perspectives/sotasurmat/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
@@ -231,6 +231,8 @@ let SemanticPortal = props => {
           resultCount={props.taistelut.resultCount}
           updateRowsPerPage={props.updateRowsPerPage}
           perspective={perspective}
+          animationValue={props.animationValue}
+          animateMap={props.animateMap}
         />;
         break;
       default:
@@ -240,13 +242,12 @@ let SemanticPortal = props => {
     return perspectiveElement;
   };
   return (
-    <div className={props.match.path === '/' ? classes.rootMainPage : classes.root}>
+    <div className={props.location.pathname === rootUrl ? classes.rootMainPage : classes.root}>
       <div className={classes.appFrame}>
         <Message error={error} />
         <React.Fragment>
           <TopBar
             rootUrl={rootUrl}
-            search={props.clientSideFacetedSearch}
             fetchResultsClientSide={props.fetchResultsClientSide}
             clearResults={props.clearResults}
             perspectives={perspectiveConfig}
@@ -263,20 +264,6 @@ let SemanticPortal = props => {
                   rootUrl={rootUrl}
                 />
                 <Footer />
-              </Grid>
-            }
-          />
-          { /* route for full text search results */ }
-          <Route
-            path={`${rootUrl}/all`}
-            render={routeProps =>
-              <Grid container spacing={1} className={classes.mainContainer}>
-                <Grid item xs={12} className={classes.resultsContainer}>
-                  <All
-                    clientSideFacetedSearch={props.clientSideFacetedSearch}
-                    routeProps={routeProps}
-                  />
-                </Grid>
               </Grid>
             }
           />
@@ -504,7 +491,7 @@ SemanticPortal.propTypes = {
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   animateMap: PropTypes.func.isRequired
 };
 

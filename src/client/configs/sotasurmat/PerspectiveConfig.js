@@ -77,6 +77,11 @@ export const perspectiveConfig = [
         id: 'map',
         value: 1,
         icon: <AddLocationIcon />,
+      },
+      {
+        id: 'animation',
+        value: 2,
+        icon: <AddLocationIcon />,
       }
     ],
     instancePageTabs: [
