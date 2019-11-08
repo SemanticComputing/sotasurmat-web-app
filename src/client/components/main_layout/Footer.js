@@ -3,18 +3,10 @@ import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-//import oxfordLogo from '../../img/logos/partners/ox_brand6_pos_rect.gif';
-//import oxfordLogo2 from '../../img/logos/partners/Long-Logo-RGB.jpg';
-//import pennLogo from '../../img/logos/partners/PL SIMS Logo_small.png';
-//import cnrsLogo from '../../img/logos/partners/logo_cnrs_irht2.jpg';
 import aaltoLogo from '../../img/logos/aalto-logo-white-no-background-small.png';
-import secoLogo from '../../img/logos/seco-logo.png';
-import arkistoLogo from '../../img/logos/ka-tunnus-fi.png';
-//import tapLogo from '../../img/logos/funders/cropped-logo_tap_0_.png';
-//import didLogo from '../../img/logos/funders/did_logo.png';
-//import imlsLogo from '../../img/logos/funders/imls_logo_2c_cropped.jpg';
-//import anrLogo from '../../img/logos/funders/Agence_Nationale_de_la_Recherche.png';
-//import akaLogo from '../../img/logos/funders/aka_en_vaaka_rgb.jpg';
+import secoLogo from '../../img/logos/seco-logo-white-no-background-small.png';
+import arkistoLogo from '../../img/logos/ka-tunnus-fi-white.png';
+
 
 const styles = theme => ({
   root: {
@@ -42,16 +34,22 @@ const styles = theme => ({
       marginRight: 'auto',
     },
   },
+  link: {
+    textDecoration: 'none'
+  },
   logoContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
   },
-  logo: {
-    height: 40,
+  secLogo: {
+    height: 46,
   },
   aaltoLogo: {
-    height: 37,
+    height: 39,
+  },
+  arkistoLogo: {
+    height: 44,
   },
 });
 
@@ -62,13 +60,34 @@ const Footer = props => {
       <Grid container className={classes.layout}>
         <Grid container spacing={3} item xs={12}>
           <Grid item xs className={classes.logoContainer}>
-            <img className={classes.logo} src={secoLogo} alt='logo' />
+            <a
+              className={classes.link}
+              href="https://seco.cs.aalto.fi/"
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <img className={classes.secLogo} src={secoLogo} alt='logo' />
+            </a>
           </Grid>
           <Grid item xs className={classes.logoContainer}>
-            <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
+            <a
+              className={classes.link}
+              href="https://www.aalto.fi/"
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
+            </a>
           </Grid>
           <Grid item xs className={classes.logoContainer}>
-            <img className={classes.aaltoLogo} src={arkistoLogo} alt='logo' />
+            <a
+              className={classes.link}
+              href="https://www.arkisto.fi/"
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <img className={classes.arkistoLogo} src={arkistoLogo} alt='logo' />
+            </a>
           </Grid>
         </Grid>
       </Grid>
