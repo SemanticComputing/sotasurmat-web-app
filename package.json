@@ -62,7 +62,7 @@
     "axios": "^0.19.0",
     "cytoscape": "^3.6.0",
     "date-fns": "^2.0.0-alpha.27",
-    "deck.gl": "^7.1.11",
+    "deck.gl": "^7.3.4",
     "express": "^4.16.4",
     "leaflet": "^1.5.1",
     "leaflet-draw": "^1.0.4",
