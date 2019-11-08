@@ -38,7 +38,7 @@ import { rootUrl } from '../configs/config';
 
 export const apiUrl = (process.env.NODE_ENV === 'development')
   ? `http://localhost:3001${rootUrl}/api/`
-  : `http://${location.hostname}${rootUrl}/api/`;
+  : `https://${location.hostname}${rootUrl}/api/`;
 
 const backendErrorText = `Ei pystytty yhdistämään tietokantaan.
 Sivusto toimii oikein vain http yhteyden kautta ja https osoitteen alussa aiheuttaa tämän virheen.
