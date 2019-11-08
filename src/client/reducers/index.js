@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import {reducer as toastrReducer} from 'react-redux-toastr';
-//import {createResponsiveStateReducer} from 'redux-responsive';
 import error from './error';
 import clientSideFacetedSearch from './mmm/clientSideFacetedSearch';
 import surmatut from './surmatut';
@@ -11,6 +10,7 @@ import taistelutFacets from './taistelutFacets';
 import dates from './dates';
 import places from './places';
 import options from './options';
+import animation from './mmm/animation';
 
 const reducer = combineReducers({
   surmatut,
@@ -18,6 +18,7 @@ const reducer = combineReducers({
   taistelut,
   taistelutFacets,
   clientSideFacetedSearch,
+  animation,
   options,
   error,
   dates,

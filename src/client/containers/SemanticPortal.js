@@ -39,7 +39,8 @@ import {
   updateRowsPerPage,
   showError,
   updatePerspectiveHeaderExpanded,
-  loadLocales
+  loadLocales,
+  animateMap
 } from '../actions';
 import { rootUrl } from '../configs/config';
 
@@ -452,6 +453,7 @@ const mapStateToProps = state => {
     taistelut: state.taistelut,
     taistelutFacets: state.taistelutFacets,
     clientSideFacetedSearch: state.clientSideFacetedSearch,
+    animationValue: state.animation.value,
     options: state.options,
     error: state.error,
     extras: state.extras,
@@ -473,7 +475,8 @@ const mapDispatchToProps = ({
   updateRowsPerPage,
   showError,
   updatePerspectiveHeaderExpanded,
-  loadLocales
+  loadLocales,
+  animateMap
 });
 
 SemanticPortal.propTypes = {
@@ -488,6 +491,7 @@ SemanticPortal.propTypes = {
   taistelut: PropTypes.object.isRequired,
   surmatutFacets: PropTypes.object.isRequired,
   clientSideFacetedSearch: PropTypes.object.isRequired,
+  animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,
   fetchResultsClientSide: PropTypes.func.isRequired,
@@ -503,7 +507,8 @@ SemanticPortal.propTypes = {
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  animateMap: PropTypes.func.isRequired
 };
 
 export default compose(
