@@ -78,11 +78,11 @@ export const perspectiveConfig = [
         value: 1,
         icon: <AddLocationIcon />,
       },
-      {
-        id: 'animation',
-        value: 2,
-        icon: <AddLocationIcon />,
-      }
+      // {
+      //   id: 'animation',
+      //   value: 2,
+      //   icon: <AddLocationIcon />,
+      // }
     ],
     instancePageTabs: [
       {
