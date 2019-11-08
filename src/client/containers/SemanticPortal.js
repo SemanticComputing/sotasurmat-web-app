@@ -13,14 +13,14 @@ import Main from '../components/main_layout/Main';
 import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
-import All from '../components/perspectives/All';
-import Surmatut from '../components/perspectives/Surmatut';
-import Taistelut from '../components/perspectives/Taistelut';
+// import All from '../components/perspectives/All';
+import Surmatut from '../components/perspectives/sotasurmat/Surmatut';
+import Taistelut from '../components/perspectives/sotasurmat/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
 //import FeedbackPage from '../components/main_layout/FeedbackPage';
 import TextPage from '../components/main_layout/TextPage';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig';
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages';
 import InfoHeader from '../components/main_layout/InfoHeader';
@@ -39,7 +39,8 @@ import {
   updateRowsPerPage,
   showError,
   updatePerspectiveHeaderExpanded,
-  loadLocales
+  loadLocales,
+  animateMap
 } from '../actions';
 import { rootUrl } from '../configs/config';
 
@@ -57,6 +58,10 @@ const styles = theme => ({
        needs to be defined also in index.html (for #app and #root elements)
     */
     backgroundColor: '#bdbdbd'
+  },
+  rootMainPage: {
+    flexGrow: 1,
+    height: '100%',
   },
   flex: {
     flexGrow: 1,
@@ -84,10 +89,10 @@ const styles = theme => ({
     }
   },
   mainContainerSotasurmat: {
-    height: 'auto',
+    height: '100%',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 80px)', // 100% - app bar - padding
+      height: 'calc(100% - 126px)', // 100% - app bar - footer
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
@@ -226,6 +231,8 @@ let SemanticPortal = props => {
           resultCount={props.taistelut.resultCount}
           updateRowsPerPage={props.updateRowsPerPage}
           perspective={perspective}
+          animationValue={props.animationValue}
+          animateMap={props.animateMap}
         />;
         break;
       default:
@@ -235,13 +242,12 @@ let SemanticPortal = props => {
     return perspectiveElement;
   };
   return (
-    <div className={classes.root}>
+    <div className={props.location.pathname === rootUrl ? classes.rootMainPage : classes.root}>
       <div className={classes.appFrame}>
         <Message error={error} />
         <React.Fragment>
           <TopBar
             rootUrl={rootUrl}
-            search={props.clientSideFacetedSearch}
             fetchResultsClientSide={props.fetchResultsClientSide}
             clearResults={props.clearResults}
             perspectives={perspectiveConfig}
@@ -252,26 +258,12 @@ let SemanticPortal = props => {
           <Route
             exact path={`${rootUrl}/`}
             render={() =>
-              <Grid container spacing={1} className={classes.mainContainerSotasurmat}>
+              <Grid container className={classes.mainContainerSotasurmat}>
                 <Main
                   perspectives={perspectiveConfig}
                   rootUrl={rootUrl}
                 />
                 <Footer />
-              </Grid>
-            }
-          />
-          { /* route for full text search results */ }
-          <Route
-            path={`${rootUrl}/all`}
-            render={routeProps =>
-              <Grid container spacing={1} className={classes.mainContainer}>
-                <Grid item xs={12} className={classes.resultsContainer}>
-                  <All
-                    clientSideFacetedSearch={props.clientSideFacetedSearch}
-                    routeProps={routeProps}
-                  />
-                </Grid>
               </Grid>
             }
           />
@@ -447,11 +439,10 @@ const mapStateToProps = state => {
     surmatutFacets: state.surmatutFacets,
     taistelut: state.taistelut,
     taistelutFacets: state.taistelutFacets,
-    clientSideFacetedSearch: state.clientSideFacetedSearch,
+    animationValue: state.animation.value,
     options: state.options,
     error: state.error,
     extras: state.extras,
-  //browser: state.browser,
   };
 };
 
@@ -469,7 +460,8 @@ const mapDispatchToProps = ({
   updateRowsPerPage,
   showError,
   updatePerspectiveHeaderExpanded,
-  loadLocales
+  loadLocales,
+  animateMap
 });
 
 SemanticPortal.propTypes = {
@@ -483,7 +475,7 @@ SemanticPortal.propTypes = {
   taistelutFacets: PropTypes.object.isRequired,
   taistelut: PropTypes.object.isRequired,
   surmatutFacets: PropTypes.object.isRequired,
-  clientSideFacetedSearch: PropTypes.object.isRequired,
+  animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,
   fetchResultsClientSide: PropTypes.func.isRequired,
@@ -499,6 +491,8 @@ SemanticPortal.propTypes = {
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+  animateMap: PropTypes.func.isRequired
 };
 
 export default compose(

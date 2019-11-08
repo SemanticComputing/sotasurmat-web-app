@@ -108,7 +108,7 @@ class TopBar extends React.Component {
         <MenuItem
           key={perspective.id}
           component={this.AdapterLink}
-          to={`/${perspective.id}/faceted-search`}
+          to={`${this.props.rootUrl}/${perspective.id}/faceted-search`}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
@@ -172,16 +172,6 @@ class TopBar extends React.Component {
       >
         {intl.get('topBar.info.aboutTheProject').toUpperCase()}
       </MenuItem>
-      <a className={this.props.classes.link}
-        key={1}
-        href='http://mappingmanuscriptmigrations.org'
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        <MenuItem>
-          {intl.get('topBar.info.blog').toUpperCase()}
-        </MenuItem>
-      </a>
       <MenuItem
         key='info'
         component={this.AdapterLink}

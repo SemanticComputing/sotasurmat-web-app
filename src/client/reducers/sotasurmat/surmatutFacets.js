@@ -3,13 +3,13 @@ import {
   FETCH_FACET_FAILED,
   UPDATE_FACET_VALUES,
   UPDATE_FACET_OPTION,
-} from '../actions';
+} from '../../actions';
 import {
   fetchFacet,
   fetchFacetFailed,
   updateFacetValues,
   updateFacetOption,
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   updatedFacet: null,
@@ -427,6 +427,78 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 8
     },
+    militaryOrganization: {
+      id: 'militaryOrganization',
+      label: 'Sotilasjärjestö',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8
+    },
+    maritalStatus: {
+      id: 'maritalStatus',
+      label: 'Siviilisääty',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8
+    },
+    deathLikelihood: {
+      id: 'deathLikelihood',
+      label: 'Surman todennäköisyys',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'four',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8
+    },
+    // familyWelfare: {
+    //   id: 'familyWelfare',
+    //   label: 'Perheen toimeentulo',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'prefLabel',
+    //   sortDirection: 'asc',
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   isFetching: false,
+    //   searchField: false,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 8
+    // },
   }
 };
 

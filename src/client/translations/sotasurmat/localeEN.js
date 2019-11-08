@@ -37,7 +37,7 @@ export default {
     surmatut: {
       label: 'War Victims',
       facetResultsType: 'Person',
-      shortDescription: 'Information about war victims in Finland 1914-1922',
+      shortDescription: 'Information about war victims in Finland 1914-1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Perspective to the war victim file
@@ -176,6 +176,24 @@ export default {
             Gender
           `
         },
+        maritalStatus: {
+          label: 'Marital status',
+          description: `
+            Marital status
+          `
+        },
+        militaryOrganization: {
+          label: 'Military organization',
+          description: `
+            Military organization
+          `
+        },
+        deathLikelihood: {
+          label: 'Likelihood of death',
+          description: `
+            Likelihood of information about death to be true.
+          `
+        },
 
       },
     },
@@ -242,12 +260,81 @@ export default {
     },
   },
   instructions: `
-    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Instructions
-    </h1>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+  <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+        Instructions
+      </h1>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        The search functionality of the portal is based on the
+        <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'>
+        faceted search</a> paradigm. By default each perspective displays
+        all results from the corresponding class.
+        This default result set can be narrowed down by using the filters on the left.
+      </p>
 
-    </p>
+      <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+        Using a single filter
+      </h2>
+
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+        Selecting values within a filter
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        All possible values for a filter are displayed either as a list or as a hierarchical
+        tree structure (if available). The number of results is shown in brackets for each value.
+        Once a value is selected, the results are automatically updated. To prevent further
+        selections that do not return any results, also the possible values for all
+        other filters are updated at the same time.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        Multiple values can be selected within a single filter. Selecting multiple values
+        generates results that contain any of the selected values.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        Selected values of a filter appear in the Active filters section at the top of the list
+        of filters. To deselect a filter, click the X mark next to it within the Active filters
+        section. You can also deselect a filter value by unchecking the checkmark in the
+        filter’s value list. The Active filters section only appears if there are filter
+        values currently selected.
+      </p>
+
+      <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+        Searching within a filter
+      </h3>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        Search within a filter by using the search field at the top of each filter.
+        All possible values of a filter remain visible at all times. The values of
+        the filter that match the search term are indicated by a purple underline.
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        Steps for searching within filters:
+      </p>
+      <ol class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
+        <li>
+          Type search term into search field. If there are matches, a number
+          will appear to the right of the search field, indicating the number
+          of filter values that match the search term.
+        </li>
+        <li>
+          Click the arrows to the right of the search field to cycle
+          through the results. As you click the arrow, a different filter value
+          will appear at the top of the list. Matched filters are underlined in
+          purple.
+        </li>
+        <li>
+          Click the checkmark next to a filter value to activate it. The results
+          (and also other filters) are automatically updated.
+        </li>
+      </ol>
+
+      <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+        Using multiple filters simultaneously
+      </h2>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        The effectiveness of faceted search is realized when multiple filters are
+        applied at the same time. As in many e-commerce sites, a logical AND is
+        always used between the filters.
+      </p>
+
   `,
   feedback: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">

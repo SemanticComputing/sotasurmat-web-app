@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import PerspectiveTabs from '../main_layout/PerspectiveTabs';
-import ResultTable from '../facet_results/ResultTable';
-import Pie from '../facet_results/Pie';
-import LineChart from '../facet_results/LineChart';
-import ExportCSV from '../facet_results/ExportCSV';
-import LeafletMap from '../facet_results/LeafletMap';
+import PerspectiveTabs from '../../main_layout/PerspectiveTabs';
+import ResultTable from '../../facet_results/ResultTable';
+import Pie from '../../facet_results/Pie';
+import LineChart from '../../facet_results/LineChart';
+import ExportCSV from '../../facet_results/ExportCSV';
+import LeafletMap from '../../facet_results/LeafletMap';
 
 let Surmatut = props => {
 //console.log(props)

@@ -13,7 +13,7 @@ import {
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED
-} from '../actions';
+} from '../../actions';
 import {
   fetchResults,
   fetchResultsFailed,
@@ -26,7 +26,7 @@ import {
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
-} from './helpers';
+} from '../helpers';
 
 export const INITIAL_STATE = {
   results: [],
