@@ -58,6 +58,10 @@ const styles = theme => ({
     */
     backgroundColor: '#bdbdbd'
   },
+  rootMainPage: {
+    flexGrow: 1,
+    height: '100%',
+  },
   flex: {
     flexGrow: 1,
   },
@@ -84,10 +88,10 @@ const styles = theme => ({
     }
   },
   mainContainerSotasurmat: {
-    height: 'auto',
+    height: '100%',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 80px)', // 100% - app bar - padding
+      height: 'calc(100% - 126px)', // 100% - app bar - footer
     },
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
@@ -235,7 +239,7 @@ let SemanticPortal = props => {
     return perspectiveElement;
   };
   return (
-    <div className={classes.root}>
+    <div className={props.match.path === '/' ? classes.rootMainPage : classes.root}>
       <div className={classes.appFrame}>
         <Message error={error} />
         <React.Fragment>
@@ -252,7 +256,7 @@ let SemanticPortal = props => {
           <Route
             exact path={`${rootUrl}/`}
             render={() =>
-              <Grid container spacing={1} className={classes.mainContainerSotasurmat}>
+              <Grid container className={classes.mainContainerSotasurmat}>
                 <Main
                   perspectives={perspectiveConfig}
                   rootUrl={rootUrl}
@@ -499,6 +503,7 @@ SemanticPortal.propTypes = {
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 export default compose(

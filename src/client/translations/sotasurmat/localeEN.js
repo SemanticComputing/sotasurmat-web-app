@@ -37,7 +37,7 @@ export default {
     surmatut: {
       label: 'War Victims',
       facetResultsType: 'Person',
-      shortDescription: 'Information about war victims in Finland 1914-1922',
+      shortDescription: 'Information about war victims in Finland 1914-1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Perspective to the war victim file

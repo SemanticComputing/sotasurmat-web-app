@@ -5,7 +5,7 @@ export default {
     long: 'Suomen sotasurmat 1914-1922'
   },
   appDescription: `
-    Alustava testiversio vuosien 1914-1922 sotasurmien tiedoston käyttöliittymästä.
+    Testiversio vuosien 1914-1922 sotasurmien tiedoston käyttöliittymästä.
   `,
   topBar: {
     feedback: 'palaute',
@@ -37,7 +37,7 @@ export default {
     surmatut: {
       label: 'Surmatut',
       facetResultsType: 'henkilö',
-      shortDescription: 'Tietoa vuosina 1914-1922 surmatuista',
+      shortDescription: 'Tietoa vuosina 1914-1922 surmatuista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Näkymä sotasurmatiedostoon
