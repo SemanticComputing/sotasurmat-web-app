@@ -188,6 +188,12 @@ export default {
             Military organization
           `
         },
+        deathLikelihood: {
+          label: 'Likelihood of death',
+          description: `
+            Likelihood of information about death to be true.
+          `
+        },
 
       },
     },
