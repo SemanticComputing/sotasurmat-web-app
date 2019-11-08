@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { has } from 'lodash';
 import defaultThumbImage from '../../img/thumb.png';
 import logo from '../../img/logo_fi.gif';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   root: {
@@ -99,8 +100,9 @@ let Main = props => {
       <div className={classNames(classes.layout, classes.cardContainer)}>
         {props.perspectives.map(perspective => {
           return (
-            <Card key={perspective.id} className={classes.card}>
-              {has(perspective, 'externalUrl') &&
+            <Tooltip key={perspective.id} title={perspective.thumbImageText}>
+              <Card key={perspective.id} className={classes.card}>
+                {has(perspective, 'externalUrl') &&
                     <a className={classes.link}
                       href={perspective.externalUrl}
                       target='_blank'
@@ -124,8 +126,8 @@ let Main = props => {
                         </CardContent>
                       </CardActionArea>
                     </a>
-              }
-              {!has(perspective, 'externalUrl') &&
+                }
+                {!has(perspective, 'externalUrl') &&
                     <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
                       <CardMedia
                         className={classes.media}
@@ -143,8 +145,9 @@ let Main = props => {
                         </Typography>
                       </CardContent>
                     </CardActionArea>
-              }
-            </Card>
+                }
+              </Card>
+            </Tooltip>
           );
         }
         )}

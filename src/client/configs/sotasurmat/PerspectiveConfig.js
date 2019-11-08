@@ -14,6 +14,7 @@ export const perspectiveConfig = [
   {
     id: 'surmatut',
     thumbImage: kalevankangas,
+    thumbImageText: 'Kuva: "Punaisten ruumiita Kalevankankaan hautausmaalla Tampereen taistelun jälkeen." Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
@@ -65,6 +66,7 @@ export const perspectiveConfig = [
   {
     id: 'taistelut',
     thumbImage: punainenRintama,
+    thumbImageText: 'Kuva: "Tampereen punakaartin komppania rintamalla." Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [

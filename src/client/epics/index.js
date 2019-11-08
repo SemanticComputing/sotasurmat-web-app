@@ -40,9 +40,7 @@ export const apiUrl = (process.env.NODE_ENV === 'development')
   ? `http://localhost:3001${rootUrl}/api/`
   : `http://${location.hostname}${rootUrl}/api/`;
 
-const backendErrorText = `Ei pystytty yhdistämään tietokantaan.
-Sivusto toimii oikein vain http yhteyden kautta ja https osoitteen alussa aiheuttaa tämän virheen.
-Datan päivitys saattaa myös olla käynnissä.`;
+const backendErrorText = `Ei pystytty yhdistämään tietokantaan. Kokeile myöhemmin uudestaan. Cannot currently connect to the database. Please try again later.`;
 
 export const availableLocales = {
   'fi': localeFI,
