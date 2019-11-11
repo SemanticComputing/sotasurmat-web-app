@@ -246,6 +246,13 @@ export const facetConfigs = {
     //   type: 'list',
     //   predicate: 'siso-schema:family_welfare',
     // },
+    deathLikelihood: {
+      id: 'deathLikelihood',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:death_likelihood/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:death_likelihood',
+    },
   },
   taistelut: {
     facetClass: 'siso-schema:Battle',
