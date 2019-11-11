@@ -72,19 +72,43 @@ class Pie extends React.Component {
     //this.handleClick = this.handleClick.bind(this);
   }
 
+ // combineSmallGroups = (dataArray) => {
+ //   const totalLength = dataArray.length;
+ //   const threshold = 0.1;
+ //   let other = { x: 'Muu arvo', y: 0, values: [] };
+ //   let newArray = [];
+ //   for (let item of dataArray) {
+ //     const portion = item.y / totalLength;
+ //     if (portion < threshold) {
+ //       other.y += item.y;
+ //       other.values.push(item.values);
+ //     } else {
+ //       newArray.push(item);
+ //     }
+ //   }
+ //   if (other.y > 0) {
+ //     newArray.push(other);
+ //     return newArray;
+ //   } else {
+ //     return dataArray;
+ //   }
+ // };
+
  combineSmallGroups = (dataArray) => {
-   const totalLength = dataArray.length;
-   const threshold = 0.1;
+   //const totalLength = dataArray.length;
+   //const threshold = 0.1;
    let other = { x: 'Muu arvo', y: 0, values: [] };
    let newArray = [];
+   let count = 0;
    for (let item of dataArray) {
-     const portion = item.y / totalLength;
-     if (portion < threshold) {
+     //const portion = item.y / totalLength;
+     if (count > 8) {
        other.y += item.y;
        other.values.push(item.values);
      } else {
        newArray.push(item);
      }
+     count += 1;
    }
    if (other.y > 0) {
      newArray.push(other);
@@ -231,7 +255,7 @@ class Pie extends React.Component {
    dataArray = _.orderBy(dataArray, 'y', 'desc');
    //  console.log(dataArray)
    dataArray = this.combineSmallGroups(dataArray);
-   const legendArray = dataArray.map(group => ({ name: group.x.toLowerCase() + ' (' + group.y + ')' }));
+   const legendArray = dataArray.map(group => ({ name: group.x + ' (' + group.y + ')' }));
    //console.log(dataArray)
    const legendHeigth = legendArray.length * 35 + 10;
    // const pieTitle = resultCount + ' results for the query "' + query + '"';
