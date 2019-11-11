@@ -1,9 +1,9 @@
 export const basemap = 'mapbox://styles/mapbox/light-v9';
 
 export const VIEWSTATE = {
-  longitude: -98,
-  latitude: 33,
-  zoom: 4,
+  longitude: 27.96,
+  latitude: 64.84,
+  zoom: 4.5,
   pitch: 0,
   bearing: 0
 };
@@ -15,7 +15,7 @@ export const DATA =
   'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/icon/meteorites.json';
 
 export const DATE_FIELD = 'year';
-export const NAME_FIELD = 'name';
+export const NAME_FIELD = 'prefLabel';
 export const MASS_FIELD = 'mass';
 
 export const SIZE = {

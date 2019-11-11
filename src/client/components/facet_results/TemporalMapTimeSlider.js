@@ -58,19 +58,19 @@ class TemporalMapTimeSlider extends Component {
       this.setState({ memory: this.props.memory });
     }
 
-    if (prevProps.dateUniques !== this.props.dateUniques) {
-      const toSplitIn = 8;
-      const interval = this.props.dateUniques.length / toSplitIn;
-      const target = [];
-
-
-      for (let i = 0; i < toSplitIn; i++) {
-        target.push(this.props.dateUniques[Math.round(interval * i)]);
-      }
+    if (prevProps.dates !== this.props.dates) {
+      // const toSplitIn = 8;
+      // const interval = this.props.dateUniques.length / toSplitIn;
+      // const target = [];
+      //
+      //
+      // for (let i = 0; i < toSplitIn; i++) {
+      //   target.push(this.props.dateUniques[Math.round(interval * i)]);
+      // }
 
       this.setState({
-        maxValue: this.props.dateUniques.length,
-        currentDay: this.props.dateUniques.length > 10 ? target : this.props.dateUniques
+        maxValue: this.props.dates.length,
+        //currentDay: this.props.dateUniques.length > 10 ? target : this.props.dateUniques
       });
     }
   };
@@ -254,7 +254,7 @@ class TemporalMapTimeSlider extends Component {
                   min={0}
                   max={maxValue}
                   step={1}
-                  marks={true}
+                  valueLabelDisplay="auto"
                 />
                 <div className="slider-labels-container">
                   {currentDay && currentDay.map((f, i) => <div key={`label-${i}`}>{f}</div>)}
@@ -271,7 +271,7 @@ class TemporalMapTimeSlider extends Component {
 TemporalMapTimeSlider.propTypes = {
   classes: PropTypes.object.isRequired,
   memory: PropTypes.array.isRequired,
-  dateUniques: PropTypes.array.isRequired,
+  dates: PropTypes.array.isRequired,
   animateMap: PropTypes.func.isRequired
 };
 

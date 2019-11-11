@@ -133,6 +133,7 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'taistelut',
   'battlePlaces',
+  'battlePlacesAnimation'
 ]);
 
 const taistelut = (state = INITIAL_STATE, action) => {

@@ -19,7 +19,8 @@ import {
 } from './SparqlQueriesDeaths';
 import {
   battleProperties,
-  battlePlacesQuery
+  battlePlacesQuery,
+  battlePlacesAnimationQuery
 } from './SparqlQueriesBattles';
 import {
   placePropertiesInfoWindow,
@@ -76,6 +77,10 @@ export const getAllResults = ({
       q = battlePlacesQuery;
       filterTarget = 'id';
       break;
+    case 'battlePlacesAnimation':
+      q = battlePlacesAnimationQuery;
+      filterTarget = 'id';
+      break;
     case 'birthYearCount':
       q = birthYearsQuery;
       mapper = mapBirthYearCount;
@@ -116,7 +121,7 @@ export const getAllResults = ({
       facetID: null
     }));
   }
-  //console.log(prefixes + q)
+  // console.log(prefixes + q)
   return runSelectQuery({
     query: prefixes + q,
     endpoint,

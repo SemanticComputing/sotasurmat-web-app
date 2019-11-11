@@ -31,7 +31,6 @@ export const battleProperties = `
     }
 `;
 
-// dangerously close naming...
 export const battlePlacesQuery =  `
   SELECT *
   WHERE {
@@ -42,6 +41,21 @@ export const battlePlacesQuery =  `
     ?exact_place geo:lat ?lat .
     ?exact_place geo:long ?long .
   }
+`;
+
+export const battlePlacesAnimationQuery =  `
+  SELECT *
+  WHERE {
+    <FILTER>
+    ?id a siso-schema:Battle .
+    ?id skos:prefLabel ?prefLabel .
+    ?id siso-schema:start_date ?startDate .
+    ?id siso-schema:end_date ?endDate .
+    ?id siso-schema:exact_place ?exact_place .
+    ?exact_place geo:lat ?lat .
+    ?exact_place geo:long ?long .
+  }
+  ORDER BY ?startDate
 `;
 
 export const battlePropertiesInfoWindow = `
@@ -56,23 +70,4 @@ export const battlePropertiesInfoWindow = `
     OPTIONAL {
       ?id siso-schema:end_date ?endDate .
     }
-`;
-
-export const battlePlaceQuery =  `
-  SELECT ?id ?prefLabel ?startDate ?endDate ?placeLabel
-  WHERE {
-    <FILTER>
-    BIND (<ID> AS ?id)
-    ?id skos:prefLabel ?prefLabel .
-    OPTIONAL {
-      ?id siso-schema:start_date ?startDate .
-    }
-    OPTIONAL {
-      ?id siso-schema:end_date ?endDate .
-    }
-    OPTIONAL {
-      ?id siso-schema:greater_place ?greaterPlace .
-      ?greaterPlace skos:prefLabel ?placeLabel .
-    }
-  }
 `;

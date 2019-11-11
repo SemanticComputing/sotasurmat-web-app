@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs';
 import ResultTable from '../../facet_results/ResultTable';
 import LeafletMap from '../../facet_results/LeafletMap';
-// import TemporalMap from '../../facet_results/TemporalMap';
+import TemporalMap from '../../facet_results/TemporalMap';
 import ExportCSV from '../../facet_results/ExportCSV';
 
 let Taistelut = props => {
@@ -53,10 +53,15 @@ let Taistelut = props => {
             showInstanceCountInClusters={false}
           />}
       />
-      {/* <Route
+      {/*   <Route
         path={`${props.rootUrl}/taistelut/faceted-search/animation`}
         render={() =>
           <TemporalMap
+            results={props.taistelut.results}
+            resultClass='battlePlacesAnimation'
+            facetClass='taistelut'
+            fetchResults={props.fetchResults}
+            fetching={props.taistelut.fetching}
             animationValue={props.animationValue}
             animateMap={props.animateMap}
           />}
