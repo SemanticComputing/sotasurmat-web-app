@@ -53,7 +53,7 @@ let Taistelut = props => {
             showInstanceCountInClusters={false}
           />}
       />
-      {/*   <Route
+      <Route
         path={`${props.rootUrl}/taistelut/faceted-search/animation`}
         render={() =>
           <TemporalMap
@@ -65,7 +65,7 @@ let Taistelut = props => {
             animationValue={props.animationValue}
             animateMap={props.animateMap}
           />}
-      /> */}
+      /> 
       <Route
         path={`${props.rootUrl}/taistelut/faceted-search/csv`}
         render={() =>
