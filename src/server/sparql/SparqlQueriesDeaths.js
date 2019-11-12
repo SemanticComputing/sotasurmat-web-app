@@ -680,14 +680,52 @@ export const extrasTypeList =
   ['secondArrestTime', '33_3_second_time_of_arrest'],
   ['thirdArrestTime', '33_4_third_time_of_arrest'],
 
+  // not tested
+
   ['dateOfEscape', '34_1_date_of_escape'],
 
-  //['yearDeclaredDead', '35_1_year_when_declared_dead'],
-  //['officialDeathDate', '35_2_official_date_of_death'],
-  //['whereDeclaredDead', '35_3_place_and_time_of_declaration_of_death'],
+  ['yearDeclaredDead', '35_1_year_when_declared_dead'],
+  ['officialDeathDate', '35_2_official_date_of_death'],
+  ['whereDeclaredDead', '35_3_place_and_time_of_declaration_of_death'],
 
-  //['presumedDeathTime', '36_1_presumed_death_time'],
-  //['deathPeriod', '36_2_death_period'],
+  ['presumedDeathTime', '36_1_presumed_death_time'],
+  ['deathPeriod', '36_2_death_period'],
+
+  // uusia
+
+  ['presumedDeathMunicipality', '38_1_presumed_death_municipality'],
+  ['presumedDeathPlaceOrEvent', '38_2_death_presumed_place_or_event'],
+  ['municipalityWhereWounded', '38_4_municipality_where_wounded'],
+  ['presumedWoundedPlaceOrEvent', '38_5_wounded_presumed_place_or_event'],
+  ['woundedTime', '38_6_wounded_time'],
+
+  ['broaderDeathPlace', '40_1_broader_death_place'],
+  ['broaderWarEvent', '40_2_broader_war_event'],
+  ['warEvent', '40_3_war_event'],
+
+  ['deathPlaceQualifier', '41_1_death_place_qualifier'],
+  ['otherDeathPlaceQualifier', '41_2_death_place_qualifier'],
+  ['deathArea', '41_3_death_area'],
+  ['deathEvent', '41_4_death_event'],
+  ['deathFront', '41_5_death_front'],
+  ['lastSeenWhere', '41_6_last_seen_where'],
+
+  ['otherCauseOfDeath', '42_1_cause_of_death'],
+  ['presumedMannerOfDeath', '42_2_presumed_manner_of_death'],
+  ['causeOfDeathQualifier', '42_3_cause_of_death_qualifier'],
+  ['otherCauseOfDeathQualifier', '42_4_cause_of_death_qualifier'],
+
+  ['court', '43_1_sentencing_court'],
+  ['killer', '43_2_killer'],
+  ['presumedKiller', '43_3_presumed_killer'],
+
+  ['buriedIn', '44_1_buried_in'],
+  ['placeOfBurial', '44_2_place_of_burial'],
+  ['otherPlaceOfBurial', '44_3_place_of_burial'],
+  ['timeOfBurial', '44_4_time_of_burial'],
+  ['otherTimeOfBurial', '44_5_time_of_burial'],
+
+  ['parish', '46_1_parish'],
 
 ];
 
@@ -816,6 +854,6 @@ export const deathsAt = `
          ?related__id siso-s:death_municipality ?id .
          ?related__id skos:prefLabel ?related__prefLabel .
          ?related__id siso-s:identifier ?identifier .
-         BIND(CONCAT("${rootUrl}/surmatut/page/", ?identifier) AS ?related__dataProviderUrl)
+         BIND(CONCAT("${rootUrl}/surmatut/page/p_", ?identifier) AS ?related__dataProviderUrl)
        }
    `;
