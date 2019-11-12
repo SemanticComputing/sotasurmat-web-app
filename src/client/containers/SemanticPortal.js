@@ -335,7 +335,7 @@ let SemanticPortal = props => {
                                   tableRows={props[perspective.id].properties}
                                   tabs={perspective.instancePageTabs}
                                   data={props[perspective.id].instance}
-                                  extras={props.extras.instance}
+                                  extras={props[perspective.id].instanceExtra}
                                   sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                   isLoading={props[perspective.id].fetching}
                                   routeProps={routeProps}
@@ -442,7 +442,6 @@ const mapStateToProps = state => {
     animationValue: state.animation.value,
     options: state.options,
     error: state.error,
-    extras: state.extras,
   };
 };
 

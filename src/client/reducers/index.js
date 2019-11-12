@@ -4,7 +4,6 @@ import error from './error';
 import surmatut from './sotasurmat/surmatut';
 import surmatutFacets from './sotasurmat/surmatutFacets';
 import taistelut from './sotasurmat/taistelut';
-import extras from './sotasurmat/extras';
 import taistelutFacets from './sotasurmat/taistelutFacets';
 import dates from './sotasurmat/dates';
 import places from './sotasurmat/places';
@@ -21,7 +20,6 @@ const reducer = combineReducers({
   error,
   dates,
   places,
-  extras,
   toastr: toastrReducer,
 });
 

@@ -32,6 +32,15 @@ export const updateInstance = (state, action) => {
   };
 };
 
+export const updateInstanceExtra = (state, action) => {
+  return {
+    ...state,
+    instanceExtra: action.data.length == 1 ? action.data[0] : {},
+    instanceExtraSparqlQuery: action.sparqlQuery,
+    fetching: false
+  };
+};
+
 export const updatePage = (state, action) => {
   if (isNaN(action.page)) {
     return state;

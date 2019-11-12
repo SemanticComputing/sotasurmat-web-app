@@ -32,7 +32,7 @@ const styles = () => ({
   }
 });
 
-class InstanceHomePage extends React.Component {
+class SurmatutHomePage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -115,6 +115,7 @@ class InstanceHomePage extends React.Component {
   render = () => {
     const { classes, data, extras, isLoading, resultClass } = this.props;
     const hasData = data !== null && Object.values(data).length >= 1;
+    const hasExtras = extras !== null && Object.values(extras).length >= 1;
     return(
       <div className={classes.root}>
         <PerspectiveTabs
@@ -148,15 +149,17 @@ class InstanceHomePage extends React.Component {
                     tableRows={this.getVisibleRows(this.props.tableRows)}
                   />}
               />
-              <Route
-                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
-                render={() =>
-                  <SurmatutExtraTable
-                    extras={extras}
-                    tableRows={this.getVisibleRows(this.props.tableRows)}
-                  />}
-              />
-              <Route
+              {hasExtras &&
+                <Route
+                  path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
+                  render={() =>
+                    <SurmatutExtraTable
+                      extras={extras}
+                      tableRows={this.getVisibleRows(this.props.tableRows)}
+                    />}
+                />
+              }
+              { /* <Route
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/map`}
                 render={() =>
                   <LeafletMap
@@ -169,7 +172,7 @@ class InstanceHomePage extends React.Component {
                     fetching={this.props.isLoading}
                     showInstanceCountInClusters={true}
                   />}
-              />
+              /> */}
               <Route
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/export`}
                 render={() =>
@@ -187,7 +190,7 @@ class InstanceHomePage extends React.Component {
   }
 }
 
-InstanceHomePage.propTypes = {
+SurmatutHomePage.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
@@ -201,4 +204,4 @@ InstanceHomePage.propTypes = {
   routeProps: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(InstanceHomePage);
+export default withStyles(styles)(SurmatutHomePage);
