@@ -3,7 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 import iconImg from './icon.png';
-import BarChart from './TemporalMapBarChart';
+// import BarChart from './TemporalMapBarChart';
+
 
 
 const blue = 'rgb(0, 126, 230)';
@@ -18,18 +19,9 @@ const styles = () => ({
   sliderRoot: {
     color: blue,
     width: '98%',
-    margin: '8px 0 30px 0',
+    margin: '20px 0 30px 0',
     padding: '0 6px 0 6px',
   },
-  sliderThumb: {
-    backgroundColor: blue,
-    '&:after': {
-      content: '""',
-      borderRight: `3px solid ${blue}`,
-      height: '26px',
-      marginTop: '-36px'
-    }
-  }
 });
 
 class TemporalMapTimeSlider extends Component {
@@ -183,6 +175,10 @@ class TemporalMapTimeSlider extends Component {
     });
   };
 
+  _sliderValueText = value => {
+    return this.props.dates[value];
+  }
+
   render() {
     const { classes } = this.props;
     const {
@@ -206,7 +202,6 @@ class TemporalMapTimeSlider extends Component {
         <div className={`time-slider-container ${hideContainer}`}>
           <div className="column">
             <div className="row time-slider-container-labels">
-              <div>Reactive meteorites</div>
               <div className="speed-buttons">
                 <div
                   className={halfSpeedEnabled ? speedButtonActive : ''}
@@ -240,9 +235,9 @@ class TemporalMapTimeSlider extends Component {
               </div>
 
               <div className="slider column">
-                <div className="bar-chart-container">
+                { /* <div className="bar-chart-container">
                   <BarChart memory={memory} />
-                </div>
+                </div> */ }
                 <Slider
                   classes={{
                     root: classes.sliderRoot,
@@ -254,11 +249,13 @@ class TemporalMapTimeSlider extends Component {
                   min={0}
                   max={maxValue}
                   step={1}
-                  valueLabelDisplay="auto"
+                  valueLabelDisplay="on"
+                  valueLabelFormat={this._sliderValueText}
                 />
+                { /*
                 <div className="slider-labels-container">
                   {currentDay && currentDay.map((f, i) => <div key={`label-${i}`}>{f}</div>)}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

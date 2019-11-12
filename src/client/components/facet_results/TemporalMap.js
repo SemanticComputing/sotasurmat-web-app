@@ -8,6 +8,7 @@ import TemporalMapTimeSlider from './TemporalMapTimeSlider';
 import * as config from '../../configs/mmm/TemporalMapConfig';
 import './TemporalMapCommon.scss';
 import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
+import Typography from '@material-ui/core/Typography';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
@@ -37,23 +38,6 @@ class TemporalMap extends Component {
       resultClass: this.props.resultClass,
       facetClass: this.props.facetClass,
     });
-    // axios
-    //   .get(config.DATA)
-    //   .then(response => {
-    //     const target = response.data.sort((a, b) => a[config.DATE_FIELD] - b[config.DATE_FIELD]);
-    //     const date = target
-    //       .map(item => item[config.DATE_FIELD])
-    //       .filter((value, index, self) => self.indexOf(value) === index)
-    //       .sort();
-    //     this.setState({
-    //       data: target,
-    //       memory: target,
-    //       uniques_date: date
-    //     });
-    //   })
-    //   .catch(err => {
-    //     throw err;
-    //   });
   }
 
   componentDidUpdate = prevProps => {
@@ -62,7 +46,6 @@ class TemporalMap extends Component {
         .map(d => d.startDate)
         .filter((value, index, self) => self.indexOf(value) === index)
         .sort();
-      //console.log(uniqueDates);
       const startDate = uniqueDates[0];
       const endDate = uniqueDates[uniqueDates.length - 1];
       const range = moment.range(startDate, endDate);
@@ -75,17 +58,18 @@ class TemporalMap extends Component {
       });
     }
 
-    const { memory } = this.state;
     if (prevProps.animationValue !== this.props.animationValue) {
-      const sliderValue = this.props.animationValue;
-      const total = memory.length;
-      const featuresPerInterval = total / sliderValue[1];
-      const toShow = sliderValue[0] * featuresPerInterval;
-      const newData = memory.filter((f, i) => i < toShow);
+      const { memory, dates } = this.state;
+      const sliderValue = this.props.animationValue[0];
+      const maxDate = Date.parse(dates[sliderValue]);
+      const newData = memory.filter(value => {
+        return Date.parse(value.startDate) <= maxDate;
+      });
       this.setState({
         data: newData
       });
     }
+
   };
 
   _onViewStateChange = ({ viewState }) => {
@@ -94,10 +78,11 @@ class TemporalMap extends Component {
 
   _renderTooltip() {
     const {hoveredObject, pointerX, pointerY} = this.state || {};
-    console.log(hoveredObject)
     return hoveredObject && (
-      <div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
-        { hoveredObject.prefLabel }
+      <div style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX + 10, top: pointerY + 10}}>
+        <Typography>
+          {hoveredObject.prefLabel}
+        </Typography>
       </div>
     );
   }
@@ -112,18 +97,16 @@ class TemporalMap extends Component {
         stroked: true,
         filled: true,
         radiusScale: 15,
-        radiusMinPixels: 10,
+        radiusMinPixels: 8,
         radiusMaxPixels: 100,
         lineWidthMinPixels: 1,
         getPosition: d => [ +d.long, +d.lat ],
-        onHover: info => {
-          console.log(info)
-          this.setState({
-            hoveredObject: info.object,
-            pointerX: info.x,
-            pointerY: info.y
-          });
-        }
+        pickable: true,
+        onHover: info => this.setState({
+          hoveredObject: info.object,
+          pointerX: info.x,
+          pointerY: info.y
+        })
       })
     ];
   }
@@ -141,7 +124,6 @@ class TemporalMap extends Component {
           controller={controller}
           onViewStateChange={this._onViewStateChange}
         >
-          {this._renderTooltip()}
           {baseMap &&
             <ReactMapGL
               reuseMaps
@@ -152,7 +134,7 @@ class TemporalMap extends Component {
             />
           }
         </DeckGL>
-
+        {this._renderTooltip()}
         <TemporalMapTimeSlider
           memory={memory}
           dates={dates}
