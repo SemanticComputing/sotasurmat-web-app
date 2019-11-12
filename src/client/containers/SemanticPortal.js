@@ -18,7 +18,7 @@ import Surmatut from '../components/perspectives/sotasurmat/Surmatut';
 import Taistelut from '../components/perspectives/sotasurmat/Taistelut';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
 import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
-//import FeedbackPage from '../components/main_layout/FeedbackPage';
+import FeedbackPage from '../components/main_layout/FeedbackPage';
 import TextPage from '../components/main_layout/TextPage';
 // import Typography from '@material-ui/core/Typography';
 import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig';
@@ -407,7 +407,8 @@ let SemanticPortal = props => {
             path={`${rootUrl}/feedback`}
             render={() =>
               <div className={classes.mainContainer}>
-                <TextPage>{intl.getHTML('feedback')}</TextPage>
+                { /* <FeedbackPage /> */}
+                <TextPage>{intl.getHTML('feedback')}</TextPage> 
               </div>
             }
           />

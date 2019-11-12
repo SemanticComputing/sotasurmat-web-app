@@ -77,7 +77,7 @@
     "react-dom": "^16.8.6",
     "react-google-charts": "^3.0.0",
     "react-intl-universal": "^2.2.1",
-    "react-map-gl": "^4.0.0",
+    "react-map-gl": "^5.1.2",
     "react-moment": "^0.9.2",
     "react-redux": "^5.1.0",
     "react-dates": "^20.2.5",

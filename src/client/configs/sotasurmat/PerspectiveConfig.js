@@ -4,6 +4,7 @@ import React from 'react';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 // import RedoIcon from '@material-ui/icons/Redo';
 // import PersonIcon from '@material-ui/icons/Person';
 import PieChartIcon from '@material-ui/icons/PieChart';
@@ -80,11 +81,11 @@ export const perspectiveConfig = [
         value: 1,
         icon: <AddLocationIcon />,
       },
-      // {
-      //   id: 'animation',
-      //   value: 2,
-      //   icon: <AddLocationIcon />,
-      // }
+      {
+        id: 'animation',
+        value: 2,
+        icon: <PlayArrowIcon />,
+      }
     ],
     instancePageTabs: [
       {

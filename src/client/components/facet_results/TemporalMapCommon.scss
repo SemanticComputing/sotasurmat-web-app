@@ -43,18 +43,19 @@ $secondary_color: rgb(255, 153, 51);
 }
 
 .mapboxgl-ctrl {
-  display: none !important;
+  //display: none !important;
 }
 
 .a.mapboxgl-ctrl-logo {
-  display: none !important;
+  //display: none !important;
 }
 
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
-  display: none !important;
+  //display: none !important;
 }
 
 .time-slider {
+  width: 100%;
   &-button {
     position: absolute;
     top: 1.5rem;
@@ -76,13 +77,15 @@ $secondary_color: rgb(255, 153, 51);
   &-container {
     position: absolute;
     @include style-definition(row, flex-end, center);
-    min-width: 800px;
-    max-width: 815px;
+    width: calc(100% - 7rem);
     left: 2rem;
-    bottom: 2rem;
-    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    bottom: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     background-color: $main_color;
-    border: 1.5px solid $secondary_color;
+    //border: 1.5px solid $secondary_color;
     border-radius: 0.25rem;
 
     &-labels {
@@ -146,6 +149,9 @@ $secondary_color: rgb(255, 153, 51);
   }
 
   .slider {
+
+    margin-left: 50px; 
+
     &-labels-container {
       @include style-definition(row, space-between, null);
       margin-top: -10px;

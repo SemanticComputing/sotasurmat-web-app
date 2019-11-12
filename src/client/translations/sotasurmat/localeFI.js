@@ -5,7 +5,8 @@ export default {
     long: 'Sotasurmasampo 1914-1922'
   },
   appDescription: `
-    Sotasurmasampo 1914-22 on portaali Suomeen liittyviin sotatapahtumiin vuosina 1914-1922. Portaalin tärkeimmän aineiston muodostaa Suomen sotasurmat 1914-1922 tiedosto.
+    Sotasurmasampo 1914-22 on portaali Suomeen liittyviin sotatapahtumiin vuosina
+    1914-1922. Portaalin tärkeimmän aineiston muodostaa Suomen sotasurmat 1914-1922 tiedosto.
   `,
   topBar: {
     feedback: 'palaute',
@@ -27,6 +28,7 @@ export default {
     map: 'kartta',
     line: 'viivakaavio',
     pie: 'piirakkakaavio',
+    animation: 'animaatio',
     csv: 'csv',
   },
   table: {

@@ -2,25 +2,40 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
-import iconImg from './icon.png';
+import SliderValueLabel from './SliderValueLabel';
+// import iconImg from './icon.png';
 // import BarChart from './TemporalMapBarChart';
 
-
-
 const blue = 'rgb(0, 126, 230)';
+const iOSBoxShadow =
+  '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
 const styles = () => ({
-  // slider: {
-  //   color: blue,
-  //   width: '99%',
-  //   margin: '8px 0 30px 0',
-  //   padding: '0 6px 0 6px',
-  // },
   sliderRoot: {
     color: blue,
     width: '98%',
-    margin: '20px 0 30px 0',
-    padding: '0 6px 0 6px',
+    marginTop: 35,
+  },
+  sliderTrack: {
+    height: 8
+  },
+  sliderRail: {
+    height: 8
+  },
+  sliderThumb: {
+    height: 28,
+    width: 28,
+    backgroundColor: '#fff',
+    boxShadow: iOSBoxShadow,
+    marginTop: -11,
+    marginLeft: -11,
+    '&:focus,&:hover,&$active': {
+      boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        boxShadow: iOSBoxShadow,
+      },
+    },
   },
 });
 
@@ -30,7 +45,6 @@ class TemporalMapTimeSlider extends Component {
     currentDay: null,
     hideContainer: '',
     value: 0,
-    maxValue: 100,
     sliderDuration: 200,
     intervalSetter: null,
     isPlaying: false,
@@ -51,25 +65,15 @@ class TemporalMapTimeSlider extends Component {
     }
 
     if (prevProps.dates !== this.props.dates) {
-      // const toSplitIn = 8;
-      // const interval = this.props.dateUniques.length / toSplitIn;
-      // const target = [];
-      //
-      //
-      // for (let i = 0; i < toSplitIn; i++) {
-      //   target.push(this.props.dateUniques[Math.round(interval * i)]);
-      // }
-
       this.setState({
-        maxValue: this.props.dates.length,
-        //currentDay: this.props.dateUniques.length > 10 ? target : this.props.dateUniques
+        maxValue: this.props.dates.length - 1,
+        value: this.props.initialValue
       });
     }
   };
 
   _handleSliderChange = (t, newValue) => {
     const { maxValue } = this.state;
-
     this.setState({ value: newValue });
     this.props.animateMap([newValue, maxValue]);
   };
@@ -182,8 +186,8 @@ class TemporalMapTimeSlider extends Component {
   render() {
     const { classes } = this.props;
     const {
-      memory,
-      currentDay,
+      //memory,
+      //currentDay,
       hideContainer,
       value,
       maxValue,
@@ -195,9 +199,9 @@ class TemporalMapTimeSlider extends Component {
     } = this.state;
     return (
       <div className="time-slider">
-        <div className="time-slider-button" onClick={this._containerVisibility}>
+        {/*<div className="time-slider-button" onClick={this._containerVisibility}>
           <img src={iconImg} alt="Time-slider Widget icon" />
-        </div>
+        </div> */}
 
         <div className={`time-slider-container ${hideContainer}`}>
           <div className="column">
@@ -241,7 +245,10 @@ class TemporalMapTimeSlider extends Component {
                 <Slider
                   classes={{
                     root: classes.sliderRoot,
-                    thumb: classes.sliderThumb
+                    thumb: classes.sliderThumb,
+                    valueLabel: classes.sliderValueLabel,
+                    track: classes.sliderTrack,
+                    rail: classes.sliderRail,
                   }}
                   value={value}
                   aria-labelledby="label"
@@ -251,6 +258,7 @@ class TemporalMapTimeSlider extends Component {
                   step={1}
                   valueLabelDisplay="on"
                   valueLabelFormat={this._sliderValueText}
+                  ValueLabelComponent={SliderValueLabel}
                 />
                 { /*
                 <div className="slider-labels-container">
@@ -269,7 +277,8 @@ TemporalMapTimeSlider.propTypes = {
   classes: PropTypes.object.isRequired,
   memory: PropTypes.array.isRequired,
   dates: PropTypes.array.isRequired,
-  animateMap: PropTypes.func.isRequired
+  animateMap: PropTypes.func.isRequired,
+  initialValue: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(TemporalMapTimeSlider);
