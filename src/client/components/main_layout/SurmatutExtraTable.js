@@ -127,7 +127,7 @@ class SurmatutExtraTable extends React.Component {
       {id:'warEvent',label:'Sotatapahtuma'},
 
       {id:'deathPlaceQualifier',label:'Kuolinpaikan tarkenne'},
-      {id:'otherDeathPlaceQualifier',label:'IMuu kuolinpaikan takenne'},
+      {id:'otherDeathPlaceQualifier',label:'Muu kuolinpaikan takenne'},
       {id:'deathArea',label:'Alue jossa kuollut'},
       {id:'deathEvent',label:'Tapahtuma jossa kuollut'},
       {id:'deathFront',label:'Rintama jossa kuollut'},
@@ -138,7 +138,7 @@ class SurmatutExtraTable extends React.Component {
       {id:'causeOfDeathQualifier',label:'Kuolintavan tarkenne'},
       {id:'otherCauseOfDeathQualifier',label:'Muu kuolinsyyn tarkenne'},
 
-      {id:'court',label:'Tuomioistuin'},
+      {id:'court',label:'Tuomitsija'},
       {id:'killer',label:'Surmaaja'},
       {id:'presumedKiller',label:'Oletettu surmaaja'},
 

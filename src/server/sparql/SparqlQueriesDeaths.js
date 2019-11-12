@@ -477,6 +477,18 @@ export const personProperties = `
         }
         UNION
         {
+          ?birthDayInfo siso-s:referred_death_record ?id .
+          ?birthDayInfo siso-s:information_type siso-s:0_6_birth_day .
+          ?birthDayInfo siso-s:value ?birthDay__id .
+          BIND(?birthDay__id AS ?birthDay__prefLabel)
+          OPTIONAL {
+            ?birthDayInfo siso-s:source ?birthDay__source__id .
+            ?birthDay__source__id skos:altLabel ?birthDay__source__prefLabel .
+            BIND (?birthDay__source__id AS ?birthDay__source__dataProviderUrl) .
+          }
+        }
+        UNION
+        {
           ?ageInfo siso-s:referred_death_record ?id .
           ?ageInfo siso-s:information_type siso-s:0_37_age .
           ?ageInfo siso-s:value ?age__id .
