@@ -23,6 +23,7 @@ import {
   updateResults,
   updatePaginatedResults,
   updateInstance,
+  updateInstanceExtra,
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
@@ -36,7 +37,9 @@ export const INITIAL_STATE = {
   resultsUpdateID: -1,
   paginatedResultsSparqlQuery: null,
   instance: null,
+  instanceExtra: null,
   instanceSparqlQuery: null,
+  instanceExtraSparqlQuery: null,
   page: -1,
   pagesize: 15,
   sortBy: 'prefLabel',
@@ -157,6 +160,7 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'surmatut',
   'csvDeaths',
+  'personExtras'
 ]);
 
 const surmatut = (state = INITIAL_STATE, action) => {
@@ -180,7 +184,11 @@ const surmatut = (state = INITIAL_STATE, action) => {
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:
-        return updateInstance(state, action);
+        if (action.resultClass === 'personExtras') {
+          return updateInstanceExtra(state, action);
+        } else {
+          return updateInstance(state, action);
+        }
       case UPDATE_PAGE:
         return updatePage(state, action);
       case UPDATE_ROWS_PER_PAGE:
