@@ -108,12 +108,47 @@ class SurmatutExtraTable extends React.Component {
 
       {id:'dateOfEscape',label:'Pakenemispäivä'},
 
-      //{id:'yearDeclaredDead',label:'Kuolleeksijulistamisen vuosi'},
-      //{id:'officialDeathDate',label:'Virallinen kuolinaika'},
-      //{id:'whereDeclaredDead',label:'Missä ja milloin julistettu kuolleeksi'},
+      {id:'yearDeclaredDead',label:'Kuolleeksijulistamisen vuosi'},
+      {id:'officialDeathDate',label:'Virallinen kuolinaika'},
+      {id:'whereDeclaredDead',label:'Missä ja milloin julistettu kuolleeksi'},
 
-      //{id:'presumedDeathTime',label:'Arveltu kuolinaika'},
-      //{id:'deathPeriod',label:'Kuolinajankohta'},
+      {id:'presumedDeathTime',label:'Arveltu kuolinaika'},
+      {id:'deathPeriod',label:'Kuolinajankohta'},
+
+
+      {id:'presumedDeathMunicipality',label:'Oletettu kuolinpaikka'},
+      {id:'presumedDeathPlaceOrEvent',label:'Oletettu tapahtuma tai paikka jossa kuollut'},
+      {id:'municipalityWhereWounded',label:'Haavoittumispaikka'},
+      {id:'presumedWoundedPlaceOrEvent',label:'Oletettu haavoittumispaikka'},
+      {id:'woundedTime',label:'Haavoittumisaika'},
+
+      {id:'broaderDeathPlace',label:'Laajempi kuolinpaikka'},
+      {id:'broaderWarEvent',label:'Laajempi sotatapahtuma'},
+      {id:'warEvent',label:'Sotatapahtuma'},
+
+      {id:'deathPlaceQualifier',label:'Kuolinpaikan tarkenne'},
+      {id:'otherDeathPlaceQualifier',label:'IMuu kuolinpaikan takenne'},
+      {id:'deathArea',label:'Alue jossa kuollut'},
+      {id:'deathEvent',label:'Tapahtuma jossa kuollut'},
+      {id:'deathFront',label:'Rintama jossa kuollut'},
+      {id:'lastSeenWhere',label:'Missä nähty viimeksi'},
+
+      {id:'otherCauseOfDeath',label:'Kuolintapa'},
+      {id:'presumedMannerOfDeath',label:'Oletettu kuolintapa'},
+      {id:'causeOfDeathQualifier',label:'Kuolintavan tarkenne'},
+      {id:'otherCauseOfDeathQualifier',label:'Muu kuolinsyyn tarkenne'},
+
+      {id:'court',label:'Tuomioistuin'},
+      {id:'killer',label:'Surmaaja'},
+      {id:'presumedKiller',label:'Oletettu surmaaja'},
+
+      {id:'buriedIn',label:'Hautaustapa II'},
+      {id:'placeOfBurial',label:'I hautauksen paikka'},
+      {id:'secondPlaceOfBurial',label:'II hautauksen paikka'},
+      {id:'timeOfBurial',label:'I hautauksen ajankohta'},
+      {id:'secondTimeOfBurial',label:'II hautauksen ajankohta'},
+
+      {id:'parish',label:'Seurakunta'},
 
 
     ];
