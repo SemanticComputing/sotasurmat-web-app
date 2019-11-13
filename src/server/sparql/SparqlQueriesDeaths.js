@@ -799,7 +799,11 @@ export const deathDateQuery = `
       `;
 
 export const csvDeathsQuery = `
-  SELECT ?id ?prefLabel ?familyName ?givenName ?birthYear ?birthDay ?deathYear ?deathDay ?age ?party ?gender ?occupation ?numberOfChildren ?familyWelfare
+  SELECT ?id ?familyName ?givenName ?birthPlace ?birthCountry ?birthYear ?birthDay ?registeredMunicipality ?registeredProvince ?registeredCountry
+  ?livingMunicipality ?livingProvince ?livingCountry ?occupation ?maritalStatus ?numberOfChildren ?gender ?nationality ?language ?personComment
+  ?organization ?recruitmentMethod ?rank ?position ?soldierOrCivilian ?party ?armedStatus ?familyWelfare ?statusNote ?placeOfCapture ?prisonCamp
+  ?imprisonmentMotive ?imprisonmentDate ?releaseDate ?deathYear ?deathDay ?age ?deathMunicipality ?deathProvince ?deathCountry ?deathPlace
+  ?causeOfDeath ?deathMotive ?methodOfBurial ?deathComment ?religion ?deathLikelihood
   WHERE {
       <FILTER>
       ?id a siso-schema:Death_record .
@@ -831,18 +835,149 @@ export const csvDeathsQuery = `
         ?party_uri skos:prefLabel ?party .
       }
       OPTIONAL {
-        ?id siso-schema:gender ?gender_uri .
-        ?gender_uri skos:prefLabel ?gender .
-      }
-      OPTIONAL {
         ?id siso-schema:occupation_literal ?occupation .
       }
       OPTIONAL {
         ?id siso-schema:num_of_children ?numberOfChildren .
       }
       OPTIONAL {
-        ?id siso-schema:family_welfare ?familyWelfare_uri .
-        ?familyWelfare_uri skos:prefLabel ?familyWelfare .
+        ?id siso-schema:family_welfare ?familyWelfareUri .
+        ?familyWelfareUri skos:prefLabel ?familyWelfare .
+      }
+      OPTIONAL {
+        ?id siso-schema:cause_of_death ?causeOfDeathUri .
+        ?causeOfDeathUri skos:prefLabel ?causeOfDeath .
+      }
+      OPTIONAL {
+        ?id siso-schema:gender ?genderUri .
+        ?genderUri skos:prefLabel ?gender .
+      }
+      OPTIONAL {
+        ?id siso-schema:birth_place ?birthPlaceUri .
+        ?birthPlaceUri skos:prefLabel ?birthPlace .
+      }
+      OPTIONAL {
+        ?id siso-schema:birth_country ?birthCountryUri .
+        ?birthCountryUri skos:prefLabel ?birthCountry .
+      }
+      OPTIONAL {
+        ?id siso-schema:living_municipality ?livingMunicipalityUri .
+        ?livingMunicipalityUri skos:prefLabel ?livingMunicipality .
+      }
+      OPTIONAL {
+        ?id siso-schema:living_province ?livingProvinceUri .
+        ?livingProvinceUri skos:prefLabel ?livingProvince .
+      }
+      OPTIONAL {
+        ?id siso-schema:living_country ?livingCountryUri .
+        ?livingCountryUri skos:prefLabel ?livingCountry .
+      }
+      OPTIONAL {
+        ?id siso-schema:literal_registered_municipality ?registeredMunicipality .
+      }
+      OPTIONAL {
+        ?id siso-schema:registered_province ?registeredProvinceUri .
+        ?registeredProvinceUri skos:prefLabel ?registeredProvince .
+      }
+      OPTIONAL {
+        ?id siso-schema:registered_country ?registeredCountryUri .
+        ?registeredCountryUri skos:prefLabel ?registeredCountry .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_place_literal ?deathPlace .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_municipality ?deathMunicipalityUri .
+        ?deathMunicipalityUri skos:prefLabel ?deathMunicipality .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_province ?deathProvinceUri .
+        ?deathProvinceUri skos:prefLabel ?deathProvince .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_country ?deathCountryUri .
+        ?deathCountryUri skos:prefLabel ?deathCountry .
+      }
+      OPTIONAL {
+        ?id siso-schema:rank ?rankUri .
+        ?rankUri skos:prefLabel ?rank .
+      }
+      OPTIONAL {
+        ?id siso-schema:place_of_capture_literal ?placeOfCapture .
+      }
+      OPTIONAL {
+        ?id siso-schema:imprisonment_date_literal ?imprisonmentDate .
+      }
+      OPTIONAL {
+        ?id siso-schema:marital_status ?maritalStatusUri .
+        ?maritalStatusUri skos:prefLabel ?maritalStatus .
+      }
+      OPTIONAL {
+        ?id siso-schema:nationality ?nationalityUri .
+        ?nationalityUri skos:prefLabel ?nationality .
+      }
+      OPTIONAL {
+        ?id siso-schema:first_language ?languageUri .
+        ?languageUri skos:prefLabel ?language .
+      }
+      OPTIONAL {
+        ?id siso-schema:person_comment ?personComment .
+      }
+      OPTIONAL {
+        ?id siso-schema:military_organization ?organizationUri .
+        ?organizationUri skos:prefLabel ?organization .
+      }
+      OPTIONAL {
+        ?id siso-schema:method_of_recruitment ?recruitmentMethodUri .
+        ?recruitmentMethodUri skos:prefLabel ?recruitmentMethod .
+      }
+      OPTIONAL {
+        ?id siso-schema:position ?positionUri .
+        ?positionUri skos:prefLabel ?position .
+      }
+      OPTIONAL {
+        ?id siso-schema:combatant_status ?soldierOrCivilianUri .
+        ?soldierOrCivilianUri skos:prefLabel ?soldierOrCivilian .
+      }
+      OPTIONAL {
+        ?id siso-schema:armed_status ?armedStatusUri .
+        ?armedStatusUri skos:prefLabel ?armedStatus.
+      }
+      OPTIONAL {
+        ?id siso-schema:status_note ?statusNote .
+      }
+      OPTIONAL {
+        ?id siso-schema:place_of_capture_literal ?placeOfCapture .
+      }
+      OPTIONAL {
+        ?id siso-schema:prison_camp ?prisonCampUri .
+        ?prisonCampUri skos:prefLabel ?prisonCamp .
+      }
+      OPTIONAL {
+        ?id siso-schema:imprisonment_motive ?imprisonmentMotive .
+      }
+      OPTIONAL {
+        ?id siso-schema:imprisonment_date_literal ?imprisonmentDate .
+      }
+      OPTIONAL {
+        ?id siso-schema:release_date_literal ?releaseDate .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_motive ?deathMotiveUri .
+        ?deathMotiveUri skos:prefLabel ?deathMotive.
+      }
+      OPTIONAL {
+        ?id siso-schema:method_of_burial ?methodOfBurialUri .
+        ?methodOfBurialUri skos:prefLabel ?methodOfBurial .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_comment ?deathComment .
+      }
+      OPTIONAL {
+        ?id siso-schema:religion/skos:prefLabel ?religion .
+      }
+      OPTIONAL {
+        ?id siso-schema:death_likelihood/skos:prefLabel ?deathLikelihood .
       }
    }
    ORDER BY ?prefLabel
