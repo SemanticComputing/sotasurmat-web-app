@@ -36,9 +36,14 @@ import {
 } from '../actions';
 import { rootUrl } from '../configs/config';
 
+// set port if running on localhost with NODE_ENV = 'production'
+let port = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  ? `:8080`
+  : '';
+
 export const apiUrl = (process.env.NODE_ENV === 'development')
   ? `http://localhost:3001${rootUrl}/api/`
-  : `https://${location.hostname}${rootUrl}/api/`;
+  : `${location.protocol}//${location.hostname}${port}${rootUrl}/api/`;
 
 const backendErrorText = `Ei pystytty yhdistämään tietokantaan. Kokeile myöhemmin uudestaan. Cannot currently connect to the database. Please try again later.`;
 
