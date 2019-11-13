@@ -94,15 +94,20 @@ class TemporalMap extends Component {
   };
 
   _filterData = (sliderValue, data, dates) => {
-    //const currentDate = dates[sliderValue];
-    //console.log(currentDate)
-    const maxDate = Date.parse(dates[sliderValue]);
+    const animationCurrentDate = Date.parse(dates[sliderValue]);
     const newData = data.filter(value => {
-      return Date.parse(value.startDate) <= maxDate;
+      return Date.parse(value.startDate) <= animationCurrentDate;
     });
-    // newData.map(value => {
-    //   Date.parse(value.startDate)
-    // })
+    newData.map(value => {
+      const startDate = Date.parse(value.startDate);
+      const range = moment.range(startDate, animationCurrentDate);
+      if (range.diff('days') >= 2) {
+        value.isNew = false;
+      } else {
+        value.isNew = true;
+      }
+      return value;
+    });
     return newData;
   }
 
@@ -131,6 +136,7 @@ class TemporalMap extends Component {
         radiusMaxPixels: 100,
         lineWidthMinPixels: 1,
         getPosition: d => [ +d.long, +d.lat ],
+        getFillColor: d => d.isNew ? [255, 0, 0] : [0, 0, 0],
         pickable: true,
         autoHighlight: true,
         onHover: info => this.setState({
@@ -149,7 +155,7 @@ class TemporalMap extends Component {
     const { viewport, memory, dates } = this.state;
     const { classes, animateMap } = this.props;
     return (
-      <div className={classes.root}>
+      <div id='temporal-map-root' className={classes.root}>
         <ReactMapGL
           {...viewport}
           width='100%'
@@ -164,7 +170,7 @@ class TemporalMap extends Component {
             <NavigationControl />
             <FullscreenControl
               className={classes.fullscreenButton}
-              container={document.querySelector('mapboxgl-map')}
+              container={document.querySelector('temporal-map-root')}
             />
           </div>
           <DeckGL

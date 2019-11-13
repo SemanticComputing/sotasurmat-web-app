@@ -77,6 +77,7 @@ $secondary_color: rgb(255, 153, 51);
   &-container {
     position: absolute;
     @include style-definition(row, flex-end, center);
+    z-index: 1;
     width: calc(100% - 7rem);
     left: 2rem;
     bottom: 3rem;
@@ -150,7 +151,7 @@ $secondary_color: rgb(255, 153, 51);
 
   .slider {
 
-    margin-left: 50px; 
+    margin-left: 50px;
 
     &-labels-container {
       @include style-definition(row, space-between, null);

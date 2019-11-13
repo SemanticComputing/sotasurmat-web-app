@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 import SliderValueLabel from './SliderValueLabel';
+import { SLIDER_DURATION } from '../../configs/config';
 // import iconImg from './icon.png';
 // import BarChart from './TemporalMapBarChart';
 
@@ -45,7 +46,7 @@ class TemporalMapTimeSlider extends Component {
     currentDay: null,
     hideContainer: '',
     value: 0,
-    sliderDuration: 200,
+    sliderDuration: SLIDER_DURATION.normalSpeed,
     intervalSetter: null,
     isPlaying: false,
     playOrPause: 'play',
@@ -132,7 +133,7 @@ class TemporalMapTimeSlider extends Component {
     if (type === 'half') {
       this.setState(
         {
-          sliderDuration: 400,
+          sliderDuration: SLIDER_DURATION.halfSpeed,
           halfSpeedEnabled: true,
           regularSpeedEnabled: false,
           doubleSpeedEnabled: false
@@ -145,7 +146,7 @@ class TemporalMapTimeSlider extends Component {
     } else if (type === 'regular') {
       this.setState(
         {
-          sliderDuration: 200,
+          sliderDuration: SLIDER_DURATION.normalSpeed,
           halfSpeedEnabled: false,
           regularSpeedEnabled: true,
           doubleSpeedEnabled: false
@@ -158,7 +159,7 @@ class TemporalMapTimeSlider extends Component {
     } else if (type === 'double') {
       this.setState(
         {
-          sliderDuration: 100,
+          sliderDuration: SLIDER_DURATION.doubleSpeed,
           halfSpeedEnabled: false,
           regularSpeedEnabled: false,
           doubleSpeedEnabled: true
