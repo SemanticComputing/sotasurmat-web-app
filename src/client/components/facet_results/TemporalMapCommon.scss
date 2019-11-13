@@ -77,7 +77,6 @@ $secondary_color: rgb(255, 153, 51);
   &-container {
     position: absolute;
     @include style-definition(row, flex-end, center);
-    z-index: 1;
     width: calc(100% - 7rem);
     left: 2rem;
     bottom: 3rem;
