@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 import SliderValueLabel from './SliderValueLabel';
 import { SLIDER_DURATION } from '../../configs/config';
+import {BaseControl} from 'react-map-gl';
 // import iconImg from './icon.png';
 // import BarChart from './TemporalMapBarChart';
 
@@ -40,7 +41,8 @@ const styles = () => ({
   },
 });
 
-class TemporalMapTimeSlider extends Component {
+// https://uber.github.io/react-map-gl/#/Documentation/advanced/custom-components
+class TemporalMapTimeSlider extends BaseControl {
   state = {
     memory: [],
     currentDay: null,
@@ -73,7 +75,7 @@ class TemporalMapTimeSlider extends Component {
     }
   };
 
-  _handleSliderChange = (t, newValue) => {
+  _handleSliderChange = (event, newValue) => {
     const { maxValue } = this.state;
     this.setState({ value: newValue });
     this.props.animateMap([newValue, maxValue]);
@@ -184,7 +186,7 @@ class TemporalMapTimeSlider extends Component {
     return this.props.dates[value];
   }
 
-  render() {
+  _render() {
     const { classes } = this.props;
     const {
       //memory,
@@ -198,8 +200,12 @@ class TemporalMapTimeSlider extends Component {
       doubleSpeedEnabled,
       speedButtonActive
     } = this.state;
+
+
+    //console.log(this.props.mapElementRef.current);
+
     return (
-      <div className="time-slider">
+      <div ref={this._containerRef} className="time-slider">
         {/*<div className="time-slider-button" onClick={this._containerVisibility}>
           <img src={iconImg} alt="Time-slider Widget icon" />
         </div> */}

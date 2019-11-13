@@ -33,7 +33,7 @@ const SliderValueLabel = props => {
 SliderValueLabel.propTypes = {
   children: PropTypes.object,
   valueLabelFormat: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 export default SliderValueLabel;

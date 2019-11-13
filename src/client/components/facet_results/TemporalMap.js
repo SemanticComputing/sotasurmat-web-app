@@ -40,19 +40,24 @@ const styles = theme => ({
 
 // based on https://github.com/AdriSolid/DECK.GL-Time-Slider
 class TemporalMap extends Component {
-  state = {
-    viewport: {
-      longitude: 26.91,
-      latitude: 62.326,
-      zoom: 5.5,
-      pitch: 0,
-      bearing: 0
-    },
-    data: [],
-    memory: [],
-    dates: [],
-    mounted: false
-  };
+
+  constructor(props) {
+    super(props);
+    this.mapElementRef = React.createRef();
+    this.state = {
+      viewport: {
+        longitude: 26.91,
+        latitude: 62.326,
+        zoom: 5.5,
+        pitch: 0,
+        bearing: 0
+      },
+      data: [],
+      memory: [],
+      dates: [],
+      mounted: false
+    };
+  }
 
   componentDidMount() {
     this.props.fetchResults({
@@ -155,7 +160,7 @@ class TemporalMap extends Component {
     const { viewport, memory, dates } = this.state;
     const { classes, animateMap } = this.props;
     return (
-      <div id='temporal-map-root' className={classes.root}>
+      <div id='temporal-map-root' ref={this.mapElementRef} className={classes.root}>
         <ReactMapGL
           {...viewport}
           width='100%'
@@ -177,14 +182,17 @@ class TemporalMap extends Component {
             layers={this._renderLayers()}
             viewState={viewport}
           />
+          <TemporalMapTimeSlider
+            // captureDrag={true}
+            //captureClick={false}
+            mapElementRef={this.mapElementRef}
+            memory={memory}
+            dates={dates}
+            animateMap={animateMap}
+            initialValue={this.props.animationValue[0]}
+          />
+          {this._renderTooltip()}
         </ReactMapGL>
-        {this._renderTooltip()}
-        <TemporalMapTimeSlider
-          memory={memory}
-          dates={dates}
-          animateMap={animateMap}
-          initialValue={this.props.animationValue[0]}
-        />
       </div>
     );
   }
