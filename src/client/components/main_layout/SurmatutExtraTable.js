@@ -81,7 +81,7 @@ class SurmatutExtraTable extends React.Component {
       {id:'durationOfTask',label:'Kuinka kauan toiminut tehtävässä'},
       {id:'placeOfTask',label:'Missä toiminut'},
 
-      // huom 25 koodin tiedot on mysteeri!!!
+      {id:'additionalInformationMilitaryOrganization',label:'Sotilasjärjestö'},
 
       {id:'otherFamilyWelfare',label:'muu perheen toimeentulo'},
 
@@ -105,6 +105,7 @@ class SurmatutExtraTable extends React.Component {
       {id:'arrestTime',label:'Vangitsemisajankohta'},
       {id:'secondArrestTime',label:'II vangitsemisen ajankohta'},
       {id:'thirdArrestTime',label:'III vangitsemisen ajankohta'},
+      {id:'durationOfArrest',label:'Vankeuden kesto'}, //????
 
       {id:'dateOfEscape',label:'Pakenemispäivä'},
 

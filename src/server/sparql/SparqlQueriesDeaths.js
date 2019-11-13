@@ -666,8 +666,7 @@ export const extrasTypeList =
   ['durationOfTask', '24_5_duration_of_task'],
   ['placeOfTask', '24_6_place_of_task'],
 
-  // 25 luokan tiedoissa on jotain ihmeellistä eikä tunnu vastaavan dokumentaatiota
-  // katsotaan myöhemmin
+  ['additionalInformationMilitaryOrganization', '25_1_military_organization'],
 
   ['otherFamilyWelfare', '28_1_other_family_welfare_status'],
 
@@ -691,6 +690,7 @@ export const extrasTypeList =
   ['arrestTime', '33_2_time_of_arrest'],
   ['secondArrestTime', '33_3_second_time_of_arrest'],
   ['thirdArrestTime', '33_4_third_time_of_arrest'],
+  ['durationOfArrest', '33_5_duration_of_arrest'],
 
   // not tested
 

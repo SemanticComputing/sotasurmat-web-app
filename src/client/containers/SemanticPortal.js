@@ -407,8 +407,8 @@ let SemanticPortal = props => {
             path={`${rootUrl}/feedback`}
             render={() =>
               <div className={classes.mainContainer}>
-                { /* <FeedbackPage /> */}
-                <TextPage>{intl.getHTML('feedback')}</TextPage> 
+                <FeedbackPage />
+                {/*<TextPage>{intl.getHTML('feedback')}</TextPage> */}
               </div>
             }
           />
