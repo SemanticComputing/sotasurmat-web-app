@@ -4,11 +4,11 @@ Based on https://github.com/SemanticComputing/mmm-web-app
 
 ## Requirements
 
-Node.js https://nodejs.org/en/ (tested with 10.15.3 LTS)
+* Node.js https://nodejs.org/en/ (tested with 10.15.3 LTS)
 
-Nodemon https://nodemon.io/
+* Nodemon https://nodemon.io/
 
-If your home directory is mounted from a network drive, Node.js should
+Note: if your home directory is mounted from a network drive, Node.js should
 be installed using Node Version Manager https://github.com/nvm-sh/nvm  
 
 ## Local development
