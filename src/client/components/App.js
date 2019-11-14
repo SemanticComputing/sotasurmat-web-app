@@ -29,6 +29,18 @@ const theme = createMuiTheme({
       endIcon: {
         marginLeft: 0
       }
+    },
+    MuiSlider:  {
+      valueLabel: {
+        '& *': {
+          width: 82,
+          height: 19,
+          transform: 'none',
+          backgroundColor: 'transparent',
+          borderRadius: 0,
+          fontSize: '1rem'
+        },
+      }
     }
   }
 });

@@ -39,6 +39,10 @@ const styles = () => ({
       },
     },
   },
+  sliderValueLabel: {
+    transform: 'none !important',
+    left: 'calc(-50% - 13px)',
+  },
 });
 
 // https://uber.github.io/react-map-gl/#/Documentation/advanced/custom-components
@@ -265,7 +269,6 @@ class TemporalMapTimeSlider extends BaseControl {
                   step={1}
                   valueLabelDisplay="on"
                   valueLabelFormat={this._sliderValueText}
-                  ValueLabelComponent={SliderValueLabel}
                 />
                 { /*
                 <div className="slider-labels-container">
