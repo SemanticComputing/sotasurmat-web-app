@@ -72,16 +72,6 @@ const Footer = props => {
           <Grid item xs className={classes.logoContainer}>
             <a
               className={classes.link}
-              href="https://www.aalto.fi/"
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
-            </a>
-          </Grid>
-          <Grid item xs className={classes.logoContainer}>
-            <a
-              className={classes.link}
               href="https://www.arkisto.fi/"
               target='_blank'
               rel='noopener noreferrer'
@@ -89,6 +79,17 @@ const Footer = props => {
               <img className={classes.arkistoLogo} src={arkistoLogo} alt='logo' />
             </a>
           </Grid>
+          <Grid item xs className={classes.logoContainer}>
+            <a
+              className={classes.link}
+              href="https://www.aalto.fi/"
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
+            </a>
+          </Grid>
+
         </Grid>
       </Grid>
     </Paper>

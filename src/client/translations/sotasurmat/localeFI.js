@@ -5,8 +5,8 @@ export default {
     long: 'Sotasurmasampo 1914-1922'
   },
   appDescription: `
-    Sotasurmasampo 1914-22 on portaali Suomeen liittyviin sotatapahtumiin vuosina
-    1914-1922. Portaalin tärkeimmän aineiston muodostaa Suomen sotasurmat 1914-1922 tiedosto.
+    Portaali Suomeen liittyviin sotatapahtumiin vuosina
+    1914-1922.
   `,
   topBar: {
     feedback: 'palaute',
@@ -39,7 +39,7 @@ export default {
     surmatut: {
       label: 'Sotasurmat',
       facetResultsType: 'henkilö',
-      shortDescription: 'Suomen sotasurmat 1914-1922 - vuosina 1914-22 sotaoloissa surmansa saaneiden nimitiedosto',
+      shortDescription: 'Tietoa vuosina 1914-22 sotaoloissa surmansa saaneista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Näkymä sotasurmatiedostoon
@@ -143,9 +143,9 @@ export default {
           `
         },
         causeOfDeath: {
-          label: 'Kuolinsyy',
+          label: 'Kuolintapa',
           description: `
-            Kuolinsyy aineistossa käytetyssä muodossa
+            Kuolintapa aineistossa käytetyssä muodossa
           `
         },
         registeredCountry: {

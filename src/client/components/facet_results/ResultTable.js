@@ -268,7 +268,7 @@ class ResultTable extends React.Component {
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>
             :
-            <Table size='medium'>
+            <Table size='small'>
               <ResultTableHead
                 resultClass={this.props.resultClass}
                 columns={this.props.data.properties}
