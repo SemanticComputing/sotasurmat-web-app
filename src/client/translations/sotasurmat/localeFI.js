@@ -94,16 +94,16 @@ export default {
             Kuolinpäivä (vanhanprojektin laskema.)
           `
         },
-        birthDateSpan: {
+        birthTimespan: {
           label: 'Syntymäpäivä',
           description: `
-            Syntymäpäivän aikaväli
+            Syntymäpäivä.
           `
         },
-        deathDateSpan: {
+        deathTimespan: {
           label: 'Kuolinpäivä',
           description: `
-            Kuolinpäivän aikaväli
+            Kuolinpäivä.
           `
         },
         age: {
@@ -256,20 +256,6 @@ export default {
           label: 'Yksiköitä',
           description: `
             Taisteluun osallistuneita yksiköitä
-          `
-        },
-        actor: {
-          label: 'Actor',
-          description: `
-            The actor(s) associated with the place.
-          `
-        },
-        source: {
-          label: 'Source',
-          description: `
-            The source dataset (Schoenberg, Bibale, and Bodleian) and the place
-            authority (Getty Thesaurus of Geographic Names and GeoNames)
-            contributing the information on the place.
           `
         }
       }

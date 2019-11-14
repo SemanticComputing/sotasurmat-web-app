@@ -29,20 +29,6 @@ export const facetConfigs = {
       type: 'list',
       predicate: 'siso-schema:occupation',
     },
-    deathDate: {
-      id: 'deathDate',
-      facetValueFilter: '',
-      labelPath: 'siso-schema:death_date',
-      type: 'list',
-      predicate: 'siso-schema:death_date',
-    },
-    birthDate: {
-      id: 'birthDate',
-      facetValueFilter: '',
-      labelPath: 'siso-schema:birth_date',
-      type: 'list',
-      predicate: 'siso-schema:birth_date',
-    },
     livingMunicipality: {
       id: 'livingMunicipality',
       facetValueFilter: '',

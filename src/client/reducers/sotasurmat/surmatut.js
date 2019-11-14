@@ -53,68 +53,48 @@ export const INITIAL_STATE = {
   properties: [
     {
       id: 'prefLabel',
-      label: 'Nimi',
-      desc: `
-        Nimi
-      `,
       valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 100
+      minWidth: 150
     },
     {
       id: 'party',
-      externalLink: true,
-      label: 'Osapuoli',
-      desc: `
-        Osapuoli
-      `,
+      externalLink: false,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 100
+      minWidth: 150
     },
     {
       id: 'registeredMunicipality',
-      externalLink: true,
-      label: 'Kirjoillaolokunta',
-      desc: `
-        Kirjoillaolokunta
-      `,
+      externalLink: false,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150
+      minWidth: 190
     },
     {
       id: 'deathMunicipality',
-      externalLink: true,
-      label: 'Kuolinkunta',
-      desc: `
-        Kuolinkunta
-      `,
+      externalLink: false,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150
+      minWidth: 170
     },
     {
       id: 'occupation',
       externalLink: true,
-      label: 'Ammatti',
-      desc: `
-        Ammatti
-      `,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 170
     },
     // {
     //   id: 'livingMunicipality',
@@ -129,30 +109,22 @@ export const INITIAL_STATE = {
     //   minWidth: 125
     // },
     {
-      id: 'birthDate',
-      externalLink: true,
-      label: 'Syntymäpäivä',
-      desc: `
-        Henkilön syntymäpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
+      id: 'birthTimespan',
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 170
     },
     {
-      id: 'deathDate',
-      externalLink: true,
-      label: 'Kuolinpäivä',
-      desc: `
-        Henkilön kuolinpäivä. Epäselvissä tapauksissa on annettu arvion mukaan aikaisin mahdollinen päivämäärä.
-      `,
+      id: 'deathTimespan',
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 170
     },
   ],
 };

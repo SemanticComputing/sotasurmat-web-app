@@ -21,7 +21,6 @@ import has from 'lodash';
 
 const styles = theme => ({
   tableContainer: {
-    zIndex:110000000,
     overflow: 'auto',
     width: '100%',
     height: 'auto',

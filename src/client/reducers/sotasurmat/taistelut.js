@@ -85,7 +85,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 125
+      minWidth: 170
     },
     {
       id: 'greaterPlace',
@@ -111,7 +111,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150
+      minWidth: 190
     },
     {
       id: 'units',

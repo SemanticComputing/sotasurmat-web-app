@@ -92,9 +92,6 @@ let Main = props => {
           <Typography variant="h6" align="center" color="textSecondary" paragraph>
             {intl.get('appDescription')}
           </Typography>
-          <Typography variant="h6" align="center" color="textSecondary" paragraph>
-            {intl.get('selectPerspective')}
-          </Typography>
         </div>
       </div>
       <div className={classNames(classes.layout, classes.cardContainer)}>

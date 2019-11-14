@@ -18,7 +18,6 @@ export const INITIAL_STATE = {
   facets: {
     prefLabel: {
       id: 'prefLabel',
-      label: 'Nimi',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -34,9 +33,8 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
-    birthDateSpan: {
-      id: 'birthDateSpan',
-      label: 'Syntymäpäivä',
+    birthTimespan: {
+      id: 'birthTimespan',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -54,9 +52,8 @@ export const INITIAL_STATE = {
       timespanFilter: null,
       type: 'date'
     },
-    deathDateSpan: {
-      id: 'deathDateSpan',
-      label: 'Kuolinpäivä',
+    deathTimespan: {
+      id: 'deathTimespan',
       //predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -74,46 +71,6 @@ export const INITIAL_STATE = {
       timespanFilter: null,
       type: 'date'
     },
-    // birthTimespan: {
-    //   id: 'birthTimespan',
-    //   label: 'syntymävuosi',
-    //   //predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: null,
-    //   sortDirection: null,
-    //   sortButton: false,
-    //   spatialFilterButton: false,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'three',
-    //   filterType: 'timespanFilter',
-    //   min: null,
-    //   max: null,
-    //   timespanFilter: null,
-    //   type: 'timespan'
-    // },
-    // deathTimespan: {
-    //   id: 'deathTimespan',
-    //   label: 'kuolinvuosi',
-    //   //predicate: defined in backend
-    //   distinctValueCount: 0,
-    //   values: [],
-    //   flatValues: [],
-    //   sortBy: null,
-    //   sortDirection: null,
-    //   sortButton: false,
-    //   spatialFilterButton: false,
-    //   isFetching: false,
-    //   searchField: false,
-    //   containerClass: 'three',
-    //   filterType: 'timespanFilter',
-    //   min: null,
-    //   max: null,
-    //   timespanFilter: null,
-    //   type: 'timespan'
-    // },
     age: {
       id: 'age',
       label: 'Ikä',
