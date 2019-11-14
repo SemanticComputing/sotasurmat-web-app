@@ -19,7 +19,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     paddingBottom: theme.spacing(3),
-    height: 'calc(100% - 100px)',
+    height: '100%',
     overflow: 'auto',
   },
   icon: {
@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   heroContent: {
     maxWidth: 1100,
-    paddingTop: theme.spacing(3),
+    paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1)
   },
   layout: {
@@ -49,7 +49,7 @@ const styles = theme => ({
     },
   },
   media: {
-    height: 150,
+    height: 140,
     // [ theme.breakpoints.down('md')]: {
     //   height: 60
     // }
@@ -68,7 +68,7 @@ const styles = theme => ({
     }
   },
   cardContent: {
-    height: 100,
+    height: 85,
   },
   logoContainer: {
     display: 'flex',

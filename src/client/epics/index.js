@@ -50,7 +50,7 @@ const backendErrorText = `Ei pystytty yhdistämään tietokantaan. Kokeile myöh
 export const availableLocales = {
   'fi': localeFI,
   'en': localeEN,
-  'sv': localeSV
+  //'sv': localeSV
 };
 
 const fetchPaginatedResultsEpic = (action$, state$) => action$.pipe(
