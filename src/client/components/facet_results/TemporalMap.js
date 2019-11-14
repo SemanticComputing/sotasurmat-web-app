@@ -96,6 +96,16 @@ class TemporalMap extends Component {
       });
     }
 
+    // check if filters have changed
+    if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
+      this.props.animateMap([ 0 ]); // reset time slider
+      this.props.fetchResults({
+        resultClass: this.props.resultClass,
+        facetClass: this.props.facetClass,
+        sortBy: null,
+      });
+    }
+
   };
 
   _filterData = (sliderValue, data, dates) => {
@@ -205,7 +215,8 @@ TemporalMap.propTypes = {
   facetClass: PropTypes.string.isRequired,
   fetchResults: PropTypes.func.isRequired,
   animationValue: PropTypes.array.isRequired,
-  animateMap: PropTypes.func.isRequired
+  animateMap: PropTypes.func.isRequired,
+  facetUpdateID: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(TemporalMap);

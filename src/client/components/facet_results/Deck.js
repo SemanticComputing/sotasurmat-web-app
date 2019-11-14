@@ -237,6 +237,7 @@ class Deck extends React.Component {
 }
 
 Deck.propTypes = {
+  classes: PropTypes.object.isRequired,
   results: PropTypes.array.isRequired,
   facetUpdateID: PropTypes.number,
   fetchResults: PropTypes.func,

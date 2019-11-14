@@ -64,8 +64,9 @@ let Taistelut = props => {
             fetching={props.taistelut.fetching}
             animationValue={props.animationValue}
             animateMap={props.animateMap}
+            facetUpdateID={props.facetData.facetUpdateID}
           />}
-      /> 
+      />
       <Route
         path={`${props.rootUrl}/taistelut/faceted-search/csv`}
         render={() =>
