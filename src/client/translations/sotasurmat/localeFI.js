@@ -24,7 +24,7 @@ export default {
     narrowDownBy: 'Rajoita'
   },
   tabs: {
-    table: 'lista',
+    table: 'taulukko',
     map: 'kartta',
     line: 'viivakaavio',
     pie: 'piirakkakaavio',

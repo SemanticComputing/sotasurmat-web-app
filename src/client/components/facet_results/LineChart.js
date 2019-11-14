@@ -366,7 +366,7 @@ class LineChart extends React.Component {
           chartType="LineChart"
           loader={<div>Loading Chart</div>}
           data={resultsArray}
-          height={600}
+          height={450}
           options={{
             hAxis: {
               title: xTitle + '  ' + infoString,
