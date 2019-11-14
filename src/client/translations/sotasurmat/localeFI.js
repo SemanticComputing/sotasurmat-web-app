@@ -149,15 +149,15 @@ export default {
           `
         },
         registeredCountry: {
-          label: 'Rekisteröity maa',
+          label: 'Kirjoillaolomaa',
           description: `
-            Rekisteröity maa
+            Kirjoillaolomaa
           `
         },
         registeredProvince: {
-          label: 'Rekisteröity lääni',
+          label: 'Kirjoillaololääni',
           description: `
-            Rekisteröity lääni
+            Kirjoillaololääni
           `
         },
         deathCountry: {

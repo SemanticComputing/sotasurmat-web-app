@@ -22,4 +22,5 @@ export const prefixes = `
   PREFIX siso-s: <http://ldf.fi/siso/schema/>
 
 
+
   `;
