@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
-import SliderValueLabel from './SliderValueLabel';
 import { SLIDER_DURATION } from '../../configs/config';
 import {BaseControl} from 'react-map-gl';
 // import iconImg from './icon.png';
