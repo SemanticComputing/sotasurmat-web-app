@@ -23,11 +23,12 @@ import {
   updateResults,
   updatePaginatedResults,
   updateInstance,
-  updateInstanceExtra,
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded
 } from '../helpers';
+
+// onlyOnInstancePage: true
 
 export const INITIAL_STATE = {
   results: [],
@@ -37,12 +38,10 @@ export const INITIAL_STATE = {
   resultsUpdateID: -1,
   paginatedResultsSparqlQuery: null,
   instance: null,
-  instanceExtra: null,
   instanceSparqlQuery: null,
-  instanceExtraSparqlQuery: null,
   page: -1,
   pagesize: 15,
-  sortBy: 'prefLabel',
+  sortBy: 'startDate',
   sortDirection: 'asc',
   fetching: false,
   fetchingResultCount: false,
@@ -53,89 +52,91 @@ export const INITIAL_STATE = {
   properties: [
     {
       id: 'prefLabel',
+      label: 'Taistelun nimi',
+      desc: 'Taistelun nimi',
       valueType: 'object',
       makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 150
+      minWidth: 170
     },
     {
-      id: 'party',
-      externalLink: false,
+      id: 'startDate',
+      label: 'alkupäivä',
+      desc: `
+        Taistelun alkupäivä
+      `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 150
     },
     {
-      id: 'registeredMunicipality',
-      externalLink: false,
+      id: 'endDate',
+      label: 'loppupäivä',
+      desc: `
+        Taistelun loppupäivä
+      `,
       valueType: 'object',
       makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 170
+    },
+    {
+      id: 'greaterPlace',
+      label: 'Kunta',
+      desc: `
+        Kunta tai muu suurempi paikka
+      `,
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 150
+    },
+    {
+      id: 'exactPlace',
+      label: 'Tarkka paikka',
+      desc: `
+        Taistelun tarkka paikka
+      `,
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 190
     },
     {
-      id: 'deathMunicipality',
-      externalLink: false,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 170
-    },
-    {
-      id: 'occupation',
-      externalLink: true,
-      valueType: 'object',
-      makeLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 170
-    },
-    // {
-    //   id: 'livingMunicipality',
-    //   label: 'Asuinkunta',
-    //   desc: `
-    //     Asuinkunta
-    //   `,
-    //   valueType: 'object',
-    //   makeLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 125
-    // },
-    {
-      id: 'birthTimespan',
+      id: 'units',
+      label: 'Yksiköt',
+      desc: `
+        Taisteluun osallistuneita (lähinnä valkoisten) yksiköitä
+      `,
       valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 170
-    },
-    {
-      id: 'deathTimespan',
-      valueType: 'object',
-      makeLink: false,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 170
+      minWidth: 150
     },
   ],
 };
 
+
 const resultClasses = new Set([
-  'surmatut',
-  'csvDeaths',
-  'personExtras'
+  'battles',
+  'battlePlaces',
+  'battlePlacesAnimation'
 ]);
 
-const surmatut = (state = INITIAL_STATE, action) => {
+const battles = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
@@ -156,11 +157,7 @@ const surmatut = (state = INITIAL_STATE, action) => {
       case UPDATE_PAGINATED_RESULTS:
         return updatePaginatedResults(state, action);
       case UPDATE_INSTANCE:
-        if (action.resultClass === 'personExtras') {
-          return updateInstanceExtra(state, action);
-        } else {
-          return updateInstance(state, action);
-        }
+        return updateInstance(state, action);
       case UPDATE_PAGE:
         return updatePage(state, action);
       case UPDATE_ROWS_PER_PAGE:
@@ -173,4 +170,4 @@ const surmatut = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default surmatut;
+export default battles;

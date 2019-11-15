@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux';
 import {reducer as toastrReducer} from 'react-redux-toastr';
 import error from './error';
-import surmatut from './sotasurmat/surmatut';
-import surmatutFacets from './sotasurmat/surmatutFacets';
-import taistelut from './sotasurmat/taistelut';
-import taistelutFacets from './sotasurmat/taistelutFacets';
+import victims from './sotasurmat/victims';
+import victimsFacets from './sotasurmat/victimsFacets';
+import battles from './sotasurmat/battles';
+import battlesFacets from './sotasurmat/battlesFacets';
 import dates from './sotasurmat/dates';
 import places from './sotasurmat/places';
 import options from './options';
 import animation from './animation';
 
 const reducer = combineReducers({
-  surmatut,
-  surmatutFacets,
-  taistelut,
-  taistelutFacets,
+  victims,
+  victimsFacets,
+  battles,
+  battlesFacets,
   animation,
   options,
   error,

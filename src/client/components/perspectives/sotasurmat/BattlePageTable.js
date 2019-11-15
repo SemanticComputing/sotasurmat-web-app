@@ -26,33 +26,18 @@ const styles = theme => ({
   }
 });
 
-class SurmatutPageTable extends React.Component {
+class BattlePageTable extends React.Component {
 
   render = () => {
     const { classes, data } = this.props;
     return(
       <Table className={classes.table}>
         <TableBody>
-          <TableRow key='party'>
-            <TableCell>Osapuoli</TableCell>
+          <TableRow key='exactPlace'>
+            <TableCell>Taistelun paikka</TableCell>
             <ResultTableCell
-              columnId='party'
-              data={data.party}
-              valueType='object'
-              makeLink={false}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-            />
-          </TableRow>
-          <TableRow key='registeredMunicipality'>
-            <TableCell>Kuolinkunta</TableCell>
-            <ResultTableCell
-              columnId='death_municipality'
-              data={data.registeredMunicipality}
+              columnId='exactPlace'
+              data={data.exactPlace}
               valueType='object'
               makeLink={false}
               externalLink={false}
@@ -69,9 +54,9 @@ class SurmatutPageTable extends React.Component {
   }
 }
 
-SurmatutPageTable.propTypes = {
+BattlePageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SurmatutPageTable);
+export default withStyles(styles)(BattlePageTable);

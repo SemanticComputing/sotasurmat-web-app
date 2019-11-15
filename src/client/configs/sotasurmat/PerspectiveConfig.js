@@ -13,7 +13,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 export const perspectiveConfig = [
   {
-    id: 'surmatut',
+    id: 'victims',
     thumbImage: kalevankangas,
     thumbImageText: 'Kuva: "Punaisten ruumiita Kalevankankaan hautausmaalla Tampereen taistelun jälkeen." Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
     perspectiveDescHeight: 160,
@@ -65,7 +65,7 @@ export const perspectiveConfig = [
     ]
   },
   {
-    id: 'taistelut',
+    id: 'battles',
     thumbImage: punainenRintama,
     thumbImageText: 'Kuva: "Tampereen punakaartin komppania rintamalla." Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
     perspectiveDescHeight: 160,

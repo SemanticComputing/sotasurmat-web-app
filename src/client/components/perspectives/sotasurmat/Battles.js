@@ -7,7 +7,7 @@ import LeafletMap from '../../facet_results/LeafletMap';
 import TemporalMap from '../../facet_results/TemporalMap';
 import ExportCSV from '../../facet_results/ExportCSV';
 
-let Taistelut = props => {
+const Battles = props => {
   return (
     <React.Fragment>
       <PerspectiveTabs
@@ -15,18 +15,18 @@ let Taistelut = props => {
         tabs={props.perspective.tabs}
       />
       <Route
-        exact path={`${props.rootUrl}/taistelut/faceted-search`}
-        render={() => <Redirect to={`${props.rootUrl}/taistelut/faceted-search/table`} />}
+        exact path={`${props.rootUrl}/battles/faceted-search`}
+        render={() => <Redirect to={`${props.rootUrl}/battles/faceted-search/table`} />}
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/table`}
+        path={`${props.rootUrl}/battles/faceted-search/table`}
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
-            data={props.taistelut}
+            data={props.battles}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='taistelut'
-            facetClass='taistelut'
+            resultClass='battles'
+            facetClass='battles'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
@@ -37,42 +37,42 @@ let Taistelut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/map`}
+        path={`${props.rootUrl}/battles/faceted-search/map`}
         render={() =>
           <LeafletMap
-            results={props.taistelut.results}
+            results={props.battles.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='battlePlaces'
-            facetClass='taistelut'
-            instance={props.taistelut.instance}
+            facetClass='battles'
+            instance={props.battles.instance}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
-            fetching={props.taistelut.fetching}
+            fetching={props.battles.fetching}
             mapMode={'cluster'}
             showInstanceCountInClusters={false}
           />}
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/animation`}
+        path={`${props.rootUrl}/battles/faceted-search/animation`}
         render={() =>
           <TemporalMap
-            results={props.taistelut.results}
+            results={props.battles.results}
             resultClass='battlePlacesAnimation'
-            facetClass='taistelut'
+            facetClass='battles'
             fetchResults={props.fetchResults}
-            fetching={props.taistelut.fetching}
+            fetching={props.battles.fetching}
             animationValue={props.animationValue}
             animateMap={props.animateMap}
             facetUpdateID={props.facetData.facetUpdateID}
           />}
       />
       <Route
-        path={`${props.rootUrl}/taistelut/faceted-search/csv`}
+        path={`${props.rootUrl}/battles/faceted-search/csv`}
         render={() =>
           <ExportCSV
             resultClass='battlePlaces'
-            facetClass='taistelut'
+            facetClass='battles'
             facetUpdateID={props.facetData.facetUpdateID}
             facets={props.facetData.facets}
           />}
@@ -81,9 +81,9 @@ let Taistelut = props => {
   );
 };
 
-Taistelut.propTypes = {
+Battles.propTypes = {
   rootUrl: PropTypes.string.isRequired,
-  taistelut: PropTypes.object.isRequired,
+  battles: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
@@ -97,4 +97,4 @@ Taistelut.propTypes = {
   animateMap: PropTypes.func.isRequired,
 };
 
-export default Taistelut;
+export default Battles;
