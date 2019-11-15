@@ -125,13 +125,13 @@ export default {
           `
         },
         hisclass7: {
-          label: 'HISCLASS7',
+          label: 'Ammatti (HISCLASS7)',
           description: `
             HISCLASS7 luokittelun mukainen ammatti
           `
         },
         coo1980: {
-          label: 'coo1980 ammatti',
+          label: 'Ammatti (coo1980)',
           description: `
             coo1980 luokittelun mukainen ammatti
           `

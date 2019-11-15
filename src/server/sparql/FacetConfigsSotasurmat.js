@@ -156,6 +156,14 @@ export const facetConfigs = {
       parentPredicate: 'siso-schema:ammo_occupation/ammo-s:coo1980_code/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    birthPlace: {
+      id: 'birthPlace',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:birth_place/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:birth_place',
+      parentPredicate: 'siso-schema:birth_place/skos:broader+',
+    },
 
     // hisco: {
     //   id: 'hisco',
