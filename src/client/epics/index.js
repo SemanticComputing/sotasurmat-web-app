@@ -12,7 +12,7 @@ import { combineEpics, ofType } from 'redux-observable';
 import intl from 'react-intl-universal';
 import localeEN from '../translations/sotasurmat/localeEN';
 import localeFI from '../translations/sotasurmat/localeFI';
-import localeSV from '../translations/sotasurmat/localeSV';
+// import localeSV from '../translations/sotasurmat/localeSV';
 import { stateToUrl } from '../helpers/helpers';
 import {
   FETCH_RESULT_COUNT,

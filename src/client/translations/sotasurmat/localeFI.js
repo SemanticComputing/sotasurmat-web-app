@@ -36,7 +36,7 @@ export default {
     of: 'of'
   },
   perspectives: {
-    surmatut: {
+    victims: {
       label: 'Sotasurmat',
       facetResultsType: 'henkilö',
       shortDescription: 'Tietoa vuosina 1914-22 sotaoloissa surmansa saaneista.',
@@ -202,7 +202,7 @@ export default {
 
       },
     },
-    taistelut: {
+    battles: {
       label: 'Taistelut',
       facetResultsType: 'taistelu',
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',

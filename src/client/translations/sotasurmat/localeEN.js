@@ -34,7 +34,7 @@ export default {
     of: 'of'
   },
   perspectives: {
-    surmatut: {
+    victims: {
       label: 'War Victims',
       facetResultsType: 'Person',
       shortDescription: 'Information about war victims in Finland 1914-1922.',
@@ -197,7 +197,7 @@ export default {
 
       },
     },
-    taistelut: {
+    battles: {
       label: 'Battles',
       facetResultsType: 'battle',
       shortDescription: 'Perspective for battles of the civil war.',

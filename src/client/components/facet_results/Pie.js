@@ -172,7 +172,7 @@ class Pie extends React.Component {
 
  componentDidMount = () => {
    this.props.fetchFacet({
-     facetClass: 'surmatut',
+     facetClass: 'victims',
      facetID: this.state.selectedOption
    });
  }
@@ -180,7 +180,7 @@ class Pie extends React.Component {
  componentDidUpdate = prevProps => {
    if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
      this.props.fetchFacet({
-       facetClass: 'surmatut',
+       facetClass: 'victims',
        facetID: this.state.selectedOption
      });
    }
@@ -188,7 +188,7 @@ class Pie extends React.Component {
 
  updatePie = value => {
    this.props.fetchFacet({
-     facetClass: 'surmatut',
+     facetClass: 'victims',
      facetID: value
    });
  }

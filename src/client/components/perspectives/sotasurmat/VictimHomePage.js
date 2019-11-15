@@ -5,11 +5,11 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
-import PerspectiveTabs from './PerspectiveTabs';
+import PerspectiveTabs from '../../main_layout/PerspectiveTabs';
 import SurmatutHomePageTable from './SurmatutHomePageTable';
 import SurmatutExtraTable from './SurmatutExtraTable';
-import LeafletMap from '../facet_results/LeafletMap';
-import Export from '../facet_results/Export';
+// import LeafletMap from '../../facet_results/LeafletMap';
+import Export from '../../facet_results/Export';
 import { Route, Redirect } from 'react-router-dom';
 import { has } from 'lodash';
 
@@ -32,7 +32,7 @@ const styles = () => ({
   }
 });
 
-class SurmatutHomePage extends React.Component {
+class VictimHomePage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -53,7 +53,7 @@ class SurmatutHomePage extends React.Component {
     });
     this.setState({ localID: localID });
     switch(this.props.resultClass) {
-      case 'surmatut':
+      case 'victims':
         this.setState({
           instanceHeading: 'Henkilö',
         });
@@ -190,7 +190,7 @@ class SurmatutHomePage extends React.Component {
   }
 }
 
-SurmatutHomePage.propTypes = {
+VictimHomePage.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
@@ -204,4 +204,4 @@ SurmatutHomePage.propTypes = {
   routeProps: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SurmatutHomePage);
+export default withStyles(styles)(VictimHomePage);

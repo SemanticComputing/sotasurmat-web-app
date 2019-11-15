@@ -377,7 +377,7 @@ export const INITIAL_STATE = {
 };
 
 const deathsFacets = (state = INITIAL_STATE, action) => {
-  if (action.facetClass === 'surmatut') {
+  if (action.facetClass === 'victims') {
     switch (action.type) {
       case FETCH_FACET:
         return fetchFacet(state, action);

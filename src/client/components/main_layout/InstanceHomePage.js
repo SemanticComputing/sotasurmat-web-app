@@ -52,16 +52,7 @@ class InstanceHomePage extends React.Component {
     });
     this.setState({ localID: localID });
     switch(this.props.resultClass) {
-      case 'surmatut':
-        this.setState({
-          instanceHeading: 'Henkilö',
-        });
-        uri = `${base}/death_records/${localID}`;
-        break;
-      case 'taistelut':
-        this.setState({
-          instanceHeading: 'Taistelu',
-        });
+      case 'battles':
         uri = `${base}/sita/${localID}`;
         break;
     }
@@ -114,7 +105,6 @@ class InstanceHomePage extends React.Component {
   render = () => {
     const { classes, data, isLoading, resultClass } = this.props;
     const hasData = data !== null && Object.values(data).length >= 1;
-    console.log(this.props.rootUrl)
 
     return(
       <div className={classes.root}>

@@ -8,7 +8,7 @@ import LineChart from '../../facet_results/LineChart';
 import ExportCSV from '../../facet_results/ExportCSV';
 import LeafletMap from '../../facet_results/LeafletMap';
 
-let Surmatut = props => {
+const Victims = props => {
 //console.log(props)
   return (
     <React.Fragment>
@@ -17,18 +17,18 @@ let Surmatut = props => {
         tabs={props.perspective.tabs}
       />
       <Route
-        exact path={`${props.rootUrl}/surmatut/faceted-search`}
-        render={() => <Redirect to={`${props.rootUrl}/surmatut/faceted-search/table`} />}
+        exact path={`${props.rootUrl}/victims/faceted-search`}
+        render={() => <Redirect to={`${props.rootUrl}/victims/faceted-search/table`} />}
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/table`}
+        path={`${props.rootUrl}/victims/faceted-search/table`}
         render={routeProps =>
           <ResultTable
             rootUrl={props.rootUrl}
-            data={props.surmatut}
+            data={props.victims}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='surmatut'
-            facetClass='surmatut'
+            resultClass='victims'
+            facetClass='victims'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             updateRowsPerPage={props.updateRowsPerPage}
@@ -39,49 +39,49 @@ let Surmatut = props => {
         }
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/pie`}
+        path={`${props.rootUrl}/victims/faceted-search/pie`}
         render={routeProps =>
           <Pie
             data={props.facetData.facets}
             facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='surmatut'
-            facetClass='surmatut'
+            resultClass='victims'
+            facetClass='victims'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
             fetchFacet={props.fetchFacet}
-            resultCount={props.surmatut.resultCount}
+            resultCount={props.victims.resultCount}
           />
         }
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/line`}
+        path={`${props.rootUrl}/victims/faceted-search/line`}
         render={routeProps =>
           <LineChart
             data={props.dates}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='dates'
-            facetClass='surmatut'
+            facetClass='victims'
             fetchPaginatedResults={props.fetchPaginatedResults}
             fetchResults={props.fetchResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
             fetchFacet={props.fetchFacet}
-            resultCount={props.surmatut.resultCount}
+            resultCount={props.victims.resultCount}
           />
         }
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/map`}
+        path={`${props.rootUrl}/victims/faceted-search/map`}
         render={() =>
           <LeafletMap
             results={props.places.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='deathPlaces'
-            facetClass='surmatut'
+            facetClass='victims'
             instance={props.places.instance}
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
@@ -91,11 +91,11 @@ let Surmatut = props => {
           />}
       />
       <Route
-        path={`${props.rootUrl}/surmatut/faceted-search/csv`}
+        path={`${props.rootUrl}/victims/faceted-search/csv`}
         render={() =>
           <ExportCSV
             resultClass='csvDeaths'
-            facetClass='surmatut'
+            facetClass='victims'
             facetUpdateID={props.facetData.facetUpdateID}
             facets={props.facetData.facets}
           />}
@@ -104,10 +104,10 @@ let Surmatut = props => {
   );
 };
 
-Surmatut.propTypes = {
+Victims.propTypes = {
   places: PropTypes.object.isRequired,
   rootUrl: PropTypes.string.isRequired,
-  surmatut: PropTypes.object.isRequired,
+  victims: PropTypes.object.isRequired,
   dates: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
@@ -118,9 +118,9 @@ Surmatut.propTypes = {
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
-  fetchFacet: PropTypes.func.isRequired, // lisäys
-  resultCount: PropTypes.number, //
+  fetchFacet: PropTypes.func.isRequired,
+  resultCount: PropTypes.number,
   perspective: PropTypes.object.isRequired
 };
 
-export default Surmatut;
+export default Victims;

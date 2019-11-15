@@ -4,7 +4,7 @@
 */
 
 export const facetConfigs = {
-  surmatut: {
+  victims: {
     facetClass: 'siso-schema:Death_record',
     prefLabel: {
       id: 'prefLabel',
@@ -220,7 +220,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:death_likelihood',
     },
   },
-  taistelut: {
+  battles: {
     facetClass: 'siso-schema:Battle',
     prefLabel: {
       id: 'prefLabel',
