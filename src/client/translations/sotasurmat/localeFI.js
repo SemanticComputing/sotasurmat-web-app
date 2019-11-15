@@ -53,6 +53,9 @@ export default {
           </p>
         `
       },
+      map: {
+        deathsAt: 'Tässä kunnassa kuolleita henkilöitä:'
+      },
       properties: {
         uri: {
           label: 'URI',

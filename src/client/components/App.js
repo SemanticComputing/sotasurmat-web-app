@@ -1,5 +1,7 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
 import SemanticPortal from '../containers/SemanticPortal';
 import red from '@material-ui/core/colors/red';
 
@@ -46,9 +48,11 @@ const theme = createMuiTheme({
 });
 
 const App = () => (
-  <MuiThemeProvider theme={theme}>
-    <SemanticPortal />
-  </MuiThemeProvider>
+  <MuiPickersUtilsProvider utils={MomentUtils} locale='fi'>
+    <MuiThemeProvider theme={theme}>
+      <SemanticPortal />
+    </MuiThemeProvider>
+  </MuiPickersUtilsProvider>
 );
 
 export default App;

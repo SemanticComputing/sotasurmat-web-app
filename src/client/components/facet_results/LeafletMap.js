@@ -8,6 +8,7 @@ import { purple } from '@material-ui/core/colors';
 import moment from 'moment';
 import 'leaflet/dist/leaflet.css';
 import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
+import intl from 'react-intl-universal';
 
 // Leaflet plugins
 import 'leaflet-fullscreen/dist/fullscreen.png';
@@ -378,11 +379,13 @@ class LeafletMap extends React.Component {
       if (Array.isArray(result.prefLabel)) {
         result.prefLabel = result.prefLabel[0];
       }
-      if (has(result.prefLabel, 'dataProviderUrl')) {
-        popUpTemplate += `<a href=${result.prefLabel.dataProviderUrl}><h3>${result.prefLabel.prefLabel}</h3></a>`;
-      } else {
-        popUpTemplate += `<h3>${result.prefLabel.prefLabel}</h3>`;
-      }
+
+      // TODO: implement place home page before creating a link
+      //if (has(result.prefLabel, 'dataProviderUrl')) {
+      //popUpTemplate += `<a href=${result.prefLabel.dataProviderUrl}><h3>${result.prefLabel.prefLabel}</h3></a>`;
+      //} else {
+      popUpTemplate += `<h3>${result.prefLabel.prefLabel}</h3>`;
+      //}
       if (has(result, 'sameAs')) {
         popUpTemplate += `<p>Place authority: <a target="_blank" rel="noopener noreferrer" href=${result.sameAs}>${result.sameAs}</a></p>`;
       }
@@ -400,7 +403,7 @@ class LeafletMap extends React.Component {
         popUpTemplate += `<p>Alkupäivä: ${startDate.format('DD.MM.YYYY')}</p>`;
       }
       if (this.props.resultClass === 'deathPlaces') {
-        popUpTemplate += `<p>Tässä kunnassa kuolleita henkilöitä:</p>`;
+        popUpTemplate += `<p>${intl.get('perspectives.surmatut.map.deathsAt')}</p>`;
         popUpTemplate += this.createInstanceListing(result.related);
       }
     }
