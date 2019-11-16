@@ -2,7 +2,14 @@ module.exports = function (api) {
   api.cache(true);
 
   const presets = [
-    '@babel/preset-env',
+    [
+      '@babel/preset-env',
+      {
+        useBuiltIns: 'entry',
+        corejs: 3,
+        targets: '> 0.25%, not dead'
+      }
+    ],
     '@babel/preset-react'
   ];
   const plugins = [
