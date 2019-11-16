@@ -35,8 +35,9 @@ export default {
     rowsPerPage: 'Riviä sivulla',
     of: 'of'
   },
+  mainPageImageLicence: 'Kuvat Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
   perspectives: {
-    surmatut: {
+    victims: {
       label: 'Sotasurmat',
       facetResultsType: 'henkilö',
       shortDescription: 'Tietoa vuosina 1914-22 sotaoloissa surmansa saaneista.',
@@ -128,13 +129,13 @@ export default {
           `
         },
         hisclass7: {
-          label: 'HISCLASS7',
+          label: 'Ammatti (HISCLASS7)',
           description: `
             HISCLASS7 luokittelun mukainen ammatti
           `
         },
         coo1980: {
-          label: 'coo1980 ammatti',
+          label: 'Ammatti (coo1980)',
           description: `
             coo1980 luokittelun mukainen ammatti
           `
@@ -202,7 +203,7 @@ export default {
 
       },
     },
-    taistelut: {
+    battles: {
       label: 'Taistelut',
       facetResultsType: 'taistelu',
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',
@@ -219,6 +220,9 @@ export default {
             Taistelut henkilösivun kuvaus
           </p>
         `
+      },
+      temporalMap: {
+        municipality: 'Kunta'
       },
       properties: {
         uri: {
@@ -257,9 +261,7 @@ export default {
         },
         units: {
           label: 'Yksiköitä',
-          description: `
-            Taisteluun osallistuneita yksiköitä
-          `
+          description: `Taisteluun osallistuneita yksiköitä`
         }
       }
     },

@@ -14,10 +14,10 @@ import Footer from '../components/main_layout/Footer';
 import Message from '../components/main_layout/Message';
 import FacetBar from '../components/facet_bar/FacetBar';
 // import All from '../components/perspectives/All';
-import Surmatut from '../components/perspectives/sotasurmat/Surmatut';
-import Taistelut from '../components/perspectives/sotasurmat/Taistelut';
+import Victims from '../components/perspectives/sotasurmat/Victims';
+import Battles from '../components/perspectives/sotasurmat/Battles';
 import InstanceHomePage from '../components/main_layout/InstanceHomePage';
-import SurmatutHomePage from '../components/main_layout/SurmatutHomePage';
+import VictimHomePage from '../components/perspectives/sotasurmat/VictimHomePage';
 import FeedbackPage from '../components/main_layout/FeedbackPage';
 import TextPage from '../components/main_layout/TextPage';
 // import Typography from '@material-ui/core/Typography';
@@ -192,14 +192,14 @@ let SemanticPortal = props => {
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null;
     switch(perspective.id) {
-      case 'surmatut':
+      case 'victims':
         perspectiveElement =
-        <Surmatut
+        <Victims
           rootUrl={rootUrl}
           dates={props.dates}
-          surmatut={props.surmatut}
+          victims={props.victims}
           places={props.places}
-          facetData={props.surmatutFacets}
+          facetData={props.victimsFacets}
           fetchPaginatedResults={props.fetchPaginatedResults}
           fetchResults={props.fetchResults}
           fetchByURI={props.fetchByURI}
@@ -208,18 +208,18 @@ let SemanticPortal = props => {
           sortResults={props.sortResults}
           routeProps={routeProps}
           fetchFacet={props.fetchFacet}
-          resultCount={props.surmatut.resultCount}
+          resultCount={props.victims.resultCount}
           updateRowsPerPage={props.updateRowsPerPage}
           perspective={perspective}
         />;
         break;
-      case 'taistelut':
+      case 'battles':
         perspectiveElement =
-        <Taistelut
+        <Battles
           rootUrl={rootUrl}
           dates={props.dates}
-          taistelut={props.taistelut}
-          facetData={props.taistelutFacets}
+          battles={props.battles}
+          facetData={props.battlesFacets}
           fetchPaginatedResults={props.fetchPaginatedResults}
           fetchResults={props.fetchResults}
           fetchByURI={props.fetchByURI}
@@ -228,7 +228,7 @@ let SemanticPortal = props => {
           sortResults={props.sortResults}
           routeProps={routeProps}
           fetchFacet={props.fetchFacet}
-          resultCount={props.taistelut.resultCount}
+          resultCount={props.battles.resultCount}
           updateRowsPerPage={props.updateRowsPerPage}
           perspective={perspective}
           animationValue={props.animationValue}
@@ -327,8 +327,8 @@ let SemanticPortal = props => {
                             : classes.instancePageContainer
                           }>
                             <Grid item xs={12} className={classes.instancePageContent}>
-                              {perspective.id == 'surmatut' &&
-                                <SurmatutHomePage
+                              {perspective.id == 'victims' &&
+                                <VictimHomePage
                                   rootUrl={rootUrl}
                                   fetchByURI={props.fetchByURI}
                                   resultClass={perspective.id}
@@ -341,7 +341,7 @@ let SemanticPortal = props => {
                                   routeProps={routeProps}
                                 />
                               }
-                              {perspective.id != 'surmatut' &&
+                              {perspective.id != 'victims' &&
                                 <InstanceHomePage
                                   rootUrl={rootUrl}
                                   fetchByURI={props.fetchByURI}
@@ -436,10 +436,10 @@ const mapStateToProps = state => {
   return {
     places: state.places,
     dates: state.dates,
-    surmatut: state.surmatut,
-    surmatutFacets: state.surmatutFacets,
-    taistelut: state.taistelut,
-    taistelutFacets: state.taistelutFacets,
+    victims: state.victims,
+    victimsFacets: state.victimsFacets,
+    battles: state.battles,
+    battlesFacets: state.battlesFacets,
     animationValue: state.animation.value,
     options: state.options,
     error: state.error,
@@ -471,10 +471,10 @@ SemanticPortal.propTypes = {
   options: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
   // browser: PropTypes.object.isRequired,
-  surmatut: PropTypes.object.isRequired,
-  taistelutFacets: PropTypes.object.isRequired,
-  taistelut: PropTypes.object.isRequired,
-  surmatutFacets: PropTypes.object.isRequired,
+  victims: PropTypes.object.isRequired,
+  battlesFacets: PropTypes.object.isRequired,
+  battles: PropTypes.object.isRequired,
+  victimsFacets: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,

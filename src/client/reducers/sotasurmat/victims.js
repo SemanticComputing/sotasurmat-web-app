@@ -130,12 +130,12 @@ export const INITIAL_STATE = {
 };
 
 const resultClasses = new Set([
-  'surmatut',
+  'victims',
   'csvDeaths',
   'personExtras'
 ]);
 
-const surmatut = (state = INITIAL_STATE, action) => {
+const victims = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
@@ -173,4 +173,4 @@ const surmatut = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default surmatut;
+export default victims;

@@ -4,7 +4,7 @@
 */
 
 export const facetConfigs = {
-  surmatut: {
+  victims: {
     facetClass: 'siso-schema:Death_record',
     prefLabel: {
       id: 'prefLabel',
@@ -156,6 +156,14 @@ export const facetConfigs = {
       parentPredicate: 'siso-schema:ammo_occupation/ammo-s:coo1980_code/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    birthPlace: {
+      id: 'birthPlace',
+      facetValueFilter: '',
+      labelPath: 'siso-schema:birth_place/skos:prefLabel',
+      type: 'list',
+      predicate: 'siso-schema:birth_place',
+      parentPredicate: 'siso-schema:birth_place/skos:broader+',
+    },
 
     // hisco: {
     //   id: 'hisco',
@@ -220,7 +228,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:death_likelihood',
     },
   },
-  taistelut: {
+  battles: {
     facetClass: 'siso-schema:Battle',
     prefLabel: {
       id: 'prefLabel',

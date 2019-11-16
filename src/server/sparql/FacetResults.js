@@ -16,7 +16,7 @@ import {
   extrasTypeList,
   deathPlacesQuery,
   deathsAt
-} from './SparqlQueriesDeaths';
+} from './SparqlQueriesVictims';
 import {
   battleProperties,
   battlePlacesQuery,
@@ -204,10 +204,10 @@ const getPaginatedData = ({
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`);
   let resultSetProperties;
   switch (resultClass) {
-    case 'surmatut':
+    case 'victims':
       resultSetProperties = deathsProperties;
       break;
-    case 'taistelut':
+    case 'battles':
       resultSetProperties = battleProperties;
       break;
     default:
@@ -233,7 +233,7 @@ export const getByURI = ({
   let q;
   let properties;
   switch (resultClass) {
-    case 'surmatut':
+    case 'victims':
       //properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
       properties = personProperties;
       q = instanceQuery;
@@ -246,7 +246,7 @@ export const getByURI = ({
       q = q.replace('<PROPERTIES>', properties);
       q = q.replace('<RELATED_INSTANCES>', '');
       break;
-    case 'taistelut':
+    case 'battles':
       q = instanceQuery;
       q = q.replace('<PROPERTIES>', battleProperties);
       q = q.replace('<RELATED_INSTANCES>', '');

@@ -67,7 +67,7 @@ export const INITIAL_STATE = {
       desc: `
         Taistelun alkupäivä
       `,
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,
@@ -80,7 +80,7 @@ export const INITIAL_STATE = {
       desc: `
         Taistelun loppupäivä
       `,
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,
@@ -119,7 +119,7 @@ export const INITIAL_STATE = {
       desc: `
         Taisteluun osallistuneita (lähinnä valkoisten) yksiköitä
       `,
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,
@@ -131,12 +131,12 @@ export const INITIAL_STATE = {
 
 
 const resultClasses = new Set([
-  'taistelut',
+  'battles',
   'battlePlaces',
   'battlePlacesAnimation'
 ]);
 
-const taistelut = (state = INITIAL_STATE, action) => {
+const battles = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
     switch (action.type) {
       case FETCH_RESULTS:
@@ -170,4 +170,4 @@ const taistelut = (state = INITIAL_STATE, action) => {
   } else return state;
 };
 
-export default taistelut;
+export default battles;

@@ -64,7 +64,7 @@ class LineChart extends React.Component {
     }
     this.props.fetchResults({
       resultClass: variant,
-      facetClass: 'surmatut',
+      facetClass: 'victims',
       sortBy: null,
     });
   }
@@ -72,7 +72,7 @@ class LineChart extends React.Component {
   componentDidMount = () => {
     this.props.fetchResults({
       resultClass: this.state.variant,
-      facetClass: 'surmatut',
+      facetClass: 'victims',
       sortBy: null,
     });
     //const { routeProps } = this.props;
@@ -84,7 +84,7 @@ class LineChart extends React.Component {
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({
         resultClass: this.state.variant,
-        facetClass: 'surmatut',
+        facetClass: 'victims',
         sortBy: null,
       });
     }

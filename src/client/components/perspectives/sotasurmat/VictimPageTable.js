@@ -5,7 +5,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import ResultTableCell from '../facet_results/ResultTableCell';
+import ResultTableCell from '../../facet_results/ResultTableCell';
 
 const styles = theme => ({
   root: {
@@ -26,18 +26,33 @@ const styles = theme => ({
   }
 });
 
-class TaistelutPageTable extends React.Component {
+class VictimPageTable extends React.Component {
 
   render = () => {
     const { classes, data } = this.props;
     return(
       <Table className={classes.table}>
         <TableBody>
-          <TableRow key='exactPlace'>
-            <TableCell>Taistelun paikka</TableCell>
+          <TableRow key='party'>
+            <TableCell>Osapuoli</TableCell>
             <ResultTableCell
-              columnId='exactPlace'
-              data={data.exactPlace}
+              columnId='party'
+              data={data.party}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+            />
+          </TableRow>
+          <TableRow key='registeredMunicipality'>
+            <TableCell>Kuolinkunta</TableCell>
+            <ResultTableCell
+              columnId='death_municipality'
+              data={data.registeredMunicipality}
               valueType='object'
               makeLink={false}
               externalLink={false}
@@ -54,9 +69,9 @@ class TaistelutPageTable extends React.Component {
   }
 }
 
-TaistelutPageTable.propTypes = {
+VictimPageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TaistelutPageTable);
+export default withStyles(styles)(VictimPageTable);

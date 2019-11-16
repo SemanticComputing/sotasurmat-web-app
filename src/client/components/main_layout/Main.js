@@ -21,6 +21,9 @@ const styles = theme => ({
     paddingBottom: theme.spacing(3),
     height: '100%',
     overflow: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      height: 900
+    }
   },
   icon: {
     marginRight: theme.spacing(2),
@@ -75,6 +78,26 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  licenceLayout: {
+    width: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      width: 1100,
+    }
+  },
+  licenceContainer: {
+    marginTop: theme.spacing(1),
+    [theme.breakpoints.down(840)]: {
+      width: 340
+    },
+    [theme.breakpoints.up(840)]: {
+      width: 2 * 340 + theme.spacing(6)
+    }
+  },
+  licenceText: {
+    fontSize: '0.8em'
+  }
 });
 
 let Main = props => {
@@ -97,57 +120,31 @@ let Main = props => {
       <div className={classNames(classes.layout, classes.cardContainer)}>
         {props.perspectives.map(perspective => {
           return (
-            <Tooltip key={perspective.id} title={perspective.thumbImageText}>
-              <Card key={perspective.id} className={classes.card}>
-                {has(perspective, 'externalUrl') &&
-                    <a className={classes.link}
-                      href={perspective.externalUrl}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image={has(perspective, 'thumbImage')
-                            ? perspective.thumbImage
-                            : defaultThumbImage}
-                          title={perspective.label}
-                        />
-                        <CardContent className={classes.cardContent}>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            {intl.get(`perspectives.${perspective.id}.label`)}
-                          </Typography>
-                          <Typography component="p">
-                            {intl.get(`perspectives.${perspective.id}.shortDescription`)}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                    </a>
-                }
-                {!has(perspective, 'externalUrl') &&
-                    <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
-                      <CardMedia
-                        className={classes.media}
-                        image={has(perspective, 'thumbImage')
-                          ? perspective.thumbImage
-                          : defaultThumbImage}
-                        title={perspective.label}
-                      />
-                      <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {intl.get(`perspectives.${perspective.id}.label`)}
-                        </Typography>
-                        <Typography component="p">
-                          {intl.get(`perspectives.${perspective.id}.shortDescription`)}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                }
-              </Card>
-            </Tooltip>
+            <Card key={perspective.id} className={classes.card}>
+              <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
+                <CardMedia
+                  className={classes.media}
+                  image={has(perspective, 'thumbImage')
+                    ? perspective.thumbImage
+                    : defaultThumbImage}
+                  title={perspective.label}
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {intl.get(`perspectives.${perspective.id}.label`)}
+                  </Typography>
+                  <Typography component="p">
+                    {intl.get(`perspectives.${perspective.id}.shortDescription`)}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
           );
         }
         )}
+      </div>
+      <div className={classNames(classes.licenceLayout, classes.licenceContainer)}>
+        <Typography className={classes.licenceText}>{intl.get('mainPageImageLicence')}</Typography>
       </div>
     </div>
   );

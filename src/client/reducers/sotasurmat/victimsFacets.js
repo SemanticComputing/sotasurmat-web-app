@@ -89,6 +89,23 @@ export const INITIAL_STATE = {
       filterType: 'integerFilter',
       integerFilter: null,
     },
+    party: {
+      id: 'party',
+      label: 'Osapuoli',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'three',
+      filterType: 'uriFilter',
+      uriFilter: null,
+    },
     occupation: {
       id: 'occupation',
       label: 'Ammatti',
@@ -237,23 +254,6 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
     },
-    party: {
-      id: 'party',
-      label: 'Osapuoli',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'three',
-      filterType: 'uriFilter',
-      uriFilter: null,
-    },
     gender: {
       id: 'gender',
       // predicate: defined in backend
@@ -301,23 +301,6 @@ export const INITIAL_STATE = {
       isFetching: false,
       searchField: false,
       containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 8
-    },
-    deathLikelihood: {
-      id: 'deathLikelihood',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'prefLabel',
-      sortDirection: 'asc',
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'four',
       filterType: 'uriFilter',
       uriFilter: null,
       priority: 8
@@ -373,11 +356,28 @@ export const INITIAL_STATE = {
       uriFilter: null,
       type: 'hierarchical',
     },
+    deathLikelihood: {
+      id: 'deathLikelihood',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'four',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8
+    },
   }
 };
 
 const deathsFacets = (state = INITIAL_STATE, action) => {
-  if (action.facetClass === 'surmatut') {
+  if (action.facetClass === 'victims') {
     switch (action.type) {
       case FETCH_FACET:
         return fetchFacet(state, action);

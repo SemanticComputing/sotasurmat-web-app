@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import withWidth from '@material-ui/core/withWidth';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
-import RedoIcon from '@material-ui/icons/Redo';
-import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
-import PieChartIcon from '@material-ui/icons/PieChart';
-import LineChartIcon from '@material-ui/icons/ShowChart';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import AddIcon from '@material-ui/icons/Add';
 import intl from 'react-intl-universal';
-
+import { compose } from 'redux';
 
 const styles = () => ({
   root: {
@@ -55,8 +48,8 @@ class PerspectiveTabs extends React.Component {
   };
 
   render() {
-    //console.log(this.props)
     const { classes, tabs } = this.props;
+
     return (
       <Paper className={classes.root}>
         <Tabs
@@ -64,7 +57,9 @@ class PerspectiveTabs extends React.Component {
           onChange={this.handleChange}
           indicatorColor="secondary"
           textColor="secondary"
-          variant="fullWidth"
+          scrollButtons="on"
+          variant={this.props.width === 'sm' || this.props.width === 'xs'
+            ? 'scrollable' : 'fullWidth'}
         >
           {tabs.map(tab =>
             <Tab key={tab.id}
@@ -83,7 +78,13 @@ class PerspectiveTabs extends React.Component {
 PerspectiveTabs.propTypes = {
   classes: PropTypes.object.isRequired,
   routeProps: PropTypes.object.isRequired,
-  tabs: PropTypes.array.isRequired
+  tabs: PropTypes.array.isRequired,
+  width: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(PerspectiveTabs);
+export default compose(
+  withWidth(),
+  withStyles(styles),
+)(PerspectiveTabs);
+
+//export default withStyles(styles)(PerspectiveTabs);
