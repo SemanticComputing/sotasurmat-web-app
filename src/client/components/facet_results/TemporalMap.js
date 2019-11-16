@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import intl from 'react-intl-universal';
 import ReactMapGL, { NavigationControl, FullscreenControl } from 'react-map-gl';
 import DeckGL, { ScatterplotLayer } from 'deck.gl';
 import Paper from '@material-ui/core/Paper';
@@ -8,6 +9,7 @@ import TemporalMapTimeSlider from './TemporalMapTimeSlider';
 import './TemporalMapCommon.scss';
 import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
 import Typography from '@material-ui/core/Typography';
+import { has } from 'lodash';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
@@ -23,8 +25,8 @@ const styles = theme => ({
   tooltipContainer: {
     position: 'absolute',
     zIndex: 1,
-    padding: theme.spacing(1)
-    //pointerEvents: 'none',
+    padding: theme.spacing(1),
+    maxWidth: 500
   },
   navigationContainer: {
     position: 'absolute',
@@ -130,9 +132,23 @@ class TemporalMap extends Component {
     const {hoveredObject, pointerX, pointerY} = this.state || {};
     return hoveredObject && (
       <Paper className={this.props.classes.tooltipContainer} style={{left: pointerX + 10, top: pointerY + 10}}>
-        <Typography>
+        <Typography variant='h6'>
           {hoveredObject.prefLabel}
         </Typography>
+        <Typography>
+          {intl.get('perspectives.battles.temporalMap.municipality')}: {hoveredObject.greaterPlace}
+        </Typography>
+        <Typography>
+          {intl.get('perspectives.battles.properties.startDate.label')}: {hoveredObject.startDate}
+        </Typography>
+        <Typography>
+          {intl.get('perspectives.battles.properties.endDate.label')}: {hoveredObject.endDate}
+        </Typography>
+        {has(hoveredObject, 'units') &&
+          <Typography>
+            {intl.get('perspectives.battles.properties.units.description')}: {hoveredObject.units}
+          </Typography>
+        }
       </Paper>
     );
   }
@@ -193,8 +209,6 @@ class TemporalMap extends Component {
             viewState={viewport}
           />
           <TemporalMapTimeSlider
-            // captureDrag={true}
-            //captureClick={false}
             mapElementRef={this.mapElementRef}
             memory={memory}
             dates={dates}

@@ -67,7 +67,7 @@ export const INITIAL_STATE = {
       desc: `
         Taistelun alkupäivä
       `,
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,
@@ -80,7 +80,7 @@ export const INITIAL_STATE = {
       desc: `
         Taistelun loppupäivä
       `,
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,
@@ -119,7 +119,7 @@ export const INITIAL_STATE = {
       desc: `
         Taisteluun osallistuneita (lähinnä valkoisten) yksiköitä
       `,
-      valueType: 'object',
+      valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: true,

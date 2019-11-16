@@ -220,6 +220,9 @@ export default {
           </p>
         `
       },
+      temporalMap: {
+        municipality: 'Kunta'
+      },
       properties: {
         uri: {
           label: 'URI',
@@ -257,9 +260,7 @@ export default {
         },
         units: {
           label: 'Yksiköitä',
-          description: `
-            Taisteluun osallistuneita yksiköitä
-          `
+          description: `Taisteluun osallistuneita yksiköitä`
         }
       }
     },
