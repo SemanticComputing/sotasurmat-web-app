@@ -12,9 +12,6 @@ import App from './components/App';
 import { loadLocales } from './actions';
 //import { updateURL } from './actions';
 
-import 'core-js/stable';
-
-
 import 'react-sortable-tree/style.css';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
