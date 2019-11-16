@@ -35,6 +35,7 @@ export default {
     rowsPerPage: 'Riviä sivulla',
     of: 'of'
   },
+  mainPageImageLicence: 'Kuvat Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
   perspectives: {
     victims: {
       label: 'Sotasurmat',
