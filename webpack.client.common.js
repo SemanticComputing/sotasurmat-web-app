@@ -29,7 +29,12 @@ module.exports = {
     rules: [
       {
         test: /\.m?js$/,
-        exclude: /node_modules/,
+        exclude: '/node_modules/',
+        include: [
+          path.resolve('src'),
+          // These dependencies have es6 syntax which does not work in IE11
+          path.resolve('node_modules/mapbox-gl'),
+        ],
         use: ['babel-loader']
       },
       {
