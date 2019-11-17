@@ -35,6 +35,17 @@ export default {
     rowsPerPage: 'Riviä sivulla',
     of: 'of'
   },
+  facets: {
+    dateFacet: {
+      invalidDate: 'Epäkelpo päivämäärä.',
+      toBeforeFrom: 'Alkupäivämäärän täytyy olla ennen loppupäivämäärää.',
+      minDate: 'Aikaisin sallittu päivämäärä on {minDate}',
+      maxDate: 'Myöhäisin sallittu päivämäärä on {maxDate}',
+      cancel: 'Peruuta',
+      fromLabel: 'Alku',
+      toLabel: 'Loppu'
+    },
+  },
   mainPageImageLicence: 'Kuvat Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
   perspectives: {
     victims: {

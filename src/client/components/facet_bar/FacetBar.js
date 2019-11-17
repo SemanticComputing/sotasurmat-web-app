@@ -5,8 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import HierarchicalFacet from './HierarchicalFacet';
 import TextFacet from './TextFacet';
 import SliderFacet from './SliderFacet';
-import DateRangeSelector from './DateRangeSelector';
-// import DateFacet from './DateFacet';
+// import DateRangeSelector from './DateRangeSelector';
+import DateFacet from './DateFacet';
 // import RangeFacet from './RangeFacet';
 import Paper from '@material-ui/core/Paper';
 import FacetHeader from './FacetHeader';
@@ -154,7 +154,7 @@ class FacetBar extends React.Component {
         break;
       case 'dateFilter':
         facetComponent = (
-          <DateRangeSelector
+          <DateFacet
             facetID={facetID}
             facet={facet}
             facetClass={this.props.facetClass}

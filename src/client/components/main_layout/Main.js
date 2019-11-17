@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 import { has } from 'lodash';
 import defaultThumbImage from '../../img/thumb.png';
 import logo from '../../img/logo_fi.gif';
-import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   root: {
