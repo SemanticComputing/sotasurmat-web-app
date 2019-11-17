@@ -7,7 +7,7 @@ module.exports = function (api) {
       {
         useBuiltIns: 'usage',
         corejs: 3,
-        targets: '> 0.25%, not dead'
+        targets: 'defaults'
       }
     ],
     '@babel/preset-react'
