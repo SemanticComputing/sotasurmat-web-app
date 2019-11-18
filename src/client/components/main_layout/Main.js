@@ -143,7 +143,7 @@ let Main = props => {
         )}
       </div>
       <div className={classNames(classes.licenceLayout, classes.licenceContainer)}>
-        <Typography className={classes.licenceText}>{intl.get('mainPageImageLicence')}</Typography>
+        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
       </div>
     </div>
   );

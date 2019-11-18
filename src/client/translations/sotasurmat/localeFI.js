@@ -51,7 +51,8 @@ export default {
       toLabel: 'Loppu'
     },
   },
-  mainPageImageLicence: 'Kuvat Museokeskus Vapriikin kokoelmasta. Lisenssi: CC BY 2.0',
+  mainPageImageLicence: `Etusivun kuvat: Vapriikin kuva-arkisto
+  <a href= “https://creativecommons.org/licenses/by/2.0/” target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
   perspectives: {
     victims: {
       label: 'Sotasurmat',
