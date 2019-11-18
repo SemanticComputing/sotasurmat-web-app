@@ -181,7 +181,7 @@ export default {
         coo1980: {
           label: 'Ammatti (coo1980)',
           description: `
-            coo1980 luokittelun mukainen ammatti
+            Ammattiluokitus 1980 luokittelun mukainen ammatti
           `
         },
         hisco: {
@@ -453,7 +453,6 @@ export default {
       <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
       Voit halutessasi myös tutustua Sotasurmatietokannan
       <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main" target='_blank' rel='noopener noreferrer'> vanhaan sivustoon</a>.
-
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Sotasurmatietokannan tietosisällöstä
@@ -701,7 +700,20 @@ export default {
         <td>VROSyA</td>
         <td>Valtiorikosoikeuksien syyttäjistön arkisto (Kansallisarkisto)</td>
       </tr>
-
     </table>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Ammationtologiat
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Sotasurmasammon datassa on ammatit yhdistetty
+      <a href = "https://seco.cs.aalto.fi/ontologies/ammo/" target='_blank' rel='noopener noreferrer'>AMMO-ontologiaan</a>.
+      Tähän ontologiaan sisältyt likkejä useisiin eri ammattiluokitteluihin. Sotasurmat-Näkymässä
+      on mahdollisuus suodattaa tietoja ammattien suhteen sosiaalista asemaa kuvaavan HISCLASS7-luokittelun,
+      sekä Ammattiluokitus 1980 käsitteiden avulla.
+    </p>
   `,
 };
