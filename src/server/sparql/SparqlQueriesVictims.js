@@ -629,6 +629,30 @@ export const personProperties = `
           ?id siso-s:death_likelihood ?deathLikelihood__id .
           ?deathLikelihood__id skos:prefLabel ?deathLikelihood__prefLabel .
         }
+        UNION
+        {
+          ?id siso-s:wikipedia ?externalLink__id .
+          BIND ('Wikipedia' AS ?externalLink__prefLabel)
+          BIND (?externalLink__id AS ?externalLink__dataProviderUrl)
+        }
+        UNION
+        {
+          ?id siso-s:yoma ?externalLink__id .
+          BIND ('YO-matrikkeli' AS ?externalLink__prefLabel)
+          BIND (?externalLink__id AS ?externalLink__dataProviderUrl)
+        }
+        UNION
+        {
+          ?id siso-s:bs ?externalLink__id .
+          BIND ('Biografiasampo' AS ?externalLink__prefLabel)
+          BIND (URI(REPLACE(STR(?externalLink__id), "http://ldf.fi/nbf/", "http://biografiasampo.fi/henkilo/")) AS ?externalLink__dataProviderUrl)
+        }
+        UNION
+        {
+          ?id siso-s:norssi ?externalLink__id .
+          BIND ('norssit.fi' AS ?externalLink__prefLabel)
+          BIND (URI(REPLACE(STR(?externalLink__id), "http://ldf.fi/norssit/", " https://www.norssit.fi/semweb/#!/tiedot/http:~2F~2Fldf.fi~2Fnorssit~2F")) AS ?externalLink__dataProviderUrl)
+        }
 
         `;
 

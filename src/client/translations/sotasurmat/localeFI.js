@@ -52,7 +52,7 @@ export default {
     },
   },
   mainPageImageLicence: `Etusivun kuvat: Vapriikin kuva-arkisto
-  <a href= “https://creativecommons.org/licenses/by/2.0/” target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
+  <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
   perspectives: {
     victims: {
       label: 'Sotasurmat',
