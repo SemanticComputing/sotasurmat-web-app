@@ -186,12 +186,19 @@ class TopBar extends React.Component {
       >
         {intl.get('topBar.feedback').toUpperCase()}
       </MenuItem>
-      <MenuItem
+      {/*<MenuItem
         key={0}
         component={this.AdapterLink}
         to={`${this.props.rootUrl}/about`}
       >
         {intl.get('topBar.info.aboutTheProject').toUpperCase()}
+      </MenuItem>*/}
+      <MenuItem
+        key='info'
+        component={this.AdapterLink}
+        to={`${this.props.rootUrl}/information`}
+      >
+        {intl.get('topBar.info.info').toUpperCase()}
       </MenuItem>
       <MenuItem
         key='info'
@@ -241,7 +248,16 @@ class TopBar extends React.Component {
               >
                 {intl.get('topBar.feedback')}
               </Button>
-              <TopBarInfoButton />
+              {/*<TopBarInfoButton />*/}
+              <Button
+                className={classes.appBarButton}
+                component={this.AdapterNavLink}
+                to={`${this.props.rootUrl}/information`}
+                isActive={(match, location) => location.pathname.startsWith(`/information`)}
+                activeClassName={this.props.classes.appBarButtonActive}
+              >
+                {intl.get('topBar.info.info')}
+              </Button>
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
