@@ -5,19 +5,20 @@ import intl from 'react-intl-universal';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
-import TopBarSearchField from './TopBarSearchField';
+// import TopBarSearchField from './TopBarSearchField';
 import TopBarInfoButton from './TopBarInfoButton';
 import TopBarLanguageButton from './TopBarLanguageButton';
 import Divider from '@material-ui/core/Divider';
 import { has } from 'lodash';
 import logo from '../../img/logo_small_fi.gif';
+import arkistoLogo from '../../img/logos/ka-tunnus-fi-white.png';
 
 const styles = theme => ({
   root: {
@@ -44,6 +45,9 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  appBarToolbar: {
+    paddingLeft: 0
+  },
   appBarButton: {
     color: 'white !important',
     border: `1px solid ${theme.palette.primary.main}`
@@ -61,6 +65,23 @@ const styles = theme => ({
     alignItems: 'left',
     justifyContent: 'left'
   },
+  topBarLogo: {
+    height: 50,
+    [theme.breakpoints.down('xs')]: {
+      height: 35,
+    },
+  },
+  // arkistoLogo: {
+  //   [theme.breakpoints.down('xs')]: {
+  //     display: 'none'
+  //   },
+  // },
+  arkistoLogoImage: {
+    height: 52,
+    [theme.breakpoints.down('xs')]: {
+      height: 35,
+    },
+  }
 });
 
 class TopBar extends React.Component {
@@ -186,16 +207,23 @@ class TopBar extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="absolute">
-          <Toolbar>
+          <Toolbar className={classes.appBarToolbar}>
             <Button
-              className={classes.appBarButton}
               component={this.AdapterLink}
               to={this.props.rootUrl}
             >
-              <div className={classes.logoContainer}>
-                <img src={logo} alt="Logo"></img>
-              </div>
+              <img className={classes.topBarLogo} src={logo} alt="Logo"></img>
             </Button>
+            <a
+              className={classes.arkistoLogo}
+              href="https://www.arkisto.fi/"
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Button>
+                <img className={classes.arkistoLogoImage} src={arkistoLogo} alt='logo' />
+              </Button>
+            </a>
             {/*<TopBarSearchField
               fetchResultsClientSide={this.props.fetchResultsClientSide}
               clearResults={this.props.clearResults}
