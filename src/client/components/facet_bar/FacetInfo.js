@@ -7,12 +7,24 @@ import ActiveFilters from './ActiveFilters';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Tooltip from '@material-ui/core/Tooltip';
 import purple from '@material-ui/core/colors/purple';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
   facetInfoDivider: {
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(0.5)
+  },
+  narrowDownBy: {
+    display: 'flex'
+  },
+  iconButton: {
+    paddingTop: 4,
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingBottom: 0
   }
 });
 
@@ -35,7 +47,7 @@ class FacetInfo extends React.Component {
   }
 
   render() {
-    const { classes, facetClass, resultClass, resultCount, someFacetIsFetching } = this.props;
+    const { classes, facetClass, resultCount, someFacetIsFetching } = this.props;
     const { facets } = this.props.facetData;
     let uriFilters = {};
     let spatialFilters = {};
@@ -70,7 +82,6 @@ class FacetInfo extends React.Component {
       }
     }
 
-    //<Typography variant="h6">{intl.get('facetBar.results')}: {resultCount} {intl.get(`perspectives.${resultClass}.facetResultsType`)}</Typography>
     return (
       <div className={classes.root}>
         { this.props.fetchingResultCount ?
@@ -107,7 +118,14 @@ class FacetInfo extends React.Component {
             <Divider className={classes.facetInfoDivider} />
           </React.Fragment>
         }
-        <Typography variant="h6">{intl.get('facetBar.narrowDownBy')}:</Typography>
+        <div className={classes.narrowDownBy}>
+          <Typography variant="h6">{intl.get('facetBar.narrowDownBy')}:</Typography>
+          <Tooltip enterDelay={300} title={intl.get('facetBar.narrowDownByTooltip')}>
+            <IconButton className={classes.iconButton}>
+              <InfoIcon />
+            </IconButton>
+          </Tooltip>
+        </div>
       </div>
     );
   }

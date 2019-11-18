@@ -11,7 +11,7 @@ export default {
   topBar: {
     feedback: 'palaute',
     info: {
-      info: 'Info',
+      info: 'tietoa',
       blog: 'Blog',
       oldPage: 'Vanha sovellus',
       aboutTheProject: 'Tietoa projektista'
@@ -22,6 +22,7 @@ export default {
   facetBar: {
     results: 'Tulokset',
     narrowDownBy: 'Rajoita',
+    narrowDownByTooltip: 'Rajoita hakutulosta alla olevien valitsimien avulla',
     filterOptions: 'Asetukset',
     sortByName: 'Järjestä nimen mukaan',
     sortByHits: 'Järjestä hakutuloksien lukumäärän mukaan',

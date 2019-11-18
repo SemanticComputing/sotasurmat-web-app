@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   link: {
@@ -23,7 +23,7 @@ class TopBarInfoButton extends React.Component {
     anchorEl: null,
   };
 
-  AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
+  //AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
 
   handleInfoMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
