@@ -139,7 +139,8 @@ class HierarchicalFacet extends Component {
         facetID: this.props.facetID,
       });
     }
-    if (prevProps.facet.sortBy !== this.props.facet.sortBy) {
+    if (prevProps.facet.sortBy !== this.props.facet.sortBy
+      || prevProps.facet.sortDirection !== this.props.facet.sortDirection) {
       this.props.fetchFacet({
         facetClass: this.props.facetClass,
         facetID: this.props.facetID,
@@ -305,7 +306,7 @@ class HierarchicalFacet extends Component {
             {searchField && facet.filterType !== 'spatialFilter' &&
               <div className={classes.facetSearchContainer}>
                 <Input
-                  placeholder={`Search...`}
+                  placeholder={intl.get('facetBar.searchWithinFilter')}
                   onChange={this.handleSearchFieldOnChange}
                   value={this.state.searchString}
                 >

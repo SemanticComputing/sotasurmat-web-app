@@ -21,7 +21,11 @@ export default {
   },
   facetBar: {
     results: 'Tulokset',
-    narrowDownBy: 'Rajoita'
+    narrowDownBy: 'Rajoita',
+    filterOptions: 'Asetukset',
+    sortByName: 'Järjestä nimen mukaan',
+    sortByHits: 'Järjestä hakutuloksien lukumäärän mukaan',
+    searchWithinFilter: 'Hae'
   },
   tabs: {
     table: 'taulukko',

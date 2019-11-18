@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -43,17 +44,35 @@ class FacetHeader extends React.Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleSortOnClick = buttonID => () =>  {
-    this.setState({ anchorEl: null });
-    if (buttonID === 'prefLabel' && this.props.facet.sortBy === 'instanceCount') {
+  handleSortByPrefLabel = () => {
+    if (this.props.facet.sortBy === 'instanceCount') {
+      this.props.updateFacetOption({
+        facetClass: this.props.facetClass,
+        facetID: this.props.facetID,
+        option: 'sortDirection',
+        value: 'asc'
+      });
       this.props.updateFacetOption({
         facetClass: this.props.facetClass,
         facetID: this.props.facetID,
         option: 'sortBy',
         value: 'prefLabel'
       });
+    } else {
+      this.props.updateFacetOption({
+        facetClass: this.props.facetClass,
+        facetID: this.props.facetID,
+        option: 'sortDirection',
+        value: this.props.facet.sortDirection === 'asc'
+          ? 'desc'
+          : 'asc'
+      });
     }
-    if (buttonID === 'instanceCount' && this.props.facet.sortBy === 'prefLabel') {
+    this.handleMenuClose();
+  }
+
+  handleSortByInstanceCount = () => {
+    if (this.props.facet.sortBy === 'prefLabel') {
       this.props.updateFacetOption({
         facetClass: this.props.facetClass,
         facetID: this.props.facetID,
@@ -66,80 +85,59 @@ class FacetHeader extends React.Component {
         option: 'sortBy',
         value: 'instanceCount'
       });
-    }
-  };
-
-  handleFilterTypeOnClick = buttonID => () => {
-    //console.log(event.target)
-    this.setState({ anchorEl: null });
-
-    if (buttonID === 'uriFilter' && this.props.facet.filterType === 'spatialFilter') {
+    } else {
       this.props.updateFacetOption({
         facetClass: this.props.facetClass,
         facetID: this.props.facetID,
-        option: 'spatialFilter',
-        value: null
-      });
-      this.props.updateFacetOption({
-        facetClass: this.props.facetClass,
-        facetID: this.props.facetID,
-        option: 'filterType',
-        value: 'uriFilter'
+        option: 'sortDirection',
+        value: this.props.facet.sortDirection === 'asc'
+          ? 'desc'
+          : 'asc'
       });
     }
-    if (buttonID === 'spatialFilter' && this.props.facet.filterType === 'uriFilter') {
-      this.props.updateFacetOption({
-        facetClass: this.props.facetClass,
-        facetID: this.props.facetID,
-        option: 'filterType',
-        value: 'spatialFilter'
-      });
-      history.push({ pathname: `/${this.props.resultClass}/faceted-search/${this.props.facet.spatialFilterTab}` });
-    }
+    this.handleMenuClose();
   }
 
-  handleMenuClose = () => {
-    this.setState({ anchorEl: null });
-  }
+  handleMenuClose = () => this.setState({ anchorEl: null });
 
   renderFacetMenu = () => {
     const { anchorEl } = this.state;
-    const { sortButton, spatialFilterButton, sortBy, filterType } = this.props.facet;
+    const { sortButton, sortBy } = this.props.facet;
     const open = Boolean(anchorEl);
     let menuButtons = [];
     if (sortButton) {
       menuButtons.push({
         id: 'prefLabel',
-        menuItemText: 'Sort alphabetically',
+        menuItemText: intl.get('facetBar.sortByName'),
         selected: sortBy === 'prefLabel' ? true : false,
-        onClickHandler: this.handleSortOnClick
+        onClickHandler: this.handleSortByPrefLabel
       });
       menuButtons.push({
         id: 'instanceCount',
-        menuItemText: `Sort by number of ${this.props.resultClass}`,
+        menuItemText: intl.get('facetBar.sortByHits'),
         selected: sortBy === 'instanceCount' ? true : false,
-        onClickHandler: this.handleSortOnClick
+        onClickHandler: this.handleSortByInstanceCount
       });
     }
-    if (spatialFilterButton) {
-      menuButtons.push({
-        id: 'uriFilter',
-        menuItemText: `Filter by name`,
-        selected: filterType === 'uriFilter' ? true : false,
-        onClickHandler: this.handleFilterTypeOnClick
-      });
-      menuButtons.push({
-        id: 'spatialFilter',
-        menuItemText: `Filter by bounding box`,
-        selected: filterType === 'spatialFilter' ? true : false,
-        onClickHandler: this.handleFilterTypeOnClick
-      });
-    }
+    // if (spatialFilterButton) {
+    //   menuButtons.push({
+    //     id: 'uriFilter',
+    //     menuItemText: `Filter by name`,
+    //     selected: filterType === 'uriFilter' ? true : false,
+    //     onClickHandler: this.handleFilterTypeOnClick
+    //   });
+    //   menuButtons.push({
+    //     id: 'spatialFilter',
+    //     menuItemText: `Filter by bounding box`,
+    //     selected: filterType === 'spatialFilter' ? true : false,
+    //     onClickHandler: this.handleFilterTypeOnClick
+    //   });
+    // }
     return (
       <React.Fragment>
-        <Tooltip disableFocusListener={true} title="Filter options">
+        <Tooltip disableFocusListener={true} title={intl.get('facetBar.filterOptions')}>
           <IconButton
-            aria-label="Filter options"
+            aria-label={intl.get('facetBar.filterOptions')}
             aria-owns={open ? 'facet-option-menu' : undefined}
             aria-haspopup="true"
             onClick={this.handleMenuButtonClick}
@@ -154,7 +152,7 @@ class FacetHeader extends React.Component {
           onClose={this.handleMenuClose}
         >
           {menuButtons.map(button => (
-            <MenuItem key={button.id} selected={button.selected} onClick={button.onClickHandler(button.id)}>
+            <MenuItem key={button.id} selected={button.selected} onClick={button.onClickHandler}>
               {button.menuItemText}
             </MenuItem>
           ))}
