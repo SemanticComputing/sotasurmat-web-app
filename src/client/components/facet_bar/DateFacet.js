@@ -76,7 +76,7 @@ class DateFacet extends React.Component {
   render() {
     const { from, to } = this.state;
     const { min, max } = this.props.facet;
-    const { classes } = this.props;
+    const { classes, someFacetIsFetching } = this.props;
     let showCustomError = this.isValidDate(from)
       && this.isValidDate(to)
       && !from.isSameOrBefore(to);
@@ -96,6 +96,7 @@ class DateFacet extends React.Component {
           maxDateMessage={intl.get('facets.dateFacet.maxDate', { maxDate: moment(max).format('DD.MM.YYYY') })}
           cancelLabel={intl.get('facets.dateFacet.cancel')}
           shouldDisableDate={date => date.isAfter(to)}
+          disabled={someFacetIsFetching}
         />
         <KeyboardDatePicker
           className={classes.datePicker}
@@ -111,6 +112,7 @@ class DateFacet extends React.Component {
           maxDateMessage={intl.get('facets.dateFacet.maxDate', { maxDate: moment(max).format('DD.MM.YYYY') })}
           cancelLabel={intl.get('facets.dateFacet.cancel')}
           shouldDisableDate={date => date.isBefore(from)}
+          disabled={someFacetIsFetching}
         />
         {showCustomError && <FormHelperText error>{intl.get('facets.dateFacet.toBeforeFrom')}</FormHelperText>}
       </div>
