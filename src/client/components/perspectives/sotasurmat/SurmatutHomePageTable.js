@@ -117,6 +117,23 @@ class SurmatutHomePageTable extends React.Component {
               sourceExternalLink={true}
             />
           </TableRow>
+          <TableRow key='birthYear'>
+            <TableCell className={classes.labelCell}>Syntymävuosi</TableCell>
+            <ResultTableCell
+              columnId='birthYear'
+              data={data.birthYear}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
+            />
+          </TableRow>
           <TableRow key='birthDay'>
             <TableCell className={classes.labelCell}>Syntymäaika</TableCell>
             <ResultTableCell

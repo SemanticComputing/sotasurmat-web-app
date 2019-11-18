@@ -128,6 +128,30 @@ export const personProperties = `
         }
         UNION
         {
+          ?birthYearInfo siso-s:referred_death_record ?id .
+          ?birthYearInfo siso-s:information_type siso-s:0_5_birth_year .
+          ?birthYearInfo siso-s:value ?birthYear__id .
+          BIND(?birthYear__id AS ?birthYear__prefLabel)
+          OPTIONAL {
+            ?birthYearInfo siso-s:source ?birthYear__source__id .
+            ?birthYear__source__id skos:altLabel ?birthYear__source__prefLabel .
+            BIND (?birthYear__source__id AS ?birthYear__source__dataProviderUrl) .
+          }
+        }
+        UNION
+        {
+          ?birthDayInfo siso-s:referred_death_record ?id .
+          ?birthDayInfo siso-s:information_type siso-s:0_6_birth_day .
+          ?birthDayInfo siso-s:value ?birthDay__id .
+          BIND(?birthDay__id AS ?birthDay__prefLabel)
+          OPTIONAL {
+            ?birthDayInfo siso-s:source ?birthDay__source__id .
+            ?birthDay__source__id skos:altLabel ?birthDay__source__prefLabel .
+            BIND (?birthDay__source__id AS ?birthDay__source__dataProviderUrl) .
+          }
+        }
+        UNION
+        {
           ?regMunicipalityInfo siso-s:referred_death_record ?id .
           ?regMunicipalityInfo siso-s:information_type siso-s:0_7_registered_municipality .
           ?regMunicipalityInfo siso-s:value ?regMunicipality__id .
@@ -473,18 +497,6 @@ export const personProperties = `
             ?deathDayInfo siso-s:source ?deathDay__source__id .
             ?deathDay__source__id skos:altLabel ?deathDay__source__prefLabel .
             BIND (?deathDay__source__id AS ?deathDay__source__dataProviderUrl) .
-          }
-        }
-        UNION
-        {
-          ?birthDayInfo siso-s:referred_death_record ?id .
-          ?birthDayInfo siso-s:information_type siso-s:0_6_birth_day .
-          ?birthDayInfo siso-s:value ?birthDay__id .
-          BIND(?birthDay__id AS ?birthDay__prefLabel)
-          OPTIONAL {
-            ?birthDayInfo siso-s:source ?birthDay__source__id .
-            ?birthDay__source__id skos:altLabel ?birthDay__source__prefLabel .
-            BIND (?birthDay__source__id AS ?birthDay__source__dataProviderUrl) .
           }
         }
         UNION
