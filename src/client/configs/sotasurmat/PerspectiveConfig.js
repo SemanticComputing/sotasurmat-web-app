@@ -16,7 +16,7 @@ export const perspectiveConfig = [
     id: 'victims',
     thumbImage: kalevankangas,
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['occupation']),
+    defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
       {
         id: 'table',
