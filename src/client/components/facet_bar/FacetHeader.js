@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Typography from '@material-ui/core/Typography';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
-import history from '../../History';
+//import history from '../../History';
 
 const styles = theme => ({
   root: {

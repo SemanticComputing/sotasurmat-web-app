@@ -22,6 +22,7 @@ export default {
   facetBar: {
     results: 'Tulokset',
     narrowDownBy: 'Rajoita',
+    narrowDownByTooltip: 'Rajoita hakutulosta alla olevien valitsimien avulla',
     filterOptions: 'Asetukset',
     sortByName: 'Järjestä nimen mukaan',
     sortByHits: 'Järjestä hakutuloksien lukumäärän mukaan',
