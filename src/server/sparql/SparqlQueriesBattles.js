@@ -50,7 +50,7 @@ export const battlePlacesAnimationQuery =  `
     ?id skos:prefLabel ?prefLabel .
     ?id siso-schema:start_date ?startDate .
     ?id siso-schema:end_date ?endDate .
-    ?id siso-schema:greater_place/skos:prefLabel ?greaterPlace . 
+    OPTIONAL { ?id siso-schema:greater_place/skos:prefLabel ?greaterPlace } 
     ?id siso-schema:exact_place ?exact_place .
     OPTIONAL { ?id siso-schema:units ?units }
     ?exact_place geo:lat ?lat .
