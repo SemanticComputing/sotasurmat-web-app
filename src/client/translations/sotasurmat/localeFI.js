@@ -35,6 +35,8 @@ export default {
     pie: 'piirakkakaavio',
     animation: 'animaatio',
     csv: 'csv',
+    extra: 'Lisätiedot',
+    export: 'Export',
   },
   table: {
     rowsPerPage: 'Riviä sivulla',
@@ -54,6 +56,45 @@ export default {
   mainPageImageLicence: `Etusivun kuvat: Vapriikin kuva-arkisto
   <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
   perspectives: {
+    sources: {
+      label: '',
+      facetResultsType: '',
+      shortDescription: '',
+      longDescription: `
+      `,
+      instancePage: {
+        label: 'Lähde',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            Lähteen tiedot
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Nimi',
+          description: `
+            The name or title of the Collection.
+          `
+        },
+        sourceCode: {
+          label: 'Lähteen koodi',
+          description: `
+            Datassa käytetty lyhennä lähteelle.
+          `
+        },
+        description: {
+          label: 'Kuvaus',
+          description:  `
+            Mahdollinen pidempi kuvaus lähteestä
+            `
+        },
+      }
+    },
     victims: {
       label: 'Sotasurmat',
       facetResultsType: 'henkilö',

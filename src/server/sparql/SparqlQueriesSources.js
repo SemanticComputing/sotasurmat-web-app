@@ -8,10 +8,12 @@ export const sourceProperties = `
     }
     UNION
     {
-      ?id siso-schema:source_code ?sourceCode .
+      ?id siso-schema:source_code ?sourceCode__id .
+      BIND(?sourceCode__id AS ?sourceCode__prefLabel) .
     }
     UNION
     {
-      ?id siso-schema:source_description ?description .
+      ?id siso-schema:source_description ?description__id .
+      BIND(?description__id  AS ?description__prefLabel) .
     }
     `;

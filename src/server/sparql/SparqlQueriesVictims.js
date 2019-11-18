@@ -93,7 +93,7 @@ export const personProperties = `
           OPTIONAL {
             ?familyNameInfo siso-s:source ?familyName__source__id .
             ?familyName__source__id skos:altLabel ?familyName__source__prefLabel .
-            BIND (?familyName__source__id AS ?familyName__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?familyName__source__id), "^.*\\\\/(.+)", "$1")) AS ?familyName__source__dataProviderUrl)
           }
         }
         UNION
@@ -105,7 +105,7 @@ export const personProperties = `
           OPTIONAL {
             ?firstNameInfo siso-s:source ?firstName__source__id .
             ?firstName__source__id skos:altLabel ?firstName__source__prefLabel .
-            BIND (?firstName__source__id AS ?firstName__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?firstName__source__id), "^.*\\\\/(.+)", "$1")) AS ?firstName__source__dataProviderUrl)
           }
         }
         UNION
@@ -117,7 +117,7 @@ export const personProperties = `
           OPTIONAL {
             ?birthPlaceInfo siso-s:source ?birthPlace__source__id .
             ?birthPlace__source__id skos:altLabel ?birthPlace__source__prefLabel .
-            BIND (?birthPlace__source__id AS ?birthPlace__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?birthPlace__source__id), "^.*\\\\/(.+)", "$1")) AS ?birthPlace__source__dataProviderUrl)
           }
         }
         UNION
@@ -129,7 +129,7 @@ export const personProperties = `
           OPTIONAL {
             ?birthCountryInfo siso-s:source ?birthCountry__source__id .
             ?birthCountry__source__id skos:altLabel ?birthCountry__source__prefLabel .
-            BIND (?birthCountry__source__id AS ?birthCountry__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?birthCountry__source__id), "^.*\\\\/(.+)", "$1")) AS ?birthCountry__source__dataProviderUrl)
           }
         }
         UNION
@@ -141,7 +141,7 @@ export const personProperties = `
           OPTIONAL {
             ?birthYearInfo siso-s:source ?birthYear__source__id .
             ?birthYear__source__id skos:altLabel ?birthYear__source__prefLabel .
-            BIND (?birthYear__source__id AS ?birthYear__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?birthYear__source__id), "^.*\\\\/(.+)", "$1")) AS ?birthYear__source__dataProviderUrl)
           }
         }
         UNION
@@ -153,7 +153,7 @@ export const personProperties = `
           OPTIONAL {
             ?birthDayInfo siso-s:source ?birthDay__source__id .
             ?birthDay__source__id skos:altLabel ?birthDay__source__prefLabel .
-            BIND (?birthDay__source__id AS ?birthDay__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?birthDay__source__id), "^.*\\\\/(.+)", "$1")) AS ?birthDay__source__dataProviderUrl)
           }
         }
         UNION
@@ -165,7 +165,7 @@ export const personProperties = `
           OPTIONAL {
             ?regMunicipalityInfo siso-s:source ?regMunicipality__source__id .
             ?regMunicipality__source__id skos:altLabel ?regMunicipality__source__prefLabel .
-            BIND (?regMunicipality__source__id AS ?regMunicipality__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?regMunicipality__source__id), "^.*\\\\/(.+)", "$1")) AS ?regMunicipality__source__dataProviderUrl)
           }
         }
         UNION
@@ -178,7 +178,7 @@ export const personProperties = `
           OPTIONAL {
             ?regProvinceInfo siso-s:source ?regProvince__source__id .
             ?regProvince__source__id skos:altLabel ?regProvince__source__prefLabel .
-            BIND (?regProvince__source__id AS ?regProvince__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?regProvince__source__id), "^.*\\\\/(.+)", "$1")) AS ?regProvince__source__dataProviderUrl)
           }
         }
         UNION
@@ -190,7 +190,7 @@ export const personProperties = `
           OPTIONAL {
             ?regCountryInfo siso-s:source ?regCountry__source__id .
             ?regCountry__source__id skos:altLabel ?regCountry__source__prefLabel .
-            BIND (?regCountry__source__id AS ?regCountry__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?regCountry__source__id), "^.*\\\\/(.+)", "$1")) AS ?regCountry__source__dataProviderUrl)
           }
         }
         UNION
@@ -202,7 +202,7 @@ export const personProperties = `
           OPTIONAL {
             ?livingMunicipalityInfo siso-s:source ?livingMunicipality__source__id .
             ?livingMunicipality__source__id skos:altLabel ?livingMunicipality__source__prefLabel .
-            BIND (?livingMunicipality__source__id AS ?livingMunicipality__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?livingMunicipality__source__id), "^.*\\\\/(.+)", "$1")) AS ?livingMunicipality__source__dataProviderUrl)
           }
         }
         UNION
@@ -214,7 +214,7 @@ export const personProperties = `
           OPTIONAL {
             ?livingProvinceInfo siso-s:source ?livingProvince__source__id .
             ?livingProvince__source__id skos:altLabel ?livingProvince__source__prefLabel .
-            BIND (?livingProvince__source__id AS ?livingProvince__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?livingProvince__source__id), "^.*\\\\/(.+)", "$1")) AS ?livingProvince__source__dataProviderUrl)
           }
         }
         UNION
@@ -226,7 +226,7 @@ export const personProperties = `
           OPTIONAL {
             ?livingCountryInfo siso-s:source ?livingCountry__source__id .
             ?livingCountry__source__id skos:altLabel ?livingCountry__source__prefLabel .
-            BIND (?livingCountry__source__id AS ?livingCountry__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?livingCountry__source__id), "^.*\\\\/(.+)", "$1")) AS ?livingCountry__source__dataProviderUrl)
           }
         }
         UNION
@@ -238,7 +238,7 @@ export const personProperties = `
           OPTIONAL {
             ?occupationInfo siso-s:source ?occupation__source__id .
             ?occupation__source__id skos:altLabel ?occupation__source__prefLabel .
-            BIND (?occupation__source__id AS ?occupation__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?occupation__source__id), "^.*\\\\/(.+)", "$1")) AS ?occupation__source__dataProviderUrl)
           }
         }
         UNION
@@ -250,7 +250,7 @@ export const personProperties = `
           OPTIONAL {
             ?maritalStatusInfo siso-s:source ?maritalStatus__source__id .
             ?maritalStatus__source__id skos:altLabel ?maritalStatus__source__prefLabel .
-            BIND (?maritalStatus__source__id AS ?maritalStatus__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?maritalStatus__source__id), "^.*\\\\/(.+)", "$1")) AS ?maritalStatus__source__dataProviderUrl)
           }
         }
         UNION
@@ -262,7 +262,7 @@ export const personProperties = `
           OPTIONAL {
             ?numberOfChildrenInfo siso-s:source ?numberOfChildren__source__id .
             ?numberOfChildren__source__id skos:altLabel ?numberOfChildren__source__prefLabel .
-            BIND (?numberOfChildren__source__id AS ?numberOfChildren__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?numberOfChildren__source__id), "^.*\\\\/(.+)", "$1")) AS ?numberOfChildren__source__dataProviderUrl)
           }
         }
         UNION
@@ -274,7 +274,7 @@ export const personProperties = `
           OPTIONAL {
             ?genderInfo siso-s:source ?gender__source__id .
             ?gender__source__id skos:altLabel ?gender__source__prefLabel .
-            BIND (?gender__source__id AS ?gender__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?gender__source__id), "^.*\\\\/(.+)", "$1")) AS ?gender__source__dataProviderUrl)
           }
         }
         UNION
@@ -286,7 +286,7 @@ export const personProperties = `
           OPTIONAL {
             ?nationalityInfo siso-s:source ?nationality__source__id .
             ?nationality__source__id skos:altLabel ?nationality__source__prefLabel .
-            BIND (?nationality__source__id AS ?nationality__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?nationality__source__id), "^.*\\\\/(.+)", "$1")) AS ?nationality__source__dataProviderUrl)
           }
         }
         UNION
@@ -298,7 +298,7 @@ export const personProperties = `
           OPTIONAL {
             ?languageInfo siso-s:source ?language__source__id .
             ?language__source__id skos:altLabel ?language__source__prefLabel .
-            BIND (?language__source__id AS ?language__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?language__source__id), "^.*\\\\/(.+)", "$1")) AS ?language__source__dataProviderUrl)
           }
         }
         UNION
@@ -310,7 +310,7 @@ export const personProperties = `
           OPTIONAL {
             ?personCommentInfo siso-s:source ?personComment__source__id .
             ?personComment__source__id skos:altLabel ?personComment__source__prefLabel .
-            BIND (?personComment__source__id AS ?personComment__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?personComment__source__id), "^.*\\\\/(.+)", "$1")) AS ?personComment__source__dataProviderUrl)
           }
         }
         UNION
@@ -322,7 +322,7 @@ export const personProperties = `
           OPTIONAL {
             ?militaryOrganizationInfo siso-s:source ?militaryOrganization__source__id .
             ?militaryOrganization__source__id skos:altLabel ?militaryOrganization__source__prefLabel .
-            BIND (?militaryOrganization__source__id AS ?militaryOrganization__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?militaryOrganization__source__id), "^.*\\\\/(.+)", "$1")) AS ?militaryOrganization__source__dataProviderUrl)
           }
         }
         UNION
@@ -334,7 +334,7 @@ export const personProperties = `
           OPTIONAL {
             ?recruitmentInfo siso-s:source ?recruitment__source__id .
             ?recruitment__source__id skos:altLabel ?recruitment__source__prefLabel .
-            BIND (?recruitment__source__id AS ?recruitment__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?recruitment__source__id), "^.*\\\\/(.+)", "$1")) AS ?recruitment__source__dataProviderUrl)
           }
         }
         UNION
@@ -346,7 +346,7 @@ export const personProperties = `
           OPTIONAL {
             ?rankInfo siso-s:source ?rank__source__id .
             ?rank__source__id skos:altLabel ?rank__source__prefLabel .
-            BIND (?rank__source__id AS ?rank__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?rank__source__id), "^.*\\\\/(.+)", "$1")) AS ?rank__source__dataProviderUrl)
           }
         }
         UNION
@@ -358,7 +358,7 @@ export const personProperties = `
           OPTIONAL {
             ?positionInfo siso-s:source ?position__source__id .
             ?position__source__id skos:altLabel ?position__source__prefLabel .
-            BIND (?position__source__id AS ?position__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?position__source__id), "^.*\\\\/(.+)", "$1")) AS ?position__source__dataProviderUrl)
           }
         }
         UNION
@@ -370,7 +370,7 @@ export const personProperties = `
           OPTIONAL {
             ?combatantStatusInfo siso-s:source ?combatantStatus__source__id .
             ?combatantStatus__source__id skos:altLabel ?combatantStatus__source__prefLabel .
-            BIND (?combatantStatus__source__id AS ?combatantStatus__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?combatantStatus__source__id), "^.*\\\\/(.+)", "$1")) AS ?combatantStatus__source__dataProviderUrl)
           }
         }
         UNION
@@ -382,7 +382,7 @@ export const personProperties = `
           OPTIONAL {
             ?partyInfo siso-s:source ?party__source__id .
             ?party__source__id skos:altLabel ?party__source__prefLabel .
-            BIND (?party__source__id AS ?party__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?party__source__id), "^.*\\\\/(.+)", "$1")) AS ?party__source__dataProviderUrl)
           }
         }
         UNION
@@ -394,7 +394,7 @@ export const personProperties = `
           OPTIONAL {
             ?armedStatusInfo siso-s:source ?armedStatus__source__id .
             ?armedStatus__source__id skos:altLabel ?armedStatus__source__prefLabel .
-            BIND (?armedStatus__source__id AS ?armedStatus__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?armedStatus__source__id), "^.*\\\\/(.+)", "$1")) AS ?armedStatus__source__dataProviderUrl)
           }
         }
         UNION
@@ -406,7 +406,7 @@ export const personProperties = `
           OPTIONAL {
             ?welfareInfo siso-s:source ?welfare__source__id .
             ?welfare__source__id skos:altLabel ?welfare__source__prefLabel .
-            BIND (?welfare__source__id AS ?welfare__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?welfare__source__id), "^.*\\\\/(.+)", "$1")) AS ?welfare__source__dataProviderUrl)
           }
         }
         UNION
@@ -418,7 +418,7 @@ export const personProperties = `
           OPTIONAL {
             ?statusNoteInfo siso-s:source ?statusNote__source__id .
             ?statusNote__source__id skos:altLabel ?statusNote__source__prefLabel .
-            BIND (?statusNote__source__id AS ?statusNote__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?statusNote__source__id), "^.*\\\\/(.+)", "$1")) AS ?statusNote__source__dataProviderUrl)
           }
         }
         UNION
@@ -430,7 +430,7 @@ export const personProperties = `
           OPTIONAL {
             ?placeOfCaptureInfo siso-s:source ?placeOfCapture__source__id .
             ?placeOfCapture__source__id skos:altLabel ?placeOfCapture__source__prefLabel .
-            BIND (?placeOfCapture__source__id AS ?placeOfCapture__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?placeOfCapture__source__id), "^.*\\\\/(.+)", "$1")) AS ?placeOfCapture__source__dataProviderUrl)
           }
         }
         UNION
@@ -442,7 +442,7 @@ export const personProperties = `
           OPTIONAL {
             ?campInfo siso-s:source ?camp__source__id .
             ?camp__source__id skos:altLabel ?camp__source__prefLabel .
-            BIND (?camp__source__id AS ?camp__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?camp__source__id), "^.*\\\\/(.+)", "$1")) AS ?camp__source__dataProviderUrl)
           }
         }
         UNION
@@ -454,7 +454,7 @@ export const personProperties = `
           OPTIONAL {
             ?imprisonmentMotiveInfo siso-s:source ?imprisonmentMotive__source__id .
             ?imprisonmentMotive__source__id skos:altLabel ?imprisonmentMotive_source__prefLabel .
-            BIND (?imprisonmentMotive__source__id AS ?imprisonmentMotive__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?imprisonmentMotive__source__id), "^.*\\\\/(.+)", "$1")) AS ?imprisonmentMotive__source__dataProviderUrl)
           }
         }
         UNION
@@ -466,7 +466,7 @@ export const personProperties = `
           OPTIONAL {
             ?imprisonmentDateInfo siso-s:source ?imprisonmentDate__source__id .
             ?imprisonmentDate__source__id skos:altLabel ?imprisonmentDate__source__prefLabel .
-            BIND (?imprisonmentDate__source__id AS ?imprisonmentDate__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?imprisonmentDate__source__id), "^.*\\\\/(.+)", "$1")) AS ?imprisonmentDate__source__dataProviderUrl)
           }
         }
         UNION
@@ -478,7 +478,7 @@ export const personProperties = `
           OPTIONAL {
             ?releaseDateInfo siso-s:source ?releaseDate__source__id .
             ?releaseDate__source__id skos:altLabel ?releaseDate__source__prefLabel .
-            BIND (?releaseDate__source__id AS ?releaseDate__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?releaseDate__source__id), "^.*\\\\/(.+)", "$1")) AS ?releaseDate__source__dataProviderUrl)
           }
         }
         UNION
@@ -490,7 +490,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathYearInfo siso-s:source ?deathYear__source__id .
             ?deathYear__source__id skos:altLabel ?deathYear__source__prefLabel .
-            BIND (?deathYear__source__id AS ?deathYear__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathYear__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathYear__source__dataProviderUrl)
           }
         }
         UNION
@@ -502,7 +502,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathDayInfo siso-s:source ?deathDay__source__id .
             ?deathDay__source__id skos:altLabel ?deathDay__source__prefLabel .
-            BIND (?deathDay__source__id AS ?deathDay__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathDay__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathDay__source__dataProviderUrl)
           }
         }
         UNION
@@ -514,7 +514,7 @@ export const personProperties = `
           OPTIONAL {
             ?ageInfo siso-s:source ?age__source__id .
             ?age__source__id skos:altLabel ?age__source__prefLabel .
-            BIND (?age__source__id AS ?age__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?age__source__id), "^.*\\\\/(.+)", "$1")) AS ?age__source__dataProviderUrl)
           }
         }
         UNION
@@ -526,7 +526,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathMunicipalityInfo siso-s:source ?deathMunicipality__source__id .
             ?deathMunicipality__source__id skos:altLabel ?deathMunicipality__source__prefLabel .
-            BIND (?deathMunicipality__source__id AS ?deathMunicipality__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathMunicipality__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathMunicipality__source__dataProviderUrl)
           }
         }
         UNION
@@ -538,7 +538,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathProvinceInfo siso-s:source ?deathProvince__source__id .
             ?deathProvince__source__id skos:altLabel ?deathProvince__source__prefLabel .
-            BIND (?deathProvince__source__id AS ?deathProvince__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathProvince__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathProvince__source__dataProviderUrl)
           }
         }
         UNION
@@ -550,7 +550,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathCountryInfo siso-s:source ?deathCountry__source__id .
             ?deathCountry__source__id skos:altLabel ?deathCountry__source__prefLabel .
-            BIND (?deathCountry__source__id AS ?deathCountry__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathCountry__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathCountry__source__dataProviderUrl)
           }
         }
         UNION
@@ -562,7 +562,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathPlaceInfo siso-s:source ?deathPlace__source__id .
             ?deathPlace__source__id skos:altLabel ?deathPlace__source__prefLabel .
-            BIND (?deathPlace__source__id AS ?deathPlace__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathPlace__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathPlace__source__dataProviderUrl)
           }
         }
         UNION
@@ -574,7 +574,7 @@ export const personProperties = `
           OPTIONAL {
             ?causeOfDeathInfo siso-s:source ?causeOfDeath__source__id .
             ?causeOfDeath__source__id skos:altLabel ?causeOfDeath__source__prefLabel .
-            BIND (?causeOfDeath__source__id AS ?causeOfDeath__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?causeOfDeath__source__id), "^.*\\\\/(.+)", "$1")) AS ?causeOfDeath__source__dataProviderUrl)
           }
         }
         UNION
@@ -586,7 +586,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathMotiveInfo siso-s:source ?deathMotive__source__id .
             ?deathMotive__source__id skos:altLabel ?deathMotive__source__prefLabel .
-            BIND (?deathMotive__source__id AS ?deathMotive__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathMotive__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathMotive__source__dataProviderUrl)
           }
         }
         UNION
@@ -598,7 +598,7 @@ export const personProperties = `
           OPTIONAL {
             ?burialInfo siso-s:source ?burial__source__id .
             ?burial__source__id skos:altLabel ?burial__source__prefLabel .
-            BIND (?burial__source__id AS ?burial__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?burial__source__id), "^.*\\\\/(.+)", "$1")) AS ?burial__source__dataProviderUrl)
           }
         }
         UNION
@@ -610,7 +610,7 @@ export const personProperties = `
           OPTIONAL {
             ?deathCommentInfo siso-s:source ?deathComment__source__id .
             ?deathComment__source__id skos:altLabel ?deathComment__source__prefLabel .
-            BIND (?deathComment__source__id AS ?deathComment__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?deathComment__source__id), "^.*\\\\/(.+)", "$1")) AS ?deathComment__source__dataProviderUrl)
           }
         }
         UNION
@@ -622,7 +622,7 @@ export const personProperties = `
           OPTIONAL {
             ?religionInfo siso-s:source ?religion__source__id .
             ?religion__source__id skos:altLabel ?religion__source__prefLabel .
-            BIND (?religion__source__id AS ?religion__source__dataProviderUrl) .
+            BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?religion__source__id), "^.*\\\\/(.+)", "$1")) AS ?religion__source__dataProviderUrl)
           }
         }
         UNION

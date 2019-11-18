@@ -60,8 +60,17 @@ export const INITIAL_STATE = {
       minWidth: 170
     },
     {
+      id: 'sourceCode',
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 170
+    },
+    {
       id: 'description',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: true,
