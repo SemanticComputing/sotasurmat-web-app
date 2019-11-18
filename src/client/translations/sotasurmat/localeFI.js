@@ -60,8 +60,27 @@ export default {
       shortDescription: 'Tietoa vuosina 1914-22 sotaoloissa surmansa saaneista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Näkymä sotasurmatiedostoon
+          Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla. Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista.
         </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TAULUKKO</STRONG> tarjoaa mahdollisuuden selata haun osumajoukon henkilöiden tietoja ja järjestää niitä eri ominaisuuksien mukaan.
+          </li>
+          <li>
+            <strong>PIIRAKKAKAAVIO</STRONG> Visualisoi valitun ominaisuuden suhteellisia määriä.
+          </li>
+          <li>
+            <strong>VIIVAKAAVIO</strong> visualisoi rajattujen henkilöiden ikää, syntymävuotta tai kuolinpäivää viivakaavion avulla.
+          </li>
+          <li>
+            <strong>KARTTA</strong> esittää haussa rajattujen henkilöiden kuolinkuntia kartalla.
+            Huomaa, että kunnat on yhdistetty koordinatteihin koneellisesti, joten kartassa voi olla merkittäviä virheitä ja puutteita.
+          </li>
+          <li>
+            <strong>CSV</strong> sivulla voit ladata haussa rajattujen henkilöiden tiedot omalle koneellesi CSV-taulukkona.
+            CSV-tiedoston voi avata taulukkolaskentaohjelmalla, mutta merkistökoodaukseksi tulee määrittää UTF-8 ja välimerkiksi pilkku, jotta tiedot näkyvät oikein.
+          </li>
+        </ul>
       `,
       instancePage: {
         label: 'Henkilö',
@@ -234,7 +253,15 @@ export default {
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Battles
+          Taistelut -näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
+          <a href = "http://wiki.narc.fi/portti/index.php/Sis%C3%A4llissodan_taistelupaikkakortisto" target='_blank' rel='noopener noreferrer'>Sisällissodan taistelupaikkakortistoon</a>.
+          Kortiston tiedot on muunnettu taulukkomuotoon ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
+          Koordinaatit on tallennettu kahden desimaalin tarkkuudella, joten ne eivät ole aivan tarkkoja.
+        </p>
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Taisteluiden nimet ovat selkeästi valkoisesta näkökulmasta annettuja.
+          Näkymässä nimet näytetään siinä muodossa kun ne kortistossa on esitetty, ei kannanottona tapahtumiin.
+          Näkymän tarkoituksena on luoda helppo visuaalinen keino tutustua sisällissodan taisteluiden kulkuun.
         </p>
 
       `,
