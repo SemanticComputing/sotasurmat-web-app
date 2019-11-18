@@ -13,12 +13,13 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Suomen sotasurmat 1914-1922',
+      title: 'Sotasurmasampo 1914–1922',
       // Load a custom template
       template: 'src/client/index.html',
     }),
     new CopyPlugin([
-      { from: 'sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
+      { from: 'src/client/sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
+      { from: 'src/client/robots.txt', to: path.resolve(__dirname, outputDirectory) },
     ]),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
