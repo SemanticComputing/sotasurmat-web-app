@@ -23,6 +23,9 @@ import {
   battlePlacesAnimationQuery
 } from './SparqlQueriesBattles';
 import {
+  sourceProperties,
+} from './SparqlQueriesSources';
+import {
   placePropertiesInfoWindow,
   allPlacesQuery,
 } from './SparqlQueriesPlaces';
@@ -261,7 +264,11 @@ export const getByURI = ({
       q = q.replace('<PROPERTIES>', placePropertiesInfoWindow);
       q = q.replace('<RELATED_INSTANCES>', deathsAt);
       break;
-
+    case 'sources':
+      q = instanceQuery;
+      q = q.replace('<PROPERTIES>', sourceProperties);
+      q = q.replace('<RELATED_INSTANCES>', '');
+      break;
   }
 
   if (constraints == null) {

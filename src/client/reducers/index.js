@@ -9,6 +9,7 @@ import dates from './sotasurmat/dates';
 import places from './sotasurmat/places';
 import options from './options';
 import animation from './animation';
+import sources from './sotasurmat/sources';
 
 const reducer = combineReducers({
   victims,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   error,
   dates,
   places,
+  sources,
   toastr: toastrReducer,
 });
 

@@ -393,6 +393,7 @@ let SemanticPortal = props => {
                       }>
                         <Grid item xs={12} className={classes.instancePageContent}>
                           <InstanceHomePage
+                            rootUrl={rootUrl}
                             fetchByURI={props.fetchByURI}
                             resultClass={perspective.id}
                             properties={props[perspective.id].properties}
@@ -450,6 +451,7 @@ let SemanticPortal = props => {
 
 const mapStateToProps = state => {
   return {
+    sources: state.sources,
     places: state.places,
     dates: state.dates,
     victims: state.victims,
@@ -490,6 +492,7 @@ SemanticPortal.propTypes = {
   victims: PropTypes.object.isRequired,
   battlesFacets: PropTypes.object.isRequired,
   battles: PropTypes.object.isRequired,
+  sources: PropTypes.object.isRequired,
   victimsFacets: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
