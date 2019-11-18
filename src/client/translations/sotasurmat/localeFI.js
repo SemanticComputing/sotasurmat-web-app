@@ -52,7 +52,7 @@ export default {
     },
   },
   mainPageImageLicence: `Etusivun kuvat: Vapriikin kuva-arkisto
-  <a href= “https://creativecommons.org/licenses/by/2.0/” target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
+  <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
   perspectives: {
     victims: {
       label: 'Sotasurmat',
@@ -375,7 +375,7 @@ export default {
         </h2>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         Taistelut -näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
-        <a href= “http://wiki.narc.fi/portti/index.php/Sis%C3%A4llissodan_taistelupaikkakortisto” target='_blank' rel='noopener noreferrer'>Sisällissodan taistelupaikkakortistoon</a>.
+        <a href= "http://wiki.narc.fi/portti/index.php/Sis%C3%A4llissodan_taistelupaikkakortisto" target='_blank' rel='noopener noreferrer'>Sisällissodan taistelupaikkakortistoon</a>.
         Kortiston tiedot on muunnettu taulukkomuotoon ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
 
         Taisteluiden nimet ovat selkeästi valkoisesta näkökulmasta annettuja.
@@ -412,5 +412,93 @@ export default {
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
 
     </p>
+  `,
+  information: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      Tietoa
+    </h1>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Sotasurmasampo 1914-22
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Sotasurmasampo 1914-22 on suomeen liittyviin sotatapahtumiin vuosina 1914-22 keskittynyt portaali.
+      Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-22 tietokanta. Projektista on tarjolla lisää tietoa
+      <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
+      Voit halutessasi myös tutustua Sotasurmatietokannan
+      <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main" target='_blank' rel='noopener noreferrer'> vanhaan sivustoon</a>.
+
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Sotasurmatietokannan tietosisällöstä
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Sotasurmatietokanta koostuu kahden erillisen hankkeen aikana kootuista tiedoista.
+      Pohjan tietokannalle antaa vuosina 1998-2004 toteutettu Suomen sotasurmat 1914-1922 -projekti (SSSP).
+      Nykyistä tietokantaa on päivitetty lokakuussa 2018 aloitetussa nk. Sotasurmat2 -hankkeessa.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Tietokanta ei ole tarkka laskelma vuosien 1914-1922 sotasurmatapauksista.
+      Tietokannan verkkokäyttöliittymään kuuluvilla hakusuodattimilla ja visualisointityökaluilla käyttäjän on mahdollista helposti tehdä itse rajauksia ja saada haluamiaan tietoja kuolleiden määristä.
+      Koska lähdeaineisto sotavuosilta on hyvin vaihtelevaa, on hakusuodattimiin sisällytetty nyt myös mahdollisuus määritellä sotasurmatapauksen todennäköisyyttä.
+      Verkkokäyttöliittymään on myös lisätty SSSP:n aikanaan keräämä laaja lisätietoaineisto.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Tietokanta sisältää tällä hetkellä tietoa yli 40 000 henkilöstä (tietokantaa päivitetään näillä näkymin vuoden 2020 loppuun asti).
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Verkkosivuston palaute-painikkeen kautta on mahdollista lähettää lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Läheistä
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Sotasurmatietokannan tietojen perään on merkitty kunkin tiedon osalta käytetty lähde.
+      Lähdelyhennettä klikkaamalla saa tarkempia tietoja kyseisestä lähteestä.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Sotasurmatietokanta perustuu pääosin seuraavien laajojen henkilöluetteloiden tietoihin:
+    </p>
+    <ul class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
+      <li>
+        Papiston tilasto (PT)
+      </li>
+      <li>
+        Seurakuntien kuolleiden ja haudattujen luettelot vuosilta 1914-22 (SRK)
+      </li>
+      <li>
+        Seurakuntien rippikirjat (RK), osittain
+      </li>
+      <li>
+        SDP:n tilasto (SDP)
+      </li>
+      <li>
+        Helsingin kaupungin tilastokonttorin kuolleiden kortisto vuosilta 1914-22 (HKA)
+      </li>
+      <li>
+        Jääkärimatrikkeli (JM)
+      </li>
+      <li>
+        Vuoden 1918 sotavankilaitoksen arkisto (VL)
+      </li>
+      <li>
+        Etsivän keskuspoliisin luettelo suomalaisista valtiollisista pakolaisista 11.6.1921 (EK)
+      </li>
+      <li>
+        Vankeinhoitohallituksen arkisto (VHH)
+      </li>
+      <li>
+        Boström, H. J: Sankarien muisto (BO)
+      </li>
+      <li>
+        Suomen kommunistisen puolueen arkisto Venäjällä (SKP)
+      </li>
+      <li>
+        Saksalaissurmat (DB, EDR, HVA, OD, VSK)
+      </li>
+      <li>
+        Sotasurmaprojektille tulleet kansalaiskirjeet ja yhteydenotot (SPA + kirjeen tai yhteydenoton järjestysnumero)
+      </li>
+    </ul>
+
   `,
 };

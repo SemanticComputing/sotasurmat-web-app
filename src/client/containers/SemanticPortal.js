@@ -427,6 +427,14 @@ let SemanticPortal = props => {
                 </div>
               }
             />
+            <Route
+              path={`${rootUrl}/information`}
+              render={() =>
+                <div className={classes.mainContainer}>
+                  <TextPage>{intl.getHTML('information')}</TextPage>
+                </div>
+              }
+            />
           </React.Fragment>
         </div>
       </div>

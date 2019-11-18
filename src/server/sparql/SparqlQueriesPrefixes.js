@@ -18,7 +18,7 @@ export const prefixes = `
   PREFIX siso-schema: <http://ldf.fi/siso/schema/>
   PREFIX text: <http://jena.apache.org/text#>
   PREFIX ammo-s: <http://ldf.fi/schema/ammo/>
-  PREFIX  ammo: <http://ldf.fi/ammo/>
+  PREFIX ammo: <http://ldf.fi/ammo/>
   PREFIX siso-s: <http://ldf.fi/siso/schema/>
 
 

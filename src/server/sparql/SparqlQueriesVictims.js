@@ -20,11 +20,17 @@ export const deathsProperties = `
     }
     UNION {
       ?id siso-schema:death_time ?deathTimespan__id .
-      ?deathTimespan__id crm:P82b_end_of_the_end ?deathTimespan__prefLabel .
+      ?deathTimespan__id crm:P82a_begin_of_the_begin ?deathTimeStart .
+      ?deathTimespan__id crm:P82b_end_of_the_end ?deathTimeEnd .
+      ?deathTimespan__id skos:prefLabel ?deathTimesLabel .
+      BIND(IF(?deathTimeStart != ?deathTimeEnd, ?deathTimesLabel, ?deathTimeStart) AS ?deathTimespan__prefLabel)
     }
     UNION {
       ?id siso-schema:birth_time ?birthTimespan__id .
-      ?birthTimespan__id crm:P82a_begin_of_the_begin ?birthTimespan__prefLabel .
+      ?birthTimespan__id crm:P82a_begin_of_the_begin ?birthTimeStart .
+      ?birthTimespan__id crm:P82b_end_of_the_end ?birthTimeEnd .
+      ?birthTimespan__id skos:prefLabel ?birthTimesLabel .
+      BIND(IF(?birthTimeStart != ?birthTimeEnd, ?birthTimesLabel, ?birthTimeStart) AS ?birthTimespan__prefLabel)
     }
     UNION {
       ?id siso-schema:registered_place ?registeredPlace__id .
@@ -628,6 +634,30 @@ export const personProperties = `
         {
           ?id siso-s:death_likelihood ?deathLikelihood__id .
           ?deathLikelihood__id skos:prefLabel ?deathLikelihood__prefLabel .
+        }
+        UNION
+        {
+          ?id siso-s:wikipedia ?externalLink__id .
+          BIND ('Wikipedia' AS ?externalLink__prefLabel)
+          BIND (?externalLink__id AS ?externalLink__dataProviderUrl)
+        }
+        UNION
+        {
+          ?id siso-s:yoma ?externalLink__id .
+          BIND ('YO-matrikkeli' AS ?externalLink__prefLabel)
+          BIND (?externalLink__id AS ?externalLink__dataProviderUrl)
+        }
+        UNION
+        {
+          ?id siso-s:bs ?externalLink__id .
+          BIND ('Biografiasampo' AS ?externalLink__prefLabel)
+          BIND (URI(REPLACE(STR(?externalLink__id), "http://ldf.fi/nbf/", "http://biografiasampo.fi/henkilo/")) AS ?externalLink__dataProviderUrl)
+        }
+        UNION
+        {
+          ?id siso-s:norssi ?externalLink__id .
+          BIND ('norssit.fi' AS ?externalLink__prefLabel)
+          BIND (URI(REPLACE(STR(?externalLink__id), "http://ldf.fi/norssit/", " https://www.norssit.fi/semweb/#!/tiedot/http:~2F~2Fldf.fi~2Fnorssit~2F")) AS ?externalLink__dataProviderUrl)
         }
 
         `;

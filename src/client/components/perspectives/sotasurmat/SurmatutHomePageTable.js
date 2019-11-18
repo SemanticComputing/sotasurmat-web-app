@@ -831,6 +831,23 @@ class SurmatutHomePageTable extends React.Component {
               sourceExternalLink={true}
             />
           </TableRow>
+          <TableRow key='externalLink'>
+            <TableCell className={classes.labelCell}>Linkkejä</TableCell>
+            <ResultTableCell
+              columnId='externalLink'
+              data={data.externalLink}
+              valueType='object'
+              makeLink={true}
+              externalLink={true}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
+            />
+          </TableRow>
         </TableBody>
       </Table>
     );
