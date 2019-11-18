@@ -79,8 +79,8 @@ export const INITIAL_STATE = {
       minWidth: 190
     },
     {
-      id: 'deathMunicipality',
-      externalLink: false,
+      id: 'occupation',
+      externalLink: true,
       valueType: 'object',
       makeLink: false,
       sortValues: true,
@@ -88,8 +88,8 @@ export const INITIAL_STATE = {
       minWidth: 170
     },
     {
-      id: 'occupation',
-      externalLink: true,
+      id: 'deathMunicipality',
+      externalLink: false,
       valueType: 'object',
       makeLink: false,
       sortValues: true,

@@ -20,11 +20,17 @@ export const deathsProperties = `
     }
     UNION {
       ?id siso-schema:death_time ?deathTimespan__id .
-      ?deathTimespan__id crm:P82b_end_of_the_end ?deathTimespan__prefLabel .
+      ?deathTimespan__id crm:P82a_begin_of_the_begin ?deathTimeStart .
+      ?deathTimespan__id crm:P82b_end_of_the_end ?deathTimeEnd .
+      ?deathTimespan__id skos:prefLabel ?deathTimesLabel .
+      BIND(IF(?deathTimeStart != ?deathTimeEnd, ?deathTimesLabel, ?deathTimeStart) AS ?deathTimespan__prefLabel)
     }
     UNION {
       ?id siso-schema:birth_time ?birthTimespan__id .
-      ?birthTimespan__id crm:P82a_begin_of_the_begin ?birthTimespan__prefLabel .
+      ?birthTimespan__id crm:P82a_begin_of_the_begin ?birthTimeStart .
+      ?birthTimespan__id crm:P82b_end_of_the_end ?birthTimeEnd .
+      ?birthTimespan__id skos:prefLabel ?birthTimesLabel .
+      BIND(IF(?birthTimeStart != ?birthTimeEnd, ?birthTimesLabel, ?birthTimeStart) AS ?birthTimespan__prefLabel)
     }
     UNION {
       ?id siso-schema:registered_place ?registeredPlace__id .
