@@ -11,7 +11,7 @@ export default {
   topBar: {
     feedback: 'palaute',
     info: {
-      info: 'Info',
+      info: 'tietoa',
       blog: 'Blog',
       oldPage: 'Vanha sovellus',
       aboutTheProject: 'Tietoa projektista'
