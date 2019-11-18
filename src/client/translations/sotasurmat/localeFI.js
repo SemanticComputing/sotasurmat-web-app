@@ -499,6 +499,182 @@ export default {
         Sotasurmaprojektille tulleet kansalaiskirjeet ja yhteydenotot (SPA + kirjeen tai yhteydenoton järjestysnumero)
       </li>
     </ul>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Tarkempaa tietoa Valtioneuvoston kanslian vuonna 1998 asettaman sotasurmaprojektin käyttämistä lähteistä saa projektin
+      julkaisemasta <a href = "http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/161111/J1004_Sotaoloissa%20vuosina_net.pdf?sequence=1&isAllowed=y" target='_blank' rel='noopener noreferrer'>tilastoraportista</a>
+      tai vanhan sotasurmatietokannan
+      <a href = "http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/lahdepohja" target='_blank' rel='noopener noreferrer'>lähdekuvauksesta</a>.
+    </p>
+    <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Vuoden 1918 leskien avustuskomitean arkisto (VLA)
+    </h3>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    Vuodesta 1942 eteenpäin myös punaisen puolen leskille tuli mahdolliseksi anoa valtiolta avustusta. Avustushakemukset siirrettiin syksyllä 2018 Kansallisarkistoon Valtiokonttorista. Hakemuksissa on lesken, kunnan huoltolautakunnan, seurakunnan sekä luotettaviksi katsottujen todistajien kertomukset vuonna 1918 tapahtuneista kuolintapauksista. Kaiken kaikkiaan avustushakemuksia on noin 6 500, ja ne ovat pääosin punaisella puolella taistelleiden henkilöiden leskiltä. Hakemusten laatu ja sisältö vaihtelee hieman, ja niistä on mahdollista saada uutta tietoa vuoden 1918 surmatapauksista.
+    </p>
+    <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+      Tauno Tukkisen aineisto (TT)
+    </h3>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Sotasurmat2 -projektissa tietokantaan on lisätty Tauno Tukkisen vuosia kestäneiden tutkimusten tulokset. Tukkisen aineisto hyödyntää todella laajaa lähdepohjaa, mikä on osittain päällekkäinen ennestään käytettyjen lähteiden kanssa. Käytetyt lyhenteet eroavat myös hieman entisistä merkinnöistä. Tukkisen aineiston henkilötiedot on tarkistettu seurakuntien aineistoista.
+      Mikäli tietokannassa lähdemerkintänä on TT, on kyseisen tapauksen tarkemmat lähteet eritelty omalle rivilleen henkilösivun alareunaan.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Rippikirja lähteenä viittaa henkilön kirjoillaolokunnan seurakunnan rippikirjaan.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Kuolleeksijulistamisesta ei ole päivämäärä enempää tietoa.
+      Kuolleeksijulistaminen on tapahtunut kirjoillaolokunnan mukaisessa tai sen läheisessa raastuvanoikeudessa.
+      Välip. -merkinnän sisältävä lähdemerkintä tarkoittaa kuolleeksijulistamisoikeudenkäynnin välipäätöstä.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      Tauno Tukkisen aineiston lyhenteet:
+    </p>
+    <table style="width:100%" class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
+      <tr>
+        <td>AK</td>
+        <td>Aimo Klemettilä, Tampereen punakaarti ja sen jäsenistö (1976)</td>
+      </tr>
+      <tr>
+        <td>AS.</td>
+        <td>Anna Sirola: Puhukoon paatinen pylväs (2017)</td>
+      </tr>
+      <tr>
+        <td>Aå</td>
+        <td>Valtiorikosoikeuksien syyttäjistön asiakirja</td>
+      </tr>
+      <tr>
+        <td>BO</td>
+        <td>Boström, H.J. Sankarien muisto (1927)</td>
+      </tr>
+      <tr>
+        <td>HMA</td>
+        <td>Hämeenlinnan maakunta-arkisto</td>
+      </tr>
+      <tr>
+        <td>HS.</td>
+        <td>Matti Lähteenmäki, Hämeenkyrön suojeluskunta (1938)</td>
+      </tr>
+      <tr>
+        <td>HYS</td>
+        <td>Helsingin yleinen sairaala (lääninsairaala)</td>
+      </tr>
+      <tr>
+        <td>IL</td>
+        <td>Itä ja Länsi 1928 ja 1929</td>
+      </tr>
+      <tr>
+        <td>KA</td>
+        <td>Kansallisarkisto</td>
+      </tr>
+      <tr>
+        <td>KAN</td>
+        <td>Kansan Arkisto</td>
+      </tr>
+      <tr>
+        <td>KAT</td>
+        <td>Karjalan Armeijan Tiedonannot (Intermetissä)</td>
+      </tr>
+      <tr>
+        <td>KK</td>
+        <td>Kuolleiden ja haudattujen kirjat</td>
+      </tr>
+      <tr>
+        <td>Kper/Tay</td>
+        <td>Tampereen yliopisto, Kansanpertinteen laitos</td>
+      </tr>
+      <tr>
+        <td>KT</td>
+        <td>Kuoleman kentiltä. Muistojulkaisu vuoden 1918 ajoilta (1924)</td>
+      </tr>
+      <tr>
+        <td>KTÖ</td>
+        <td>Kansan Työ</td>
+      </tr>
+      <tr>
+        <td>KÄ</td>
+        <td>Kärsimysten teiltä. Kymmenvuotismuistoja (1928)</td>
+      </tr>
+      <tr>
+        <td>Lautasalo</td>
+        <td>Onni Lautasalo, Kansakunta jakaantui kahtia (1997)</td>
+      </tr>
+      <tr>
+        <td>Lääk. </td>
+        <td>Lääkintäasian kokoelmat (Kansallisarkistossa)</td>
+      </tr>
+      <tr>
+        <td>PT</td>
+        <td>Papiston tilasto (1919)</td>
+      </tr>
+      <tr>
+        <td>Päämaja 1918</td>
+        <td>Kansallisarkiston asiakirja</td>
+      </tr>
+      <tr>
+        <td>R</td>
+        <td>Rippikirjat (seurakunnilla)</td>
+      </tr>
+      <tr>
+        <td>SKT</td>
+        <td>Suomen Kansanvaltuuskunnan Tiedonantaja</td>
+      </tr>
+      <tr>
+        <td>SML tai SMT</td>
+        <td>Suomen Metalliteollisuustyöntekijäin Liitto. 20-vuotisjuhlajulkaisu 21.6.1899-21.6.1919 (1919)</td>
+      </tr>
+      <tr>
+        <td>SSD</td>
+        <td>Suomen Sosialidemokraatti</td>
+      </tr>
+      <tr>
+        <td>STJP</td>
+        <td>Suomen tasavallan joukkojen ylipäällikön päiväkäsky 1918 (Internetissä)</td>
+      </tr>
+      <tr>
+        <td>SVL</td>
+        <td>Sotavankilaitos 1918 (Kansallisarkisto)</td>
+      </tr>
+      <tr>
+        <td>T</td>
+        <td>Terroritilasto eli SDP:n tilasto</td>
+      </tr>
+      <tr>
+        <td>TA</td>
+        <td>Työväen Arkisto</td>
+      </tr>
+      <tr>
+        <td>TMT</td>
+        <td>Työväen muistitietokokoelma (Työväen Arkisto)</td>
+      </tr>
+      <tr>
+        <td>TT</td>
+        <td>Tauno Tukkisen arkisto</td>
+      </tr>
+      <tr>
+        <td>TYMA</td>
+        <td>Työläisnuorison muistoalbumi 1918 (1920)</td>
+      </tr>
+      <tr>
+        <td>US</td>
+        <td>Uusi Suometar</td>
+      </tr>
+      <tr>
+        <td>VapSA</td>
+        <td>Vapaussodan arkisto (Kansallisarkisto)</td>
+      </tr>
+      <tr>
+        <td>VHH</td>
+        <td>Vankeinhoitohallitus (Kansallisarkisto)</td>
+      </tr>
+      <tr>
+        <td>VK</td>
+        <td>Valkoinen Suomi (Internetissä)</td>
+      </tr>
+      <tr>
+        <td>VROSyA</td>
+        <td>Valtiorikosoikeuksien syyttäjistön arkisto (Kansallisarkisto)</td>
+      </tr>
 
+    </table>
   `,
 };
