@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 const outputDirectory = 'dist/public';
@@ -16,6 +17,9 @@ module.exports = {
       // Load a custom template
       template: 'src/client/index.html',
     }),
+    new CopyPlugin([
+      { from: 'sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
+    ]),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
