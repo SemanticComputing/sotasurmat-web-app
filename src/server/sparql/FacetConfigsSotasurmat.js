@@ -15,6 +15,24 @@ export const facetConfigs = {
       textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
       type: 'text',
     },
+    familyName: {
+      id: 'familyName',
+      facetValueFilter: '',
+      label: 'familyName',
+      labelPath: 'siso-s:familyName',
+      textQueryPredicate: '', // empty for querying the facetClass
+      textQueryProperty: 'siso-s:familyName', // limit only to prefLabels
+      type: 'text',
+    },
+    firstName: {
+      id: 'firstName',
+      facetValueFilter: '',
+      label: 'firstName',
+      labelPath: 'siso-s:firstName',
+      textQueryPredicate: '', // empty for querying the facetClass
+      textQueryProperty: 'siso-s:firstName', // limit only to prefLabels
+      type: 'text',
+    },
     party: {
       id: 'party',
       facetValueFilter: '',

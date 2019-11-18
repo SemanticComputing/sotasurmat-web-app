@@ -60,6 +60,14 @@ export default {
           label: 'Name',
           description: 'Full name'
         },
+        familyName: {
+          label: 'Family name',
+          description: 'Family name'
+        },
+        firstName: {
+          label: 'First name',
+          description: 'Family name'
+        },
         party: {
           label: 'Party',
           description:`

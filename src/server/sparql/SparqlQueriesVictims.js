@@ -2,7 +2,7 @@ import { rootUrl } from '../config';
 
 export const deathsProperties = `
     {
-      ?id skos:prefLabel ?prefLabel__id .
+    ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
     BIND(CONCAT("${rootUrl}/victims/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
     }

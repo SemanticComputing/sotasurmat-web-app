@@ -33,6 +33,40 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
+    // familyName: {
+    //   id: 'familyName',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: null,
+    //   sortDirection: null,
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   isFetching: false,
+    //   searchField: false,
+    //   containerClass: 'one',
+    //   filterType: 'textFilter',
+    //   textFilter: null,
+    //   priority: 1
+    // },
+    // firstName: {
+    //   id: 'firstName',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: null,
+    //   sortDirection: null,
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   isFetching: false,
+    //   searchField: false,
+    //   containerClass: 'one',
+    //   filterType: 'textFilter',
+    //   textFilter: null,
+    //   priority: 1
+    // },
     birthTimespan: {
       id: 'birthTimespan',
       //predicate: defined in backend

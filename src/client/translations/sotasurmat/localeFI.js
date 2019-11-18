@@ -82,6 +82,14 @@ export default {
           label: 'Nimi',
           description: 'Henkilön koko nimi.'
         },
+        familyName: {
+          label: 'Sukunimi',
+          description: 'Henkilön sukunimi'
+        },
+        firstName: {
+          label: 'Etunimi',
+          description: 'Henkilön etunimi'
+        },
         party: {
           label: 'Osapuoli',
           description:`
