@@ -12,7 +12,7 @@ function generateSitemap() {
   return (
     new Sitemap(router)
       .build('https://sotasurmat.narc.fi/')
-      .save('./sitemap.xml')
+      .save('./src/client/sitemap.xml')
   );
 }
 
