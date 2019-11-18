@@ -399,8 +399,15 @@ class LeafletMap extends React.Component {
       }
       if (this.props.resultClass === 'battlePlaces') {
         const startDate = moment(result.startDate.prefLabel);
-        popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
+        const endDate = moment(result.endDate.prefLabel);
+        if (has(result, 'greaterPlace.prefLabel')) {
+          popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
+        }
         popUpTemplate += `<p>Alkupäivä: ${startDate.format('DD.MM.YYYY')}</p>`;
+        popUpTemplate += `<p>Loppupäivä: ${endDate.format('DD.MM.YYYY')}</p>`;
+        if (has(result, 'units')) {
+          popUpTemplate += `<p>Taisteluun osallistuneita joukkoja: ${result.units}</p>`;
+        }
       }
       if (this.props.resultClass === 'deathPlaces') {
         popUpTemplate += `<p>${intl.get('perspectives.surmatut.map.deathsAt')}</p>`;
