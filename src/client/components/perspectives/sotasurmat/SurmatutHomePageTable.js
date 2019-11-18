@@ -814,6 +814,23 @@ class SurmatutHomePageTable extends React.Component {
               sourceExternalLink={true}
             />
           </TableRow>
+          <TableRow key='deathLikelihood'>
+            <TableCell className={classes.labelCell}>Surmatiedon todennäköisyys</TableCell>
+            <ResultTableCell
+              columnId='deathLikelihood'
+              data={data.deathLikelihood}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+              showSource={true}
+              sourceExternalLink={true}
+            />
+          </TableRow>
         </TableBody>
       </Table>
     );

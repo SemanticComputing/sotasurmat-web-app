@@ -624,6 +624,11 @@ export const personProperties = `
           ?id siso-s:death_source ?additionalDeathSource__id .
           BIND (?additionalDeathSource__id AS ?additionalDeathSource__prefLabel)
         }
+        UNION
+        {
+          ?id siso-s:death_likelihood ?deathLikelihood__id .
+          ?deathLikelihood__id skos:prefLabel ?deathLikelihood__prefLabel .
+        }
 
         `;
 
