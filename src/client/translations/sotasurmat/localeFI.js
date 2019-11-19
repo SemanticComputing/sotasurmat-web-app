@@ -353,7 +353,7 @@ export default {
         Näkymä sisällissodan taisteluihin.
       `,
       facetResultsType: 'taistelu',
-      shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',
+      shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Taistelut-näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
