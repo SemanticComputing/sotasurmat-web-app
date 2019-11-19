@@ -171,7 +171,7 @@ class Pie extends React.Component {
  }
 
  componentDidMount = () => {
-   this.props.fetchFacet({
+   this.props.fetchFacetConstrainSelf({
      facetClass: 'victims',
      facetID: this.state.selectedOption
    });
@@ -179,7 +179,7 @@ class Pie extends React.Component {
 
  componentDidUpdate = prevProps => {
    if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
-     this.props.fetchFacet({
+     this.props.fetchFacetConstrainSelf({
        facetClass: 'victims',
        facetID: this.state.selectedOption
      });
@@ -187,7 +187,7 @@ class Pie extends React.Component {
  }
 
  updatePie = value => {
-   this.props.fetchFacet({
+   this.props.fetchFacetConstrainSelf({
      facetClass: 'victims',
      facetID: value
    });
@@ -257,7 +257,7 @@ class Pie extends React.Component {
    dataArray = this.combineSmallGroups(dataArray);
    const legendArray = dataArray.map(group => ({ name: group.x + ' (' + group.y + ')' }));
    //console.log(dataArray)
-   const legendHeigth = legendArray.length * 35 + 10;
+   const legendHeigth = legendArray.length * 35 + 15;
    // const pieTitle = resultCount + ' results for the query "' + query + '"';
    // <VictoryLabel
    //   style={{
@@ -386,8 +386,7 @@ class Pie extends React.Component {
 Pie.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  //fetchPlaces: PropTypes.func.isRequired
-  fetchFacet: PropTypes.func.isRequired,
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
   facetUpdateID: PropTypes.number
 };
 

@@ -16,8 +16,11 @@ export const FETCH_BY_URI = 'FETCH_BY_URI';
 export const FETCH_BY_URI_FAILED = 'FETCH_BY_URI_FAILED';
 export const UPDATE_INSTANCE = 'UPDATE_INSTANCE';
 export const FETCH_FACET = 'FETCH_FACET';
+export const FETCH_FACET_CONSTRAIN_SELF = 'FETCH_FACET_CONSTRAIN_SELF';
 export const FETCH_FACET_FAILED = 'FETCH_FACET_FAILED';
+export const FETCH_FACET_CONSTRAIN_SELF_FAILED = 'FETCH_FACET_CONSTRAIN_SELF_FAILED';
 export const UPDATE_FACET_VALUES = 'UPDATE_FACET_VALUES';
+export const UPDATE_FACET_VALUES_CONSTRAIN_SELF = 'UPDATE_FACET_VALUES_CONSTRAIN_SELF';
 export const UPDATE_FACET_OPTION = 'UPDATE_FACET_OPTION';
 export const UPDATE_CLIENT_SIDE_FILTER = 'UPDATE_CLIENT_SIDE_FILTER';
 export const OPEN_MARKER_POPUP = 'OPEN_MARKER_POPUP';
@@ -101,8 +104,16 @@ export const fetchFacet = ({ facetClass, facetID }) => ({
   type: FETCH_FACET,
   facetClass, facetID
 });
+export const fetchFacetConstrainSelf = ({ facetClass, facetID }) => ({
+  type: FETCH_FACET_CONSTRAIN_SELF,
+  facetClass, facetID
+});
 export const fetchFacetFailed = (facetClass, id, error, message) => ({
   type: FETCH_FACET_FAILED,
+  facetClass, id, error, message
+});
+export const fetchFacetConstrainSelfFailed = (facetClass, id, error, message) => ({
+  type: FETCH_FACET_CONSTRAIN_SELF_FAILED,
   facetClass, id, error, message
 });
 export const updateFacetValues = ({
@@ -113,6 +124,16 @@ export const updateFacetValues = ({
   sparqlQuery
 }) => ({
   type: UPDATE_FACET_VALUES,
+  facetClass, id, data, flatData, sparqlQuery
+});
+export const updateFacetValuesConstrainSelf = ({
+  facetClass,
+  id,
+  data,
+  flatData,
+  sparqlQuery
+}) => ({
+  type: UPDATE_FACET_VALUES_CONSTRAIN_SELF,
   facetClass, id, data, flatData, sparqlQuery
 });
 export const updateFacetOption = ({ facetClass, facetID, option, value }) => ({

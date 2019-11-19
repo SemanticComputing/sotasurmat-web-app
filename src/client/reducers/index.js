@@ -3,6 +3,7 @@ import {reducer as toastrReducer} from 'react-redux-toastr';
 import error from './error';
 import victims from './sotasurmat/victims';
 import victimsFacets from './sotasurmat/victimsFacets';
+import victimsFacetsConstrainSelf from './sotasurmat/victimsFacetsConstrainSelf';
 import battles from './sotasurmat/battles';
 import battlesFacets from './sotasurmat/battlesFacets';
 import dates from './sotasurmat/dates';
@@ -14,6 +15,7 @@ import sources from './sotasurmat/sources';
 const reducer = combineReducers({
   victims,
   victimsFacets,
+  victimsFacetsConstrainSelf,
   battles,
   battlesFacets,
   animation,
