@@ -33,6 +33,7 @@ import {
   clearResults,
   fetchByURI,
   fetchFacet,
+  fetchFacetConstrainSelf,
   sortResults,
   updateFacetOption,
   updatePage,
@@ -206,14 +207,14 @@ let SemanticPortal = props => {
           victims={props.victims}
           places={props.places}
           facetData={props.victimsFacets}
+          facetDataConstrainSelf={props.victimsFacetsConstrainSelf}
           fetchPaginatedResults={props.fetchPaginatedResults}
           fetchResults={props.fetchResults}
           fetchByURI={props.fetchByURI}
           updatePage={props.updatePage}
-          updateFacetOption={props.updateFacetOption}
           sortResults={props.sortResults}
           routeProps={routeProps}
-          fetchFacet={props.fetchFacet}
+          fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
           resultCount={props.victims.resultCount}
           updateRowsPerPage={props.updateRowsPerPage}
           perspective={perspective}
@@ -464,6 +465,7 @@ const mapStateToProps = state => {
     dates: state.dates,
     victims: state.victims,
     victimsFacets: state.victimsFacets,
+    victimsFacetsConstrainSelf: state.victimsFacetsConstrainSelf,
     battles: state.battles,
     battlesFacets: state.battlesFacets,
     animationValue: state.animation.value,
@@ -479,6 +481,7 @@ const mapDispatchToProps = ({
   fetchResultsClientSide,
   fetchByURI,
   fetchFacet,
+  fetchFacetConstrainSelf,
   sortResults,
   clearResults,
   updateFacetOption,
@@ -502,6 +505,7 @@ SemanticPortal.propTypes = {
   battles: PropTypes.object.isRequired,
   sources: PropTypes.object.isRequired,
   victimsFacets: PropTypes.object.isRequired,
+  victimsFacetsConstrainSelf: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchResultCount: PropTypes.func.isRequired,
@@ -514,6 +518,7 @@ SemanticPortal.propTypes = {
   updateRowsPerPage: PropTypes.func.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
   fetchFacet: PropTypes.func.isRequired,
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired,
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,

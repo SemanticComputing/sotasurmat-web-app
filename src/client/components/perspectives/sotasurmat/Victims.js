@@ -42,15 +42,15 @@ const Victims = props => {
         path={`${props.rootUrl}/victims/faceted-search/pie`}
         render={routeProps =>
           <Pie
-            data={props.facetData.facets}
-            facetUpdateID={props.facetData.facetUpdateID}
+            data={props.facetDataConstrainSelf.facets}
             resultClass='victims'
+            facetUpdateID={props.facetData.facetUpdateID}
             facetClass='victims'
             fetchPaginatedResults={props.fetchPaginatedResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
-            fetchFacet={props.fetchFacet}
+            fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
             resultCount={props.victims.resultCount}
           />
         }
@@ -63,12 +63,10 @@ const Victims = props => {
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='dates'
             facetClass='victims'
-            fetchPaginatedResults={props.fetchPaginatedResults}
             fetchResults={props.fetchResults}
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
-            fetchFacet={props.fetchFacet}
             resultCount={props.victims.resultCount}
           />
         }
@@ -110,6 +108,7 @@ Victims.propTypes = {
   victims: PropTypes.object.isRequired,
   dates: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
+  facetDataConstrainSelf: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
   fetchByURI: PropTypes.func.isRequired,
@@ -117,8 +116,7 @@ Victims.propTypes = {
   updateRowsPerPage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  updateFacetOption: PropTypes.func.isRequired,
-  fetchFacet: PropTypes.func.isRequired,
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
   resultCount: PropTypes.number,
   perspective: PropTypes.object.isRequired
 };
