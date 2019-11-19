@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 //import Divider from '@material-ui/core/Divider';
 import intl from 'react-intl-universal';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   root: {
@@ -75,10 +76,12 @@ const InfoHeader = props => {
           id="panel1a-header"
           IconButtonProps={{ onClick: handleExpandButtonOnClick }}
         >
-          <Typography component="h1" variant="h4">
-            {props.pageType === 'facetResults' && intl.get(`perspectives.${props.resultClass}.label`)}
-            {props.pageType === 'instancePage' && intl.get(`perspectives.${props.resultClass}.instancePage.label`)}
-          </Typography>
+          <Tooltip title={intl.get(`perspectives.${props.resultClass}.shortInfo`)}>
+            <Typography component="h1" variant="h4">
+              {props.pageType === 'facetResults' && intl.get(`perspectives.${props.resultClass}.label`)}
+              {props.pageType === 'instancePage' && intl.get(`perspectives.${props.resultClass}.instancePage.label`)}
+            </Typography>
+          </Tooltip>
           {props.pageType === 'instancePage' &&
             <React.Fragment>
               <Typography className={props.classes.label} component="h1" variant="h6">{generateLabel()}</Typography>

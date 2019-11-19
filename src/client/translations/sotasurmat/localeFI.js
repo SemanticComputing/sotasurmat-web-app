@@ -97,6 +97,10 @@ export default {
     },
     victims: {
       label: 'Sotasurmat',
+      shortInfo: `
+        Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922.
+        Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla.
+      `,
       facetResultsType: 'henkilö',
       shortDescription: 'Tietoa vuosina 1914-1922 sotaoloissa surmansa saaneista.',
       longDescription: `
@@ -357,6 +361,9 @@ export default {
     },
     battles: {
       label: 'Taistelut',
+      shortInfo: `
+        Näkymä sisällissodan taisteluihin.
+      `,
       facetResultsType: 'taistelu',
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',
       longDescription: `
