@@ -143,7 +143,7 @@ class SurmatutExtraTable extends React.Component {
       {id:'killer',label:'Surmaaja'},
       {id:'presumedKiller',label:'Oletettu surmaaja'},
 
-      {id:'buriedIn',label:'Hautaustapa II'},
+      {id:'buriedIn',label:'Tarkempi hautaustapa'},
       {id:'placeOfBurial',label:'I hautauksen paikka'},
       {id:'secondPlaceOfBurial',label:'II hautauksen paikka'},
       {id:'timeOfBurial',label:'I hautauksen ajankohta'},

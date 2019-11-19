@@ -40,7 +40,7 @@ export const INITIAL_STATE = {
   instance: null,
   instanceSparqlQuery: null,
   page: -1,
-  pagesize: 15,
+  pagesize: 25,
   sortBy: 'startDate',
   sortDirection: 'asc',
   fetching: false,

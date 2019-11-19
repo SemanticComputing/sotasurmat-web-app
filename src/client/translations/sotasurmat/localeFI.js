@@ -98,7 +98,7 @@ export default {
     victims: {
       label: 'Sotasurmat',
       facetResultsType: 'henkilö',
-      shortDescription: 'Tietoa vuosina 1914-22 sotaoloissa surmansa saaneista.',
+      shortDescription: 'Tietoa vuosina 1914-1922 sotaoloissa surmansa saaneista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla. Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista.
@@ -579,10 +579,10 @@ export default {
       Tietoa
     </h1>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Sotasurmasampo 1914-22
+      Sotasurmasampo 1914-1922
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmasampo 1914-22 on suomeen liittyviin sotatapahtumiin vuosina 1914-22 keskittynyt portaali.
+      Sotasurmasampo 1914-1922 on suomeen liittyviin sotatapahtumiin vuosina 1914-1922 keskittynyt portaali.
       Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-22 tietokanta. Projektista on tarjolla lisää tietoa
       <a href="https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
       Voit halutessasi myös tutustua Sotasurmatietokannan
