@@ -84,7 +84,7 @@ export default {
         sourceCode: {
           label: 'Lähteen koodi',
           description: `
-            Datassa käytetty lyhennä lähteelle.
+            Datassa käytetty lyhenne lähteelle.
           `
         },
         description: {
@@ -116,11 +116,11 @@ export default {
           <li>
             <strong>KARTTA</strong> esittää haussa rajattujen henkilöiden kuolinkuntia kartalla.
             Huomaa, että kunnat on yhdistetty koordinaatteihin koneellisesti paikan nimen perustteella.
-            Kartassa voi olla virheitä ja puutteita koska paikkatermit voivat olla moniselitteisiä. Puuttuvat kunnat pyritään täydentämään myöhemmin.
+            Kartassa voi olla virheitä ja puutteita, koska paikannimet voivat olla moniselitteisiä. Puuttuvat kunnat pyritään täydentämään myöhemmin.
           </li>
           <li>
-            <strong>CSV</strong> sivulla voit ladata haussa rajattujen henkilöiden tiedot omalle koneellesi CSV-taulukkona.
-            CSV-tiedoston voi avata taulukkolaskentaohjelmalla, mutta merkistökoodaukseksi tulee määrittää UTF-8 ja välimerkiksi pilkku, jotta tiedot näkyvät oikein.
+            <strong>CSV</strong>-sivulla voit ladata haussa rajattujen henkilöiden tiedot omalle koneellesi CSV-taulukkona.
+            CSV-tiedoston voit avata taulukkolaskentaohjelmalla, mutta merkistökoodaukseksi tulee määrittää UTF-8 ja välimerkiksi pilkku, jotta tiedot näkyvät oikein.
           </li>
         </ul>
       `,
@@ -160,15 +160,13 @@ export default {
         },
         party: {
           label: 'Osapuoli',
-          description:`
-            Henkilön osapuoli sisällissodassa.
-          `,
-          facetDescription: 'Henkilön osapuoli sisällissodassa.',
+          description: 'Henkilön osapuoli sisällissodassa',
+          facetDescription: 'Henkilön osapuoli sisällissodassa',
         },
         registeredMunicipality: {
           label: 'Kirjoillaolokunta',
           facetDescription: 'Kirjoillaolokunta',
-          description: 'Kijoillaolokunta.'
+          description: 'Kirjoillaolokunta'
         },
         deathMunicipality: {
           facetDescription: 'Kuolinkunta',
@@ -178,30 +176,24 @@ export default {
         occupation: {
           label: 'Ammatti',
           facetDescription: 'Ammatti',
-          description: `
-            Henkilön ammatti aineistossa annetussa muodossa.
-          `
+          description: 'Henkilön ammatti aineistossa annetussa muodossa'
         },
         birthDate: {
           label: 'Syntymäpäivä',
           facetDescription: 'Syntymäpäivä',
-          description: `
-            Syntymäpäivä (vanhan projektin laskema)
-          `
+          description: 'Syntymäpäivä (vanhan projektin laskema)'
         },
         deathDate: {
           label: 'Kuolinpäivä',
           facetDescription: 'Kuolinpäivä',
-          description: `
-            Kuolinpäivä (vanhanprojektin laskema.)
-          `
+          description: 'Kuolinpäivä (vanhan projektin laskema)'
         },
         birthTimespan: {
           label: 'Syntymäpäivä',
           description: 'Syntymäpäivä',
           facetDescription: `
-            Rajaa henkilöitä syntymäpäivän perusteella. Voit määrittä aikavälin alku- ja loppupäivän.
-            Huomaa, että osalla henkilöistä puuttuu syntämäpäivä kokonaan ja osalla se on osin epäselvä.
+            Rajaa henkilöitä syntymäpäivän perusteella. Voit määrittää aikavälin alku- ja loppupäivän.
+            Huomaa, että osalla henkilöistä puuttuu syntymäpäivä kokonaan, ja osalla se on osin epäselvä.
             Epäselvissä tapauksissa syntymäaika on tallennettu aikavälinä. Henkilö näytetään osumissa,
             jos arvioituun aikaväliin osuu yksikin yhteinen päivä valitsemasi aikavälin kanssa.
           `
@@ -210,8 +202,8 @@ export default {
           label: 'Kuolinpäivä',
           description: 'Kuolinpäivä',
           facetDescription: `
-            Rajaa henkilöitä kuolinpäivän perusteella. Voit määrittä aikavälin alku- ja loppupäivän.
-            Huomaa, että osalla henkilöistä puuttuu kuolinpäivä kokonaan ja osalla se on osin epäselvä.
+            Rajaa henkilöitä kuolinpäivän perusteella. Voit määrittää aikavälin alku- ja loppupäivän.
+            Huomaa, että osalla henkilöistä puuttuu kuolinpäivä kokonaan, ja osalla se on osin epäselvä.
             Epäselvissä tapauksissa kuolinaika on tallennettu aikavälinä. Henkilö näytetään osumissa,
             jos arvioituun aikaväliin osuu yksikin yhteinen päivä valitsemasi aikavälin kanssa.
           `
@@ -219,7 +211,7 @@ export default {
         age: {
           label: 'Ikä',
           facetDescription: `Henkilön ikä. Voit määrittää janalla halutun ikävälin.
-          Mikä tahansa valinta suodattaa pois kaikki henkilöt joille ei ole määritelty ikää.,`,
+          Mikä tahansa valinta suodattaa pois kaikki henkilöt, joille ei ole määritelty ikää.`,
           description: `
             Henkilön ikä
           `
@@ -229,46 +221,42 @@ export default {
           facetDescription: `
           Lasten lukumäärä. Voit määrittää janalla lukuvälin.
           Huomaa, että useimmille henkilöille ei ole määritelty lasten lukumäärää,
-          ja mikä tahansa valinta suodattaa pois kaikki sellaiset henkilöt.,
+          ja mikä tahansa valinta suodattaa pois kaikki sellaiset henkilöt.
           `,
           description: `
             Lasten lukumäärä
           `
         },
         ammoOccupation: {
-          label: 'AMMO ammatti',
+          label: 'AMMO-ammatti',
           description: `
-            AMMO ontologian mukainen ammatti
+            AMMO-ontologian mukainen ammatti
           `,
           facetDescription: `
-            AMMO ontologian mukainen ammatti
+            AMMO-ontologian mukainen ammatti
           `,
         },
         hisclass7: {
           label: 'Ammatti (HISCLASS7)',
-          description: `
-            HISCLASS7 luokittelun mukainen ammatti
-          `,
-          facetDescription: `
-            HISCLASS7 luokittelun mukainen ammatti
-          `,
+          description: 'HISCLASS7-luokittelun mukainen ammatti',
+          facetDescription: 'HISCLASS7-luokittelun mukainen ammatti',
         },
         coo1980: {
           label: 'Ammatti (coo1980)',
           facetDescription: `
-            Ammattiluokitus 1980 luokittelun mukainen ammatti
+            Ammattiluokituksen 1980 mukainen ammatti
           `,
           description: `
-            Ammattiluokitus 1980 luokittelun mukainen ammatti
+            Ammattiluokituksen 1980 mukainen ammatti
           `
         },
         hisco: {
           label: 'HISCO',
           facetDescription: `
-            HISCO luokittelun mukainen ammatti
+            HISCO-luokittelun mukainen ammatti
           `,
           description: `
-            HISCO luokittelun mukainen ammatti
+            HISCO-luokittelun mukainen ammatti
           `
         },
         causeOfDeath: {
@@ -331,25 +319,25 @@ export default {
           Siviilisääty
           `,
           description: `
-            Marital status
+            Siviilisääty
           `
         },
         militaryOrganization: {
           label: 'Sotilasjärjestö',
           facetDescription: `
-          Sotilasjärjesö johon kuului
+          Sotilasjärjestö johon henkilö kuului
           `,
           description: `
-            Sotilasjärjesö johon kuului
+            Sotilasjärjestö johon henkilö kuului
           `
         },
         deathLikelihood: {
           label: 'Surman todennäköisyys',
           facetDescription: `
-            Todennäköisyys sille, että henkilö todellisuudessa kuoli tiedoston kuvaamalla tavalla
+            Todennäköisyys sille, että henkilö todellisuudessa kuoli tietokannan kuvaamalla tavalla
           `,
           description: `
-            Todennäköisyys sille, että henkilö todellisuudessa kuoli tiedoston kuvaamalla tavalla
+            Todennäköisyys sille, että henkilö todellisuudessa kuoli tietokannan kuvaamalla tavalla
           `
         },
 
@@ -361,9 +349,9 @@ export default {
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällisssodan taisteluista.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Taistelut -näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
+          Taistelut-näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
           <a href = "http://wiki.narc.fi/portti/index.php/Sis%C3%A4llissodan_taistelupaikkakortisto" target='_blank' rel='noopener noreferrer'>Sisällissodan taistelupaikkakortistoon</a>.
-          Kortiston tiedot on muunnettu taulukkomuotoon ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
+          Kortiston tiedot on muunnettu taulukkomuotoon, ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
           Koordinaatit on tallennettu kahden desimaalin tarkkuudella, joten ne eivät ole aivan tarkkoja.
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -377,7 +365,7 @@ export default {
         label: 'Taistelu',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            Taistelut henkilösivun kuvaus
+            Taistelun kuvaus
           </p>
         `
       },
@@ -468,7 +456,7 @@ export default {
         Suodattimesta on mahdollista valita useita arvoja samaan aikaan.
         Suodattimen valintoja on mahdollista järjestää joko arvojen määrän tai aakkosjärjestyksen mukaan.
         Valinnan poistaminen onnistuu klikkaamalla sitä uudestaan listalta.
-        Kaikki valinnat voi poistaa hakupalkin ylälaidasta
+        Kaikki valinnat voi poistaa hakupalkin ylälaidasta.
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Fasettihaun tehokkuus tulee esiin useampia suodattimia käytettäessä.
@@ -482,13 +470,13 @@ export default {
         </h2>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Sotasurmat-näkymä sisältää viisi erilaista alinäkymää, joilla suodattimien rajaamaa tulosjoukkoa voi tarkastella: Taulukko, Piirakkakaavio, Viivakaavio, Kartta sekä CSV-vienti.
-          Kaaviot on tarkoitettu käytettäväksi suuntaa-antavina visualisointeina suodattamilla valitusta data-joukosta.
+          Kaaviot on tarkoitettu käytettäväksi suuntaa-antavina visualisointeina suodattimilla valitusta data-joukosta.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Taulukko
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Taulukko on oletusnäkymä, joka näyttää taulukkona suodattamien määräämän tulosjoukon mukaisia henkilöitä sekä heidän keskeiset tietonsa.
+          Taulukko on oletusnäkymä, joka näyttää taulukkona suodattimien määräämän tulosjoukon mukaisia henkilöitä sekä heidän keskeiset tietonsa.
           Taulukkoa voi selata yläosassa olevilla nuolipainikkeilla.
           Henkilöt voi järjestää haluamansa ominaisuuden mukaan painamalla taulukon yläosassa olevaa ominaisuuden nimeä. Oletuksena henkilöt järjestetään sukunimen perusteella.
           Klikkaamalla henkilön nimeä pääset henkilön omalle sivulle.
@@ -499,7 +487,7 @@ export default {
           Piirakkakaavio
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Piirakkakaavio  visualisoi hakutuloksen suhteelliset lukumäärät valitun luokituksen suhteen.
+          Piirakkakaavio visualisoi hakutuloksen suhteelliset lukumäärät valitun luokituksen suhteen.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Viivakaavio
@@ -514,8 +502,8 @@ export default {
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Tässä alinäkymässä voit etsiä kuolleita klusteroidun kartan avulla. Kartta näyttää henkilöitä kuolinkunnan perusteella.
-          Huomaa, että kunnat on yhdistetty koordinaatteihin koneellisesti paikkatermin perusteella.
-          Paikkatermit voivat olla moniselitteisiä, joten koordinaateissa voi olla virheitä ja kuntia puuttuu varsinkin ulkomailta.
+          Huomaa, että kunnat on yhdistetty koordinaatteihin koneellisesti paikannimen perusteella.
+          Paikannimet voivat olla moniselitteisiä, joten koordinaateissa voi olla virheitä, ja kuntia puuttuu varsinkin ulkomailta.
           Puuttuvat koordinaatit pyritään täydentämään dataan manuaalisesti.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
@@ -529,7 +517,7 @@ export default {
         Seuraa ohjeita ja valitse tiedoston merkistöksi 65001: Unicode (UTF-8).
         Seuraavassa kohdassa valitse erottimeksi pilkku ja paina valmis-painiketta.
         Jos käytät esimerkiksi LibreOfficen taulukkolaskentaohjelmaa, ohjelman pitäisi kysyä merkistökoodausta ja erotinta heti tiedostoa avattaessa.
-        Valitse myös siinä UTF-8 koodaus ja erottimeksi pilkku.
+        Valitse myös siinä UTF-8-merkistökoodaus ja erottimeksi pilkku.
         </p>
         <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
           Taistelut
@@ -537,7 +525,7 @@ export default {
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         Taistelut-näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
         <a href= "http://wiki.narc.fi/portti/index.php/Sis%C3%A4llissodan_taistelupaikkakortisto" target='_blank' rel='noopener noreferrer'>Sisällissodan taistelupaikkakortistoon</a>.
-        Kortiston tiedot on muunnettu taulukkomuotoon ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
+        Kortiston tiedot on muunnettu taulukkomuotoon, ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
 
         Taisteluiden nimet ovat selkeästi valkoisesta näkökulmasta annettuja.
         Näkymässä nimet näytetään siinä muodossa kuin ne kortistossa on esitetty, ei kannanottona tapahtumiin.
@@ -561,7 +549,7 @@ export default {
           Animaatio
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Animaatio visualisoi taisteluita kartalla. Kun taistelu alkaa se vilahtaa punaisena pisteenä ja jää kartalle harmaana.
+          Animaatio visualisoi taisteluita kartalla. Kun taistelu alkaa, se vilahtaa punaisena pisteenä ja jää kartalle harmaana.
           Animaatio alkaa oletuksena vuoden 1918 alusta, mutta kortisto sisältää myös useita vuoden 1917 puolella tapahtuneita väkivaltaisuuksia.
         </p>
 
@@ -583,7 +571,7 @@ export default {
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmasampo 1914-1922 on Suomeen liittyviin sotatapahtumiin vuosina 1914-1922 keskittynyt semanttinen portaali.
-      Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-1922 tietokanta. Projektista on tarjolla lisää tietoa
+      Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-1922 -tietokanta. Projektista on tarjolla lisää tietoa
       <a href="https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
       Voit halutessasi myös tutustua Sotasurmatietokannan
       <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main" target='_blank' rel='noopener noreferrer'> vanhaan sivustoon</a>.
@@ -594,25 +582,23 @@ export default {
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmasammon data koostuu kahden erillisen hankkeen aikana kootuista tiedoista.
       Pohjan datapalvelulle antaa vuosina 1998-2004 toteutettu Suomen sotasurmat 1914-1922 -projekti (SSSP) ja -tietokanta.
-      Tätä tietokantaa on laajennettu ja päivitetty lokakuussa 2018 aloitetussa Sotasurmat2 -hankkeessa ja muunnettu se Sotasurmasammon linkitetyksi avoimeksi dataksi.
+      Tätä tietokantaa on laajennettu ja päivitetty lokakuussa 2018 aloitetussa Sotasurmat2-hankkeessa ja se on muunnettu Sotasurmasammon linkitetyksi avoimeksi dataksi.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Tietokanta sisältää tietoa yli 40 000 henkilöstä. Se ei ole tarkka laskelma vuosien 1914-1922 sotasurmatapauksista, sillä osa tiedoista on epävarmoja.
-      Tietokannan verkkokäyttöliittymään kuuluvilla hakusuodattimilla, analysointi- ja visualisointityökaluilla käyttäjän on mahdollista helposti tehdä itse rajauksia ja saada haluamiaan tietoja ja yhteenvetoja surmansa saaneista.
+      Tietokannan verkkokäyttöliittymään kuuluvilla hakusuodattimilla sekä analysointi- ja visualisointityökaluilla käyttäjän on mahdollista helposti itse tehdä rajauksia ja saada haluamiaan tietoja ja yhteenvetoja surmansa saaneista.
      Koska lähdeaineisto sotavuosilta on hyvin vaihtelevaa, on hakusuodattimiin sisällytetty nyt myös mahdollisuus määritellä sotasurmatapauksen todennäköisyyttä.
 </p>
  <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-Jokaiselle surmansa saaneelle on luotu oma “kotisivu”,
-joka kokoaa yhteen häneen liittyvät tiedot sekä tarjoaa eräissä tapauksissa lisätietolinkkejä verkossa oleviin muihin palveluihin, kuten Wikipediaan,
-Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899/" target='_blank' rel='noopener noreferrer'>Ylioppilasmatrikkeliin 1853-1899</a>,
-<a href="http://www.biografiasampo.fi" target='_blank' rel='noopener noreferrer'>Biografiasampoon</a> ja <a href="https://www.norssit.fi/semweb/" target='_blank' rel='noopener noreferrer'>Vanhat Norssit </a> semanttisessa webissä palveluun.
+Jokaiselle surmansa saaneelle on luotu oma “kotisivu”, joka kokoaa yhteen häneen liittyvät tiedot sekä tarjoaa eräissä tapauksissa lisätietolinkkejä verkossa oleviin muihin palveluihin, kuten Wikipediaan, Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899/" target='_blank' rel='noopener noreferrer'>Ylioppilasmatrikkeliin 1853-1899</a>,
+<a href="http://www.biografiasampo.fi" target='_blank' rel='noopener noreferrer'>Biografiasampoon</a> ja <a href="https://www.norssit.fi/semweb/" target='_blank' rel='noopener noreferrer'>Vanhat Norssit semanttisessa webissä</a> -palveluun.
       Verkkokäyttöliittymään on myös lisätty SSSP:n aikanaan keräämä laaja lisätietoaineisto.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Verkkosivuston palaute-painikkeen kautta on mahdollista lähettää kommentteja ja lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
+      Verkkosivuston Palaute-painikkeen kautta on mahdollista lähettää kommentteja ja lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
     </p>
 <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
- Data on julkaistu avoimesti <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -alustalla</a>, jossa sitä voi hyödyntää mm. SPARQL-rajapinnan kautta sekä tutkimuksessa että uusien sovellusten kehittämiseen.
+ Data on julkaistu avoimesti <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -alustalla</a>, jossa sitä voidaan hyödyntää mm. SPARQL-rajapinnan kautta sekä tutkimuksessa että uusien sovellusten kehittämiseen.
 </p>
 
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
@@ -620,7 +606,7 @@ Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmatietokannan tietojen perään on merkitty kunkin tiedon osalta käytetty lähde.
-      Lähteen lyhennettä klikkaamalla saa tarkempia tietoja kyseisestä lähteestä.
+      Lähteen lyhennettä klikkaamalla saat tarkempia tietoja kyseisestä lähteestä.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmatietokanta perustuu pääosin seuraavien laajojen henkilöluetteloiden tietoihin:
@@ -691,7 +677,7 @@ Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Kuolleeksijulistamisesta ei ole päivämäärää enempää tietoa.
       Kuolleeksijulistaminen on tapahtunut kirjoillaolokunnan mukaisessa tai sen läheisessä raastuvanoikeudessa.
-      Välip. -merkinnän sisältävä lähdemerkintä tarkoittaa kuolleeksijulistamisoikeudenkäynnin välipäätöstä.
+      Välip.-merkinnän sisältävä lähdemerkintä tarkoittaa kuolleeksijulistamisoikeudenkäynnin välipäätöstä.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Tauno Tukkisen aineiston lyhenteet:
@@ -739,7 +725,7 @@ Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899
       </tr>
       <tr>
         <td>KAT</td>
-        <td>Karjalan Armeijan Tiedonannot (Intermetissä)</td>
+        <td>Karjalan Armeijan Tiedonannot (Internetissä)</td>
       </tr>
       <tr>
         <td>KK</td>
@@ -747,7 +733,7 @@ Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899
       </tr>
       <tr>
         <td>Kper/Tay</td>
-        <td>Tampereen yliopisto, Kansanpertinteen laitos</td>
+        <td>Tampereen yliopisto, Kansanperinteen laitos</td>
       </tr>
       <tr>
         <td>KT</td>
@@ -847,14 +833,14 @@ Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Ammationtologiat
+      Ammattiontologiat
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmasammon datassa on ammatit yhdistetty
+      Sotasurmasammon datassa ammatit on yhdistetty
       <a href = "https://seco.cs.aalto.fi/ontologies/ammo/" target='_blank' rel='noopener noreferrer'>AMMO-ontologiaan</a>.
-      Tähän ontologiaan sisältyy linkkejä useisiin eri ammattiluokituksiin. Sotasurmat-Näkymässä
+      Tähän ontologiaan sisältyy linkkejä useisiin eri ammattiluokituksiin. Sotasurmat-näkymässä
       on mahdollisuus suodattaa tietoja ammattien suhteen sosiaalista asemaa kuvaavan HISCLASS7-luokittelun
-      sekä Ammattiluokitus 1980 käsitteiden avulla.
+      sekä Ammattiluokituksen 1980 käsitteiden avulla.
     </p>
   `,
 };
