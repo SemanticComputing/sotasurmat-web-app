@@ -458,7 +458,7 @@ export default {
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Tietokannan hakutoiminnot pohjautuvat sotasurmien ja taisteluiden kuvailuun ja suodattamiseen
           toisistaan riippumattomien luokitusten eli fasettien avulla (esimerkiksi henkilön ammatti, kuolinkunta, sukupuoli jne.)
-          Oletusarvoisesti jokainen hakuominaisuus näyttää kaikki tulokset omasta luokastaan.
+          Jokainen luokitus näyttää listauksen hakutulosten lukumääristä eri valinnoilla; alkuasetelmassa hakutuloksena on koko tietokannan sisältö.
           Toisin sanottuna alkuasetelmassa hakutulosten listaus näyttää koko tietokannan sisällön.
           Tätä hakutulosten joukkoa voi rajata pienemmäksi tekemällä valintoja vasemman reunan suodattimia ja muita hakuominaisuuksia käyttämällä.
         </p>
@@ -472,10 +472,10 @@ export default {
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Fasettihaun tehokkuus tulee esiin useampia suodattimia käytettäessä.
-          Valittaessa useampia suodattimia samanaikaisesti hakutulos rajautuu niin, että tuloksina näytetään vain ne henkilöt, jotka täyttävät kaikki valitut ehdot.
+          Valittaessa useampia suodattimia samanaikaisesti hakutulos rajautuu niin, että tuloksina näytetään vain ne henkilöt (tai taistelut), jotka täyttävät kaikki valitut ehdot.
           Voit tehdä myös saman suodattimen sisällä useita valintoja, jolloin tulokseksi tulevat sen suodattimen osalta kaikki henkilöt, jotka täyttävät jonkun tehdyn valinnan.
-          Esimerkiksi kun valitset suodattimesta “Kirjoillaolokunta” vaihtoehdot “Helsinki” ja “Tampere”,
-           sekä valitset “Osapuoli” suodattimesta “Punainen” saat tulosjoukoksi kaikki henkilöt, joiden osapuoleksi on määritetty "Punainen" JA kirjoillaolokunnaksi joko "Helsinki" TAI "Tampere".
+          Esimerkiksi kun valitset suodattimesta “Kirjoillaolokunta” vaihtoehdot “Helsinki” ja “Tampere”
+           sekä valitset “Osapuoli” suodattimesta “Punainen”, saat tulosjoukoksi kaikki henkilöt, joiden osapuoleksi on määritetty "Punainen" JA kirjoillaolokunnaksi joko "Helsinki" TAI "Tampere".
         </p>
         <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
           Sotasurmat
@@ -492,7 +492,7 @@ export default {
           Taulukkoa voi selata yläosassa olevilla nuolipainikkeilla.
           Henkilöt voi järjestää haluamansa ominaisuuden mukaan painamalla taulukon yläosassa olevaa ominaisuuden nimeä. Oletuksena henkilöt järjestetään sukunimen perusteella.
           Klikkaamalla henkilön nimeä pääset henkilön omalle sivulle.
-          Henkilön omalla sivulla on paljon enemmän tietoa henkilöstä, sekä mahdollisia vaihtoehtoisia tietoja, joita on saatu eri lähteistä.
+          Henkilön omalla sivulla on paljon enemmän tietoa henkilöstä sekä mahdollisia vaihtoehtoisia tietoja, joita on saatu eri lähteistä.
           Haku käyttää näistä tiedoista vain ensisijaiseksi määriteltyä.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
@@ -582,7 +582,7 @@ export default {
       Sotasurmasampo 1914-1922
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmasampo 1914-1922 on suomeen liittyviin sotatapahtumiin vuosina 1914-1922 keskittynyt portaali.
+      Sotasurmasampo 1914-1922 on Suomeen liittyviin sotatapahtumiin vuosina 1914-1922 keskittynyt portaali.
       Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-22 tietokanta. Projektista on tarjolla lisää tietoa
       <a href="https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
       Voit halutessasi myös tutustua Sotasurmatietokannan
