@@ -56,11 +56,6 @@ export const perspectiveConfig = [
         value: 1,
         icon: <AddIcon />,
       },
-      {
-        id: 'export',
-        value: 2,
-        icon: <CloudDownloadIcon />,
-      },
     ]
   },
   {

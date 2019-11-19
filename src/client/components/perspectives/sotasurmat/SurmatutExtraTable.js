@@ -176,7 +176,7 @@ class SurmatutExtraTable extends React.Component {
                   container='cell'
                   expanded={true}
                   showSource={true}
-                  sourceExternalLink={true}
+                  sourceExternalLink={false}
                 />
               </TableRow>
             );
