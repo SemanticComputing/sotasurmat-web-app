@@ -55,7 +55,7 @@ export const INITIAL_STATE = {
       label: 'Taistelun nimi',
       desc: 'Taistelun nimi',
       valueType: 'object',
-      makeLink: true,
+      makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,

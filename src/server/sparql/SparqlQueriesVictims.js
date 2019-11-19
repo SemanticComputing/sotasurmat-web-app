@@ -797,7 +797,7 @@ export const extrasTemplate = `
         OPTIONAL {
           ?<TYPENAME>Info siso-s:source ?<TYPENAME>__source__id .
           ?<TYPENAME>__source__id skos:altLabel ?<TYPENAME>__source__prefLabel .
-          BIND (?<TYPENAME>__source__id AS ?<TYPENAME>__source__dataProviderUrl) .
+          BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?<TYPENAME>__source__id), "^.*\\\\/(.+)", "$1")) AS ?<TYPENAME>__source__dataProviderUrl)
         }
       }
       `;
