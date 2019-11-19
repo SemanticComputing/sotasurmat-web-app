@@ -41,7 +41,7 @@ export const INITIAL_STATE = {
   instanceSparqlQuery: null,
   instanceExtraSparqlQuery: null,
   page: -1,
-  pagesize: 15,
+  pagesize: 25,
   sortBy: 'prefLabel',
   sortDirection: 'asc',
   fetching: false,

@@ -579,7 +579,7 @@ export default {
       Tietoa
     </h1>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Sotasurmasampo 1914-22
+      Sotasurmasampo 1914-1922
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmasampo 1914-22 on suomeen liittyviin sotatapahtumiin vuosina 1914-22 keskittynyt portaali.
