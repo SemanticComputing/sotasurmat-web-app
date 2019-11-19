@@ -535,7 +535,7 @@ export default {
           Taistelut
         </h2>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        Taistelut -näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
+        Taistelut-näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
         <a href= "http://wiki.narc.fi/portti/index.php/Sis%C3%A4llissodan_taistelupaikkakortisto" target='_blank' rel='noopener noreferrer'>Sisällissodan taistelupaikkakortistoon</a>.
         Kortiston tiedot on muunnettu taulukkomuotoon ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
 
@@ -547,7 +547,7 @@ export default {
           Taulukko
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Taulukon avulla voit selata taisteluiden tietoja, ja järjestää niitä esimerkiksi alkamispäivän mukaan.
+          Taulukon avulla voit selata taisteluiden tietoja ja järjestää niitä esimerkiksi alkamispäivän mukaan.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Kartta
@@ -561,7 +561,7 @@ export default {
           Animaatio
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Animaatio visualisoi taiteluita kartalla. Kun taistelu alkaa se vilahtaa punaisena pisteenä ja jää kartalle harmaana.
+          Animaatio visualisoi taisteluita kartalla. Kun taistelu alkaa se vilahtaa punaisena pisteenä ja jää kartalle harmaana.
           Animaatio alkaa oletuksena vuoden 1918 alusta, mutta kortisto sisältää myös useita vuoden 1917 puolella tapahtuneita väkivaltaisuuksia.
         </p>
 
@@ -582,36 +582,43 @@ export default {
       Sotasurmasampo 1914-1922
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmasampo 1914-1922 on Suomeen liittyviin sotatapahtumiin vuosina 1914-1922 keskittynyt portaali.
-      Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-22 tietokanta. Projektista on tarjolla lisää tietoa
+      Sotasurmasampo 1914-1922 on Suomeen liittyviin sotatapahtumiin vuosina 1914-1922 keskittynyt semanttinen portaali.
+      Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-1922 tietokanta. Projektista on tarjolla lisää tietoa
       <a href="https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
       Voit halutessasi myös tutustua Sotasurmatietokannan
       <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main" target='_blank' rel='noopener noreferrer'> vanhaan sivustoon</a>.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Sotasurmatietokannan tietosisällöstä
+      Tietosisällöstä
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmatietokanta koostuu kahden erillisen hankkeen aikana kootuista tiedoista.
-      Pohjan tietokannalle antaa vuosina 1998-2004 toteutettu Suomen sotasurmat 1914-1922 -projekti (SSSP).
-      Nykyistä tietokantaa on päivitetty lokakuussa 2018 aloitetussa nk. Sotasurmat2 -hankkeessa.
+      Sotasurmasammon data koostuu kahden erillisen hankkeen aikana kootuista tiedoista.
+      Pohjan datapalvelulle antaa vuosina 1998-2004 toteutettu Suomen sotasurmat 1914-1922 -projekti (SSSP) ja -tietokanta.
+      Tätä tietokantaa on laajennettu ja päivitetty lokakuussa 2018 aloitetussa Sotasurmat2 -hankkeessa ja muunnettu se Sotasurmasammon linkitetyksi avoimeksi dataksi.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Tietokanta sisältää tällä hetkellä tietoa yli 40 000 henkilöstä (tietokantaa päivitetään näillä näkymin vuoden 2020 loppuun asti).
-      Tietokanta ei ole tarkka laskelma vuosien 1914-1922 sotasurmatapauksista. Osa tiedoista on epävarmoja.
-      Tietokannan verkkokäyttöliittymään kuuluvilla hakusuodattimilla ja visualisointityökaluilla käyttäjän on mahdollista helposti tehdä itse rajauksia ja saada haluamiaan tietoja kuolleiden määristä.
-      Koska lähdeaineisto sotavuosilta on hyvin vaihtelevaa, on hakusuodattimiin sisällytetty nyt myös mahdollisuus määritellä sotasurmatapauksen todennäköisyyttä.
+      Tietokanta sisältää tietoa yli 40 000 henkilöstä. Se ei ole tarkka laskelma vuosien 1914-1922 sotasurmatapauksista, sillä osa tiedoista on epävarmoja.
+      Tietokannan verkkokäyttöliittymään kuuluvilla hakusuodattimilla, analysointi- ja visualisointityökaluilla käyttäjän on mahdollista helposti tehdä itse rajauksia ja saada haluamiaan tietoja ja yhteenvetoja surmansa saaneista.
+     Koska lähdeaineisto sotavuosilta on hyvin vaihtelevaa, on hakusuodattimiin sisällytetty nyt myös mahdollisuus määritellä sotasurmatapauksen todennäköisyyttä.
+</p>
+ <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+Jokaiselle surmansa saaneelle on luotu oma “kotisivu”, joka kokoaa yhteen häneen liittyvät tiedot sekä tarjoaa eräissä tapauksissa lisätietolinkkejä verkossa oleviin muihin palveluihin, kuten Wikipediaan, Helsingin yliopiston <a href=”https://ylioppilasmatrikkeli.helsinki.fi/1853-1899/”>Ylioppilasmatrikkeliin 1853-1899</a>,
+<a href=”http://www.biografiasampo.fi”>Biografiasampoon</a> ja <a href=”https://www.norssit.fi/semweb/”>Vanhat Norssit </a> semanttisessa webissä palveluun.
       Verkkokäyttöliittymään on myös lisätty SSSP:n aikanaan keräämä laaja lisätietoaineisto.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Verkkosivuston palaute-painikkeen kautta on mahdollista lähettää lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
+      Verkkosivuston palaute-painikkeen kautta on mahdollista lähettää kommentteja ja lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
     </p>
+<p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+ Data on julkaistu avoimesti <a href=”http://www.ldf.fi/dataset/siso”>Linked Data Finland -alustalla</a>, jossa sitä voi hyödyntää mm. SPARQL-rajapinnan kautta sekä tutkimuksessa että uusien sovellusten kehittämiseen.
+</p>
+
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Lähteistä
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmatietokannan tietojen perään on merkitty kunkin tiedon osalta käytetty lähde.
-      Lähdelyhennettä klikkaamalla saa tarkempia tietoja kyseisestä lähteestä.
+      Lähteen lyhennettä klikkaamalla saa tarkempia tietoja kyseisestä lähteestä.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmatietokanta perustuu pääosin seuraavien laajojen henkilöluetteloiden tietoihin:
@@ -621,7 +628,7 @@ export default {
         Papiston tilasto (PT)
       </li>
       <li>
-        Seurakuntien kuolleiden ja haudattujen luettelot vuosilta 1914-22 (SRK)
+        Seurakuntien kuolleiden ja haudattujen luettelot vuosilta 1914-1922 (SRK)
       </li>
       <li>
         Seurakuntien rippikirjat (RK), osittain
@@ -630,7 +637,7 @@ export default {
         SDP:n tilasto (SDP)
       </li>
       <li>
-        Helsingin kaupungin tilastokonttorin kuolleiden kortisto vuosilta 1914-22 (HKA)
+        Helsingin kaupungin tilastokonttorin kuolleiden kortisto vuosilta 1914-1922 (HKA)
       </li>
       <li>
         Jääkärimatrikkeli (JM)
@@ -667,20 +674,20 @@ export default {
       Vuoden 1918 leskien avustuskomitean arkisto (VLA)
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-    Vuodesta 1942 eteenpäin myös punaisen puolen leskille tuli mahdolliseksi anoa valtiolta avustusta. Avustushakemukset siirrettiin syksyllä 2018 Kansallisarkistoon Valtiokonttorista. Hakemuksissa on lesken, kunnan huoltolautakunnan, seurakunnan sekä luotettaviksi katsottujen todistajien kertomukset vuonna 1918 tapahtuneista kuolintapauksista. Kaiken kaikkiaan avustushakemuksia on noin 6 500, ja ne ovat pääosin punaisella puolella taistelleiden henkilöiden leskiltä. Hakemusten laatu ja sisältö vaihtelee hieman, ja niistä on mahdollista saada uutta tietoa vuoden 1918 surmatapauksista.
+    Vuodesta 1942 eteenpäin myös punaisen puolen leskille tuli mahdolliseksi anoa valtiolta avustusta. Avustushakemukset siirrettiin syksyllä 2018 Kansallisarkistoon Valtiokonttorista. Hakemuksissa on lesken, kunnan huoltolautakunnan, seurakunnan sekä luotettaviksi katsottujen todistajien kertomukset vuonna 1918 tapahtuneista kuolintapauksista. Kaiken kaikkiaan avustushakemuksia on noin 6 500, ja ne ovat pääosin punaisella puolella taistelleiden henkilöiden leskiltä. Hakemusten laatu ja sisältö vaihtelee, mutta niistä on mahdollista saada uutta tietoa vuoden 1918 surmatapauksista.
     </p>
     <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
       Tauno Tukkisen aineisto (TT)
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmat2 -projektissa tietokantaan on lisätty Tauno Tukkisen vuosia kestäneiden tutkimusten tulokset. Tukkisen aineisto hyödyntää erittäin laajaa lähdepohjaa, mikä on osittain päällekkäinen ennestään käytettyjen lähteiden kanssa. Käytetyt lyhenteet eroavat myös hieman entisistä merkinnöistä. Tukkisen aineiston henkilötiedot on tarkistettu seurakuntien aineistoista.
+      Sotasurmat2-projektissa tietokantaan on lisätty Tauno Tukkisen vuosia kestäneiden tutkimusten tulokset. Tukkisen aineisto hyödyntää erittäin laajaa lähdepohjaa, mikä on osittain päällekkäinen ennestään käytettyjen lähteiden kanssa. Käytetyt lyhenteet eroavat myös hieman entisistä merkinnöistä. Tukkisen aineiston henkilötiedot on tarkistettu seurakuntien aineistoista.
       Mikäli tietokannassa lähdemerkintänä on TT, on kyseisen tapauksen tarkemmat lähteet eritelty omalle rivilleen henkilösivun alareunaan.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Rippikirja lähteenä viittaa henkilön kirjoillaolokunnan seurakunnan rippikirjaan.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Kuolleeksijulistamisesta ei ole päivämäärä enempää tietoa.
+      Kuolleeksijulistamisesta ei ole päivämäärää enempää tietoa.
       Kuolleeksijulistaminen on tapahtunut kirjoillaolokunnan mukaisessa tai sen läheisessä raastuvanoikeudessa.
       Välip. -merkinnän sisältävä lähdemerkintä tarkoittaa kuolleeksijulistamisoikeudenkäynnin välipäätöstä.
     </p>
@@ -709,7 +716,7 @@ export default {
         <td>Hämeenlinnan maakunta-arkisto</td>
       </tr>
       <tr>
-        <td>HS.</td>
+        <td>HS</td>
         <td>Matti Lähteenmäki, Hämeenkyrön suojeluskunta (1938)</td>
       </tr>
       <tr>
@@ -843,8 +850,8 @@ export default {
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmasammon datassa on ammatit yhdistetty
       <a href = "https://seco.cs.aalto.fi/ontologies/ammo/" target='_blank' rel='noopener noreferrer'>AMMO-ontologiaan</a>.
-      Tähän ontologiaan sisältyt likkejä useisiin eri ammattiluokitteluihin. Sotasurmat-Näkymässä
-      on mahdollisuus suodattaa tietoja ammattien suhteen sosiaalista asemaa kuvaavan HISCLASS7-luokittelun,
+      Tähän ontologiaan sisältyy linkkejä useisiin eri ammattiluokituksiin. Sotasurmat-Näkymässä
+      on mahdollisuus suodattaa tietoja ammattien suhteen sosiaalista asemaa kuvaavan HISCLASS7-luokittelun
       sekä Ammattiluokitus 1980 käsitteiden avulla.
     </p>
   `,
