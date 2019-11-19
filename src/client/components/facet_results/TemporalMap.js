@@ -139,10 +139,10 @@ class TemporalMap extends Component {
           {intl.get('perspectives.battles.temporalMap.municipality')}: {hoveredObject.greaterPlace}
         </Typography>
         <Typography>
-          {intl.get('perspectives.battles.properties.startDate.label')}: {hoveredObject.startDate}
+          {intl.get('perspectives.battles.properties.startDate.label')}: {moment(hoveredObject.startDate).format('DD.MM.YYYY')}
         </Typography>
         <Typography>
-          {intl.get('perspectives.battles.properties.endDate.label')}: {hoveredObject.endDate}
+          {intl.get('perspectives.battles.properties.endDate.label')}: {moment(hoveredObject.endDate).format('DD.MM.YYYY')}
         </Typography>
         {has(hoveredObject, 'units') &&
           <Typography>

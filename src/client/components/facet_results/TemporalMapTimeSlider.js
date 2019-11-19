@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Slider from '@material-ui/core/Slider';
 import { SLIDER_DURATION } from '../../configs/config';
 import {BaseControl} from 'react-map-gl';
+import moment from 'moment';
 // import iconImg from './icon.png';
 // import BarChart from './TemporalMapBarChart';
 
@@ -186,7 +187,8 @@ class TemporalMapTimeSlider extends BaseControl {
   };
 
   _sliderValueText = value => {
-    return this.props.dates[value];
+    const isoDate = this.props.dates[value];
+    return moment(isoDate).format('DD.MM.YYYY');
   }
 
   _render() {
