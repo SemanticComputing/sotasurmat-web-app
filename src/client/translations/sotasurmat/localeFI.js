@@ -115,7 +115,8 @@ export default {
           </li>
           <li>
             <strong>KARTTA</strong> esittää haussa rajattujen henkilöiden kuolinkuntia kartalla.
-            Huomaa, että kunnat on yhdistetty koordinatteihin koneellisesti, joten kartassa voi olla merkittäviä virheitä ja puutteita.
+            Huomaa, että kunnat on yhdistetty koordinaatteihin koneellisesti paikan nimen perustteella.
+            Kartassa voi olla virheitä ja puutteita koska paikkatermit voivat olla moniselitteisiä. Puuttuvat kunnat pyritään täydentämään myöhemmin.
           </li>
           <li>
             <strong>CSV</strong> sivulla voit ladata haussa rajattujen henkilöiden tiedot omalle koneellesi CSV-taulukkona.
@@ -367,13 +368,15 @@ export default {
           Tiedonhaku
         </h2>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Tietokannan hakutoiminnot pohjautuvat <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'>fasettihakuun</a>.
+          Tietokannan hakutoiminnot pohjautuvat sotasurmien ja taisteluiden kuvailuun ja suodattamiseen
+          toisistaan riippumattomien luokitusten eli fasettien avulla (esimerkiksi henkilön ammatti, kuolinkunta, sukupuoli jne.)
           Oletusarvoisesti jokainen hakuominaisuus näyttää kaikki tulokset omasta luokastaan.
           Toisin sanottuna alkuasetelmassa hakutulosten listaus näyttää koko tietokannan sisällön.
           Tätä hakutulosten joukkoa voi rajata pienemmäksi tekemällä valintoja vasemman reunan suodattimia ja muita hakuominaisuuksia käyttämällä.
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        Suodattimen kaikki mahdolliset arvot ovat esillä listana tai, jos mahdollista, hierarkisena puurakenteena. Kunkin arvon perässä esitetään se lukumäärä kuinka monta kertaa arvo esiintyy koko aineistossa (tai jo muiden suodattimien pohjalta tehdyssä rajauksessa).
+        Suodattimen kaikki mahdolliset arvot ovat esillä listana tai, jos mahdollista, hierarkkisena puurakenteena.
+        Kunkin arvon perässä esitetään se lukumäärä kuinka monta kertaa arvo esiintyy koko aineistossa (tai jo muiden suodattimien pohjalta tehdyssä rajauksessa).
         Suodattimesta on mahdollista valita useita arvoja samaan aikaan.
         Suodattimen valintoja on mahdollista järjestää joko arvojen määrän tai aakkosjärjestyksen mukaan.
         Valinnan poistaminen onnistuu klikkaamalla sitä uudestaan listalta.
@@ -381,27 +384,27 @@ export default {
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Fasettihaun tehokkuus tulee esiin useampia suodattimia käytettäessä.
-          Valittaessa useampia suodattimia samanaikaisesti, hakutulos rajautuu niin, että tuloksina näytetään vain ne henkilöt, jotka täyttävät kaikki valitut ehdot.
+          Valittaessa useampia suodattimia samanaikaisesti hakutulos rajautuu niin, että tuloksina näytetään vain ne henkilöt, jotka täyttävät kaikki valitut ehdot.
           Voit tehdä myös saman suodattimen sisällä useita valintoja, jolloin tulokseksi tulevat sen suodattimen osalta kaikki henkilöt, jotka täyttävät jonkun tehdyn valinnan.
-          Esimerkiksi kun valitset “kirjoillaolokunta” suodattimesta “Helsinki” ja “Tampere”,
-           sekä valitset “Osapuoli” suodattimesta “Punainen” saat tulosjoukoksi kaikki henkilöt joiden osapuoleksi on määritetty punainen JA kirjoillaolokunnaksi joko Helsinki TAI Tampere.
+          Esimerkiksi kun valitset suodattimesta “Kirjoillaolokunta” vaihtoehdot “Helsinki” ja “Tampere”,
+           sekä valitset “Osapuoli” suodattimesta “Punainen” saat tulosjoukoksi kaikki henkilöt, joiden osapuoleksi on määritetty "Punainen" JA kirjoillaolokunnaksi joko "Helsinki" TAI "Tampere".
         </p>
         <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
           Sotasurmat
         </h2>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Sotasurmat-näkymä sisältää viisi erilaista alinäkymää joilla suodattimien rajaamaa tulosjoukkoa voi tarkastella: Taulukko, Piirakkakaavio, Viivakaavio, Kartta sekä CSV-vienti.
-          Kaavioita ei tule pitää mitenkään virallisina, vaan niitä kannattaa käyttää suuntaa-antavina visualisointeina.
+          Sotasurmat-näkymä sisältää viisi erilaista alinäkymää, joilla suodattimien rajaamaa tulosjoukkoa voi tarkastella: Taulukko, Piirakkakaavio, Viivakaavio, Kartta sekä CSV-vienti.
+          Kaaviot on tarkoitettu käytettäväksi suuntaa-antavina visualisointeina suodattamilla valitusta data-joukosta.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Taulukko
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Taulukko on oletusnäkymä, joka näyttää taulukkona suodattamien määräämän tulosjoukon mukaisia henkilöitä sekä häiden keskeisiä ominaisuuksiaan.
-          Taulukko näyttää sivulla vain määrätyn määrän henkilöitä. Taulukkos voi selata yläosassa olevilla nuolipainikkeilla.
+          Taulukko on oletusnäkymä, joka näyttää taulukkona suodattamien määräämän tulosjoukon mukaisia henkilöitä sekä heidän keskeiset tietonsa.
+          Taulukkoa voi selata yläosassa olevilla nuolipainikkeilla.
           Henkilöt voi järjestää haluamansa ominaisuuden mukaan painamalla taulukon yläosassa olevaa ominaisuuden nimeä. Oletuksena henkilöt järjestetään sukunimen perusteella.
-          Taulukko näyttää henkilön tiedot siinä muodossa kuin niitä käytetään haussa. Klikkaamalla henkilön nimeä pääset henkilön omalle sivulle.
-          Henkilön omalla sivulla on paljon enemmän tietoa henkilöstä, sekä mahdollisia vaihtoehtoisia tietoja joita on saatu eri lähteistä.
+          Klikkaamalla henkilön nimeä pääset henkilön omalle sivulle.
+          Henkilön omalla sivulla on paljon enemmän tietoa henkilöstä, sekä mahdollisia vaihtoehtoisia tietoja, joita on saatu eri lähteistä.
           Haku käyttää näistä tiedoista vain ensisijaiseksi määriteltyä.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
@@ -416,25 +419,27 @@ export default {
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Viivakaavio-alinäkymässä voit visualisoida rajattujen henkilöiden ikää, syntymävuotta tai kuolinpäivää viivakaavion avulla.
           Iälle ja syntymävuodelle lasketaan myös keskiarvo ja mediaani vuoden tarkkuudella.
-          Huomaa, että kuolinpäivä kaavio näyttää tietoa vain henkilöistä, joille on tietokannassa merkitty tarkka kuolinpäivä.
+          Huomaa, että kuolinpäivä-kaavio näyttää tietoa vain henkilöistä, joille on tietokannassa merkitty tarkka kuolinpäivä.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Kartta
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Tässä alinäkymässä voit etsiä kuolleita klusteroidun kartan avulla. Kartta näyttää henkilöitä kuolinkunnan perusteella.
-          Huomaa, että kunnat on yhdistetty koordinaatteihin koneellisesti, joten koordinaateissa on virheitä ja useita kuntia puuttuu varsinkin ulkomailta.
+          Huomaa, että kunnat on yhdistetty koordinaatteihin koneellisesti paikkatermin perusteella.
+          Paikkatermit voivat olla moniselitteisiä, joten koordinaateissa voi olla virheitä ja kuntia puuttuu varsinkin ulkomailta.
+          Puuttuvat koordinaatit pyritään täydentämään dataan manuaalisesti.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           CSV
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        Henkilöiden tärkeimmät tiedot on mahdollista ladata CSV-muodossa. Tiedosto ei sisällä vaihtoehtoisia tietoja, lähteitä eikä lisätietoja.
+        Henkilöiden tärkeimmät tiedot on mahdollista ladata omalle koneelle CSV-muodossa. Tiedosto ei sisällä vaihtoehtoisia tietoja, lähteitä eikä lisätietoja.
         CSV-tiedosto on mahdollista avata taulukkolaskentaohjelmassa, mutta merkistökoodaus ja erotin on määritettävä oikein.
-        Microsoft Excelia käytettäessä se ei välttämättä ole ilmeistä. Hyödylliset ohjeet merkistökoodauksen muuntamiseksi löydät
+         Hyödylliset ohjeet merkistökoodauksen muuntamiseksi esimerkiksi Microsoft Exceliä varten löydät
         <a href="https://support.office.com/fi-fi/article/ohjattu-tekstin-tuominen-c5b02af6-fda1-4440-899f-f78bafe41857#ID0EAAFAAA=Office_2010_-_Office_2016" target='_blank' rel='noopener noreferrer'>täältä</a>.
-        Seuraa ohjeita ja valitse tiedoston alkuperäksi 65001: Unicode (UTF-8).
-        Seuraavassa kohdassa valitse erottimeksi pilkku, ja paina valmis-painiketta.
+        Seuraa ohjeita ja valitse tiedoston merkistöksi 65001: Unicode (UTF-8).
+        Seuraavassa kohdassa valitse erottimeksi pilkku ja paina valmis-painiketta.
         Jos käytät esimerkiksi LibreOfficen taulukkolaskentaohjelmaa, ohjelman pitäisi kysyä merkistökoodausta ja erotinta heti tiedostoa avattaessa.
         Valitse myös siinä UTF-8 koodaus ja erottimeksi pilkku.
         </p>
@@ -447,14 +452,14 @@ export default {
         Kortiston tiedot on muunnettu taulukkomuotoon ja taisteluille on haettu koordinaatit kartalla esittämistä varten.
 
         Taisteluiden nimet ovat selkeästi valkoisesta näkökulmasta annettuja.
-        Näkymässä nimet näytetään siinä muodossa kun ne kortistossa on esitetty, ei kannanottona tapahtumiin.
+        Näkymässä nimet näytetään siinä muodossa kuin ne kortistossa on esitetty, ei kannanottona tapahtumiin.
         Näkymän tarkoituksena on luoda helppo visuaalinen keino tutustua sisällissodan taisteluiden kulkuun.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Taulukko
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Taulukon avulla voit selata taisteluden tietoja, ja järjestää niitä esimerkiksi alkamispäivän mukaan.
+          Taulukon avulla voit selata taisteluiden tietoja, ja järjestää niitä esimerkiksi alkamispäivän mukaan.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Kartta
@@ -491,7 +496,7 @@ export default {
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmasampo 1914-22 on suomeen liittyviin sotatapahtumiin vuosina 1914-22 keskittynyt portaali.
       Sivuston keskeisin aineisto on Kansallisarkiston Suomen sotasurmat 1914-22 tietokanta. Projektista on tarjolla lisää tietoa
-      <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
+      <a href="https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/" target='_blank' rel='noopener noreferrer'> projektin omilla sivuilla</a>.
       Voit halutessasi myös tutustua Sotasurmatietokannan
       <a href="http://vesta.narc.fi/cgi-bin/db2www/sotasurmaetusivu/main" target='_blank' rel='noopener noreferrer'> vanhaan sivustoon</a>.
     </p>
@@ -504,19 +509,17 @@ export default {
       Nykyistä tietokantaa on päivitetty lokakuussa 2018 aloitetussa nk. Sotasurmat2 -hankkeessa.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Tietokanta ei ole tarkka laskelma vuosien 1914-1922 sotasurmatapauksista.
+      Tietokanta sisältää tällä hetkellä tietoa yli 40 000 henkilöstä (tietokantaa päivitetään näillä näkymin vuoden 2020 loppuun asti).
+      Tietokanta ei ole tarkka laskelma vuosien 1914-1922 sotasurmatapauksista. Osa tiedoista on epävarmoja.
       Tietokannan verkkokäyttöliittymään kuuluvilla hakusuodattimilla ja visualisointityökaluilla käyttäjän on mahdollista helposti tehdä itse rajauksia ja saada haluamiaan tietoja kuolleiden määristä.
       Koska lähdeaineisto sotavuosilta on hyvin vaihtelevaa, on hakusuodattimiin sisällytetty nyt myös mahdollisuus määritellä sotasurmatapauksen todennäköisyyttä.
       Verkkokäyttöliittymään on myös lisätty SSSP:n aikanaan keräämä laaja lisätietoaineisto.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Tietokanta sisältää tällä hetkellä tietoa yli 40 000 henkilöstä (tietokantaa päivitetään näillä näkymin vuoden 2020 loppuun asti).
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Verkkosivuston palaute-painikkeen kautta on mahdollista lähettää lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Läheistä
+      Lähteistä
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Sotasurmatietokannan tietojen perään on merkitty kunkin tiedon osalta käytetty lähde.
@@ -582,7 +585,7 @@ export default {
       Tauno Tukkisen aineisto (TT)
     </h3>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Sotasurmat2 -projektissa tietokantaan on lisätty Tauno Tukkisen vuosia kestäneiden tutkimusten tulokset. Tukkisen aineisto hyödyntää todella laajaa lähdepohjaa, mikä on osittain päällekkäinen ennestään käytettyjen lähteiden kanssa. Käytetyt lyhenteet eroavat myös hieman entisistä merkinnöistä. Tukkisen aineiston henkilötiedot on tarkistettu seurakuntien aineistoista.
+      Sotasurmat2 -projektissa tietokantaan on lisätty Tauno Tukkisen vuosia kestäneiden tutkimusten tulokset. Tukkisen aineisto hyödyntää erittäin laajaa lähdepohjaa, mikä on osittain päällekkäinen ennestään käytettyjen lähteiden kanssa. Käytetyt lyhenteet eroavat myös hieman entisistä merkinnöistä. Tukkisen aineiston henkilötiedot on tarkistettu seurakuntien aineistoista.
       Mikäli tietokannassa lähdemerkintänä on TT, on kyseisen tapauksen tarkemmat lähteet eritelty omalle rivilleen henkilösivun alareunaan.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -590,7 +593,7 @@ export default {
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Kuolleeksijulistamisesta ei ole päivämäärä enempää tietoa.
-      Kuolleeksijulistaminen on tapahtunut kirjoillaolokunnan mukaisessa tai sen läheisessa raastuvanoikeudessa.
+      Kuolleeksijulistaminen on tapahtunut kirjoillaolokunnan mukaisessa tai sen läheisessä raastuvanoikeudessa.
       Välip. -merkinnän sisältävä lähdemerkintä tarkoittaa kuolleeksijulistamisoikeudenkäynnin välipäätöstä.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
