@@ -105,24 +105,6 @@ export const INITIAL_STATE = {
       timespanFilter: null,
       type: 'date'
     },
-    age: {
-      id: 'age',
-      label: 'Ikä',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'three',
-      type: 'integer',
-      filterType: 'integerFilter',
-      integerFilter: null,
-    },
     party: {
       id: 'party',
       label: 'Osapuoli',
@@ -338,6 +320,24 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
       priority: 8
+    },
+    age: {
+      id: 'age',
+      label: 'Ikä',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'three',
+      type: 'integer',
+      filterType: 'integerFilter',
+      integerFilter: null,
     },
     numberOfChildren: {
       id: 'numberOfChildren',
