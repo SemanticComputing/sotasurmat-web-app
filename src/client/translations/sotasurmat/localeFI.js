@@ -108,7 +108,7 @@ export default {
             <strong>TAULUKKO</STRONG> tarjoaa mahdollisuuden selata haun osumajoukon henkilöiden tietoja ja järjestää niitä eri ominaisuuksien mukaan.
           </li>
           <li>
-            <strong>PIIRAKKAKAAVIO</STRONG> Visualisoi valitun ominaisuuden suhteellisia määriä.
+            <strong>PIIRAKKAKAAVIO</STRONG> visualisoi hakutuloksen suhteelliset lukumäärät valitun luokituksen suhteen.
           </li>
           <li>
             <strong>VIIVAKAAVIO</strong> visualisoi rajattujen henkilöiden ikää, syntymävuotta tai kuolinpäivää viivakaavion avulla.
@@ -499,7 +499,7 @@ export default {
           Piirakkakaavio
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Visualisoi valitun ominaisuuden suhteellisia määriä piirakkakaaviona.
+          Piirakkakaavio  visualisoi hakutuloksen suhteelliset lukumäärät valitun luokituksen suhteen.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
           Viivakaavio
@@ -553,8 +553,8 @@ export default {
           Kartta
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          klusteroidun kartan avulla voit tarkastella taisteluita kartalla. Kartta kerää lähellä toisiaan olevat paikat yhteen.
-          Klikkaamalla tällaista “klusteria” tai zoomaamalla tarpeeksi lähelle, saat näkyviin yksittäiset taistelupaikat.
+          Klusteroidun kartan avulla voit tarkastella taisteluita kartalla. Kartta kerää lähellä toisiaan olevat paikat yhteen.
+          Klikkaamalla tällaista “klusteria” tai zoomaamalla tarpeeksi lähelle saat näkyviin yksittäiset taistelupaikat.
           Taistelupaikkojen koordinaatit on tallennettu vain kahden desimaalin tarkkuudella, joten ne eivät välttämättä ole tismalleen oikeassa paikassa.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
@@ -562,7 +562,7 @@ export default {
         </h3>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Animaatio visualisoi taiteluita kartalla. Kun taistelu alkaa se vilahtaa punaisena pisteenä ja jää kartalle harmaana.
-          Animaatio alkaa oletuksena vuoden 1918 alusta, mutta kortisto sisältää myös useita vuoden 1917 puolella tahtuneita väkivaltaisuuksia.
+          Animaatio alkaa oletuksena vuoden 1918 alusta, mutta kortisto sisältää myös useita vuoden 1917 puolella tapahtuneita väkivaltaisuuksia.
         </p>
 
     `,
