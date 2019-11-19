@@ -848,6 +848,23 @@ class SurmatutHomePageTable extends React.Component {
               sourceExternalLink={false}
             />
           </TableRow>
+          <TableRow key='uri'>
+            <TableCell className={classes.labelCell}>Tunniste</TableCell>
+            <ResultTableCell
+              columnId='uri'
+              data={data.uri}
+              valueType='object'
+              makeLink={true}
+              externalLink={true}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+              showSource={true}
+              sourceExternalLink={false}
+            />
+          </TableRow>
         </TableBody>
       </Table>
     );

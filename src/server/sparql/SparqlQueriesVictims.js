@@ -83,6 +83,9 @@ export const personProperties = `
         ?id skos:prefLabel ?prefLabel__id .
         BIND (?prefLabel__id as ?prefLabel__prefLabel)
         BIND (?id as ?prefLabel__dataProviderUrl)
+        BIND (?id AS ?uri__id)
+        BIND (?id AS ?uri__prefLabel)
+        BIND (?id AS ?uri__dataProviderUrl)
         }
         UNION
         {
