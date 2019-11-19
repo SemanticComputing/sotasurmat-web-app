@@ -86,7 +86,7 @@ class FacetBar extends React.Component {
     const { classes, facetClass } = this.props;
     const { facetUpdateID, updatedFacet, updatedFilter, facets } = this.props.facetData;
     const label = intl.get(`perspectives.${facetClass}.properties.${facetID}.label`);
-    const description = intl.get(`perspectives.${facetClass}.properties.${facetID}.description`);
+    const description = intl.get(`perspectives.${facetClass}.properties.${facetID}.facetDescription`);
     const facet = facets[facetID];
     let facetComponent = null;
     let isActive = this.state.activeFacets.has(facetID);

@@ -142,7 +142,8 @@ export default {
         },
         prefLabel: {
           label: 'Nimi',
-          description: `
+          description: 'Henkilön nimi',
+          facetDescription: `
           Etsi henkilön nimellä. Välilyönnin merkitys on "TAI", joten haku matti meikäläinen hakee kaikki joiden nimessä esiintyy matti tai meikäläinen.
           Rajataksesi haun tarkemmin voit käyttää lainausmerkkejä. Nimet on tallennettu sukunimi ensin, joten Matti Meikäläisen löytäisit haulla
           "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla.
@@ -154,43 +155,51 @@ export default {
         },
         firstName: {
           label: 'Etunimi',
-          description: 'Henkilön etunimi'
+          description: 'Henkilön etunimi',
+          facetDescription: 'Henkilön etunimi'
         },
         party: {
           label: 'Osapuoli',
           description:`
             Henkilön osapuoli sisällissodassa.
-          `
+          `,
+          facetDescription: 'Henkilön osapuoli sisällissodassa.',
         },
         registeredMunicipality: {
           label: 'Kirjoillaolokunta',
+          facetDescription: 'Kirjoillaolokunta',
           description: 'Kijoillaolokunta.'
         },
         deathMunicipality: {
+          facetDescription: 'Kuolinkunta',
           label: 'Kuolinkunta',
-          description: 'Kuolinkunta.'
+          description: 'Kuolinkunta'
         },
         occupation: {
           label: 'Ammatti',
+          facetDescription: 'Ammatti',
           description: `
             Henkilön ammatti aineistossa annetussa muodossa.
           `
         },
         birthDate: {
           label: 'Syntymäpäivä',
+          facetDescription: 'Syntymäpäivä',
           description: `
             Syntymäpäivä (vanhan projektin laskema)
           `
         },
         deathDate: {
           label: 'Kuolinpäivä',
+          facetDescription: 'Kuolinpäivä',
           description: `
             Kuolinpäivä (vanhanprojektin laskema.)
           `
         },
         birthTimespan: {
           label: 'Syntymäpäivä',
-          description: `
+          description: 'Syntymäpäivä',
+          facetDescription: `
             Rajaa henkilöitä syntymäpäivän perusteella. Voit määrittä aikavälin alku- ja loppupäivän.
             Huomaa, että osalla henkilöistä puuttuu syntämäpäivä kokonaan ja osalla se on osin epäselvä.
             Epäselvissä tapauksissa syntymäaika on tallennettu aikavälinä. Henkilö näytetään osumissa,
@@ -199,7 +208,8 @@ export default {
         },
         deathTimespan: {
           label: 'Kuolinpäivä',
-          description: `
+          description: 'Kuolinpäivä',
+          facetDescription: `
             Rajaa henkilöitä kuolinpäivän perusteella. Voit määrittä aikavälin alku- ja loppupäivän.
             Huomaa, että osalla henkilöistä puuttuu kuolinpäivä kokonaan ja osalla se on osin epäselvä.
             Epäselvissä tapauksissa kuolinaika on tallennettu aikavälinä. Henkilö näytetään osumissa,
@@ -208,12 +218,19 @@ export default {
         },
         age: {
           label: 'Ikä',
+          facetDescription: `Henkilön ikä. Voit määrittää janalla halutun ikävälin.
+          Mikä tahansa valinta suodattaa pois kaikki henkilöt joille ei ole määritelty ikää.,`,
           description: `
             Henkilön ikä
           `
         },
         numberOfChildren: {
           label: 'Lasten lukumäärä',
+          facetDescription: `
+          Lasten lukumäärä. Voit määrittää janalla lukuvälin.
+          Huomaa, että useimmille henkilöille ei ole määritelty lasten lukumäärää,
+          ja mikä tahansa valinta suodattaa pois kaikki sellaiset henkilöt.,
+          `,
           description: `
             Lasten lukumäärä
           `
@@ -222,76 +239,115 @@ export default {
           label: 'AMMO ammatti',
           description: `
             AMMO ontologian mukainen ammatti
-          `
+          `,
+          facetDescription: `
+            AMMO ontologian mukainen ammatti
+          `,
         },
         hisclass7: {
           label: 'Ammatti (HISCLASS7)',
           description: `
             HISCLASS7 luokittelun mukainen ammatti
-          `
+          `,
+          facetDescription: `
+            HISCLASS7 luokittelun mukainen ammatti
+          `,
         },
         coo1980: {
           label: 'Ammatti (coo1980)',
+          facetDescription: `
+            Ammattiluokitus 1980 luokittelun mukainen ammatti
+          `,
           description: `
             Ammattiluokitus 1980 luokittelun mukainen ammatti
           `
         },
         hisco: {
           label: 'HISCO',
+          facetDescription: `
+            HISCO luokittelun mukainen ammatti
+          `,
           description: `
             HISCO luokittelun mukainen ammatti
           `
         },
         causeOfDeath: {
           label: 'Kuolintapa',
+          facetDescription: `
+            Kuolintapa aineistossa käytetyssä muodossa
+          `,
           description: `
             Kuolintapa aineistossa käytetyssä muodossa
           `
         },
         registeredCountry: {
           label: 'Kirjoillaolomaa',
+          facetDescription: `
+            Kirjoillaolomaa
+          `,
           description: `
             Kirjoillaolomaa
           `
         },
         registeredProvince: {
           label: 'Kirjoillaololääni',
+          facetDescription: `
+            Kirjoillaololääni
+          `,
           description: `
             Kirjoillaololääni
           `
         },
         deathCountry: {
           label: 'Kuolinmaa',
+          facetDescription: `
+            Kuolinmaa
+          `,
           description: `
             Kuolinmaa
           `
         },
         deathProvince: {
           label: 'Kuolinlääni',
+          facetDescription: `
+            Kuolinlääni
+          `,
           description: `
             Kuolinlääni
           `
         },
         gender: {
           label: 'Sukupuoli',
+          facetDescription: `
+            Sukupuoli
+          `,
           description: `
             Sukupuoli
           `
         },
         maritalStatus: {
           label: 'Siviilisääty',
+          facetDescription: `
+          Siviilisääty
+          `,
           description: `
             Marital status
           `
         },
         militaryOrganization: {
           label: 'Sotilasjärjestö',
+          facetDescription: `
+          Sotilasjärjesö johon kuului
+          `,
           description: `
             Sotilasjärjesö johon kuului
           `
         },
         deathLikelihood: {
           label: 'Surman todennäköisyys',
+          facetDescription: `
+            Todennäköisyys sille, että henkilö todellisuudessa kuoli tiedoston kuvaamalla tavalla
+          `,
           description: `
             Todennäköisyys sille, että henkilö todellisuudessa kuoli tiedoston kuvaamalla tavalla
           `
@@ -331,40 +387,62 @@ export default {
       properties: {
         uri: {
           label: 'URI',
+          facetDescription: `
+          uri
+          `,
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
           label: 'Taistelun nimi',
+          facetDescription: `
+          Taistelun nimi
+          `,
           description: `
-            The name of the place.
+            Taistelun nimi
           `
         },
         startDate: {
           label: 'Alkupäivä',
+          facetDescription: `
+          Alkupäivä
+          `,
+
           description:  `
             Alkupäivä
           `
         },
         endDate: {
           label: 'Loppupäivä',
+          facetDescription: `
+          Loppupäivä
+          `,
           description: `
             Loppupäivä
           `
         },
         greaterPlace: {
           label: 'Paikka',
+          facetDescription: `
+          Laajempi paikka
+          `,
           description: `
             Laajempi paikka
           `
         },
         exactPlace: {
           label: 'Tarkempi paikka',
+          facetDescription: `
+          Tarkempi paikka
+          `,
           description: `
             Tarkempi paikka
           `
         },
         units: {
           label: 'Yksiköitä',
+          facetDescription: `
+          Taisteluun osallistuneita yksiköitä
+          `,
           description: `Taisteluun osallistuneita yksiköitä`
         }
       }
