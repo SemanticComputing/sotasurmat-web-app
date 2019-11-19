@@ -21,10 +21,4 @@ export const prefixes = `
   PREFIX ammo: <http://ldf.fi/ammo/>
   PREFIX siso-s: <http://ldf.fi/siso/schema/>
 
-
-
-
-
-
-
   `;

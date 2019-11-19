@@ -142,7 +142,11 @@ export default {
         },
         prefLabel: {
           label: 'Nimi',
-          description: 'Henkilön koko nimi.'
+          description: `
+          Etsi henkilön nimellä. Välilyönnin merkitys on "TAI", joten haku matti meikäläinen hakee kaikki joiden nimessä esiintyy matti tai meikäläinen.
+          Rajataksesi haun tarkemmin voit käyttää lainausmerkkejä. Nimet on tallennettu sukunimi ensin, joten Matti Meikäläisen löytäisit haulla
+          "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla.
+          `
         },
         familyName: {
           label: 'Sukunimi',
@@ -187,13 +191,19 @@ export default {
         birthTimespan: {
           label: 'Syntymäpäivä',
           description: `
-            Syntymäpäivä.
+            Rajaa henkilöitä syntymäpäivän perusteella. Voit määrittä aikavälin alku- ja loppupäivän.
+            Huomaa, että osalla henkilöistä puuttuu syntämäpäivä kokonaan ja osalla se on osin epäselvä.
+            Epäselvissä tapauksissa syntymäaika on tallennettu aikavälinä. Henkilö näytetään osumissa,
+            jos arvioituun aikaväliin osuu yksikin yhteinen päivä valitsemasi aikavälin kanssa.
           `
         },
         deathTimespan: {
           label: 'Kuolinpäivä',
           description: `
-            Kuolinpäivä.
+            Rajaa henkilöitä kuolinpäivän perusteella. Voit määrittä aikavälin alku- ja loppupäivän.
+            Huomaa, että osalla henkilöistä puuttuu kuolinpäivä kokonaan ja osalla se on osin epäselvä.
+            Epäselvissä tapauksissa kuolinaika on tallennettu aikavälinä. Henkilö näytetään osumissa,
+            jos arvioituun aikaväliin osuu yksikin yhteinen päivä valitsemasi aikavälin kanssa.
           `
         },
         age: {
