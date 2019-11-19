@@ -602,15 +602,17 @@ export default {
      Koska lähdeaineisto sotavuosilta on hyvin vaihtelevaa, on hakusuodattimiin sisällytetty nyt myös mahdollisuus määritellä sotasurmatapauksen todennäköisyyttä.
 </p>
  <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-Jokaiselle surmansa saaneelle on luotu oma “kotisivu”, joka kokoaa yhteen häneen liittyvät tiedot sekä tarjoaa eräissä tapauksissa lisätietolinkkejä verkossa oleviin muihin palveluihin, kuten Wikipediaan, Helsingin yliopiston <a href=”https://ylioppilasmatrikkeli.helsinki.fi/1853-1899/”>Ylioppilasmatrikkeliin 1853-1899</a>,
-<a href=”http://www.biografiasampo.fi”>Biografiasampoon</a> ja <a href=”https://www.norssit.fi/semweb/”>Vanhat Norssit </a> semanttisessa webissä palveluun.
+Jokaiselle surmansa saaneelle on luotu oma “kotisivu”,
+joka kokoaa yhteen häneen liittyvät tiedot sekä tarjoaa eräissä tapauksissa lisätietolinkkejä verkossa oleviin muihin palveluihin, kuten Wikipediaan,
+Helsingin yliopiston <a href="https://ylioppilasmatrikkeli.helsinki.fi/1853-1899/" target='_blank' rel='noopener noreferrer'>Ylioppilasmatrikkeliin 1853-1899</a>,
+<a href="http://www.biografiasampo.fi" target='_blank' rel='noopener noreferrer'>Biografiasampoon</a> ja <a href="https://www.norssit.fi/semweb/" target='_blank' rel='noopener noreferrer'>Vanhat Norssit </a> semanttisessa webissä palveluun.
       Verkkokäyttöliittymään on myös lisätty SSSP:n aikanaan keräämä laaja lisätietoaineisto.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Verkkosivuston palaute-painikkeen kautta on mahdollista lähettää kommentteja ja lisätietoa Kansallisarkistolle sotasurmatapauksiin liittyen.
     </p>
 <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
- Data on julkaistu avoimesti <a href=”http://www.ldf.fi/dataset/siso”>Linked Data Finland -alustalla</a>, jossa sitä voi hyödyntää mm. SPARQL-rajapinnan kautta sekä tutkimuksessa että uusien sovellusten kehittämiseen.
+ Data on julkaistu avoimesti <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -alustalla</a>, jossa sitä voi hyödyntää mm. SPARQL-rajapinnan kautta sekä tutkimuksessa että uusien sovellusten kehittämiseen.
 </p>
 
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
