@@ -240,7 +240,7 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
       })),
       catchError(error => of({
         type: FETCH_FACET_FAILED,
-        resultClass: action.resultClass,
+        resultClass: action.facetClass,
         id: action.id,
         error: error,
         message: {
@@ -276,8 +276,8 @@ const fetchFacetConstrainSelfEpic = (action$, state$) => action$.pipe(
         sparqlQuery: res.sparqlQuery
       })),
       catchError(error => of({
-        type: FETCH_FACET_CONSTRAIN_SELF_FAILED,
-        resultClass: action.resultClass,
+        type: FETCH_FACET_FAILED,
+        resultClass: action.facetClass,
         id: action.id,
         error: error,
         message: {
