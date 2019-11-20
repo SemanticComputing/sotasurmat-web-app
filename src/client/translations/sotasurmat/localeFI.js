@@ -52,6 +52,9 @@ export default {
       fromLabel: 'Alku',
       toLabel: 'Loppu'
     },
+    textFacet: {
+      inputLabel: 'Etsi nimellä'
+    }
   },
   mainPageImageLicence: `Etusivun kuvat: Vapriikin kuva-arkisto
   <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' rel='noopener noreferrer'>CC BY</a>.`,

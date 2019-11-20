@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import intl from 'react-intl-universal';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Input from '@material-ui/core/Input';
@@ -69,7 +70,7 @@ class TextFacet extends React.Component {
     if (textResultsFetching) {
       searchButton = (
         <IconButton
-          aria-label="Search places"
+          aria-label={intl.get('facets.textFacet.inputLabel')}
         >
           <CircularProgress size={24} />
         </IconButton>
@@ -77,7 +78,7 @@ class TextFacet extends React.Component {
     } else {
       searchButton = (
         <IconButton
-          aria-label="Search"
+          aria-label={intl.get('facets.textFacet.inputLabel')}
           onClick={this.handleClick}
           onMouseDown={this.handleMouseDown}
         >
@@ -89,7 +90,7 @@ class TextFacet extends React.Component {
     return (
       <div className={classes.root}>
         <FormControl className={classes.textSearch}>
-          <InputLabel htmlFor="adornment-search">Search</InputLabel>
+          <InputLabel htmlFor="adornment-search">{intl.get('facets.textFacet.inputLabel')}</InputLabel>
           <Input
             id="adornment-search"
             type='text'
