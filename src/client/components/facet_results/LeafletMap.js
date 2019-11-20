@@ -398,8 +398,8 @@ class LeafletMap extends React.Component {
         popUpTemplate += this.createInstanceListing(result.related);
       }
       if (this.props.resultClass === 'battlePlaces') {
-        const startDate = moment(result.startDate.prefLabel);
-        const endDate = moment(result.endDate.prefLabel);
+        const startDate = moment(result.startDate);
+        const endDate = moment(result.endDate);
         if (has(result, 'greaterPlace.prefLabel')) {
           popUpTemplate += `<p>Kunta: ${result.greaterPlace.prefLabel}</p>`;
         }
