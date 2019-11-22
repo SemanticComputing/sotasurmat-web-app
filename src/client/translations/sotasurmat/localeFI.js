@@ -105,7 +105,7 @@ export default {
         Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla.
       `,
       facetResultsType: 'henkilö',
-      shortDescription: 'Tietoa vuosina 1914-1922 sotaoloissa surmansa saaneista.',
+      shortDescription: 'Suomen sotasurmat 1914-1922 tietokanta',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla. Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista.
@@ -153,7 +153,10 @@ export default {
           facetDescription: `
           Etsi henkilön nimellä. Välilyönnin merkitys on "TAI", joten haku matti meikäläinen hakee kaikki joiden nimessä esiintyy matti tai meikäläinen.
           Rajataksesi haun tarkemmin voit käyttää lainausmerkkejä. Nimet on tallennettu sukunimi ensin, joten Matti Meikäläisen löytäisit haulla
-          "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla.
+          "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla, mutta muuten haku on oletuksena tarkka kirjaimista.
+          Esimerkiksi e on haun kannalta eri kirjain kuin é. Haussa voit käyttää jokerimerkkejä * ja ?.
+          Kysymysmerkki ? korvaa yksittäisen kirjaimen millä tahansa kirjaimella, esim. meik?lain?n.
+          Asteriksi * sallii sanan loppuosan olevan mitä tahansa, esim. meikäläi*.
           `
         },
         familyName: {
@@ -353,10 +356,10 @@ export default {
     battles: {
       label: 'Taistelut',
       shortInfo: `
-        Näkymä sisällissodan taisteluihin.
+        Näkymä sisällissodan taisteluihin
       `,
       facetResultsType: 'taistelu',
-      shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista.',
+      shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Taistelut-näkymä perustuu Kansallisarkistossa säilytettävään entisen sota-arkiston työntekijöiden laatimaan
@@ -475,11 +478,22 @@ export default {
           Esimerkiksi kun valitset suodattimesta “Kirjoillaolokunta” vaihtoehdot “Helsinki” ja “Tampere”
            sekä valitset “Osapuoli” suodattimesta “Punainen”, saat tulosjoukoksi kaikki henkilöt, joiden osapuoleksi on määritetty "Punainen" JA kirjoillaolokunnaksi joko "Helsinki" TAI "Tampere".
         </p>
+        <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
+          Tekstihaku
+        </h3>
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Tekstihaussa välilyönnin merkitys on "TAI", joten haku matti meikäläinen hakee kaikki joiden nimessä esiintyy matti tai meikäläinen.
+          Rajataksesi haun tarkemmin voit käyttää lainausmerkkejä. Nimet on tallennettu sukunimi ensin, joten Matti Meikäläisen löytäisit haulla
+          "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla, mutta muuten haku on oletuksena tarkka kirjaimista.
+          Esimerkiksi e on haun kannalta eri kirjain kuin é. Haussa voit käyttää jokerimerkkejä * ja ?.
+          Kysymysmerkki ? korvaa yksittäisen kirjaimen millä tahansa kirjaimella, esim. meik?lain?n.
+          Asteriksi * sallii sanan loppuosan olevan mitä tahansa, esim. meikäläi*.
+        </p>
         <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
           Sotasurmat
         </h2>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Sotasurmat-näkymä sisältää viisi erilaista alinäkymää, joilla suodattimien rajaamaa tulosjoukkoa voi tarkastella: Taulukko, Piirakkakaavio, Viivakaavio, Kartta sekä CSV-vienti.
+          Sotasurmat-näkymä on käyttöliittymä Suomen sotasurmat 1914-1922 tietokantaan ja sisältää viisi erilaista alinäkymää, joilla suodattimien rajaamaa tulosjoukkoa voi tarkastella: Taulukko, Piirakkakaavio, Viivakaavio, Kartta sekä CSV-vienti.
           Kaaviot on tarkoitettu käytettäväksi suuntaa-antavina visualisointeina suodattimilla valitusta data-joukosta.
         </p>
         <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">

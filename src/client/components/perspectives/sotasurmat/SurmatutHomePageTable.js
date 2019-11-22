@@ -32,6 +32,23 @@ class SurmatutHomePageTable extends React.Component {
     return(
       <Table className={classes.table} size='small'>
         <TableBody>
+          <TableRow key='deathLikelihood'>
+            <TableCell className={classes.labelCell}>Surmatiedon todennäköisyys</TableCell>
+            <ResultTableCell
+              columnId='deathLikelihood'
+              data={data.deathLikelihood}
+              valueType='object'
+              makeLink={false}
+              externalLink={false}
+              sortValues={true}
+              numberedList={false}
+              minWidth={150}
+              container='cell'
+              expanded={true}
+              showSource={true}
+              sourceExternalLink={false}
+            />
+          </TableRow>
           <TableRow key='familyName'>
             <TableCell className={classes.labelCell}>Sukunimi</TableCell>
             <ResultTableCell
@@ -814,23 +831,6 @@ class SurmatutHomePageTable extends React.Component {
               sourceExternalLink={false}
             />
           </TableRow>
-          <TableRow key='deathLikelihood'>
-            <TableCell className={classes.labelCell}>Surmatiedon todennäköisyys</TableCell>
-            <ResultTableCell
-              columnId='deathLikelihood'
-              data={data.deathLikelihood}
-              valueType='object'
-              makeLink={false}
-              externalLink={false}
-              sortValues={true}
-              numberedList={false}
-              minWidth={150}
-              container='cell'
-              expanded={true}
-              showSource={true}
-              sourceExternalLink={false}
-            />
-          </TableRow>
           <TableRow key='externalLink'>
             <TableCell className={classes.labelCell}>Linkkejä</TableCell>
             <ResultTableCell
@@ -848,7 +848,7 @@ class SurmatutHomePageTable extends React.Component {
               sourceExternalLink={false}
             />
           </TableRow>
-          <TableRow key='uri'>
+          {/*<TableRow key='uri'>
             <TableCell className={classes.labelCell}>Tunniste</TableCell>
             <ResultTableCell
               columnId='uri'
@@ -864,7 +864,7 @@ class SurmatutHomePageTable extends React.Component {
               showSource={true}
               sourceExternalLink={false}
             />
-          </TableRow>
+          </TableRow>*/}
         </TableBody>
       </Table>
     );
