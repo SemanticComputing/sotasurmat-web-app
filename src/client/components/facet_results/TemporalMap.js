@@ -7,7 +7,7 @@ import DeckGL, { ScatterplotLayer } from 'deck.gl';
 import Paper from '@material-ui/core/Paper';
 import TemporalMapTimeSlider from './TemporalMapTimeSlider';
 import './TemporalMapCommon.scss';
-import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/config';
 import Typography from '@material-ui/core/Typography';
 import { has } from 'lodash';
 import Moment from 'moment';
@@ -192,7 +192,7 @@ class TemporalMap extends Component {
           width='100%'
           height='100%'
           reuseMaps
-          mapStyle='mapbox://styles/mapbox/light-v9'
+          mapStyle={`mapbox://styles/mapbox/${MAPBOX_STYLE}`}
           preventStyleDiffing={true}
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
           onViewportChange={this._onViewportChange}

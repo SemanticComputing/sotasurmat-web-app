@@ -7,7 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { purple } from '@material-ui/core/colors';
 import moment from 'moment';
 import 'leaflet/dist/leaflet.css';
-import { MAPBOX_ACCESS_TOKEN } from '../../configs/config';
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/config';
 import intl from 'react-intl-universal';
 
 // Leaflet plugins
@@ -92,7 +92,7 @@ class LeafletMap extends React.Component {
     // const OSMBaseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     //   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     // });
-    const mapboxLight = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_ACCESS_TOKEN, {
+    const mapboxLight = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/${MAPBOX_STYLE}/tiles/{z}/{x}/{y}?access_token=${MAPBOX_ACCESS_TOKEN}`, {
       attribution: '&copy; <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       tileSize: 512,
       zoomOffset: -1
