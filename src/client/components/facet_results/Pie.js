@@ -341,7 +341,7 @@ class Pie extends React.Component {
                <input type="radio" value="maritalStatus"
                  checked={this.state.selectedOption === 'maritalStatus'}
                  onChange={this.handleOptionChange} />
-                   Siviilisääty
+               {intl.get('perspectives.victims.properties.maritalStatus.label')}
              </label>
            </div>
          </form>
