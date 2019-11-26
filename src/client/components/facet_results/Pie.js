@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
+import intl from 'react-intl-universal';
 
 const styles = theme => ({
   root: {
@@ -276,7 +277,7 @@ class Pie extends React.Component {
                <input type="radio" value="party"
                  checked={this.state.selectedOption === 'party'}
                  onChange={this.handleOptionChange} />
-                   Osapuoli
+               {intl.get('perspectives.victims.properties.party.label')}
              </label>
            </div>
            <div className="radio">
@@ -284,7 +285,7 @@ class Pie extends React.Component {
                <input type="radio" value="occupation"
                  checked={this.state.selectedOption === 'occupation'}
                  onChange={this.handleOptionChange} />
-                   Ammatti
+               {intl.get('perspectives.victims.properties.occupation.label')}
              </label>
            </div>
            <div className="radio">
@@ -292,7 +293,7 @@ class Pie extends React.Component {
                <input type="radio" value="gender"
                  checked={this.state.selectedOption === 'gender'}
                  onChange={this.handleOptionChange} />
-                   Sukupuoli
+               {intl.get('perspectives.victims.properties.gender.label')}
              </label>
            </div>
            <div className="radio">
@@ -300,7 +301,7 @@ class Pie extends React.Component {
                <input type="radio" value="registeredProvince"
                  checked={this.state.selectedOption === 'registeredProvince'}
                  onChange={this.handleOptionChange} />
-                   Kirjoillaololääni
+               {intl.get('perspectives.victims.properties.registeredProvince.label')}
              </label>
            </div>
            <div className="radio">
@@ -308,7 +309,7 @@ class Pie extends React.Component {
                <input type="radio" value="registeredMunicipality"
                  checked={this.state.selectedOption === 'registeredMunicipality'}
                  onChange={this.handleOptionChange} />
-                   Kirjoillaolokunta
+               {intl.get('perspectives.victims.properties.registeredMunicipality.label')}
              </label>
            </div>
            <div className="radio">
@@ -316,7 +317,7 @@ class Pie extends React.Component {
                <input type="radio" value="deathProvince"
                  checked={this.state.selectedOption === 'deathProvince'}
                  onChange={this.handleOptionChange} />
-                   Kuolinlääni
+               {intl.get('perspectives.victims.properties.deathProvince.label')}
              </label>
            </div>
            <div className="radio">
@@ -324,7 +325,7 @@ class Pie extends React.Component {
                <input type="radio" value="deathMunicipality"
                  checked={this.state.selectedOption === 'deathMunicipality'}
                  onChange={this.handleOptionChange} />
-                   Kuolinkunta
+               {intl.get('perspectives.victims.properties.deathMunicipality.label')}
              </label>
            </div>
            <div className="radio">
@@ -332,7 +333,7 @@ class Pie extends React.Component {
                <input type="radio" value="causeOfDeath"
                  checked={this.state.selectedOption === 'causeOfDeath'}
                  onChange={this.handleOptionChange} />
-                   Kuolinsyy
+               {intl.get('perspectives.victims.properties.causeOfDeath.label')}
              </label>
            </div>
            <div className="radio">
