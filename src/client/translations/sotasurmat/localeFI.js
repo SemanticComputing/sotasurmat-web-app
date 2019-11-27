@@ -170,8 +170,8 @@ export default {
         },
         party: {
           label: 'Osapuoli',
-          description: 'Henkilön osapuoli sisällissodassa',
-          facetDescription: 'Henkilön osapuoli sisällissodassa',
+          description: 'Osapuoli johon luettiin kuolleessaan',
+          facetDescription: 'Osapuoli johon luettiin kuolleessaan',
         },
         registeredMunicipality: {
           label: 'Kirjoillaolokunta',

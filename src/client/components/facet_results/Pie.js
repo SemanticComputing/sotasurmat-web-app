@@ -68,7 +68,7 @@ class Pie extends React.Component {
     // Don't call this.setState() here!
     this.state = {
       selectedOption: 'party',
-      label: 'Osapuoli'
+      label: intl.get('perspectives.victims.properties.party.label')
     };
     //this.handleClick = this.handleClick.bind(this);
   }
@@ -123,51 +123,9 @@ class Pie extends React.Component {
    this.setState({
      selectedOption: changeEvent.target.value,
    });
-   if (changeEvent.target.value === 'party') {
-     this.setState({
-       label: 'Osapuoli',
-     });
-   }
-   if (changeEvent.target.value === 'occupation') {
-     this.setState({
-       label: 'Ammatti',
-     });
-   }
-   if (changeEvent.target.value === 'gender') {
-     this.setState({
-       label: 'Sukupuoli',
-     });
-   }
-   if (changeEvent.target.value === 'registeredProvince') {
-     this.setState({
-       label: 'Kirjoillaololääni',
-     });
-   }
-   if (changeEvent.target.value === 'registeredMunicipality') {
-     this.setState({
-       label: 'Kirjoillaolokunta',
-     });
-   }
-   if (changeEvent.target.value === 'deathProvince') {
-     this.setState({
-       label: 'Kuolinlääni',
-     });
-   }
-   if (changeEvent.target.value === 'deathMunicipality') {
-     this.setState({
-       label: 'Kuolinkunta',
-     });
-   }
-   if (changeEvent.target.value === 'causeOfDeath') {
-     this.setState({
-       label: 'Kuolinsyy',
-     });
-   }
-   if (changeEvent.target.value === 'maritalStatus') {
-     this.setState({
-       label: 'Siviilisääty',
-     });
-   }
+   this.setState({
+     label: intl.get(`perspectives.victims.properties.${changeEvent.target.value}.label`)
+   });
    this.updatePie(changeEvent.target.value);
  }
 
@@ -199,34 +157,6 @@ class Pie extends React.Component {
    let resultCount = 0;
    let facetValues = null;
    facetValues = data[this.state.selectedOption].values;
-   // if (this.state.selectedOption === 'party') {
-   //   facetValues = data.party.values;
-   // }
-   // if (this.state.selectedOption === 'occupation') {
-   //   facetValues = data.occupation.values;
-   // }
-   // if (this.state.selectedOption === 'gender') {
-   //   facetValues = data.gender.values;
-   // }
-   // if (this.state.selectedOption === 'registeredProvince') {
-   //   facetValues = data.registeredProvince.values;
-   // }
-   // if (this.state.selectedOption === 'registeredMunicipality') {
-   //   facetValues = data.registeredMunicipality.values;
-   // }
-   // if (this.state.selectedOption === 'deathProvince') {
-   //   facetValues = data.deathProvince.values;
-   // }
-   // if (this.state.selectedOption === 'deathMunicipality') {
-   //   facetValues = data.deathMunicipality.values;
-   // }
-   // if (this.state.selectedOption === 'causeOfDeath') {
-   //   facetValues = data.causeOfDeath.values;
-   // }
-   // if (this.state.selectedOption === 'registeredPlace') {
-   //   facetValues = data.registeredPlace.flatValues;
-   // }
-   //console.log(facetValues)
    if (facetValues.length == 0) {
      return (
        <Paper square className={classes.spinnerContainer}>
