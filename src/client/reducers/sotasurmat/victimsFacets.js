@@ -173,9 +173,24 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
     },
+    birthPlace: {
+      id: 'birthPlace',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'prefLabel',
+      sortDirection: 'asc',
+      sortButton: true,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+    },
     registeredMunicipality: {
       id: 'registeredMunicipality',
-      label: 'Kirjoillaolokunta',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
