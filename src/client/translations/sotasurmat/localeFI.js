@@ -142,6 +142,126 @@ export default {
       map: {
         deathsAt: 'Tässä kunnassa kuolleita henkilöitä:'
       },
+      extras: {
+        ownFamilyName: { label: 'Oma sukunimi' },
+        formerFamilyName: { label: 'Entinen sukunimi' },
+        alternativeName: { label: 'Vaihtoehtoinen nimi' },
+        nameQualifier: { label:'Lisätietoa nimestä'},
+        birthVillage: { label:'Synnyinkylä'},
+        broaderBirthPlace: { label:'Laajenmpi syntymäpaikka'},
+        birthHouse: { label:'Synnyintalo'},
+        otherBirthPlaceInformation: { label:'Muuta tietoa synnyinpaikasta'},
+
+        registeredVillage: { label:'Rekisteröity kylä'},
+        registeredHouse: { label:'Rekisteröity talo'},
+        foreignRegisteredProvince: { label:'Ulkomainen rekisteröity lääni'},
+        broaderRegisteredCountry: { label:'Laajempi registeröity maakäsite'},
+        livingVillage: { label:'Asuinkylä'},
+        livingHouse: { label:'Asuintalo'},
+        familyAddress: { label:'Perheen osoite'},
+        foreignLivingProvince: { label:'Ulkomainen asuinlääni'},
+
+        otherOccupation: { label:'Muu ammatti'},
+        socialStatus: { label:'Sosiaalinen asema'},
+        formerOccupation: { label:'Entinen ammatti'},
+        formerSocialStatus: { label:'Entinen sosiaalinen asema'},
+        title: { label:'Titteli'},
+        workPlace: { label:'Työpaikka'},
+        numberOfUnderageChildren: { label:'Alaikäisten lasten määrä'},
+        familySize: { label:'Perheen koko'},
+
+        army: { label:'Armeija'},
+        brigade: { label:'Prikaati, rykmentti'},
+        battalion: { label:'Pataljoona'},
+        company: { label:'Komppania'},
+        platoon: { label:'Joukkue, plutoona'},
+        group: { label:'Ryhmä'},
+
+        orgJoiningTime: { label:'Rekrytointipäivämäärä'},
+        durationInOrg: { label:'Kuinka kauan kuulunut suojeluskuntaan/punakaartiin'},
+        timeLeftOrg: { label:'Koska eronnut sotilasjärjestöstä'},
+
+        militaryRank: { label:'Sotilasarvo'},
+        militaryBackground: { label:'Sotilastausta'},
+        armyOfCountry: { label:'Maa, jonka armeijaan kuului'},
+
+        militaryTask: { label:'Sotilastehtävä'},
+        civilianTask: { label:'Siviilitehtävä'},
+        otherRole: { label:'Muu rooli sodassa'},
+        taskStartDate: { label:'Koska aloittanut tehtävässä'},
+        durationOfTask: { label:'Kuinka kauan toiminut tehtävässä'},
+        placeOfTask: { label:'Missä toiminut'},
+
+        additionalInformationMilitaryOrganization: { label:'Sotilasjärjestö'},
+
+        otherFamilyWelfare: { label:'muu perheen toimeentulo'},
+
+        exactPlaceOfCapture: { label:'Tarkka vangitsemispaikka'},
+        areaOfCapture: { label:'Vangitsemisalue'},
+        eventWhereCaptured: { label:'Tapahtuma jossa vangittiin'},
+        frontWhereCaptured: { label:'Rintama jossa vangittiin'},
+        capturer: { label:'Vangitsija'},
+        presumedPlaceOfCapture: { label:'Vangitsemisen oletettu paikka tai tapahtuma'},
+
+        firstPlaceOfImprisonment: { label:'Vangittunaolon I paikka'},
+        secondPlaceOfImprisonment: { label:'vangittunaolon II paikka'},
+        thirdPlaceOfImprisonment: { label:'Vangittunaolon III paikka'},
+        arrivedToPrison: { label:'Milloin saapunut vankileirille'},
+        movedToPrison: { label:'Milloin siirretty vankileiriltä'},
+
+        sentencingCourt: { label:'Tuomion langettaja'},
+        verdict: { label:'Tuomio'},
+
+        presumedArrestDate: { label:'Arveltu vangitsemispäivä'},
+        arrestTime: { label:'Vangitsemisajankohta'},
+        secondArrestTime: { label:'II vangitsemisen ajankohta'},
+        thirdArrestTime: { label:'III vangitsemisen ajankohta'},
+        durationOfArrest: { label:'Vankeuden kesto'}, //????
+
+        dateOfEscape: { label:'Pakenemispäivä'},
+
+        yearDeclaredDead: { label:'Kuolleeksijulistamisen vuosi'},
+        officialDeathDate: { label:'Virallinen kuolinaika'},
+        whereDeclaredDead: { label:'Missä ja milloin julistettu kuolleeksi'},
+
+        presumedDeathTime: { label:'Arveltu kuolinaika'},
+        deathPeriod: { label:'Kuolinajankohta'},
+
+
+        presumedDeathMunicipality: { label:'Oletettu kuolinpaikka'},
+        presumedDeathPlaceOrEvent: { label:'Oletettu tapahtuma tai paikka jossa kuollut'},
+        municipalityWhereWounded: { label:'Haavoittumispaikka'},
+        presumedWoundedPlaceOrEvent: { label:'Oletettu haavoittumispaikka'},
+        woundedTime: { label:'Haavoittumisaika'},
+
+        broaderDeathPlace: { label:'Laajempi kuolinpaikka'},
+        broaderWarEvent: { label:'Laajempi sotatapahtuma'},
+        warEvent: { label:'Sotatapahtuma'},
+
+        deathPlaceQualifier: { label:'Kuolinpaikan tarkenne'},
+        otherDeathPlaceQualifier: { label:'Muu kuolinpaikan takenne'},
+        deathArea: { label:'Alue jossa kuollut'},
+        deathEvent: { label:'Tapahtuma jossa kuollut'},
+        deathFront: { label:'Rintama jossa kuollut'},
+        lastSeenWhere: { label:'Missä nähty viimeksi'},
+
+        otherCauseOfDeath: { label:'Kuolintapa'},
+        presumedMannerOfDeath: { label:'Oletettu kuolintapa'},
+        causeOfDeathQualifier: { label:'Kuolintavan tarkenne'},
+        otherCauseOfDeathQualifier: { label:'Muu kuolinsyyn tarkenne'},
+
+        court: { label:'Tuomitsija'},
+        killer: { label:'Surmaaja'},
+        presumedKiller: { label:'Oletettu surmaaja'},
+
+        buriedIn: { label:'Tarkempi hautaustapa'},
+        placeOfBurial: { label:'I hautauksen paikka'},
+        secondPlaceOfBurial: { label:'II hautauksen paikka'},
+        timeOfBurial: { label:'I hautauksen ajankohta'},
+        secondTimeOfBurial: { label:'II hautauksen ajankohta'},
+
+        parish: { label:'Seurakunta'},
+      },
       properties: {
         uri: {
           label: 'URI',

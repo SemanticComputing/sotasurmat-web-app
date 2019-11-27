@@ -6,6 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import ResultTableCell from '../../facet_results/ResultTableCell';
+import intl from 'react-intl-universal';
 
 const styles = theme => ({
   root: {
@@ -32,9 +33,9 @@ class SurmatutExtraTable extends React.Component {
     const { classes, extras } = this.props;
     //console.log(data)
     const rowTypes = [
-      {id:'ownFamilyName',label:'Oma sukunimi'},
-      {id:'formerFamilyName',label:'Entinen sukunimi'},
-      {id:'alternativeName',label:'Vaihtoehtoinen nimi'},
+      {id:'ownFamilyName',label: 'Oma sukunimi' },
+      {id:'formerFamilyName',label: 'Entinen sukunimi' },
+      {id:'alternativeName',label: 'Vaihtoehtoinen nimi' },
       {id:'nameQualifier',label:'Lisätietoa nimestä'},
       {id:'birthVillage',label:'Synnyinkylä'},
       {id:'broaderBirthPlace',label:'Laajenmpi syntymäpaikka'},
@@ -162,7 +163,7 @@ class SurmatutExtraTable extends React.Component {
             return (
               <TableRow key={row.id}>
                 <TableCell className={classes.labelCell}>
-                  {row.label}
+                  {intl.get(`perspectives.victims.extras.${row.id}.label`)}
                 </TableCell>
                 <ResultTableCell
                   columnId={row.id}
