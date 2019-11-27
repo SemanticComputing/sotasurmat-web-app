@@ -34,7 +34,7 @@ class SurmatutHomePageTable extends React.Component {
       <Table className={classes.table} size='small'>
         <TableBody>
           <TableRow key='deathLikelihood'>
-            <TableCell className={classes.labelCell}>Surmatiedon todennäköisyys</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathLikelihood.label')}</TableCell>
             <ResultTableCell
               columnId='deathLikelihood'
               data={data.deathLikelihood}
@@ -51,7 +51,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='familyName'>
-            <TableCell className={classes.labelCell}>Sukunimi</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.familyName.label')}</TableCell>
             <ResultTableCell
               columnId='familyName'
               data={data.familyName}
@@ -68,7 +68,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='firtstName'>
-            <TableCell className={classes.labelCell}>Etunimi</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.firstName.label')}</TableCell>
             <ResultTableCell
               columnId='firstName'
               data={data.firstName}
@@ -85,7 +85,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='party'>
-            <TableCell className={classes.labelCell}>Osapuoli</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.party.label')}</TableCell>
             <ResultTableCell
               columnId='party'
               data={data.party}
@@ -102,7 +102,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='birthPlace'>
-            <TableCell className={classes.labelCell}>Syntymäpaikka</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.birthPlace.label')}</TableCell>
             <ResultTableCell
               columnId='birthPlace'
               data={data.birthPlace}
@@ -119,7 +119,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='birthCountry'>
-            <TableCell className={classes.labelCell}>Syntymämaa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.birthCountry.label')}</TableCell>
             <ResultTableCell
               columnId='birthCountry'
               data={data.birthCountry}
@@ -136,7 +136,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='birthYear'>
-            <TableCell className={classes.labelCell}>Syntymävuosi</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.birthYear.label')}</TableCell>
             <ResultTableCell
               columnId='birthYear'
               data={data.birthYear}
@@ -153,7 +153,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='birthDay'>
-            <TableCell className={classes.labelCell}>Syntymäaika</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.birthDay.label')}</TableCell>
             <ResultTableCell
               columnId='birthDay'
               data={data.birthDay}
@@ -170,7 +170,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='regMunicipality'>
-            <TableCell className={classes.labelCell}>Kirjoillaolopaikka</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.registeredMunicipality.label')}</TableCell>
             <ResultTableCell
               columnId='regMunicipality'
               data={data.regMunicipality}
@@ -187,7 +187,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='regProvince'>
-            <TableCell className={classes.labelCell}>Kirjoillaololääni</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.registeredProvince.label')}</TableCell>
             <ResultTableCell
               columnId='regProvince'
               data={data.regProvince}
@@ -204,7 +204,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='regCountry'>
-            <TableCell className={classes.labelCell}>Kirjoillaolomaa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.registeredCountry.label')}</TableCell>
             <ResultTableCell
               columnId='regCounrty'
               data={data.regCountry}
@@ -221,7 +221,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='livingMunicipality'>
-            <TableCell className={classes.labelCell}>Asuinpaikka</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.livingMunicipality.label')}</TableCell>
             <ResultTableCell
               columnId='livingMunicipality'
               data={data.livingMunicipality}
@@ -238,7 +238,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='livingProvince'>
-            <TableCell className={classes.labelCell}>Asuinlääni</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.livingProvince.label')}</TableCell>
             <ResultTableCell
               columnId='livingProvince'
               data={data.livingProvince}
@@ -255,7 +255,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='livingCountry'>
-            <TableCell className={classes.labelCell}>Asuinmaa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.livingCountry.label')}</TableCell>
             <ResultTableCell
               columnId='livingCounrty'
               data={data.livingCountry}
@@ -272,7 +272,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='occupation'>
-            <TableCell className={classes.labelCell}>Ammatti</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.occupation.label')}</TableCell>
             <ResultTableCell
               columnId='occupation'
               data={data.occupation}
@@ -289,7 +289,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='maritalStatus'>
-            <TableCell className={classes.labelCell}>Siviilisääty</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.maritalStatus.label')}</TableCell>
             <ResultTableCell
               columnId='maritalStatus'
               data={data.maritalStatus}
@@ -306,7 +306,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='numberOfChildren'>
-            <TableCell className={classes.labelCell}>Lasten määrä</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.numberOfChildren.label')}</TableCell>
             <ResultTableCell
               columnId='numberOfChildren'
               data={data.numberOfChildren}
@@ -323,7 +323,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='gender'>
-            <TableCell className={classes.labelCell}>Sukupuoli</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.gender.label')}</TableCell>
             <ResultTableCell
               columnId='gender'
               data={data.gender}
@@ -340,7 +340,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='nationality'>
-            <TableCell className={classes.labelCell}>Kansallisuus</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.nationality.label')}</TableCell>
             <ResultTableCell
               columnId='nationality'
               data={data.nationality}
@@ -357,7 +357,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='language'>
-            <TableCell className={classes.labelCell}>Kieli</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.language.label')}</TableCell>
             <ResultTableCell
               columnId='language'
               data={data.language}
@@ -374,7 +374,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='personComment'>
-            <TableCell className={classes.labelCell}>Henkilöhuomautukset</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.personComment.label')}</TableCell>
             <ResultTableCell
               columnId='personComment'
               data={data.personComment}
@@ -391,7 +391,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='militaryOrganization'>
-            <TableCell className={classes.labelCell}>Sotilasjärjestö</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.militaryOrganization.label')}</TableCell>
             <ResultTableCell
               columnId='militaryOrganization'
               data={data.militaryOrganization}
@@ -408,7 +408,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='recruitment'>
-            <TableCell className={classes.labelCell}>Rekrytointitapa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.recruitment.label')}</TableCell>
             <ResultTableCell
               columnId='recruitment'
               data={data.recruitment}
@@ -425,7 +425,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='rank'>
-            <TableCell className={classes.labelCell}>Sotilasarvo</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.rank.label')}</TableCell>
             <ResultTableCell
               columnId='rank'
               data={data.rank}
@@ -442,7 +442,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='position'>
-            <TableCell className={classes.labelCell}>Sotilasasema</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.position.label')}</TableCell>
             <ResultTableCell
               columnId='position'
               data={data.position}
@@ -459,7 +459,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='combatantStatus'>
-            <TableCell className={classes.labelCell}>Asema (sotilas vai siviili)</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.combatantStatus.label')}</TableCell>
             <ResultTableCell
               columnId='combatantStatus'
               data={data.combatantStatus}
@@ -476,7 +476,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='armedStatus'>
-            <TableCell className={classes.labelCell}>Aseenkanto</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.armedStatus.label')}</TableCell>
             <ResultTableCell
               columnId='armedStatus'
               data={data.armedStatus}
@@ -493,7 +493,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='welfare'>
-            <TableCell className={classes.labelCell}>Perheen toimeentulo</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.familyWelfare.label')}</TableCell>
             <ResultTableCell
               columnId='welfare'
               data={data.welfare}
@@ -510,7 +510,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='statusNote'>
-            <TableCell className={classes.labelCell}>Asemahuomatus</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.statusNote.label')}</TableCell>
             <ResultTableCell
               columnId='statusNote'
               data={data.statusNote}
@@ -527,7 +527,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='placeOfCapture'>
-            <TableCell className={classes.labelCell}>Vangitsemispaikka</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.placeOfCapture.label')}</TableCell>
             <ResultTableCell
               columnId='placeOfCapture'
               data={data.placeOfCapture}
@@ -544,7 +544,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='camp'>
-            <TableCell className={classes.labelCell}>Vankileiri</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.prisonCamp.label')}</TableCell>
             <ResultTableCell
               columnId='camp'
               data={data.camp}
@@ -561,7 +561,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='imprisonmentMotive'>
-            <TableCell className={classes.labelCell}>Vangitsemismotiivi</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.imprisonmentMotive.label')}</TableCell>
             <ResultTableCell
               columnId='imprisonmentMotive'
               data={data.imprisonmentMotive}
@@ -578,7 +578,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='imprisonmentDate'>
-            <TableCell className={classes.labelCell}>Vangitsemisaika</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.imprisonmentDate.label')}</TableCell>
             <ResultTableCell
               columnId='imprisonmentDate'
               data={data.imprisonmentDate}
@@ -595,7 +595,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='releaseDate'>
-            <TableCell className={classes.labelCell}>Vapautumisaika</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.releaseDate.label')}</TableCell>
             <ResultTableCell
               columnId='releaseDate'
               data={data.releaseDate}
@@ -612,7 +612,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathYear'>
-            <TableCell className={classes.labelCell}>Kuolinvuosi</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathYear.label')}</TableCell>
             <ResultTableCell
               columnId='deathYear'
               data={data.deathYear}
@@ -629,7 +629,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathDay'>
-            <TableCell className={classes.labelCell}>Kuolinpäivä</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathDay.label')}</TableCell>
             <ResultTableCell
               columnId='deathDay'
               data={data.deathDay}
@@ -646,7 +646,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='age'>
-            <TableCell className={classes.labelCell}>Ikä</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.age.label')}</TableCell>
             <ResultTableCell
               columnId='age'
               data={data.age}
@@ -663,7 +663,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathMunicipality'>
-            <TableCell className={classes.labelCell}>Kuolinkunta</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathMunicipality.label')}</TableCell>
             <ResultTableCell
               columnId='deathMunicipality'
               data={data.deathMunicipality}
@@ -680,7 +680,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathProvince'>
-            <TableCell className={classes.labelCell}>Kuolinlääni</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathProvince.label')}</TableCell>
             <ResultTableCell
               columnId='deathProvince'
               data={data.deathProvince}
@@ -697,7 +697,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathCountry'>
-            <TableCell className={classes.labelCell}>Kuolinmaa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathCountry.label')}</TableCell>
             <ResultTableCell
               columnId='deathCountry'
               data={data.deathCountry}
@@ -714,7 +714,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathPlace'>
-            <TableCell className={classes.labelCell}>Tarkempi kuolinpaikka</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathPlace.label')}</TableCell>
             <ResultTableCell
               columnId='deathPlace'
               data={data.deathPlace}
@@ -731,7 +731,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='causeOfDeath'>
-            <TableCell className={classes.labelCell}>Kuolintapa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.causeOfDeath.label')}</TableCell>
             <ResultTableCell
               columnId='causeOfDeath'
               data={data.causeOfDeath}
@@ -748,7 +748,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathMotive'>
-            <TableCell className={classes.labelCell}>Surmamotiivi</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathMotive.label')}</TableCell>
             <ResultTableCell
               columnId='deathMotive'
               data={data.deathMotive}
@@ -765,7 +765,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='burial'>
-            <TableCell className={classes.labelCell}>Hautaustapa</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.methodOfBurial.label')}</TableCell>
             <ResultTableCell
               columnId='burial'
               data={data.burial}
@@ -782,7 +782,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='deathComment'>
-            <TableCell className={classes.labelCell}>Surmakommentti</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.deathComment.label')}</TableCell>
             <ResultTableCell
               columnId='deathComment'
               data={data.deathComment}
@@ -799,7 +799,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='religion'>
-            <TableCell className={classes.labelCell}>Uskonto</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.religion.label')}</TableCell>
             <ResultTableCell
               columnId='religion'
               data={data.religion}
@@ -816,7 +816,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='additionalDeathSource'>
-            <TableCell className={classes.labelCell}>Tarkempi lähde kuolintiedoille</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.additionalDeathSource.label')}</TableCell>
             <ResultTableCell
               columnId='additionalDeathSource'
               data={data.additionalDeathSource}
@@ -833,7 +833,7 @@ class SurmatutHomePageTable extends React.Component {
             />
           </TableRow>
           <TableRow key='externalLink'>
-            <TableCell className={classes.labelCell}>Linkkejä</TableCell>
+            <TableCell className={classes.labelCell}>{intl.get('perspectives.victims.properties.link.label')}</TableCell>
             <ResultTableCell
               columnId='externalLink'
               data={data.externalLink}

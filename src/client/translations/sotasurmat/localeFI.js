@@ -350,7 +350,273 @@ export default {
             Todennäköisyys sille, että henkilö todellisuudessa kuoli tietokannan kuvaamalla tavalla
           `
         },
-
+        birthPlace: {
+          label: 'Syntymäpaikka',
+          facetDescription: `
+            Syntymäpaikka
+          `,
+          description: `
+            Syntymäpaikka
+          `
+        },
+        birthCountry: {
+          label: 'Syntymämaa',
+          facetDescription: `
+            Syntymämaa
+          `,
+          description: `
+            Syntymämaa
+          `
+        },
+        birthYear: {
+          label: 'Syntymävuosi',
+          facetDescription: `
+            Syntymävuosi
+          `,
+          description: `
+            Syntymävuosi
+          `
+        },
+        birthDay: {
+          label: 'Syntymäaika',
+          facetDescription: `
+            Syntymäaika
+          `,
+          description: `
+            Syntymäaika
+          `
+        },
+        livingMunicipality: {
+          label: 'Asuinpaikka',
+          facetDescription: `
+            Asuinpaikka
+          `,
+          description: `
+            Asuinpaikka
+          `
+        },
+        livingProvince: {
+          label: 'Asuinlääni',
+          facetDescription: `
+            Asuinlääni
+          `,
+          description: `
+            Asuinlääni
+          `
+        },
+        livingCountry: {
+          label: 'Asuinmaa',
+          facetDescription: `
+            Asuinmaa
+          `,
+          description: `
+            Asuinmaa
+          `
+        },
+        nationality: {
+          label: 'Kansallisuus',
+          facetDescription: `
+            Kansallisuus
+          `,
+          description: `
+            Kansallisuus
+          `
+        },
+        language: {
+          label: 'Kieli',
+          facetDescription: `
+            Kieli
+          `,
+          description: `
+            Kieli
+          `
+        },
+        personComment: {
+          label: 'Henkilöhuomautukset',
+          facetDescription: `
+            Huomautuksia henkilön tiedoista
+          `,
+          description: `
+            Huomautuksia henkilön tiedoista
+          `
+        },
+        recruitment: {
+          label: 'Rekrytointitapa',
+          facetDescription: `
+            Rekrytointitapa
+          `,
+          description: `
+            Rekrytointitapa
+          `
+        },
+        rank: {
+          label: 'Sotilasarvo',
+          facetDescription: `
+            Sotilasarvo
+          `,
+          description: `
+            Sotilasarvo
+          `
+        },
+        position: {
+          label: 'Sotilasasema',
+          facetDescription: `
+            Sotilasasema
+          `,
+          description: `
+            Sotilasasema
+          `
+        },
+        combatantStatus: {
+          label: 'Sotilas vai siviili',
+          facetDescription: `
+            Tieto siitä onko henkilö laskettu sotilaaksi vai siviiliksi
+          `,
+          description: `
+            Tieto siitä onko henkilö laskettu sotilaaksi vai siviiliksi
+          `
+        },
+        armedStatus: {
+          label: 'Aseenkanto',
+          facetDescription: `
+            Tieto siitä oliko henkilö aseistettu
+          `,
+          description: `
+            Tieto siitä oliko henkilö aseistettu
+          `
+        },
+        familyWelfare: {
+          label: 'Perheen toimeentulo',
+          facetDescription: `
+            Perheen toimeentulo
+          `,
+          description: `
+            Perheen toimeentulo
+          `
+        },
+        statusNote: {
+          label: 'Asemahuomatus',
+          facetDescription: `
+            Huomautuksia henkilön asemasta
+          `,
+          description: `
+            Huomautuksia henkilön asemasta
+          `
+        },
+        placeOfCapture: {
+          label: 'Vangitsemispaikka',
+          facetDescription: `
+            Vangitsemispaikka
+          `,
+          description: `
+            Vangitsemispaikka
+          `
+        },
+        prisonCamp: {
+          label: 'Vankileiri',
+          facetDescription: `
+            Vankileiri
+          `,
+          description: `
+            Vankileiri
+          `
+        },
+        imprisonmentMotive: {
+          label: 'Vangitsemismotiivi',
+          facetDescription: `
+            Vangitsemismotiivi
+          `,
+          description: `
+            Vangitsemismotiivi
+          `
+        },
+        imprisonmentDate: {
+          label: 'Vangitsemisaika',
+          facetDescription: `
+            Vangitsemisaika
+          `,
+          description: `
+            Vangitsemisaika
+          `
+        },
+        releaseDate: {
+          label: 'Vapautumisaika',
+          facetDescription: `
+            Vapautumisaika
+          `,
+          description: `
+            Vapautumisaika
+          `
+        },
+        deathYear: {
+          label: 'Kuolinvuosi',
+          facetDescription: `
+            Kuolinvuosi
+          `,
+          description: `
+            Kuolinvuosi
+          `
+        },
+        deathDay: {
+          label: 'Kuolinaika',
+          facetDescription: `
+            Kuolinaika
+          `,
+          description: `
+            Kuolinaika
+          `
+        },
+        deathPlace: {
+          label: 'Tarkempi kuolinpaikka',
+          facetDescription: `
+            Tarkempi kuolinpaikka
+          `,
+          description: `
+            Tarkempi kuolinpaikka
+          `
+        },
+        deathMotive: {
+          label: 'Surmamotiivi',
+          facetDescription: `
+            Surmamotiivi
+          `,
+          description: `
+            Surmamotiivi
+          `
+        },
+        methodOfBurial: {
+          label: 'Hautaustapa',
+          facetDescription: `
+            Hautaustapa
+          `,
+          description: `
+            Hautaustapa
+          `
+        },
+        deathComment: {
+          label: 'Surmakommentti',
+          description: `
+            Henkilön kuolemaan liittyviä kommentteja
+          `
+        },
+        religion: {
+          label: 'Uskonto',
+          description: `
+            Henkilön uskontokunta
+          `
+        },
+        additionalDeathSource: {
+          label: 'Tarkempi lähde kuolintiedoille',
+          description: `
+            Tarkempi lähde kuolintiedoille
+          `
+        },
+        link: {
+          label: 'Linkkejä',
+          description: `
+            Linkkejä henkilöä kuvaaviin ulkopuolisiin sivuihin
+          `
+        },
       },
     },
     battles: {
