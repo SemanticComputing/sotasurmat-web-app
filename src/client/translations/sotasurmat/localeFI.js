@@ -139,6 +139,16 @@ export default {
           </p>
         `
       },
+      lineChart: {
+        year: 'Vuosi',
+        lineExplanation: 'Henkilöt',
+        age: 'Ikä',
+        yTitle: 'Henkilöiden määrä',
+        average: 'keskiarvo noin',
+        median: 'mediaani noin',
+        deathDate: 'Kuolinpäivä',
+        birthYear: 'Syntymävuosi'
+      },
       map: {
         deathsAt: 'Tässä kunnassa kuolleita henkilöitä:'
       },

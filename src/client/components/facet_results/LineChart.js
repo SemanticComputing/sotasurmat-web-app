@@ -4,6 +4,7 @@ import Chart from 'react-google-charts';
 import moment from 'moment';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import intl from 'react-intl-universal';
 
 const styles = theme => ({
   root: {
@@ -31,7 +32,7 @@ class LineChart extends React.Component {
     super(props);
     this.state = {
       selectedOption: 'age',
-      label: 'Ikä',
+      label: intl.get('perspectives.victims.lineChart.age'),
       variant: 'ageCount'
     };
   }
@@ -43,21 +44,21 @@ class LineChart extends React.Component {
     var variant = 'birthYearCount';
     if (changeEvent.target.value === 'birthYear') {
       this.setState({
-        label: 'Syntymävuosi',
+        label: intl.get('perspectives.victims.lineChart.birthYear'),
         variant: 'birthYearCount',
       });
       variant = 'birthYearCount';
     }
     if (changeEvent.target.value === 'deathDate') {
       this.setState({
-        label: 'Kuolinpäivä',
+        label: intl.get('perspectives.victims.lineChart.deathDate'),
         variant: 'deathDateCount',
       });
       variant = 'deathDateCount';
     }
     if (changeEvent.target.value === 'age') {
       this.setState({
-        label: 'Ikä',
+        label: intl.get('perspectives.victims.lineChart.ager'),
         variant: 'ageCount',
       });
       variant = 'ageCount';
@@ -296,24 +297,24 @@ class LineChart extends React.Component {
       );
     }
     if (this.state.variant == 'birthYearCount') {
-      title = 'Vuosi';
-      explanation = 'Henkilöiden määrä';
-      xTitle = 'Vuosi';
-      yTitle = 'Syntyneiden määrä datassa';
+      title = intl.get('perspectives.victims.lineChart.year');
+      explanation = intl.get('perspectives.victims.lineChart.lineExplanation');
+      xTitle = intl.get('perspectives.victims.lineChart.birthYear');
+      yTitle = intl.get('perspectives.victims.lineChart.yTitle');
       fillEmpty = true;
     }
     if (this.state.variant == 'ageCount') {
-      title = 'Ikä';
-      explanation = 'Henkilöiden määrä';
-      xTitle = 'Ikä';
-      yTitle = 'Henkilöiden määrä';
+      title = intl.get('perspectives.victims.lineChart.age');
+      explanation = intl.get('perspectives.victims.lineChart.lineExplanation');
+      xTitle = intl.get('perspectives.victims.lineChart.age');
+      yTitle = intl.get('perspectives.victims.lineChart.yTitle');
       fillEmpty = true;
     }
     if (this.state.variant == 'deathDateCount') {
-      title = 'Kuolinpäivä';
-      explanation = 'Henkilöiden määrä';
-      xTitle = 'Kuolinpäivä';
-      yTitle = 'Henkilöiden määrä';
+      title = intl.get('perspectives.victims.lineChart.deathDate');
+      explanation = intl.get('perspectives.victims.lineChart.lineExplanation');
+      xTitle = intl.get('perspectives.victims.lineChart.deathDate');
+      yTitle = intl.get('perspectives.victims.lineChart.yTitle');
       fillEmpty = true;
     }
     let resultsArray = [];
@@ -324,7 +325,7 @@ class LineChart extends React.Component {
     }
 
     if (this.state.variant != 'deathDateCount') {
-      infoString = '(' + 'keskiarvo noin  ' + Math.round(this.average(resultsArray)) + ', mediaani noin ' + Math.round(this.median(resultsArray)) + ')';
+      infoString = '(' + intl.get('perspectives.victims.lineChart.average') + ' ' + Math.round(this.average(resultsArray)) + ', ' + intl.get('perspectives.victims.lineChart.median') + ' ' + Math.round(this.median(resultsArray)) + ')';
     }
     if (this.state.variant == 'deathDateCount') {
       infoString = '';
@@ -341,7 +342,7 @@ class LineChart extends React.Component {
                 <input type="radio" value="age"
                   checked={this.state.selectedOption === 'age'}
                   onChange={this.handleOptionChange} />
-                  Ikä
+                {intl.get('perspectives.victims.lineChart.age')}
               </label>
             </div>
             <div>
@@ -349,7 +350,7 @@ class LineChart extends React.Component {
                 <input type="radio" value="birthYear"
                   checked={this.state.selectedOption === 'birthYear'}
                   onChange={this.handleOptionChange} />
-                  Syntymävuosi
+                {intl.get('perspectives.victims.lineChart.birthYear')}
               </label>
             </div>
             <div>
@@ -357,7 +358,7 @@ class LineChart extends React.Component {
                 <input type="radio" value="deathDate"
                   checked={this.state.selectedOption === 'deathDate'}
                   onChange={this.handleOptionChange} />
-                  Kuolinpäivä
+                {intl.get('perspectives.victims.lineChart.deathDate')}
               </label>
             </div>
           </form>
