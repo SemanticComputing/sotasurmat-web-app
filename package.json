@@ -1,7 +1,5 @@
 {
   "name": "sotasurmat-web-app",
-  "version": "0.0.1",
-  "description": "",
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -16,8 +14,8 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/client/setupTests.js"
   },
-  "keywords": [],
-  "author": "Heikki Rantala",
+  "author": "Esko Ikkala",
+  "contributors": [ "Heikki Rantala", "Erkki Heino" ],
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.0",
