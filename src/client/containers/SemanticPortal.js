@@ -86,6 +86,10 @@ const styles = theme => ({
       marginTop: 64 // app bar
     }
   },
+  textPageContainer: {
+    width: '100%',
+    padding: theme.spacing(1)
+  },
   mainContainerSotasurmat: {
     height: '100%',
     width: '100%',
