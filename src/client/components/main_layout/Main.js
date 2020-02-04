@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import intl from 'react-intl-universal';
-import classNames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import React from 'react'
+import PropTypes from 'prop-types'
+import intl from 'react-intl-universal'
+import classNames from 'classnames'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
 // import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import { has } from 'lodash';
-import defaultThumbImage from '../../img/thumb.png';
-import logo from '../../img/logo_fi.gif';
+import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
+import { has } from 'lodash'
+import defaultThumbImage from '../../img/thumb.png'
+import logo from '../../img/logo_fi.gif'
 
 const styles = theme => ({
   root: {
@@ -25,7 +25,7 @@ const styles = theme => ({
     }
   },
   icon: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   link: {
     textDecoration: 'none'
@@ -42,16 +42,16 @@ const styles = theme => ({
     [theme.breakpoints.up(1100 + theme.spacing(6))]: {
       width: 1100,
       marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+      marginRight: 'auto'
+    }
   },
   longTitle: {
-    [ theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none'
-    },
+    }
   },
   media: {
-    height: 140,
+    height: 140
     // [ theme.breakpoints.down('md')]: {
     //   height: 60
     // }
@@ -65,12 +65,12 @@ const styles = theme => ({
     width: 340,
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-    [ theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(2)
     }
   },
   cardContent: {
-    height: 85,
+    height: 85
   },
   logoContainer: {
     display: 'flex',
@@ -82,7 +82,7 @@ const styles = theme => ({
     marginLeft: 'auto',
     marginRight: 'auto',
     [theme.breakpoints.up('sm')]: {
-      width: 1100,
+      width: 1100
     }
   },
   licenceContainer: {
@@ -97,21 +97,21 @@ const styles = theme => ({
   licenceText: {
     fontSize: '0.8em'
   }
-});
+})
 
-let Main = props => {
-  const { classes } = props;
+const Main = props => {
+  const { classes } = props
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
         <div className={classes.logoContainer}>
-          <img src={logo} alt="Logo"></img>
+          <img src={logo} alt='Logo' />
         </div>
         <div className={classes.heroContent}>
-          <Typography className={classes.longTitle} component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
+          <Typography className={classes.longTitle} component='h1' variant='h3' align='center' color='textPrimary' gutterBottom>
             {intl.get('appTitle.long')}
           </Typography>
-          <Typography variant="h6" align="center" color="textSecondary" paragraph>
+          <Typography variant='h6' align='center' color='textSecondary' paragraph>
             {intl.get('appDescription')}
           </Typography>
         </div>
@@ -129,16 +129,16 @@ let Main = props => {
                   title={perspective.label}
                 />
                 <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant='h5' component='h2'>
                     {intl.get(`perspectives.${perspective.id}.label`)}
                   </Typography>
-                  <Typography component="p">
+                  <Typography component='p'>
                     {intl.get(`perspectives.${perspective.id}.shortDescription`)}
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
-          );
+          )
         }
         )}
       </div>
@@ -146,13 +146,13 @@ let Main = props => {
         <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
       </div>
     </div>
-  );
-};
+  )
+}
 
 Main.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   perspectives: PropTypes.array.isRequired
-};
+}
 
-export default withStyles(styles)(Main);
+export default withStyles(styles)(Main)

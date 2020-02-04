@@ -1,15 +1,16 @@
-import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import SemanticPortal from '../containers/SemanticPortal';
-import red from '@material-ui/core/colors/red';
+import React from 'react'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import SemanticPortal from '../containers/SemanticPortal'
+// import deepPurple from '@material-ui/core/colors/deepPurple'
+import red from '@material-ui/core/colors/red'
 
-const sisoRed = red['A700'];
+const sisoRed = red.A700
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: sisoRed,
-    },
+      main: sisoRed
+    }
   },
   overrides: {
     MuiTooltip: {
@@ -23,14 +24,14 @@ const theme = createMuiTheme({
           marginTop: 8,
           marginBottom: 8
         }
-      },
+      }
     },
     MuiButton: {
       endIcon: {
         marginLeft: 0
       }
     },
-    MuiSlider:  {
+    MuiSlider: {
       valueLabel: {
         '& *': {
           width: 82,
@@ -39,16 +40,16 @@ const theme = createMuiTheme({
           backgroundColor: 'transparent',
           borderRadius: 0,
           fontSize: '1rem'
-        },
+        }
       }
     }
   }
-});
+})
 
 const App = () => (
   <MuiThemeProvider theme={theme}>
     <SemanticPortal />
   </MuiThemeProvider>
-);
+)
 
-export default App;
+export default App

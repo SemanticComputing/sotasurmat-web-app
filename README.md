@@ -1,6 +1,8 @@
 # Sotasurmat Web App
 
-Based on https://github.com/SemanticComputing/mmm-web-app
+Based on https://github.com/SemanticComputing/sampo-web-app
+
+master branch visible at https://sotasurmat.narc.fi
 
 ## Requirements
 
@@ -25,15 +27,15 @@ Run client and server concurrently:
 ## Deploy with Docker
 
 ### Build
- `docker build -t sotasurmat-c .`
+ `docker build -t sampo-web-app-image .`
 
 ### Run
- `docker run -d -p 8080:3001 --name sotasurmat sotasurmat-c`
+ `docker run -d -p 3006:3001 --name sampo-web-app sampo-web-app-image`
 
 ### Upgrade
 ```
-docker build -t sotasurmat-c .
-docker stop sotasurmat
-docker rm sotasurmat
-docker run -d -p 8080:3001 --name sotasurmat sotasurmat-c
+docker build -t sampo-web-app-image .
+docker stop sampo-web-app
+docker rm sampo-web-app
+docker run -d -p 3006:3001 --name sampo-web-app sampo-web-app-image
 ```

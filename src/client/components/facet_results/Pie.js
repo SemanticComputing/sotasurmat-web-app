@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   VictoryPie,
   VictoryLegend,
-  VictoryContainer,
-  //VictoryLabel,
-} from 'victory';
-import PieTooltip from './PieTooltip';
-import _ from 'lodash';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import purple from '@material-ui/core/colors/purple';
-import intl from 'react-intl-universal';
+  VictoryContainer
+  // VictoryLabel,
+} from 'victory'
+import PieTooltip from './PieTooltip'
+import _ from 'lodash'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import purple from '@material-ui/core/colors/purple'
+import intl from 'react-intl-universal'
 
 const styles = theme => ({
   root: {
@@ -22,7 +22,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       height: 'calc(100% - 72px)'
     },
-    overflow: 'auto',
+    overflow: 'auto'
   },
   options: {
     paddingLeft: theme.spacing(1),
@@ -41,15 +41,15 @@ const styles = theme => ({
   },
   pie: {
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   },
   legend: {
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(4),
+    paddingRight: theme.spacing(4)
   },
   legendPaper: {
     height: 275,
-    overflowY: 'auto',
+    overflowY: 'auto'
   },
   spinnerContainer: {
     display: 'flex',
@@ -57,83 +57,81 @@ const styles = theme => ({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-});
+  }
+})
 
 class Pie extends React.Component {
-
-
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     // Don't call this.setState() here!
     this.state = {
       selectedOption: 'party',
       label: intl.get('perspectives.victims.properties.party.label')
-    };
-    //this.handleClick = this.handleClick.bind(this);
+    }
+    // this.handleClick = this.handleClick.bind(this);
   }
 
- // combineSmallGroups = (dataArray) => {
- //   const totalLength = dataArray.length;
- //   const threshold = 0.1;
- //   let other = { x: 'Muu arvo', y: 0, values: [] };
- //   let newArray = [];
- //   for (let item of dataArray) {
- //     const portion = item.y / totalLength;
- //     if (portion < threshold) {
- //       other.y += item.y;
- //       other.values.push(item.values);
- //     } else {
- //       newArray.push(item);
- //     }
- //   }
- //   if (other.y > 0) {
- //     newArray.push(other);
- //     return newArray;
- //   } else {
- //     return dataArray;
- //   }
- // };
+  // combineSmallGroups = (dataArray) => {
+  //   const totalLength = dataArray.length;
+  //   const threshold = 0.1;
+  //   let other = { x: 'Muu arvo', y: 0, values: [] };
+  //   let newArray = [];
+  //   for (let item of dataArray) {
+  //     const portion = item.y / totalLength;
+  //     if (portion < threshold) {
+  //       other.y += item.y;
+  //       other.values.push(item.values);
+  //     } else {
+  //       newArray.push(item);
+  //     }
+  //   }
+  //   if (other.y > 0) {
+  //     newArray.push(other);
+  //     return newArray;
+  //   } else {
+  //     return dataArray;
+  //   }
+  // };
 
  combineSmallGroups = (dataArray) => {
-   //const totalLength = dataArray.length;
-   //const threshold = 0.1;
-   let other = { x: 'Muu arvo', y: 0, values: [] };
-   let newArray = [];
-   let count = 0;
-   for (let item of dataArray) {
-     //const portion = item.y / totalLength;
+   // const totalLength = dataArray.length;
+   // const threshold = 0.1;
+   const other = { x: 'Muu arvo', y: 0, values: [] }
+   const newArray = []
+   let count = 0
+   for (const item of dataArray) {
+     // const portion = item.y / totalLength;
      if (count > 8) {
-       other.y += item.y;
-       other.values.push(item.values);
+       other.y += item.y
+       other.values.push(item.values)
      } else {
-       newArray.push(item);
+       newArray.push(item)
      }
-     count += 1;
+     count += 1
    }
    if (other.y > 0) {
-     newArray.push(other);
-     return newArray;
+     newArray.push(other)
+     return newArray
    } else {
-     return dataArray;
+     return dataArray
    }
  };
 
  handleOptionChange = (changeEvent) => {
    this.setState({
-     selectedOption: changeEvent.target.value,
-   });
+     selectedOption: changeEvent.target.value
+   })
    this.setState({
      label: intl.get(`perspectives.victims.properties.${changeEvent.target.value}.label`)
-   });
-   this.updatePie(changeEvent.target.value);
+   })
+   this.updatePie(changeEvent.target.value)
  }
 
  componentDidMount = () => {
    this.props.fetchFacetConstrainSelf({
      facetClass: 'victims',
      facetID: this.state.selectedOption
-   });
+   })
  }
 
  componentDidUpdate = prevProps => {
@@ -141,7 +139,7 @@ class Pie extends React.Component {
      this.props.fetchFacetConstrainSelf({
        facetClass: 'victims',
        facetID: this.state.selectedOption
-     });
+     })
    }
  }
 
@@ -149,46 +147,46 @@ class Pie extends React.Component {
    this.props.fetchFacetConstrainSelf({
      facetClass: 'victims',
      facetID: value
-   });
+   })
  }
 
- render() {
-   const { classes, data } = this.props;
-   let resultCount = 0;
-   let facetValues = null;
-   facetValues = data[this.state.selectedOption].values;
-   if (facetValues.length == 0) {
+ render () {
+   const { classes, data } = this.props
+   let resultCount = 0
+   let facetValues = null
+   facetValues = data[this.state.selectedOption].values
+   if (facetValues.length === 0) {
      return (
        <Paper square className={classes.spinnerContainer}>
          <CircularProgress style={{ color: purple[500] }} thickness={5} />
        </Paper>
-     );
+     )
    }
-   for (let key in facetValues) {
-     resultCount = resultCount + parseInt(facetValues[key].instanceCount, 10);
+   for (const key in facetValues) {
+     resultCount = resultCount + parseInt(facetValues[key].instanceCount, 10)
    }
-   //const resultCount = data.party.values;
-   //console.log(data.party.values)
-   //if (resultCount < 10) {
+   // const resultCount = data.party.values;
+   // console.log(data.party.values)
+   // if (resultCount < 10) {
    //  return <ResultInfo message="Need over 10 results to create a distribution." />;
-   //}
-   const grouped = _.groupBy(facetValues, 'prefLabel');
-   let dataArray = [];
-   for (let key in grouped) {
-     //console.log(grouped[key][0])
-     const count = grouped[key][0].instanceCount;
+   // }
+   const grouped = _.groupBy(facetValues, 'prefLabel')
+   let dataArray = []
+   for (const key in grouped) {
+     // console.log(grouped[key][0])
+     const count = grouped[key][0].instanceCount
      dataArray.push({
        x: key,
-       y: parseInt(count, 10),
-       //values: grouped[key]
-     });
+       y: parseInt(count, 10)
+       // values: grouped[key]
+     })
    }
-   dataArray = _.orderBy(dataArray, 'y', 'desc');
+   dataArray = _.orderBy(dataArray, 'y', 'desc')
    //  console.log(dataArray)
-   dataArray = this.combineSmallGroups(dataArray);
-   const legendArray = dataArray.map(group => ({ name: group.x + ' (' + group.y + ')' }));
-   //console.log(dataArray)
-   const legendHeigth = legendArray.length * 35 + 15;
+   dataArray = this.combineSmallGroups(dataArray)
+   const legendArray = dataArray.map(group => ({ name: group.x + ' (' + group.y + ')' }))
+   // console.log(dataArray)
+   const legendHeigth = legendArray.length * 35 + 15
    // const pieTitle = resultCount + ' results for the query "' + query + '"';
    // <VictoryLabel
    //   style={{
@@ -202,75 +200,93 @@ class Pie extends React.Component {
      <Paper square className={classes.root}>
        <div className={classes.options}>
          <form>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="party"
+               <input
+                 type='radio' value='party'
                  checked={this.state.selectedOption === 'party'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.party.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="occupation"
+               <input
+                 type='radio' value='occupation'
                  checked={this.state.selectedOption === 'occupation'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.occupation.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="gender"
+               <input
+                 type='radio' value='gender'
                  checked={this.state.selectedOption === 'gender'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.gender.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="registeredProvince"
+               <input
+                 type='radio' value='registeredProvince'
                  checked={this.state.selectedOption === 'registeredProvince'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.registeredProvince.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="registeredMunicipality"
+               <input
+                 type='radio' value='registeredMunicipality'
                  checked={this.state.selectedOption === 'registeredMunicipality'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.registeredMunicipality.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="deathProvince"
+               <input
+                 type='radio' value='deathProvince'
                  checked={this.state.selectedOption === 'deathProvince'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.deathProvince.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="deathMunicipality"
+               <input
+                 type='radio' value='deathMunicipality'
                  checked={this.state.selectedOption === 'deathMunicipality'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.deathMunicipality.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="causeOfDeath"
+               <input
+                 type='radio' value='causeOfDeath'
                  checked={this.state.selectedOption === 'causeOfDeath'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.causeOfDeath.label')}
              </label>
            </div>
-           <div className="radio">
+           <div className='radio'>
              <label>
-               <input type="radio" value="maritalStatus"
+               <input
+                 type='radio' value='maritalStatus'
                  checked={this.state.selectedOption === 'maritalStatus'}
-                 onChange={this.handleOptionChange} />
+                 onChange={this.handleOptionChange}
+               />
                {intl.get('perspectives.victims.properties.maritalStatus.label')}
              </label>
            </div>
@@ -282,7 +298,7 @@ class Pie extends React.Component {
              padding={{
                left: 0, bottom: 0, top: 32
              }}
-             colorScale={'qualitative'}
+             colorScale='qualitative'
              data={dataArray}
              orientation='bottom'
              labelComponent={<PieTooltip resultCount={resultCount} />}
@@ -293,11 +309,11 @@ class Pie extends React.Component {
              <VictoryLegend
                height={legendHeigth}
                title={this.state.label}
-               colorScale={'qualitative'}
+               colorScale='qualitative'
                data={legendArray}
                style={{
                  labels: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' },
-                 title: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' },
+                 title: { fontFamily: 'Roboto, Helvetica, Arial, sans-serif' }
                }}
                containerComponent={
                  <VictoryContainer
@@ -310,7 +326,7 @@ class Pie extends React.Component {
          </Grid>
        </Grid>
      </Paper>
-   );
+   )
  }
 }
 
@@ -319,6 +335,6 @@ Pie.propTypes = {
   data: PropTypes.object.isRequired,
   fetchFacetConstrainSelf: PropTypes.func.isRequired,
   facetUpdateID: PropTypes.number
-};
+}
 
-export default withStyles(styles)(Pie);
+export default withStyles(styles)(Pie)

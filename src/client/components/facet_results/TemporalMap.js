@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import intl from 'react-intl-universal';
-import ReactMapGL, { NavigationControl, FullscreenControl } from 'react-map-gl';
-import DeckGL, { ScatterplotLayer } from 'deck.gl';
-import Paper from '@material-ui/core/Paper';
-import TemporalMapTimeSlider from './TemporalMapTimeSlider';
-import './TemporalMapCommon.scss';
-import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/config';
-import Typography from '@material-ui/core/Typography';
-import { has } from 'lodash';
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
-const moment = extendMoment(Moment);
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import intl from 'react-intl-universal'
+import ReactMapGL, { NavigationControl, FullscreenControl } from 'react-map-gl'
+import DeckGL, { ScatterplotLayer } from 'deck.gl'
+import Paper from '@material-ui/core/Paper'
+import TemporalMapTimeSlider from './TemporalMapTimeSlider'
+import './TemporalMapCommon.scss'
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/sotasurmat/GeneralConfig'
+import Typography from '@material-ui/core/Typography'
+import { has } from 'lodash'
+import Moment from 'moment'
+import { extendMoment } from 'moment-range'
+const moment = extendMoment(Moment)
 
 const styles = theme => ({
   root: {
@@ -38,14 +38,13 @@ const styles = theme => ({
   fullscreenButton: {
     marginTop: theme.spacing(1)
   }
-});
+})
 
 // based on https://github.com/AdriSolid/DECK.GL-Time-Slider
 class TemporalMap extends Component {
-
-  constructor(props) {
-    super(props);
-    this.mapElementRef = React.createRef();
+  constructor (props) {
+    super(props)
+    this.mapElementRef = React.createRef()
     this.state = {
       viewport: {
         longitude: 26.91,
@@ -58,15 +57,15 @@ class TemporalMap extends Component {
       memory: [],
       dates: [],
       mounted: false
-    };
+    }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchResults({
       resultClass: this.props.resultClass,
-      facetClass: this.props.facetClass,
-    });
-    this.setState({ mounted: true });
+      facetClass: this.props.facetClass
+    })
+    this.setState({ mounted: true })
   }
 
   componentDidUpdate = prevProps => {
@@ -74,64 +73,63 @@ class TemporalMap extends Component {
       const uniqueDates = this.props.results
         .map(d => d.startDate)
         .filter((value, index, self) => self.indexOf(value) === index)
-        .sort();
-      const startDate = uniqueDates[0];
-      const endDate = uniqueDates[uniqueDates.length - 1];
-      const range = moment.range(startDate, endDate);
-      let days = Array.from(range.by('day'));
-      days = days.map(m => m.format('YYYY-MM-DD'));
-      const sliderValue = this.props.animationValue[0];
-      const filteredData = this._filterData(sliderValue, this.props.results, days);
+        .sort()
+      const startDate = uniqueDates[0]
+      const endDate = uniqueDates[uniqueDates.length - 1]
+      const range = moment.range(startDate, endDate)
+      let days = Array.from(range.by('day'))
+      days = days.map(m => m.format('YYYY-MM-DD'))
+      const sliderValue = this.props.animationValue[0]
+      const filteredData = this._filterData(sliderValue, this.props.results, days)
       this.setState({
         data: filteredData,
         memory: this.props.results,
         dates: days
-      });
+      })
     }
 
     if (prevProps.animationValue !== this.props.animationValue) {
-      const { memory, dates } = this.state;
-      const sliderValue = this.props.animationValue[0];
-      const filteredData = this._filterData(sliderValue, memory, dates);
+      const { memory, dates } = this.state
+      const sliderValue = this.props.animationValue[0]
+      const filteredData = this._filterData(sliderValue, memory, dates)
       this.setState({
         data: filteredData
-      });
+      })
     }
 
     // check if filters have changed
     if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
-      this.props.animateMap([ 0 ]); // reset time slider
+      this.props.animateMap([0]) // reset time slider
       this.props.fetchResults({
         resultClass: this.props.resultClass,
         facetClass: this.props.facetClass,
-        sortBy: null,
-      });
+        sortBy: null
+      })
     }
-
   };
 
   _filterData = (sliderValue, data, dates) => {
-    const animationCurrentDate = Date.parse(dates[sliderValue]);
+    const animationCurrentDate = Date.parse(dates[sliderValue])
     const newData = data.filter(value => {
-      return Date.parse(value.startDate) <= animationCurrentDate;
-    });
+      return Date.parse(value.startDate) <= animationCurrentDate
+    })
     newData.map(value => {
-      const startDate = Date.parse(value.startDate);
-      const range = moment.range(startDate, animationCurrentDate);
+      const startDate = Date.parse(value.startDate)
+      const range = moment.range(startDate, animationCurrentDate)
       if (range.diff('days') >= 2) {
-        value.isNew = false;
+        value.isNew = false
       } else {
-        value.isNew = true;
+        value.isNew = true
       }
-      return value;
-    });
-    return newData;
+      return value
+    })
+    return newData
   }
 
-  _renderTooltip() {
-    const {hoveredObject, pointerX, pointerY} = this.state || {};
+  _renderTooltip () {
+    const { hoveredObject, pointerX, pointerY } = this.state || {}
     return hoveredObject && (
-      <Paper className={this.props.classes.tooltipContainer} style={{left: pointerX + 10, top: pointerY + 10}}>
+      <Paper className={this.props.classes.tooltipContainer} style={{ left: pointerX + 10, top: pointerY + 10 }}>
         <Typography variant='h6'>
           {hoveredObject.prefLabel}
         </Typography>
@@ -147,14 +145,13 @@ class TemporalMap extends Component {
         {has(hoveredObject, 'units') &&
           <Typography>
             {intl.get('perspectives.battles.properties.units.description')}: {hoveredObject.units}
-          </Typography>
-        }
+          </Typography>}
       </Paper>
-    );
+    )
   }
 
-  _renderLayers() {
-    const { data } = this.state;
+  _renderLayers () {
+    const { data } = this.state
     return [
       new ScatterplotLayer({
         id: 'time-layer',
@@ -166,7 +163,7 @@ class TemporalMap extends Component {
         radiusMinPixels: 8,
         radiusMaxPixels: 100,
         lineWidthMinPixels: 1,
-        getPosition: d => [ +d.long, +d.lat ],
+        getPosition: d => [+d.long, +d.lat],
         getFillColor: d => d.isNew ? [255, 0, 0] : [0, 0, 0],
         pickable: true,
         autoHighlight: true,
@@ -176,15 +173,15 @@ class TemporalMap extends Component {
           pointerY: info.y
         })
       })
-    ];
+    ]
   }
 
-  _onViewportChange = viewport =>
-    this.state.mounted && this.setState({viewport});
+  handleOnViewportChange = viewport =>
+    this.state.mounted && this.setState({ viewport });
 
-  render() {
-    const { viewport, memory, dates } = this.state;
-    const { classes, animateMap } = this.props;
+  render () {
+    const { viewport, memory, dates } = this.state
+    const { classes, animateMap } = this.props
     return (
       <div id='temporal-map-root' ref={this.mapElementRef} className={classes.root}>
         <ReactMapGL
@@ -193,9 +190,9 @@ class TemporalMap extends Component {
           height='100%'
           reuseMaps
           mapStyle={`mapbox://styles/mapbox/${MAPBOX_STYLE}`}
-          preventStyleDiffing={true}
+          preventStyleDiffing
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-          onViewportChange={this._onViewportChange}
+          onViewportChange={this.handleOnViewportChange}
         >
           <div className={classes.navigationContainer}>
             <NavigationControl />
@@ -218,7 +215,7 @@ class TemporalMap extends Component {
           {this._renderTooltip()}
         </ReactMapGL>
       </div>
-    );
+    )
   }
 }
 
@@ -230,7 +227,7 @@ TemporalMap.propTypes = {
   fetchResults: PropTypes.func.isRequired,
   animationValue: PropTypes.array.isRequired,
   animateMap: PropTypes.func.isRequired,
-  facetUpdateID: PropTypes.number.isRequired,
-};
+  facetUpdateID: PropTypes.number.isRequired
+}
 
-export default withStyles(styles)(TemporalMap);
+export default withStyles(styles)(TemporalMap)

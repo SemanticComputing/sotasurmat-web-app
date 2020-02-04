@@ -1,40 +1,41 @@
-
-import React from 'react';
-import PropTypes from 'prop-types';
-import intl from 'react-intl-universal';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-// import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import { withStyles } from '@material-ui/core/styles';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
-import { Link, NavLink } from 'react-router-dom';
-// import TopBarSearchField from './TopBarSearchField';
-// import TopBarInfoButton from './TopBarInfoButton';
-import TopBarLanguageButton from './TopBarLanguageButton';
-import Divider from '@material-ui/core/Divider';
-import { has } from 'lodash';
-import logo from '../../img/logo_small_fi.gif';
-import arkistoLogo from '../../img/logos/ka-tunnus-fi-white.png';
+import React from 'react'
+import PropTypes from 'prop-types'
+import intl from 'react-intl-universal'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+// import Typography from '@material-ui/core/Typography'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import { withStyles } from '@material-ui/core/styles'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import Button from '@material-ui/core/Button'
+import { Link, NavLink } from 'react-router-dom'
+// import TopBarSearchField from './TopBarSearchField'
+// import TopBarInfoButton from './TopBarInfoButton'
+import TopBarLanguageButton from './TopBarLanguageButton'
+import Divider from '@material-ui/core/Divider'
+import { has } from 'lodash'
+import logo from '../../img/logo_small_fi.gif'
+import arkistoLogo from '../../img/logos/ka-tunnus-fi-white.png'
+import { showLanguageButton } from '../../configs/sotasurmat/GeneralConfig'
 
 const styles = theme => ({
   root: {
-    //width: '100%',
+    // width: '100%',
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
-  title: {
-    //
+  toolbar: {
+    paddingLeft: theme.spacing(1.5),
+    paddingRight: theme.spacing(1.5)
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('lg')]: {
-      display: 'flex',
-    },
+      display: 'flex'
+    }
   },
   link: {
     textDecoration: 'none'
@@ -42,8 +43,8 @@ const styles = theme => ({
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   appBarToolbar: {
     paddingLeft: 0
@@ -68,42 +69,37 @@ const styles = theme => ({
   topBarLogo: {
     height: 50,
     [theme.breakpoints.down('xs')]: {
-      height: 35,
-    },
+      height: 35
+    }
   },
-  // arkistoLogo: {
-  //   [theme.breakpoints.down('xs')]: {
-  //     display: 'none'
-  //   },
-  // },
   arkistoLogoImage: {
     height: 52,
     [theme.breakpoints.down('xs')]: {
-      height: 35,
-    },
+      height: 35
+    }
   }
-});
+})
 
 class TopBar extends React.Component {
   state = {
     infoAnchorEl: null,
-    mobileMoreAnchorEl: null,
+    mobileMoreAnchorEl: null
   };
 
   handleInfoMenuOpen = event => {
-    this.setState({ infoAnchorEl: event.currentTarget });
+    this.setState({ infoAnchorEl: event.currentTarget })
   };
 
   handleInfoMenuClose = () => {
-    this.setState({ infoAnchorEl: null });
+    this.setState({ infoAnchorEl: null })
   };
 
   handleMobileMenuOpen = event => {
-    this.setState({ mobileMoreAnchorEl: event.currentTarget });
+    this.setState({ mobileMoreAnchorEl: event.currentTarget })
   };
 
   handleMobileMenuClose = () => {
-    this.setState({ mobileMoreAnchorEl: null });
+    this.setState({ mobileMoreAnchorEl: null })
   };
 
   // https://material-ui.com/components/buttons/#third-party-routing-library
@@ -112,8 +108,9 @@ class TopBar extends React.Component {
 
   renderMobileMenuItem = perspective => {
     if (has(perspective, 'externalUrl')) {
-      return(
-        <a className={this.props.classes.link}
+      return (
+        <a
+          className={this.props.classes.link}
           key={perspective.id}
           href={perspective.externalUrl}
           target='_blank'
@@ -123,9 +120,9 @@ class TopBar extends React.Component {
             {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
           </MenuItem>
         </a>
-      );
+      )
     } else {
-      return(
+      return (
         <MenuItem
           key={perspective.id}
           component={this.AdapterLink}
@@ -133,14 +130,15 @@ class TopBar extends React.Component {
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
-      );
+      )
     }
   }
 
   renderDesktopTopMenuItem = perspective => {
     if (has(perspective, 'externalUrl')) {
-      return(
-        <a className={this.props.classes.link}
+      return (
+        <a
+          className={this.props.classes.link}
           key={perspective.id}
           href={perspective.externalUrl}
           target='_blank'
@@ -152,9 +150,9 @@ class TopBar extends React.Component {
             {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
           </Button>
         </a>
-      );
+      )
     } else {
-      return(
+      return (
         <Button
           key={perspective.id}
           className={this.props.classes.appBarButton}
@@ -165,7 +163,7 @@ class TopBar extends React.Component {
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </Button>
-      );
+      )
     }
   }
 
@@ -186,13 +184,13 @@ class TopBar extends React.Component {
       >
         {intl.get('topBar.feedback').toUpperCase()}
       </MenuItem>
-      {/*<MenuItem
+      {/* <MenuItem
         key={0}
         component={this.AdapterLink}
         to={`${this.props.rootUrl}/about`}
       >
         {intl.get('topBar.info.aboutTheProject').toUpperCase()}
-      </MenuItem>*/}
+      </MenuItem> */}
       <MenuItem
         key='info'
         component={this.AdapterLink}
@@ -209,21 +207,21 @@ class TopBar extends React.Component {
       </MenuItem>
     </Menu>
 
-  render() {
-    const { classes, perspectives, currentLocale, availableLocales } = this.props;
+  render () {
+    const { classes, perspectives, currentLocale, availableLocales } = this.props
     return (
       <div className={classes.root}>
-        <AppBar position="absolute">
+        <AppBar position='absolute'>
           <Toolbar className={classes.appBarToolbar}>
             <Button
               component={this.AdapterLink}
               to={this.props.rootUrl}
             >
-              <img className={classes.topBarLogo} src={logo} alt="Logo"></img>
+              <img className={classes.topBarLogo} src={logo} alt='Logo' />
             </Button>
             <a
               className={classes.arkistoLogo}
-              href="https://www.arkisto.fi/"
+              href='https://www.arkisto.fi/'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -231,14 +229,14 @@ class TopBar extends React.Component {
                 <img className={classes.arkistoLogoImage} src={arkistoLogo} alt='logo' />
               </Button>
             </a>
-            {/*<TopBarSearchField
+            {/* <TopBarSearchField
               fetchResultsClientSide={this.props.fetchResultsClientSide}
               clearResults={this.props.clearResults}
-            />*/}
+            /> */}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               {perspectives.map((perspective, index) => this.renderDesktopTopMenuItem(perspective, index))}
-              <div className={classes.appBarDivider}></div>
+              <div className={classes.appBarDivider} />
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
@@ -248,12 +246,12 @@ class TopBar extends React.Component {
               >
                 {intl.get('topBar.feedback')}
               </Button>
-              {/*<TopBarInfoButton />*/}
+              {/* <TopBarInfoButton /> */}
               <Button
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
                 to={`${this.props.rootUrl}/information`}
-                isActive={(match, location) => location.pathname.startsWith(`/information`)}
+                isActive={(match, location) => location.pathname.startsWith('/information')}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 {intl.get('topBar.info.info')}
@@ -262,20 +260,28 @@ class TopBar extends React.Component {
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
                 to={`${this.props.rootUrl}/instructions`}
-                isActive={(match, location) => location.pathname.startsWith(`/instructions`)}
+                isActive={(match, location) => location.pathname.startsWith('/instructions')}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 {intl.get('topBar.instructions')}
               </Button>
-              { /*
-              <TopBarLanguageButton
-                currentLocale={currentLocale}
-                availableLocales={availableLocales}
-                loadLocales={this.props.loadLocales}
-              /> */}
+              {showLanguageButton &&
+                <TopBarLanguageButton
+                  currentLocale={currentLocale}
+                  availableLocales={availableLocales}
+                  loadLocales={this.props.loadLocales}
+                />}
             </div>
+            <a
+              className={classes.secoLogo}
+              href='https://seco.cs.aalto.fi/projects/mmm'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {/* <Button><img src={secoLogo} /></Button> */}
+            </a>
             <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+              <IconButton aria-haspopup='true' onClick={this.handleMobileMenuOpen} color='inherit'>
                 <MoreIcon />
               </IconButton>
             </div>
@@ -283,7 +289,7 @@ class TopBar extends React.Component {
         </AppBar>
         {this.renderMobileMenu(perspectives)}
       </div>
-    );
+    )
   }
 }
 
@@ -296,6 +302,6 @@ TopBar.propTypes = {
   perspectives: PropTypes.array.isRequired,
   currentLocale: PropTypes.string.isRequired,
   availableLocales: PropTypes.array.isRequired
-};
+}
 
-export default withStyles(styles)(TopBar);
+export default withStyles(styles)(TopBar)

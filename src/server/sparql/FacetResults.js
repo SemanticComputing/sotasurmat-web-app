@@ -1,11 +1,10 @@
-import { runSelectQuery } from './SparqlApi';
-import { prefixes } from './SparqlQueriesPrefixes';
+import { runSelectQuery } from './SparqlApi'
+import { prefixes } from './sotasurmat/SparqlQueriesPrefixes'
 import {
-  endpoint,
   countQuery,
   facetResultSetQuery,
   instanceQuery
-} from './SparqlQueriesGeneral';
+} from './SparqlQueriesGeneral'
 import {
   deathsProperties,
   personProperties,
@@ -16,23 +15,23 @@ import {
   extrasTypeList,
   deathPlacesQuery,
   deathsAt
-} from './SparqlQueriesVictims';
+} from './sotasurmat/SparqlQueriesVictims'
 import {
   battleProperties,
   battlePlacesQuery,
   battlePlacesAnimationQuery
-} from './SparqlQueriesBattles';
+} from './sotasurmat/SparqlQueriesBattles'
 import {
-  sourceProperties,
-} from './SparqlQueriesSources';
+  sourceProperties
+} from './sotasurmat/SparqlQueriesSources'
 import {
   placePropertiesInfoWindow,
-  allPlacesQuery,
-} from './SparqlQueriesPlaces';
-import { facetConfigs } from './FacetConfigsSotasurmat';
-import { mapCount, mapPlaces, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers';
-import { makeObjectList } from './SparqlObjectMapper';
-import { generateConstraintsBlock } from './Filters';
+  allPlacesQuery
+} from './sotasurmat/SparqlQueriesPlaces'
+import { facetConfigs, endpoint } from './sotasurmat/FacetConfigsSotasurmat'
+import { mapCount, mapPlaces, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers'
+import { makeObjectList } from './SparqlObjectMapper'
+import { generateConstraintsBlock } from './Filters'
 
 export const getPaginatedResults = async ({
   resultClass,
@@ -51,7 +50,7 @@ export const getPaginatedResults = async ({
     sortBy,
     sortDirection,
     resultFormat
-  });
+  })
   if (resultFormat === 'json') {
     return {
       resultClass: resultClass,
@@ -59,11 +58,11 @@ export const getPaginatedResults = async ({
       pagesize: pagesize,
       data: response.data,
       sparqlQuery: response.sparqlQuery
-    };
+    }
   } else {
-    return response;
+    return response
   }
-};
+}
 
 export const getAllResults = ({
   resultClass,
@@ -71,50 +70,50 @@ export const getAllResults = ({
   constraints,
   resultFormat
 }) => {
-  let q = '';
-  let filterTarget = '';
-  let mapper = makeObjectList;
-  //console.log(resultClass)
+  let q = ''
+  let filterTarget = ''
+  let mapper = makeObjectList
+  // console.log(resultClass)
   switch (resultClass) {
     case 'battlePlaces':
-      q = battlePlacesQuery;
-      filterTarget = 'id';
-      break;
+      q = battlePlacesQuery
+      filterTarget = 'id'
+      break
     case 'battlePlacesAnimation':
-      q = battlePlacesAnimationQuery;
-      filterTarget = 'id';
-      break;
+      q = battlePlacesAnimationQuery
+      filterTarget = 'id'
+      break
     case 'birthYearCount':
-      q = birthYearsQuery;
-      mapper = mapBirthYearCount;
-      filterTarget = 'id';
-      break;
+      q = birthYearsQuery
+      mapper = mapBirthYearCount
+      filterTarget = 'id'
+      break
     case 'placesAll':
-      q = allPlacesQuery;
-      filterTarget = 'id';
-      break;
+      q = allPlacesQuery
+      filterTarget = 'id'
+      break
     case 'ageCount':
-      q = ageQuery;
-      mapper = mapAgeCount;
-      filterTarget = 'id';
-      break;
+      q = ageQuery
+      mapper = mapAgeCount
+      filterTarget = 'id'
+      break
     case 'deathDateCount':
-      q = deathDateQuery;
-      mapper = mapCountGroups;
-      filterTarget = 'id';
-      break;
+      q = deathDateQuery
+      mapper = mapCountGroups
+      filterTarget = 'id'
+      break
     case 'csvDeaths':
-      q = csvDeathsQuery;
-      filterTarget = 'id';
-      break;
+      q = csvDeathsQuery
+      filterTarget = 'id'
+      break
     case 'deathPlaces':
-      q = deathPlacesQuery;
-      mapper = mapPlaces;
-      filterTarget = 'deathRecord';
-      break;
+      q = deathPlacesQuery
+      mapper = mapPlaces
+      filterTarget = 'deathRecord'
+      break
   }
   if (constraints == null) {
-    q = q.replace('<FILTER>', '# no filters');
+    q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
       resultClass: resultClass,
@@ -122,7 +121,7 @@ export const getAllResults = ({
       constraints: constraints,
       filterTarget: filterTarget,
       facetID: null
-    }));
+    }))
   }
   // console.log(prefixes + q)
   return runSelectQuery({
@@ -130,18 +129,18 @@ export const getAllResults = ({
     endpoint,
     resultMapper: mapper,
     resultFormat
-  });
-};
+  })
+}
 
 export const getResultCount = async ({
   resultClass,
   constraints,
   resultFormat
 }) => {
-  let q = countQuery;
-  q = q.replace('<FACET_CLASS>', facetConfigs[resultClass].facetClass);
+  let q = countQuery
+  q = q.replace('<FACET_CLASS>', facetConfigs[resultClass].facetClass)
   if (constraints == null) {
-    q = q.replace('<FILTER>', '# no filters');
+    q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
       resultClass: resultClass,
@@ -149,20 +148,20 @@ export const getResultCount = async ({
       constraints: constraints,
       filterTarget: 'id',
       facetID: null
-    }));
+    }))
   }
   const response = await runSelectQuery({
     query: prefixes + q,
     endpoint,
     resultMapper: mapCount,
     resultFormat
-  });
-  return({
+  })
+  return ({
     resultClass: resultClass,
     data: response.data,
     sparqlQuery: response.sparqlQuery
-  });
-};
+  })
+}
 
 const getPaginatedData = ({
   resultClass,
@@ -173,58 +172,59 @@ const getPaginatedData = ({
   sortDirection,
   resultFormat
 }) => {
-  let q = facetResultSetQuery;
-  //console.log(resultClass)
-  const facetConfig = facetConfigs[resultClass];
+  let q = facetResultSetQuery
+  // console.log(resultClass)
+  const facetConfig = facetConfigs[resultClass]
   if (constraints == null) {
-    q = q.replace('<FILTER>', '# no filters');
+    q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
       resultClass: resultClass,
       facetClass: resultClass,
       constraints: constraints,
       filterTarget: 'id',
-      facetID: null}));
+      facetID: null
+    }))
   }
-  q = q.replace('<FACET_CLASS>', facetConfig.facetClass);
+  q = q.replace('<FACET_CLASS>', facetConfig.facetClass)
   if (sortBy == null) {
-    q = q.replace('<ORDER_BY_TRIPLE>', '');
-    q = q.replace('<ORDER_BY>', '# no sorting');
+    q = q.replace('<ORDER_BY_TRIPLE>', '')
+    q = q.replace('<ORDER_BY>', '# no sorting')
   } else {
-    let sortByPredicate = '';
+    let sortByPredicate = ''
     if (sortBy.endsWith('Timespan')) {
       sortByPredicate = sortDirection === 'asc'
         ? facetConfig[sortBy].sortByAscPredicate
-        : facetConfig[sortBy].sortByDescPredicate;
+        : facetConfig[sortBy].sortByDescPredicate
     } else {
-      sortByPredicate = facetConfig[sortBy].labelPath;
+      sortByPredicate = facetConfig[sortBy].labelPath
     }
     q = q.replace('<ORDER_BY_TRIPLE>',
-      `OPTIONAL { ?id ${sortByPredicate} ?orderBy }`);
+      `OPTIONAL { ?id ${sortByPredicate} ?orderBy }`)
     q = q.replace('<ORDER_BY>',
-      `ORDER BY (!BOUND(?orderBy)) ${sortDirection}(?orderBy)`);
+      `ORDER BY (!BOUND(?orderBy)) ${sortDirection}(?orderBy)`)
   }
-  q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`);
-  let resultSetProperties;
+  q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`)
+  let resultSetProperties
   switch (resultClass) {
     case 'victims':
-      resultSetProperties = deathsProperties;
-      break;
+      resultSetProperties = deathsProperties
+      break
     case 'battles':
-      resultSetProperties = battleProperties;
-      break;
+      resultSetProperties = battleProperties
+      break
     default:
-      resultSetProperties = '';
+      resultSetProperties = ''
   }
-  q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties);
+  q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties)
   // console.log(prefixes + q);
   return runSelectQuery({
     query: prefixes + q,
     endpoint,
     resultMapper: makeObjectList,
     resultFormat
-  });
-};
+  })
+}
 
 export const getByURI = ({
   resultClass,
@@ -233,78 +233,79 @@ export const getByURI = ({
   uri,
   resultFormat
 }) => {
-  let q;
-  let properties;
+  let q
+  let properties
   switch (resultClass) {
     case 'victims':
-      //properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
-      properties = personProperties;
-      q = instanceQuery;
-      q = q.replace('<PROPERTIES>', properties);
-      q = q.replace('<RELATED_INSTANCES>', '');
-      break;
+      // properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
+      properties = personProperties
+      q = instanceQuery
+      q = q.replace('<PROPERTIES>', properties)
+      q = q.replace('<RELATED_INSTANCES>', '')
+      break
     case 'personExtras':
-      properties = templateStart.concat(createExtrasQueryBlock(extrasTypeList));
-      q = instanceQuery;
-      q = q.replace('<PROPERTIES>', properties);
-      q = q.replace('<RELATED_INSTANCES>', '');
-      break;
+      properties = templateStart.concat(createExtrasQueryBlock(extrasTypeList))
+      q = instanceQuery
+      q = q.replace('<PROPERTIES>', properties)
+      q = q.replace('<RELATED_INSTANCES>', '')
+      break
     case 'battles':
-      q = instanceQuery;
-      q = q.replace('<PROPERTIES>', battleProperties);
-      q = q.replace('<RELATED_INSTANCES>', '');
-      break;
+      q = instanceQuery
+      q = q.replace('<PROPERTIES>', battleProperties)
+      q = q.replace('<RELATED_INSTANCES>', '')
+      break
     case 'battlePlaces':
-      q = instanceQuery;
-      q = q.replace('<PROPERTIES>', battleProperties);
-      q = q.replace('<RELATED_INSTANCES>', '');
-      break;
+      q = instanceQuery
+      q = q.replace('<PROPERTIES>', battleProperties)
+      q = q.replace('<RELATED_INSTANCES>', '')
+      break
     case 'deathPlaces':
-      q = instanceQuery;
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow);
-      q = q.replace('<RELATED_INSTANCES>', deathsAt);
-      break;
+      q = instanceQuery
+      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
+      q = q.replace('<RELATED_INSTANCES>', deathsAt)
+      break
     case 'sources':
-      q = instanceQuery;
-      q = q.replace('<PROPERTIES>', sourceProperties);
-      q = q.replace('<RELATED_INSTANCES>', '');
-      break;
+      q = instanceQuery
+      q = q.replace('<PROPERTIES>', sourceProperties)
+      q = q.replace('<RELATED_INSTANCES>', '')
+      break
   }
 
   if (constraints == null) {
-    q = q.replace('<FILTER>', '# no filters');
+    q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
       resultClass: resultClass,
       facetClass: facetClass,
       constraints: constraints,
       filterTarget: 'related__id',
-      facetID: null}));
+      facetID: null
+    }))
   }
 
-  q = q.replace('<ID>', `<${uri}>`);
+  q = q.replace('<ID>', `<${uri}>`)
   // console.log(prefixes + q)
   return runSelectQuery({
     query: prefixes + q,
     endpoint,
     resultMapper: makeObjectList,
     resultFormat
-  });
-};
+  })
+}
 
-const templateStart =  `
+const templateStart = `
     {
       ?id skos:prefLabel ?prefLabel__id .
     }
-    `;
+    `
 
-function createExtrasQueryBlock(types) {
-  let block = '';
-  let unionBlock = '';
-  types.forEach(function(item) {
-    block = extrasTemplate.replace(/<TYPENAME>/g, item[0]);
-    block = block.replace(/<TYPE>/g, item[1]);
-    unionBlock = unionBlock.concat(block);
-  });
-  return unionBlock;
+function createExtrasQueryBlock (types) {
+  let block = ''
+  let unionBlock = ''
+  types.forEach(function (item) {
+    block = extrasTemplate.replace(/<TYPENAME>/g, item[0])
+    block = block.replace(/<TYPE>/g, item[1])
+    unionBlock = unionBlock.concat(block)
+  })
+  return unionBlock
 }

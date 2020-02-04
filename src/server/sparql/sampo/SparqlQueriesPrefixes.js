@@ -11,16 +11,9 @@ export const prefixes = `
   PREFIX sch: <http://schema.org/>
   PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
   PREFIX frbroo: <http://erlangen-crm.org/efrbroo/>
-  PREFIX mmm-schema: <http://ldf.fi/mmm/schema/>
+  PREFIX mmm-schema: <http://ldf.fi/schema/mmm/>
   PREFIX gvp: <http://vocab.getty.edu/ontology#>
   PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
   PREFIX spatial: <http://jena.apache.org/spatial#>
-  PREFIX siso-schema: <http://ldf.fi/siso/schema/>
   PREFIX text: <http://jena.apache.org/text#>
-  PREFIX ammo-s: <http://ldf.fi/schema/ammo/>
-  PREFIX ammo: <http://ldf.fi/ammo/>
-  PREFIX siso-s: <http://ldf.fi/siso/schema/>
-
-
-
-  `;
+`

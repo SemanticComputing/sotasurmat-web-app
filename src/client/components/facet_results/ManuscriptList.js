@@ -1,24 +1,50 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
+import Typography from '@material-ui/core/Typography'
 
-let ManuscriptList = (props) => {
-  const { manuscripts } = props;
-  let items = '';
-  if (Array.isArray(manuscripts)) {
-    items = manuscripts.map(m => <li key={m.id}><a target="_blank" rel="noopener noreferrer" href={m.url}>{m.url}</a></li>);
-  } else {
-    items = <li><a target="_blank" rel="noopener noreferrer" href={manuscripts.url}>{manuscripts.url}</a></li>;
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing(1)
   }
-  return(
-    <ul>
-      {items}
-    </ul>
-  );
-};
+})
+
+const ManuscriptList = props => {
+  const { classes, manuscripts } = props
+  let items = ''
+  const isArray = Array.isArray(manuscripts)
+  if (isArray) {
+    items = manuscripts.map(m =>
+      <li key={m.id}>
+        <Typography>
+          <Link to={m.dataProviderUrl}>{m.prefLabel}</Link>
+        </Typography>
+      </li>)
+  }
+  return (
+    <div className={classes.root}>
+      {isArray &&
+        <>
+          <Typography>Manuscripts:</Typography>
+          <ul>
+            {items}
+          </ul>
+        </>}
+      {!isArray &&
+        <>
+          <Typography>Manuscript:</Typography>
+          <Typography>
+            <Link to={manuscripts.dataProviderUrl}>{manuscripts.prefLabel}</Link>
+          </Typography>
+        </>}
+    </div>
+  )
+}
 
 ManuscriptList.propTypes = {
-  //classes: PropTypes.object.isRequired,
-  manuscripts:  PropTypes.oneOfType([PropTypes.object, PropTypes.array])
-};
+  classes: PropTypes.object.isRequired,
+  manuscripts: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+}
 
-export default ManuscriptList;
+export default withStyles(styles)(ManuscriptList)

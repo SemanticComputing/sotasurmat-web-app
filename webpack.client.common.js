@@ -1,25 +1,25 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
-const outputDirectory = 'dist/public';
+const outputDirectory = 'dist/public'
 
 module.exports = {
   entry: {
-    app: './src/client/index.js',
+    app: './src/client/index.js'
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Sotasurmasampo 1914–1922',
       // Load a custom template
       template: 'src/client/index.html',
+      favicon: 'src/client/favicon.ico'
     }),
     new CopyPlugin([
       { from: 'src/client/sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
-      { from: 'src/client/robots.txt', to: path.resolve(__dirname, outputDirectory) },
+      { from: 'src/client/robots.txt', to: path.resolve(__dirname, outputDirectory) }
     ]),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
@@ -27,8 +27,8 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, outputDirectory),
-    publicPath: '/',
-    //publicPath: '/sotasurmat/',
+    publicPath: '/'
+    // publicPath: '/sotasurmat/',
   },
   module: {
     rules: [
@@ -42,18 +42,18 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader',
-        ],
+          'sass-loader'
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader',
-        ],
-      },
-    ],
+          'file-loader'
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-};
+    extensions: ['.js', '.jsx']
+  }
+}
