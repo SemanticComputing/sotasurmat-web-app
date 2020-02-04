@@ -15,7 +15,10 @@
     "setupTestFrameworkScriptFile": "<rootDir>/src/client/setupTests.js"
   },
   "author": "Esko Ikkala",
-  "contributors": [ "Heikki Rantala", "Erkki Heino" ],
+  "contributors": [
+    "Heikki Rantala",
+    "Erkki Heino"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.0",
