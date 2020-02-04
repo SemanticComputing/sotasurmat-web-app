@@ -73,32 +73,6 @@ class VictimHomePage extends React.Component {
     })
   }
 
-  createPlaceArray = events => {
-    let places = {}
-    events = Array.isArray(events) ? events : [events]
-    events.map(event => {
-      if (has(event, 'place')) {
-        const eventPlaces = Array.isArray(event.place) ? event.place : [event.place]
-        eventPlaces.map(place => {
-          if (!has(places, place.id)) {
-            places[place.id] = {
-              id: place.id,
-              prefLabel: place.prefLabel,
-              lat: place.lat,
-              long: place.long,
-              events: [event] // gather events here
-            }
-          } else {
-            places[place.id].events.push(event)
-          }
-        })
-      }
-    })
-    places = Object.values(places)
-    places.map(place => place.instanceCount = place.events.length)
-    return places
-  }
-
   getVisibleRows = rows => {
     const visibleRows = []
     const instanceClass = this.props.data.type ? this.props.data.type.id : ''
@@ -120,6 +94,7 @@ class VictimHomePage extends React.Component {
         <PerspectiveTabs
           routeProps={this.props.routeProps}
           tabs={this.props.tabs}
+          screenSize={this.props.screenSize}
         />
         <Paper square className={classes.content}>
           {isLoading &&
@@ -155,20 +130,6 @@ class VictimHomePage extends React.Component {
                       tableRows={this.getVisibleRows(this.props.tableRows)}
                     />}
                 />}
-              {/* <Route
-                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/map`}
-                render={() =>
-                  <LeafletMap
-                    results={this.createPlaceArray(data.event)}
-                    resultClass='instanceEvents'
-                    pageType='instancePage'
-                    mapMode='cluster'
-                    instance={null}
-                    fetchByURI={this.props.fetchByURI}
-                    fetching={this.props.isLoading}
-                    showInstanceCountInClusters={true}
-                  />}
-              /> */}
               <Route
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/export`}
                 render={() =>
@@ -196,7 +157,8 @@ VictimHomePage.propTypes = {
   tableRows: PropTypes.array.isRequired,
   tabs: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  routeProps: PropTypes.object.isRequired
+  routeProps: PropTypes.object.isRequired,
+  screenSize: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(VictimHomePage)

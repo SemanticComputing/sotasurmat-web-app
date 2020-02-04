@@ -370,6 +370,7 @@ const SemanticPortal = props => {
                                     sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                     isLoading={props[perspective.id].fetching}
                                     routeProps={routeProps}
+                                    screenSize={screenSize}
                                   />}
                                 {perspective.id !== 'victims' &&
                                   <InstanceHomePage
@@ -382,6 +383,7 @@ const SemanticPortal = props => {
                                     sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                     isLoading={props[perspective.id].fetching}
                                     routeProps={routeProps}
+                                    screenSize={screenSize}
                                   />}
                               </Grid>
                             </Grid>
@@ -416,6 +418,7 @@ const SemanticPortal = props => {
                       >
                         <Grid item xs={12} className={classes.instancePageContent}>
                           <InstanceHomePage
+                            rootUrl={rootUrl}
                             fetchByURI={props.fetchByURI}
                             resultClass={perspective.id}
                             properties={props[perspective.id].properties}
