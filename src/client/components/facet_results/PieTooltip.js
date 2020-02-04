@@ -6,7 +6,7 @@ import {
 
 const styles = {
   toolTip: {
-    fontSize: 18,
+    fontSize: 18
   },
   flyOut: {
     strokeWidth: 3

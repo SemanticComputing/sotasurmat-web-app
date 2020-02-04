@@ -1,57 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { KeyboardDatePicker } from '@material-ui/pickers';
-import moment from 'moment';
-import intl from 'react-intl-universal';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import classNames from 'classnames';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import { KeyboardDatePicker } from '@material-ui/pickers'
+import moment from 'moment'
+import intl from 'react-intl-universal'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import classNames from 'classnames'
 
 const styles = theme => ({
   datePicker: {
-    width: 140,
+    width: 140
   },
   from: {
     marginRight: theme.spacing(3)
   }
-});
+})
 
 class DateFacet extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       from: moment(this.props.facet.min),
-      to: moment(this.props.facet.max),
-    };
+      to: moment(this.props.facet.max)
+    }
   }
 
   handleFromChange = from => {
-    this.setState({ from });
-    const { to } = this.state ;
-    if (this.isValidDate(from)
-      && this.isValidDate(to)
-      && from.isSameOrBefore(to))
-    {
-      let values = [
+    this.setState({ from })
+    const { to } = this.state
+    if (this.isValidDate(from) &&
+      this.isValidDate(to) &&
+      from.isSameOrBefore(to)) {
+      const values = [
         from.format('YYYY-MM-DD'),
         to.format('YYYY-MM-DD')
-      ];
-      this.updateFacet(values);
+      ]
+      this.updateFacet(values)
     }
   }
 
   handleToChange = to => {
-    this.setState({ to });
-    const { from } = this.state;
-    if (this.isValidDate(from)
-      && this.isValidDate(to)
-      && from.isSameOrBefore(to))
-    {
-      let values = [
+    this.setState({ to })
+    const { from } = this.state
+    if (this.isValidDate(from) &&
+      this.isValidDate(to) &&
+      from.isSameOrBefore(to)) {
+      const values = [
         this.state.from.format('YYYY-MM-DD'),
         to.format('YYYY-MM-DD')
-      ];
-      this.updateFacet(values);
+      ]
+      this.updateFacet(values)
     }
   }
 
@@ -61,25 +59,25 @@ class DateFacet extends React.Component {
       facetID: this.props.facetID,
       option: this.props.facet.filterType,
       value: values
-    });
+    })
   }
 
   isValidDate = date => {
-    const momentMin = moment(this.props.facet.min);
-    const momentMax = moment(this.props.facet.max);
-    return date
-      && date.isValid()
-      && date.isSameOrAfter(momentMin)
-      && date.isSameOrBefore(momentMax);
+    const momentMin = moment(this.props.facet.min)
+    const momentMax = moment(this.props.facet.max)
+    return date &&
+      date.isValid() &&
+      date.isSameOrAfter(momentMin) &&
+      date.isSameOrBefore(momentMax)
   }
 
-  render() {
-    const { from, to } = this.state;
-    const { min, max } = this.props.facet;
-    const { classes, someFacetIsFetching } = this.props;
-    let showCustomError = this.isValidDate(from)
-      && this.isValidDate(to)
-      && !from.isSameOrBefore(to);
+  render () {
+    const { from, to } = this.state
+    const { min, max } = this.props.facet
+    const { classes, someFacetIsFetching } = this.props
+    const showCustomError = this.isValidDate(from) &&
+      this.isValidDate(to) &&
+      !from.isSameOrBefore(to)
     return (
       <div>
         <KeyboardDatePicker
@@ -88,7 +86,7 @@ class DateFacet extends React.Component {
           placeholder={moment(min).format('DD.MM.YYYY')}
           value={from}
           onChange={date => this.handleFromChange(date)}
-          format="DD.MM.YYYY"
+          format='DD.MM.YYYY'
           minDate={min}
           maxDate={max}
           invalidDateMessage={intl.get('facets.dateFacet.invalidDate')}
@@ -104,7 +102,7 @@ class DateFacet extends React.Component {
           placeholder={moment(max).format('DD.MM.YYYY')}
           value={to}
           onChange={date => this.handleToChange(date)}
-          format="DD.MM.YYYY"
+          format='DD.MM.YYYY'
           minDate={min}
           maxDate={max}
           invalidDateMessage={intl.get('facets.dateFacet.invalidDate')}
@@ -116,8 +114,7 @@ class DateFacet extends React.Component {
         />
         {showCustomError && <FormHelperText error>{intl.get('facets.dateFacet.toBeforeFrom')}</FormHelperText>}
       </div>
-    );
-
+    )
   }
 }
 
@@ -130,7 +127,7 @@ DateFacet.propTypes = {
   fetchFacet: PropTypes.func,
   someFacetIsFetching: PropTypes.bool.isRequired,
   updateFacetOption: PropTypes.func.isRequired,
-  facetUpdateID: PropTypes.number,
-};
+  facetUpdateID: PropTypes.number
+}
 
-export default withStyles(styles)(DateFacet);
+export default withStyles(styles)(DateFacet)

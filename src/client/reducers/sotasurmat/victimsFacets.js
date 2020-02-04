@@ -2,14 +2,14 @@ import {
   FETCH_FACET,
   FETCH_FACET_FAILED,
   UPDATE_FACET_VALUES,
-  UPDATE_FACET_OPTION,
-} from '../../actions';
+  UPDATE_FACET_OPTION
+} from '../../actions'
 import {
   fetchFacet,
   fetchFacetFailed,
   updateFacetValues,
-  updateFacetOption,
-} from '../helpers';
+  updateFacetOption
+} from '../helpers'
 
 export const INITIAL_STATE = {
   updatedFacet: null,
@@ -69,7 +69,7 @@ export const INITIAL_STATE = {
     // },
     birthTimespan: {
       id: 'birthTimespan',
-      //predicate: defined in backend
+      // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
@@ -88,7 +88,7 @@ export const INITIAL_STATE = {
     },
     deathTimespan: {
       id: 'deathTimespan',
-      //predicate: defined in backend
+      // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
@@ -120,7 +120,7 @@ export const INITIAL_STATE = {
       searchField: false,
       containerClass: 'three',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     occupation: {
       id: 'occupation',
@@ -137,7 +137,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     // ammoOccupation: {
     //   id: 'ammoOccupation',
@@ -171,7 +171,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     birthPlace: {
       id: 'birthPlace',
@@ -187,7 +187,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     registeredMunicipality: {
       id: 'registeredMunicipality',
@@ -203,7 +203,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     registeredProvince: {
       id: 'registeredProvince',
@@ -219,7 +219,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     registeredCountry: {
       id: 'registeredCountry',
@@ -235,7 +235,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     deathMunicipality: {
       id: 'deathMunicipality',
@@ -251,7 +251,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     deathProvince: {
       id: 'deathProvince',
@@ -267,7 +267,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     deathCountry: {
       id: 'deathCountry',
@@ -283,7 +283,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     gender: {
       id: 'gender',
@@ -352,7 +352,7 @@ export const INITIAL_STATE = {
       containerClass: 'three',
       type: 'integer',
       filterType: 'integerFilter',
-      integerFilter: null,
+      integerFilter: null
     },
     numberOfChildren: {
       id: 'numberOfChildren',
@@ -370,7 +370,7 @@ export const INITIAL_STATE = {
       containerClass: 'three',
       type: 'integer',
       filterType: 'integerFilter',
-      integerFilter: null,
+      integerFilter: null
     },
     hisclass7: {
       id: 'hisclass7',
@@ -386,7 +386,7 @@ export const INITIAL_STATE = {
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
-      uriFilter: null,
+      uriFilter: null
     },
     coo1980: {
       id: 'coo1980',
@@ -403,7 +403,7 @@ export const INITIAL_STATE = {
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      type: 'hierarchical',
+      type: 'hierarchical'
     },
     deathLikelihood: {
       id: 'deathLikelihood',
@@ -421,25 +421,25 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
       priority: 8
-    },
+    }
   }
-};
+}
 
 const deathsFacets = (state = INITIAL_STATE, action) => {
   if (action.facetClass === 'victims') {
     switch (action.type) {
       case FETCH_FACET:
-        return fetchFacet(state, action);
+        return fetchFacet(state, action)
       case FETCH_FACET_FAILED:
-        return fetchFacetFailed(state, action);
+        return fetchFacetFailed(state, action)
       case UPDATE_FACET_VALUES:
-        return updateFacetValues(state, action);
+        return updateFacetValues(state, action)
       case UPDATE_FACET_OPTION:
-        return updateFacetOption(state, action);
+        return updateFacetOption(state, action)
       default:
-        return state;
+        return state
     }
-  } else return state;
-};
+  } else return state
+}
 
-export default deathsFacets;
+export default deathsFacets

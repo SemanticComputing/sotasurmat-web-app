@@ -3,6 +3,11 @@
   facet configs
 */
 
+export const endpoint = 'http://ldf.fi/siso/sparql'
+// export const endpoint = 'http://localhost:3042/ds/sparql';
+
+export const rootUrl = ''
+
 export const facetConfigs = {
   victims: {
     facetClass: 'siso-schema:Death_record',
@@ -13,7 +18,7 @@ export const facetConfigs = {
       labelPath: 'skos:prefLabel',
       textQueryPredicate: '', // empty for querying the facetClass
       textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
-      type: 'text',
+      type: 'text'
     },
     familyName: {
       id: 'familyName',
@@ -22,7 +27,7 @@ export const facetConfigs = {
       labelPath: 'siso-s:familyName',
       textQueryPredicate: '', // empty for querying the facetClass
       textQueryProperty: 'siso-s:familyName', // limit only to prefLabels
-      type: 'text',
+      type: 'text'
     },
     firstName: {
       id: 'firstName',
@@ -31,35 +36,35 @@ export const facetConfigs = {
       labelPath: 'siso-s:firstName',
       textQueryPredicate: '', // empty for querying the facetClass
       textQueryProperty: 'siso-s:firstName', // limit only to prefLabels
-      type: 'text',
+      type: 'text'
     },
     party: {
       id: 'party',
       facetValueFilter: '',
       labelPath: 'siso-schema:party/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:party',
+      predicate: 'siso-schema:party'
     },
     occupation: {
       id: 'occupation',
       facetValueFilter: '',
       labelPath: 'siso-schema:occupation/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:occupation',
+      predicate: 'siso-schema:occupation'
     },
     livingMunicipality: {
       id: 'livingMunicipality',
       facetValueFilter: '',
       labelPath: 'siso-schema:living_municipality/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:living_municipality',
+      predicate: 'siso-schema:living_municipality'
     },
     gender: {
       id: 'gender',
       facetValueFilter: '',
       labelPath: 'siso-schema:gender/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:gender',
+      predicate: 'siso-schema:gender'
     },
     registeredPlace: {
       id: 'registeredPlace',
@@ -78,7 +83,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:death_time',
       startProperty: 'crm:P82a_begin_of_the_begin',
       endProperty: 'crm:P82b_end_of_the_end',
-      type: 'timespan',
+      type: 'timespan'
     },
     birthTimespan: {
       id: 'birthTimespan',
@@ -88,14 +93,14 @@ export const facetConfigs = {
       predicate: 'siso-schema:birth_time',
       startProperty: 'crm:P82a_begin_of_the_begin',
       endProperty: 'crm:P82b_end_of_the_end',
-      type: 'timespan',
+      type: 'timespan'
     },
     causeOfDeath: {
       id: 'causeOfDeath',
       facetValueFilter: '',
       labelPath: 'siso-schema:cause_of_death/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:cause_of_death',
+      predicate: 'siso-schema:cause_of_death'
     },
     registeredMunicipality: {
       id: 'registeredMunicipality',
@@ -103,7 +108,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:registered_municipality/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:registered_municipality',
-      parentPredicate: 'siso-schema:registered_municipality/skos:broader+',
+      parentPredicate: 'siso-schema:registered_municipality/skos:broader+'
     },
     registeredProvince: {
       id: 'registeredProvince',
@@ -111,7 +116,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:registered_province/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:registered_province',
-      parentPredicate: 'siso-schema:registered_province/skos:broader+',
+      parentPredicate: 'siso-schema:registered_province/skos:broader+'
     },
     registeredCountry: {
       id: 'registeredCountry',
@@ -119,7 +124,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:registered_country/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:registered_country',
-      parentPredicate: 'siso-schema:registered_country/skos:broader+',
+      parentPredicate: 'siso-schema:registered_country/skos:broader+'
     },
     deathMunicipality: {
       id: 'deathMunicipality',
@@ -127,7 +132,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:death_municipality/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:death_municipality',
-      parentPredicate: 'siso-schema:death_municipality/skos:broader+',
+      parentPredicate: 'siso-schema:death_municipality/skos:broader+'
     },
     deathProvince: {
       id: 'deathProvince',
@@ -135,7 +140,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:death_province/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:death_province',
-      parentPredicate: 'siso-schema:death_province/skos:broader+',
+      parentPredicate: 'siso-schema:death_province/skos:broader+'
     },
     deathCountry: {
       id: 'deathCountry',
@@ -143,7 +148,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:death_country/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:death_country',
-      parentPredicate: 'siso-schema:death_country/skos:broader+',
+      parentPredicate: 'siso-schema:death_country/skos:broader+'
     },
     ammoOccupation: {
       id: 'ammoOccupation',
@@ -152,7 +157,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:ammo_occupation',
       facetValueFilter: `
         `,
-      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
     hisclass7: {
       id: 'hisclass7',
@@ -161,7 +166,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:ammo_occupation/ammo-s:hisclass7',
       facetValueFilter: `
         `,
-      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
     coo1980: {
       id: 'coo1980',
@@ -170,7 +175,7 @@ export const facetConfigs = {
       predicate: 'siso-schema:ammo_occupation/ammo-s:coo1980_code',
       facetValueFilter: `
         `,
-      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'fi')`,
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
       parentPredicate: 'siso-schema:ammo_occupation/ammo-s:coo1980_code/skos:broader+',
       parentProperty: 'skos:broader'
     },
@@ -180,7 +185,7 @@ export const facetConfigs = {
       labelPath: 'siso-schema:birth_place/skos:prefLabel',
       type: 'list',
       predicate: 'siso-schema:birth_place',
-      parentPredicate: 'siso-schema:birth_place/skos:broader+',
+      parentPredicate: 'siso-schema:birth_place/skos:broader+'
     },
 
     // hisco: {
@@ -201,35 +206,35 @@ export const facetConfigs = {
       predicate: 'siso-schema:ammo_occupation/ammo-s:hisco_code',
       facetValueFilter: `
         `,
-      facetLabelFilter: `FILTER(LANG(?prefLabel_) = 'en')`,
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'en\')'
     },
     age: {
       id: 'age',
       facetValueFilter: '',
       labelPath: 'siso-schema:age',
       predicate: 'siso-schema:age',
-      type: 'integer',
+      type: 'integer'
     },
     numberOfChildren: {
       id: 'numberOfChildren',
       facetValueFilter: '',
       labelPath: 'siso-schema:num_of_children',
       predicate: 'siso-schema:num_of_children',
-      type: 'integer',
+      type: 'integer'
     },
     militaryOrganization: {
       id: 'militaryOrganization',
       facetValueFilter: '',
       labelPath: 'siso-schema:rank/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:military_organization',
+      predicate: 'siso-schema:military_organization'
     },
     maritalStatus: {
       id: 'maritalStatus',
       facetValueFilter: '',
       labelPath: 'siso-schema:marital_status/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:marital_status',
+      predicate: 'siso-schema:marital_status'
     },
     // familyWelfare: {
     //   id: 'familyWelfare',
@@ -243,8 +248,8 @@ export const facetConfigs = {
       facetValueFilter: '',
       labelPath: 'siso-schema:death_likelihood/skos:prefLabel',
       type: 'list',
-      predicate: 'siso-schema:death_likelihood',
-    },
+      predicate: 'siso-schema:death_likelihood'
+    }
   },
   battles: {
     facetClass: 'siso-schema:Battle',
@@ -255,35 +260,35 @@ export const facetConfigs = {
       labelPath: 'skos:prefLabel',
       textQueryPredicate: '', // empty for querying the facetClass
       textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
-      type: 'text',
+      type: 'text'
     },
     startDate: {
       id: 'startDate',
       facetValueFilter: '',
       labelPath: 'siso-schema:start_date',
       type: 'list',
-      predicate: 'siso-schema:start_date',
+      predicate: 'siso-schema:start_date'
     },
     endDate: {
       id: 'birthDate',
       facetValueFilter: '',
       labelPath: 'siso-schema:end_date',
       type: 'list',
-      predicate: 'siso-schema:end_date',
+      predicate: 'siso-schema:end_date'
     },
     exactPlace: {
       id: 'exactPlace',
       facetValueFilter: '',
       labelPath: 'siso-schema:exact_place',
       type: 'list',
-      predicate: 'siso-schema:exact_place',
+      predicate: 'siso-schema:exact_place'
     },
     units: {
       id: 'units',
       facetValueFilter: '',
       labelPath: 'siso-schema:units',
       type: 'list',
-      predicate: 'siso-schema:units',
+      predicate: 'siso-schema:units'
     },
     greaterPlace: {
       id: 'greaterPlace',
@@ -293,6 +298,6 @@ export const facetConfigs = {
       predicate: 'siso-schema:greater_place',
       parentPredicate: 'siso-schema:greater_place/skos:broader+',
       parentProperty: 'skos:broader'
-    },
+    }
   }
-};
+}

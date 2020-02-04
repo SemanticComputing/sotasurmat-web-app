@@ -1,4 +1,4 @@
-import { rootUrl } from '../config';
+import { rootUrl } from './FacetConfigsSotasurmat'
 
 export const sourceProperties = `
     {

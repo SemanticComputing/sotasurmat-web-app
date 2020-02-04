@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import ResultTableCell from '../../facet_results/ResultTableCell';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
+import ResultTableCell from '../../facet_results/ResultTableCell'
 
 const styles = theme => ({
   root: {
@@ -24,13 +24,12 @@ const styles = theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
   }
-});
+})
 
 class VictimPageTable extends React.Component {
-
   render = () => {
-    const { classes, data } = this.props;
-    return(
+    const { classes, data } = this.props
+    return (
       <Table className={classes.table}>
         <TableBody>
           <TableRow key='party'>
@@ -41,11 +40,11 @@ class VictimPageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
+              expanded
             />
           </TableRow>
           <TableRow key='registeredMunicipality'>
@@ -56,22 +55,22 @@ class VictimPageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
+              expanded
             />
           </TableRow>
         </TableBody>
       </Table>
-    );
+    )
   }
 }
 
 VictimPageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired
-};
+}
 
-export default withStyles(styles)(VictimPageTable);
+export default withStyles(styles)(VictimPageTable)

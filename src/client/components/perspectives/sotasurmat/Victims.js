@@ -1,20 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
-import PerspectiveTabs from '../../main_layout/PerspectiveTabs';
-import ResultTable from '../../facet_results/ResultTable';
-import Pie from '../../facet_results/Pie';
-import LineChart from '../../facet_results/LineChart';
-import ExportCSV from '../../facet_results/ExportCSV';
-import LeafletMap from '../../facet_results/LeafletMap';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Route, Redirect } from 'react-router-dom'
+import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
+import ResultTable from '../../facet_results/ResultTable'
+import Pie from '../../facet_results/Pie'
+import LineChart from '../../facet_results/LineChart'
+import ExportCSV from '../../facet_results/ExportCSV'
+import LeafletMap from '../../facet_results/LeafletMap'
 
 const Victims = props => {
-//console.log(props)
+// console.log(props)
   return (
-    <React.Fragment>
+    <>
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={props.perspective.tabs}
+        screenSize={props.screenSize}
       />
       <Route
         exact path={`${props.rootUrl}/victims/faceted-search`}
@@ -35,8 +36,7 @@ const Victims = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={props.perspective}
-          />
-        }
+          />}
       />
       <Route
         path={`${props.rootUrl}/victims/faceted-search/pie`}
@@ -52,8 +52,7 @@ const Victims = props => {
             routeProps={routeProps}
             fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
             resultCount={props.victims.resultCount}
-          />
-        }
+          />}
       />
       <Route
         path={`${props.rootUrl}/victims/faceted-search/line`}
@@ -68,8 +67,7 @@ const Victims = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             resultCount={props.victims.resultCount}
-          />
-        }
+          />}
       />
       <Route
         path={`${props.rootUrl}/victims/faceted-search/map`}
@@ -84,8 +82,8 @@ const Victims = props => {
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
             fetching={props.places.fetching}
-            mapMode={'cluster'}
-            showInstanceCountInClusters={true}
+            mapMode='cluster'
+            showInstanceCountInClusters
           />}
       />
       <Route
@@ -98,9 +96,9 @@ const Victims = props => {
             facets={props.facetData.facets}
           />}
       />
-    </React.Fragment>
-  );
-};
+    </>
+  )
+}
 
 Victims.propTypes = {
   places: PropTypes.object.isRequired,
@@ -118,7 +116,8 @@ Victims.propTypes = {
   routeProps: PropTypes.object.isRequired,
   fetchFacetConstrainSelf: PropTypes.func.isRequired,
   resultCount: PropTypes.number,
-  perspective: PropTypes.object.isRequired
-};
+  perspective: PropTypes.object.isRequired,
+  screenSize: PropTypes.string.isRequired
+}
 
-export default Victims;
+export default Victims

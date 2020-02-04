@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import ResultTableCell from '../../facet_results/ResultTableCell';
-import intl from 'react-intl-universal';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
+import ResultTableCell from '../../facet_results/ResultTableCell'
+import intl from 'react-intl-universal'
 
 const styles = theme => ({
   root: {
@@ -22,15 +22,14 @@ const styles = theme => ({
     maxWidth: 1200
   },
   labelCell: {
-    width: 240,
+    width: 240
   }
-});
+})
 
 class SurmatutHomePageTable extends React.Component {
-
   render = () => {
-    const { classes, data } = this.props;
-    return(
+    const { classes, data } = this.props
+    return (
       <Table className={classes.table} size='small'>
         <TableBody>
           <TableRow key='deathLikelihood'>
@@ -41,12 +40,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -58,12 +57,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -75,12 +74,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -92,12 +91,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -109,12 +108,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -126,12 +125,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -143,12 +142,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -160,12 +159,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -177,12 +176,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -194,12 +193,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -211,12 +210,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -228,12 +227,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -245,12 +244,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -262,12 +261,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -279,12 +278,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -296,12 +295,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -313,12 +312,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -330,12 +329,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -347,12 +346,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -364,12 +363,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -381,12 +380,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -398,12 +397,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -415,12 +414,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -432,12 +431,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -449,12 +448,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -466,12 +465,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -483,12 +482,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -500,12 +499,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -517,12 +516,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -534,12 +533,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -551,12 +550,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -568,12 +567,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -585,12 +584,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -602,12 +601,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -619,12 +618,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -636,12 +635,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -653,12 +652,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -670,12 +669,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -687,12 +686,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -704,12 +703,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -721,12 +720,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -738,12 +737,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -755,12 +754,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -772,12 +771,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -789,12 +788,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -806,12 +805,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -823,12 +822,12 @@ class SurmatutHomePageTable extends React.Component {
               valueType='object'
               makeLink={false}
               externalLink={false}
-              sortValues={true}
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
@@ -838,18 +837,18 @@ class SurmatutHomePageTable extends React.Component {
               columnId='externalLink'
               data={data.externalLink}
               valueType='object'
-              makeLink={true}
-              externalLink={true}
-              sortValues={true}
+              makeLink
+              externalLink
+              sortValues
               numberedList={false}
               minWidth={150}
               container='cell'
-              expanded={true}
-              showSource={true}
+              expanded
+              showSource
               sourceExternalLink={false}
             />
           </TableRow>
-          {/*<TableRow key='uri'>
+          {/* <TableRow key='uri'>
             <TableCell className={classes.labelCell}>Tunniste</TableCell>
             <ResultTableCell
               columnId='uri'
@@ -865,16 +864,16 @@ class SurmatutHomePageTable extends React.Component {
               showSource={true}
               sourceExternalLink={false}
             />
-          </TableRow>*/}
+          </TableRow> */}
         </TableBody>
       </Table>
-    );
+    )
   }
 }
 
 SurmatutHomePageTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
-};
+  data: PropTypes.object.isRequired
+}
 
-export default withStyles(styles)(SurmatutHomePageTable);
+export default withStyles(styles)(SurmatutHomePageTable)

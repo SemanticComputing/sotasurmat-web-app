@@ -1,18 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
-import PerspectiveTabs from '../../main_layout/PerspectiveTabs';
-import ResultTable from '../../facet_results/ResultTable';
-import LeafletMap from '../../facet_results/LeafletMap';
-import TemporalMap from '../../facet_results/TemporalMap';
-import ExportCSV from '../../facet_results/ExportCSV';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Route, Redirect } from 'react-router-dom'
+import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
+import ResultTable from '../../facet_results/ResultTable'
+import LeafletMap from '../../facet_results/LeafletMap'
+import TemporalMap from '../../facet_results/TemporalMap'
+import ExportCSV from '../../facet_results/ExportCSV'
 
 const Battles = props => {
   return (
-    <React.Fragment>
+    <>
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={props.perspective.tabs}
+        screenSize={props.screenSize}
       />
       <Route
         exact path={`${props.rootUrl}/battles/faceted-search`}
@@ -33,8 +34,7 @@ const Battles = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             perspective={props.perspective}
-          />
-        }
+          />}
       />
       <Route
         path={`${props.rootUrl}/battles/faceted-search/map`}
@@ -49,7 +49,7 @@ const Battles = props => {
             fetchResults={props.fetchResults}
             fetchByURI={props.fetchByURI}
             fetching={props.battles.fetching}
-            mapMode={'cluster'}
+            mapMode='cluster'
             showInstanceCountInClusters={false}
           />}
       />
@@ -77,9 +77,9 @@ const Battles = props => {
             facets={props.facetData.facets}
           />}
       />
-    </React.Fragment>
-  );
-};
+    </>
+  )
+}
 
 Battles.propTypes = {
   rootUrl: PropTypes.string.isRequired,
@@ -95,6 +95,7 @@ Battles.propTypes = {
   perspective: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   animateMap: PropTypes.func.isRequired,
-};
+  screenSize: PropTypes.string.isRequired
+}
 
-export default Battles;
+export default Battles
