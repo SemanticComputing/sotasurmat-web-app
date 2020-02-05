@@ -1,10 +1,7 @@
-/* TODO:
-  labelPath is only used when sorting results, so it should removed from
-  facet configs
-*/
-
 export const endpoint = 'http://ldf.fi/siso/sparql'
-// export const endpoint = 'http://localhost:3042/ds/sparql';
+// export const endpoint = 'http://localhost:3042/ds/sparql'
+
+export const endpointUseAuth = false
 
 export const rootUrl = ''
 

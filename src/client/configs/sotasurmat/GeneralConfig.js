@@ -17,3 +17,5 @@ export const SLIDER_DURATION = {
 }
 
 export const documentFinderAPIUrl = 'https://data.finlex.fi/document-finder-backend'
+
+export const backendErrorText = 'Ei pystytty yhdistämään tietokantaan. Kokeile myöhemmin uudestaan. Cannot currently connect to the database. Please try again later.'
