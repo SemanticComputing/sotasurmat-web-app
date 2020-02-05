@@ -1,39 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
-import classNames from 'classnames'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-// import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import { withStyles } from '@material-ui/core/styles'
-import { Link } from 'react-router-dom'
-import { has } from 'lodash'
-import defaultThumbImage from '../../img/thumb.png'
-import logo from '../../img/logo_fi.gif'
+import { makeStyles } from '@material-ui/core/styles'
+import MainCard from './MainCard'
+// import MainCardMMM from './MainCardMMM'
+import bannerImage from '../../img/mmm-banner.jpg'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    paddingBottom: theme.spacing(3),
-    height: '100%',
-    overflow: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      height: 900
+    marginBottom: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 150px)',
+      overflow: 'auto'
     }
   },
-  icon: {
-    marginRight: theme.spacing(2)
+  banner: {
+    background: `linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(${bannerImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: 220,
+    [theme.breakpoints.up('xl')]: {
+      height: 300
+    },
+    width: '100%',
+    boxShadow: '0 -15px 15px 0px #bdbdbd inset',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  link: {
-    textDecoration: 'none'
+  bannerContent: {
+    display: 'inline-block',
+    color: '#fff'
   },
-  heroContent: {
-    maxWidth: 1100,
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+  bannerSubheading: {
+    marginTop: theme.spacing(1.5),
+    display: 'flex',
+    '& div': {
+      flexGrow: 1,
+      width: 0
+    }
   },
   layout: {
     width: 'auto',
@@ -45,114 +54,109 @@ const styles = theme => ({
       marginRight: 'auto'
     }
   },
-  longTitle: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  },
-  media: {
-    height: 140
-    // [ theme.breakpoints.down('md')]: {
-    //   height: 60
-    // }
-  },
-  cardContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
-  },
-  card: {
-    width: 340,
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing(2)
-    }
-  },
-  cardContent: {
-    height: 85
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  licenceLayout: {
-    width: 'auto',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      width: 1100
-    }
-  },
-  licenceContainer: {
-    marginTop: theme.spacing(1),
-    [theme.breakpoints.down(840)]: {
-      width: 340
-    },
-    [theme.breakpoints.up(840)]: {
-      width: 2 * 340 + theme.spacing(6)
-    }
+  heroContent: {
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(1)
   },
   licenceText: {
-    fontSize: '0.8em'
+    marginTop: theme.spacing(0.5),
+    fontSize: '0.7em'
+  },
+  lowerRow: {
+    marginTop: theme.spacing(1)
+  },
+  licenceTextContainer: {
+    marginTop: theme.spacing(1),
+    display: 'flex',
+    justifyContent: 'center'
   }
-})
+}))
 
 const Main = props => {
-  const { classes } = props
+  const { perspectives, screenSize } = props
+  const classes = useStyles(props)
+  let headingVariant = 'h5'
+  let subheadingVariant = 'body1'
+  let descriptionVariant = 'body1'
+  switch (screenSize) {
+    case 'xs':
+      headingVariant = 'h5'
+      subheadingVariant = 'body1'
+      descriptionVariant = 'body1'
+      break
+    case 'sm':
+      headingVariant = 'h4'
+      subheadingVariant = 'h6'
+      descriptionVariant = 'h6'
+      break
+    case 'md':
+      headingVariant = 'h3'
+      subheadingVariant = 'h6'
+      descriptionVariant = 'h6'
+      break
+    case 'lg':
+      headingVariant = 'h2'
+      subheadingVariant = 'h5'
+      descriptionVariant = 'h6'
+      break
+    case 'xl':
+      headingVariant = 'h1'
+      subheadingVariant = 'h4'
+      descriptionVariant = 'h6'
+      break
+  }
+
   return (
     <div className={classes.root}>
+      <div className={classes.banner}>
+        <div className={classes.bannerContent}>
+          <div className={classes.bannerHeading}>
+            <Typography component='span' variant={headingVariant} align='center'>
+              {intl.get('appTitle.long')}
+            </Typography>
+          </div>
+          <div className={classes.bannerSubheading}>
+            <div>
+              <Typography component='h2' variant={subheadingVariant} align='center'>
+                {intl.get('appTitle.subheading')}
+              </Typography>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
       <div className={classes.layout}>
-        <div className={classes.logoContainer}>
-          <img src={logo} alt='Logo' />
-        </div>
         <div className={classes.heroContent}>
-          <Typography className={classes.longTitle} component='h1' variant='h3' align='center' color='textPrimary' gutterBottom>
-            {intl.get('appTitle.long')}
+          <Typography variant={descriptionVariant} color='textPrimary' paragraph>
+            {intl.getHTML('appDescription')}
           </Typography>
-          <Typography variant='h6' align='center' color='textSecondary' paragraph>
-            {intl.get('appDescription')}
+          <Typography variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+            {intl.get('selectPerspective')}
           </Typography>
         </div>
-      </div>
-      <div className={classNames(classes.layout, classes.cardContainer)}>
-        {props.perspectives.map(perspective => {
-          return (
-            <Card key={perspective.id} className={classes.card}>
-              <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
-                <CardMedia
-                  className={classes.media}
-                  image={has(perspective, 'thumbImage')
-                    ? perspective.thumbImage
-                    : defaultThumbImage}
-                  title={perspective.label}
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant='h5' component='h2'>
-                    {intl.get(`perspectives.${perspective.id}.label`)}
-                  </Typography>
-                  <Typography component='p'>
-                    {intl.get(`perspectives.${perspective.id}.shortDescription`)}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          )
-        }
-        )}
-      </div>
-      <div className={classNames(classes.licenceLayout, classes.licenceContainer)}>
-        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
+        <Grid
+          container spacing={screenSize === 'sm' ? 2 : 1}
+          justify={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
+        >
+          {perspectives.map(perspective =>
+            <MainCard
+              key={perspective.id}
+              perspective={perspective}
+              cardHeadingVariant='h5'
+            />)}
+        </Grid>
+        <div className={classes.licenceTextContainer}>
+          <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
+        </div>
       </div>
     </div>
   )
 }
 
 Main.propTypes = {
-  rootUrl: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
-  perspectives: PropTypes.array.isRequired
+  perspectives: PropTypes.array.isRequired,
+  screenSize: PropTypes.string.isRequired
 }
 
-export default withStyles(styles)(Main)
+export default Main

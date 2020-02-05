@@ -42,7 +42,8 @@ import {
 import {
   rootUrl,
   publishedPort,
-  documentFinderAPIUrl
+  documentFinderAPIUrl,
+  backendErrorText
 } from '../configs/sotasurmat/GeneralConfig'
 
 // set port if running on localhost with NODE_ENV = 'production'
@@ -53,8 +54,6 @@ const port = window.location.hostname === 'localhost' || window.location.hostnam
 export const apiUrl = (process.env.NODE_ENV === 'development')
   ? `http://localhost:3001${rootUrl}/api/`
   : `${window.location.protocol}//${window.location.hostname}${port}${rootUrl}/api/`
-
-const backendErrorText = 'Ei pystytty yhdistämään tietokantaan. Kokeile myöhemmin uudestaan. Cannot currently connect to the database. Please try again later.'
 
 export const availableLocales = {
   en: localeEN,
