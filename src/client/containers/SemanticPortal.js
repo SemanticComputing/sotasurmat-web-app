@@ -1,30 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
+import { has } from 'lodash'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import withWidth from '@material-ui/core/withWidth'
 import { withRouter, Route } from 'react-router-dom'
 import classNames from 'classnames'
 import compose from 'recompose/compose'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import moment from 'moment'
+import MomentUtils from '@date-io/moment'
+import 'moment/locale/fi'
 import Grid from '@material-ui/core/Grid'
 import TopBar from '../components/main_layout/TopBar'
+import InstanceHomePage from '../components/main_layout/InstanceHomePage'
+import InfoHeader from '../components/main_layout/InfoHeader'
+import TextPage from '../components/main_layout/TextPage'
+import Message from '../components/main_layout/Message'
 import MainSotasurmat from '../components/main_layout/MainSotasurmat'
 import Footer from '../components/main_layout/Footer'
-import Message from '../components/main_layout/Message'
 import FacetBar from '../components/facet_bar/FacetBar'
 import Victims from '../components/perspectives/sotasurmat/Victims'
-import Battles from '../components/perspectives/sotasurmat/Battles'
-// import All from '../components/perspectives/mmm/All'
-import InstanceHomePage from '../components/main_layout/InstanceHomePage'
 import VictimHomePage from '../components/perspectives/sotasurmat/VictimHomePage'
+import Battles from '../components/perspectives/sotasurmat/Battles'
 import FeedbackPage from '../components/main_layout/FeedbackPage'
-import TextPage from '../components/main_layout/TextPage'
 import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages'
-import InfoHeader from '../components/main_layout/InfoHeader'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { has } from 'lodash'
+import { rootUrl } from '../configs/sotasurmat/GeneralConfig'
+
 import {
   fetchResultCount,
   fetchPaginatedResults,
@@ -43,11 +47,6 @@ import {
   loadLocales,
   animateMap
 } from '../actions'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import moment from 'moment'
-import MomentUtils from '@date-io/moment'
-import 'moment/locale/fi'
-import { rootUrl } from '../configs/sotasurmat/GeneralConfig'
 
 const styles = theme => ({
   root: {
@@ -189,7 +188,7 @@ const styles = theme => ({
 })
 
 const SemanticPortal = props => {
-  const { classes, /* browser */ error } = props
+  const { classes, error } = props
   const xsScreen = useMediaQuery(theme => theme.breakpoints.down('xs'))
   const smScreen = useMediaQuery(theme => theme.breakpoints.between('sm', 'md'))
   const mdScreen = useMediaQuery(theme => theme.breakpoints.between('md', 'lg'))
@@ -270,6 +269,7 @@ const SemanticPortal = props => {
               currentLocale={props.options.currentLocale}
               availableLocales={props.options.availableLocales}
               loadLocales={props.loadLocales}
+              xsScreen={xsScreen}
             />
             <Route
               exact path={`${rootUrl}/`}
@@ -284,7 +284,7 @@ const SemanticPortal = props => {
             />
             {/* https://stackoverflow.com/a/41024944 */}
             <Route
-              path='/' render={({ location }) => {
+              path={`${rootUrl}/`} render={({ location }) => {
                 if (typeof window.ga === 'function') {
                   window.ga('set', 'page', location.pathname + location.search)
                   window.ga('send', 'pageview')
@@ -298,7 +298,7 @@ const SemanticPortal = props => {
                 return (
                   <React.Fragment key={perspective.id}>
                     <Route
-                      path={`/${perspective.id}/faceted-search`}
+                      path={`${rootUrl}/${perspective.id}/faceted-search`}
                       render={routeProps => {
                         return (
                           <>
@@ -340,7 +340,7 @@ const SemanticPortal = props => {
                       }}
                     />
                     <Route
-                      path={`/${perspective.id}/page/:id`}
+                      path={`${rootUrl}/${perspective.id}/page/:id`}
                       render={routeProps => {
                         return (
                           <>
@@ -506,7 +506,6 @@ SemanticPortal.propTypes = {
   theme: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  // browser: PropTypes.object.isRequired,
   victims: PropTypes.object.isRequired,
   battlesFacets: PropTypes.object.isRequired,
   battles: PropTypes.object.isRequired,
@@ -530,7 +529,6 @@ SemanticPortal.propTypes = {
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
   animateMap: PropTypes.func.isRequired
 }
 
@@ -540,6 +538,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  withWidth(),
   withStyles(styles, { withTheme: true })
 )(SemanticPortal)
