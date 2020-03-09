@@ -43,6 +43,18 @@ export default {
     rowsPerPage: 'Rows per page',
     of: 'of'
   },
+  exportToYasgui: 'open the result table query in yasgui sparql editor',
+  openInLinkedDataBrowser: 'open in linked data browser',
+  leafletMap: {
+    externalLayers: {
+      arkeologiset_kohteet_alue: 'Register of Archaeological Sites, areas',
+      arkeologiset_kohteet_piste: 'Register of Archaeological Sites, points'
+    },
+    mapModeButtons: {
+      markers: 'Markers',
+      heatmap: 'Heatmap'
+    }
+  },
   instancePageGeneral: {
     introduction: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -483,6 +495,12 @@ export default {
           label: 'Place',
           description: `
             The specific place(s) associated with the event.
+          `
+        },
+        placeType: {
+          label: 'Place type',
+          description: `
+            The type of the specific place(s) associated with the event.
           `
         },
         note: {

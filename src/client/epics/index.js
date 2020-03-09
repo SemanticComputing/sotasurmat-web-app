@@ -1,5 +1,6 @@
 import { of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
+import axios from 'axios'
 import {
   mergeMap,
   switchMap,
@@ -13,7 +14,8 @@ import intl from 'react-intl-universal'
 import localeEN from '../translations/sotasurmat/localeEN'
 import localeFI from '../translations/sotasurmat/localeFI'
 import localeSV from '../translations/sotasurmat/localeSV'
-import { stateToUrl } from '../helpers/helpers'
+import { stateToUrl, handleAxiosError } from '../helpers/helpers'
+import querystring from 'querystring'
 import {
   FETCH_RESULT_COUNT,
   FETCH_RESULT_COUNT_FAILED,
@@ -29,6 +31,7 @@ import {
   FETCH_SIMILAR_DOCUMENTS_BY_ID,
   FETCH_SIMILAR_DOCUMENTS_BY_ID_FAILED,
   FETCH_FACET_FAILED,
+  FETCH_GEOJSON_LAYERS,
   LOAD_LOCALES,
   updateResultCount,
   updatePaginatedResults,
@@ -37,7 +40,8 @@ import {
   updateInstanceRelatedData,
   updateFacetValues,
   updateFacetValuesConstrainSelf,
-  updateLocale
+  updateLocale,
+  updateGeoJSONLayers
 } from '../actions'
 import {
   rootUrl,
@@ -330,6 +334,40 @@ const fetchSimilarDocumentsEpic = (action$, state$) => action$.pipe(
   })
 )
 
+const fetchGeoJSONLayers = action$ => action$.pipe(
+  ofType(FETCH_GEOJSON_LAYERS),
+  mergeMap(async action => {
+    const { layerIDs, bounds } = action
+    const data = await Promise.all(layerIDs.map(layerID => fetchGeoJSONLayer(layerID, bounds)))
+    return updateGeoJSONLayers({ payload: data })
+  })
+)
+
+const fetchGeoJSONLayer = async (layerID, bounds) => {
+  const baseUrl = 'http://kartta.nba.fi/arcgis/services/WFS/MV_Kulttuuriymparisto/MapServer/WFSServer'
+  const boundsStr =
+    `${bounds._southWest.lng},${bounds._southWest.lat},${bounds._northEast.lng},${bounds._northEast.lat}`
+  const mapServerParams = {
+    request: 'GetFeature',
+    service: 'WFS',
+    version: '2.0.0',
+    typeName: layerID,
+    srsName: 'EPSG:4326',
+    outputFormat: 'geojson',
+    bbox: boundsStr
+  }
+  const url = `${baseUrl}?${querystring.stringify(mapServerParams)}`
+  try {
+    const response = await axios.get(url)
+    return {
+      layerID: layerID,
+      geoJSON: response.data
+    }
+  } catch (error) {
+    handleAxiosError(error)
+  }
+}
+
 const rootEpic = combineEpics(
   fetchPaginatedResultsEpic,
   fetchResultsEpic,
@@ -339,7 +377,8 @@ const rootEpic = combineEpics(
   fetchFacetEpic,
   fetchFacetConstrainSelfEpic,
   loadLocalesEpic,
-  fetchSimilarDocumentsEpic
+  fetchSimilarDocumentsEpic,
+  fetchGeoJSONLayers
 )
 
 export default rootEpic
