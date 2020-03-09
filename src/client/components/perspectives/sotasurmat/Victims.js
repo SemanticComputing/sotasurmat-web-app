@@ -83,6 +83,7 @@ const Victims = props => {
             fetchByURI={props.fetchByURI}
             fetching={props.places.fetching}
             mapMode='cluster'
+            showMapModeControl={false}
             showInstanceCountInClusters
           />}
       />
