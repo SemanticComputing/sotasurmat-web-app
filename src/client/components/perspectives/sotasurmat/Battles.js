@@ -50,6 +50,7 @@ const Battles = props => {
             fetchByURI={props.fetchByURI}
             fetching={props.battles.fetching}
             mapMode='cluster'
+            showMapModeControl
             showInstanceCountInClusters={false}
           />}
       />

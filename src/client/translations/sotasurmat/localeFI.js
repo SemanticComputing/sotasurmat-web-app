@@ -8,6 +8,11 @@ export default {
     Portaali Suomeen liittyviin sotatapahtumiin vuosina
     1914-1922.
   `,
+  mainPageImageLicence: `
+    Etusivun kuvat: Vapriikin kuva-arkisto
+    <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' 
+    rel='noopener noreferrer'>CC BY</a>.
+  `,
   topBar: {
     feedback: 'palaute',
     info: {
@@ -42,6 +47,8 @@ export default {
     rowsPerPage: 'Riviä sivulla',
     of: 'of'
   },
+  exportToYasgui: '',
+  openInLinkedDataBrowser: '',
   facets: {
     dateFacet: {
       invalidDate: 'Epäkelpo päivämäärä.',
@@ -56,8 +63,16 @@ export default {
       inputLabel: 'Etsi nimellä'
     }
   },
-  mainPageImageLicence: `Etusivun kuvat: Vapriikin kuva-arkisto
-  <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' rel='noopener noreferrer'>CC BY</a>.`,
+  leafletMap: {
+    externalLayers: {
+      arkeologiset_kohteet_alue: '',
+      arkeologiset_kohteet_piste: ''
+    },
+    mapModeButtons: {
+      markers: 'Kartta',
+      heatmap: 'Lämpökartta'
+    }
+  },
   perspectives: {
     sources: {
       label: '',
