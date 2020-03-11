@@ -76,7 +76,7 @@ export const deathsProperties = `
       ?id siso-schema:num_of_children ?numberOfChildren__id .
       ?numberOfChildren__id skos:prefLabel ?numberOfChildren__prefLabel .
     }
-    `;
+    `
 
 export const personProperties = `
         {
@@ -663,7 +663,7 @@ export const personProperties = `
           BIND (URI(REPLACE(STR(?externalLink__id), "http://ldf.fi/norssit/", " https://www.norssit.fi/semweb/#!/tiedot/http:~2F~2Fldf.fi~2Fnorssit~2F")) AS ?externalLink__dataProviderUrl)
         }
 
-        `;
+        `
 
 export const extrasTypeList =
 [
@@ -787,9 +787,9 @@ export const extrasTypeList =
   ['timeOfBurial', '44_4_time_of_burial'],
   ['otherTimeOfBurial', '44_5_time_of_burial'],
 
-  ['parish', '46_1_parish'],
+  ['parish', '46_1_parish']
 
-];
+]
 
 export const extrasTemplate = `
       UNION {
@@ -803,7 +803,7 @@ export const extrasTemplate = `
           BIND(CONCAT("${rootUrl}/sources/page/", REPLACE(STR(?<TYPENAME>__source__id), "^.*\\\\/(.+)", "$1")) AS ?<TYPENAME>__source__dataProviderUrl)
         }
       }
-      `;
+      `
 
 export const birthYearsQuery = `
       SELECT ?counted (count(?counted) AS ?count)
@@ -819,7 +819,7 @@ export const birthYearsQuery = `
       }
       GROUP BY ?counted
       ORDER BY ?counted
-      `;
+      `
 
 export const ageQuery = `
       SELECT ?counted (count(?counted) AS ?count)
@@ -831,7 +831,7 @@ export const ageQuery = `
       }
       GROUP BY ?counted
       ORDER BY ?counted
-            `;
+            `
 
 export const deathDateQuery = `
       SELECT ?counted (count(?counted) AS ?count)
@@ -846,7 +846,7 @@ export const deathDateQuery = `
       }
       GROUP BY ?counted
       ORDER BY ?counted
-      `;
+      `
 
 export const csvDeathsQuery = `
   SELECT ?id ?familyName ?givenName ?birthPlace ?birthCountry ?birthYear ?birthDay ?registeredMunicipality ?registeredProvince ?registeredCountry
@@ -1031,9 +1031,9 @@ export const csvDeathsQuery = `
       }
    }
    ORDER BY ?prefLabel
-   `;
+   `
 
-export const deathPlacesQuery = `
+export const deathsByMunicipalityQuery = `
      SELECT ?id ?lat ?long
      (COUNT(DISTINCT ?deathRecord) as ?instanceCount)
      WHERE {
@@ -1043,7 +1043,17 @@ export const deathPlacesQuery = `
            geo:long ?long .
      }
      GROUP BY ?id ?lat ?long
-   `;
+   `
+
+export const deathPlacesQuery = `
+  SELECT ?id ?lat ?long
+  WHERE {
+    <FILTER>
+    ?deathRecord siso-s:death_municipality ?id .
+    ?id geo:lat ?lat ;
+        geo:long ?long .
+  }
+`
 
 export const deathsAt = `
        OPTIONAL {
@@ -1053,4 +1063,4 @@ export const deathsAt = `
          ?related__id siso-s:identifier ?identifier .
          BIND(CONCAT("${rootUrl}/victims/page/p_", ?identifier) AS ?related__dataProviderUrl)
        }
-   `;
+   `

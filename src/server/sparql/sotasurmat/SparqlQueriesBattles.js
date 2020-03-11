@@ -28,9 +28,9 @@ export const battleProperties = `
       ?id siso-schema:greater_place ?greaterPlace__id .
       ?greaterPlace__id skos:prefLabel ?greaterPlace__prefLabel .
     }
-`;
+`
 
-export const battlePlacesQuery =  `
+export const battlePlacesQuery = `
   SELECT *
   WHERE {
     <FILTER>
@@ -40,9 +40,9 @@ export const battlePlacesQuery =  `
     ?exact_place geo:lat ?lat .
     ?exact_place geo:long ?long .
   }
-`;
+`
 
-export const battlePlacesAnimationQuery =  `
+export const battlePlacesAnimationQuery = `
   SELECT *
   WHERE {
     <FILTER>
@@ -57,7 +57,7 @@ export const battlePlacesAnimationQuery =  `
     ?exact_place geo:long ?long .
   }
   ORDER BY ?startDate
-`;
+`
 
 export const battlePropertiesInfoWindow = `
     ?id skos:prefLabel ?prefLabel__id .
@@ -68,4 +68,4 @@ export const battlePropertiesInfoWindow = `
     OPTIONAL { ?id siso-schema:start_date ?startDate }
     OPTIONAL { ?id siso-schema:end_date ?endDate }
     OPTIONAL { ?id siso-schema:units ?units }
-`;
+`

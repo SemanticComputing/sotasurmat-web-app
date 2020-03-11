@@ -13,6 +13,7 @@ import {
   csvDeathsQuery,
   extrasTemplate,
   extrasTypeList,
+  deathsByMunicipalityQuery,
   deathPlacesQuery,
   deathsAt
 } from './sotasurmat/SparqlQueriesVictims'
@@ -107,6 +108,11 @@ export const getAllResults = ({
       filterTarget = 'id'
       break
     case 'deathPlaces':
+      q = deathsByMunicipalityQuery
+      mapper = mapPlaces
+      filterTarget = 'deathRecord'
+      break
+    case 'deathPlacesNoGrouping':
       q = deathPlacesQuery
       mapper = mapPlaces
       filterTarget = 'deathRecord'
