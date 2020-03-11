@@ -30,7 +30,14 @@ import {
   allPlacesQuery
 } from './sotasurmat/SparqlQueriesPlaces'
 import { facetConfigs, endpoint } from './sotasurmat/FacetConfigsSotasurmat'
-import { mapCount, mapPlaces, mapBirthYearCount, mapAgeCount, mapCountGroups } from './Mappers'
+import {
+  mapCount,
+  mapPlaces,
+  mapBirthYearCount,
+  mapAgeCount,
+  mapCountGroups
+  // mapCoordinates
+} from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'
 
@@ -69,7 +76,8 @@ export const getAllResults = ({
   resultClass,
   facetClass,
   constraints,
-  resultFormat
+  resultFormat,
+  groupBy
 }) => {
   let q = ''
   let filterTarget = ''

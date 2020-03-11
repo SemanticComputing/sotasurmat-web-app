@@ -1,8 +1,19 @@
-# Sotasurmat Web App
+# WarVictimSampo 1914–1922
 
-Based on https://github.com/SemanticComputing/sampo-web-app
+WarVictimSampo 1914–1922 is a semantic portal that publishes data about the war victims in Finland in 1914–1922.
+
+Based on [Sampo-UI - A framework for implementing semantic portals](https://github.com/SemanticComputing/sampo-ui)
 
 master branch visible at https://sotasurmat.narc.fi
+
+## Requirements
+
+* [Node.js® &ndash; a JavaScript runtime built on Chrome's V8 JavaScript engine.](https://nodejs.org/en/) (tested with 10.15.3 LTS)
+
+* [Nodemon &ndash; monitor for any changes in your source and automatically restart your server](https://nodemon.io/)
+
+If your home directory is mounted from a network drive, Node.js should
+be installed using Node Version Manager https://github.com/nvm-sh/nvm  
 
 ## Key JavaScript libraries in use
 

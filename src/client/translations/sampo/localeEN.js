@@ -1,11 +1,10 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'sampo',
-    long: 'Sampo Semantic Portal',
+    short: 'sampo-ui',
+    long: ' &nbsp; &nbsp; Sampo-UI  &nbsp;  &nbsp;',
     subheading: `
-      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-      doloremque laudantium unde
+      "Here to forge for us the Sampo, Hammer us the lid in colors"
     `
   },
   appDescription: `
@@ -45,6 +44,20 @@ export default {
   },
   exportToYasgui: 'open the result table query in yasgui sparql editor',
   openInLinkedDataBrowser: 'open in linked data browser',
+  facets: {
+    dateFacet: {
+      invalidDate: 'Epäkelpo päivämäärä.',
+      toBeforeFrom: 'Alkupäivämäärän täytyy olla ennen loppupäivämäärää.',
+      minDate: 'Aikaisin sallittu päivämäärä on {minDate}',
+      maxDate: 'Myöhäisin sallittu päivämäärä on {maxDate}',
+      cancel: 'Peruuta',
+      fromLabel: 'Alku',
+      toLabel: 'Loppu'
+    },
+    textFacet: {
+      inputLabel: 'Etsi nimellä'
+    }
+  },
   leafletMap: {
     externalLayers: {
       arkeologiset_kohteet_alue: 'Register of Archaeological Sites, areas',
