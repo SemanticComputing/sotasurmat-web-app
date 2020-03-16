@@ -606,7 +606,7 @@ class LeafletMap extends React.Component {
         }
       }
       if (this.props.resultClass === 'deathPlaces') {
-        popUpTemplate += `<p>${intl.get('perspectives.surmatut.map.deathsAt')}</p>`
+        popUpTemplate += `<p>${intl.get('perspectives.victims.map.deathsAt')}</p>`
         popUpTemplate += this.createInstanceListing(result.related)
       }
     } catch (TypeError) {
