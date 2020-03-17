@@ -7,6 +7,8 @@ import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
 import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
+import MigrationsMapLegend from '../mmm/MigrationsMapLegend'
+import { MAPBOX_ACCESS_TOKEN } from '../../../configs/sampo/GeneralConfig'
 
 const Perspective1 = props => {
   const { rootUrl, perspective } = props
@@ -61,6 +63,21 @@ const Perspective1 = props => {
           />}
       />
       <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/production_places_heatmap`}
+        render={() =>
+          <Deck
+            results={props.places.results}
+            facetUpdateID={props.facetData.facetUpdateID}
+            resultClass='placesMsProduced'
+            facetClass='perspective1'
+            fetchResults={props.fetchResults}
+            fetching={props.places.fetching}
+            legendComponent={<MigrationsMapLegend />}
+            layerType='heatmapLayer'
+            mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+          />}
+      />
+      <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/last_known_locations`}
         render={() =>
           <LeafletMap
@@ -101,13 +118,11 @@ const Perspective1 = props => {
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='placesMsMigrations'
             facetClass='perspective1'
-            mapMode='cluster'
-            instance={props.places.instance}
             fetchResults={props.fetchResults}
-            fetchByURI={props.fetchByURI}
             fetching={props.places.fetching}
-            showInstanceCountInClusters
-            updateFacetOption={props.updateFacetOption}
+            legendComponent={<MigrationsMapLegend />}
+            layerType='arcLayer'
+            mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
           />}
       />
       <Route
