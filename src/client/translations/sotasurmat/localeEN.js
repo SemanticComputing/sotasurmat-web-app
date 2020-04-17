@@ -202,6 +202,38 @@ export default {
             Likelihood of information about death to be true.
           `
         },
+        birthDate: {
+          label: 'Birth Date',
+          facetDescription: 'Birth Date',
+          description: ')'
+        },
+        deathDate: {
+          label: 'Death Date',
+          facetDescription: 'Death Date',
+          description: ''
+        },
+        birthTimespan: {
+          label: 'Birth Date',
+          description: 'Birth Date',
+          facetDescription: `   
+          `
+        },
+        deathTimespan: {
+          label: 'Death Date',
+          description: 'Death Date',
+          facetDescription: `
+            
+          `
+        },
+        birthPlace: {
+          label: 'Birth Place',
+          facetDescription: `
+            Birth Place
+          `,
+          description: `
+          Birth Place
+          `
+        },
 
       },
     },
