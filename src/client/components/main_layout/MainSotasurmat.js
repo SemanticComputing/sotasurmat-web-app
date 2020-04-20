@@ -11,7 +11,8 @@ import { withStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import { has } from 'lodash'
 import defaultThumbImage from '../../img/thumb.png'
-import logo from '../../img/logo_fi.gif'
+import largeLogoEN from '../../img/logo_en.gif'
+import largeLogoFI from '../../img/logo_fi.gif'
 
 const styles = theme => ({
   root: {
@@ -99,12 +100,24 @@ const styles = theme => ({
 })
 
 const MainSotarsurmat = props => {
-  const { classes } = props
+  const { classes, currentLocale } = props
+  let largeLogo
+  switch (currentLocale) {
+    case 'fi':
+      largeLogo = largeLogoFI
+      break
+    case 'en':
+      largeLogo = largeLogoEN
+      break
+    default:
+      largeLogo = largeLogoFI
+      break
+  }
   return (
     <div className={classes.root}>
       <div className={classes.layout}>
         <div className={classes.logoContainer}>
-          <img src={logo} alt='Logo' />
+          <img src={largeLogo} alt='Logo' />
         </div>
         <div className={classes.heroContent}>
           <Typography className={classes.longTitle} component='h1' variant='h3' align='center' color='textPrimary' gutterBottom>
@@ -151,7 +164,8 @@ const MainSotarsurmat = props => {
 MainSotarsurmat.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
-  perspectives: PropTypes.array.isRequired
+  perspectives: PropTypes.array.isRequired,
+  currentLocale: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(MainSotarsurmat)
