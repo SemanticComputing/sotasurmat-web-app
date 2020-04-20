@@ -207,7 +207,7 @@ export default {
           `
         },
         registeredMunicipality: {
-          label: 'Registered municipality',
+          label: 'Reg. municipality',
           description: 'Registered municipality'
         },
         deathMunicipality: {
@@ -358,12 +358,12 @@ export default {
           `
         },
         birthPlace: {
-          label: 'Birth place',
+          label: 'Birthplace',
           facetDescription: `
-            Birth place
+            Place of birth
           `,
           description: `
-          Birth place
+          Place of birth
           `
         },
         birthCountry: {
@@ -773,4 +773,37 @@ export default {
 
     </p>
   `,
+  information: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      Tietoa
+    </h1>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      WarVictimSampo 1914-1922
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      WarVictimSampo 1914-1922 is a semantic portal about Finnish war events 1914-1922.
+      The portal offers a user interface to the War Victims of Finland 1914-1922 database and a registry of the battless of the Finnish Civil War.
+      Both mterials are maintained by the National Archives of Finland
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      About the Data
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    The original War victims database was created between 1998-2004 as part of a project by the Finnish government.
+    The data has been updated in 2019. The database list over 40000 war victims mainly related to the Finnish Civil War.
+    The registry of battles was created some time in the 1920s to aid research.
+    It presents the events mainly from the perspective of the White party of the Civil War.
+    </p>
+<p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+ Data is published openly in <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -platform</a>.
+</p>
+<h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+  Language the Data
+</h2>
+<p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+Only the user interface of the application is translasted to English.
+The values in the database are given in their original Finnish form, that is usually the same form that was used in the original sources.
+</p>
+
+  `
 };
