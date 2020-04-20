@@ -1,11 +1,11 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'War Victims',
-    long: 'War Victims in Finland 1914-1922'
+    short: '',
+    long: 'WarVictimSampo 1914–1922'
   },
   appDescription: `
-    A semantic portal about war events related to Finland between 1914-1922.
+    A semantic portal about war events related to Finland from 1914 to 1922.
   `,
   mainPageImageLicence: `
     Front page images: Museum Centre Vapriikki
@@ -75,7 +75,7 @@ export default {
     victims: {
       label: 'War Victims',
       facetResultsType: '',
-      shortDescription: 'Information about war victims in Finland 1914-1922.',
+      shortDescription: 'Information about war victims in Finland in 1914–1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Perspective to the war victim file
