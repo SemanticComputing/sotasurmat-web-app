@@ -279,6 +279,7 @@ const SemanticPortal = props => {
                   <MainSotasurmat
                     perspectives={perspectiveConfig}
                     rootUrl={rootUrl}
+                    currentLocale={props.options.currentLocale}
                   />
                   <Footer />
                 </Grid>}

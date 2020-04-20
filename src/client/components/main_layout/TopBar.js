@@ -16,7 +16,8 @@ import { Link, NavLink } from 'react-router-dom'
 import TopBarLanguageButton from './TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
-import logo from '../../img/logo_small_fi.gif'
+import logoFI from '../../img/logo_small_fi.gif'
+import logoEN from '../../img/logo_small_en.gif'
 import arkistoLogo from '../../img/logos/ka-tunnus-fi-white.png'
 import { showLanguageButton } from '../../configs/sotasurmat/GeneralConfig'
 
@@ -209,6 +210,19 @@ class TopBar extends React.Component {
 
   render () {
     const { classes, perspectives, currentLocale, availableLocales } = this.props
+    console.log(currentLocale)
+    let logo
+    switch (currentLocale) {
+      case 'fi':
+        logo = logoFI
+        break
+      case 'en':
+        logo = logoEN
+        break
+      default:
+        logo = logoFI
+        break
+    }
     return (
       <div className={classes.root}>
         <AppBar position='absolute'>

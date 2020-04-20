@@ -1,11 +1,16 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'War Victims',
-    long: 'War Victims in Finland 1914-1922'
+    short: '',
+    long: 'WarVictimSampo 1914–1922'
   },
   appDescription: `
-    A a semantic portal about war events related to Finland between 1914-1922.
+    A semantic portal about war events related to Finland from 1914 to 1922.
+  `,
+  mainPageImageLicence: `
+    Front page images: Museum Centre Vapriikki
+    <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank'
+    rel='noopener noreferrer'>CC BY</a>.
   `,
   topBar: {
     feedback: 'feedback',
@@ -13,31 +18,64 @@ export default {
       info: 'Info',
       blog: 'Blog',
       aboutTheProject: 'About the project',
-      oldPage: 'Old application',
+      oldPage: 'Old application'
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'instructions'
   },
   facetBar: {
     results: 'Results',
-    narrowDownBy: 'Narrow down by'
+    narrowDownBy: 'Narrow down by',
+    narrowDownByTooltip: '',
+    filterOptions: 'Options',
+    sortByName: '',
+    sortByHits: '',
+    searchWithinFilter: 'Search'
   },
   tabs: {
     table: 'table',
     map: 'map',
-    line: 'linechart',
-    pie: 'piechart',
+    line: 'line chart',
+    pie: 'pie chart',
+    animation: 'animation',
     csv: 'csv',
+    extra: 'additional information'
   },
   table: {
     rowsPerPage: 'Rows per page',
     of: 'of'
   },
+  exportToYasgui: '',
+  openInLinkedDataBrowser: '',
+  facets: {
+    dateFacet: {
+      invalidDate: 'Invalid date.',
+      toBeforeFrom: 'Begin has to come before end',
+      minDate: 'The earliest possible date is {minDate}',
+      maxDate: 'The latest possible date is {maxDate}',
+      cancel: 'Cancel',
+      fromLabel: 'Begin',
+      toLabel: 'End'
+    },
+    textFacet: {
+      inputLabel: 'Search by name'
+    }
+  },
+  leafletMap: {
+    externalLayers: {
+      arkeologiset_kohteet_alue: '',
+      arkeologiset_kohteet_piste: ''
+    },
+    mapModeButtons: {
+      markers: 'Kartta',
+      heatmap: 'Lämpökartta'
+    }
+  },
   perspectives: {
     victims: {
       label: 'War Victims',
-      facetResultsType: 'Person',
-      shortDescription: 'Information about war victims in Finland 1914-1922.',
+      facetResultsType: '',
+      shortDescription: 'Information about war victims in Finland in 1914–1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Perspective to the war victim file
@@ -202,7 +240,7 @@ export default {
         },
         party: {
           label: 'Party',
-          description:`
+          description: `
             Party in the civil war
           `
         },
@@ -218,18 +256,6 @@ export default {
           label: 'Occupation',
           description: `
             Occupation in the original form
-          `
-        },
-        birthDate: {
-          label: 'Birth date',
-          description: `
-            Birth date (old project)
-          `
-        },
-        deathDate: {
-          label: 'Death date',
-          description: `
-            Death date (old project)
           `
         },
         birthDateSpan: {
@@ -624,12 +650,12 @@ export default {
             Links to outside pweb pages of the person
           `
         }
-      },
+      }
     },
     battles: {
       label: 'Battles',
-      facetResultsType: 'battle',
-      shortDescription: 'Perspective for battles of the civil war.',
+      facetResultsType: '',
+      shortDescription: 'Battles of the civil war.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Battles
@@ -657,7 +683,7 @@ export default {
         },
         startDate: {
           label: 'Start date',
-          description:  `
+          description: `
             Start date
           `
         },
@@ -684,9 +710,9 @@ export default {
           description: `
             Units that participated in the battle
           `
-        },
+        }
       }
-    },
+    }
   },
   instructions: `
   <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
@@ -783,27 +809,32 @@ export default {
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       WarVictimSampo 1914-1922 is a semantic portal about Finnish war events 1914-1922.
       The portal offers a user interface to the War Victims of Finland 1914-1922 database and a registry of the battless of the Finnish Civil War.
-      Both mterials are maintained by the National Archives of Finland
+      Both materials are maintained by the National Archives of Finland
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       About the Data
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
     The original War victims database was created between 1998-2004 as part of a project by the Finnish government.
-    The data has been updated in 2019. The database list over 40000 war victims mainly related to the Finnish Civil War.
+    The data has been updated in 2019. The database lists over 40000 war victims from the period, mainly related to the Finnish Civil War.
+
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
     The registry of battles was created some time in the 1920s to aid research.
     It presents the events mainly from the perspective of the White party of the Civil War.
+    As such it should not be considered an impartial representation the Finnish CIvil War, but can be used to give
+    general understanding of the battles, and to, for example, search information about the White units that participated in the battles.
     </p>
 <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
  Data is published openly in <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -platform</a>.
 </p>
 <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-  Language the Data
+  Language of the Data
 </h2>
 <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-Only the user interface of the application is translasted to English.
-The values in the database are given in their original Finnish form, that is usually the same form that was used in the original sources.
+Only the user interface of the application is translated to English.
+The values in the database are given in their original Finnish form, that is, if possible, the same form that was used in the original sources.
 </p>
 
   `
-};
+}
