@@ -805,8 +805,9 @@ export default {
     </h1>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       WarVictimSampo 1914–1922 is a semantic portal about Finnish war events in 1914–1922.
-      The portal offers a user interface to the War Victims of Finland 1914–1922 database and a registry of the battless of the Finnish Civil War.
-      Both materials are maintained by the National Archives of Finland
+      The portal offers a user interface to the War Victims of Finland 1914–1922 database 
+      and a registry of the battles of the Finnish Civil War.
+      Both materials are maintained by the National Archives of Finland.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       About the Data
