@@ -801,21 +801,18 @@ export default {
   `,
   information: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Tietoa
+      WarVictimSampo 1914–1922
     </h1>
-    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      WarVictimSampo 1914-1922
-    </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      WarVictimSampo 1914-1922 is a semantic portal about Finnish war events 1914-1922.
-      The portal offers a user interface to the War Victims of Finland 1914-1922 database and a registry of the battless of the Finnish Civil War.
+      WarVictimSampo 1914–1922 is a semantic portal about Finnish war events in 1914–1922.
+      The portal offers a user interface to the War Victims of Finland 1914–1922 database and a registry of the battless of the Finnish Civil War.
       Both materials are maintained by the National Archives of Finland
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       About the Data
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-    The original War victims database was created between 1998-2004 as part of a project by the Finnish government.
+    The original War victims database was created in 1998–2004 as part of a project by the Finnish government.
     The data has been updated in 2019. The database lists over 40000 war victims from the period, mainly related to the Finnish Civil War.
 
     </p>
@@ -825,16 +822,15 @@ export default {
     As such it should not be considered an impartial representation the Finnish CIvil War, but can be used to give
     general understanding of the battles, and to, for example, search information about the White units that participated in the battles.
     </p>
-<p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
- Data is published openly in <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -platform</a>.
-</p>
-<h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-  Language of the Data
-</h2>
-<p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-Only the user interface of the application is translated to English.
-The values in the database are given in their original Finnish form, that is, if possible, the same form that was used in the original sources.
-</p>
-
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    Data is published openly in <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -platform</a>.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Language of the Data
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The user interface of the portal is translated to English.
+      The values in the database are given in their original Finnish form, that is, if possible, the same form that was used in the original sources.
+    </p>
   `
 }

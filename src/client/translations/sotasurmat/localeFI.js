@@ -2,11 +2,11 @@ export default {
   languageLabel: 'Suomi',
   appTitle: {
     short: 'Sotasurmat',
-    long: 'Sotasurmasampo 1914-1922'
+    long: 'Sotasurmasampo 1914–1922'
   },
   appDescription: `
     Portaali Suomeen liittyviin sotatapahtumiin vuosina
-    1914-1922.
+    1914–1922.
   `,
   mainPageImageLicence: `
     Etusivun kuvat: Vapriikin kuva-arkisto
