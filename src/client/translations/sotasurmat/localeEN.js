@@ -131,7 +131,7 @@ export default {
       lineChart: {
         year: 'Year',
         lineExplanation: 'People',
-        age: 'Age',
+        age: 'Age at death',
         yTitle: 'Number of people',
         average: 'Average',
         median: 'Median',

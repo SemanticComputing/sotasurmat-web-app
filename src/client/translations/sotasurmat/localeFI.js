@@ -157,7 +157,7 @@ export default {
       lineChart: {
         year: 'Vuosi',
         lineExplanation: 'Henkilöt',
-        age: 'Ikä',
+        age: 'Kuolinikä',
         yTitle: 'Henkilöiden määrä',
         average: 'keskiarvo noin',
         median: 'mediaani noin',
