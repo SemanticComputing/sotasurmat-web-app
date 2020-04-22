@@ -210,7 +210,6 @@ class TopBar extends React.Component {
 
   render () {
     const { classes, perspectives, currentLocale, availableLocales } = this.props
-    console.log(currentLocale)
     let logo
     switch (currentLocale) {
       case 'fi':
@@ -265,7 +264,7 @@ class TopBar extends React.Component {
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
                 to={`${this.props.rootUrl}/information`}
-                isActive={(match, location) => location.pathname.startsWith('/information')}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/information`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 {intl.get('topBar.info.info')}
@@ -274,7 +273,7 @@ class TopBar extends React.Component {
                 className={classes.appBarButton}
                 component={this.AdapterNavLink}
                 to={`${this.props.rootUrl}/instructions`}
-                isActive={(match, location) => location.pathname.startsWith('/instructions')}
+                isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/instructions`)}
                 activeClassName={this.props.classes.appBarButtonActive}
               >
                 {intl.get('topBar.instructions')}
@@ -284,6 +283,7 @@ class TopBar extends React.Component {
                   currentLocale={currentLocale}
                   availableLocales={availableLocales}
                   loadLocales={this.props.loadLocales}
+                  location={this.props.location}
                 />}
             </div>
             <a

@@ -4,7 +4,7 @@ import intl from 'react-intl-universal'
 import { has } from 'lodash'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
-import { withRouter, Route } from 'react-router-dom'
+import { withRouter, Route, Redirect, Switch } from 'react-router-dom'
 import classNames from 'classnames'
 import compose from 'recompose/compose'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
@@ -201,6 +201,7 @@ const SemanticPortal = props => {
   if (mdScreen) { screenSize = 'md' }
   if (lgScreen) { screenSize = 'lg' }
   if (xlScreen) { screenSize = 'xl' }
+  const rootUrlWithLang = `${rootUrl}/${props.options.currentLocale}`
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
@@ -208,7 +209,7 @@ const SemanticPortal = props => {
       case 'victims':
         perspectiveElement =
           <Victims
-            rootUrl={rootUrl}
+            rootUrl={rootUrlWithLang}
             dates={props.dates}
             victims={props.victims}
             places={props.places}
@@ -230,7 +231,7 @@ const SemanticPortal = props => {
       case 'battles':
         perspectiveElement =
           <Battles
-            rootUrl={rootUrl}
+            rootUrl={rootUrlWithLang}
             dates={props.dates}
             battles={props.battles}
             facetData={props.battlesFacets}
@@ -263,7 +264,7 @@ const SemanticPortal = props => {
           <Message error={error} />
           <>
             <TopBar
-              rootUrl={rootUrl}
+              rootUrl={rootUrlWithLang}
               fetchResultsClientSide={props.fetchResultsClientSide}
               clearResults={props.clearResults}
               perspectives={perspectiveConfig}
@@ -271,14 +272,18 @@ const SemanticPortal = props => {
               availableLocales={props.options.availableLocales}
               loadLocales={props.loadLocales}
               xsScreen={xsScreen}
+              location={props.location}
             />
+            <Route exact path={`${rootUrl}/`}>
+              <Redirect to={rootUrlWithLang} />
+            </Route>
             <Route
-              exact path={`${rootUrl}/`}
+              exact path={`${rootUrlWithLang}/`}
               render={() =>
                 <Grid container className={classes.mainContainerSotasurmat}>
                   <MainSotasurmat
                     perspectives={perspectiveConfig}
-                    rootUrl={rootUrl}
+                    rootUrl={rootUrlWithLang}
                     currentLocale={props.options.currentLocale}
                   />
                   <Footer />
@@ -286,7 +291,7 @@ const SemanticPortal = props => {
             />
             {/* https://stackoverflow.com/a/41024944 */}
             <Route
-              path={`${rootUrl}/`} render={({ location }) => {
+              path={`${rootUrlWithLang}/`} render={({ location }) => {
                 if (typeof window.ga === 'function') {
                   window.ga('set', 'page', location.pathname + location.search)
                   window.ga('send', 'pageview')
@@ -300,7 +305,7 @@ const SemanticPortal = props => {
                 return (
                   <React.Fragment key={perspective.id}>
                     <Route
-                      path={`${rootUrl}/${perspective.id}/faceted-search`}
+                      path={`${rootUrlWithLang}/${perspective.id}/faceted-search`}
                       render={routeProps => {
                         return (
                           <>
@@ -341,120 +346,131 @@ const SemanticPortal = props => {
                         )
                       }}
                     />
-                    <Route
-                      path={`${rootUrl}/${perspective.id}/page/:id`}
-                      render={routeProps => {
-                        return (
-                          <>
-                            <InfoHeader
-                              resultClass={perspective.id}
-                              pageType='instancePage'
-                              instanceData={props[perspective.id].instance}
-                              expanded={props[perspective.id].instancePageHeaderExpanded}
-                              updateExpanded={props.updatePerspectiveHeaderExpanded}
-                              descriptionHeight={perspective.perspectiveDescHeight}
-                            />
-                            <Grid
-                              container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
-                                ? classes.instancePageContainerHeaderExpanded
-                                : classes.instancePageContainer}
-                            >
-                              <Grid item xs={12} className={classes.instancePageContent}>
-                                {perspective.id === 'victims' &&
-                                  <VictimHomePage
-                                    rootUrl={rootUrl}
-                                    fetchByURI={props.fetchByURI}
-                                    resultClass={perspective.id}
-                                    tableRows={props[perspective.id].properties}
-                                    tabs={perspective.instancePageTabs}
-                                    data={props[perspective.id].instance}
-                                    extras={props[perspective.id].instanceExtra}
-                                    sparqlQuery={props[perspective.id].instanceSparqlQuery}
-                                    isLoading={props[perspective.id].fetching}
-                                    routeProps={routeProps}
-                                    screenSize={screenSize}
-                                  />}
-                                {perspective.id !== 'victims' &&
-                                  <InstanceHomePage
-                                    rootUrl={rootUrl}
-                                    fetchByURI={props.fetchByURI}
-                                    resultClass={perspective.id}
-                                    properties={props[perspective.id].properties}
-                                    tabs={perspective.instancePageTabs}
-                                    data={props[perspective.id].instance}
-                                    sparqlQuery={props[perspective.id].instanceSparqlQuery}
-                                    isLoading={props[perspective.id].fetching}
-                                    routeProps={routeProps}
-                                    screenSize={screenSize}
-                                  />}
+                    <Switch>
+                      <Redirect
+                        from={`/${perspective.id}/page/:id`}
+                        to={`${rootUrlWithLang}/${perspective.id}/page/:id`}
+                      />
+                      <Route
+                        path={`${rootUrlWithLang}/${perspective.id}/page/:id`}
+                        render={routeProps => {
+                          return (
+                            <>
+                              <InfoHeader
+                                resultClass={perspective.id}
+                                pageType='instancePage'
+                                instanceData={props[perspective.id].instance}
+                                expanded={props[perspective.id].instancePageHeaderExpanded}
+                                updateExpanded={props.updatePerspectiveHeaderExpanded}
+                                descriptionHeight={perspective.perspectiveDescHeight}
+                              />
+                              <Grid
+                                container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
+                                  ? classes.instancePageContainerHeaderExpanded
+                                  : classes.instancePageContainer}
+                              >
+                                <Grid item xs={12} className={classes.instancePageContent}>
+                                  {perspective.id === 'victims' &&
+                                    <VictimHomePage
+                                      rootUrl={rootUrlWithLang}
+                                      fetchByURI={props.fetchByURI}
+                                      resultClass={perspective.id}
+                                      tableRows={props[perspective.id].properties}
+                                      tabs={perspective.instancePageTabs}
+                                      data={props[perspective.id].instance}
+                                      extras={props[perspective.id].instanceExtra}
+                                      sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                                      isLoading={props[perspective.id].fetching}
+                                      routeProps={routeProps}
+                                      screenSize={screenSize}
+                                    />}
+                                  {perspective.id !== 'victims' &&
+                                    <InstanceHomePage
+                                      rootUrl={rootUrlWithLang}
+                                      fetchByURI={props.fetchByURI}
+                                      resultClass={perspective.id}
+                                      properties={props[perspective.id].properties}
+                                      tabs={perspective.instancePageTabs}
+                                      data={props[perspective.id].instance}
+                                      sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                                      isLoading={props[perspective.id].fetching}
+                                      routeProps={routeProps}
+                                      screenSize={screenSize}
+                                    />}
+                                </Grid>
                               </Grid>
-                            </Grid>
-                          </>
-                        )
-                      }}
-                    />
+                            </>
+                          )
+                        }}
+                      />
+                    </Switch>
                   </React.Fragment>
                 )
               }
             })}
             {/* create routes for classes that have only info pages and no perspective */}
             {perspectiveConfigOnlyInfoPages.map(perspective =>
-              <Route
-                key={perspective.id}
-                path={`/${perspective.id}/page/:id`}
-                render={routeProps => {
-                  return (
-                    <>
-                      <InfoHeader
-                        resultClass={perspective.id}
-                        pageType='instancePage'
-                        instanceData={props[perspective.id].instance}
-                        expanded={props[perspective.id].instancePageHeaderExpanded}
-                        updateExpanded={props.updatePerspectiveHeaderExpanded}
-                        descriptionHeight={perspective.perspectiveDescHeight}
-                      />
-                      <Grid
-                        container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
-                          ? classes.instancePageContainerHeaderExpanded
-                          : classes.instancePageContainer}
-                      >
-                        <Grid item xs={12} className={classes.instancePageContent}>
-                          <InstanceHomePage
-                            rootUrl={rootUrl}
-                            fetchByURI={props.fetchByURI}
-                            resultClass={perspective.id}
-                            properties={props[perspective.id].properties}
-                            tabs={perspective.instancePageTabs}
-                            data={props[perspective.id].instance}
-                            sparqlQuery={props[perspective.id].instanceSparqlQuery}
-                            isLoading={props[perspective.id].fetching}
-                            routeProps={routeProps}
-                            screenSize={screenSize}
-                          />
+              <Switch key={perspective.id}>
+                <Redirect
+                  from={`/${perspective.id}/page/:id`}
+                  to={`${rootUrlWithLang}/${perspective.id}/page/:id`}
+                />
+                <Route
+                  path={`${rootUrlWithLang}/${perspective.id}/page/:id`}
+                  render={routeProps => {
+                    return (
+                      <>
+                        <InfoHeader
+                          resultClass={perspective.id}
+                          pageType='instancePage'
+                          instanceData={props[perspective.id].instance}
+                          expanded={props[perspective.id].instancePageHeaderExpanded}
+                          updateExpanded={props.updatePerspectiveHeaderExpanded}
+                          descriptionHeight={perspective.perspectiveDescHeight}
+                        />
+                        <Grid
+                          container spacing={1} className={props[perspective.id].instancePageHeaderExpanded
+                            ? classes.instancePageContainerHeaderExpanded
+                            : classes.instancePageContainer}
+                        >
+                          <Grid item xs={12} className={classes.instancePageContent}>
+                            <InstanceHomePage
+                              rootUrl={rootUrlWithLang}
+                              fetchByURI={props.fetchByURI}
+                              resultClass={perspective.id}
+                              properties={props[perspective.id].properties}
+                              tabs={perspective.instancePageTabs}
+                              data={props[perspective.id].instance}
+                              sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                              isLoading={props[perspective.id].fetching}
+                              routeProps={routeProps}
+                              screenSize={screenSize}
+                            />
+                          </Grid>
                         </Grid>
-                      </Grid>
-                    </>
-                  )
-                }}
-              />
+                      </>
+                    )
+                  }}
+                />
+              </Switch>
             )}
             {/* create routes for info buttons */}
             <Route
-              path={`${rootUrl}/feedback`}
+              path={`${rootUrlWithLang}/feedback`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <FeedbackPage />
                 </div>}
             />
             <Route
-              path={`${rootUrl}/instructions`}
+              path={`${rootUrlWithLang}/instructions`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <TextPage>{intl.getHTML('instructions')}</TextPage>
                 </div>}
             />
             <Route
-              path={`${rootUrl}/information`}
+              path={`${rootUrlWithLang}/information`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <TextPage>{intl.getHTML('information')}</TextPage>

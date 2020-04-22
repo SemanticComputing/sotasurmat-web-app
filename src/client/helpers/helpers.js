@@ -99,3 +99,19 @@ export const handleAxiosError = error => {
   }
   console.log(error.config)
 }
+
+export const updateLocaleToPathname = ({ pathname, locale, replaceOld }) => {
+  // console.log('original pathname: ' + pathname)
+  const numberOfSlashes = pathname.split('/').length - 1
+  // console.log('slashes: ' + numberOfSlashes)
+  let newPathname
+  if (replaceOld) {
+    const pathnameLangRemoved = numberOfSlashes === 1 ? '' : pathname.substring(pathname.indexOf('/', 1))
+    // console.log('path lang removed: ' + pathnameLangRemoved)
+    // console.log('lang to be added: ' + locale)
+    newPathname = `/${locale}${pathnameLangRemoved}` // TODO: handle rootUrl from generalConfig
+  } else {
+    newPathname = `/${locale}${pathname}`
+  }
+  return newPathname
+}
