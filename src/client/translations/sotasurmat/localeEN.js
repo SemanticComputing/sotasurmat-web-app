@@ -72,6 +72,45 @@ export default {
     }
   },
   perspectives: {
+    sources: {
+      label: '',
+      facetResultsType: '',
+      shortDescription: '',
+      longDescription: `
+      `,
+      instancePage: {
+        label: 'Source',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            Information about a source
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Name',
+          description: `
+            Name of the source
+          `
+        },
+        sourceCode: {
+          label: 'Code',
+          description: `
+            The code for this source used in the source database.
+          `
+        },
+        description: {
+          label: 'Description',
+          description: `
+            Description.
+            `
+        }
+      }
+    },
     victims: {
       label: 'War Victims',
       facetResultsType: '',
@@ -824,7 +863,7 @@ export default {
     general understanding of the battles, and to, for example, search information about the White units that participated in the battles.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-    Data is published openly in <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland -platform</a>.
+    Data is published openly on the <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland platform</a>.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Language of the Data
