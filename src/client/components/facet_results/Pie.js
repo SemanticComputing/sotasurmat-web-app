@@ -4,7 +4,6 @@ import {
   VictoryPie,
   VictoryLegend,
   VictoryContainer
-  // VictoryLabel,
 } from 'victory'
 import PieTooltip from './PieTooltip'
 import _ from 'lodash'
@@ -63,44 +62,17 @@ const styles = theme => ({
 class Pie extends React.Component {
   constructor (props) {
     super(props)
-    // Don't call this.setState() here!
     this.state = {
       selectedOption: 'party',
       label: intl.get('perspectives.victims.properties.party.label')
     }
-    // this.handleClick = this.handleClick.bind(this);
   }
 
-  // combineSmallGroups = (dataArray) => {
-  //   const totalLength = dataArray.length;
-  //   const threshold = 0.1;
-  //   let other = { x: 'Muu arvo', y: 0, values: [] };
-  //   let newArray = [];
-  //   for (let item of dataArray) {
-  //     const portion = item.y / totalLength;
-  //     if (portion < threshold) {
-  //       other.y += item.y;
-  //       other.values.push(item.values);
-  //     } else {
-  //       newArray.push(item);
-  //     }
-  //   }
-  //   if (other.y > 0) {
-  //     newArray.push(other);
-  //     return newArray;
-  //   } else {
-  //     return dataArray;
-  //   }
-  // };
-
  combineSmallGroups = (dataArray) => {
-   // const totalLength = dataArray.length;
-   // const threshold = 0.1;
    const other = { x: 'Muu arvo', y: 0, values: [] }
    const newArray = []
    let count = 0
    for (const item of dataArray) {
-     // const portion = item.y / totalLength;
      if (count > 8) {
        other.y += item.y
        other.values.push(item.values)
@@ -165,36 +137,19 @@ class Pie extends React.Component {
    for (const key in facetValues) {
      resultCount = resultCount + parseInt(facetValues[key].instanceCount, 10)
    }
-   // const resultCount = data.party.values;
-   // console.log(data.party.values)
-   // if (resultCount < 10) {
-   //  return <ResultInfo message="Need over 10 results to create a distribution." />;
-   // }
    const grouped = _.groupBy(facetValues, 'prefLabel')
    let dataArray = []
    for (const key in grouped) {
-     // console.log(grouped[key][0])
      const count = grouped[key][0].instanceCount
      dataArray.push({
        x: key,
        y: parseInt(count, 10)
-       // values: grouped[key]
      })
    }
    dataArray = _.orderBy(dataArray, 'y', 'desc')
-   //  console.log(dataArray)
    dataArray = this.combineSmallGroups(dataArray)
    const legendArray = dataArray.map(group => ({ name: group.x + ' (' + group.y + ')' }))
-   // console.log(dataArray)
    const legendHeigth = legendArray.length * 35 + 15
-   // const pieTitle = resultCount + ' results for the query "' + query + '"';
-   // <VictoryLabel
-   //   style={{
-   //     fontSize: '14px',
-   //     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-   //   }}
-   //   text={pieTitle}
-   // />
 
    return (
      <Paper square className={classes.root}>
