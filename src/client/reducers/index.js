@@ -12,6 +12,7 @@ import victimsFacetsConstrainSelf from './sotasurmat/victimsFacetsConstrainSelf'
 import battles from './sotasurmat/battles'
 import battlesFacets from './sotasurmat/battlesFacets'
 import dates from './sotasurmat/dates'
+import sources from './sotasurmat/sources'
 import places from './sotasurmat/places'
 
 const reducer = combineReducers({
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   battles,
   battlesFacets,
   dates,
+  sources,
   places,
   leafletMap,
   animation,

@@ -285,14 +285,14 @@ class TopBar extends React.Component {
                   location={this.props.location}
                 />}
             </div>
-            <a
+            {/* <a
               className={classes.secoLogo}
               href='https://seco.cs.aalto.fi'
               target='_blank'
               rel='noopener noreferrer'
             >
-              {/* <Button><img src={secoLogo} /></Button> */}
-            </a>
+              <Button><img src={secoLogo} /></Button>
+            </a> */}
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup='true' onClick={this.handleMobileMenuOpen} color='inherit'>
                 <MoreIcon />

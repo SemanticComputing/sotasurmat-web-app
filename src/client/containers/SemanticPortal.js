@@ -358,8 +358,8 @@ const SemanticPortal = props => {
                       screenSize={screenSize}
                     />
                   </Grid>
-                </Grid>} */}
-            />
+                </Grid>}
+            /> */}
             {/* routes for perspectives that don't have an external url */}
             {perspectiveConfig.map(perspective => {
               if (!has(perspective, 'externalUrl') && perspective.id !== 'placesClientFS') {

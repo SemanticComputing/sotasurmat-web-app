@@ -40,6 +40,8 @@ const Battles = props => {
         path={`${props.rootUrl}/battles/faceted-search/map`}
         render={() =>
           <LeafletMap
+            center={[64.00, 30.00]}
+            zoom={5}
             results={props.battles.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}

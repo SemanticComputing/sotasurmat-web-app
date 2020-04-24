@@ -73,6 +73,8 @@ const Victims = props => {
         path={`${props.rootUrl}/victims/faceted-search/map`}
         render={() =>
           <LeafletMap
+            center={[64.00, 30.00]}
+            zoom={5}
             results={props.places.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
