@@ -88,7 +88,8 @@ class TopBarLanguageButton extends React.Component {
 TopBarLanguageButton.propTypes = {
   classes: PropTypes.object.isRequired,
   currentLocale: PropTypes.string.isRequired,
-  availableLocales: PropTypes.array.isRequired
+  availableLocales: PropTypes.array.isRequired,
+  location: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(TopBarLanguageButton)

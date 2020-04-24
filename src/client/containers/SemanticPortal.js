@@ -19,7 +19,7 @@ import InfoHeader from '../components/main_layout/InfoHeader'
 import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
 import MainSotasurmat from '../components/main_layout/MainSotasurmat'
-import Footer from '../components/main_layout/Footer'
+import Footer from '../components/perspectives/sotasurmat/Footer'
 import FacetBar from '../components/facet_bar/FacetBar'
 import Victims from '../components/perspectives/sotasurmat/Victims'
 import VictimHomePage from '../components/perspectives/sotasurmat/VictimHomePage'
@@ -39,15 +39,24 @@ import {
   fetchFacet,
   fetchFacetConstrainSelf,
   fetchGeoJSONLayers,
+  fetchGeoJSONLayersBackend,
   sortResults,
   updateFacetOption,
   updatePage,
   updateRowsPerPage,
+  updateMapBounds,
   showError,
   updatePerspectiveHeaderExpanded,
   loadLocales,
-  animateMap
+  animateMap,
+  clientFSToggleDataset,
+  clientFSFetchResults,
+  clientFSSortResults,
+  clientFSClearResults,
+  clientFSUpdateQuery,
+  clientFSUpdateFacet
 } from '../actions'
+// import { filterResults } from '../selectors'
 
 const styles = theme => ({
   root: {
@@ -84,6 +93,18 @@ const styles = theme => ({
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 64 // app bar
+    }
+  },
+  mainContainerClientFS: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: 'calc(100% - 144px)' // 100% - app bar - padding * 2
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 56 // app bar
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 72 // app bar + padding
     }
   },
   textPageContainer: {
@@ -141,6 +162,17 @@ const styles = theme => ({
     paddingTop: '0px !important',
     paddingBottom: '0px !important'
   },
+  facetBarContainerClientFS: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
+    },
+    overflow: 'auto',
+    // paddingTop: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(0.5),
+    paddingBottom: theme.spacing(1)
+  },
   resultsContainer: {
     height: 'auto',
     [theme.breakpoints.up('md')]: {
@@ -148,6 +180,19 @@ const styles = theme => ({
     },
     paddingTop: '0px !important',
     paddingBottom: '0px !important',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(1)
+    }
+  },
+  resultsContainerClientFS: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
+    },
+    paddingTop: '0px !important',
+    paddingBottom: '0px !important',
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(0.5),
     [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(1)
     }
@@ -202,6 +247,7 @@ const SemanticPortal = props => {
   if (lgScreen) { screenSize = 'lg' }
   if (xlScreen) { screenSize = 'xl' }
   const rootUrlWithLang = `${rootUrl}/${props.options.currentLocale}`
+  // const noResults = props.clientFS.results == null
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
@@ -209,7 +255,6 @@ const SemanticPortal = props => {
       case 'victims':
         perspectiveElement =
           <Victims
-            rootUrl={rootUrlWithLang}
             dates={props.dates}
             victims={props.victims}
             places={props.places}
@@ -226,12 +271,12 @@ const SemanticPortal = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             perspective={perspective}
             screenSize={screenSize}
+            rootUrl={rootUrlWithLang}
           />
         break
       case 'battles':
         perspectiveElement =
           <Battles
-            rootUrl={rootUrlWithLang}
             dates={props.dates}
             battles={props.battles}
             facetData={props.battlesFacets}
@@ -249,6 +294,7 @@ const SemanticPortal = props => {
             animationValue={props.animationValue}
             animateMap={props.animateMap}
             screenSize={screenSize}
+            rootUrl={rootUrlWithLang}
           />
         break
       default:
@@ -265,6 +311,7 @@ const SemanticPortal = props => {
           <>
             <TopBar
               rootUrl={rootUrlWithLang}
+              search={props.clientSideFacetedSearch}
               fetchResultsClientSide={props.fetchResultsClientSide}
               clearResults={props.clearResults}
               perspectives={perspectiveConfig}
@@ -299,9 +346,23 @@ const SemanticPortal = props => {
                 return null
               }}
             />
+            {/* route for full text search results */}
+            {/* <Route
+              path={`${rootUrlWithLang}/all`}
+              render={routeProps =>
+                <Grid container spacing={1} className={classes.mainContainer}>
+                  <Grid item xs={12} className={classes.resultsContainer}>
+                    <All
+                      clientSideFacetedSearch={props.clientSideFacetedSearch}
+                      routeProps={routeProps}
+                      screenSize={screenSize}
+                    />
+                  </Grid>
+                </Grid>} */}
+            />
             {/* routes for perspectives that don't have an external url */}
             {perspectiveConfig.map(perspective => {
-              if (!has(perspective, 'externalUrl')) {
+              if (!has(perspective, 'externalUrl') && perspective.id !== 'placesClientFS') {
                 return (
                   <React.Fragment key={perspective.id}>
                     <Route
@@ -323,6 +384,7 @@ const SemanticPortal = props => {
                             >
                               <Grid item xs={12} md={3} className={classes.facetBarContainer}>
                                 <FacetBar
+                                  facetedSearchMode='serverFS'
                                   facetData={props[`${perspective.id}Facets`]}
                                   facetDataConstrainSelf={has(props, `${perspective.id}FacetsConstrainSelf`)
                                     ? props[`${perspective.id}FacetsConstrainSelf`]
@@ -508,15 +570,23 @@ const mapDispatchToProps = ({
   fetchFacet,
   fetchFacetConstrainSelf,
   fetchGeoJSONLayers,
+  fetchGeoJSONLayersBackend,
   sortResults,
   clearResults,
   updateFacetOption,
   updatePage,
   updateRowsPerPage,
+  updateMapBounds,
   showError,
   updatePerspectiveHeaderExpanded,
   loadLocales,
-  animateMap
+  animateMap,
+  clientFSToggleDataset,
+  clientFSFetchResults,
+  clientFSClearResults,
+  clientFSSortResults,
+  clientFSUpdateQuery,
+  clientFSUpdateFacet
 })
 
 SemanticPortal.propTypes = {
@@ -538,6 +608,7 @@ SemanticPortal.propTypes = {
   fetchPaginatedResults: PropTypes.func.isRequired,
   fetchByURI: PropTypes.func.isRequired,
   fetchGeoJSONLayers: PropTypes.func.isRequired,
+  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   clearResults: PropTypes.func.isRequired,
   updatePage: PropTypes.func.isRequired,
@@ -548,6 +619,7 @@ SemanticPortal.propTypes = {
   showError: PropTypes.func.isRequired,
   dates: PropTypes.object.isRequired,
   updatePerspectiveHeaderExpanded: PropTypes.func.isRequired,
+  updateMapBounds: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
   animateMap: PropTypes.func.isRequired
 }

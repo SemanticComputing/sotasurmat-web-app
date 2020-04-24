@@ -22,9 +22,6 @@ import arkistoLogo from '../../img/logos/ka-tunnus-fi-white.png'
 import { showLanguageButton } from '../../configs/sotasurmat/GeneralConfig'
 
 const styles = theme => ({
-  root: {
-    // width: '100%',
-  },
   grow: {
     flexGrow: 1
   },
@@ -108,6 +105,7 @@ class TopBar extends React.Component {
   AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
 
   renderMobileMenuItem = perspective => {
+    const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -127,7 +125,7 @@ class TopBar extends React.Component {
         <MenuItem
           key={perspective.id}
           component={this.AdapterLink}
-          to={`${this.props.rootUrl}/${perspective.id}/faceted-search`}
+          to={`${this.props.rootUrl}/${perspective.id}/${searchMode}`}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
@@ -136,6 +134,7 @@ class TopBar extends React.Component {
   }
 
   renderDesktopTopMenuItem = perspective => {
+    const searchMode = perspective.id.startsWith('clientFS') ? 'federated-search' : 'faceted-search'
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -158,7 +157,7 @@ class TopBar extends React.Component {
           key={perspective.id}
           className={this.props.classes.appBarButton}
           component={this.AdapterNavLink}
-          to={`${this.props.rootUrl}/${perspective.id}/faceted-search`}
+          to={`${this.props.rootUrl}/${perspective.id}/${searchMode}`}
           isActive={(match, location) => location.pathname.startsWith(`${this.props.rootUrl}/${perspective.id}`)}
           activeClassName={this.props.classes.appBarButtonActive}
         >
@@ -288,7 +287,7 @@ class TopBar extends React.Component {
             </div>
             <a
               className={classes.secoLogo}
-              href='https://seco.cs.aalto.fi/projects/mmm'
+              href='https://seco.cs.aalto.fi'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -315,7 +314,9 @@ TopBar.propTypes = {
   loadLocales: PropTypes.func.isRequired,
   perspectives: PropTypes.array.isRequired,
   currentLocale: PropTypes.string.isRequired,
-  availableLocales: PropTypes.array.isRequired
+  availableLocales: PropTypes.array.isRequired,
+  xsScreen: PropTypes.bool.isRequired,
+  location: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(TopBar)

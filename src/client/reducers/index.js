@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux'
 import { reducer as toastrReducer } from 'react-redux-toastr'
+// general reducers:
 import error from './error'
+import options from './options'
+import animation from './animation'
+import leafletMap from './leafletMap'
+// portal spefic reducers:
 import victims from './sotasurmat/victims'
 import victimsFacets from './sotasurmat/victimsFacets'
 import victimsFacetsConstrainSelf from './sotasurmat/victimsFacetsConstrainSelf'
@@ -8,9 +13,6 @@ import battles from './sotasurmat/battles'
 import battlesFacets from './sotasurmat/battlesFacets'
 import dates from './sotasurmat/dates'
 import places from './sotasurmat/places'
-import options from './options'
-import animation from './animation'
-import sources from './sotasurmat/sources'
 
 const reducer = combineReducers({
   victims,
@@ -18,12 +20,12 @@ const reducer = combineReducers({
   victimsFacetsConstrainSelf,
   battles,
   battlesFacets,
+  dates,
+  places,
+  leafletMap,
   animation,
   options,
   error,
-  dates,
-  places,
-  sources,
   toastr: toastrReducer
 })
 

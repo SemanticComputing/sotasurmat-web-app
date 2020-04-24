@@ -91,8 +91,7 @@ class ResultTable extends React.Component {
     // then update app state and url accordingly
     this.props.updatePage(this.props.resultClass, page)
     history.push({
-      // pathname: `/${this.props.resultClass}/table`,
-      pathname: `${this.props.rootUrl}/${this.props.perspective.id}/faceted-search/table`,
+      pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
       search: `?page=${page}`
     })
 
@@ -107,8 +106,7 @@ class ResultTable extends React.Component {
     if (prevProps.data.page !== this.props.data.page) {
       this.fetchResults()
       history.push({
-        // pathname: `/${this.props.resultClass}/table`,
-        pathname: `${this.props.rootUrl}/${this.props.perspective.id}/faceted-search/table`,
+        pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
         search: `?page=${this.props.data.page}`
       })
     }
