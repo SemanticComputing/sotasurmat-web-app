@@ -91,7 +91,7 @@ class FacetInfo extends React.Component {
           activeIntegerFilters
         ) &&
           <>
-            <Typography variant='h6'>Aktiiviset suodattimet:</Typography>
+            <Typography variant='h6'>{intl.get('facetBar.activeFilters')}</Typography>
             <div className={classes.textContainer}>
               <ActiveFilters
                 facetClass={facetClass}

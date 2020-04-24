@@ -30,7 +30,8 @@ export default {
     filterOptions: 'Options',
     sortByName: '',
     sortByHits: '',
-    searchWithinFilter: 'Search'
+    searchWithinFilter: 'Search',
+    activeFilters: 'Active filters:'
   },
   tabs: {
     table: 'table',

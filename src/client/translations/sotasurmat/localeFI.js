@@ -31,7 +31,8 @@ export default {
     filterOptions: 'Asetukset',
     sortByName: 'Järjestä nimen mukaan',
     sortByHits: 'Järjestä hakutuloksien lukumäärän mukaan',
-    searchWithinFilter: 'Hae'
+    searchWithinFilter: 'Hae',
+    activeFilters: 'Aktiiviset suodattimet:'
   },
   tabs: {
     table: 'taulukko',
