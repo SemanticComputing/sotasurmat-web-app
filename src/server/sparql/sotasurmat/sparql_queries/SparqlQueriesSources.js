@@ -1,4 +1,4 @@
-import { rootUrl } from '../BackendSearchConfig'
+const rootUrl = ''
 
 export const sourceProperties = `
     {

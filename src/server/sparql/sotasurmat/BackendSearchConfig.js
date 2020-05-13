@@ -31,10 +31,24 @@ import {
   mapCountGroups
 } from '../Mappers'
 
-export const rootUrl = ''
+const templateStart = `
+    {
+      ?id skos:prefLabel ?prefLabel__id .
+    }
+    `
+
+const createExtrasQueryBlock = types => {
+  let block = ''
+  let unionBlock = ''
+  types.forEach(function (item) {
+    block = extrasTemplate.replace(/<TYPENAME>/g, item[0])
+    block = block.replace(/<TYPE>/g, item[1])
+    unionBlock = unionBlock.concat(block)
+  })
+  return unionBlock
+}
 
 export const backendSearchConfig = {
-  rootUrl: '',
   victims: victimsPerspectiveConfig,
   battles: battlesPerspectiveConfig,
   ageCount: {
@@ -85,5 +99,12 @@ export const backendSearchConfig = {
     perspectiveID: 'victims', // use endpoint config from victims
     q: csvDeathsQuery,
     filterTarget: 'id'
+  },
+  personExtras: {
+    perspectiveID: 'victims', // use endpoint config from victims
+    instance: {
+      properties: templateStart.concat(createExtrasQueryBlock(extrasTypeList)),
+      relatedInstances: ''
+    }
   }
 }
