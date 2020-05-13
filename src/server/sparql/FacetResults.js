@@ -1,47 +1,16 @@
+import { has } from 'lodash'
 import { runSelectQuery } from './SparqlApi'
-import { prefixes } from './sotasurmat/SparqlQueriesPrefixes'
+import { makeObjectList } from './SparqlObjectMapper'
+import { mapCount } from './Mappers'
+import { generateConstraintsBlock } from './Filters'
 import {
   countQuery,
   facetResultSetQuery,
   instanceQuery
 } from './SparqlQueriesGeneral'
-import {
-  deathsProperties,
-  personProperties,
-  birthYearsQuery,
-  ageQuery, deathDateQuery,
-  csvDeathsQuery,
-  extrasTemplate,
-  extrasTypeList,
-  deathsByMunicipalityQuery,
-  deathPlacesQuery,
-  deathsAt
-} from './sotasurmat/SparqlQueriesVictims'
-import {
-  battleProperties,
-  battlePlacesQuery,
-  battlePlacesAnimationQuery
-} from './sotasurmat/SparqlQueriesBattles'
-import {
-  sourceProperties
-} from './sotasurmat/SparqlQueriesSources'
-import {
-  placePropertiesInfoWindow,
-  allPlacesQuery
-} from './sotasurmat/SparqlQueriesPlaces'
-import { facetConfigs, endpoint } from './sotasurmat/FacetConfigsSotasurmat'
-import {
-  mapCount,
-  mapPlaces,
-  mapBirthYearCount,
-  mapAgeCount,
-  mapCountGroups
-  // mapCoordinates
-} from './Mappers'
-import { makeObjectList } from './SparqlObjectMapper'
-import { generateConstraintsBlock } from './Filters'
 
 export const getPaginatedResults = async ({
+  backendSearchConfig,
   resultClass,
   page,
   pagesize,
@@ -51,6 +20,7 @@ export const getPaginatedResults = async ({
   resultFormat
 }) => {
   const response = await getPaginatedData({
+    backendSearchConfig,
     resultClass,
     page,
     pagesize,
@@ -73,63 +43,27 @@ export const getPaginatedResults = async ({
 }
 
 export const getAllResults = ({
+  backendSearchConfig,
   resultClass,
   facetClass,
   constraints,
   resultFormat,
   groupBy
 }) => {
-  let q = ''
-  let filterTarget = ''
-  let mapper = makeObjectList
-  // console.log(resultClass)
-  switch (resultClass) {
-    case 'battlePlaces':
-      q = battlePlacesQuery
-      filterTarget = 'id'
-      break
-    case 'battlePlacesAnimation':
-      q = battlePlacesAnimationQuery
-      filterTarget = 'id'
-      break
-    case 'birthYearCount':
-      q = birthYearsQuery
-      mapper = mapBirthYearCount
-      filterTarget = 'id'
-      break
-    case 'placesAll':
-      q = allPlacesQuery
-      filterTarget = 'id'
-      break
-    case 'ageCount':
-      q = ageQuery
-      mapper = mapAgeCount
-      filterTarget = 'id'
-      break
-    case 'deathDateCount':
-      q = deathDateQuery
-      mapper = mapCountGroups
-      filterTarget = 'id'
-      break
-    case 'csvDeaths':
-      q = csvDeathsQuery
-      filterTarget = 'id'
-      break
-    case 'deathPlaces':
-      q = deathsByMunicipalityQuery
-      mapper = mapPlaces
-      filterTarget = 'deathRecord'
-      break
-    case 'deathPlacesNoGrouping':
-      q = deathPlacesQuery
-      mapper = mapPlaces
-      filterTarget = 'deathRecord'
-      break
+  const config = backendSearchConfig[resultClass]
+  let endpoint
+  if (has(config, 'endpoint')) {
+    endpoint = config.endpoint
+  } else {
+    endpoint = backendSearchConfig[config.perspectiveID].endpoint
   }
+  const { filterTarget, resultMapper } = config
+  let { q } = config
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
+      backendSearchConfig,
       resultClass: resultClass,
       facetClass: facetClass,
       constraints: constraints,
@@ -137,26 +71,35 @@ export const getAllResults = ({
       facetID: null
     }))
   }
-  // console.log(prefixes + q)
   return runSelectQuery({
-    query: prefixes + q,
-    endpoint,
-    resultMapper: mapper,
+    query: endpoint.prefixes + q,
+    endpoint: endpoint.url,
+    useAuth: endpoint.useAuth,
+    resultMapper,
     resultFormat
   })
 }
 
 export const getResultCount = async ({
+  backendSearchConfig,
   resultClass,
   constraints,
   resultFormat
 }) => {
   let q = countQuery
-  q = q.replace('<FACET_CLASS>', facetConfigs[resultClass].facetClass)
+  const config = backendSearchConfig[resultClass]
+  let endpoint
+  if (has(config, 'endpoint')) {
+    endpoint = config.endpoint
+  } else {
+    endpoint = backendSearchConfig[config.perspectiveID].endpoint
+  }
+  q = q.replace('<FACET_CLASS>', config.facetClass)
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
+      backendSearchConfig,
       resultClass: resultClass,
       facetClass: resultClass,
       constraints: constraints,
@@ -165,8 +108,9 @@ export const getResultCount = async ({
     }))
   }
   const response = await runSelectQuery({
-    query: prefixes + q,
-    endpoint,
+    query: endpoint.prefixes + q,
+    endpoint: endpoint.url,
+    useAuth: endpoint.useAuth,
     resultMapper: mapCount,
     resultFormat
   })
@@ -178,6 +122,7 @@ export const getResultCount = async ({
 }
 
 const getPaginatedData = ({
+  backendSearchConfig,
   resultClass,
   page,
   pagesize,
@@ -187,12 +132,18 @@ const getPaginatedData = ({
   resultFormat
 }) => {
   let q = facetResultSetQuery
-  // console.log(resultClass)
-  const facetConfig = facetConfigs[resultClass]
+  const config = backendSearchConfig[resultClass]
+  let endpoint
+  if (has(config, 'endpoint')) {
+    endpoint = config.endpoint
+  } else {
+    endpoint = backendSearchConfig[config.perspectiveID].endpoint
+  }
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
+      backendSearchConfig,
       resultClass: resultClass,
       facetClass: resultClass,
       constraints: constraints,
@@ -200,7 +151,7 @@ const getPaginatedData = ({
       facetID: null
     }))
   }
-  q = q.replace('<FACET_CLASS>', facetConfig.facetClass)
+  q = q.replace('<FACET_CLASS>', config.facetClass)
   if (sortBy == null) {
     q = q.replace('<ORDER_BY_TRIPLE>', '')
     q = q.replace('<ORDER_BY>', '# no sorting')
@@ -208,10 +159,10 @@ const getPaginatedData = ({
     let sortByPredicate = ''
     if (sortBy.endsWith('Timespan')) {
       sortByPredicate = sortDirection === 'asc'
-        ? facetConfig[sortBy].sortByAscPredicate
-        : facetConfig[sortBy].sortByDescPredicate
+        ? config.facets[sortBy].sortByAscPredicate
+        : config.facets[sortBy].sortByDescPredicate
     } else {
-      sortByPredicate = facetConfig[sortBy].labelPath
+      sortByPredicate = config.facets[sortBy].labelPath
     }
     q = q.replace('<ORDER_BY_TRIPLE>',
       `OPTIONAL { ?id ${sortByPredicate} ?orderBy }`)
@@ -219,76 +170,40 @@ const getPaginatedData = ({
       `ORDER BY (!BOUND(?orderBy)) ${sortDirection}(?orderBy)`)
   }
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`)
-  let resultSetProperties
-  switch (resultClass) {
-    case 'victims':
-      resultSetProperties = deathsProperties
-      break
-    case 'battles':
-      resultSetProperties = battleProperties
-      break
-    default:
-      resultSetProperties = ''
-  }
-  q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties)
-  // console.log(prefixes + q);
+  q = q.replace('<RESULT_SET_PROPERTIES>', config.paginatedResults.properties)
   return runSelectQuery({
-    query: prefixes + q,
-    endpoint,
+    query: endpoint.prefixes + q,
+    endpoint: endpoint.url,
+    useAuth: endpoint.useAuth,
     resultMapper: makeObjectList,
     resultFormat
   })
 }
 
 export const getByURI = ({
+  backendSearchConfig,
   resultClass,
   facetClass,
   constraints,
   uri,
   resultFormat
 }) => {
-  let q
-  let properties
-  switch (resultClass) {
-    case 'victims':
-      // properties = personProperties.concat(createExtrasQueryBlock(extrasTypeList));
-      properties = personProperties
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', properties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'personExtras':
-      properties = templateStart.concat(createExtrasQueryBlock(extrasTypeList))
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', properties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'battles':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', battleProperties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'battlePlaces':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', battleProperties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'deathPlaces':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', deathsAt)
-      break
-    case 'sources':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', sourceProperties)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
+  const config = backendSearchConfig[resultClass]
+  const { properties, relatedInstances } = config.instance
+  let q = instanceQuery
+  let endpoint
+  if (has(config, 'endpoint')) {
+    endpoint = config.endpoint
+  } else {
+    endpoint = backendSearchConfig[config.perspectiveID].endpoint
   }
-
+  q = q.replace('<PROPERTIES>', properties)
+  q = q.replace('<RELATED_INSTANCES>', relatedInstances)
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {
     q = q.replace('<FILTER>', generateConstraintsBlock({
+      backendSearchConfig,
       resultClass: resultClass,
       facetClass: facetClass,
       constraints: constraints,
@@ -296,30 +211,12 @@ export const getByURI = ({
       facetID: null
     }))
   }
-
   q = q.replace('<ID>', `<${uri}>`)
-  // console.log(prefixes + q)
   return runSelectQuery({
-    query: prefixes + q,
-    endpoint,
+    query: endpoint.prefixes + q,
+    endpoint: endpoint.url,
+    useAuth: endpoint.useAuth,
     resultMapper: makeObjectList,
     resultFormat
   })
-}
-
-const templateStart = `
-    {
-      ?id skos:prefLabel ?prefLabel__id .
-    }
-    `
-
-function createExtrasQueryBlock (types) {
-  let block = ''
-  let unionBlock = ''
-  types.forEach(function (item) {
-    block = extrasTemplate.replace(/<TYPENAME>/g, item[0])
-    block = block.replace(/<TYPE>/g, item[1])
-    unionBlock = unionBlock.concat(block)
-  })
-  return unionBlock
 }
