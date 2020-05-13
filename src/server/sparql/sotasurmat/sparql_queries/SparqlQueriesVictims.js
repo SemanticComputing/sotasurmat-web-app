@@ -1,4 +1,4 @@
-import { rootUrl } from './FacetConfigsSotasurmat'
+import { rootUrl } from '../BackendSearchConfig'
 
 export const deathsProperties = `
     {

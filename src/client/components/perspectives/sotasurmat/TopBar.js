@@ -11,13 +11,16 @@ import { makeStyles } from '@material-ui/core/styles'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import Button from '@material-ui/core/Button'
 import { Link, NavLink } from 'react-router-dom'
-import TopBarSearchField from './TopBarSearchField'
-import TopBarInfoButton from './TopBarInfoButton'
-import TopBarLanguageButton from './TopBarLanguageButton'
+// import TopBarSearchField from './TopBarSearchField'
+// import TopBarInfoButton from './TopBarInfoButton'
+import TopBarLanguageButton from '../../main_layout/TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
-import secoLogo from '../../img/logos/seco-logo-48x50.png'
-import { showLanguageButton } from '../../configs/sampo/GeneralConfig'
+import logoFI from '../../../img/logo_small_fi.gif'
+import logoEN from '../../../img/logo_small_en.gif'
+import arkistoLogo from '../../../img/logos/ka-tunnus-fi-white.png'
+// import secoLogo from '../../img/logos/seco-logo-48x50.png'
+import { showLanguageButton } from '../../../configs/sotasurmat/GeneralConfig'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -66,6 +69,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       display: 'none'
     }
+  },
+  arkistoLogoImage: {
+    height: 52,
+    [theme.breakpoints.down('xs')]: {
+      height: 35
+    }
   }
 }))
 
@@ -76,10 +85,22 @@ const useStyles = makeStyles((theme) => ({
 const TopBar = props => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-  const { perspectives, currentLocale, availableLocales, rootUrl } = props
+  const { perspectives, currentLocale, availableLocales /* rootUrl */ } = props
   const classes = useStyles()
   const handleMobileMenuOpen = event => setMobileMoreAnchorEl(event.currentTarget)
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null)
+  let logo
+  switch (currentLocale) {
+    case 'fi':
+      logo = logoFI
+      break
+    case 'en':
+      logo = logoEN
+      break
+    default:
+      logo = logoFI
+      break
+  }
 
   // https://material-ui.com/components/buttons/#third-party-routing-library
   const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />)
@@ -166,25 +187,14 @@ const TopBar = props => {
         {intl.get('topBar.feedback').toUpperCase()}
       </MenuItem>
       <MenuItem
-        key={0}
-        component={AdapterLink}
-        to={`${props.rootUrl}/about`}
-      >
-        {intl.get('topBar.info.aboutThePortal').toUpperCase()}
-      </MenuItem>
-      <a
-        className={classes.link}
-        key={1}
-        href={intl.get('topBar.info.blogUrl')}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        <MenuItem>
-          {intl.get('topBar.info.blog').toUpperCase()}
-        </MenuItem>
-      </a>
-      <MenuItem
         key='info'
+        component={AdapterLink}
+        to={`${props.rootUrl}/information`}
+      >
+        {intl.get('topBar.info.info').toUpperCase()}
+      </MenuItem>
+      <MenuItem
+        key='instructions'
         component={AdapterLink}
         to={`${props.rootUrl}/instructions`}
       >
@@ -200,14 +210,24 @@ const TopBar = props => {
       <AppBar position='absolute'>
         <Toolbar className={classes.toolbar}>
           <Button component={AdapterLink} to='/'>
-            <Typography className={classes.homeButtonText} variant='h6'>{intl.get('appTitle.short')}</Typography>
+            <img className={classes.topBarLogo} src={logo} alt='Logo' />
           </Button>
-          <TopBarSearchField
+          <a
+            className={classes.arkistoLogo}
+            href='https://www.arkisto.fi/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Button>
+              <img className={classes.arkistoLogoImage} src={arkistoLogo} alt='logo' />
+            </Button>
+          </a>
+          {/* <TopBarSearchField
             fetchFullTextResults={props.fetchFullTextResults}
             clearResults={props.clearResults}
             xsScreen={props.xsScreen}
             rootUrl={rootUrl}
-          />
+          /> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {perspectives.map((perspective, index) => renderDesktopTopMenuItem(perspective, index))}
@@ -221,7 +241,6 @@ const TopBar = props => {
             >
               {intl.get('topBar.feedback')}
             </Button>
-            <TopBarInfoButton rootUrl={props.rootUrl} />
             <Button
               className={classes.appBarButton}
               component={AdapterNavLink}
@@ -239,14 +258,14 @@ const TopBar = props => {
                 location={props.location}
               />}
           </div>
-          <a
+          {/* <a
             className={classes.secoLogo}
             href='https://seco.cs.aalto.fi'
             target='_blank'
             rel='noopener noreferrer'
           >
             <Button><img src={secoLogo} /></Button>
-          </a>
+          </a> */}
           <div className={classes.sectionMobile}>
             <IconButton aria-haspopup='true' onClick={handleMobileMenuOpen} color='inherit'>
               <MoreIcon />

@@ -209,7 +209,6 @@ class ResultTable extends React.Component {
           minWidth={column.minWidth}
           container='cell'
           expanded={expanded}
-          resultClass={this.props.resultClass}
           linkAsButton={has(column, 'linkAsButton')
             ? column.linkAsButton
             : null}
@@ -291,7 +290,6 @@ class ResultTable extends React.Component {
 }
 
 ResultTable.propTypes = {
-  rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   resultClass: PropTypes.string.isRequired,
@@ -303,7 +301,7 @@ ResultTable.propTypes = {
   updatePage: PropTypes.func.isRequired,
   updateRowsPerPage: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  perspective: PropTypes.object.isRequired
+  rootUrl: PropTypes.string.isRequired
 }
 
 export const ResultTableComponent = ResultTable

@@ -1,4 +1,4 @@
-import { backendSearchConfig } from './sparql/sampo/BackendSearchConfig'
+import { backendSearchConfig } from './sparql/sotasurmat/BackendSearchConfig'
 import fs from 'fs'
 import express from 'express'
 import path from 'path'
@@ -88,13 +88,38 @@ new OpenApiValidator({
 
     app.post(`${apiPath}/faceted-search/:resultClass/all`, async (req, res, next) => {
       const { params, body } = req
-      const resultFormat = 'json'
+      const resultFormat = req.query.resultFormat == null ? 'json' : req.query.resultFormat
       try {
         const data = await getAllResults({
           backendSearchConfig,
           resultClass: params.resultClass,
           facetClass: body.facetClass,
           constraints: body.constraints,
+          resultFormat: resultFormat
+        })
+        if (resultFormat === 'csv') {
+          res.writeHead(200, {
+            'Content-Type': 'text/csv',
+            'Content-Disposition': 'attachment; filename=results.csv'
+          })
+          res.end(data)
+        } else {
+          res.json(data)
+        }
+      } catch (error) {
+        next(error)
+      }
+    })
+
+    // GET endpoint for supporting CSV button
+    app.get(`${apiPath}/faceted-search/:resultClass/all`, async (req, res, next) => {
+      try {
+        const resultFormat = req.query.resultFormat == null ? 'json' : req.query.resultFormat
+        const data = await getAllResults({
+          backendSearchConfig,
+          resultClass: req.params.resultClass,
+          facetClass: req.query.facetClass || null,
+          constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
           resultFormat: resultFormat
         })
         if (resultFormat === 'csv') {

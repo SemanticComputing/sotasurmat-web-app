@@ -8,6 +8,7 @@ import TemporalMap from '../../facet_results/TemporalMap'
 import ExportCSV from '../../facet_results/ExportCSV'
 
 const Battles = props => {
+  const { rootUrl, perspective } = props
   return (
     <>
       <PerspectiveTabs
@@ -16,15 +17,14 @@ const Battles = props => {
         screenSize={props.screenSize}
       />
       <Route
-        exact path={`${props.rootUrl}/battles/faceted-search`}
-        render={() => <Redirect to={`${props.rootUrl}/battles/faceted-search/table`} />}
+        exact path={`${rootUrl}/${perspective.id}/faceted-search`}
+        render={() => <Redirect to={`${rootUrl}/${perspective.id}/faceted-search/table`} />}
       />
       <Route
-        path={`${props.rootUrl}/battles/faceted-search/table`}
+        path={[`${props.rootUrl}/${perspective.id}/faceted-search/table`, '/iframe.html']}
         render={routeProps =>
           <ResultTable
-            rootUrl={props.rootUrl}
-            data={props.battles}
+            data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='battles'
             facetClass='battles'
@@ -33,38 +33,41 @@ const Battles = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
-            perspective={props.perspective}
+            rootUrl={rootUrl}
           />}
       />
       <Route
-        path={`${props.rootUrl}/battles/faceted-search/map`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
             center={[64.00, 30.00]}
             zoom={5}
-            results={props.battles.results}
+            results={props.facetResults.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='battlePlaces'
             facetClass='battles'
-            instance={props.battles.instance}
+            instance={props.facetResults.instance}
             fetchResults={props.fetchResults}
+            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             fetchByURI={props.fetchByURI}
-            fetching={props.battles.fetching}
+            fetching={props.facetResults.fetching}
             mapMode='cluster'
             showMapModeControl={false}
             showInstanceCountInClusters={false}
+            updateFacetOption={props.updateFacetOption}
+            showExternalLayers={false}
           />}
       />
       <Route
         path={`${props.rootUrl}/battles/faceted-search/animation`}
         render={() =>
           <TemporalMap
-            results={props.battles.results}
+            results={props.facetResults.results}
             resultClass='battlePlacesAnimation'
             facetClass='battles'
             fetchResults={props.fetchResults}
-            fetching={props.battles.fetching}
+            fetching={props.facetResults.fetching}
             animationValue={props.animationValue}
             animateMap={props.animateMap}
             facetUpdateID={props.facetData.facetUpdateID}
@@ -85,20 +88,23 @@ const Battles = props => {
 }
 
 Battles.propTypes = {
-  rootUrl: PropTypes.string.isRequired,
-  battles: PropTypes.object.isRequired,
+  facetResults: PropTypes.object.isRequired,
+  leafletMapLayers: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
   fetchByURI: PropTypes.func.isRequired,
   updatePage: PropTypes.func.isRequired,
   updateRowsPerPage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
+  updateFacetOption: PropTypes.func.isRequired,
   perspective: PropTypes.object.isRequired,
   animationValue: PropTypes.array.isRequired,
   animateMap: PropTypes.func.isRequired,
-  screenSize: PropTypes.string.isRequired
+  screenSize: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired
 }
 
 export default Battles

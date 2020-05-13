@@ -15,19 +15,19 @@ import 'moment/locale/fi'
 import Grid from '@material-ui/core/Grid'
 
 // ** General components **
-import TopBar from '../components/main_layout/TopBar'
 import InstanceHomePage from '../components/main_layout/InstanceHomePage'
 import InfoHeader from '../components/main_layout/InfoHeader'
+import FeedbackPage from '../components/main_layout/FeedbackPage'
 import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
-import MainSotasurmat from '../components/main_layout/MainSotasurmat'
-
 import FacetBar from '../components/facet_bar/FacetBar'
 // ** General components end **
 
 // ** Portal specific components and configs **
+import TopBar from '../components/perspectives/sotasurmat/TopBar'
+import FacetedSearchPerspective from '../components/perspectives/sotasurmat/FacetedSearchPerspective'
+import MainSotasurmat from '../components/perspectives/sotasurmat/MainSotasurmat'
 import VictimHomePage from '../components/perspectives/sotasurmat/VictimHomePage'
-import FeedbackPage from '../components/main_layout/FeedbackPage'
 import Footer from '../components/perspectives/sotasurmat/Footer'
 import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages'
@@ -375,12 +375,17 @@ const SemanticPortal = props => {
                                 <FacetedSearchPerspective
                                   facetResults={props[`${perspective.id}`]}
                                   placesResults={props.places}
+                                  datesResults={props.dates}
                                   facetData={props[`${perspective.id}Facets`]}
+                                  facetDataConstrainSelf={has(props, `${perspective.id}FacetsConstrainSelf`)
+                                    ? props[`${perspective.id}FacetsConstrainSelf`]
+                                    : null}
                                   leafletMap={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
                                   fetchGeoJSONLayers={props.fetchGeoJSONLayers}
                                   fetchByURI={props.fetchByURI}
+                                  fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
                                   updatePage={props.updatePage}
                                   updateRowsPerPage={props.updateRowsPerPage}
                                   updateFacetOption={props.updateFacetOption}
@@ -586,9 +591,6 @@ const mapDispatchToProps = ({
 })
 
 SemanticPortal.propTypes = {
-  places: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
   /**
    * General options considering the whole semantic portal, e.g. language.
    */
@@ -597,12 +599,16 @@ SemanticPortal.propTypes = {
    * Errors shown with react-redux-toastr.
    */
   error: PropTypes.object.isRequired,
+  /**
+   * Portal specific state
+   */
   victims: PropTypes.object.isRequired,
   battlesFacets: PropTypes.object.isRequired,
   battles: PropTypes.object.isRequired,
   sources: PropTypes.object.isRequired,
   victimsFacets: PropTypes.object.isRequired,
   victimsFacetsConstrainSelf: PropTypes.object.isRequired,
+  places: PropTypes.object.isRequired,
   /**
    * Leaflet map config and external layers.
    */

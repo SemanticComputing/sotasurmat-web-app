@@ -769,7 +769,7 @@ export default {
       shortInfo: `
         Näkymä sisällissodan taisteluihin
       `,
-      facetResultsType: 'taistelu',
+      facetResultsType: '',
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">

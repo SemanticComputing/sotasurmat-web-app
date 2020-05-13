@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import { has } from 'lodash'
-import defaultThumbImage from '../../img/main_page/thumb.png'
-import largeLogoEN from '../../img/logo_en.gif'
-import largeLogoFI from '../../img/logo_fi.gif'
+import defaultThumbImage from '../../../img/main_page/thumb.png'
+import largeLogoEN from '../../../img/logo_en.gif'
+import largeLogoFI from '../../../img/logo_fi.gif'
 
 const styles = theme => ({
   root: {

@@ -1,4 +1,4 @@
-import { rootUrl } from './FacetConfigsSotasurmat'
+import { rootUrl } from '../BackendSearchConfig'
 
 export const sourceProperties = `
     {
@@ -16,4 +16,4 @@ export const sourceProperties = `
       ?id siso-schema:source_description ?description__id .
       BIND(?description__id  AS ?description__prefLabel) .
     }
-    `;
+    `
