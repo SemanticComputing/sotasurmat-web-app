@@ -7,7 +7,6 @@ import {
   extrasTemplate,
   extrasTypeList,
   deathsByMunicipalityQuery,
-  deathPlacesQuery,
   deathsAt
 } from './sparql_queries/SparqlQueriesVictims'
 import {
@@ -19,8 +18,7 @@ import {
   sourceProperties
 } from './sparql_queries/SparqlQueriesSources'
 import {
-  placePropertiesInfoWindow,
-  allPlacesQuery
+  placePropertiesInfoWindow
 } from './sparql_queries/SparqlQueriesPlaces'
 
 import { makeObjectList } from '../SparqlObjectMapper'
@@ -104,6 +102,13 @@ export const backendSearchConfig = {
     perspectiveID: 'victims', // use endpoint config from victims
     instance: {
       properties: templateStart.concat(createExtrasQueryBlock(extrasTypeList)),
+      relatedInstances: ''
+    }
+  },
+  sources: {
+    perspectiveID: 'victims', // use endpoint config from victims
+    instance: {
+      properties: sourceProperties,
       relatedInstances: ''
     }
   }
