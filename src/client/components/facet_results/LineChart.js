@@ -19,11 +19,6 @@ const styles = theme => ({
     paddingLeft: theme.spacing(1),
     paddingTop: theme.spacing(1)
   }
-  // container: {
-  //   marginLeft: 'auto',
-  //   marginRight: 'auto',
-  //   width: 'calc(100% - 50px)',
-  // }
 })
 
 class LineChart extends React.Component {
@@ -75,8 +70,6 @@ class LineChart extends React.Component {
       facetClass: 'victims',
       sortBy: null
     })
-    // const { routeProps } = this.props;
-    // this.props.fetchByURI('deaths', 'deaths', 'deaths', 'http://ldf.fi/siso/death_records/victim_' + routeProps.match.params.id,);
   }
 
   componentDidUpdate = prevProps => {
@@ -110,15 +103,8 @@ class LineChart extends React.Component {
       subArray.push(parseInt(item.count))
       momentArray.push(subArray)
     }
-    // console.log(momentArray);
     for (const item of momentArray) {
       const thisMoment = item[0]
-
-      // console.log('this');
-      // console.log(thisMoment.format('YYYY-MM-DD'));
-      // console.log('next');
-      // console.log(nextMoment.format('YYYY-MM-DD'));
-      /// console.log(thisItem + '   '  + nextItem);
       if (nextMoment === undefined) {
         const subArray = []
         nextMoment = moment(thisMoment.format('YYYY-MM-DD')).add(1, 'days')
@@ -126,21 +112,12 @@ class LineChart extends React.Component {
         subArray.push(item[1])
         newArray.push(subArray)
       } else {
-        // while (thisMoment.isAfter(nextMoment)) {
         while (thisMoment.isAfter(nextMoment)) {
-          // console.log('this');
-          // console.log(thisMoment.format('YYYY-MM-DD'))
-          // console.log('next');
-          // console.log(nextMoment.format('YYYY-MM-DD'))
           const subArray = []
           subArray.push(nextMoment.format('YYYY-MM-DD'))
           subArray.push(0)
           newArray.push(subArray)
           nextMoment = moment(nextMoment.format('YYYY-MM-DD')).add(1, 'days')
-          // console.log('new next');
-          // console.log(nextMoment.format('YYYY-MM-DD'))
-          // console.log('new this');
-          // console.log(thisMoment.format('YYYY-MM-DD'))
         }
         const subArray = []
         subArray.push(thisMoment.format('YYYY-MM-DD'))
@@ -149,14 +126,12 @@ class LineChart extends React.Component {
         nextMoment = moment(nextMoment.format('YYYY-MM-DD')).add(1, 'days')
       }
     }
-    // console.log(newArray);
     return newArray
   }
 
   makeArray = (dataArray, firstTitle, secondTitle, fillEmptyValues) => {
     const newArray = []
     const titleRow = []
-    // const years = dataArray.map(row => row.year);
     let nextItem = -1
     titleRow.push(firstTitle)
     titleRow.push(secondTitle)
@@ -173,7 +148,6 @@ class LineChart extends React.Component {
     } else {
       for (const item of dataArray) {
         const thisItem = parseInt(item.counted)
-        /// console.log(thisItem + '   '  + nextItem);
         if (nextItem === -1) {
           const subArray = []
           nextItem = thisItem + 1
@@ -196,7 +170,6 @@ class LineChart extends React.Component {
         }
       }
     }
-    // console.log(newArray);
     return newArray
   }
 
@@ -232,8 +205,6 @@ class LineChart extends React.Component {
     return fullSum
   }
 
-  // median may be wrong?
-
   median = dataArray => {
     const fullSum = this.sum(dataArray)
     let helpSum = 0
@@ -266,8 +237,6 @@ class LineChart extends React.Component {
   }
 
   render () {
-    // var d = new Date('2015-03-25T12:00:00+04:00');
-    // console.log(d)
     var title = ''
     var explanation = ''
     var xTitle = ''
@@ -277,10 +246,9 @@ class LineChart extends React.Component {
 
     const results = this.props.data.results
     const { classes } = this.props
-    // console.log(this.props)
     if (results === undefined) {
       return (
-        <p>Virhe kaavion tulosten latautumisessa!</p>
+        <div />
       )
     }
     if (this.state.variant === 'birthYearCount') {
@@ -312,14 +280,14 @@ class LineChart extends React.Component {
     }
 
     if (this.state.variant !== 'deathDateCount') {
-      infoString = '(' + intl.get('perspectives.victims.lineChart.average') + ' ' + Math.round(this.average(resultsArray)) + ', ' + intl.get('perspectives.victims.lineChart.median') + ' ' + Math.round(this.median(resultsArray)) + ')'
+      infoString = '(' + intl.get('perspectives.victims.lineChart.average') +
+      ' ' + Math.round(this.average(resultsArray)) + ', ' +
+      intl.get('perspectives.victims.lineChart.median') +
+      ' ' + Math.round(this.median(resultsArray)) + ')'
     }
     if (this.state.variant === 'deathDateCount') {
       infoString = ''
     }
-    // console.log(resultsArray)
-    // console.log(this.median(yearsArray));
-    // medianArray = ['mediaani vuosi', 'med'], []
     return (
       <Paper square className={classes.root}>
         <div className={classes.optionsContainer}>
@@ -369,7 +337,6 @@ class LineChart extends React.Component {
               title: yTitle
             }
           }}
-          rootProps={{ 'data-testid': '1' }}
         />
       </Paper>
     )

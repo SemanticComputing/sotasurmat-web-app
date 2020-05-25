@@ -69,6 +69,10 @@ const styles = theme => ({
   }
 })
 
+/**
+ * A component for showing facet results as paginated table.
+ * Based on Material-UI's Table component.
+ */
 class ResultTable extends React.Component {
   constructor (props) {
     super(props)
@@ -91,8 +95,7 @@ class ResultTable extends React.Component {
     // then update app state and url accordingly
     this.props.updatePage(this.props.resultClass, page)
     history.push({
-      // pathname: `/${this.props.resultClass}/table`,
-      pathname: `${this.props.rootUrl}/${this.props.perspective.id}/faceted-search/table`,
+      pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
       search: `?page=${page}`
     })
 
@@ -107,8 +110,7 @@ class ResultTable extends React.Component {
     if (prevProps.data.page !== this.props.data.page) {
       this.fetchResults()
       history.push({
-        // pathname: `/${this.props.resultClass}/table`,
-        pathname: `${this.props.rootUrl}/${this.props.perspective.id}/faceted-search/table`,
+        pathname: `${this.props.rootUrl}/${this.props.resultClass}/faceted-search/table`,
         search: `?page=${this.props.data.page}`
       })
     }
@@ -207,7 +209,6 @@ class ResultTable extends React.Component {
           minWidth={column.minWidth}
           container='cell'
           expanded={expanded}
-          resultClass={this.props.resultClass}
           linkAsButton={has(column, 'linkAsButton')
             ? column.linkAsButton
             : null}
@@ -289,7 +290,6 @@ class ResultTable extends React.Component {
 }
 
 ResultTable.propTypes = {
-  rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   resultClass: PropTypes.string.isRequired,
@@ -301,7 +301,9 @@ ResultTable.propTypes = {
   updatePage: PropTypes.func.isRequired,
   updateRowsPerPage: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  perspective: PropTypes.object.isRequired
+  rootUrl: PropTypes.string.isRequired
 }
+
+export const ResultTableComponent = ResultTable
 
 export default withStyles(styles)(ResultTable)

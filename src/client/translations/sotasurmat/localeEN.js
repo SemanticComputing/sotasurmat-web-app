@@ -1,11 +1,16 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'War Victims',
-    long: 'War Victims in Finland 1914-1922'
+    short: '',
+    long: 'WarVictimSampo 1914–1922'
   },
   appDescription: `
-    A prototype for a semantic portal for war victims in Finland 1914-1922.
+    A semantic portal about war events related to Finland from 1914 to 1922.
+  `,
+  mainPageImageLicence: `
+    Front page images: Museum Centre Vapriikki
+    <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank'
+    rel='noopener noreferrer'>CC BY</a>.
   `,
   topBar: {
     feedback: 'feedback',
@@ -13,31 +18,104 @@ export default {
       info: 'Info',
       blog: 'Blog',
       aboutTheProject: 'About the project',
-      oldPage: 'Old application',
+      oldPage: 'Old application'
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'instructions'
   },
   facetBar: {
     results: 'Results',
-    narrowDownBy: 'Narrow down by'
+    narrowDownBy: 'Narrow down by',
+    narrowDownByTooltip: '',
+    filterOptions: 'Options',
+    sortByName: '',
+    sortByHits: '',
+    searchWithinFilter: 'Search',
+    activeFilters: 'Active filters:'
   },
   tabs: {
     table: 'table',
     map: 'map',
-    line: 'linechart',
-    pie: 'piechart',
+    line: 'line chart',
+    pie: 'pie chart',
+    animation: 'animation',
     csv: 'csv',
+    extra: 'additional information'
   },
   table: {
     rowsPerPage: 'Rows per page',
     of: 'of'
   },
+  exportToYasgui: '',
+  openInLinkedDataBrowser: '',
+  facets: {
+    dateFacet: {
+      invalidDate: 'Invalid date.',
+      toBeforeFrom: 'Begin has to come before end',
+      minDate: 'The earliest possible date is {minDate}',
+      maxDate: 'The latest possible date is {maxDate}',
+      cancel: 'Cancel',
+      fromLabel: 'Begin',
+      toLabel: 'End'
+    },
+    textFacet: {
+      inputLabel: 'Search by name'
+    }
+  },
+  leafletMap: {
+    externalLayers: {
+      arkeologiset_kohteet_alue: '',
+      arkeologiset_kohteet_piste: ''
+    },
+    mapModeButtons: {
+      markers: 'Kartta',
+      heatmap: 'Lämpökartta'
+    }
+  },
   perspectives: {
+    sources: {
+      label: '',
+      facetResultsType: '',
+      shortDescription: '',
+      longDescription: `
+      `,
+      instancePage: {
+        label: 'Source',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            Information about a source
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Name',
+          description: `
+            Name of the source
+          `
+        },
+        sourceCode: {
+          label: 'Code',
+          description: `
+            The code for this source used in the source database.
+          `
+        },
+        description: {
+          label: 'Description',
+          description: `
+            Description.
+            `
+        }
+      }
+    },
     victims: {
       label: 'War Victims',
-      facetResultsType: 'Person',
-      shortDescription: 'Information about war victims in Finland 1914-1922.',
+      facetResultsType: '',
+      shortDescription: 'Information about war victims in Finland in 1914–1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Perspective to the war victim file
@@ -50,6 +128,138 @@ export default {
             Information related to this person
           </p>
         `
+      },
+      lineChart: {
+        year: 'Year',
+        lineExplanation: 'People',
+        age: 'Age at death',
+        yTitle: 'Number of people',
+        average: 'Average',
+        median: 'Median',
+        deathDate: 'Death date',
+        birthYear: 'Birth year'
+      },
+      map: {
+        deathsAt: 'People who died in this municipality:'
+      },
+      extras: {
+        ownFamilyName: { label: 'Oma sukunimi' },
+        formerFamilyName: { label: 'Entinen sukunimi' },
+        alternativeName: { label: 'Vaihtoehtoinen nimi' },
+        nameQualifier: { label: 'Lisätietoa nimestä' },
+        birthVillage: { label: 'Synnyinkylä' },
+        broaderBirthPlace: { label: 'Laajenmpi syntymäpaikka' },
+        birthHouse: { label: 'Synnyintalo' },
+        otherBirthPlaceInformation: { label: 'Muuta tietoa synnyinpaikasta' },
+
+        registeredVillage: { label: 'Rekisteröity kylä' },
+        registeredHouse: { label: 'Rekisteröity talo' },
+        foreignRegisteredProvince: { label: 'Ulkomainen rekisteröity lääni' },
+        broaderRegisteredCountry: { label: 'Laajempi registeröity maakäsite' },
+        livingVillage: { label: 'Asuinkylä' },
+        livingHouse: { label: 'Asuintalo' },
+        familyAddress: { label: 'Perheen osoite' },
+        foreignLivingProvince: { label: 'Ulkomainen asuinlääni' },
+
+        otherOccupation: { label: 'Muu ammatti' },
+        socialStatus: { label: 'Sosiaalinen asema' },
+        formerOccupation: { label: 'Entinen ammatti' },
+        formerSocialStatus: { label: 'Entinen sosiaalinen asema' },
+        title: { label: 'Titteli' },
+        workPlace: { label: 'Työpaikka' },
+        numberOfUnderageChildren: { label: 'Alaikäisten lasten määrä' },
+        familySize: { label: 'Perheen koko' },
+
+        army: { label: 'Armeija' },
+        brigade: { label: 'Prikaati, rykmentti' },
+        battalion: { label: 'Pataljoona' },
+        company: { label: 'Komppania' },
+        platoon: { label: 'Joukkue, plutoona' },
+        group: { label: 'Ryhmä' },
+
+        orgJoiningTime: { label: 'Rekrytointipäivämäärä' },
+        durationInOrg: { label: 'Kuinka kauan kuulunut suojeluskuntaan/punakaartiin' },
+        timeLeftOrg: { label: 'Koska eronnut sotilasjärjestöstä' },
+
+        militaryRank: { label: 'Sotilasarvo' },
+        militaryBackground: { label: 'Sotilastausta' },
+        armyOfCountry: { label: 'Maa, jonka armeijaan kuului' },
+
+        militaryTask: { label: 'Sotilastehtävä' },
+        civilianTask: { label: 'Siviilitehtävä' },
+        otherRole: { label: 'Muu rooli sodassa' },
+        taskStartDate: { label: 'Koska aloittanut tehtävässä' },
+        durationOfTask: { label: 'Kuinka kauan toiminut tehtävässä' },
+        placeOfTask: { label: 'Missä toiminut' },
+
+        additionalInformationMilitaryOrganization: { label: 'Sotilasjärjestö' },
+
+        otherFamilyWelfare: { label: 'muu perheen toimeentulo' },
+
+        exactPlaceOfCapture: { label: 'Tarkka vangitsemispaikka' },
+        areaOfCapture: { label: 'Vangitsemisalue' },
+        eventWhereCaptured: { label: 'Tapahtuma jossa vangittiin' },
+        frontWhereCaptured: { label: 'Rintama jossa vangittiin' },
+        capturer: { label: 'Vangitsija' },
+        presumedPlaceOfCapture: { label: 'Vangitsemisen oletettu paikka tai tapahtuma' },
+
+        firstPlaceOfImprisonment: { label: 'Vangittunaolon I paikka' },
+        secondPlaceOfImprisonment: { label: 'vangittunaolon II paikka' },
+        thirdPlaceOfImprisonment: { label: 'Vangittunaolon III paikka' },
+        arrivedToPrison: { label: 'Milloin saapunut vankileirille' },
+        movedToPrison: { label: 'Milloin siirretty vankileiriltä' },
+
+        sentencingCourt: { label: 'Tuomion langettaja' },
+        verdict: { label: 'Tuomio' },
+
+        presumedArrestDate: { label: 'Arveltu vangitsemispäivä' },
+        arrestTime: { label: 'Vangitsemisajankohta' },
+        secondArrestTime: { label: 'II vangitsemisen ajankohta' },
+        thirdArrestTime: { label: 'III vangitsemisen ajankohta' },
+        durationOfArrest: { label: 'Vankeuden kesto' }, // ????
+
+        dateOfEscape: { label: 'Pakenemispäivä' },
+
+        yearDeclaredDead: { label: 'Kuolleeksijulistamisen vuosi' },
+        officialDeathDate: { label: 'Virallinen kuolinaika' },
+        whereDeclaredDead: { label: 'Missä ja milloin julistettu kuolleeksi' },
+
+        presumedDeathTime: { label: 'Arveltu kuolinaika' },
+        deathPeriod: { label: 'Kuolinajankohta' },
+
+        presumedDeathMunicipality: { label: 'Oletettu kuolinpaikka' },
+        presumedDeathPlaceOrEvent: { label: 'Oletettu tapahtuma tai paikka jossa kuollut' },
+        municipalityWhereWounded: { label: 'Haavoittumispaikka' },
+        presumedWoundedPlaceOrEvent: { label: 'Oletettu haavoittumispaikka' },
+        woundedTime: { label: 'Haavoittumisaika' },
+
+        broaderDeathPlace: { label: 'Laajempi kuolinpaikka' },
+        broaderWarEvent: { label: 'Laajempi sotatapahtuma' },
+        warEvent: { label: 'Sotatapahtuma' },
+
+        deathPlaceQualifier: { label: 'Kuolinpaikan tarkenne' },
+        otherDeathPlaceQualifier: { label: 'Muu kuolinpaikan takenne' },
+        deathArea: { label: 'Alue jossa kuollut' },
+        deathEvent: { label: 'Tapahtuma jossa kuollut' },
+        deathFront: { label: 'Rintama jossa kuollut' },
+        lastSeenWhere: { label: 'Missä nähty viimeksi' },
+
+        otherCauseOfDeath: { label: 'Kuolintapa' },
+        presumedMannerOfDeath: { label: 'Oletettu kuolintapa' },
+        causeOfDeathQualifier: { label: 'Kuolintavan tarkenne' },
+        otherCauseOfDeathQualifier: { label: 'Muu kuolinsyyn tarkenne' },
+
+        court: { label: 'Tuomitsija' },
+        killer: { label: 'Surmaaja' },
+        presumedKiller: { label: 'Oletettu surmaaja' },
+
+        buriedIn: { label: 'Tarkempi hautaustapa' },
+        placeOfBurial: { label: 'I hautauksen paikka' },
+        secondPlaceOfBurial: { label: 'II hautauksen paikka' },
+        timeOfBurial: { label: 'I hautauksen ajankohta' },
+        secondTimeOfBurial: { label: 'II hautauksen ajankohta' },
+
+        parish: { label: 'Seurakunta' }
       },
       properties: {
         uri: {
@@ -70,12 +280,12 @@ export default {
         },
         party: {
           label: 'Party',
-          description:`
+          description: `
             Party in the civil war
           `
         },
         registeredMunicipality: {
-          label: 'Registered municipality',
+          label: 'Reg. municipality',
           description: 'Registered municipality'
         },
         deathMunicipality: {
@@ -86,18 +296,6 @@ export default {
           label: 'Occupation',
           description: `
             Occupation in the original form
-          `
-        },
-        birthDate: {
-          label: 'Birth date',
-          description: `
-            Birth date (old project)
-          `
-        },
-        deathDate: {
-          label: 'Death date',
-          description: `
-            Death date (old project)
           `
         },
         birthDateSpan: {
@@ -202,13 +400,302 @@ export default {
             Likelihood of information about death to be true.
           `
         },
+        birthDate: {
+          label: 'Birth date',
+          facetDescription: 'Birth date',
+          description: ')'
+        },
+        deathDate: {
+          label: 'Death Date',
+          facetDescription: 'Death Date',
+          description: ''
+        },
+        birthTimespan: {
+          label: 'Birth date',
+          description: 'Birth date',
+          facetDescription: `
+          `
+        },
+        deathTimespan: {
+          label: 'Death date',
+          description: 'Death date',
+          facetDescription: `
 
-      },
+          `
+        },
+        birthPlace: {
+          label: 'Birthplace',
+          facetDescription: `
+            Place of birth
+          `,
+          description: `
+          Place of birth
+          `
+        },
+        birthCountry: {
+          label: 'Birth country',
+          facetDescription: `
+            Birth country
+          `,
+          description: `
+            Birth country
+          `
+        },
+        birthYear: {
+          label: 'Birth year',
+          facetDescription: `
+            Birth year
+          `,
+          description: `
+            Birth year
+          `
+        },
+        birthDay: {
+          label: 'Birth day',
+          facetDescription: `
+            Birth day
+          `,
+          description: `
+            Birth day
+          `
+        },
+        livingMunicipality: {
+          label: 'Living municipality',
+          facetDescription: `
+            Living municipality
+          `,
+          description: `
+            Living municipality
+          `
+        },
+        livingProvince: {
+          label: 'Living province',
+          facetDescription: `
+            Living province'
+          `,
+          description: `
+            Living province'
+          `
+        },
+        livingCountry: {
+          label: 'Living country',
+          facetDescription: `
+            Living country
+          `,
+          description: `
+            Living country
+          `
+        },
+        nationality: {
+          label: 'Nationality',
+          facetDescription: `
+            Nationality
+          `,
+          description: `
+            Nationality
+          `
+        },
+        language: {
+          label: 'Language',
+          facetDescription: `
+            Main language
+          `,
+          description: `
+            Main language
+          `
+        },
+        personComment: {
+          label: 'Person comment',
+          facetDescription: `
+            Comments
+          `,
+          description: `
+            Comments
+          `
+        },
+        recruitment: {
+          label: 'Method of recruitment',
+          facetDescription: `
+            Method of recruitment
+          `,
+          description: `
+            Method of recruitment
+          `
+        },
+        rank: {
+          label: 'Military rank',
+          facetDescription: `
+            Military rank
+          `,
+          description: `
+            Military rank
+          `
+        },
+        position: {
+          label: 'Military position',
+          facetDescription: `
+            Military position
+          `,
+          description: `
+            Military position
+          `
+        },
+        combatantStatus: {
+          label: 'Soldier or civilian',
+          facetDescription: `
+            Was the person considered soldier or civilian
+          `,
+          description: `
+            Was the person considered soldier or civilian
+          `
+        },
+        armedStatus: {
+          label: 'Armed status',
+          facetDescription: `
+            Did the person carry arms
+          `,
+          description: `
+            Did the person carry arms
+          `
+        },
+        familyWelfare: {
+          label: 'Family welfare',
+          facetDescription: `
+            Welfare of the family
+          `,
+          description: `
+            Welfare of the family
+          `
+        },
+        statusNote: {
+          label: 'Status note',
+          facetDescription: `
+            Note on the status
+          `,
+          description: `
+            Note on the status
+          `
+        },
+        placeOfCapture: {
+          label: 'Place of capture',
+          facetDescription: `
+            Place of capture
+          `,
+          description: `
+            Place of capture
+          `
+        },
+        prisonCamp: {
+          label: 'Prison camp',
+          facetDescription: `
+            Prison camp
+          `,
+          description: `
+            Prison camp
+          `
+        },
+        imprisonmentMotive: {
+          label: 'Motive for imprisonment',
+          facetDescription: `
+            Motive for imprisonment
+          `,
+          description: `
+            Motive for imprisonment
+          `
+        },
+        imprisonmentDate: {
+          label: 'Imprisonment time',
+          facetDescription: `
+            Imprisonment time
+          `,
+          description: `
+            Imprisonment time
+          `
+        },
+        releaseDate: {
+          label: 'Release date',
+          facetDescription: `
+            Release date'
+          `,
+          description: `
+            Release date'
+          `
+        },
+        deathYear: {
+          label: 'Death year',
+          facetDescription: `
+            Death year
+          `,
+          description: `
+            Death year
+          `
+        },
+        deathDay: {
+          label: 'Death day',
+          facetDescription: `
+            Death day
+          `,
+          description: `
+            Death day
+          `
+        },
+        deathPlace: {
+          label: 'Exact death place',
+          facetDescription: `
+            Exact death place
+          `,
+          description: `
+            Exact death place
+          `
+        },
+        deathMotive: {
+          label: 'Motive for killing',
+          facetDescription: `
+            Motive for killing
+          `,
+          description: `
+            Motive for killing
+          `
+        },
+        methodOfBurial: {
+          label: 'Method of burial',
+          facetDescription: `
+            Method of burial
+          `,
+          description: `
+            Method of burial
+          `
+        },
+        deathComment: {
+          label: 'Death comment',
+          description: `
+            Comments related to the persons death
+          `
+        },
+        religion: {
+          label: 'Religion',
+          description: `
+            Religion
+          `
+        },
+        additionalDeathSource: {
+          label: 'Additional source',
+          description: `
+            Additional source of information of the death
+          `
+        },
+        link: {
+          label: 'Links',
+          description: `
+            Links to outside pweb pages of the person
+          `
+        }
+      }
     },
     battles: {
       label: 'Battles',
-      facetResultsType: 'battle',
-      shortDescription: 'Perspective for battles of the civil war.',
+      facetResultsType: '',
+      shortDescription: 'Battles of the civil war.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Battles
@@ -236,7 +723,7 @@ export default {
         },
         startDate: {
           label: 'Start date',
-          description:  `
+          description: `
             Start date
           `
         },
@@ -263,9 +750,9 @@ export default {
           description: `
             Units that participated in the battle
           `
-        },
+        }
       }
-    },
+    }
   },
   instructions: `
   <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
@@ -352,4 +839,39 @@ export default {
 
     </p>
   `,
-};
+  information: `
+    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
+      WarVictimSampo 1914–1922
+    </h1>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      WarVictimSampo 1914–1922 is a semantic portal about Finnish war events in 1914–1922.
+      The portal offers a user interface to the War Victims of Finland 1914–1922 database 
+      and a registry of the battles of the Finnish Civil War.
+      Both materials are maintained by the National Archives of Finland.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      About the Data
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    The original War victims database was created in 1998–2004 as part of a project by the Finnish government.
+    The data has been updated in 2019. The database lists over 40000 war victims from the period, mainly related to the Finnish Civil War.
+
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    The registry of battles was created some time in the 1920s to aid research.
+    It presents the events mainly from the perspective of the White party of the Civil War.
+    As such it should not be considered an impartial representation the Finnish CIvil War, but can be used to give
+    general understanding of the battles, and to, for example, search information about the White units that participated in the battles.
+    </p>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+    Data is published openly on the <a href="http://www.ldf.fi/dataset/siso" target='_blank' rel='noopener noreferrer'>Linked Data Finland platform</a>.
+    </p>
+    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
+      Language of the Data
+    </h2>
+    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      The user interface of the portal is translated to English.
+      The values in the database are given in their original Finnish form, that is, if possible, the same form that was used in the original sources.
+    </p>
+  `
+}

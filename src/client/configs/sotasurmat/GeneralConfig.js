@@ -2,7 +2,7 @@ export const rootUrl = ''
 
 export const defaultLocale = 'fi'
 
-export const showLanguageButton = false
+export const showLanguageButton = true
 
 export const publishedPort = 3006
 

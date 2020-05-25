@@ -25,16 +25,21 @@ const styles = theme => ({
   }
 })
 
+/**
+ * A component for fetching and displaying the number of results, and displaying active filters.
+ */
 class FacetInfo extends React.Component {
   componentDidMount = () => {
-    this.props.fetchResultCount({
-      resultClass: this.props.resultClass,
-      facetClass: this.props.facetClass
-    })
+    if (this.props.facetedSearchMode === 'serverFS') {
+      this.props.fetchResultCount({
+        resultClass: this.props.resultClass,
+        facetClass: this.props.facetClass
+      })
+    }
   }
 
   componentDidUpdate = prevProps => {
-    if (prevProps.facetUpdateID !== this.props.facetUpdateID) {
+    if (this.props.facetedSearchMode === 'serverFS' && prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResultCount({
         resultClass: this.props.resultClass,
         facetClass: this.props.facetClass
@@ -91,7 +96,7 @@ class FacetInfo extends React.Component {
           activeIntegerFilters
         ) &&
           <>
-            <Typography variant='h6'>Aktiiviset suodattimet:</Typography>
+            <Typography variant='h6'>{intl.get('facetBar.activeFilters')}</Typography>
             <div className={classes.textContainer}>
               <ActiveFilters
                 facetClass={facetClass}
@@ -115,16 +120,19 @@ class FacetInfo extends React.Component {
 
 FacetInfo.propTypes = {
   classes: PropTypes.object.isRequired,
+  facetedSearchMode: PropTypes.string.isRequired,
   facetUpdateID: PropTypes.number.isRequired,
   facetData: PropTypes.object.isRequired,
   facetClass: PropTypes.string.isRequired,
   resultClass: PropTypes.string.isRequired,
-  resultCount: PropTypes.number.isRequired,
+  resultCount: PropTypes.number,
   fetchingResultCount: PropTypes.bool.isRequired,
-  updateFacetOption: PropTypes.func.isRequired,
-  fetchResultCount: PropTypes.func.isRequired,
+  updateFacetOption: PropTypes.func,
+  fetchResultCount: PropTypes.func,
   someFacetIsFetching: PropTypes.bool.isRequired,
-  fetchFacet: PropTypes.func.isRequired
+  fetchFacet: PropTypes.func
 }
+
+export const FacetInfoComponent = FacetInfo
 
 export default withStyles(styles)(FacetInfo)

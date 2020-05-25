@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
-import Pie from '../../facet_results/Pie'
+import PieSotasurmat from './PieSotasurmat'
 import LineChart from '../../facet_results/LineChart'
 import ExportCSV from '../../facet_results/ExportCSV'
 import LeafletMap from '../../facet_results/LeafletMap'
 
 const Victims = props => {
-// console.log(props)
+  const { rootUrl, perspective } = props
   return (
     <>
       <PerspectiveTabs
@@ -18,15 +18,14 @@ const Victims = props => {
         screenSize={props.screenSize}
       />
       <Route
-        exact path={`${props.rootUrl}/victims/faceted-search`}
-        render={() => <Redirect to={`${props.rootUrl}/victims/faceted-search/table`} />}
+        exact path={`${rootUrl}/${perspective.id}/faceted-search`}
+        render={() => <Redirect to={`${rootUrl}/${perspective.id}/faceted-search/table`} />}
       />
       <Route
-        path={`${props.rootUrl}/victims/faceted-search/table`}
+        path={[`${props.rootUrl}/${perspective.id}/faceted-search/table`, '/iframe.html']}
         render={routeProps =>
           <ResultTable
-            rootUrl={props.rootUrl}
-            data={props.victims}
+            data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='victims'
             facetClass='victims'
@@ -35,30 +34,23 @@ const Victims = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
-            perspective={props.perspective}
+            rootUrl={rootUrl}
           />}
       />
       <Route
-        path={`${props.rootUrl}/victims/faceted-search/pie`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/pie`}
         render={routeProps =>
-          <Pie
+          <PieSotasurmat
             data={props.facetDataConstrainSelf.facets}
-            resultClass='victims'
             facetUpdateID={props.facetData.facetUpdateID}
-            facetClass='victims'
-            fetchPaginatedResults={props.fetchPaginatedResults}
-            updatePage={props.updatePage}
-            sortResults={props.sortResults}
-            routeProps={routeProps}
             fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
-            resultCount={props.victims.resultCount}
           />}
       />
       <Route
-        path={`${props.rootUrl}/victims/faceted-search/line`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/line`}
         render={routeProps =>
           <LineChart
-            data={props.dates}
+            data={props.datesResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='dates'
             facetClass='victims'
@@ -66,25 +58,30 @@ const Victims = props => {
             updatePage={props.updatePage}
             sortResults={props.sortResults}
             routeProps={routeProps}
-            resultCount={props.victims.resultCount}
+            resultCount={props.facetResults.resultCount}
           />}
       />
       <Route
-        path={`${props.rootUrl}/victims/faceted-search/map`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
-            results={props.places.results}
+            center={[64.00, 30.00]}
+            zoom={5}
+            results={props.placesResults.results}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='deathPlaces'
             facetClass='victims'
-            instance={props.places.instance}
+            instance={props.placesResults.instance}
             fetchResults={props.fetchResults}
+            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             fetchByURI={props.fetchByURI}
-            fetching={props.places.fetching}
+            fetching={props.placesResults.fetching}
             mapMode='cluster'
             showMapModeControl={false}
             showInstanceCountInClusters
+            updateFacetOption={props.updateFacetOption}
+            showExternalLayers={false}
           />}
       />
       <Route
@@ -102,23 +99,26 @@ const Victims = props => {
 }
 
 Victims.propTypes = {
-  places: PropTypes.object.isRequired,
-  rootUrl: PropTypes.string.isRequired,
-  victims: PropTypes.object.isRequired,
-  dates: PropTypes.object.isRequired,
+  facetResults: PropTypes.object.isRequired,
+  placesResults: PropTypes.object.isRequired,
+  datesResults: PropTypes.object.isRequired,
+  leafletMapLayers: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   facetDataConstrainSelf: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
   fetchPaginatedResults: PropTypes.func.isRequired,
   fetchByURI: PropTypes.func.isRequired,
   updatePage: PropTypes.func.isRequired,
   updateRowsPerPage: PropTypes.func.isRequired,
   sortResults: PropTypes.func.isRequired,
   routeProps: PropTypes.object.isRequired,
-  fetchFacetConstrainSelf: PropTypes.func.isRequired,
-  resultCount: PropTypes.number,
+  updateFacetOption: PropTypes.func.isRequired,
   perspective: PropTypes.object.isRequired,
-  screenSize: PropTypes.string.isRequired
+  animationValue: PropTypes.array.isRequired,
+  animateMap: PropTypes.func.isRequired,
+  screenSize: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired
 }
 
 export default Victims

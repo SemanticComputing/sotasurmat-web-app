@@ -2,11 +2,11 @@ export default {
   languageLabel: 'Suomi',
   appTitle: {
     short: 'Sotasurmat',
-    long: 'Sotasurmasampo 1914-1922'
+    long: 'Sotasurmasampo 1914–1922'
   },
   appDescription: `
     Portaali Suomeen liittyviin sotatapahtumiin vuosina
-    1914-1922.
+    1914–1922.
   `,
   mainPageImageLicence: `
     Etusivun kuvat: Vapriikin kuva-arkisto
@@ -31,7 +31,8 @@ export default {
     filterOptions: 'Asetukset',
     sortByName: 'Järjestä nimen mukaan',
     sortByHits: 'Järjestä hakutuloksien lukumäärän mukaan',
-    searchWithinFilter: 'Hae'
+    searchWithinFilter: 'Hae',
+    activeFilters: 'Aktiiviset suodattimet:'
   },
   tabs: {
     table: 'taulukko',
@@ -120,7 +121,7 @@ export default {
         Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla.
       `,
       facetResultsType: '',
-      shortDescription: 'Suomen sotasurmat 1914-1922 tietokanta',
+      shortDescription: 'Suomen sotasurmat 1914–1922',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla. Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista.
@@ -157,7 +158,7 @@ export default {
       lineChart: {
         year: 'Vuosi',
         lineExplanation: 'Henkilöt',
-        age: 'Ikä',
+        age: 'Kuolinikä',
         yTitle: 'Henkilöiden määrä',
         average: 'keskiarvo noin',
         median: 'mediaani noin',
@@ -768,7 +769,7 @@ export default {
       shortInfo: `
         Näkymä sisällissodan taisteluihin
       `,
-      facetResultsType: 'taistelu',
+      facetResultsType: '',
       shortDescription: 'Taistelupaikkakortistoon perustuva näkymä sisällissodan taisteluista',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
