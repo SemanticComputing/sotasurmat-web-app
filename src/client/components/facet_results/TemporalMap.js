@@ -39,8 +39,10 @@ const styles = theme => ({
     marginTop: theme.spacing(1)
   }
 })
-
-// based on https://github.com/AdriSolid/DECK.GL-Time-Slider
+/**
+ * A component for displaying a WebGL map with an animated layer.
+ * Based on https://github.com/AdriSolid/DECK.GL-Time-Slider
+ */
 class TemporalMap extends Component {
   constructor (props) {
     super(props)
@@ -220,14 +222,40 @@ class TemporalMap extends Component {
 }
 
 TemporalMap.propTypes = {
+  /**
+   * Material-UI styles.
+   */
   classes: PropTypes.object.isRequired,
+  /**
+   * Faceted search results.
+   */
   results: PropTypes.array.isRequired,
+  /**
+   * Result class for fetching the results.
+   */
   resultClass: PropTypes.string.isRequired,
+  /**
+   * Facet class for fetching the results.
+   */
   facetClass: PropTypes.string.isRequired,
+  /**
+   * Redux action for fetching the results.
+   */
   fetchResults: PropTypes.func.isRequired,
+  /**
+   * State of the animation.
+   */
   animationValue: PropTypes.array.isRequired,
+  /**
+   * Redux action for animation.
+   */
   animateMap: PropTypes.func.isRequired,
+  /**
+   * ID for detecting updates in facets.
+   */
   facetUpdateID: PropTypes.number.isRequired
 }
+
+export const TemporalMapComponent = TemporalMap
 
 export default withStyles(styles)(TemporalMap)
