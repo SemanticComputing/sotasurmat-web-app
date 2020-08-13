@@ -54,7 +54,6 @@ class ExportCSV extends React.Component {
       facets: this.props.facets
     })
     const constraints = params.constraints ? `&constraints=${encodeURIComponent(JSON.stringify(params.constraints))}` : ''
-    console.log(params.constraints)
     return `${apiUrl}/faceted-search/${this.props.resultClass}/all?facetClass=${this.props.facetClass}&resultFormat=csv${constraints}`
   }
 
