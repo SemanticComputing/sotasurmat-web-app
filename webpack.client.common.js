@@ -17,10 +17,12 @@ module.exports = {
       template: 'src/client/index.html',
       favicon: 'src/client/favicon.ico'
     }),
-    new CopyPlugin([
-      { from: 'src/client/sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
-      { from: 'src/client/robots.txt', to: path.resolve(__dirname, outputDirectory) }
-    ]),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/client/sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
+        { from: 'src/client/robots.txt', to: path.resolve(__dirname, outputDirectory) }
+      ]
+    }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
