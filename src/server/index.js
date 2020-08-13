@@ -119,7 +119,7 @@ new OpenApiValidator({
           backendSearchConfig,
           resultClass: req.params.resultClass,
           facetClass: req.query.facetClass || null,
-          constraints: req.query.constraints == null ? null : JSON.parse(req.query.constraints),
+          constraints: req.query.constraints == null ? null : req.query.constraints,
           resultFormat: resultFormat
         })
         if (resultFormat === 'csv') {
