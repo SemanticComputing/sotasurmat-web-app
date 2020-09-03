@@ -7,8 +7,10 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
-import LeafletMap from '../../facet_results/LeafletMap'
-import Export from '../../facet_results/Export'
+// import LeafletMap from '../../facet_results/LeafletMap'
+// import Export from '../../facet_results/Export'
+import SurmatutHomePageTable from './SurmatutHomePageTable'
+import SurmatutExtraTable from './SurmatutExtraTable'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
 
@@ -38,7 +40,8 @@ class InstanceHomePage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      localID: null
+      localID: null,
+      victimsPage: false
     }
   }
 
@@ -62,6 +65,10 @@ class InstanceHomePage extends React.Component {
     })
     this.setState({ localID: localID })
     switch (this.props.resultClass) {
+      case 'victims':
+        uri = `${base}/death_records/${localID}`
+        this.setState({ victimsPage: true })
+        break
       case 'battles':
         uri = `${base}/sita/${localID}`
         break
@@ -76,39 +83,15 @@ class InstanceHomePage extends React.Component {
       variant: null,
       uri: uri
     })
-  }
-
-  createPlaceArray = events => {
-    let places = {}
-    events = Array.isArray(events) ? events : [events]
-    events.map(event => {
-      if (has(event, 'place')) {
-        const eventPlaces = Array.isArray(event.place) ? event.place : [event.place]
-        eventPlaces.map(place => {
-          if (!has(places, place.id)) {
-            places[place.id] = {
-              id: place.id,
-              prefLabel: place.prefLabel,
-              lat: place.lat,
-              long: place.long,
-              events: [event] // gather events here
-            }
-          } else {
-            places[place.id].events.push(event)
-          }
-        })
-      }
+    this.props.fetchResults({
+      resultClass: 'personExtras',
+      uri: uri
     })
-    places = Object.values(places)
-    places.forEach(place => {
-      place.instanceCount = place.events.length
-    })
-    return places
   }
 
   getVisibleRows = rows => {
     const visibleRows = []
-    const instanceClass = this.props.data.type ? this.props.data.type.id : ''
+    const instanceClass = this.props.tableData.type ? this.props.tableData.type.id : ''
     rows.map(row => {
       if ((has(row, 'onlyForClass') && row.onlyForClass === instanceClass) ||
        !has(row, 'onlyForClass')) {
@@ -119,8 +102,11 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, data, isLoading, resultClass, rootUrl } = this.props
-    const hasData = data !== null && Object.values(data).length >= 1
+    const { classes, tableData, results, isLoading, resultClass, rootUrl } = this.props
+    const { victimsPage } = this.state
+    const hasData = tableData !== null && Object.values(tableData).length >= 1
+    console.log(results)
+    const hasExtraData = results !== null
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -139,7 +125,7 @@ class InstanceHomePage extends React.Component {
                 No data found for id: <span style={{ fontStyle: 'italic' }}>{this.state.localID}</span>
               </Typography>
             </>}
-          {hasData &&
+          {hasData && !victimsPage &&
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
@@ -150,33 +136,27 @@ class InstanceHomePage extends React.Component {
                 render={() =>
                   <InstanceHomePageTable
                     resultClass={resultClass}
-                    data={data}
+                    data={tableData}
                     properties={this.getVisibleRows(this.props.properties)}
                   />}
               />
+            </>}
+          {hasData && victimsPage &&
+            <>
               <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/map`}
-                render={() =>
-                  <LeafletMap
-                    results={this.createPlaceArray(data.event)}
-                    resultClass='instanceEvents'
-                    pageType='instancePage'
-                    mapMode='cluster'
-                    instance={null}
-                    fetchByURI={this.props.fetchByURI}
-                    fetching={this.props.isLoading}
-                    showInstanceCountInClusters
-                  />}
+                exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
+                render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
               />
               <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/export`}
+                path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
-                  <Export
-                    sparqlQuery={this.props.sparqlQuery}
-                    pageType='instancePage'
-                    id={data.id}
-                  />}
+                  <SurmatutHomePageTable data={tableData} />}
               />
+              <Route
+                path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
+                render={() =>
+                  <SurmatutExtraTable data={results} />}
+              />}
             </>}
         </Paper>
       </div>
@@ -188,14 +168,23 @@ InstanceHomePage.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
+  fetchResults: PropTypes.func.isRequired,
   resultClass: PropTypes.string.isRequired,
-  data: PropTypes.object,
+  tableData: PropTypes.object,
+  tableExternalData: PropTypes.object,
+  results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  resultUpdateID: PropTypes.number.isRequired,
   sparqlQuery: PropTypes.string,
   properties: PropTypes.array.isRequired,
   tabs: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   routeProps: PropTypes.object.isRequired,
-  screenSize: PropTypes.string.isRequired
+  screenSize: PropTypes.string.isRequired,
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  clearGeoJSONLayers: PropTypes.func.isRequired,
+  leafletMap: PropTypes.object.isRequired,
+  showError: PropTypes.func.isRequired
 }
 
 export const InstanceHomePageComponent = InstanceHomePage

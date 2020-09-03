@@ -27,7 +27,6 @@ import TopBar from '../components/perspectives/sotasurmat/TopBar'
 import FacetedSearchPerspective from '../components/perspectives/sotasurmat/FacetedSearchPerspective'
 import MainSotasurmat from '../components/perspectives/sotasurmat/MainSotasurmat'
 import InstanceHomePage from '../components/perspectives/sotasurmat/InstanceHomePage'
-import VictimHomePage from '../components/perspectives/sotasurmat/VictimHomePage'
 import Footer from '../components/perspectives/sotasurmat/Footer'
 import { perspectiveConfig } from '../configs/sotasurmat/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/sotasurmat/PerspectiveConfigOnlyInfoPages'
@@ -442,33 +441,28 @@ const SemanticPortal = props => {
                                   : classes.instancePageContainer}
                               >
                                 <Grid item xs={12} className={classes.instancePageContent}>
-                                  {perspective.id === 'victims' &&
-                                    <VictimHomePage
-                                      rootUrl={rootUrlWithLang}
-                                      fetchByURI={props.fetchByURI}
-                                      resultClass={perspective.id}
-                                      tableRows={props[perspective.id].properties}
-                                      tabs={perspective.instancePageTabs}
-                                      data={props[perspective.id].instance}
-                                      extras={props[perspective.id].instanceExtra}
-                                      sparqlQuery={props[perspective.id].instanceSparqlQuery}
-                                      isLoading={props[perspective.id].fetching}
-                                      routeProps={routeProps}
-                                      screenSize={screenSize}
-                                    />}
-                                  {perspective.id !== 'victims' &&
-                                    <InstanceHomePage
-                                      rootUrl={rootUrlWithLang}
-                                      fetchByURI={props.fetchByURI}
-                                      resultClass={perspective.id}
-                                      properties={props[perspective.id].properties}
-                                      tabs={perspective.instancePageTabs}
-                                      data={props[perspective.id].instance}
-                                      sparqlQuery={props[perspective.id].instanceSparqlQuery}
-                                      isLoading={props[perspective.id].fetching}
-                                      routeProps={routeProps}
-                                      screenSize={screenSize}
-                                    />}
+                                  <InstanceHomePage
+                                    rootUrl={rootUrlWithLang}
+                                    fetchByURI={props.fetchByURI}
+                                    fetchResults={props.fetchResults}
+                                    resultClass={perspective.id}
+                                    tableData={props[perspective.id].instanceTableData}
+                                    tableExternalData={props[perspective.id].instancePageTableExternalData}
+                                    properties={props[perspective.id].properties}
+                                    results={props[perspective.id].results}
+                                    resultUpdateID={props[perspective.id].resultUpdateID}
+                                    tabs={perspective.instancePageTabs}
+                                    sparqlQuery={props[perspective.id].instanceSparqlQuery}
+                                    isLoading={props[perspective.id].fetching}
+                                    routeProps={routeProps}
+                                    screenSize={screenSize}
+                                    fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
+                                    fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                                    fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                                    clearGeoJSONLayers={props.clearGeoJSONLayers}
+                                    leafletMap={props.leafletMap}
+                                    showError={props.showError}
+                                  />
                                 </Grid>
                               </Grid>
                             </>

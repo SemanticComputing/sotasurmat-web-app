@@ -246,7 +246,7 @@ class LineChart extends React.Component {
 
     const results = this.props.data.results
     const { classes } = this.props
-    if (results === undefined) {
+    if (results == null) {
       return (
         <div />
       )

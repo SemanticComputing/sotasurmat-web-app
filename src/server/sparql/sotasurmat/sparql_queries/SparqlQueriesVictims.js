@@ -805,6 +805,30 @@ export const extrasTemplate = `
       }
       `
 
+export const personExtrasQueryStart = `
+  SELECT * 
+  WHERE {
+    BIND(<ID> as ?id)
+    {
+      ?id skos:prefLabel ?prefLabel__id .
+    }
+    <PROPERTIES>
+  }
+`
+
+const createExtrasQueryBlock = types => {
+  let block = ''
+  let unionBlock = ''
+  types.forEach(function (item) {
+    block = extrasTemplate.replace(/<TYPENAME>/g, item[0])
+    block = block.replace(/<TYPE>/g, item[1])
+    unionBlock = unionBlock.concat(block)
+  })
+  return unionBlock
+}
+
+export const personExtrasQuery = personExtrasQueryStart.replace('<PROPERTIES>', createExtrasQueryBlock(extrasTypeList))
+
 export const birthYearsQuery = `
       SELECT ?counted (count(?counted) AS ?count)
       WHERE {

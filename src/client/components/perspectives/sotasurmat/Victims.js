@@ -72,7 +72,7 @@ const Victims = props => {
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='deathPlaces'
             facetClass='victims'
-            instance={props.placesResults.instance}
+            instance={props.placesResults.instanceTableData}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             fetchByURI={props.fetchByURI}

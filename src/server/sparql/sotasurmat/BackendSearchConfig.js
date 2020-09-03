@@ -4,10 +4,9 @@ import {
   birthYearsQuery,
   ageQuery, deathDateQuery,
   csvDeathsQuery,
-  extrasTemplate,
-  extrasTypeList,
   deathsByMunicipalityQuery,
-  deathsAt
+  deathsAt,
+  personExtrasQuery
 } from './sparql_queries/SparqlQueriesVictims'
 import {
   battleProperties,
@@ -28,23 +27,6 @@ import {
   mapBirthYearCount,
   mapCountGroups
 } from '../Mappers'
-
-const templateStart = `
-    {
-      ?id skos:prefLabel ?prefLabel__id .
-    }
-    `
-
-const createExtrasQueryBlock = types => {
-  let block = ''
-  let unionBlock = ''
-  types.forEach(function (item) {
-    block = extrasTemplate.replace(/<TYPENAME>/g, item[0])
-    block = block.replace(/<TYPE>/g, item[1])
-    unionBlock = unionBlock.concat(block)
-  })
-  return unionBlock
-}
 
 export const backendSearchConfig = {
   victims: victimsPerspectiveConfig,
@@ -100,10 +82,8 @@ export const backendSearchConfig = {
   },
   personExtras: {
     perspectiveID: 'victims', // use endpoint config from victims
-    instance: {
-      properties: templateStart.concat(createExtrasQueryBlock(extrasTypeList)),
-      relatedInstances: ''
-    }
+    q: personExtrasQuery,
+    resultMapper: makeObjectList
   },
   sources: {
     perspectiveID: 'victims', // use endpoint config from victims
