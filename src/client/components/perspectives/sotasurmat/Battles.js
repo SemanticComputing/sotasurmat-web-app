@@ -47,7 +47,7 @@ const Battles = props => {
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='battlePlaces'
             facetClass='battles'
-            instance={props.facetResults.instance}
+            instance={props.facetResults.instanceTableData}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             fetchByURI={props.fetchByURI}

@@ -29,10 +29,14 @@ export default {
     narrowDownBy: 'Rajoita',
     narrowDownByTooltip: 'Rajoita hakutulosta alla olevien valitsimien avulla',
     filterOptions: 'Asetukset',
-    sortByName: 'Järjestä nimen mukaan',
-    sortByHits: 'Järjestä hakutuloksien lukumäärän mukaan',
     searchWithinFilter: 'Hae',
-    activeFilters: 'Aktiiviset suodattimet:'
+    activeFilters: 'Aktiiviset suodattimet:',
+    selectionOptions: 'Asetukset',
+    selectAlsoSubconcepts: 'Automatically select all subconcepts',
+    doNotSelectSubconcepts: 'Do not select subconcepts',
+    sortingOptions: 'Järjestys',
+    sortAlphabetically: 'Järjestä nimen mukaan',
+    sortByNumberOfSearchResults: 'Järjestä hakutuloksien lukumäärän mukaan'
   },
   tabs: {
     table: 'taulukko',
@@ -73,6 +77,13 @@ export default {
       markers: 'Kartta',
       heatmap: 'Lämpökartta'
     }
+  },
+  instancePageGeneral: {
+    introduction: `
+    
+    `,
+    repetition: `
+    `
   },
   perspectives: {
     sources: {

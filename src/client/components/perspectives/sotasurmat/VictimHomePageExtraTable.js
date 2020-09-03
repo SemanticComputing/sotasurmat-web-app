@@ -147,7 +147,7 @@ const rowTypes = [
 
 ]
 
-class SurmatutExtraTable extends React.Component {
+class VictimHomePageExtraTable extends React.Component {
   render = () => {
     const { classes, data } = this.props
     if (data == null) {
@@ -184,9 +184,9 @@ class SurmatutExtraTable extends React.Component {
   }
 }
 
-SurmatutExtraTable.propTypes = {
+VictimHomePageExtraTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.array
 }
 
-export default withStyles(styles)(SurmatutExtraTable)
+export default withStyles(styles)(VictimHomePageExtraTable)

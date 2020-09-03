@@ -9,8 +9,8 @@ import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
 // import LeafletMap from '../../facet_results/LeafletMap'
 // import Export from '../../facet_results/Export'
-import SurmatutHomePageTable from './SurmatutHomePageTable'
-import SurmatutExtraTable from './SurmatutExtraTable'
+import VictimHomePageTable from './VictimHomePageTable'
+import VictimHomePageExtraTable from './VictimHomePageExtraTable'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
 
@@ -105,8 +105,6 @@ class InstanceHomePage extends React.Component {
     const { classes, tableData, results, isLoading, resultClass, rootUrl } = this.props
     const { victimsPage } = this.state
     const hasData = tableData !== null && Object.values(tableData).length >= 1
-    console.log(results)
-    const hasExtraData = results !== null
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -150,12 +148,12 @@ class InstanceHomePage extends React.Component {
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
-                  <SurmatutHomePageTable data={tableData} />}
+                  <VictimHomePageTable data={tableData} />}
               />
               <Route
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
                 render={() =>
-                  <SurmatutExtraTable data={results} />}
+                  <VictimHomePageExtraTable data={results} />}
               />}
             </>}
         </Paper>

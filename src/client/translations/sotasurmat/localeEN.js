@@ -72,6 +72,13 @@ export default {
       heatmap: 'Lämpökartta'
     }
   },
+  instancePageGeneral: {
+    introduction: `
+    
+    `,
+    repetition: `
+    `
+  },
   perspectives: {
     sources: {
       label: '',
