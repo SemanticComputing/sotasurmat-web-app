@@ -1,5 +1,5 @@
 import { has, isEmpty } from 'lodash'
-import { UPDATE_FACET_VALUES_CONSTRAIN_SELF } from '../actions'
+import { UPDATE_FACET_VALUES_CONSTRAIN_SELF } from '../../actions'
 
 export const fetchResults = state => {
   return {
@@ -23,36 +23,30 @@ export const fetchResultsFailed = state => {
   }
 }
 
-export const updateInstance = (state, action) => {
+export const updateInstanceTableData = (state, action) => {
   return {
     ...state,
-    instance: action.data.length === 1 ? action.data[0] : {},
+    instanceTableData: action.data.length === 1 ? action.data[0] : {},
     instanceSparqlQuery: action.sparqlQuery,
     fetching: false
   }
 }
 
-export const updateInstanceRelatedData = (state, action) => {
+export const updateInstanceTableExternalData = (state, action) => {
   return {
     ...state,
-    instanceRelatedData: action.data
-  }
-}
-
-export const updateInstanceExtra = (state, action) => {
-  return {
-    ...state,
-    instanceExtra: action.data.length === 1 ? action.data[0] : {},
-    instanceExtraSparqlQuery: action.sparqlQuery,
+    instanceTableExternalData: action.data,
     fetching: false
   }
 }
 
-export const updateInstanceNetworkData = (state, action) => {
+export const updateInstanceAnalysisData = (state, action) => {
   return {
     ...state,
-    instanceNetworkData: action.data,
-    resultUpdateID: ++state.resultUpdateID
+    instanceAnalysisData: action.data,
+    instanceAnalysisDataUpdateID: ++state.instancePageAnalysisDataUpdateID,
+    instanceSparqlQuery: action.sparqlQuery,
+    fetching: false
   }
 }
 
@@ -309,5 +303,13 @@ export const updateHeaderExpanded = (state, action) => {
       ...state,
       facetedSearchHeaderExpanded: !state.facetedSearchHeaderExpanded
     }
+  }
+}
+
+export const updateKnowledgeGraphMetadata = (state, action) => {
+  return {
+    ...state,
+    knowledgeGraphMetadata: action.data,
+    fetching: false
   }
 }

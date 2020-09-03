@@ -94,8 +94,11 @@ new OpenApiValidator({
           backendSearchConfig,
           resultClass: params.resultClass,
           facetClass: body.facetClass,
+          uri: body.uri,
           constraints: body.constraints,
-          resultFormat: resultFormat
+          resultFormat: resultFormat,
+          limit: body.limit,
+          optimize: body.optimize
         })
         if (resultFormat === 'csv') {
           res.writeHead(200, {
@@ -160,24 +163,6 @@ new OpenApiValidator({
           uri: params.uri,
           facetClass: body.facetClass,
           constraints: body.constraints,
-          resultFormat: 'json'
-        })
-        res.json(data)
-      } catch (error) {
-        next(error)
-      }
-    })
-
-    app.get(`${apiPath}/:resultClass/network/:id`, async (req, res, next) => {
-      const { params, query } = req
-      try {
-        const data = await getByURI({
-          backendSearchConfig,
-          resultClass: params.resultClass,
-          uri: params.id,
-          limit: query.limit,
-          optimize: query.optimize,
-          constraints: null,
           resultFormat: 'json'
         })
         res.json(data)
