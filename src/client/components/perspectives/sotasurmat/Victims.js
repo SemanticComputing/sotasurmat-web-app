@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import PieSotasurmat from './PieSotasurmat'
-import LineChart from '../../facet_results/LineChart'
+import LineChartSotasurmat from './LineChartSotasurmat'
 import ExportCSV from '../../facet_results/ExportCSV'
 import LeafletMap from '../../facet_results/LeafletMap'
 
@@ -49,7 +49,7 @@ const Victims = props => {
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/line`}
         render={routeProps =>
-          <LineChart
+          <LineChartSotasurmat
             data={props.datesResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='dates'

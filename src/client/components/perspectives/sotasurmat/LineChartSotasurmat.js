@@ -21,7 +21,7 @@ const styles = theme => ({
   }
 })
 
-class LineChart extends React.Component {
+class LineChartSotasurmat extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -343,11 +343,11 @@ class LineChart extends React.Component {
   }
 }
 
-LineChart.propTypes = {
+LineChartSotasurmat.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
   facetUpdateID: PropTypes.number
 }
 
-export default withStyles(styles)(LineChart)
+export default withStyles(styles)(LineChartSotasurmat)
