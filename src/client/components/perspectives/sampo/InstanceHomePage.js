@@ -59,7 +59,7 @@ class InstanceHomePage extends React.Component {
 
   fetchTableData = () => {
     let uri = ''
-    const base = 'http://ldf.fi/siso'
+    const base = 'http://ldf.fi/mmm'
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
     this.props.tabs.map(tab => {
@@ -69,11 +69,14 @@ class InstanceHomePage extends React.Component {
     })
     this.setState({ localID: localID })
     switch (this.props.resultClass) {
-      case 'battles':
-        uri = `${base}/sita/${localID}`
+      case 'perspective1':
+        uri = `${base}/manifestation_singleton/${localID}`
         break
-      case 'sources':
-        uri = `${base}/sources/${localID}`
+      case 'perspective2':
+        uri = `${base}/work/${localID}`
+        break
+      case 'perspective3':
+        uri = `${base}/event/${localID}`
         break
       case 'manuscripts':
         uri = `${base}/manifestation_singleton/${localID}`
@@ -109,7 +112,6 @@ class InstanceHomePage extends React.Component {
         uri = `http://emlo.bodleian.ox.ac.uk/id/${localID}`
         break
     }
-
     this.props.fetchByURI({
       resultClass: this.props.resultClass,
       facetClass: null,
@@ -254,7 +256,6 @@ class InstanceHomePage extends React.Component {
 }
 
 InstanceHomePage.propTypes = {
-  rootUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   fetchByURI: PropTypes.func.isRequired,
   fetchResults: PropTypes.func.isRequired,
@@ -269,6 +270,7 @@ InstanceHomePage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   routeProps: PropTypes.object.isRequired,
   screenSize: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired,
   fetchGeoJSONLayers: PropTypes.func.isRequired,
   fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
   clearGeoJSONLayers: PropTypes.func.isRequired,
