@@ -292,6 +292,7 @@ new OpenApiValidator({
 
     app.get('/robots.txt', (request, response) => {
       response.sendFile(path.join(publicPath, 'robots.txt'))
+    })
 
     app.get('/sitemap.xml', (request, response) => {
       response.sendFile(path.join(publicPath, 'sitemap.xml'))

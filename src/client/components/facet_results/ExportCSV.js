@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
-import { apiUrl } from '../../epics/index.js'
 import { stateToUrl } from '../../helpers/helpers'
 
 const styles = theme => ({
@@ -54,7 +53,7 @@ class ExportCSV extends React.Component {
       facets: this.props.facets
     })
     const constraints = params.constraints ? `&constraints=${encodeURIComponent(JSON.stringify(params.constraints))}` : ''
-    return `${apiUrl}/faceted-search/${this.props.resultClass}/all?facetClass=${this.props.facetClass}&resultFormat=csv${constraints}`
+    return `${process.env.API_URL}/faceted-search/${this.props.resultClass}/all?facetClass=${this.props.facetClass}&resultFormat=csv${constraints}`
   }
 
   render = () => {
