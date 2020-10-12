@@ -52,20 +52,15 @@ import {
   SHOW_ERROR
 } from '../actions'
 import {
-  rootUrl,
-  publishedPort,
   documentFinderAPIUrl,
   backendErrorText
 } from '../configs/sotasurmat/GeneralConfig'
 
-// set port if running on localhost with NODE_ENV = 'production'
-const port = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? `:${publishedPort}`
-  : ''
-
-export const apiUrl = (process.env.NODE_ENV === 'development')
-  ? `http://localhost:3001${rootUrl}/api/v1`
-  : `${window.location.protocol}//${window.location.hostname}${port}${rootUrl}/api/v1`
+/*
+* Note that all code inside the 'client' folder runs on the browser, so there is no 'process' object as in Node.js.
+* Instead, the variable 'process.env.API_URL' is defined in 'webpack.client.common.js'.
+*/
+const apiUrl = process.env.API_URL
 
 export const availableLocales = {
   en: localeEN,
@@ -261,14 +256,15 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_FACET),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    const { facetClass, facetID } = action
+    const { facetClass, facetID, constrainSelf } = action
     const facets = state[`${facetClass}Facets`].facets
     const facet = facets[facetID]
-    const { sortBy, sortDirection } = facet
+    const { sortBy, sortDirection = false } = facet
     const params = stateToUrl({
-      facets: facets,
-      sortBy: sortBy,
-      sortDirection: sortDirection
+      facets,
+      sortBy,
+      sortDirection,
+      constrainSelf
     })
     const requestUrl = `${apiUrl}/faceted-search/${action.facetClass}/facet/${facetID}`
     return ajax({
@@ -491,7 +487,7 @@ const fetchKnowledgeGraphMetadataEpic = (action$, state$) => action$.pipe(
     }).pipe(
       map(ajaxResponse => updateKnowledgeGraphMetadata({
         resultClass: action.resultClass,
-        data: ajaxResponse.response.data || [],
+        data: ajaxResponse.response.data[0],
         sparqlQuery: ajaxResponse.response.sparqlQuery
       })),
       catchError(error => of({

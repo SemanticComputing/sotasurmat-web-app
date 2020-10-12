@@ -530,6 +530,53 @@ const SemanticPortal = props => {
                 />
               </Switch>
             )}
+            {/* <Route
+              path={`${rootUrlWithLang}/clientFSPlaces/federated-search`}
+              render={routeProps =>
+                <Grid container className={classes.mainContainerClientFS}>
+                  <Grid item sm={12} md={4} lg={3} className={classes.facetBarContainerClientFS}>
+                    <FacetBar
+                      facetedSearchMode='clientFS'
+                      facetClass='clientFSPlaces'
+                      resultClass='clientFSPlaces'
+                      facetData={props.clientFS}
+                      clientFSFacetValues={props.clientFSFacetValues}
+                      fetchingResultCount={props.clientFS.textResultsFetching}
+                      resultCount={noResults ? 0 : props.clientFS.results.length}
+                      clientFS={props.clientFS}
+                      clientFSToggleDataset={props.clientFSToggleDataset}
+                      clientFSFetchResults={props.clientFSFetchResults}
+                      clientFSClearResults={props.clientFSClearResults}
+                      clientFSUpdateQuery={props.clientFSUpdateQuery}
+                      clientFSUpdateFacet={props.clientFSUpdateFacet}
+                      defaultActiveFacets={perspectiveConfig.find(p => p.id === 'clientFSPlaces').defaultActiveFacets}
+                      leafletMap={props.leafletMap}
+                      updateMapBounds={props.updateMapBounds}
+                      screenSize={screenSize}
+                      showError={props.showError}
+                      rootUrl={rootUrlWithLang}
+                    />
+                  </Grid>
+                  <Grid item sm={12} md={8} lg={9} className={classes.resultsContainerClientFS}>
+                    {noResults && <ClientFSMain />}
+                    {!noResults &&
+                      <ClientFSPerspective
+                        routeProps={routeProps}
+                        perspective={perspectiveConfig.find(p => p.id === 'clientFSPlaces')}
+                        screenSize={screenSize}
+                        clientFS={props.clientFS}
+                        clientFSResults={props.clientFSResults}
+                        clientFSSortResults={props.clientFSSortResults}
+                        leafletMap={props.leafletMap}
+                        fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                        fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                        clearGeoJSONLayers={props.clearGeoJSONLayers}
+                        showError={props.showError}
+                        rootUrl={rootUrlWithLang}
+                      />}
+                  </Grid>
+                </Grid>}
+            /> */}
             {/* create routes for info buttons */}
             <Route
               path={`${rootUrlWithLang}/feedback`}

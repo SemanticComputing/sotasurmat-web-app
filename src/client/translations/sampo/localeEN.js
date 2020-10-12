@@ -50,7 +50,30 @@ export default {
     doNotSelectSubconcepts: 'Do not select subconcepts',
     sortingOptions: 'Sorting options',
     sortAlphabetically: 'Sort alphabetically',
-    sortByNumberOfSearchResults: 'Sort by number of search results'
+    sortByNumberOfSearchResults: 'Sort by number of search results',
+    useDisjunction: 'Use logical OR between selections',
+    useConjuction: 'Use logical AND between selections',
+    pieChart: {
+      tooltip: 'Pie chart'
+    },
+    barChart: {
+      tooltip: 'Bar chart',
+      language: {
+        title: 'Language',
+        xaxisTitle: 'Language',
+        yaxisTitle: 'Manuscript count',
+        seriesTitle: 'Manuscript count'
+      }
+    },
+    lineChart: {
+      tooltip: 'Line chart',
+      productionTimespan: {
+        title: 'Manuscript production by decade',
+        xaxisTitle: 'Decade',
+        yaxisTitle: 'Manuscript count',
+        seriesTitle: 'Manuscript count'
+      }
+    }
   },
   tabs: {
     table: 'table',
@@ -1937,6 +1960,68 @@ export default {
         }
       }
     },
+    hellerau: {
+      label: 'Hellerau',
+      facetResultsType: 'people',
+      shortDescription: 'Description',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          Use this perspective to access data related to events associated with the
+          histories of manuscripts and manuscript collections over the centuries.
+          See <a href="/instructions">instructions</a> for using the filters.
+          The result view can be selected using the tabs:
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TABLE</STRONG> view includes all events in the MMM data.
+          </li>
+          <li>
+            <strong>MAP</STRONG> view visualizes the events that have location information on a map.
+          </li>
+          <li>
+            <strong>EXPORT</strong> the SPARQL query used to generate the result
+            table view into YASGUI query editor.
+          </li>
+        </ul>
+      `,
+      // instancePage: {
+      //   label: 'Place',
+      //   description: `
+      //     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      //       Events refer to various activities related to Manuscripts and Actors. Event
+      //       types include Production, Transfer of Custody, and Activity events.
+      //       Production events refer to the production of the physical manuscript.
+      //       Transfer of Custody events indicate a change of ownership that involved
+      //       a transaction of some kind, usually through an auction house or bookseller.
+      //       The generic Activity event type covers all other types of events.
+      //     </p>
+      //   `
+      // },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Name',
+          description: `
+            Preferable place label.
+          `
+        },
+        home1930: {
+          label: 'Hometown 1930',
+          description: `
+            Hometown 1930 description.
+          `
+        },
+        home1937: {
+          label: 'Hometown 1937',
+          description: `
+            Hometown 1937 description.
+          `
+        }
+      }
+    },
     clientFSPlaces: {
       label: 'ClientFS',
       shortDescription: 'Client-side faceted search',
@@ -2003,7 +2088,7 @@ export default {
       }
     }
   },
-  aboutThePortal: `
+  aboutThePortalPartOne: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
       About the Portal
     </h1>
@@ -2033,29 +2118,8 @@ export default {
       leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque 
       ultricies est non porta luctus. Maecenas eget viverra mauris.
     </p>
-    <ul class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
-      <li>
-        <a href=""
-          target='_blank' rel='noopener noreferrer'
-        >
-          Suspendisse et ligula quis
-        </a>
-      </li>
-      <li>
-        <a href=""
-          target='_blank' rel='noopener noreferrer'
-        >
-          Aliquam pellentesque odio
-        </a>
-      </li>
-      <li>
-        <a href=""
-          target='_blank' rel='noopener noreferrer'
-        >
-          Cras at odio a libero laoreet
-        </a>
-      </li>
-    </ul>
+    `,
+  aboutThePortalPartTwo: `
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum, 
       dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat 

@@ -435,6 +435,14 @@ export const manuscriptNetworkLinksQuery = `
   } 
 `
 
+export const manuscriptFacetResultsNetworkLinksQuery = `
+  SELECT DISTINCT (?manuscript as ?source) ?target ("Author" as ?prefLabel)
+  WHERE {
+    <FILTER>
+    ?manuscript mmm-schema:manuscript_author/^mmm-schema:manuscript_author ?target .
+  }
+`
+
 export const manuscriptNetworkNodesQuery = `
   SELECT DISTINCT ?id ?prefLabel ?class ?href
   WHERE {
@@ -543,6 +551,11 @@ export const knowledgeGraphMetadataQuery = `
     ?id a sd:Dataset ;
         dct:title ?title ;
         dct:publisher ?publisher ;
-        dct:rightsHolder ?rightsHolder .
+        dct:rightsHolder ?rightsHolder ;
+        dct:modified ?modified ;
+        dct:source ?databaseDump__id .
+    ?databaseDump__id skos:prefLabel ?databaseDump__prefLabel ;
+                      mmm-schema:data_provider_url ?databaseDump__dataProviderUrl ;
+                      dct:modified ?databaseDump__modified .
   }
 `

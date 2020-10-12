@@ -5,6 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
 const outputDirectory = 'dist/public'
+const apiUrl = typeof process.env.API_URL !== 'undefined' ? process.env.API_URL : 'http://localhost:3001/api/v1'
 
 module.exports = {
   entry: {
@@ -24,7 +25,10 @@ module.exports = {
       ]
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify(apiUrl)
+    })
   ],
   output: {
     filename: '[name].bundle.js',
