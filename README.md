@@ -2,10 +2,9 @@
 
 WarVictimSampo 1914–1922 is a semantic portal that publishes data about the war victims in Finland in 1914–1922.
 
-Based on [Sampo-UI &ndash; A framework for building semantic portal user interfaces](https://github.com/SemanticComputing/sampo-ui)
-
 master branch visible at https://sotasurmat.narc.fi
 
+Based on [Sampo-UI &ndash; A framework for building semantic portal user interfaces](https://github.com/SemanticComputing/sampo-ui)
 The Sampo-UI framework is being developed by the [Semantic Computing Research Group (SeCo)](https://seco.cs.aalto.fi) 
 at the Aalto University, Finland. See the [research page](https://seco.cs.aalto.fi/tools/sampo-ui) for 
 more information. 
