@@ -806,7 +806,7 @@ export const extrasTemplate = `
       `
 
 export const personExtrasQueryStart = `
-  SELECT * 
+  SELECT *
   WHERE {
     BIND(<ID> as ?id)
     {
@@ -947,7 +947,8 @@ export const csvDeathsQuery = `
         ?livingCountryUri skos:prefLabel ?livingCountry .
       }
       OPTIONAL {
-        ?id siso-schema:literal_registered_municipality ?registeredMunicipality .
+        ?id siso-schema:registered_municipality ?registeredMunicipalityUri .
+        ?registeredMunicipalityUri skos:prefLabel ?registeredMunicipality .
       }
       OPTIONAL {
         ?id siso-schema:registered_province ?registeredProvinceUri .

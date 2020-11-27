@@ -7,6 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const victimsPerspectiveConfig = {
   endpoint: {
     url: 'http://ldf.fi/siso/sparql',
+    //url: 'http://localhost:3042/ds/sparql',
     prefixes,
     useAuth: false
   },
