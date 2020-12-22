@@ -13,6 +13,8 @@ import { has } from 'lodash'
 import defaultThumbImage from '../../../img/main_page/thumb.png'
 import largeLogoEN from '../../../img/logo_en.gif'
 import largeLogoFI from '../../../img/logo_fi.gif'
+import saavutettavuusFI from '../../../img/saavutettavuusSuomi.pdf'
+import saavutettavuusSV from '../../../img/saavutettavuusRuotsi.pdf'
 
 const styles = theme => ({
   root: {
@@ -155,7 +157,10 @@ const MainSotarsurmat = props => {
         )}
       </div>
       <div className={classNames(classes.licenceLayout, classes.licenceContainer)}>
-        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
+        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}
+          <br/><a href={saavutettavuusFI} target="_blank" >Saavutettavuusseloste</a>  |
+          <a href={saavutettavuusSV} target="_blank" >Tillgänglitshetutlåtande</a>
+        </Typography>
       </div>
     </div>
   )
