@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: '',
+    short: 'WarVictimSampo 1914–1922',
     long: 'WarVictimSampo 1914–1922'
   },
   appDescription: `

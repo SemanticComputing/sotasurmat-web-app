@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'Suomi',
   appTitle: {
-    short: 'Sotasurmat',
+    short: 'Sotasurmasampo 1914–1922',
     long: 'Sotasurmasampo 1914–1922'
   },
   appDescription: `
