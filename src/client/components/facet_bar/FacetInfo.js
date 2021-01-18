@@ -4,6 +4,8 @@ import intl from 'react-intl-universal'
 import { has } from 'lodash'
 import { withStyles } from '@material-ui/core/styles'
 import ActiveFilters from './ActiveFilters'
+import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -14,14 +16,12 @@ const styles = theme => ({
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(0.5)
   },
-  narrowDownBy: {
-    display: 'flex'
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
-  iconButton: {
-    paddingTop: 4,
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingBottom: 0
+  button: {
+    margin: theme.spacing(1)
   }
 })
 
@@ -46,6 +46,8 @@ class FacetInfo extends React.Component {
       })
     }
   }
+
+  handleRemoveAllFiltersOnClick = () => this.props.clearAllFacets({ facetClass: this.props.facetClass })
 
   render () {
     const { classes, facetClass, resultClass, resultCount, someFacetIsFetching } = this.props
@@ -96,7 +98,19 @@ class FacetInfo extends React.Component {
           activeIntegerFilters
         ) &&
           <>
-            <Typography variant='h6'>{intl.get('facetBar.activeFilters')}</Typography>
+            <div className={classes.headerContainer}>
+              <Typography variant='h6'>{intl.get('facetBar.activeFilters')}</Typography>
+              <Button
+                variant='contained'
+                color='secondary'
+                size='small'
+                className={classes.button}
+                startIcon={<DeleteIcon />}
+                onClick={this.handleRemoveAllFiltersOnClick}
+                disabled={someFacetIsFetching}
+              >{intl.get('facetBar.removeAllFilters')}
+              </Button>
+            </div>
             <div className={classes.textContainer}>
               <ActiveFilters
                 facetClass={facetClass}

@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'sampo-ui',
+    short: 'Sampo-UI',
     long: ' &nbsp; &nbsp; Sampo-UI  &nbsp;  &nbsp;',
     subheading: `
       "Here to forge for us the Sampo, Hammer us the lid in colors"
@@ -41,6 +41,8 @@ export default {
   },
   facetBar: {
     results: 'Results',
+    activeFilters: 'Active filters:',
+    removeAllFilters: 'Remove all',
     narrowDownBy: 'Narrow down by',
     filterOptions: 'Filter options',
     filterByName: 'Filter by name',
@@ -53,6 +55,12 @@ export default {
     sortByNumberOfSearchResults: 'Sort by number of search results',
     useDisjunction: 'Use logical OR between selections',
     useConjuction: 'Use logical AND between selections',
+    minYear: 'Min year',
+    maxYear: 'Max year',
+    min: 'Min',
+    max: 'Max',
+    facetSearchFieldPlaceholder: 'Search...',
+    applyFacetSelection: 'apply',
     pieChart: {
       tooltip: 'Pie chart'
     },
@@ -122,6 +130,9 @@ export default {
     },
     textFacet: {
       inputLabel: 'Etsi nimellä'
+    },
+    sliderFacet: {
+      invalidStartOrEnd: 'Min value must be smaller than max value. The smallest value can be {min} and the largest value can be {max}.'
     }
   },
   leafletMap: {
@@ -174,6 +185,19 @@ export default {
         to create the MMM record.
       </p>
     `
+  },
+  deckGlMap: {
+    arcColouring: 'Arc colouring:',
+    showMoreInformation: 'Click to show more information.',
+    manuscriptMigrations: {
+      legendTitle: 'Arc colouring',
+      legendFrom: 'Manuscript production place',
+      legendTo: 'Last known location',
+      from: 'Production place:',
+      to: 'Last known location:',
+      listHeadingSingleInstance: 'Manuscript:',
+      listHeadingMultipleInstances: 'Manuscripts:'
+    }
   },
   perspectives: {
     perspective1: {
@@ -251,7 +275,8 @@ export default {
         },
         prefLabel: {
           label: 'Label',
-          description: 'A short label describing the manuscript.'
+          description: 'A short label describing the manuscript.',
+          textFacetInputPlaceholder: 'Search...'
         },
         author: {
           label: 'Author',
@@ -464,7 +489,8 @@ export default {
         },
         prefLabel: {
           label: 'Title',
-          description: 'The name or title of the Work.'
+          description: 'The name or title of the Work.',
+          textFacetInputPlaceholder: 'Search...'
         },
         author: {
           label: 'Possible author',

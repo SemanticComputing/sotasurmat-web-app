@@ -31,16 +31,15 @@ const theme = createMuiTheme({
         marginLeft: 0
       }
     },
-    MuiSlider: {
-      valueLabel: {
-        '& *': {
-          width: 82,
-          height: 19,
-          transform: 'none',
-          backgroundColor: 'transparent',
-          borderRadius: 0,
-          fontSize: '1rem'
-        }
+    MuiIconButton: {
+      root: {
+        padding: 4
+      }
+    },
+    MuiTableCell: {
+      sizeSmall: {
+        paddingTop: 2,
+        paddingBottom: 2
       }
     }
   }

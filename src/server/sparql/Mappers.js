@@ -1,6 +1,5 @@
 import { has } from 'lodash'
 import { getTreeFromFlatData } from 'react-sortable-tree'
-// import { makeObjectList } from './SparqlObjectMapper';
 
 export const mapPlaces = sparqlBindings => {
   const results = sparqlBindings.map(b => {
@@ -15,7 +14,6 @@ export const mapPlaces = sparqlBindings => {
 }
 
 export const mapCoordinates = sparqlBindings => {
-  // console.log(sparqlBindings);
   const results = sparqlBindings.map(b => {
     return {
       lat: b.lat.value,
@@ -78,8 +76,7 @@ export const mapHierarchicalFacet = (sparqlBindings, previousSelections) => {
     getParentKey: node => node.parent, // resolve node's parent's key
     rootKey: '0' // The value of the parent key when there is no parent (i.e., at root level)
   })
-  treeData = recursiveSort(treeData)
-  treeData.forEach(node => sumUpAndSelectChildren(node))
+  treeData = recursiveSortAndSelectChildren(treeData)
   return ({
     treeData,
     flatData: results
@@ -130,6 +127,43 @@ export const mapLineChart = sparqlBindings => {
   }
 }
 
+export const mapLineChartFillEmptyValues = sparqlBindings => {
+  const seriesData = []
+  const categoriesData = []
+  const sparqlBindingsLength = sparqlBindings.length
+  sparqlBindings.map((b, index, bindings) => {
+    const currentCategory = parseInt(b.category.value)
+    const currentValue = parseInt(b.count.value)
+    seriesData.push(currentValue)
+    categoriesData.push(currentCategory)
+    if (index + 1 < sparqlBindingsLength) {
+      let categoryIter = currentCategory
+      const nextNonZeroCategory = parseInt(bindings[index + 1].category.value)
+      // add zeros until we reach the next category with a non zero value
+      while (categoryIter < nextNonZeroCategory - 1) {
+        categoryIter += 1
+        seriesData.push(0)
+        categoriesData.push(categoryIter)
+      }
+    }
+  })
+  return {
+    seriesData,
+    categoriesData
+  }
+}
+
+export const mapPieChart = sparqlBindings => {
+  const results = sparqlBindings.map(b => {
+    return {
+      category: b.category.value,
+      prefLabel: b.prefLabel.value,
+      instanceCount: b.instanceCount.value
+    }
+  })
+  return results
+}
+
 export const mapMultipleLineChart = sparqlBindings => {
   const res = {}
   sparqlBindings.forEach(b => {
@@ -174,7 +208,9 @@ const mapFacetValues = sparqlBindings => {
     try {
       return {
         id: b.id.value,
-        prefLabel: b.prefLabel.value,
+        prefLabel: b.prefLabel
+          ? b.prefLabel.value
+          : '0', // temporary prefLabel for <http://ldf.fi/MISSING_VALUE> to support sorting
         selected: b.selected.value,
         parent: b.parent ? b.parent.value : null,
         instanceCount: b.instanceCount.value
@@ -196,25 +232,17 @@ const comparator = (a, b) => {
   return a.prefLabel.localeCompare(b.prefLabel)
 }
 
-const sumUpAndSelectChildren = node => {
-  node.totalInstanceCount = parseInt(node.instanceCount)
-  if (has(node, 'children')) {
-    for (const child of node.children) {
-      if (node.selected === 'true') {
-        child.selected = 'true'
-        child.disabled = 'true'
-      }
-      node.totalInstanceCount += sumUpAndSelectChildren(child)
-    }
-  }
-  return node.totalInstanceCount
-}
-
-const recursiveSort = nodes => {
+const recursiveSortAndSelectChildren = nodes => {
   nodes.sort(comparator)
   nodes.forEach(node => {
     if (has(node, 'children')) {
-      recursiveSort(node.children)
+      for (const child of node.children) {
+        if (node.selected === 'true') {
+          child.selected = 'true'
+          child.disabled = 'true'
+        }
+      }
+      recursiveSortAndSelectChildren(node.children)
     }
   })
   return nodes

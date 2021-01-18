@@ -1,7 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
 const outputDirectory = 'dist/public'
@@ -12,26 +11,28 @@ module.exports = {
     app: './src/client/index.js'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    /**
+     * All files inside webpack's output.path directory will be removed once, but the
+     * directory itself will not be. If using webpack 4+'s default configuration,
+     * everything under <PROJECT_DIR>/dist/ will be removed.
+     * Use cleanOnceBeforeBuildPatterns to override this behavior.
+     *
+     * During rebuilds, all webpack assets that are not used anymore
+     * will be removed automatically.
+    */
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // Load a custom template
       template: 'src/client/index.html',
       favicon: 'src/client/favicon.ico'
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'src/client/sitemap.xml', to: path.resolve(__dirname, outputDirectory) },
-        { from: 'src/client/robots.txt', to: path.resolve(__dirname, outputDirectory) }
-      ]
-    }),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify(apiUrl)
     })
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[fullhash].js',
     path: path.resolve(__dirname, outputDirectory),
     publicPath: '/'
     // publicPath: '/sotasurmat/',
@@ -46,16 +47,20 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
+          // Creates `style` nodes from JS strings
           'style-loader',
+          // Translates CSS into CommonJS
           'css-loader',
+          // Compiles Sass to CSS
           'sass-loader'
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif|pdf)$/,
-        use: [
-          'file-loader'
-        ]
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images'
+        }
       }
     ]
   },

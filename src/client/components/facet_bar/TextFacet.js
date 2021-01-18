@@ -64,13 +64,14 @@ class TextFacet extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, facetClass, facetID } = this.props
+    const placeholder = intl.get(`perspectives.${facetClass}.properties.${facetID}.textFacetInputPlaceholder`)
     let searchButton = null
     const textResultsFetching = false
     if (textResultsFetching) {
       searchButton = (
         <IconButton
-          aria-label={intl.get('facets.textFacet.inputLabel')}
+          aria-label={placeholder}
         >
           <CircularProgress size={24} />
         </IconButton>
@@ -78,7 +79,7 @@ class TextFacet extends React.Component {
     } else {
       searchButton = (
         <IconButton
-          aria-label={intl.get('facets.textFacet.inputLabel')}
+          aria-label={placeholder}
           onClick={this.handleClick}
           onMouseDown={this.handleMouseDown}
         >
@@ -90,7 +91,7 @@ class TextFacet extends React.Component {
     return (
       <div className={classes.root}>
         <FormControl className={classes.textSearch}>
-          <InputLabel htmlFor='adornment-search'>{intl.get('facets.textFacet.inputLabel')}</InputLabel>
+          <InputLabel htmlFor='adornment-search'>{placeholder}</InputLabel>
           <Input
             id='adornment-search'
             type='text'
