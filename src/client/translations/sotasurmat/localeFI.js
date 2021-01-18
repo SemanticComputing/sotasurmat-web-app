@@ -26,17 +26,28 @@ export default {
   },
   facetBar: {
     results: 'Tulokset',
-    narrowDownBy: 'Rajoita',
-    narrowDownByTooltip: 'Rajoita hakutulosta alla olevien valitsimien avulla',
-    filterOptions: 'Asetukset',
-    searchWithinFilter: 'Hae',
     activeFilters: 'Aktiiviset suodattimet:',
-    selectionOptions: 'Asetukset',
+    removeAllFilters: 'Poista kaikki',
+    narrowDownBy: 'Rajoita',
+    filterOptions: 'Asetukset',
+    filterByName: 'Filter by name',
+    filterByBoundingBox: 'Filter by bounding box',
+    searchWithinFilter: 'Hae',
+    selectionOptions: 'Selection options',
     selectAlsoSubconcepts: 'Automatically select all subconcepts',
     doNotSelectSubconcepts: 'Do not select subconcepts',
     sortingOptions: 'Järjestys',
     sortAlphabetically: 'Järjestä nimen mukaan',
-    sortByNumberOfSearchResults: 'Järjestä hakutuloksien lukumäärän mukaan'
+    sortByNumberOfSearchResults: 'Järjestä hakutuloksien lukumäärän mukaan',
+    useDisjunction: 'Use logical OR between selections',
+    useConjuction: 'Use logical AND between selections',
+    minYear: 'Min year',
+    maxYear: 'Max year',
+    min: 'Min',
+    max: 'Max',
+    facetSearchFieldPlaceholder: 'Hae...',
+    applyFacetSelection: 'Hae',
+    defaultMissingValueLabel: 'Ei merkintää datassa'
   },
   tabs: {
     table: 'taulukko',
@@ -307,13 +318,14 @@ export default {
           label: 'Nimi',
           description: 'Henkilön nimi',
           facetDescription: `
-          Etsi henkilön nimellä. Välilyönnin merkitys on "TAI", joten haku matti meikäläinen hakee kaikki joiden nimessä esiintyy matti tai meikäläinen.
-          Rajataksesi haun tarkemmin voit käyttää lainausmerkkejä. Nimet on tallennettu sukunimi ensin, joten Matti Meikäläisen löytäisit haulla
-          "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla, mutta muuten haku on oletuksena tarkka kirjaimista.
-          Esimerkiksi e on haun kannalta eri kirjain kuin é. Haussa voit käyttää jokerimerkkejä * ja ?.
-          Kysymysmerkki ? korvaa yksittäisen kirjaimen millä tahansa kirjaimella, esim. meik?lain?n.
-          Asteriksi * sallii sanan loppuosan olevan mitä tahansa, esim. meikäläi*.
-          `
+            Etsi henkilön nimellä. Välilyönnin merkitys on "TAI", joten haku matti meikäläinen hakee kaikki joiden nimessä esiintyy matti tai meikäläinen.
+            Rajataksesi haun tarkemmin voit käyttää lainausmerkkejä. Nimet on tallennettu sukunimi ensin, joten Matti Meikäläisen löytäisit haulla
+            "meikäläinen, matti". Alkukirjaimia ei tarvitse kirjoittaa isolla, mutta muuten haku on oletuksena tarkka kirjaimista.
+            Esimerkiksi e on haun kannalta eri kirjain kuin é. Haussa voit käyttää jokerimerkkejä * ja ?.
+            Kysymysmerkki ? korvaa yksittäisen kirjaimen millä tahansa kirjaimella, esim. meik?lain?n.
+            Asteriksi * sallii sanan loppuosan olevan mitä tahansa, esim. meikäläi*.
+          `,
+          textFacetInputPlaceholder: 'Etsi nimellä'
         },
         familyName: {
           label: 'Sukunimi',
@@ -818,11 +830,12 @@ export default {
         prefLabel: {
           label: 'Taistelun nimi',
           facetDescription: `
-          Taistelun nimi
+            Taistelun nimi
           `,
           description: `
             Taistelun nimi
-          `
+          `,
+          textFacetInputPlaceholder: 'Etsi nimellä'
         },
         startDate: {
           label: 'Alkupäivä',
