@@ -86,7 +86,8 @@ class FacetBar extends React.Component {
     const { classes, facetClass } = this.props
     const { facetUpdateID, updatedFacet, updatedFilter, facets } = this.props.facetData
     const label = intl.get(`perspectives.${facetClass}.properties.${facetID}.label`)
-    const description = intl.get(`perspectives.${facetClass}.properties.${facetID}.description`)
+    const description = intl.get(`perspectives.${facetClass}.properties.${facetID}.facetDescription`) ||
+      intl.get(`perspectives.${facetClass}.properties.${facetID}.description`)
     const facet = facets[facetID]
     const facetConstrainSelf = this.props.facetDataConstrainSelf == null
       ? null

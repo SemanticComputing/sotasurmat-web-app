@@ -356,7 +356,7 @@ export const INITIAL_STATE = {
       spatialFilterButton: false,
       isFetching: false,
       searchField: true,
-      containerClass: 'three',
+      containerClass: 'four',
       type: 'integer',
       filterType: 'integerFilter',
       integerFilter: null
@@ -416,7 +416,7 @@ export const INITIAL_STATE = {
 
 const victimsFacets = (state = INITIAL_STATE, action) => {
   if (action.facetClass === 'victims') {
-    return handleFacetAction(state, action)
+    return handleFacetAction(state, action, INITIAL_STATE)
   } else return state
 }
 
