@@ -1,5 +1,9 @@
 export default {
   languageLabel: 'English',
+  html: {
+    title: 'WarVictimSampo 1914–1922: Casulties of Finnish wars 1914–1922',
+    description: 'WarVictimSampo 1914–1922 is a semantic portal and a Linked Open Data service that publishes data about the war victims in Finland in 1914–1922'
+  },
   appTitle: {
     short: 'WarVictimSampo 1914–1922',
     long: 'WarVictimSampo 1914–1922'
@@ -12,6 +16,7 @@ export default {
     <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank'
     rel='noopener noreferrer'>CC BY</a>.
   `,
+  backendErrorText: 'One of the backend services is not available at the moment. Please try again later.',
   topBar: {
     feedback: 'feedback',
     info: {
@@ -139,7 +144,7 @@ export default {
       shortDescription: 'Information about war victims in Finland in 1914–1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Perspective to the war victim file
+          Information about war victims in Finland in 1914–1922.
         </p>
       `,
       instancePage: {

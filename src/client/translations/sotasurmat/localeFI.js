@@ -1,5 +1,9 @@
 export default {
   languageLabel: 'Suomi',
+  html: {
+    title: 'Sotasurmasampo 1914–1922 | Suomen sisällis- ja heimosodat semanttisessa webissä',
+    description: 'Sotasurmasampo 1914–22 on Suomeen liittyviin sotatapahtumiin vuosina 1914–22 keskittynyt portaali'
+  },
   appTitle: {
     short: 'Sotasurmasampo 1914–1922',
     long: 'Sotasurmasampo 1914–1922'
