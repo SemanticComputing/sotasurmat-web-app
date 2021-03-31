@@ -171,7 +171,7 @@ class LeafletMap extends React.Component {
     // check if instance have changed
     if ((this.props.instance !== null) && !isEqual(prevProps.instance, this.props.instance)) {
       this.markers[this.props.instance.id]
-        .bindPopup(this.createPopUpContent(this.props.instance), {
+        .bindPopup(this.createPopUpContentSotasurmat(this.props.instance), {
           maxHeight: 300,
           maxWidth: 400,
           minWidth: 400
@@ -785,6 +785,53 @@ class LeafletMap extends React.Component {
       p.textContent = 'Actors:'
       container.appendChild(p)
       container.appendChild(this.createInstanceListing(data.related))
+    }
+    return container
+  }
+
+  createPopUpContentSotasurmat = data => {
+    if (Array.isArray(data.prefLabel)) {
+      data.prefLabel = data.prefLabel[0]
+    }
+    const container = document.createElement('div')
+    const h3 = document.createElement('h3')
+    if (has(data.prefLabel, 'dataProviderUrl')) {
+      const link = document.createElement('a')
+      link.addEventListener('click', () => history.push(data.prefLabel.dataProviderUrl))
+      link.textContent = data.prefLabel.prefLabel
+      link.style.cssText = 'cursor: pointer; text-decoration: underline'
+      h3.appendChild(link)
+    } else {
+      h3.textContent = data.prefLabel.prefLabel
+    }
+    container.appendChild(h3)
+
+    if (this.props.resultClass === 'deathPlaces') {
+      const deathsAtElement = document.createElement('p')
+      deathsAtElement.textContent = intl.get('perspectives.victims.map.deathsAt')
+      container.appendChild(deathsAtElement)
+      container.appendChild(this.createInstanceListing(data.related))
+    }
+
+    if (this.props.resultClass === 'battlePlaces') {
+      const startDateElement = document.createElement('p')
+      const startDate = moment(data.startDate)
+      startDateElement.textContent = `Alkupäivä: ${startDate.format('DD.MM.YYYY')}`
+      container.appendChild(startDateElement)
+      const endDateElement = document.createElement('p')
+      const endDate = moment(data.endDate)
+      endDateElement.textContent = `Loppupäivä: ${endDate.format('DD.MM.YYYY')}`
+      container.appendChild(endDateElement)
+      if (has(data, 'greaterPlace.prefLabel')) {
+        const municipalityElement = document.createElement('p')
+        municipalityElement.textContent = `Kunta: ${data.greaterPlace.prefLabel}`
+        container.appendChild(municipalityElement)
+      }
+      if (has(data, 'units')) {
+        const unitsElement = document.createElement('p')
+        unitsElement.textContent = `Taisteluun osallistuneita joukkoja: ${data.units}`
+        container.appendChild(unitsElement)
+      }
     }
     return container
   }
