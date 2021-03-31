@@ -37,6 +37,7 @@ import {
   fetchResultCount,
   fetchPaginatedResults,
   fetchResults,
+  fetchInstanceAnalysis,
   fetchFullTextResults,
   clearResults,
   fetchByURI,
@@ -282,7 +283,9 @@ const SemanticPortal = props => {
   // const noResults = props.clientFS.results == null
 
   useEffect(() => {
-    document.title = intl.get('appTitle.short')
+    document.title = intl.get('html.title')
+    document.documentElement.lang = props.options.currentLocale
+    document.querySelector('meta[name="description"]').setAttribute('content', intl.get('html.description'))
   }, [props.options.currentLocale])
 
   return (
@@ -401,6 +404,7 @@ const SemanticPortal = props => {
                                   leafletMap={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
+                                  fetchInstanceAnalysis={props.fetchInstanceAnalysis}
                                   fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
                                   fetchGeoJSONLayers={props.fetchGeoJSONLayers}
                                   fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
@@ -585,13 +589,13 @@ const SemanticPortal = props => {
                 </Grid>}
             /> */}
             {/* create routes for info buttons */}
-            <Route
+            {/* <Route
               path={`${rootUrlWithLang}/feedback`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <FeedbackPage />
                 </div>}
-            />
+            /> */}
             <Route
               path={`${rootUrlWithLang}/instructions`}
               render={() =>
@@ -639,6 +643,7 @@ const mapDispatchToProps = ({
   fetchResultCount,
   fetchPaginatedResults,
   fetchResults,
+  fetchInstanceAnalysis,
   fetchFullTextResults,
   fetchByURI,
   fetchFacet,

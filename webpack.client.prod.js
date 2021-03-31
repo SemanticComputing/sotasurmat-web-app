@@ -5,7 +5,7 @@ const common = require('./webpack.client.common.js')
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
+  // devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -22,9 +22,8 @@ module.exports = merge(common, {
           noErrorOnMissing: true
         },
         {
-          from: 'src/client/static_files/',
-          to: `${common.output.path}`,
-          noErrorOnMissing: true
+          from: 'src/client/robots.txt',
+          to: `${common.output.path}`
         }
       ]
     })

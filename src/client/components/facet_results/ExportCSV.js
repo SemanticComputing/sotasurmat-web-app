@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import { stateToUrl } from '../../helpers/helpers'
 
+const apiUrl = process.env.API_URL
+
 const styles = theme => ({
   root: {
     height: 'calc(100% - 72px)',
