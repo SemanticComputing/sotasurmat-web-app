@@ -17,6 +17,7 @@ export default {
     <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' 
     rel='noopener noreferrer'>CC BY</a>.
   `,
+  backendErrorText: 'Yksi Sotasurmasampo-portaalin taustapalveluista ei ole tällä hetkellä saatavilla. Ole hyvä yritä myöhemmin uudestaan.',
   topBar: {
     feedback: 'palaute',
     info: {
