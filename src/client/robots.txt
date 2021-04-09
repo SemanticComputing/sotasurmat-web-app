@@ -1,2 +1,5 @@
-User-agent: *
-Allow: /
+User-agent: Googlebot
+Disallow: /victims/page/*
+Disallow: /battles/page/*
+
+Sitemap: https://sotasurmat.narc.fi/sitemap.xml

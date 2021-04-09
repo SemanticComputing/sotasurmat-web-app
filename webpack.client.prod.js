@@ -22,6 +22,10 @@ module.exports = merge(common, {
           noErrorOnMissing: true
         },
         {
+          from: 'src/client/static_files',
+          to: `${common.output.path}`
+        },
+        {
           from: 'src/client/robots.txt',
           to: `${common.output.path}`
         }
