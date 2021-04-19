@@ -14,7 +14,7 @@ export default {
   `,
   mainPageImageLicence: `
     Etusivun kuvat: Vapriikin kuva-arkisto
-    <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank' 
+    <a href= "https://creativecommons.org/licenses/by/2.0/" target='_blank'
     rel='noopener noreferrer'>CC BY</a>.
   `,
   backendErrorText: 'Yksi Sotasurmasampo-portaalin taustapalveluista ei ole tällä hetkellä saatavilla. Ole hyvä yritä myöhemmin uudestaan.',
@@ -151,7 +151,10 @@ export default {
       shortDescription: 'Suomen sotasurmat 1914–1922',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla. Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista.
+          Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla.
+          Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista. Huomaa, että haussa on oletuksena mukana
+          myös henkilöitä joiden tiedetään todellisuudessa selvinneen, muytta joiden on kuitenkin joissain lähteissä mainittu kuolleen.
+          Voit muuttaa tätä "Surman todennäköisyys" valitsimesta.
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>

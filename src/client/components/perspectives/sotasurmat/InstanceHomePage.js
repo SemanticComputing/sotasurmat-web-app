@@ -157,7 +157,7 @@ class InstanceHomePage extends React.Component {
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
                 render={() =>
                   <VictimHomePageExtraTable data={results} />}
-              />}
+              />
             </>}
         </Paper>
       </div>
