@@ -82,6 +82,9 @@ export default {
     },
     textFacet: {
       inputLabel: 'Etsi nimellä'
+    },
+    sliderFacet: {
+      invalidStartOrEnd: 'Vain kokonaisluvut ovat sallittuja. Pienin sallittu luku on {min} ja suurin {max}.'
     }
   },
   leafletMap: {
