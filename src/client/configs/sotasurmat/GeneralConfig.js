@@ -16,6 +16,6 @@ export const SLIDER_DURATION = {
   doubleSpeed: 300
 }
 
-export const documentFinderAPIUrl = 'https://data.finlex.fi/document-finder-backend'
+export const feedbackLink = 'https://link.webropolsurveys.com/S/B9961BC9A2C27761'
 
-export const backendErrorText = 'Ei pystytty yhdistämään tietokantaan. Kokeile myöhemmin uudestaan. Cannot currently connect to the database. Please try again later.'
+// export const documentFinderAPIUrl = 'https://data.finlex.fi/document-finder-backend'

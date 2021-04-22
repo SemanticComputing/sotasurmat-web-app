@@ -87,7 +87,7 @@ class FeedbackPage extends React.Component {
           <div className={classes.iframeContainer}>
             <iframe
               className={classes.iframe}
-              src='https://link.webropolsurveys.com/S/B9961BC9A2C27761'
+              src=''
               onLoad={this.handleHideSpinner}
             />
           </div>
