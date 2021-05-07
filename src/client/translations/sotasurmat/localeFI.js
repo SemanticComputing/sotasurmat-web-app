@@ -99,7 +99,7 @@ export default {
   },
   instancePageGeneral: {
     introduction: `
-    
+
     `,
     repetition: `
     `
@@ -156,7 +156,7 @@ export default {
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
           Näkymä sisällisodassa, heimosodissa ja 1. maailmansodassa menehtyneisiin suomalaisiin 1914-1922. Voit hakea ja rajoittaa oikealla näkyviä henkilöitä vasemmalla olevien valitsimien avulla.
           Henkilön linkkiä klikkaamalla pääset tutkimaan tietoja hänen kotisivullaan. Koko tulosjoukkoa voit tutkia paitsi taulukkona myös piirakkakaavioina, viivakaavioina ja kartalla kuolinpaikkojen perusteella tai ladata tulokset itsellesi taulukkona CSV-muodossa: valitse toiminto hakutuloksen päällä olevista vaihtoehdoista. Huomaa, että haussa on oletuksena mukana
-          myös henkilöitä joiden tiedetään todellisuudessa selvinneen, muytta joiden on kuitenkin joissain lähteissä mainittu kuolleen.
+          myös henkilöitä joiden tiedetään todellisuudessa selvinneen, mutta joiden on kuitenkin joissain lähteissä mainittu kuolleen.
           Voit muuttaa tätä "Surman todennäköisyys" valitsimesta.
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
@@ -829,6 +829,18 @@ export default {
       },
       temporalMap: {
         municipality: 'Kunta'
+      },
+      map: {
+        startDate: 'Start date',
+        endDate: 'End date',
+        municipality: 'Municipality',
+        units: 'Units participating in the battle'
+      },
+      map: {
+        startDate: 'Alkupäivä',
+        endDate: 'Loppupäivä',
+        municipality: 'Kunta',
+        units: 'Taisteluun osallistuneita valkoisten joukkoja'
       },
       properties: {
         uri: {

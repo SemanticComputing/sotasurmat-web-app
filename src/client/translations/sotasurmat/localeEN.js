@@ -96,7 +96,7 @@ export default {
   },
   instancePageGeneral: {
     introduction: `
-    
+
     `,
     repetition: `
     `
@@ -147,7 +147,8 @@ export default {
       shortDescription: 'Information about war victims in Finland in 1914–1922.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Information about war victims in Finland in 1914–1922.
+          Information about war victims in Finland in 1914–1922, including the WWI, the Finnish Civil War and the Kindred Nation Wars.
+          You can filter the data with the selectors on the left, and research and visualize or download the results in different ways.
         </p>
       `,
       instancePage: {
@@ -330,7 +331,7 @@ export default {
         birthDateSpan: {
           label: 'Birth date',
           description: `
-            BIrth date timespan
+            Birth date timespan
           `
         },
         deathDateSpan: {
@@ -727,7 +728,8 @@ export default {
       shortDescription: 'Battles of the civil war.',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Battles
+          Information about the battles of the Finnish Civil war based on the "battle site cards" created by the Finnish War Archives some time after 1920.
+          These depict the civil war battles from the perspective of the White side, and include information about the White forces participating the battles.
         </p>
 
       `,
@@ -738,6 +740,15 @@ export default {
             Information about the battle
           </p>
         `
+      },
+      temporalMap: {
+        municipality: 'Municipality'
+      },
+      map: {
+        startDate: 'Start date',
+        endDate: 'End date',
+        municipality: 'Municipality',
+        units: 'Units participating in the battle'
       },
       properties: {
         uri: {
@@ -874,7 +885,7 @@ export default {
     </h1>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       WarVictimSampo 1914–1922 is a semantic portal about Finnish war events in 1914–1922.
-      The portal offers a user interface to the War Victims of Finland 1914–1922 database 
+      The portal offers a user interface to the War Victims of Finland 1914–1922 database
       and a registry of the battles of the Finnish Civil War.
       Both materials are maintained by the National Archives of Finland.
     </p>

@@ -816,20 +816,20 @@ class LeafletMap extends React.Component {
     if (this.props.resultClass === 'battlePlaces') {
       const startDateElement = document.createElement('p')
       const startDate = moment(data.startDate)
-      startDateElement.textContent = `Alkupäivä: ${startDate.format('DD.MM.YYYY')}`
+      startDateElement.textContent = `${intl.get('perspectives.battles.map.startDate')}: ${startDate.format('DD.MM.YYYY')}`
       container.appendChild(startDateElement)
       const endDateElement = document.createElement('p')
       const endDate = moment(data.endDate)
-      endDateElement.textContent = `Loppupäivä: ${endDate.format('DD.MM.YYYY')}`
+      endDateElement.textContent = `${intl.get('perspectives.battles.map.endDate')}: ${endDate.format('DD.MM.YYYY')}`
       container.appendChild(endDateElement)
       if (has(data, 'greaterPlace.prefLabel')) {
         const municipalityElement = document.createElement('p')
-        municipalityElement.textContent = `Kunta: ${data.greaterPlace.prefLabel}`
+        municipalityElement.textContent = `${intl.get('perspectives.battles.map.municipality')}: ${data.greaterPlace.prefLabel}`
         container.appendChild(municipalityElement)
       }
       if (has(data, 'units')) {
         const unitsElement = document.createElement('p')
-        unitsElement.textContent = `Taisteluun osallistuneita joukkoja: ${data.units}`
+        unitsElement.textContent = `${intl.get('perspectives.battles.map.units')}: ${data.units}`
         container.appendChild(unitsElement)
       }
     }
@@ -863,7 +863,7 @@ class LeafletMap extends React.Component {
     if (has(data, 'source')) {
       if (data.namesArchiveLink !== '-') {
         popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>: 
+        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>:
           <a href="${data.namesArchiveLink}" target="_blank">${data.source}</a></p>`
       } else {
         popUpTemplate += `
