@@ -742,7 +742,10 @@ export default {
         `
       },
       temporalMap: {
-        municipality: 'Municipality'
+        municipality: 'Municipality',
+        startDate: 'Start date',
+        endDate: 'End date',
+        units: 'Units participating in the battle'
       },
       map: {
         startDate: 'Start date',

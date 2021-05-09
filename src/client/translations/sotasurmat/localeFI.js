@@ -828,13 +828,10 @@ export default {
         `
       },
       temporalMap: {
-        municipality: 'Kunta'
-      },
-      map: {
-        startDate: 'Start date',
-        endDate: 'End date',
-        municipality: 'Municipality',
-        units: 'Units participating in the battle'
+        municipality: 'Kunta',
+        startDate: 'Alkupäivä',
+        endDate: 'Loppupäivä',
+        units: 'Taisteluun osallistuneita valkoisten joukkoja'
       },
       map: {
         startDate: 'Alkupäivä',
