@@ -26,6 +26,18 @@ const theme = createMuiTheme({
         }
       }
     },
+    MuiAccordionSummary: {
+      content: {
+        '&$expanded': {
+          marginTop: 4
+        }
+      },
+      expandIcon: {
+        '&$expanded': {
+          marginTop: -16
+        }
+      }
+    },
     MuiButton: {
       endIcon: {
         marginLeft: 0
@@ -38,8 +50,8 @@ const theme = createMuiTheme({
     },
     MuiTableCell: {
       sizeSmall: {
-        paddingTop: 2,
-        paddingBottom: 2
+        paddingTop: 0,
+        paddingBottom: 0
       }
     }
   }
