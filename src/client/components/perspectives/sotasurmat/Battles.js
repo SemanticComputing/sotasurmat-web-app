@@ -6,15 +6,24 @@ import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
 import TemporalMap from '../../facet_results/TemporalMap'
 import ExportCSV from '../../facet_results/ExportCSV'
+import {
+  MAPBOX_ACCESS_TOKEN,
+  MAPBOX_STYLE
+} from '../../../configs/sotasurmat/GeneralConfig'
+import { createPopUpContentSotasurmat } from '../../../configs/sotasurmat/Leaflet/LeafletConfig'
 
 const Battles = props => {
-  const { rootUrl, perspective } = props
+  const { rootUrl, perspective /* screenSize */ } = props
+  // const layerControlExpanded = screenSize === 'md' ||
+  //   screenSize === 'lg' ||
+  //   screenSize === 'xl'
   return (
     <>
       <PerspectiveTabs
         routeProps={props.routeProps}
         tabs={props.perspective.tabs}
         screenSize={props.screenSize}
+        layoutConfig={props.layoutConfig}
       />
       <Route
         exact path={`${rootUrl}/${perspective.id}/faceted-search`}
@@ -24,8 +33,8 @@ const Battles = props => {
         path={[`${props.rootUrl}/${perspective.id}/faceted-search/table`, '/iframe.html']}
         render={routeProps =>
           <ResultTable
-            data={props.facetResults}
-            facetUpdateID={props.facetData.facetUpdateID}
+            data={props.perspectiveState}
+            facetUpdateID={props.facetState.facetUpdateID}
             resultClass='battles'
             facetClass='battles'
             fetchPaginatedResults={props.fetchPaginatedResults}
@@ -34,43 +43,59 @@ const Battles = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             rootUrl={rootUrl}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
-            center={[64.00, 30.00]}
-            zoom={5}
-            results={props.facetResults.results}
+            mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+            mapBoxStyle={MAPBOX_STYLE}
+            center={props.perspectiveState.maps.battlePlaces.center}
+            zoom={props.perspectiveState.maps.battlePlaces.zoom}
+            results={props.perspectiveState.results}
+            leafletMapState={props.leafletMapState}
             pageType='facetResults'
-            facetUpdateID={props.facetData.facetUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
+            // facet={}
+            // facetID=''
             resultClass='battlePlaces'
             facetClass='battles'
-            instance={props.facetResults.instanceTableData}
+            mapMode='cluster'
+            instance={props.perspectiveState.instanceTableData}
+            createPopUpContent={createPopUpContentSotasurmat}
+            popupMaxHeight={320}
+            popupMinWidth={280}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+            clearGeoJSONLayers={props.clearGeoJSONLayers}
             fetchByURI={props.fetchByURI}
-            fetching={props.facetResults.fetching}
-            mapMode='cluster'
-            showMapModeControl={false}
+            fetching={props.perspectiveState.fetching}
             showInstanceCountInClusters={false}
             updateFacetOption={props.updateFacetOption}
+            updateMapBounds={props.updateMapBounds}
+            showError={props.showError}
             showExternalLayers={false}
+            // layerControlExpanded={layerControlExpanded}
+            // customMapControl
+            // layerConfigs={layerConfigs}
+            infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
         path={`${props.rootUrl}/battles/faceted-search/animation`}
         render={() =>
           <TemporalMap
-            results={props.facetResults.results}
+            results={props.perspectiveState.results}
             resultClass='battlePlacesAnimation'
             facetClass='battles'
             fetchResults={props.fetchResults}
-            fetching={props.facetResults.fetching}
+            fetching={props.perspectiveState.fetching}
             animationValue={props.animationValue}
             animateMap={props.animateMap}
-            facetUpdateID={props.facetData.facetUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
           />}
       />
       <Route
@@ -79,32 +104,103 @@ const Battles = props => {
           <ExportCSV
             resultClass='battlePlaces'
             facetClass='battles'
-            facetUpdateID={props.facetData.facetUpdateID}
-            facets={props.facetData.facets}
+            facetUpdateID={props.facetState.facetUpdateID}
+            facets={props.facetState.facets}
           />}
       />
     </>
   )
 }
-
 Battles.propTypes = {
-  facetResults: PropTypes.object.isRequired,
-  leafletMapLayers: PropTypes.object.isRequired,
-  facetData: PropTypes.object.isRequired,
-  fetchResults: PropTypes.func.isRequired,
-  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+   * Faceted search configs and results of this perspective.
+   */
+  perspectiveState: PropTypes.object.isRequired,
+  /**
+    * Facet configs and values.
+    */
+  facetState: PropTypes.object.isRequired,
+  /**
+    * Facet values where facets constrain themselves, used for statistics.
+    */
+  facetConstrainSelfState: PropTypes.object,
+  /**
+    * Leaflet map config and external layers.
+    */
+  leafletMapState: PropTypes.object.isRequired,
+  /**
+    * Redux action for fetching paginated results.
+    */
   fetchPaginatedResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching all results.
+    */
+  fetchResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching facet values for statistics.
+    */
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers.
+    */
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers via backend.
+    */
+  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  /**
+    * Redux action for clearing external GeoJSON layers.
+    */
+  clearGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching information about a single entity.
+    */
   fetchByURI: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the page of paginated results.
+    */
   updatePage: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the rows per page of paginated results.
+    */
   updateRowsPerPage: PropTypes.func.isRequired,
+  /**
+    * Redux action for sorting the paginated results.
+    */
   sortResults: PropTypes.func.isRequired,
-  routeProps: PropTypes.object.isRequired,
+  /**
+    * Redux action for updating the active selection or config of a facet.
+    */
+  showError: PropTypes.func.isRequired,
+  /**
+    * Redux action for showing an error
+    */
   updateFacetOption: PropTypes.func.isRequired,
+  /**
+    * Routing information from React Router.
+    */
+  routeProps: PropTypes.object.isRequired,
+  /**
+    * Perspective config.
+    */
   perspective: PropTypes.object.isRequired,
+  /**
+    * State of the animation, used by TemporalMap.
+    */
   animationValue: PropTypes.array.isRequired,
+  /**
+    * Redux action for animating TemporalMap.
+    */
   animateMap: PropTypes.func.isRequired,
+  /**
+    * Current screen size.
+    */
   screenSize: PropTypes.string.isRequired,
-  rootUrl: PropTypes.string.isRequired
+  /**
+    * Root url of the application.
+    */
+  rootUrl: PropTypes.string.isRequired,
+  layoutConfig: PropTypes.object.isRequired
 }
 
 export default Battles

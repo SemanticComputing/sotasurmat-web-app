@@ -18,6 +18,12 @@ export const INITIAL_STATE = {
   instanceTableData: null,
   instanceTableExternalData: null,
   instanceSparqlQuery: null,
+  maps: {
+    deathPlaces: {
+      center: [64.00, 30.00],
+      zoom: 5
+    }
+  },
   properties: [
     {
       id: 'prefLabel',
@@ -100,7 +106,11 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'victims',
   'csvDeaths',
-  'personExtras'
+  'personExtras',
+  'ageCount',
+  'birthYearCount',
+  'deathDateCount',
+  'deathPlaces'
 ])
 
 const victims = (state = INITIAL_STATE, action) => {

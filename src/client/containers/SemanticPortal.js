@@ -288,6 +288,7 @@ const SemanticPortal = props => {
                   screenSize={screenSize}
                   rootUrl={rootUrlWithLang}
                   layoutConfig={layoutConfig}
+                  currentLocale={props.options.currentLocale}
                 />
                 <Footer layoutConfig={layoutConfig} />
               </>}
@@ -621,8 +622,6 @@ const mapStateToProps = state => {
   // const { clientFSResults, clientFSFacetValues } = filterResults(state.clientSideFacetedSearch)
   return {
     sources: state.sources,
-    places: state.places,
-    dates: state.dates,
     victims: state.victims,
     victimsFacets: state.victimsFacets,
     victimsFacetsConstrainSelf: state.victimsFacetsConstrainSelf,
@@ -691,7 +690,6 @@ SemanticPortal.propTypes = {
   sources: PropTypes.object.isRequired,
   victimsFacets: PropTypes.object.isRequired,
   victimsFacetsConstrainSelf: PropTypes.object.isRequired,
-  places: PropTypes.object.isRequired,
   /**
    * Leaflet map config and external layers.
    */

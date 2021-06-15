@@ -31,6 +31,7 @@ export default {
   },
   facetBar: {
     results: 'Tulokset',
+    filters: 'Suodattimet',
     activeFilters: 'Aktiiviset suodattimet:',
     removeAllFilters: 'Poista kaikki',
     narrowDownBy: 'Rajoita',

@@ -18,6 +18,12 @@ export const INITIAL_STATE = {
   instanceTableData: null,
   instanceTableExternalData: null,
   instanceSparqlQuery: null,
+  maps: {
+    battlePlaces: {
+      center: [64.00, 30.00],
+      zoom: 5
+    }
+  },
   properties: [
     {
       id: 'prefLabel',

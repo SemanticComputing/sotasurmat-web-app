@@ -19,11 +19,12 @@ const styles = () => ({
     width: '100%',
     height: '100%'
   },
-  content: {
+  content: props => ({
+    padding: 0,
     width: '100%',
-    height: 'calc(100% - 72px)',
+    height: `calc(100% - ${props.layoutConfig.tabHeight}px)`,
     overflow: 'auto'
-  },
+  }),
   spinnerContainer: {
     display: 'flex',
     width: '100%',
@@ -51,23 +52,29 @@ class InstanceHomePage extends React.Component {
     // handle the case when the TABLE tab was not originally active
     const prevPathname = prevProps.routeProps.location.pathname
     const currentPathname = this.props.routeProps.location.pathname
-    if (prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+    if (!this.hasTableData() && prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+      this.fetchTableData()
+    }
+    // handle browser's back button
+    const localID = this.getLocalIDFromURL()
+    if (this.state.localID !== localID) {
       this.fetchTableData()
     }
   }
 
+  hasTableData = () => {
+    const { instanceTableData } = this.props.perspectiveState
+    return instanceTableData !== null && Object.values(instanceTableData).length >= 1
+  }
+
   fetchTableData = () => {
+    const { perspectiveConfig } = this.props
+    const localID = this.getLocalIDFromURL()
+    this.setState({ localID })
     let uri = ''
     const base = 'http://ldf.fi/siso'
-    const locationArr = this.props.routeProps.location.pathname.split('/')
-    let localID = locationArr.pop()
-    this.props.tabs.map(tab => {
-      if (localID === tab.id) {
-        localID = locationArr.pop() // pop again if tab id
-      }
-    })
-    this.setState({ localID: localID })
-    switch (this.props.resultClass) {
+    const resultClass = perspectiveConfig.id
+    switch (resultClass) {
       case 'victims':
         uri = `${base}/death_records/${localID}`
         this.setState({ victimsPage: true })
@@ -81,20 +88,32 @@ class InstanceHomePage extends React.Component {
     }
 
     this.props.fetchByURI({
-      resultClass: this.props.resultClass,
+      resultClass,
       facetClass: null,
       variant: null,
       uri: uri
     })
     this.props.fetchResults({
       resultClass: 'personExtras',
-      uri: uri
+      uri
     })
   }
 
+  getLocalIDFromURL = () => {
+    const locationArr = this.props.routeProps.location.pathname.split('/')
+    let localID = locationArr.pop()
+    this.props.perspectiveConfig.instancePageTabs.map(tab => {
+      if (localID === tab.id) {
+        localID = locationArr.pop() // pop again if tab id
+      }
+    })
+    return localID
+  }
+
   getVisibleRows = rows => {
+    const { instanceTableData } = this.props.perspectiveState
     const visibleRows = []
-    const instanceClass = this.props.tableData.type ? this.props.tableData.type.id : ''
+    const instanceClass = instanceTableData.type ? instanceTableData.type.id : ''
     rows.map(row => {
       if ((has(row, 'onlyForClass') && row.onlyForClass === instanceClass) ||
        !has(row, 'onlyForClass')) {
@@ -105,40 +124,54 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, tableData, results, isLoading, resultClass, rootUrl } = this.props
+    const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize, layoutConfig } = this.props
     const { victimsPage } = this.state
-    const hasTableData = tableData !== null && Object.values(tableData).length >= 1
+    const { instanceTableData, fetching } = perspectiveState
+    const resultClass = perspectiveConfig.id
+    const defaultInstancePageTab = perspectiveConfig.defaultInstancePageTab
+      ? perspectiveConfig.defaultInstancePageTab : 'table'
+    const hasTableData = this.hasTableData()
     return (
       <div className={classes.root}>
         <PerspectiveTabs
           routeProps={this.props.routeProps}
-          tabs={this.props.tabs}
-          screenSize={this.props.screenSize}
+          tabs={perspectiveConfig.instancePageTabs}
+          screenSize={screenSize}
+          layoutConfig={layoutConfig}
         />
         <Paper square className={classes.content}>
-          {isLoading &&
+          {fetching && !hasTableData &&
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>}
           {!hasTableData &&
-            <>
+            <div className={classes.spinnerContainer}>
               <Typography variant='h6'>
                 No data found for id: <span style={{ fontStyle: 'italic' }}>{this.state.localID}</span>
               </Typography>
-            </>}
+            </div>}
+          {/* make sure that tableData exists before rendering any components */}
           {hasTableData && !victimsPage &&
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
-                render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
+                render={routeProps =>
+                  <Redirect
+                    to={{
+                      pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/${defaultInstancePageTab}`,
+                      hash: routeProps.location.hash
+                    }}
+                  />}
               />
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
                   <InstanceHomePageTable
                     resultClass={resultClass}
-                    data={tableData}
-                    properties={this.getVisibleRows(this.props.properties)}
+                    data={instanceTableData}
+                    properties={this.getVisibleRows(perspectiveState.properties)}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
                   />}
               />
             </>}
@@ -146,17 +179,23 @@ class InstanceHomePage extends React.Component {
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
-                render={() => <Redirect to={`${rootUrl}/${resultClass}/page/${this.state.localID}/table`} />}
+                render={routeProps =>
+                  <Redirect
+                    to={{
+                      pathname: `${rootUrl}/${resultClass}/page/${this.state.localID}/${defaultInstancePageTab}`,
+                      hash: routeProps.location.hash
+                    }}
+                  />}
               />
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
-                  <VictimHomePageTable data={tableData} />}
+                  <VictimHomePageTable data={instanceTableData} />}
               />
               <Route
                 path={`${this.props.rootUrl}/${resultClass}/page/${this.state.localID}/extra`}
                 render={() =>
-                  <VictimHomePageExtraTable data={results} />}
+                  <VictimHomePageExtraTable data={perspectiveState.results} />}
               />
             </>}
         </Paper>
@@ -166,26 +205,87 @@ class InstanceHomePage extends React.Component {
 }
 
 InstanceHomePage.propTypes = {
-  rootUrl: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
-  fetchByURI: PropTypes.func.isRequired,
+  /**
+   * Faceted search configs and results of this perspective.
+   */
+  perspectiveState: PropTypes.object.isRequired,
+  /**
+    * Leaflet map config and external layers.
+    */
+  leafletMapState: PropTypes.object.isRequired,
+  /**
+    * Redux action for fetching paginated results.
+    */
+  fetchPaginatedResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching all results.
+    */
   fetchResults: PropTypes.func.isRequired,
-  resultClass: PropTypes.string.isRequired,
-  tableData: PropTypes.object,
-  tableExternalData: PropTypes.object,
-  results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  resultUpdateID: PropTypes.number.isRequired,
-  sparqlQuery: PropTypes.string,
-  properties: PropTypes.array.isRequired,
-  tabs: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  routeProps: PropTypes.object.isRequired,
-  screenSize: PropTypes.string.isRequired,
+  /**
+    * Redux action for fetching facet values for statistics.
+    */
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers.
+    */
   fetchGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers via backend.
+    */
   fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  /**
+    * Redux action for clearing external GeoJSON layers.
+    */
   clearGeoJSONLayers: PropTypes.func.isRequired,
-  leafletMap: PropTypes.object.isRequired,
-  showError: PropTypes.func.isRequired
+  /**
+    * Redux action for fetching information about a single entity.
+    */
+  fetchByURI: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the page of paginated results.
+    */
+  updatePage: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the rows per page of paginated results.
+    */
+  updateRowsPerPage: PropTypes.func.isRequired,
+  /**
+    * Redux action for sorting the paginated results.
+    */
+  sortResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the active selection or config of a facet.
+    */
+  showError: PropTypes.func.isRequired,
+  /**
+    * Redux action for showing an error
+    */
+  updateFacetOption: PropTypes.func.isRequired,
+  /**
+    * Routing information from React Router.
+    */
+  routeProps: PropTypes.object.isRequired,
+  /**
+    * Perspective config.
+    */
+  perspective: PropTypes.object.isRequired,
+  /**
+    * State of the animation, used by TemporalMap.
+    */
+  animationValue: PropTypes.array.isRequired,
+  /**
+    * Redux action for animating TemporalMap.
+    */
+  animateMap: PropTypes.func.isRequired,
+  /**
+    * Current screen size.
+    */
+  screenSize: PropTypes.string.isRequired,
+  /**
+    * Root url of the application.
+    */
+  rootUrl: PropTypes.string.isRequired,
+  layoutConfig: PropTypes.object.isRequired
 }
 
 export const InstanceHomePageComponent = InstanceHomePage

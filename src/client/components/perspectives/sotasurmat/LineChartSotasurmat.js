@@ -248,7 +248,7 @@ class LineChartSotasurmat extends React.Component {
     const { classes } = this.props
     if (results == null) {
       return (
-        <div />
+        <div>Loading Chart</div>
       )
     }
     if (this.state.variant === 'birthYearCount') {
@@ -345,7 +345,7 @@ class LineChartSotasurmat extends React.Component {
 
 LineChartSotasurmat.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   fetchResults: PropTypes.func.isRequired,
   facetUpdateID: PropTypes.number
 }

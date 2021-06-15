@@ -30,6 +30,7 @@ export default {
   },
   facetBar: {
     results: 'Results',
+    filters: 'Filters',
     activeFilters: 'Active filters:',
     removeAllFilters: 'Remove all',
     narrowDownBy: 'Narrow down by',
