@@ -11,6 +11,8 @@ module.exports = merge(common, {
     // historyApiFallback: { index: '/sotasurmat' },
     // publicPath: '/sotasurmat',
     historyApiFallback: true,
-    publicPath: '/'
+    devMiddleware: {
+      publicPath: '/'
+    }
   }
 })

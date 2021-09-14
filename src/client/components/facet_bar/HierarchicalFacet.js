@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
 import { withStyles } from '@material-ui/core/styles'
 import { has } from 'lodash'
-import SortableTree, { changeNodeAtPath } from 'react-sortable-tree'
+import SortableTree, { changeNodeAtPath } from '@nosferatu500/react-sortable-tree'
 import FileExplorerTheme from 'react-sortable-tree-theme-file-explorer'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import Typography from '@material-ui/core/Typography'
+import { generateLabelForMissingValue } from '../../helpers/helpers'
 
 const styles = () => ({
   facetSearchContainer: {
@@ -261,9 +262,7 @@ class HierarchicalFacet extends Component {
       isSearchMatch = this.state.matches.some(match => match.node.id === node.id)
     }
     if (node.id === 'http://ldf.fi/MISSING_VALUE') {
-      // Check if there is a translated label for missing value, or use defaults
-      node.prefLabel = intl.get(`perspectives.${this.props.facetClass}.properties.${this.props.facetID}.missingValueLabel`) ||
-        intl.get('facetBar.defaultMissingValueLabel') || 'Unknown'
+      node.prefLabel = generateLabelForMissingValue({ facetClass: this.props.facetClass, facetID: this.props.facetID })
     }
     return (
       <>
