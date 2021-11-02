@@ -174,6 +174,7 @@ class FacetBar extends React.Component {
         )
         break
       case 'dateFilter':
+      case 'dateNoTimespanFilter':
         facetComponent = (
           <DateFacet
             facetID={facetID}
@@ -267,7 +268,8 @@ class FacetBar extends React.Component {
             facet={facet}
             facetConstrainSelf={facetConstrainSelf}
             facetConstrainSelfUpdateID={this.props.facetDataConstrainSelf
-              ? this.props.facetDataConstrainSelf.facetUpdateID : null}
+              ? this.props.facetDataConstrainSelf.facetUpdateID
+              : null}
             isActive={isActive}
             facetClass={this.props.facetClass}
             resultClass={this.props.resultClass}
@@ -320,9 +322,8 @@ class FacetBar extends React.Component {
             className={classes.accordionDetails}
           />
           {facets && Object.keys(facets).map(facetID => {
-            if (facetID !== 'datasetSelector') {
-              return this.renderFacet(facetID, someFacetIsFetching)
-            }
+            if (facetID === 'datasetSelector') { return null }
+            return this.renderFacet(facetID, someFacetIsFetching)
           })}
         </Accordion>
       )
@@ -330,9 +331,8 @@ class FacetBar extends React.Component {
       return (
         <>
           {facets && Object.keys(facets).map(facetID => {
-            if (facetID !== 'datasetSelector') {
-              return this.renderFacet(facetID, someFacetIsFetching)
-            }
+            if (facetID === 'datasetSelector') { return null }
+            return this.renderFacet(facetID, someFacetIsFetching)
           })}
         </>
       )
