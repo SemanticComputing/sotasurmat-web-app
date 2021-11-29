@@ -17,6 +17,9 @@ export const perspective1Config = {
   // `,
   paginatedResults: {
     properties: manuscriptPropertiesFacetResults
+    // resultMapper:
+    // resultMapperConfig:
+    // postprocess:
   },
   instance: {
     properties: manuscriptPropertiesInstancePage,
@@ -34,6 +37,7 @@ export const perspective1Config = {
     author: {
       id: 'author',
       facetValueFilter: '',
+      hideUnknownValue: true,
       label: 'Author',
       labelPath: 'mmm-schema:manuscript_author/skos:prefLabel',
       predicate: 'mmm-schema:manuscript_author',

@@ -6,6 +6,8 @@ export const INITIAL_STATE = {
   resultsSparqlQuery: null,
   paginatedResults: [],
   paginatedResultsSparqlQuery: null,
+  paginatedResultsAlwaysExpandRows: true,
+  paginatedResultsRowContentMaxHeight: 190,
   resultCount: 0,
   page: -1,
   pagesize: 10,
@@ -60,6 +62,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
+      // height: 150,
       minWidth: 200
     },
     {
@@ -133,7 +136,8 @@ export const INITIAL_STATE = {
       sortValues: true,
       numberedList: false,
       minWidth: 220,
-      collapsedMaxWords: 12
+      collapsedMaxWords: 5,
+      expandedOnInstancePage: true
     },
     {
       id: 'language',

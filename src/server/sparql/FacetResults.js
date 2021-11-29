@@ -31,6 +31,13 @@ export const getPaginatedResults = ({
   } else {
     ({ endpoint, defaultConstraint, langTag, langTagSecondary } = config)
   }
+  const {
+    properties,
+    filterTarget = 'id',
+    resultMapper = makeObjectList,
+    resultMapperConfig = null,
+    postprocess = null
+  } = config.paginatedResults
   if (constraints == null && defaultConstraint == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {
@@ -39,7 +46,7 @@ export const getPaginatedResults = ({
       facetClass: resultClass, // use resultClass as facetClass
       constraints,
       defaultConstraint,
-      filterTarget: 'id',
+      filterTarget,
       facetID: null
     }))
   }
@@ -67,7 +74,7 @@ export const getPaginatedResults = ({
   }
   q = q.replace(/<FACET_CLASS>/g, config.facetClass)
   q = q.replace('<PAGE>', `LIMIT ${pagesize} OFFSET ${page * pagesize}`)
-  q = q.replace('<RESULT_SET_PROPERTIES>', config.paginatedResults.properties)
+  q = q.replace('<RESULT_SET_PROPERTIES>', properties)
   if (langTag) {
     q = q.replace(/<LANG>/g, langTag)
   }
@@ -79,7 +86,9 @@ export const getPaginatedResults = ({
     query: endpoint.prefixes + q,
     endpoint: endpoint.url,
     useAuth: endpoint.useAuth,
-    resultMapper: makeObjectList,
+    resultMapper,
+    resultMapperConfig,
+    postprocess,
     resultFormat
   })
 }
@@ -116,7 +125,7 @@ export const getAllResults = ({
       facetClass,
       constraints,
       defaultConstraint,
-      filterTarget: filterTarget,
+      filterTarget,
       facetID: null
     }))
   }
@@ -216,7 +225,15 @@ export const getByURI = ({
   } else {
     ({ endpoint, langTag, langTagSecondary } = config)
   }
-  const { properties, relatedInstances, noFilterForRelatedInstances = false } = config.instance
+  const {
+    properties,
+    relatedInstances = '',
+    filterTarget = 'related__id',
+    noFilterForRelatedInstances = false,
+    resultMapper = makeObjectList,
+    resultMapperConfig = null,
+    postprocess = null
+  } = config.instance
   let q = instanceQuery
   q = q.replace('<PROPERTIES>', properties)
   q = q.replace('<RELATED_INSTANCES>', relatedInstances)
@@ -228,7 +245,7 @@ export const getByURI = ({
       resultClass: resultClass,
       facetClass: facetClass,
       constraints: constraints,
-      filterTarget: 'related__id',
+      filterTarget,
       facetID: null
     }))
   }
@@ -243,7 +260,9 @@ export const getByURI = ({
     query: endpoint.prefixes + q,
     endpoint: endpoint.url,
     useAuth: endpoint.useAuth,
-    resultMapper: makeObjectList,
+    resultMapper,
+    resultMapperConfig,
+    postprocess,
     resultFormat
   })
 }
