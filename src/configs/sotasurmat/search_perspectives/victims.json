@@ -148,8 +148,17 @@
             "filterTarget": "instance",
             "resultMapper": "mapPieChart"
         },
-        "deathPlaces": {
+        "ageCount": {
             "tabID": 2,
+            "tabPath": "line",
+            "tabIcon": "ShowChart",
+            "component": "LineChartSotasurmat",
+            "sparqlQuery": "ageQuery",
+            "filterTarget": "id",
+            "resultMapper": "mapAgeCount"
+        },
+        "deathPlaces": {
+            "tabID": 3,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -163,6 +172,15 @@
                 "relatedInstances": "deathsAt",
                 "createPopUpContent": "createPopUpContentSotasurmat"
             }
+        },
+        "csvDeaths": {
+            "tabID": 4,
+            "tabPath": "csv",
+            "tabIcon": "CloudDownload",
+            "component": "ExportCSV",
+            "facetClass": "victims",
+            "sparqlQuery": "csvDeathsQuery",
+            "filterTarget": "id"
         },
         "personExtras": {
             "sparqlQuery": "personExtrasQuery"
