@@ -21,9 +21,9 @@ export default {
     feedback: 'feedback',
     info: {
       info: 'Info',
-      blog: 'Blog',
       aboutTheProject: 'About the project',
-      oldPage: 'Old application'
+      aboutTheProjectUrl: 'https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/en',
+      oldPortal: 'Old portal'
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'instructions'

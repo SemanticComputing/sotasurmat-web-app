@@ -117,7 +117,7 @@ export const createApexPieChartData = ({ rawData, screenSize, facetClass, facetI
     if (portion < threshold) {
       otherCount += parseInt(item.instanceCount)
     } else {
-      if (item.id === 'http://ldf.fi/MISSING_VALUE') {
+      if (item.id === 'http://ldf.fi/MISSING_VALUE' || item.category === 'http://ldf.fi/MISSING_VALUE') {
         item.prefLabel = generateLabelForMissingValue({ facetClass, facetID })
       }
       labels.push(item.prefLabel)
@@ -125,7 +125,7 @@ export const createApexPieChartData = ({ rawData, screenSize, facetClass, facetI
     }
   })
   if (otherCount !== 0) {
-    labels.push('Other')
+    labels.push(intl.get('apexCharts.other') || 'Other')
     series.push(otherCount)
   }
   let chartColors = []

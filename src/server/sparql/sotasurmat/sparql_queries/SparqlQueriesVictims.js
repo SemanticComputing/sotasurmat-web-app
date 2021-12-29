@@ -1089,3 +1089,34 @@ export const deathsAt = `
          BIND(CONCAT("${rootUrl}/victims/page/p_", ?identifier) AS ?related__dataProviderUrl)
        }
    `
+
+export const placePropertiesInfoWindow = `
+    ?id skos:prefLabel ?prefLabel__id .
+    BIND(?prefLabel__id AS ?prefLabel__prefLabel)
+    # BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+`
+
+export const instancesByPropertyQuery = `
+ SELECT ?category ?prefLabel
+ (COUNT(DISTINCT ?instance) as ?instanceCount)
+  WHERE {
+    <FILTER>
+    {
+      ?instance <PROPERTY> ?category ;
+              a <RDF_TYPE> .
+      ?category skos:prefLabel ?prefLabel .
+    }
+    UNION
+    {
+      ?instance a <RDF_TYPE> .
+      FILTER NOT EXISTS {
+        ?instance <PROPERTY> [] .
+      }
+      BIND(IRI("http://ldf.fi/MISSING_VALUE") AS ?category)
+      BIND("0" AS ?prefLabel) # to be replaced with a translation
+    }
+  }
+  GROUP BY ?category ?prefLabel
+  ORDER BY DESC(?instanceCount)
+`
+

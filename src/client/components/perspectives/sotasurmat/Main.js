@@ -27,43 +27,7 @@ const useStyles = makeStyles(theme => ({
       overflow: 'auto',
       height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.defaultHeight}px)`
     }
-    // marginBottom: theme.spacing(1)
   }),
-  banner: props => ({
-    background: props.layoutConfig.mainPage.bannerBackround,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height: props.layoutConfig.mainPage.bannerMobileHeight,
-    [theme.breakpoints.up('md')]: {
-      height: props.layoutConfig.mainPage.bannerReducedHeight
-    },
-    [theme.breakpoints.up('xl')]: {
-      height: props.layoutConfig.mainPage.bannerDefaultHeight
-    },
-    boxShadow: '0 -15px 15px 0px #bdbdbd inset',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }),
-  bannerContent: {
-    display: 'inline-block',
-    color: '#fff'
-  },
-  bannerHeading: {
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  bannerSubheading: {
-    marginTop: theme.spacing(1.5),
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-      '& div': {
-        flexGrow: 1,
-        width: 0
-      }
-    }
-  },
   layout: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -74,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   heroContent: {
-    // paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
   licenceText: {
@@ -94,11 +57,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  longTitle: {
-    // [theme.breakpoints.down('sm')]: {
-    //   display: 'none'
-    // }
-  },
   cardContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -117,9 +75,6 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 140
-    // [ theme.breakpoints.down('md')]: {
-    //   height: 60
-    // }
   },
   licenceLayout: {
     marginLeft: theme.spacing(1),
@@ -230,8 +185,8 @@ const Main = props => {
                 <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
                   <CardMedia
                     className={classes.media}
-                    image={has(perspective, 'thumbImage')
-                      ? perspective.thumbImage
+                    image={has(perspective, 'frontPageImage')
+                      ? perspective.frontPageImage
                       : defaultThumbImage}
                     title={perspective.label}
                   />

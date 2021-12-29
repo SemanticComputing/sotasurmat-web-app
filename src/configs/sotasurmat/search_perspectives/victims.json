@@ -1,0 +1,446 @@
+{
+    "id": "victims",
+    "endpoint": {
+        "url": "https://ldf.fi/siso/sparql",
+        "useAuth": false,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesVictims.js",
+    "baseURI": "http://ldf.fi/siso",
+    "URITemplate": "<BASE_URI>/death_records/<LOCAL_ID>",
+    "facetClass": "siso-schema:Death_record",
+    "frontPageImage": "kalevankangas.jpg",
+    "searchMode": "faceted-search",
+    "defaultActiveFacets": [
+        "prefLabel"
+    ],
+    "defaultTab": "table",
+    "defaultInstancePageTab": "table",
+    "maps": {
+        "deathPlaces": {
+            "center": [
+                64.00,
+                30.00
+            ],
+            "zoom": 5
+        }
+    },
+    "resultClasses": {
+        "victims": {
+            "paginatedResultsConfig": {
+                "tabID": 0,
+                "component": "ResultTable",
+                "tabPath": "table",
+                "tabIcon": "CalendarViewDay",
+                "propertiesQueryBlock": "deathsProperties",
+                "pagesize": 25,
+                "sortBy": "prefLabel",
+                "sortDirection": "asc"
+            },
+            "instanceConfig": {
+                "propertiesQueryBlock": "personProperties",
+                "instancePageResultClasses": {
+                    "instancePageTable": {
+                        "tabID": 0,
+                        "component": "InstancePageTable",
+                        "tabPath": "table",
+                        "tabIcon": "CalendarViewDay"
+                    }
+                }
+            }
+        },
+        "victimsByProperty": {
+            "tabID": 1,
+            "component": "ApexCharts",
+            "createChartData": "createApexPieChartData",
+            "doNotRenderOnMount": true,
+            "tabPath": "pie",
+            "tabIcon": "PieChart",
+            "facetClass": "victims",
+            "dropdownForResultClasses": true,
+            "resultClasses": [
+                "victimsByParty",
+                "victimsByOccupation",
+                "victimsByGender",
+                "victimsByRegisteredProvince",
+                "victimsByRegisteredMunicipality",
+                "victimsByDeathProvince",
+                "victimsByDeathMunicipality",
+                "victimsByCauseOfDeath",
+                "victimsByMaritalStatus"
+            ],
+            "dropdownForChartTypes": "true",
+            "chartTypes": [
+                {
+                    "id": "pie",
+                    "createChartData": "createApexPieChartData"
+                },
+                {
+                    "id": "bar",
+                    "createChartData": "createApexBarChartData"
+                }
+            ]
+        },
+        "victimsByParty": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:party",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByOccupation": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:occupation",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByGender": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:gender",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByRegisteredProvince": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:registered_province",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByRegisteredMunicipality": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:registered_municipality",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByDeathProvince": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:death_province",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByDeathMunicipality": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:death_municipality",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByCauseOfDeath": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:cause_of_death",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "victimsByMaritalStatus": {
+            "sparqlQuery": "instancesByPropertyQuery",
+            "rdfType": "siso-schema:Death_record",
+            "property": "siso-schema:marital_status",
+            "filterTarget": "instance",
+            "resultMapper": "mapPieChart"
+        },
+        "deathPlaces": {
+            "tabID": 2,
+            "component": "LeafletMap",
+            "tabPath": "map",
+            "tabIcon": "AddLocation",
+            "sparqlQuery": "deathsByMunicipalityQuery",
+            "facetClass": "victims",
+            "filterTarget": "deathRecord",
+            "resultMapper": "mapPlaces",
+            "showExternalLayers": false,
+            "instanceConfig": {
+                "propertiesQueryBlock": "placePropertiesInfoWindow",
+                "relatedInstances": "deathsAt",
+                "createPopUpContent": "createPopUpContentSotasurmat"
+            }
+        }
+    },
+    "properties": [
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 150
+        },
+        {
+            "id": "party",
+            "externalLink": false,
+            "valueType": "object",
+            "makeLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 150
+        },
+        {
+            "id": "registeredMunicipality",
+            "externalLink": false,
+            "valueType": "object",
+            "makeLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 190
+        },
+        {
+            "id": "occupation",
+            "externalLink": true,
+            "valueType": "object",
+            "makeLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 170
+        },
+        {
+            "id": "deathMunicipality",
+            "externalLink": false,
+            "valueType": "object",
+            "makeLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 170
+        },
+        {
+            "id": "birthTimespan",
+            "valueType": "object",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 170
+        },
+        {
+            "id": "deathTimespan",
+            "valueType": "object",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 170
+        }
+    ],
+    "facets": {
+        "prefLabel": {
+            "containerClass": "one",
+            "facetType": "text",
+            "filterType": "textFilter",
+            "sortByPredicate": "skos:prefLabel",
+            "textQueryProperty": "skos:prefLabel"
+        },
+        "birthTimespan": {
+            "containerClass": "three",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "facetType": "timespan",
+            "filterType": "dateFilter",
+            "max": "1922-12-31",
+            "min": "1800-01-01",
+            "predicate": "siso-schema:birth_time",
+            "sortByAscPredicate": "siso-schema:birth_time/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "siso-schema:birth_time/crm:P82b_end_of_the_end",
+            "startProperty": "crm:P82a_begin_of_the_begin"
+        },
+        "deathTimespan": {
+            "containerClass": "three",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "facetType": "timespan",
+            "filterType": "dateFilter",
+            "max": "1922-12-31",
+            "min": "1914-01-01",
+            "predicate": "siso-schema:death_time",
+            "sortByAscPredicate": "siso-schema:death_time/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "siso-schema:death_time/crm:P82b_end_of_the_end",
+            "startProperty": "crm:P82a_begin_of_the_begin"
+        },
+        "party": {
+            "containerClass": "five",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:party",
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "siso-schema:party/skos:prefLabel",
+            "sortDirection": "desc"
+        },
+        "occupation": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:occupation",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:occupation/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "causeOfDeath": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:cause_of_death",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:cause_of_death/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "birthPlace": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:birth_place",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:birth_place/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "registeredMunicipality": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:registered_municipality",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:registered_municipality/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "registeredProvince": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:registered_province",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:registered_province/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "registeredCountry": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:registered_country",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:registered_country/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "deathMunicipality": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:death_municipality",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:death_municipality/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "deathProvince": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:death_province",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:death_province/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "deathCountry": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:death_country",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:death_country/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "gender": {
+            "containerClass": "two",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:gender",
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:gender/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "militaryOrganization": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:military_organization",
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:rank/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "maritalStatus": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:marital_status",
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:marital_status/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "age": {
+            "containerClass": "four",
+            "facetType": "integer",
+            "filterType": "integerFilter",
+            "predicate": "siso-schema:age",
+            "searchField": true,
+            "sortByPredicate": "siso-schema:age"
+        },
+        "numberOfChildren": {
+            "containerClass": "four",
+            "facetType": "integer",
+            "filterType": "integerFilter",
+            "predicate": "siso-schema:num_of_children",
+            "searchField": true,
+            "sortByPredicate": "siso-schema:num_of_children"
+        },
+        "hisclass7": {
+            "containerClass": "ten",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'fi')",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:ammo_occupation/ammo-s:hisclass7",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:ammo_occupation/ammo-s:hisclass7/skos:prefLabel",
+            "sortDirection": "asc"
+        },
+        "coo1980": {
+            "containerClass": "ten",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'fi')",
+            "facetType": "hierarchical",
+            "filterType": "uriFilter",
+            "parentProperty": "skos:broader",
+            "predicate": "siso-schema:ammo_occupation/ammo-s:coo1980_code",
+            "searchField": true,
+            "sortButton": true,
+            "sortByPredicate": "siso-schema:ammo_occupation/ammo-s:coo1980_code/skos:prefLabel"
+        },
+        "deathLikelihood": {
+            "containerClass": "four",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "siso-schema:death_likelihood",
+            "sortBy": "prefLabel",
+            "sortByPredicate": "siso-schema:death_likelihood/skos:prefLabel",
+            "sortDirection": "asc"
+        }
+    }
+}

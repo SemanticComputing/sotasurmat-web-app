@@ -29,12 +29,6 @@ export const layoutConfig = {
     defaultHeight: 64,
     mobileMenuBreakpoint: 1360
   },
-  mainPage: {
-    // bannerBackround: `linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(${bannerImage})`,
-    bannerMobileHeight: 150,
-    bannerReducedHeight: 220,
-    bannerDefaultHeight: 300
-  },
   infoHeader: {
     default: {
       height: 49,
