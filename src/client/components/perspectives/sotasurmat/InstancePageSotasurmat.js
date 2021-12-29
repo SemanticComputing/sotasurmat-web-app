@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
-import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
+import InstancePageTable from '../../main_layout/InstancePageTable'
 // import LeafletMap from '../../facet_results/LeafletMap'
 // import Export from '../../facet_results/Export'
 import VictimHomePageTable from './VictimHomePageTable'
@@ -37,7 +37,7 @@ const styles = () => ({
 /**
  * A component for generating a landing page for a single entity.
  */
-class InstanceHomePage extends React.Component {
+class InstancePageSotasurmat extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -88,12 +88,14 @@ class InstanceHomePage extends React.Component {
     }
 
     this.props.fetchByURI({
+      perspectiveID: resultClass,
       resultClass,
       facetClass: null,
       variant: null,
       uri: uri
     })
     this.props.fetchResults({
+      perspectiveID: resultClass,
       resultClass: 'personExtras',
       uri
     })
@@ -166,7 +168,7 @@ class InstanceHomePage extends React.Component {
               <Route
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
-                  <InstanceHomePageTable
+                  <InstancePageTable
                     resultClass={resultClass}
                     data={instanceTableData}
                     properties={this.getVisibleRows(perspectiveState.properties)}
@@ -204,7 +206,7 @@ class InstanceHomePage extends React.Component {
   }
 }
 
-InstanceHomePage.propTypes = {
+InstancePageSotasurmat.propTypes = {
   /**
    * Faceted search configs and results of this perspective.
    */
@@ -288,6 +290,4 @@ InstanceHomePage.propTypes = {
   layoutConfig: PropTypes.object.isRequired
 }
 
-export const InstanceHomePageComponent = InstanceHomePage
-
-export default withStyles(styles)(InstanceHomePage)
+export default withStyles(styles)(InstancePageSotasurmat)

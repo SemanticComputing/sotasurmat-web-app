@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 })
 
-class SurmatutHomePageTable extends React.Component {
+class VictimHomePageTable extends React.Component {
   render = () => {
     const { classes, data } = this.props
     return (
@@ -871,9 +871,9 @@ class SurmatutHomePageTable extends React.Component {
   }
 }
 
-SurmatutHomePageTable.propTypes = {
+VictimHomePageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(SurmatutHomePageTable)
+export default withStyles(styles)(VictimHomePageTable)

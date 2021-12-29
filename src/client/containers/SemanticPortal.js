@@ -83,7 +83,7 @@ const TopBar = lazy(() => import('../components/main_layout/TopBar'))
 const InfoHeader = lazy(() => import('../components/main_layout/InfoHeader'))
 const TextPage = lazy(() => import('../components/main_layout/TextPage'))
 const Message = lazy(() => import('../components/main_layout/Message'))
-const InstancePage = lazy(() => import('../components/main_layout/InstancePage'))
+// const InstancePage = lazy(() => import('../components/main_layout/InstancePage'))
 const FullTextSearch = lazy(() => import('../components/main_layout/FullTextSearch'))
 const FacetBar = lazy(() => import('../components/facet_bar/FacetBar'))
 const FacetResults = lazy(() => import('../components/facet_results/FacetResults'))
@@ -95,6 +95,7 @@ const KnowledgeGraphMetadataTable = lazy(() => import('../components/main_layout
 const Main = lazy(() => import(`../components/perspectives/${portalID}/Main`))
 const MainClientFS = lazy(() => import(`../components/perspectives/${portalID}/MainClientFS`))
 const Footer = lazy(() => import(`../components/perspectives/${portalID}/Footer`))
+const InstancePage = lazy(() => import(`../components/perspectives/${portalID}/InstancePageSotasurmat`))
 // ** Portal specific components end **
 
 const useStyles = makeStyles(theme => ({

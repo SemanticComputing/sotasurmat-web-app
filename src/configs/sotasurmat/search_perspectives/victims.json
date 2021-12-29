@@ -42,9 +42,13 @@
                 "instancePageResultClasses": {
                     "instancePageTable": {
                         "tabID": 0,
-                        "component": "InstancePageTable",
                         "tabPath": "table",
                         "tabIcon": "CalendarViewDay"
+                    },
+                    "instancePageExtras": {
+                        "tabID": 1,
+                        "tabPath": "extra",
+                        "tabIcon": "Add"
                     }
                 }
             }
@@ -159,7 +163,10 @@
                 "relatedInstances": "deathsAt",
                 "createPopUpContent": "createPopUpContentSotasurmat"
             }
-        }
+        },
+        "personExtras": {
+            "sparqlQuery": "personExtrasQuery"
+         }
     },
     "properties": [
         {
