@@ -130,21 +130,6 @@ const useStyles = makeStyles(theme => ({
       height: `calc(100% - ${layoutConfig.topBar.defaultHeight + theme.spacing(1.5)}px)`
     }
   },
-  mainContainerSotasurmat: {
-    height: '100%',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 126px)' // 100% - app bar - footer
-    },
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 56 // app bar
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 64 // app bar
-    },
-    backgroundColor: '#ffffff'
-  },
   perspectiveContainer: {
     margin: theme.spacing(0.5),
     width: `calc(100% - ${theme.spacing(1)}px)`,
@@ -315,7 +300,6 @@ const SemanticPortal = props => {
                   screenSize={screenSize}
                   rootUrl={rootUrlWithLang}
                   layoutConfig={layoutConfig}
-                  currentLocale={props.options.currentLocale}
                 />
                 <Footer
                   portalConfig={portalConfig}
@@ -334,7 +318,7 @@ const SemanticPortal = props => {
             }}
           />
           {/* route for full text search results */}
-          {/* <Route
+          <Route
             path={`${rootUrlWithLang}/full-text-search`}
             render={routeProps =>
               <FullTextSearch
@@ -345,7 +329,7 @@ const SemanticPortal = props => {
                 rootUrl={rootUrlWithLang}
                 layoutConfig={layoutConfig}
               />}
-          /> */}
+          />
           {/* routes for faceted search perspectives */}
           {perspectiveConfig.map(perspective => {
             if (!has(perspective, 'externalUrl') && perspective.searchMode === 'faceted-search') {
@@ -642,7 +626,7 @@ const SemanticPortal = props => {
                 />
               </>}
 
-          /> */}
+          />
           {/* create routes for info buttons */}
           {!layoutConfig.topBar.externalAboutPage &&
             <Route
