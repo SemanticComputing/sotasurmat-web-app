@@ -328,4 +328,3 @@ export const createExtraResultClassesForJSONConfig = async oldBackendSearchConfi
 
 // createExtraResultClassesForJSONConfig(oldBackendSearchConfig)
 // mergeFacetConfigs(INITIAL_STATE.facets, oldPerspectiveConfig.facets)
-

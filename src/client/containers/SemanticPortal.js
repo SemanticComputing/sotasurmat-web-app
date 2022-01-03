@@ -100,12 +100,9 @@ const InstancePage = lazy(() => import(`../components/perspectives/${portalID}/I
 
 const useStyles = makeStyles(theme => ({
   root: {
-    /* Background color of the app.
-       In order to use both 'auto' and '100%' heights, bg-color
-       needs to be defined also in index.html (for #app and #root elements)
-    */
     backgroundColor: '#bdbdbd',
     overflowX: 'hidden',
+    minHeight: '100%',
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       overflow: 'hidden',
       height: '100%'
