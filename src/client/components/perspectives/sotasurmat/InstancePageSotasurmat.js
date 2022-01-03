@@ -129,7 +129,6 @@ class InstancePageSotasurmat extends React.Component {
   render = () => {
     const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize, layoutConfig } = this.props
     const { victimsPage } = this.state
-    console.log(victimsPage)
     const { instanceTableData, fetching } = perspectiveState
     const resultClass = perspectiveConfig.id
     const defaultInstancePageTab = perspectiveConfig.defaultInstancePageTab
