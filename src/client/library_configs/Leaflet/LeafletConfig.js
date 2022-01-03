@@ -1,6 +1,7 @@
 import { has, orderBy } from 'lodash'
 import history from '../../History'
 import intl from 'react-intl-universal'
+import moment from 'moment'
 
 export const createPopUpContentDefault = ({ data, resultClass }) => {
   if (Array.isArray(data.prefLabel)) {

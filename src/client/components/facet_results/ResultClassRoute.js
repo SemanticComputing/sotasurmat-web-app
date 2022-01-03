@@ -12,6 +12,7 @@ const ApexCharts = lazy(() => import('./ApexCharts'))
 const Network = lazy(() => import('./Network'))
 const VideoPage = lazy(() => import('../main_layout/VideoPage'))
 const WordCloud = lazy(() => import('../main_layout/WordCloud'))
+const TemporalMap = lazy(() => import('./TemporalMap'))
 // const BarChartRace = lazy(() => import('../../facet_results/BarChartRace'))
 const ExportCSV = lazy(() => import('./ExportCSV'))
 const Export = lazy(() => import('./Export'))
@@ -401,6 +402,29 @@ const ResultClassRoute = props => {
           path={path}
           render={() =>
             <VideoPage {...videoPageProps} />}
+        />
+      )
+      break
+    }
+    case 'TemporalMap': {
+      const temporalMapProps = {
+        portalConfig,
+        perspectiveConfig: perspective,
+        layoutConfig,
+        screenSize,
+        resultClass,
+        facetClass,
+        results: perspectiveState.results,
+        fetchResults: props.fetchResults,
+        animationValue: props.animationValue,
+        animateMap: props.animateMap,
+        facetUpdateID: facetState.facetUpdateID
+      }
+      routeComponent = (
+        <Route
+          path={path}
+          render={() =>
+            <TemporalMap {...temporalMapProps} />}
         />
       )
       break
