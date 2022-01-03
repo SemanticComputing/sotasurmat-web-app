@@ -58,14 +58,3 @@ export const battlePlacesAnimationQuery = `
   }
   ORDER BY ?startDate
 `
-
-export const battlePropertiesInfoWindow = `
-    ?id skos:prefLabel ?prefLabel__id .
-    BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-    BIND(CONCAT("${rootUrl}/battles/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
-    ?id siso-schema:greater_place ?greaterPlace__id .
-    ?greaterPlace__id skos:prefLabel ?greaterPlace__prefLabel .
-    OPTIONAL { ?id siso-schema:start_date ?startDate }
-    OPTIONAL { ?id siso-schema:end_date ?endDate }
-    OPTIONAL { ?id siso-schema:units ?units }
-`

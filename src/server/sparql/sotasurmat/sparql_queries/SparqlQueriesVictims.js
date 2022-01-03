@@ -1119,4 +1119,3 @@ export const instancesByPropertyQuery = `
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
 `
-

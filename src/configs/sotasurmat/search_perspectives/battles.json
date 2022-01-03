@@ -16,6 +16,15 @@
     ],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
+    "maps": {
+        "battlePlaces": {
+            "center": [
+                64.00,
+                30.00
+            ],
+            "zoom": 5
+        }
+    },
     "resultClasses": {
         "battles": {
             "paginatedResultsConfig": {
@@ -39,6 +48,31 @@
                     }
                 }
             }
+        },
+        "battlePlaces": {
+            "tabID": 1,
+            "component": "LeafletMap",
+            "showInstanceCountInClusters": false,
+            "tabPath": "map",
+            "tabIcon": "AddLocation",
+            "sparqlQuery": "battlePlacesQuery",
+            "facetClass": "battles",
+            "filterTarget": "id",
+            "resultMapper": "mapPlaces",
+            "showExternalLayers": false,
+            "instanceConfig": {
+                "propertiesQueryBlock": "battleProperties",
+                "createPopUpContent": "createPopUpContentSotasurmat"
+            }
+        },
+        "battlePlacesAnimation": {
+            "tabID": 2,
+            "component": "TemporalMap",
+            "tabPath": "animation",
+            "tabIcon": "AddLocation",
+            "sparqlQuery": "battlePlacesAnimationQuery",
+            "facetClass": "battles",
+            "filterTarget": "id"        
         }
     },
     "properties": [
