@@ -157,6 +157,16 @@
             "filterTarget": "id",
             "resultMapper": "mapAgeCount"
         },
+        "birthYearCount": {
+            "sparqlQuery": "birthYearsQuery",
+            "filterTarget": "id",
+            "resultMapper": "mapBirthYearCount"
+        },
+        "deathDateCount": {
+            "sparqlQuery": "deathDateQuery",
+            "filterTarget": "id",
+            "resultMapper": "mapCountGroups"
+        },
         "deathPlaces": {
             "tabID": 3,
             "component": "LeafletMap",

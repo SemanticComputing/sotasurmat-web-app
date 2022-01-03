@@ -5,6 +5,8 @@ import moment from 'moment'
 import Paper from '@material-ui/core/Paper'
 import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import purple from '@material-ui/core/colors/purple'
 
 const styles = theme => ({
   root: {
@@ -14,6 +16,13 @@ const styles = theme => ({
       height: 'calc(100% - 72px)'
     },
     overflow: 'auto'
+  },
+  spinnerContainerStyle: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   optionsContainer: {
     paddingLeft: theme.spacing(1),
@@ -35,7 +44,7 @@ class LineChartSotasurmat extends React.Component {
     this.setState({
       selectedOption: changeEvent.target.value
     })
-    var variant = 'birthYearCount'
+    let variant = 'birthYearCount'
     if (changeEvent.target.value === 'birthYear') {
       this.setState({
         label: intl.get('perspectives.victims.lineChart.birthYear'),
@@ -237,18 +246,20 @@ class LineChartSotasurmat extends React.Component {
   }
 
   render () {
-    var title = ''
-    var explanation = ''
-    var xTitle = ''
-    var yTitle = ''
+    let title = ''
+    let explanation = ''
+    let xTitle = ''
+    let yTitle = ''
     let fillEmpty = false
     let infoString = ''
 
-    const results = this.props.data.results
-    const { classes } = this.props
-    if (results == null) {
+    const { classes, fetching, data } = this.props
+    const { results } = data
+    if (fetching || results == null) {
       return (
-        <div>Loading Chart</div>
+        <div className={classes.spinnerContainerStyle}>
+          <CircularProgress style={{ color: purple[500] }} thickness={5} />
+        </div>
       )
     }
     if (this.state.variant === 'birthYearCount') {
