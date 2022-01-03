@@ -55,6 +55,12 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
+            "logoImage": "logo_small_fi.gif",
+            "logoImageReducedHeight": 32,
+            "logoImageHeight": 52,
+            "logoImageSecondary": "logos/ka-tunnus-fi-white.png",
+            "logoImageSecondaryLink": "https://www.arkisto.fi/",
+            "hideLogoText": true,
             "showLanguageButton": true,
             "showSearchField": false,
             "feedbackLink": "https://link.webropolsurveys.com/S/B9961BC9A2C27761",

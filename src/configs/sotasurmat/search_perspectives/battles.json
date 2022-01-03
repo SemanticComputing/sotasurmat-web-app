@@ -69,7 +69,7 @@
             "tabID": 2,
             "component": "TemporalMap",
             "tabPath": "animation",
-            "tabIcon": "AddLocation",
+            "tabIcon": "PlayArrow",
             "sparqlQuery": "battlePlacesAnimationQuery",
             "facetClass": "battles",
             "filterTarget": "id"        
