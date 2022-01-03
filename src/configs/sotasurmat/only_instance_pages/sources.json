@@ -1,0 +1,52 @@
+{
+  "id": "sources",
+  "endpoint": {
+    "url": "https://ldf.fi/siso/sparql",
+    "useAuth": false,
+    "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesSources.js",
+  "baseURI": "http://ldf.fi/siso",
+  "URITemplate": "<BASE_URI>/sources/<LOCAL_ID>",
+  "resultClasses": {
+    "sources": {
+      "instanceConfig": {
+        "propertiesQueryBlock": "sourceProperties",
+        "instancePageResultClasses": {
+          "instancePageTable": {
+            "tabID": 0,
+            "component": "InstancePageTable",
+            "tabPath": "table",
+            "tabIcon": "CalendarViewDay"
+          }
+        }
+      }
+    }
+  },
+  "properties": [
+    {
+      "id": "prefLabel",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": false
+    },
+    {
+      "id": "sourceCode",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": false
+    },
+    {
+      "id": "description",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": false
+    }
+  ]
+}

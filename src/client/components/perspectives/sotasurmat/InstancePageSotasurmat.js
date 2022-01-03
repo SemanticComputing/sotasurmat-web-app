@@ -86,7 +86,6 @@ class InstancePageSotasurmat extends React.Component {
         uri = `${base}/sources/${localID}`
         break
     }
-
     this.props.fetchByURI({
       perspectiveID: resultClass,
       resultClass,
@@ -94,17 +93,19 @@ class InstancePageSotasurmat extends React.Component {
       variant: null,
       uri: uri
     })
-    this.props.fetchResults({
-      perspectiveID: resultClass,
-      resultClass: 'personExtras',
-      uri
-    })
+    if (resultClass === 'victims') {
+      this.props.fetchResults({
+        perspectiveID: resultClass,
+        resultClass: 'personExtras',
+        uri
+      })
+    }
   }
 
   getLocalIDFromURL = () => {
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
-    this.props.perspectiveConfig.instancePageTabs.map(tab => {
+    this.props.perspectiveConfig.instancePageTabs.forEach(tab => {
       if (localID === tab.id) {
         localID = locationArr.pop() // pop again if tab id
       }
@@ -116,7 +117,7 @@ class InstancePageSotasurmat extends React.Component {
     const { instanceTableData } = this.props.perspectiveState
     const visibleRows = []
     const instanceClass = instanceTableData.type ? instanceTableData.type.id : ''
-    rows.map(row => {
+    rows.forEach(row => {
       if ((has(row, 'onlyForClass') && row.onlyForClass === instanceClass) ||
        !has(row, 'onlyForClass')) {
         visibleRows.push(row)
@@ -128,10 +129,12 @@ class InstancePageSotasurmat extends React.Component {
   render = () => {
     const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize, layoutConfig } = this.props
     const { victimsPage } = this.state
+    console.log(victimsPage)
     const { instanceTableData, fetching } = perspectiveState
     const resultClass = perspectiveConfig.id
     const defaultInstancePageTab = perspectiveConfig.defaultInstancePageTab
-      ? perspectiveConfig.defaultInstancePageTab : 'table'
+      ? perspectiveConfig.defaultInstancePageTab
+      : 'table'
     const hasTableData = this.hasTableData()
     return (
       <div className={classes.root}>
@@ -169,6 +172,7 @@ class InstancePageSotasurmat extends React.Component {
                 path={[`${rootUrl}/${resultClass}/page/${this.state.localID}/table`, '/iframe.html']} // support also rendering in Storybook
                 render={() =>
                   <InstancePageTable
+                    perspectiveConfig={perspectiveConfig}
                     resultClass={resultClass}
                     data={instanceTableData}
                     properties={this.getVisibleRows(perspectiveState.properties)}
