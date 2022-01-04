@@ -223,7 +223,7 @@ export const mapPieChart = sparqlBindings => {
     return {
       category: b.category.value,
       prefLabel: b.prefLabel.value,
-      instanceCount: b.instanceCount.value
+      instanceCount: parseInt(b.instanceCount.value)
     }
   })
   return results

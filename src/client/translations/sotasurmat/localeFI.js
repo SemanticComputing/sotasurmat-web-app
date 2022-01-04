@@ -24,7 +24,7 @@ export default {
       info: 'tietoa',
       aboutTheProject: 'Tietoa projektista',
       aboutTheProjectUrl: 'https://seco.cs.aalto.fi/projects/sotasurmat-1914-1922/',
-      oldPortal: 'Vanha sovellus',
+      oldPortal: 'Vanha sovellus'
     },
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'ohjeet'
@@ -32,7 +32,7 @@ export default {
   apexCharts: {
     grouping: 'Lajitteluperuste:',
     property: 'Ominaisuus:',
-    chartType: "Kaavion tyyppi:",
+    chartType: 'Kaavion tyyppi:',
     pie: 'piirakkakaavio',
     bar: 'pylväskaavio',
     other: 'Muu arvo',
@@ -45,8 +45,8 @@ export default {
       victimsByDeathProvince: 'kuolinlääni',
       victimsByDeathMunicipality: 'kuolinkunta',
       victimsByCauseOfDeath: 'kuolintapa',
-      victimsByMaritalStatus: 'siviilisääty',
-    },
+      victimsByMaritalStatus: 'siviilisääty'
+    }
   },
   facetBar: {
     results: 'Tulokset',

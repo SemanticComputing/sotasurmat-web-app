@@ -56,23 +56,79 @@
         "victimsByProperty": {
             "tabID": 1,
             "component": "ApexCharts",
-            "createChartData": "createApexPieChartData",
             "doNotRenderOnMount": true,
             "tabPath": "pie",
             "tabIcon": "PieChart",
             "facetClass": "victims",
             "dropdownForResultClasses": true,
-            "resultClasses": [
-                "victimsByParty",
-                "victimsByOccupation",
-                "victimsByGender",
-                "victimsByRegisteredProvince",
-                "victimsByRegisteredMunicipality",
-                "victimsByDeathProvince",
-                "victimsByDeathMunicipality",
-                "victimsByCauseOfDeath",
-                "victimsByMaritalStatus"
-            ],
+            "defaultResultClass": "victimsByParty", 
+            "resultClasses": {
+                "victimsByParty": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:party",
+                    "propertyID": "party",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.001
+                },
+                "victimsByOccupation": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "predicate": "siso-schema:occupation",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByGender": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:gender",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByRegisteredProvince": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:registered_province",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByRegisteredMunicipality": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:registered_municipality",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByDeathProvince": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:death_province",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByDeathMunicipality": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:death_municipality",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByCauseOfDeath": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:cause_of_death",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                },
+                "victimsByMaritalStatus": {
+                    "sparqlQuery": "instancesByPropertyQuery",
+                    "rdfType": "siso-schema:Death_record",
+                    "property": "siso-schema:marital_status",
+                    "filterTarget": "instance",
+                    "resultMapper": "mapPieChart"
+                }
+            },
             "dropdownForChartTypes": "true",
             "chartTypes": [
                 {
@@ -84,69 +140,6 @@
                     "createChartData": "createApexBarChartData"
                 }
             ]
-        },
-        "victimsByParty": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:party",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByOccupation": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:occupation",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByGender": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:gender",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByRegisteredProvince": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:registered_province",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByRegisteredMunicipality": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:registered_municipality",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByDeathProvince": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:death_province",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByDeathMunicipality": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:death_municipality",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByCauseOfDeath": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:cause_of_death",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
-        },
-        "victimsByMaritalStatus": {
-            "sparqlQuery": "instancesByPropertyQuery",
-            "rdfType": "siso-schema:Death_record",
-            "property": "siso-schema:marital_status",
-            "filterTarget": "instance",
-            "resultMapper": "mapPieChart"
         },
         "ageCount": {
             "tabID": 2,

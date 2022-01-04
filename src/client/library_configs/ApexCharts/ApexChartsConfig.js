@@ -106,22 +106,33 @@ export const createMultipleLineChartData = ({
   return apexChartOptionsWithData
 }
 
-export const createApexPieChartData = ({ rawData, screenSize, facetClass, facetID }) => {
+export const createApexPieChartData = ({
+  resultClass,
+  facetClass,
+  perspectiveState,
+  results,
+  resultClassConfig,
+  screenSize
+}) => {
   const labels = []
   const series = []
   let otherCount = 0
-  const totalLength = rawData.length
-  const threshold = 0.15
-  rawData.forEach(item => {
-    const portion = parseInt(item.instanceCount) / totalLength
-    if (portion < threshold) {
-      otherCount += parseInt(item.instanceCount)
+  const arraySum = results.reduce((sum, current) => sum + current.instanceCount, 0)
+  let actualResultClassConfig = resultClassConfig
+  if (resultClassConfig.dropdownForResultClasses) {
+    actualResultClassConfig = resultClassConfig.resultClasses[perspectiveState.resultClass]
+  }
+  const { sliceVisibilityThreshold, propertyID } = actualResultClassConfig
+  results.forEach(item => {
+    const sliceFraction = item.instanceCount / arraySum
+    if (sliceFraction <= sliceVisibilityThreshold) {
+      otherCount += item.instanceCount
     } else {
       if (item.id === 'http://ldf.fi/MISSING_VALUE' || item.category === 'http://ldf.fi/MISSING_VALUE') {
-        item.prefLabel = generateLabelForMissingValue({ facetClass, facetID })
+        item.prefLabel = generateLabelForMissingValue({ perspective: facetClass, property: propertyID })
       }
       labels.push(item.prefLabel)
-      series.push(parseInt(item.instanceCount))
+      series.push(item.instanceCount)
     }
   })
   if (otherCount !== 0) {
@@ -214,30 +225,45 @@ const apexPieChartOptions = {
 }
 
 export const createApexBarChartData = ({
-  rawData,
-  title,
-  xaxisTitle,
-  yaxisTitle,
-  seriesTitle
+  resultClass,
+  facetClass,
+  perspectiveState,
+  results,
+  resultClassConfig,
+  screenSize
 }) => {
+  const {
+    title,
+    seriesTitle,
+    xaxisTitle,
+    yaxisTitle
+  } = resultClassConfig
   const categories = []
   const colors = []
   const data = []
   let otherCount = 0
-  const totalLength = rawData.length
-  const threshold = 0.3
-  rawData.forEach(item => {
-    const portion = parseInt(item.instanceCount) / totalLength
-    if (portion < threshold) {
-      otherCount += parseInt(item.instanceCount)
+  const arraySum = results.reduce((sum, current) => sum + current.instanceCount, 0)
+  let actualResultClassConfig = resultClassConfig
+  if (resultClassConfig.dropdownForResultClasses) {
+    actualResultClassConfig = resultClassConfig.resultClasses[perspectiveState.resultClass]
+  }
+  const { sliceVisibilityThreshold, propertyID } = actualResultClassConfig
+
+  results.forEach(item => {
+    const sliceFraction = item.instanceCount / arraySum
+    if (sliceFraction <= sliceVisibilityThreshold) {
+      otherCount += item.instanceCount
     } else {
+      if (item.id === 'http://ldf.fi/MISSING_VALUE' || item.category === 'http://ldf.fi/MISSING_VALUE') {
+        item.prefLabel = generateLabelForMissingValue({ perspective: facetClass, property: propertyID })
+      }
       categories.push(item.prefLabel)
       colors.push('#000000')
       data.push(parseInt(item.instanceCount))
     }
   })
   if (otherCount !== 0) {
-    categories.push('Other')
+    categories.push(intl.get('apexCharts.other') || 'Other')
     colors.push('#000000')
     data.push(otherCount)
   }
