@@ -28,6 +28,25 @@ export default {
     searchBarPlaceHolder: 'Etsi koko aineistosta',
     instructions: 'instructions'
   },
+  apexCharts: {
+    grouping: 'Group by:',
+    property: 'Property:',
+    chartType: 'Chart type:',
+    pie: 'pie chart',
+    bar: 'bar chart',
+    other: 'Other',
+    resultClasses: {
+      victimsByParty: 'party',
+      victimsByOccupation: 'occupation',
+      victimsByGender: 'gender',
+      victimsByRegisteredProvince: 'registered province',
+      victimsByRegisteredMunicipality: 'registered municipality',
+      victimsByDeathProvince: 'death province',
+      victimsByDeathMunicipality: 'death municipality',
+      victimsByCauseOfDeath: 'cause of death',
+      victimsByMaritalStatus: 'marital status'
+    }
+  },
   facetBar: {
     results: 'Results',
     filters: 'Filters',
@@ -171,7 +190,7 @@ export default {
         birthYear: 'Birth year'
       },
       map: {
-        deathsAt: 'People who died in this municipality:'
+        deathsAt: 'People who have died here:'
       },
       extras: {
         ownFamilyName: { label: 'Oma sukunimi' },

@@ -67,7 +67,6 @@
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:party",
-                    "propertyID": "party",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.001
@@ -75,58 +74,66 @@
                 "victimsByOccupation": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
-                    "predicate": "siso-schema:occupation",
+                    "property": "siso-schema:occupation",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.005
                 },
                 "victimsByGender": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:gender",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": null
                 },
                 "victimsByRegisteredProvince": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:registered_province",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": null
                 },
                 "victimsByRegisteredMunicipality": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:registered_municipality",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.005
                 },
                 "victimsByDeathProvince": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:death_province",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": null
                 },
                 "victimsByDeathMunicipality": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:death_municipality",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.005
                 },
                 "victimsByCauseOfDeath": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:cause_of_death",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.005
                 },
                 "victimsByMaritalStatus": {
                     "sparqlQuery": "instancesByPropertyQuery",
                     "rdfType": "siso-schema:Death_record",
                     "property": "siso-schema:marital_status",
                     "filterTarget": "instance",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": null
                 }
             },
             "dropdownForChartTypes": "true",
