@@ -59,7 +59,9 @@ class ApexChart extends React.Component {
       resultClass: this.state.resultClass,
       facetClass: this.props.facetClass,
       facetID: this.props.facetID,
-      uri: this.props.uri
+      uri: this.props.perspectiveState && this.props.perspectiveState.instanceTableData
+        ? this.props.perspectiveState.instanceTableData.id
+        : null
     })
   }
 
@@ -104,15 +106,17 @@ class ApexChart extends React.Component {
   }
 
   renderChart = () => {
-    // Destroy the previous chart
-    if (this.chart !== undefined) {
-      this.chart.destroy()
+    if (this.props.results) {
+      // Destroy the previous chart
+      if (this.chart !== undefined) {
+        this.chart.destroy()
+      }
+      this.chart = new ApexCharts(
+        this.chartRef.current,
+        this.state.createChartData({ ...this.props })
+      )
+      this.chart.render()
     }
-    this.chart = new ApexCharts(
-      this.chartRef.current,
-      this.state.createChartData({ ...this.props })
-    )
-    this.chart.render()
   }
 
   handleResultClassOnChanhge = event => this.setState({ resultClass: event.target.value })

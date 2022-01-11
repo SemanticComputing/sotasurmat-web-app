@@ -263,6 +263,8 @@ class FacetBar extends React.Component {
           id={`${facetID}-header`}
         >
           <FacetHeader
+            portalConfig={this.props.portalConfig}
+            perspectiveConfig={this.props.perspectiveConfig}
             facetID={facetID}
             facetLabel={label}
             facet={facet}
@@ -273,10 +275,10 @@ class FacetBar extends React.Component {
             isActive={isActive}
             facetClass={this.props.facetClass}
             resultClass={this.props.resultClass}
+            perspectiveState={this.props.perspectiveState}
             fetchFacet={this.props.fetchFacet}
             fetchFacetConstrainSelf={this.props.fetchFacetConstrainSelf}
             fetchResults={this.props.fetchResults}
-            facetResults={this.props.facetResults}
             clearFacet={this.props.clearFacet}
             updateFacetOption={this.props.updateFacetOption}
             facetDescription={description}
@@ -414,7 +416,7 @@ FacetBar.propTypes = {
   facetedSearchMode: PropTypes.string.isRequired,
   facetData: PropTypes.object.isRequired,
   facetDataConstrainSelf: PropTypes.object,
-  facetResults: PropTypes.object,
+  perspectiveState: PropTypes.object,
   facetClass: PropTypes.string.isRequired,
   resultClass: PropTypes.string.isRequired,
   resultCount: PropTypes.number,
