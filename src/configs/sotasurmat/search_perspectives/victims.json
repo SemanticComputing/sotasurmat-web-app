@@ -69,7 +69,18 @@
                     "property": "siso-schema:party",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.001
+                    "sliceVisibilityThreshold": 0.001,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByOccupation": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -77,7 +88,18 @@
                     "property": "siso-schema:occupation",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.005
+                    "sliceVisibilityThreshold": 0.005,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByGender": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -85,7 +107,18 @@
                     "property": "siso-schema:gender",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": null
+                    "sliceVisibilityThreshold": null,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByRegisteredProvince": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -93,7 +126,18 @@
                     "property": "siso-schema:registered_province",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": null
+                    "sliceVisibilityThreshold": null,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByRegisteredMunicipality": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -101,7 +145,18 @@
                     "property": "siso-schema:registered_municipality",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.005
+                    "sliceVisibilityThreshold": 0.005,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByDeathProvince": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -109,7 +164,18 @@
                     "property": "siso-schema:death_province",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": null
+                    "sliceVisibilityThreshold": null,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByDeathMunicipality": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -117,7 +183,18 @@
                     "property": "siso-schema:death_municipality",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.005
+                    "sliceVisibilityThreshold": 0.005,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByCauseOfDeath": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -125,7 +202,18 @@
                     "property": "siso-schema:cause_of_death",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.005
+                    "sliceVisibilityThreshold": 0.005,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "victimsByMaritalStatus": {
                     "sparqlQuery": "instancesByPropertyQuery",
@@ -133,20 +221,19 @@
                     "property": "siso-schema:marital_status",
                     "filterTarget": "instance",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": null
+                    "sliceVisibilityThreshold": null,
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 }
-            },
-            "dropdownForChartTypes": "true",
-            "chartTypes": [
-                {
-                    "id": "pie",
-                    "createChartData": "createApexPieChartData"
-                },
-                {
-                    "id": "bar",
-                    "createChartData": "createApexBarChartData"
-                }
-            ]
+            }
         },
         "ageCount": {
             "tabID": 2,
