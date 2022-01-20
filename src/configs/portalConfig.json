@@ -49,8 +49,8 @@
                 "main": "#EB1806"
             }
         },
-        "hundredPercentHeightBreakPoint": "md",
-        "reducedHeightBreakpoint": "xl",
+        "hundredPercentHeightBreakPoint": 900,
+        "reducedHeightBreakpoint": 1920,
         "tabHeight": 58,
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
@@ -66,7 +66,7 @@
             "feedbackLink": "https://link.webropolsurveys.com/S/B9961BC9A2C27761",
             "externalInstructions": false,
             "externalAboutPage": false,
-            "reducedHeight": 44,
+            "reducedHeight": 48,
             "defaultHeight": 64,
             "mobileMenuBreakpoint": 1360,
             "infoDropdown": [
@@ -105,7 +105,7 @@
         "yasguiParams": {
             "contentTypeConstruct": "text/turtle",
             "contentTypeSelect": "application/sparql-results+json",
-            "endpoint": "https://ldf.fi/mmm/sparql",
+            "endpoint": "https://ldf.fi/siso/sparql",
             "requestMethod": "POST",
             "tabTitle": "Exported query"
         }
