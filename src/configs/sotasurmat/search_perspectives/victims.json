@@ -10,6 +10,7 @@
     "URITemplate": "<BASE_URI>/death_records/<LOCAL_ID>",
     "facetClass": "siso-schema:Death_record",
     "frontPageImage": "kalevankangas.jpg",
+    "frontPageElement": "card",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
         "prefLabel"

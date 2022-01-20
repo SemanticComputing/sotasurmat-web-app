@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Chart from 'react-google-charts'
 import moment from 'moment'
-import Paper from '@material-ui/core/Paper'
-import { withStyles } from '@material-ui/core/styles'
+import Paper from '@mui/material/Paper'
+import { withStyles } from '@mui/styles'
 import intl from 'react-intl-universal'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import purple from '@material-ui/core/colors/purple'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const styles = theme => ({
   root: {
@@ -258,7 +257,7 @@ class LineChartSotasurmat extends React.Component {
     if (fetching || results == null) {
       return (
         <div className={classes.spinnerContainerStyle}>
-          <CircularProgress style={{ color: purple[500] }} thickness={5} />
+          <CircularProgress />
         </div>
       )
     }

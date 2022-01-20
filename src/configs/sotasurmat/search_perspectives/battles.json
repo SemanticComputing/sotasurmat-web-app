@@ -10,6 +10,7 @@
     "URITemplate": "<BASE_URI>/sita/<LOCAL_ID>",
     "facetClass": "siso-schema:Battle",
     "frontPageImage": "punainenRintama.jpg",
+    "frontPageElement": "card",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
         "prefLabel"

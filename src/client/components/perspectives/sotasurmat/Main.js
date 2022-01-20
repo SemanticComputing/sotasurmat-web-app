@@ -1,126 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
-// import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-// import MainCard from './MainCard'
-import defaultThumbImage from '../../../img/main_page/thumb.png'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import has from 'lodash'
+import MainCard from './MainCard'
+import { getSpacing } from '../../../helpers/helpers'
 import largeLogoEN from '../../../img/logo_en.gif'
 import largeLogoFI from '../../../img/logo_fi.gif'
-import classNames from 'classnames'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import { Link } from 'react-router-dom'
-import { has } from 'lodash'
-
-const useStyles = makeStyles(theme => ({
-  root: props => ({
-    backgroundColor: '#ffffff',
-    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
-      overflow: 'auto',
-      height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.footer.reducedHeight}px)`
-    },
-    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
-      overflow: 'auto',
-      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.defaultHeight}px)`
-    }
-  }),
-  layout: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up(800 + theme.spacing(6))]: {
-      width: 800,
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-  },
-  heroContent: {
-    paddingBottom: theme.spacing(1)
-  },
-  licenceText: {
-    marginTop: theme.spacing(0.5),
-    fontSize: '0.7em'
-  },
-  lowerRow: {
-    marginTop: theme.spacing(1)
-  },
-  licenceTextContainer: {
-    marginTop: theme.spacing(1),
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  cardContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
-  },
-  card: {
-    width: 340,
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing(2)
-    }
-  },
-  cardContent: {
-    height: 85
-  },
-  media: {
-    height: 140
-  },
-  licenceLayout: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up('sm')]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-  },
-  licenceContainer: {
-    marginTop: theme.spacing(1),
-    paddingBottom: theme.spacing(4),
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.between('sm', 840)]: {
-      width: 340,
-      display: 'block'
-    },
-    [theme.breakpoints.up(840)]: {
-      width: 2 * 340 + theme.spacing(6),
-      display: 'block'
-    }
-  },
-  largeLogo: {
-    height: 50,
-    marginBottom: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      height: 113,
-      marginBottom: 0
-    }
-  },
-  perspectiveDescription: {
-    fontSize: '0.875rem',
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '1rem'
-    }
-  }
-}))
 
 /**
  * A component for generating a landing page for a semantic portal.
  */
 const Main = props => {
-  const { screenSize } = props
-  const classes = useStyles(props)
+  const { perspectives, screenSize } = props
+  console.log(screenSize)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
   // let descriptionVariant = 'body1'
@@ -165,54 +60,136 @@ const Main = props => {
   }
 
   return (
-    <div className={classes.root}>
-      <div className={classes.layout}>
-        <div className={classes.logoContainer}>
-          <img className={classes.largeLogo} src={largeLogo} alt='Logo' />
-        </div>
-        <div className={classes.heroContent}>
-          <Typography className={classes.longTitle} component='h1' variant={headingVariant} align='center' color='textPrimary' gutterBottom>
+    <Box
+      sx={theme => {
+        const { layoutConfig } = props
+        const defaultHeightReduction = layoutConfig.topBar.defaultHeight +
+          layoutConfig.footer.defaultHeight + getSpacing(theme, 2)
+        const reducedHeightReduction = layoutConfig.topBar.reducedHeight +
+          layoutConfig.footer.reducedHeight + getSpacing(theme, 2)
+        return {
+          paddingBottom: theme.spacing(2),
+          height: {
+            hundredPercentHeight: `calc(100% - ${reducedHeightReduction}px)`,
+            reducedHeight: `calc(100% - ${defaultHeightReduction}px)`
+          },
+          overflow: {
+            hundredPercentHeight: 'auto'
+          },
+          backgroundColor: '#fff'
+        }
+      }}
+    >
+      <Box
+        sx={theme => ({
+          marginLeft: theme.spacing(1),
+          marginRight: theme.spacing(1),
+          [theme.breakpoints.up(800 + getSpacing(theme, 6))]: {
+            width: 800,
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }
+        })}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Box
+            component='img'
+            src={largeLogo}
+            alt='Logo'
+            sx={theme => ({
+              height: 50,
+              marginBottom: theme.spacing(2),
+              [theme.breakpoints.up('sm')]: {
+                height: 113,
+                marginBottom: 0
+              }
+            })}
+          />
+        </Box>
+        <Box
+          sx={theme => ({
+            paddingBottom: theme.spacing(1)
+          })}
+        >
+          <Typography
+            component='h1'
+            variant={headingVariant}
+            align='center'
+            color='textPrimary'
+            gutterBottom
+          >
             {intl.get('appTitle.long')}
           </Typography>
-          <Typography variant={subheadingVariant} align='center' color='textSecondary' paragraph>
+          <Typography
+            variant={subheadingVariant}
+            align='center'
+            color='textSecondary'
+            paragraph
+          >
             {intl.get('appDescription')}
           </Typography>
-        </div>
-        <div className={classes.cardContainer}>
-          {props.perspectives.map(perspective => {
-            return (
-              <Card key={perspective.id} className={classes.card}>
-                <CardActionArea component={Link} to={`${props.rootUrl}/${perspective.id}/faceted-search`}>
-                  <CardMedia
-                    className={classes.media}
-                    image={has(perspective, 'frontPageImage')
-                      ? perspective.frontPageImage
-                      : defaultThumbImage}
-                    title={perspective.label}
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant='h5' component='h2'>
-                      {intl.get(`perspectives.${perspective.id}.label`)}
-                    </Typography>
-                    <Typography className={classes.perspectiveDescription} component='p'>
-                      {intl.get(`perspectives.${perspective.id}.shortDescription`)}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            )
-          }
-          )}
-        </div>
-      </div>
-      <div className={classNames(classes.licenceLayout, classes.licenceContainer)}>
-        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}
-          <br />
-          <a href='/saavutettavuusSuomi.pdf' target='_blank'>Saavutettavuusseloste</a> &nbsp; | &nbsp;
-          <a href='/saavutettavuusRuotsi.pdf' target='_blank'>Tillgänglitshetutlåtande</a>
-        </Typography>
-      </div>
-    </div>
+        </Box>
+        <Grid
+          container spacing={screenSize === 'sm' ? 2 : 1}
+          justifyContent={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
+          sx={theme => ({
+            maxWidth: 696,
+            [theme.breakpoints.down('sm')]: {
+              maxWidth: 340
+            },
+            [theme.breakpoints.down(400)]: {
+              maxWidth: 'calc(100% - 16px)',
+              minWidth: 'calc(100% - 16px)'
+            },
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            minHeight: 238
+          })}
+        >
+          {perspectives.map(perspective => {
+            const hideCard = (has(perspective.hideCardOnFrontPage) && perspective.hideCardOnFrontPage)
+            if (!hideCard) {
+              return (
+                <MainCard
+                  key={perspective.id}
+                  perspective={perspective}
+                  cardHeadingVariant='h5'
+                  rootUrl={props.rootUrl}
+                />
+              )
+            }
+            return null
+          })}
+        </Grid>
+        <Box
+          sx={theme => ({
+            marginTop: theme.spacing(1),
+            display: 'flex',
+            justifyContent: 'center'
+          })}
+        >
+          <Typography
+            align='center'
+            sx={theme => ({
+              marginTop: theme.spacing(0.5),
+              fontSize: '0.7em'
+            })}
+          >
+            {intl.getHTML('mainPageImageLicence')}
+            <br />
+            <a href='/saavutettavuusSuomi.pdf' target='_blank'>Saavutettavuusseloste</a>
+            <br />
+            <a href='/saavutettavuusRuotsi.pdf' target='_blank'>Tillgänglitshetutlåtande</a>
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 
