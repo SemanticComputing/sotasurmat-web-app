@@ -1,6 +1,6 @@
 import React from 'react'
 import InfoHeader from '../main_layout/InfoHeader'
-import InstancePage from './InstancePage'
+import InstancePage from '../perspectives/sotasurmat/InstancePageSotasurmat'
 import Grid from '@mui/material/Grid'
 import { getSpacing } from '../../helpers/helpers'
 import { useLocation } from 'react-router-dom'
