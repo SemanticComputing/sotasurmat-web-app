@@ -358,7 +358,7 @@
             "textQueryProperty": "skos:prefLabel"
         },
         "birthTimespan": {
-            "containerClass": "three",
+            "containerClass": "six",
             "endProperty": "crm:P82b_end_of_the_end",
             "facetType": "timespan",
             "filterType": "dateFilter",
@@ -370,7 +370,7 @@
             "startProperty": "crm:P82a_begin_of_the_begin"
         },
         "deathTimespan": {
-            "containerClass": "three",
+            "containerClass": "six",
             "endProperty": "crm:P82b_end_of_the_end",
             "facetType": "timespan",
             "filterType": "dateFilter",

@@ -15,7 +15,6 @@ import largeLogoFI from '../../../img/logo_fi.gif'
  */
 const Main = props => {
   const { perspectives, screenSize } = props
-  console.log(screenSize)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
   // let descriptionVariant = 'body1'
