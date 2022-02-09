@@ -27,15 +27,28 @@ const PerspectiveTabs = props => {
   // const largeScreen = screenSize === 'xl'
   // const scrollButtons = tabs.length > 3 ? 'auto' : 'on'
   const location = useLocation()
+  const [currentTab, setCurrentTab] = useState(false) // false means that there are no active tabs
 
-  const [value, setValue] = useState(pathnameToTabValue(location, tabs))
+  useEffect(
+    () => {
+      // Use a delay before setting current tab value to get rid of the MUI warning:
+      // "MUI: The `value` provided to the Tabs component is invalid.
+      // The Tab with this `value` ("0") is not part of the document layout.
+      // Make sure the tab item is present in the document or that it's not `display: none`.""
+      // https://github.com/mui-org/material-ui/issues/29209
+      const timer = setTimeout(() => setCurrentTab(pathnameToTabValue(location, tabs)), 1000)
 
-  useEffect(() => {
-    setValue(pathnameToTabValue(location, tabs))
-  }, [location])
+      // clear timeout when component unmounts
+      return () => {
+        clearTimeout(timer)
+      }
+    },
+    [location]
+  )
 
+  // always deactivate tabs, until the useEffect hook sets the value
   const handleChange = (event, newValue) => {
-    setValue(newValue)
+    setCurrentTab(false)
   }
 
   return (
@@ -47,7 +60,7 @@ const PerspectiveTabs = props => {
       })}
     >
       <Tabs
-        value={value}
+        value={currentTab}
         onChange={handleChange}
         indicatorColor='secondary'
         textColor='secondary'
