@@ -12,7 +12,7 @@
     },
     "localeConfig": {
         "defaultLocale": "fi",
-        "readTranslationsFromGoogleSheets": "false",
+        "readTranslationsFromGoogleSheets": false,
         "availableLocales": [
             {
                 "id": "en",

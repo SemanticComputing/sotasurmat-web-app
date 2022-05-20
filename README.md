@@ -1,4 +1,4 @@
-# WarVictimSampo 1914–1922
+# User interface for WarVictimSampo 1914–1922 portal
 
 WarVictimSampo 1914–1922 is a semantic portal that publishes data about the war victims in Finland in 1914–1922.
 
